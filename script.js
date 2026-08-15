@@ -1,6 +1,6 @@
 const lens = document.querySelector('.lens');
 const stage = document.querySelector('.perception-stage');
-const notice = document.querySelector('.notice-word');
+const baseWord = document.querySelector('.base-word');
 const hint = document.querySelector('.hint');
 const hero = document.querySelector('.hero');
 const cue = document.querySelector('.scroll-cue');
@@ -25,6 +25,21 @@ let tiltOriginY = 0;
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
+function updateSemanticReveal(px, py) {
+  const stageRect = stage.getBoundingClientRect();
+  const wordRect = baseWord.getBoundingClientRect();
+  const wordX = wordRect.left - stageRect.left + wordRect.width / 2;
+  const wordY = wordRect.top - stageRect.top + wordRect.height / 2;
+
+  const dx = (px - wordX) / Math.max(80, wordRect.width * .58);
+  const dy = (py - wordY) / Math.max(60, wordRect.height * .72);
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  const raw = clamp((1.04 - distance) / .48, 0, 1);
+  const reveal = raw * raw * (3 - 2 * raw);
+
+  lens.style.setProperty('--semantic', reveal.toFixed(3));
+}
+
 function setLensLocal(x, y, reveal = landed) {
   const min = 60;
   const maxX = Math.max(min, stage.clientWidth - min);
@@ -37,12 +52,8 @@ function setLensLocal(x, y, reveal = landed) {
   lens.style.setProperty('--x', `${px}px`);
   lens.style.setProperty('--y', `${py}px`);
 
-  if (reveal) {
-    const radius = parseFloat(getComputedStyle(lens).width) / 2 * 0.9;
-    notice.style.clipPath = `circle(${radius}px at ${px}px ${py}px)`;
-  } else {
-    notice.style.clipPath = 'circle(0px at 50% 50%)';
-  }
+  if (reveal) updateSemanticReveal(px, py);
+  else lens.style.setProperty('--semantic', '0');
 }
 
 function setLens(clientX, clientY) {
