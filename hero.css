@@ -67,7 +67,7 @@
 .lens {
   --semantic: var(--morph);
   z-index: 4;
-  animation: dropFall 1.28s cubic-bezier(.2, .82, .25, 1) both;
+  animation: dropFall 1.62s cubic-bezier(.2, .82, .25, 1) both;
   touch-action: none;
   overflow: hidden;
   border-radius: 53% 47% 51% 49% / 58% 54% 46% 42%;
@@ -144,7 +144,7 @@
 @media (max-width: 780px) {
   .lens {
     width: 132px;
-    animation-duration: 1.42s;
+    animation-duration: 1.88s;
   }
 
   .base-word,
