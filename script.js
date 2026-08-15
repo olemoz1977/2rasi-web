@@ -25,19 +25,29 @@ let tiltOriginY = 0;
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
+function smoothstep(value) {
+  const t = clamp(value, 0, 1);
+  return t * t * (3 - 2 * t);
+}
+
 function updateSemanticReveal(px, py) {
   const stageRect = stage.getBoundingClientRect();
   const wordRect = baseWord.getBoundingClientRect();
   const wordX = wordRect.left - stageRect.left + wordRect.width / 2;
   const wordY = wordRect.top - stageRect.top + wordRect.height / 2;
 
-  const dx = (px - wordX) / Math.max(80, wordRect.width * .58);
-  const dy = (py - wordY) / Math.max(60, wordRect.height * .72);
-  const distance = Math.sqrt(dx * dx + dy * dy);
-  const raw = clamp((1.04 - distance) / .48, 0, 1);
-  const reveal = raw * raw * (3 - 2 * raw);
+  const dx = px - wordX;
+  const dy = py - wordY;
+  const distance = Math.hypot(dx, dy);
+  const lensRadius = lens.offsetWidth / 2;
+  const wordRadius = Math.hypot(wordRect.width / 2, wordRect.height / 2) * .72;
+  const contactDistance = lensRadius + wordRadius;
 
-  lens.style.setProperty('--semantic', reveal.toFixed(3));
+  // 0 when the drop has not reached SEE; 1 when it sits over the word.
+  const overlap = clamp((contactDistance - distance) / (contactDistance * .72), 0, 1);
+  const morph = smoothstep(overlap);
+
+  stage.style.setProperty('--morph', morph.toFixed(3));
 }
 
 function setLensLocal(x, y, reveal = landed) {
@@ -53,7 +63,7 @@ function setLensLocal(x, y, reveal = landed) {
   lens.style.setProperty('--y', `${py}px`);
 
   if (reveal) updateSemanticReveal(px, py);
-  else lens.style.setProperty('--semantic', '0');
+  else stage.style.setProperty('--morph', '0');
 }
 
 function setLens(clientX, clientY) {
