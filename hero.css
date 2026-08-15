@@ -1,0 +1,20 @@
+.hero-image {
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(255,255,255,.92) 0%, rgba(255,255,255,.45) 18%, rgba(255,255,255,0) 43%),
+    radial-gradient(ellipse at 12% 52%, rgba(44,72,82,.32) 0%, rgba(44,72,82,.17) 16%, rgba(44,72,82,0) 35%),
+    radial-gradient(ellipse at 88% 51%, rgba(42,70,84,.28) 0%, rgba(42,70,84,.14) 18%, rgba(42,70,84,0) 38%),
+    linear-gradient(180deg, #b9d4df 0%, #d8e7ec 42%, #b7d0d8 49%, #83aeba 54%, #527d90 69%, #173b57 100%);
+}
+
+.hero-image::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  top: 50%;
+  height: 1px;
+  background: rgba(255,255,255,.62);
+  box-shadow:
+    0 10px 30px rgba(255,255,255,.28),
+    0 55px 80px rgba(220,239,244,.16);
+}
