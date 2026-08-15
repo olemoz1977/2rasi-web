@@ -24,8 +24,6 @@
   uniform sampler2D u_see;
   uniform sampler2D u_notice;
 
-  const float PI = 3.141592653589793;
-
   vec3 heroBackground(vec2 uv) {
     float heroY = clamp(u_heroY0 + uv.y * u_heroYScale, 0.0, 1.0);
 
@@ -35,7 +33,12 @@
     vec3 waterB = vec3(0.471, 0.600, 0.651);
 
     float waterMix = smoothstep(0.46, 0.98, heroY);
-    vec3 color = mix(mix(skyA, skyB, heroY / 0.5), mix(waterA, waterB, smoothstep(0.5, 1.0, heroY)), waterMix);
+    float skyT = clamp(heroY / 0.5, 0.0, 1.0);
+    vec3 color = mix(
+      mix(skyA, skyB, skyT),
+      mix(waterA, waterB, smoothstep(0.5, 1.0, heroY)),
+      waterMix
+    );
 
     vec2 glowP = vec2((uv.x - 0.5) * 0.88, (heroY - 0.36) * 1.12);
     float glow = exp(-dot(glowP, glowP) * 5.1);
@@ -100,11 +103,11 @@
 
     // Minimal chromatic separation appears only close to the rim.
     float chroma = smoothstep(0.72, 1.0, safeR) * 0.72;
-    vec2 chromaUV = normal.xy * vec2(1.0) / u_resolution * chroma;
+    vec2 chromaUV = normal.xy / u_resolution * chroma;
     vec3 bg;
-    bg.r = heroBackground(clamp(sampleUV + chromaUV, 0.0, 1.0)).r;
+    bg.r = heroBackground(clamp(sampleUV + chromaUV, vec2(0.0), vec2(1.0))).r;
     bg.g = heroBackground(sampleUV).g;
-    bg.b = heroBackground(clamp(sampleUV - chromaUV, 0.0, 1.0)).b;
+    bg.b = heroBackground(clamp(sampleUV - chromaUV, vec2(0.0), vec2(1.0))).b;
 
     float seeA = texture(u_see, sampleUV).a;
     float noticeA = texture(u_notice, sampleUV).a;
@@ -329,7 +332,7 @@
       uploadTextTexture(noticeTexture, noticeCanvas, gl.TEXTURE1);
     }
 
-    function resize() {
+    function resizeRenderer() {
       const rect = stage.getBoundingClientRect();
       const nextWidth = Math.max(1, Math.round(rect.width));
       const nextHeight = Math.max(1, Math.round(rect.height));
@@ -350,7 +353,7 @@
 
     function render(time) {
       if (disposed) return;
-      resize();
+      resizeRenderer();
 
       const stageRect = stage.getBoundingClientRect();
       const lensRect = lens.getBoundingClientRect();
@@ -388,7 +391,7 @@
 
     const resizeObserver = new ResizeObserver(() => {
       cssWidth = 0;
-      resize();
+      resizeRenderer();
     });
     resizeObserver.observe(stage);
 
@@ -399,11 +402,12 @@
       event.preventDefault();
       disposed = true;
       cancelAnimationFrame(rafId);
+      resizeObserver.disconnect();
       stage.classList.remove('webgl-active');
       canvas.remove();
     }, { once: true });
 
-    resize();
+    resizeRenderer();
     rafId = requestAnimationFrame(render);
 
     return {
@@ -413,7 +417,7 @@
       },
       resize() {
         cssWidth = 0;
-        resize();
+        resizeRenderer();
       },
       destroy() {
         if (disposed) return;
