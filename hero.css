@@ -1,26 +1,65 @@
 @keyframes dropFall {
-  0% { transform: translate(-50%, -260%) scale(.72); opacity: 0; }
-  55% { opacity: 1; }
-  70% { transform: translate(-50%, -50%) scale(1.08); }
-  100% { transform: translate(-50%, -50%) scale(1); }
+  0% {
+    transform: translate(-50%, -50%) translateY(-82vh) scale(.68, .82);
+    opacity: 0;
+  }
+  45% { opacity: 1; }
+  72% {
+    transform: translate(-50%, -50%) translateY(12px) scale(1.05, .97);
+  }
+  86% {
+    transform: translate(-50%, -50%) translateY(-5px) scale(.99, 1.02);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.perception-stage {
+  isolation: isolate;
 }
 
 .notice-word {
   position: absolute;
   inset: 0;
+  z-index: 3;
   display: grid;
   place-items: center;
-  font-size: clamp(4rem, 8vw, 7.7rem);
-  font-weight: 720;
-  letter-spacing: -.055em;
-  color: rgba(9, 60, 84, .9);
+  font-size: clamp(1.05rem, 1.55vw, 1.35rem);
+  font-weight: 760;
+  letter-spacing: .14em;
+  color: rgba(7, 27, 46, .92);
+  text-shadow: 0 1px 8px rgba(255,255,255,.82);
   clip-path: circle(0px at 50% 50%);
-  transition: clip-path .25s ease-out;
+  transition: clip-path .08s linear;
   pointer-events: none;
 }
 
+.base-word {
+  position: relative;
+  z-index: 1;
+}
+
 .lens {
-  animation: dropFall .9s cubic-bezier(.2, .9, .25, 1) both;
+  z-index: 4;
+  animation: dropFall 1.28s cubic-bezier(.2, .82, .25, 1) both;
+  touch-action: none;
+}
+
+.hint {
+  transition: opacity .25s ease, color .25s ease;
+}
+
+@media (max-width: 780px) {
+  .lens {
+    animation-duration: 1.42s;
+  }
+
+  .notice-word {
+    font-size: 1.08rem;
+    letter-spacing: .12em;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
