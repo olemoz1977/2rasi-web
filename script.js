@@ -22,6 +22,8 @@ let targetX = 0;
 let targetY = 0;
 let tiltOriginX = 0;
 let tiltOriginY = 0;
+let rotationTimer = null;
+let layoutMode = window.innerWidth >= window.innerHeight ? 'landscape' : 'portrait';
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
@@ -43,7 +45,6 @@ function updateSemanticReveal(px, py) {
   const wordRadius = Math.hypot(wordRect.width / 2, wordRect.height / 2) * .72;
   const contactDistance = lensRadius + wordRadius;
 
-  // 0 when the drop has not reached SEE; 1 when it sits over the word.
   const overlap = clamp((contactDistance - distance) / (contactDistance * .72), 0, 1);
   const morph = smoothstep(overlap);
 
@@ -71,14 +72,26 @@ function setLens(clientX, clientY) {
   setLensLocal(clientX - r.left, clientY - r.top);
 }
 
+function wordCenterLocal() {
+  const stageRect = stage.getBoundingClientRect();
+  const wordRect = baseWord.getBoundingClientRect();
+  return {
+    x: wordRect.left - stageRect.left + wordRect.width / 2,
+    y: wordRect.top - stageRect.top + wordRect.height / 2
+  };
+}
+
+function centerLensOnWord(reveal = true) {
+  const center = wordCenterLocal();
+  setLensLocal(center.x, center.y, reveal);
+  targetX = tiltOriginX = currentX;
+  targetY = tiltOriginY = currentY;
+}
+
 function settleLens() {
   if (landed) return;
   landed = true;
-  const x = stage.clientWidth / 2;
-  const y = stage.clientHeight / 2;
-  setLensLocal(x, y, true);
-  targetX = tiltOriginX = currentX;
-  targetY = tiltOriginY = currentY;
+  centerLensOnWord(true);
 
   if (coarsePointer) {
     hint.textContent = 'TILT · TOUCH · NOTICE';
@@ -87,7 +100,7 @@ function settleLens() {
 }
 
 lens.addEventListener('animationend', settleLens, { once: true });
-setTimeout(settleLens, reducedMotion ? 0 : 1550);
+setTimeout(settleLens, reducedMotion ? 0 : (coarsePointer ? 1980 : 1720));
 
 function attachOrientationListener() {
   if (orientationListening) return;
@@ -127,8 +140,8 @@ function onOrientation(event) {
   if (baseBeta == null || baseGamma == null) {
     baseBeta = event.beta;
     baseGamma = event.gamma;
-    tiltOriginX = currentX || stage.clientWidth / 2;
-    tiltOriginY = currentY || stage.clientHeight / 2;
+    tiltOriginX = currentX || wordCenterLocal().x;
+    tiltOriginY = currentY || wordCenterLocal().y;
     targetX = tiltOriginX;
     targetY = tiltOriginY;
     orientationActive = true;
@@ -172,6 +185,28 @@ function animateTilt() {
   requestAnimationFrame(animateTilt);
 }
 requestAnimationFrame(animateTilt);
+
+function recalibrateForLayoutChange() {
+  if (!landed) return;
+  clearTimeout(rotationTimer);
+  rotationTimer = setTimeout(() => {
+    baseBeta = null;
+    baseGamma = null;
+    orientationActive = false;
+    centerLensOnWord(true);
+    if (coarsePointer) startOrientation(false);
+  }, 220);
+}
+
+window.addEventListener('orientationchange', recalibrateForLayoutChange);
+screen.orientation?.addEventListener?.('change', recalibrateForLayoutChange);
+window.addEventListener('resize', () => {
+  const nextMode = window.innerWidth >= window.innerHeight ? 'landscape' : 'portrait';
+  if (nextMode !== layoutMode) {
+    layoutMode = nextMode;
+    recalibrateForLayoutChange();
+  }
+});
 
 stage.addEventListener('pointerdown', (e) => {
   if (!landed) return;
