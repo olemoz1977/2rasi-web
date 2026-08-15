@@ -9,6 +9,13 @@ const header = document.querySelector('.site-header');
 const coarsePointer = matchMedia('(pointer: coarse)').matches;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+const waterRenderer = window.createWaterDropRenderer?.({
+  stage,
+  lens,
+  baseWord,
+  hero
+}) || null;
+
 let dragging = false;
 let landed = false;
 let orientationListening = false;
@@ -49,6 +56,7 @@ function updateSemanticReveal(px, py) {
   const morph = smoothstep(overlap);
 
   stage.style.setProperty('--morph', morph.toFixed(3));
+  waterRenderer?.setMorph(morph);
 }
 
 function setLensLocal(x, y, reveal = landed) {
@@ -63,8 +71,12 @@ function setLensLocal(x, y, reveal = landed) {
   lens.style.setProperty('--x', `${px}px`);
   lens.style.setProperty('--y', `${py}px`);
 
-  if (reveal) updateSemanticReveal(px, py);
-  else stage.style.setProperty('--morph', '0');
+  if (reveal) {
+    updateSemanticReveal(px, py);
+  } else {
+    stage.style.setProperty('--morph', '0');
+    waterRenderer?.setMorph(0);
+  }
 }
 
 function setLens(clientX, clientY) {
@@ -193,6 +205,7 @@ function recalibrateForLayoutChange() {
     baseBeta = null;
     baseGamma = null;
     orientationActive = false;
+    waterRenderer?.resize();
     centerLensOnWord(true);
     if (coarsePointer) startOrientation(false);
   }, 220);
