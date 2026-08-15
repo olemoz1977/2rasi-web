@@ -55,7 +55,7 @@ nav a:hover { opacity: 1; }
   position: absolute;
   inset: 0;
   z-index: -3;
-  background: url('assets/hero-lake.png') center 46% / cover no-repeat;
+  background: url('assets/hero-lake.jpg') center 46% / cover no-repeat;
   transform: scale(1.035);
   filter: saturate(.78) contrast(.91) brightness(1.08);
 }
