@@ -1,14 +1,14 @@
 @keyframes dropFall {
   0% {
-    transform: translate(-50%, -50%) translateY(-82vh) scale(.68, .82);
+    transform: translate(-50%, -50%) translateY(-82vh) scale(.58, .88);
     opacity: 0;
   }
-  45% { opacity: 1; }
+  38% { opacity: 1; }
   72% {
-    transform: translate(-50%, -50%) translateY(12px) scale(1.05, .97);
+    transform: translate(-50%, -50%) translateY(12px) scale(1.07, .95);
   }
   86% {
-    transform: translate(-50%, -50%) translateY(-5px) scale(.99, 1.02);
+    transform: translate(-50%, -50%) translateY(-4px) scale(.99, 1.025);
   }
   100% {
     transform: translate(-50%, -50%) translateY(0) scale(1);
@@ -16,66 +16,124 @@
   }
 }
 
-/* V01 atmosphere, without relying on the missing hero-lake.jpg asset. */
+/* V01 atmosphere, kept asset-free so the hero is reliable on every device. */
 .hero-image {
   background:
-    linear-gradient(180deg, transparent 0 48.8%, rgba(255,255,255,.40) 49.1%, rgba(45,92,108,.12) 49.4%, transparent 50.2%),
-    radial-gradient(ellipse at 50% 39%, rgba(255,255,255,.96) 0%, rgba(239,248,250,.84) 24%, rgba(217,233,238,.34) 48%, rgba(217,233,238,0) 70%),
-    linear-gradient(180deg, #dcecf2 0%, #d8e9ee 45%, #aec6ce 51%, #91acb7 68%, #7898a5 100%);
+    linear-gradient(180deg, transparent 0 48.8%, rgba(255,255,255,.34) 49.05%, rgba(47,99,116,.11) 49.35%, transparent 50.15%),
+    radial-gradient(ellipse at 50% 38%, rgba(255,255,255,.98) 0%, rgba(241,249,251,.88) 23%, rgba(216,234,239,.36) 47%, rgba(216,234,239,0) 69%),
+    linear-gradient(180deg, #deedf2 0%, #d9e9ee 45%, #afc8d0 51%, #92aeb9 68%, #7899a6 100%);
   transform: none;
   filter: none;
 }
 
 .veil {
   background:
-    radial-gradient(circle at 50% 36%, rgba(255,255,255,.46) 0%, rgba(255,255,255,0) 39%),
-    linear-gradient(180deg, rgba(247,251,252,.10) 0%, rgba(247,251,252,.02) 47%, rgba(20,65,82,.08) 100%);
+    radial-gradient(circle at 50% 35%, rgba(255,255,255,.42) 0%, rgba(255,255,255,0) 40%),
+    linear-gradient(180deg, rgba(247,251,252,.08) 0%, rgba(247,251,252,.015) 47%, rgba(20,65,82,.07) 100%);
 }
 
 .perception-stage {
+  --morph: 0;
   isolation: isolate;
 }
 
-/* Old clipped NOTICE layer is intentionally disabled. The complete word now lives inside the drop. */
+/* SEE and NOTICE share one visual baseline. SEE is deliberately widened to ~3/4 of NOTICE. */
+.base-word {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(.96rem, 1.35vw, 1.18rem);
+  font-weight: 780;
+  line-height: 1;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(7, 27, 46, .76);
+  opacity: calc(1 - var(--morph));
+  transform: translate(-50%, -50%) scaleX(1.48);
+  transform-origin: center;
+  transition: opacity .12s linear;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* The old global NOTICE layer remains disabled; NOTICE belongs to the optical drop. */
 .notice-word {
   display: none !important;
 }
 
-.base-word {
-  position: relative;
-  z-index: 1;
-}
-
+/* Water-on-glass illusion: edge tension, specular highlight, subtle internal caustic and soft refraction. */
 .lens {
-  --semantic: 0;
+  --semantic: var(--morph);
   z-index: 4;
   animation: dropFall 1.28s cubic-bezier(.2, .82, .25, 1) both;
   touch-action: none;
   overflow: hidden;
-  backdrop-filter: blur(1.25px) saturate(1.16) contrast(1.05) brightness(1.03);
-  -webkit-backdrop-filter: blur(1.25px) saturate(1.16) contrast(1.05) brightness(1.03);
+  border-radius: 53% 47% 51% 49% / 58% 54% 46% 42%;
+  border: 1px solid rgba(255,255,255,.78);
   background:
-    radial-gradient(circle at 35% 27%, rgba(255,255,255,.88) 0 5%, rgba(255,255,255,.24) 18%, rgba(115,174,190,.10) 56%, rgba(255,255,255,.18) 100%);
+    radial-gradient(ellipse at 30% 22%, rgba(255,255,255,.96) 0 4%, rgba(255,255,255,.60) 5%, rgba(255,255,255,.10) 15%, transparent 24%),
+    radial-gradient(ellipse at 72% 77%, rgba(34,102,126,.16) 0%, rgba(34,102,126,.06) 28%, transparent 56%),
+    radial-gradient(circle at 48% 43%, rgba(255,255,255,.12) 0%, rgba(118,181,198,.08) 62%, rgba(255,255,255,.27) 100%);
   box-shadow:
-    inset -12px -16px 30px rgba(24,78,97,.10),
-    inset 13px 11px 26px rgba(255,255,255,.42),
-    0 22px 50px rgba(24,70,88,.12);
+    inset 8px 9px 18px rgba(255,255,255,.48),
+    inset -13px -15px 25px rgba(25,82,103,.15),
+    inset 0 0 0 1px rgba(255,255,255,.22),
+    0 2px 3px rgba(255,255,255,.34),
+    0 18px 34px rgba(20,67,86,.16),
+    0 32px 55px rgba(20,67,86,.08);
+  backdrop-filter: blur(.55px) saturate(1.24) contrast(1.10) brightness(1.035);
+  -webkit-backdrop-filter: blur(.55px) saturate(1.24) contrast(1.10) brightness(1.035);
+  filter: drop-shadow(0 7px 7px rgba(25,75,94,.10));
+}
+
+.lens::before {
+  content: '';
+  position: absolute;
+  width: 30%;
+  height: 13%;
+  left: 17%;
+  top: 14%;
+  border-radius: 50%;
+  background: linear-gradient(100deg, rgba(255,255,255,.94), rgba(255,255,255,.18));
+  filter: blur(1.2px);
+  transform: rotate(-26deg);
+  opacity: .92;
+  pointer-events: none;
+}
+
+.lens::after {
+  content: '';
+  position: absolute;
+  left: 22%;
+  right: 17%;
+  bottom: 8%;
+  height: 14%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(29,97,121,.24) 0%, rgba(255,255,255,.18) 36%, transparent 72%);
+  filter: blur(3px);
+  opacity: .72;
+  pointer-events: none;
 }
 
 .lens-word {
   position: absolute;
   inset: 0;
+  z-index: 3;
   display: grid;
   place-items: center;
-  color: rgba(6, 31, 48, .92);
-  font-size: clamp(.82rem, 1.15vw, 1rem);
-  font-weight: 760;
-  letter-spacing: .14em;
+  color: rgba(5, 30, 47, .94);
+  font-size: clamp(.96rem, 1.35vw, 1.18rem);
+  font-weight: 780;
+  letter-spacing: .16em;
   line-height: 1;
-  opacity: var(--semantic, 0);
-  transform: scale(calc(.93 + var(--semantic, 0) * .07));
+  text-transform: uppercase;
+  opacity: var(--morph);
+  transform: scale(calc(.96 + var(--morph) * .04));
   transition: opacity .12s linear, transform .14s ease-out;
-  text-shadow: 0 1px 8px rgba(255,255,255,.88);
+  text-shadow: 0 1px 5px rgba(255,255,255,.94);
+  white-space: nowrap;
   pointer-events: none;
 }
 
@@ -85,12 +143,14 @@
 
 @media (max-width: 780px) {
   .lens {
+    width: 132px;
     animation-duration: 1.42s;
   }
 
+  .base-word,
   .lens-word {
-    font-size: .84rem;
-    letter-spacing: .12em;
+    font-size: .96rem;
+    letter-spacing: .15em;
   }
 }
 
