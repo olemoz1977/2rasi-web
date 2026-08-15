@@ -1,154 +1,146 @@
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 .hero-image {
-  background: url('assets/hero-2rasi.webp') center center / cover no-repeat;
-  transform: none;
-  filter: none;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(255,255,255,.92) 0%, rgba(255,255,255,.45) 18%, rgba(255,255,255,0) 43%),
+    radial-gradient(ellipse at 12% 52%, rgba(44,72,82,.32) 0%, rgba(44,72,82,.17) 16%, rgba(44,72,82,0) 35%),
+    radial-gradient(ellipse at 88% 51%, rgba(42,70,84,.28) 0%, rgba(42,70,84,.14) 18%, rgba(42,70,84,0) 38%),
+    linear-gradient(180deg, #b9d4df 0%, #d8e7ec 42%, #b7d0d8 49%, #83aeba 54%, #527d90 69%, #173b57 100%);
+  transform: scale(1.035);
+  filter: saturate(.82) contrast(.94) brightness(1.04);
 }
 
 .hero-image::after {
-  display: none;
-}
-
-.veil {
-  background:
-    linear-gradient(180deg, rgba(235,246,250,.12) 0%, rgba(228,241,246,0) 42%, rgba(4,31,52,.18) 100%),
-    linear-gradient(90deg, rgba(5,33,54,.10) 0%, rgba(5,33,54,0) 30%, rgba(5,33,54,0) 72%, rgba(5,33,54,.08) 100%);
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  top: 50%;
+  height: 1px;
+  background: rgba(255,255,255,.62);
+  box-shadow:
+    0 10px 30px rgba(255,255,255,.28),
+    0 55px 80px rgba(220,239,244,.16);
 }
 
 .hero-copy {
-  top: auto;
-  bottom: clamp(52px, 7vh, 84px);
-  left: clamp(24px, 5vw, 76px);
-  max-width: 420px;
   z-index: 4;
 }
 
 .hero-copy .eyebrow {
-  margin: 0 0 12px;
-  color: rgba(255,255,255,.96);
-  letter-spacing: .36em;
-  font-size: .78rem;
-  text-shadow: 0 2px 18px rgba(0,25,45,.35);
-}
-
-.hero-copy .hero-sub {
-  margin: 0;
-  max-width: 360px;
-  color: rgba(246,251,253,.90);
-  font-size: .98rem;
-  line-height: 1.55;
-  text-shadow: 0 2px 18px rgba(0,25,45,.40);
+  margin-bottom: 18px;
 }
 
 .perception-stage {
-  right: clamp(24px, 5vw, 76px);
-  bottom: clamp(42px, 6vh, 72px);
-  width: min(300px, 32vw);
-  height: 150px;
-  z-index: 5;
+  --lens-x: 50%;
+  --lens-y: 50%;
+  isolation: isolate;
+}
+
+.base-word,
+.reveal-word {
+  grid-area: 1 / 1;
+  pointer-events: none;
 }
 
 .base-word {
-  font-size: clamp(3.6rem, 5vw, 5.8rem);
-  color: rgba(243,250,252,.18);
-  text-shadow: 0 2px 20px rgba(0,24,42,.15);
+  position: relative;
+  z-index: 1;
+}
+
+.reveal-word {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  font-size: clamp(3.1rem, 6.2vw, 6.25rem);
+  font-weight: 720;
+  letter-spacing: -.055em;
+  color: rgba(7, 27, 46, .78);
+  clip-path: circle(clamp(54px, 6vw, 84px) at var(--lens-x) var(--lens-y));
+  filter: blur(.15px);
+  text-shadow:
+    -1px 0 rgba(255,255,255,.28),
+    1px 1px rgba(18,74,96,.12);
+  transition: clip-path .08s linear;
 }
 
 .lens {
-  width: clamp(98px, 9vw, 126px);
-  color: #09243a;
-  border-color: rgba(255,255,255,.72);
+  z-index: 4;
+  overflow: visible;
+  animation: dropIn 1.18s cubic-bezier(.22,.78,.3,1) both;
   background:
-    radial-gradient(circle at 34% 28%, rgba(255,255,255,.92), rgba(255,255,255,.22) 28%, rgba(115,184,202,.16) 63%, rgba(255,255,255,.28));
+    radial-gradient(circle at 34% 26%, rgba(255,255,255,.86) 0 7%, rgba(255,255,255,.38) 15%, rgba(255,255,255,.09) 34%, rgba(78,147,169,.12) 66%, rgba(255,255,255,.24) 100%);
+  backdrop-filter: blur(4px) saturate(1.35) contrast(1.08) brightness(1.06);
   box-shadow:
-    inset -14px -18px 34px rgba(25,87,109,.13),
-    inset 14px 12px 28px rgba(255,255,255,.58),
-    0 20px 54px rgba(5,32,52,.20);
+    inset -18px -22px 40px rgba(30,91,112,.14),
+    inset 18px 15px 34px rgba(255,255,255,.55),
+    0 28px 70px rgba(18,66,84,.17);
 }
 
-.lens:active {
-  width: clamp(104px, 9.4vw, 132px);
+.lens::before {
+  content: "";
+  position: absolute;
+  width: 24%;
+  height: 14%;
+  left: 22%;
+  top: 18%;
+  border-radius: 50%;
+  background: rgba(255,255,255,.72);
+  filter: blur(2px);
+  transform: rotate(-22deg);
+  pointer-events: none;
 }
 
-.lens span {
-  font-size: clamp(.76rem, 1vw, .92rem);
-  letter-spacing: .18em;
+.lens::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 22%;
+  bottom: -32%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(220,244,250,.30) 0%, rgba(88,150,169,.15) 42%, rgba(88,150,169,0) 72%);
+  transform: scaleY(.42);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+@keyframes dropIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-62vh) scale(.58,.72);
+  }
+  68% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(11px) scale(1.04,.97);
+  }
+  84% {
+    transform: translate(-50%, -50%) translateY(-5px) scale(.985,1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0) scale(1);
+  }
 }
 
 .hint {
-  bottom: -3px;
-  color: rgba(244,250,252,.66);
-  text-shadow: 0 1px 12px rgba(0,22,40,.34);
-}
-
-.scroll-cue {
-  bottom: 22px;
-}
-
-.scroll-cue span {
-  border-right-color: rgba(255,255,255,.7);
-  border-bottom-color: rgba(255,255,255,.7);
+  opacity: .68;
+  letter-spacing: .17em;
 }
 
 @media (max-width: 780px) {
-  .hero-image {
-    background-position: center center;
-  }
-
-  .hero-copy {
-    left: 20px;
-    right: 20px;
-    bottom: 36px;
-    max-width: 280px;
-  }
-
-  .hero-copy .eyebrow {
-    font-size: .68rem;
-    letter-spacing: .30em;
-  }
-
-  .hero-copy .hero-sub {
-    font-size: .82rem;
-    line-height: 1.45;
-  }
-
-  .perception-stage {
-    left: auto;
-    right: 12px;
-    bottom: 118px;
-    width: 190px;
-    height: 112px;
-  }
-
-  .base-word {
-    font-size: 3.7rem;
-  }
-
-  .lens {
-    width: 88px;
+  .reveal-word {
+    font-size: clamp(3rem, 18vw, 5.8rem);
+    clip-path: circle(58px at var(--lens-x) var(--lens-y));
   }
 
   .hint {
-    font-size: .56rem;
-    letter-spacing: .11em;
+    opacity: .74;
   }
 }
 
-@media (max-width: 480px) {
-  .perception-stage {
-    opacity: .88;
-    transform: scale(.86);
-    transform-origin: right bottom;
+@media (prefers-reduced-motion: reduce) {
+  .lens {
+    animation: none;
   }
 }
