@@ -6,22 +6,41 @@ const header = document.querySelector('.site-header');
 
 let dragging = false;
 
+function setLensLocal(x, y) {
+  const min = 60;
+  const maxX = Math.max(min, stage.clientWidth - min);
+  const maxY = Math.max(min, stage.clientHeight - min);
+  const px = Math.max(min, Math.min(maxX, x));
+  const py = Math.max(min, Math.min(maxY, y));
+
+  lens.style.setProperty('--x', `${px}px`);
+  lens.style.setProperty('--y', `${py}px`);
+  stage.style.setProperty('--lens-x', `${px}px`);
+  stage.style.setProperty('--lens-y', `${py}px`);
+}
+
 function setLens(clientX, clientY) {
   const r = stage.getBoundingClientRect();
-  const x = Math.max(60, Math.min(r.width - 60, clientX - r.left));
-  const y = Math.max(60, Math.min(r.height - 60, clientY - r.top));
-  lens.style.setProperty('--x', `${x}px`);
-  lens.style.setProperty('--y', `${y}px`);
+  setLensLocal(clientX - r.left, clientY - r.top);
 }
+
+function centerLens() {
+  setLensLocal(stage.clientWidth * .5, stage.clientHeight * .5);
+}
+
+centerLens();
+window.addEventListener('resize', centerLens);
 
 stage.addEventListener('pointerdown', (e) => {
   dragging = true;
   stage.setPointerCapture?.(e.pointerId);
   setLens(e.clientX, e.clientY);
 });
+
 stage.addEventListener('pointermove', (e) => {
   if (dragging || e.pointerType === 'mouse') setLens(e.clientX, e.clientY);
 });
+
 stage.addEventListener('pointerup', () => { dragging = false; });
 stage.addEventListener('pointercancel', () => { dragging = false; });
 
@@ -29,8 +48,9 @@ function rippleAndGo() {
   hero.classList.remove('ripple-now');
   void hero.offsetWidth;
   hero.classList.add('ripple-now');
-  setTimeout(() => document.querySelector('#experiments').scrollIntoView({behavior:'smooth'}), 360);
+  setTimeout(() => document.querySelector('#experiments').scrollIntoView({ behavior: 'smooth' }), 360);
 }
+
 cue.addEventListener('click', rippleAndGo);
 lens.addEventListener('dblclick', rippleAndGo);
 
@@ -39,23 +59,28 @@ window.addEventListener('scroll', () => {
 });
 
 const observer = new IntersectionObserver((entries) => {
-  for (const entry of entries) if (entry.isIntersecting) entry.target.classList.add('visible');
+  for (const entry of entries) {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  }
 }, { threshold: .15 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Mobile: a slow, subtle drift so the lens is alive without hover.
+document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+// Mobile: the drop keeps moving even without hover. The same coordinates
+// drive both the optical drop and the SEE -> NOTICE reveal window.
 if (matchMedia('(pointer: coarse)').matches) {
   let t = 0;
   const drift = () => {
     if (!dragging) {
-      const r = stage.getBoundingClientRect();
-      const x = r.width * (.5 + Math.sin(t) * .18);
-      const y = r.height * (.48 + Math.cos(t * .8) * .1);
-      lens.style.setProperty('--x', `${x}px`);
-      lens.style.setProperty('--y', `${y}px`);
+      const x = stage.clientWidth * (.5 + Math.sin(t) * .18);
+      const y = stage.clientHeight * (.48 + Math.cos(t * .8) * .1);
+      setLensLocal(x, y);
     }
     t += .012;
     requestAnimationFrame(drift);
   };
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(drift);
+
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setTimeout(() => requestAnimationFrame(drift), 1250);
+  }
 }
