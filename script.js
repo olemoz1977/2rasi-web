@@ -1,48 +1,192 @@
 const lens = document.querySelector('.lens');
 const stage = document.querySelector('.perception-stage');
 const notice = document.querySelector('.notice-word');
+const hint = document.querySelector('.hint');
 const hero = document.querySelector('.hero');
 const cue = document.querySelector('.scroll-cue');
 const header = document.querySelector('.site-header');
 
+const coarsePointer = matchMedia('(pointer: coarse)').matches;
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 let dragging = false;
+let landed = false;
+let orientationListening = false;
+let orientationActive = false;
+let permissionRequested = false;
+let baseBeta = null;
+let baseGamma = null;
+let currentX = 0;
+let currentY = 0;
+let targetX = 0;
+let targetY = 0;
+let tiltOriginX = 0;
+let tiltOriginY = 0;
+
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+function setLensLocal(x, y, reveal = landed) {
+  const min = 60;
+  const maxX = Math.max(min, stage.clientWidth - min);
+  const maxY = Math.max(min, stage.clientHeight - min);
+  const px = clamp(x, min, maxX);
+  const py = clamp(y, min, maxY);
+
+  currentX = px;
+  currentY = py;
+  lens.style.setProperty('--x', `${px}px`);
+  lens.style.setProperty('--y', `${py}px`);
+
+  if (reveal) {
+    const radius = parseFloat(getComputedStyle(lens).width) / 2 * 0.9;
+    notice.style.clipPath = `circle(${radius}px at ${px}px ${py}px)`;
+  } else {
+    notice.style.clipPath = 'circle(0px at 50% 50%)';
+  }
+}
 
 function setLens(clientX, clientY) {
   const r = stage.getBoundingClientRect();
-  const x = Math.max(60, Math.min(r.width - 60, clientX - r.left));
-  const y = Math.max(60, Math.min(r.height - 60, clientY - r.top));
-  lens.style.setProperty('--x', `${x}px`);
-  lens.style.setProperty('--y', `${y}px`);
-  const radius = parseFloat(getComputedStyle(lens).width) / 2 * 1.05;
-  notice.style.clipPath = `circle(${radius}px at ${x}px ${y}px)`;
+  setLensLocal(clientX - r.left, clientY - r.top);
 }
 
 function settleLens() {
-  const r = stage.getBoundingClientRect();
-  setLens(r.left + r.width / 2, r.top + r.height / 2);
+  if (landed) return;
+  landed = true;
+  const x = stage.clientWidth / 2;
+  const y = stage.clientHeight / 2;
+  setLensLocal(x, y, true);
+  targetX = tiltOriginX = currentX;
+  targetY = tiltOriginY = currentY;
+
+  if (coarsePointer) {
+    hint.textContent = 'TILT · TOUCH · NOTICE';
+    startOrientation(false);
+  }
 }
-// Reveal only kicks in once the drop has landed, so the reveal-hole
-// and the falling ball never look decoupled mid-fall.
+
 lens.addEventListener('animationend', settleLens, { once: true });
-setTimeout(settleLens, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 950);
+setTimeout(settleLens, reducedMotion ? 0 : 1550);
+
+function attachOrientationListener() {
+  if (orientationListening) return;
+  orientationListening = true;
+  window.addEventListener('deviceorientation', onOrientation, { passive: true });
+}
+
+async function startOrientation(fromGesture) {
+  if (!coarsePointer || typeof DeviceOrientationEvent === 'undefined') return;
+
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    if (!fromGesture || permissionRequested) {
+      if (!permissionRequested) hint.textContent = 'TOUCH · TILT · NOTICE';
+      return;
+    }
+
+    permissionRequested = true;
+    try {
+      const permission = await DeviceOrientationEvent.requestPermission();
+      if (permission === 'granted') {
+        attachOrientationListener();
+      } else {
+        hint.textContent = 'DRAG · TOUCH · NOTICE';
+      }
+    } catch {
+      hint.textContent = 'DRAG · TOUCH · NOTICE';
+    }
+    return;
+  }
+
+  attachOrientationListener();
+}
+
+function onOrientation(event) {
+  if (!landed || dragging || event.beta == null || event.gamma == null) return;
+
+  if (baseBeta == null || baseGamma == null) {
+    baseBeta = event.beta;
+    baseGamma = event.gamma;
+    tiltOriginX = currentX || stage.clientWidth / 2;
+    tiltOriginY = currentY || stage.clientHeight / 2;
+    targetX = tiltOriginX;
+    targetY = tiltOriginY;
+    orientationActive = true;
+    hint.textContent = 'TILT · TOUCH · NOTICE';
+    return;
+  }
+
+  const beta = event.beta - baseBeta;
+  const gamma = event.gamma - baseGamma;
+  const angle = ((screen.orientation?.angle ?? window.orientation ?? 0) + 360) % 360;
+
+  let horizontal = gamma;
+  let vertical = beta;
+
+  if (angle === 90) {
+    horizontal = beta;
+    vertical = -gamma;
+  } else if (angle === 270) {
+    horizontal = -beta;
+    vertical = gamma;
+  } else if (angle === 180) {
+    horizontal = -gamma;
+    vertical = -beta;
+  }
+
+  const nx = clamp(horizontal / 18, -1, 1);
+  const ny = clamp(vertical / 18, -1, 1);
+  const travelX = stage.clientWidth * 0.3;
+  const travelY = stage.clientHeight * 0.34;
+
+  targetX = clamp(tiltOriginX + nx * travelX, 60, stage.clientWidth - 60);
+  targetY = clamp(tiltOriginY + ny * travelY, 60, stage.clientHeight - 60);
+}
+
+function animateTilt() {
+  if (landed && orientationActive && !dragging) {
+    const x = currentX + (targetX - currentX) * 0.14;
+    const y = currentY + (targetY - currentY) * 0.14;
+    setLensLocal(x, y, true);
+  }
+  requestAnimationFrame(animateTilt);
+}
+requestAnimationFrame(animateTilt);
 
 stage.addEventListener('pointerdown', (e) => {
+  if (!landed) return;
   dragging = true;
   stage.setPointerCapture?.(e.pointerId);
   setLens(e.clientX, e.clientY);
+  if (coarsePointer) startOrientation(true);
 });
+
 stage.addEventListener('pointermove', (e) => {
+  if (!landed) return;
   if (dragging || e.pointerType === 'mouse') setLens(e.clientX, e.clientY);
 });
-stage.addEventListener('pointerup', () => { dragging = false; });
-stage.addEventListener('pointercancel', () => { dragging = false; });
+
+function finishDrag() {
+  dragging = false;
+  if (orientationActive) {
+    tiltOriginX = currentX;
+    tiltOriginY = currentY;
+    targetX = currentX;
+    targetY = currentY;
+    baseBeta = null;
+    baseGamma = null;
+  }
+}
+
+stage.addEventListener('pointerup', finishDrag);
+stage.addEventListener('pointercancel', finishDrag);
 
 function rippleAndGo() {
   hero.classList.remove('ripple-now');
   void hero.offsetWidth;
   hero.classList.add('ripple-now');
-  setTimeout(() => document.querySelector('#experiments').scrollIntoView({behavior:'smooth'}), 360);
+  setTimeout(() => document.querySelector('#experiments').scrollIntoView({ behavior: 'smooth' }), 360);
 }
+
 cue.addEventListener('click', rippleAndGo);
 lens.addEventListener('dblclick', rippleAndGo);
 
@@ -51,22 +195,9 @@ window.addEventListener('scroll', () => {
 });
 
 const observer = new IntersectionObserver((entries) => {
-  for (const entry of entries) if (entry.isIntersecting) entry.target.classList.add('visible');
+  for (const entry of entries) {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  }
 }, { threshold: .15 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Mobile: a slow, subtle drift so the lens is alive without hover.
-if (matchMedia('(pointer: coarse)').matches) {
-  let t = 0;
-  const drift = () => {
-    if (!dragging) {
-      const r = stage.getBoundingClientRect();
-      const x = r.width * (.5 + Math.sin(t) * .18);
-      const y = r.height * (.48 + Math.cos(t * .8) * .1);
-      setLens(r.left + x, r.top + y);
-    }
-    t += .012;
-    requestAnimationFrame(drift);
-  };
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(drift);
-}
+document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
