@@ -119,7 +119,7 @@
     float shimmer = sin((q.x * 21.0 + q.y * 17.0) + u_time * 0.0014) * 0.5 + 0.5;
     scene += rimTint * fresnel * shimmer * 0.014;
 
-    float dropAlpha = dropMask * 0.965;
+    float dropAlpha = dropMask * (0.46 + 0.50 * (1.0 - z));
     vec3 shadowColor = vec3(0.055, 0.175, 0.225);
     float alpha = dropAlpha + shadow * (1.0 - dropAlpha);
     vec3 premul = scene * dropAlpha + shadowColor * shadow * (1.0 - dropAlpha);
