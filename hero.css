@@ -108,7 +108,7 @@
 
 .perception-stage.webgl-active .base-word::before {
   content: 'SEE';
-  transform: scaleX(1.75);
+  transform: scaleX(1.48);
 }
 
 .perception-stage.webgl-active .notice-word::before {
@@ -159,7 +159,7 @@
 
 /* CSS fallback: used when WebGL2 is unavailable or loses context. */
 .lens {
-  z-index: 6;
+  z-index: 5;
   animation: dropFall 1.62s cubic-bezier(.2, .82, .25, 1) both;
   touch-action: none;
   overflow: hidden;
