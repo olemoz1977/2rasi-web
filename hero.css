@@ -36,13 +36,11 @@
   --morph: 0;
   --drop-x: 50%;
   --drop-y: 50%;
-  /* Negative until the drop lands: SEE is intact, NOTICE fully hidden. */
   --drop-r: -10px;
   isolation: isolate;
 }
 
-/* Two fixed semantic layers at exactly the same anchor.
-   SEE is the top coating; NOTICE is permanently underneath it. */
+/* CSS/fallback semantic layers. */
 .base-word,
 .notice-word {
   position: absolute;
@@ -61,7 +59,6 @@
   pointer-events: none;
 }
 
-/* CSS fallback keeps the previous cross-fade if WebGL is unavailable. */
 .base-word {
   z-index: 5;
   opacity: calc(1 - var(--morph));
@@ -75,48 +72,89 @@
   transition: opacity .16s linear;
 }
 
-/* WebGL mode uses a simpler physical metaphor:
-   the moving drop dissolves a circular hole in the SEE coating,
-   revealing the stationary NOTICE layer immediately underneath.
-   When the drop leaves, the mask moves away and SEE restores at once. */
+/*
+  WebGL metaphor: SEE is a coating above NOTICE.
+  IMPORTANT: masks need the same coordinate space as --drop-x/--drop-y.
+  The original word-sized elements made stage pixel coordinates meaningless,
+  so in WebGL mode both semantic layers become full-stage overlays and the
+  visible words are painted by pseudo-elements at the shared centre anchor.
+*/
 .perception-stage.webgl-active .base-word,
 .perception-stage.webgl-active .notice-word {
+  inset: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  transform: none;
+  font-size: 0;
   opacity: 1;
   transition: none;
+  white-space: normal;
 }
 
+.perception-stage.webgl-active .base-word::before,
+.perception-stage.webgl-active .notice-word::before {
+  display: inline-block;
+  font-size: clamp(.96rem, 1.35vw, 1.18rem);
+  font-weight: 780;
+  line-height: 1;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(7, 27, 46, .76);
+  white-space: nowrap;
+}
+
+.perception-stage.webgl-active .base-word::before {
+  content: 'SEE';
+  transform: scaleX(1.75);
+}
+
+.perception-stage.webgl-active .notice-word::before {
+  content: 'NOTICE';
+}
+
+/* Top coating: remove SEE only under the physical drop. */
 .perception-stage.webgl-active .base-word {
   -webkit-mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     transparent 0,
-    transparent calc(var(--drop-r) - 3px),
-    #000 calc(var(--drop-r) + 4px),
+    transparent calc(var(--drop-r) - 2px),
+    #000 calc(var(--drop-r) + 3px),
     #000 100%
   );
   mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     transparent 0,
-    transparent calc(var(--drop-r) - 3px),
-    #000 calc(var(--drop-r) + 4px),
+    transparent calc(var(--drop-r) - 2px),
+    #000 calc(var(--drop-r) + 3px),
     #000 100%
   );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
+/* Under-layer: reveal NOTICE only under that exact same drop. */
 .perception-stage.webgl-active .notice-word {
   -webkit-mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     #000 0,
-    #000 calc(var(--drop-r) - 6px),
-    transparent calc(var(--drop-r) + 3px),
+    #000 calc(var(--drop-r) - 3px),
+    transparent calc(var(--drop-r) + 2px),
     transparent 100%
   );
   mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     #000 0,
-    #000 calc(var(--drop-r) - 6px),
-    transparent calc(var(--drop-r) + 3px),
+    #000 calc(var(--drop-r) - 3px),
+    transparent calc(var(--drop-r) + 2px),
     transparent 100%
   );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 /* CSS fallback: used when WebGL2 is unavailable or loses context. */
@@ -215,6 +253,12 @@
 
   .base-word,
   .notice-word {
+    font-size: .96rem;
+    letter-spacing: .15em;
+  }
+
+  .perception-stage.webgl-active .base-word::before,
+  .perception-stage.webgl-active .notice-word::before {
     font-size: .96rem;
     letter-spacing: .15em;
   }
