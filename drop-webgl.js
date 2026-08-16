@@ -50,9 +50,9 @@
   float dropletRadius(vec2 q) {
     float a = atan(q.y, q.x);
     return 1.0
-      + 0.021 * sin(a * 3.0 + 0.72)
-      + 0.012 * sin(a * 5.0 - 1.08)
-      + 0.006 * sin(a * 7.0 + 1.91);
+      + 0.018 * sin(a * 3.0 + 0.72)
+      + 0.010 * sin(a * 5.0 - 1.08)
+      + 0.005 * sin(a * 7.0 + 1.91);
   }
 
   void main() {
@@ -60,78 +60,109 @@
     vec2 frag = uv * u_resolution;
 
     vec2 q = (frag - u_center) / max(u_radius, 1.0);
-    q.x *= 0.985;
-    q.y *= 1.018;
+
+    // A real water drop is not a perfect UI circle. Keep the upper shoulder
+    // slightly tighter and the lower body a little heavier, with tiny asymmetry.
+    float vertical = clamp(q.y, -1.2, 1.2);
+    float xScale = mix(1.10, 0.91, smoothstep(-0.86, 0.92, vertical));
+    q.x *= xScale;
+    q.x += 0.014 * (1.0 - clamp(abs(q.y), 0.0, 1.0));
+    q.y = (q.y + 0.025) * 0.965;
 
     float contour = dropletRadius(q);
     float r = length(q) / contour;
     float sd = r - 1.0;
-    float aa = max(fwidth(sd) * 1.45, 0.0015);
+    float aa = max(fwidth(sd) * 1.35, 0.0014);
     float dropMask = 1.0 - smoothstep(-aa, aa, sd);
 
-    vec2 shadowQ = (frag - (u_center + vec2(1.0, u_radius * 0.06))) / max(u_radius, 1.0);
-    shadowQ.x *= 0.95;
-    shadowQ.y *= 1.08;
+    vec2 shadowQ = (frag - (u_center + vec2(0.0, u_radius * 0.085))) / max(u_radius, 1.0);
+    shadowQ.x *= 0.92;
+    shadowQ.y *= 1.10;
     float shadowR = length(shadowQ);
-    float shadow = (1.0 - smoothstep(0.86, 1.38, shadowR)) * (1.0 - dropMask);
-    shadow *= 0.06;
+    float shadow = (1.0 - smoothstep(0.88, 1.34, shadowR)) * (1.0 - dropMask);
+    shadow *= 0.055;
+
+    // A small bright caustic below the drop is a strong water cue.
+    float causticOutside = exp(-pow(shadowQ.x / 0.72, 2.0) - pow((shadowQ.y - 0.86) / 0.13, 2.0));
+    causticOutside *= (1.0 - dropMask) * 0.10 * u_glossBoost;
 
     if (dropMask < 0.001) {
-      outColor = vec4(vec3(0.055, 0.175, 0.225), shadow);
+      vec3 outsideTint = mix(
+        vec3(0.055, 0.175, 0.225),
+        vec3(0.78, 0.93, 0.97),
+        clamp(causticOutside * 5.0, 0.0, 1.0)
+      );
+      outColor = vec4(outsideTint, shadow + causticOutside);
       return;
     }
 
     float safeR = min(r, 0.999);
     float z = sqrt(max(0.0, 1.0 - safeR * safeR));
-    vec3 normal = normalize(vec3(q.x, q.y, z * 0.90 + 0.08));
+    vec3 normal = normalize(vec3(q.x * 1.02, q.y * 1.02, z * 0.82 + 0.06));
 
     vec2 centerUV = u_center / u_resolution;
     vec2 deltaUV = uv - centerUV;
 
-    float magnification = mix(0.84, 0.97, smoothstep(0.08, 1.0, safeR));
+    // Stronger optical bend, but with a clearer centre. This makes the drop
+    // read as liquid refraction rather than frosted glass.
+    float magnification = mix(0.77, 0.955, smoothstep(0.06, 1.0, safeR));
     vec2 sampleUV = centerUV + deltaUV * magnification;
     vec2 radiusUV = vec2(u_radius) / u_resolution;
-    float bendStrength = 0.020 + 0.070 * pow(safeR, 2.60);
+    float bendStrength = 0.034 + 0.118 * pow(safeR, 2.25);
     sampleUV -= normal.xy * radiusUV * bendStrength;
     sampleUV = clamp(sampleUV, vec2(0.002), vec2(0.998));
 
-    float chroma = smoothstep(0.82, 1.0, safeR) * 0.18;
+    float chroma = smoothstep(0.78, 1.0, safeR) * 0.24;
     vec2 chromaUV = normal.xy / u_resolution * chroma;
     vec3 scene;
     scene.r = heroBackground(clamp(sampleUV + chromaUV, vec2(0.0), vec2(1.0))).r;
     scene.g = heroBackground(sampleUV).g;
     scene.b = heroBackground(clamp(sampleUV - chromaUV, vec2(0.0), vec2(1.0))).b;
 
-    float fresnel = pow(1.0 - z, 4.20);
-    vec3 lightDir = normalize(vec3(-0.48, -0.58, 0.72));
+    float fresnel = pow(1.0 - z, 3.35);
+    vec3 lightDir = normalize(vec3(-0.53, -0.62, 0.78));
     float ndl = max(dot(normal, lightDir), 0.0);
-    float specular = pow(ndl, 92.0) * 0.78 * u_glossBoost;
-    float broadSpecular = pow(ndl, 22.0) * 0.085 * u_glossBoost;
+    float specular = pow(ndl, 142.0) * 1.12 * u_glossBoost;
+    float broadSpecular = pow(ndl, 30.0) * 0.105 * u_glossBoost;
 
-    vec3 rimTint = vec3(0.74, 0.90, 0.96);
-    scene += rimTint * fresnel * (0.21 * u_glossBoost);
+    vec3 rimTint = vec3(0.76, 0.92, 0.98);
+    vec2 rimDir = normalize(vec2(-0.72, -0.69));
+    float directionalRim = 0.44 + 0.56 * max(dot(normal.xy, rimDir), 0.0);
+    scene += rimTint * fresnel * directionalRim * (0.22 * u_glossBoost);
     scene += vec3(1.0) * (specular + broadSpecular);
 
-    // Two compact reflected-light patches make the drop read as wet glass,
-    // especially on small mobile screens where the previous highlight was lost.
-    vec2 glintQ = vec2((q.x + 0.36) * 2.9, (q.y + 0.43) * 4.1);
-    float glint = exp(-dot(glintQ, glintQ) * 2.15) * dropMask;
-    vec2 sparkleQ = vec2((q.x + 0.18) * 7.2, (q.y + 0.66) * 8.8);
-    float sparkle = exp(-dot(sparkleQ, sparkleQ) * 2.5) * dropMask;
-    scene += vec3(1.0, 1.0, 0.995) * glint * (0.24 * u_glossBoost);
-    scene += vec3(1.0) * sparkle * (0.18 * u_glossBoost);
+    // Crisp reflected light patches: smaller and brighter than the old broad glow.
+    float drift = sin(u_time * 0.00055) * 0.018;
+    vec2 glintQ = vec2((q.x + 0.42 + drift) * 3.8, (q.y + 0.50) * 5.4);
+    float glint = exp(-dot(glintQ, glintQ) * 2.05) * dropMask;
+    vec2 sparkleQ = vec2((q.x + 0.23 - drift * 0.4) * 8.4, (q.y + 0.69) * 10.5);
+    float sparkle = exp(-dot(sparkleQ, sparkleQ) * 2.15) * dropMask;
+    scene += vec3(1.0, 1.0, 0.995) * glint * (0.42 * u_glossBoost);
+    scene += vec3(1.0) * sparkle * (0.34 * u_glossBoost);
 
-    vec2 causticQ = vec2(q.x * 1.55, (q.y - 0.53) * 3.7);
-    float caustic = exp(-dot(causticQ, causticQ) * 2.2);
-    scene += vec3(0.44, 0.78, 0.88) * caustic * (0.095 * u_glossBoost);
-    scene *= 1.0 - max(q.y, 0.0) * 0.012;
+    // Subtle internal caustic near the lower edge; keep the centre nearly clear.
+    vec2 causticQ = vec2(q.x * 1.40, (q.y - 0.58) * 4.35);
+    float caustic = exp(-dot(causticQ, causticQ) * 2.05);
+    scene += vec3(0.50, 0.83, 0.92) * caustic * (0.13 * u_glossBoost);
 
-    float shimmer = sin((q.x * 21.0 + q.y * 17.0) + u_time * 0.0014) * 0.5 + 0.5;
-    scene += rimTint * fresnel * shimmer * (0.009 * u_glossBoost);
+    float lowerShade = smoothstep(0.08, 0.95, q.y) * (1.0 - z);
+    scene *= 1.0 - lowerShade * 0.055;
 
-    float edgeOpacity = pow(1.0 - z, 1.70);
-    float highlightOpacity = glint * 0.085 * u_glossBoost + sparkle * 0.065 * u_glossBoost;
-    float dropAlpha = dropMask * (0.13 + 0.58 * edgeOpacity + highlightOpacity);
+    float shimmer = sin((q.x * 20.0 + q.y * 16.0) + u_time * 0.0013) * 0.5 + 0.5;
+    scene += rimTint * fresnel * shimmer * (0.011 * u_glossBoost);
+
+    float edgeOpacity = pow(1.0 - z, 1.26);
+    float thinRim = exp(-pow((safeR - 0.972) / 0.026, 2.0));
+    float highlightOpacity = glint * 0.10 * u_glossBoost + sparkle * 0.08 * u_glossBoost;
+
+    // Transparent centre + defined edge = clear water, not a milky glass ball.
+    float dropAlpha = dropMask * (
+      0.038
+      + 0.66 * edgeOpacity
+      + 0.12 * thinRim
+      + highlightOpacity
+    );
+
     vec3 shadowColor = vec3(0.055, 0.175, 0.225);
     float alpha = dropAlpha + shadow * (1.0 - dropAlpha);
     vec3 premul = scene * dropAlpha + shadowColor * shadow * (1.0 - dropAlpha);
@@ -265,7 +296,7 @@
       const heroHeight = Math.max(heroRect.height, 1);
       const heroY0 = (stageRect.top - heroRect.top) / heroHeight;
       const heroYScale = stageRect.height / heroHeight;
-      const glossBoost = matchMedia('(pointer: coarse)').matches ? 1.32 : 1.0;
+      const glossBoost = matchMedia('(pointer: coarse)').matches ? 1.32 : 1.08;
 
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
