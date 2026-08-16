@@ -79,7 +79,6 @@
   void main() {
     vec2 uv = vec2(v_uv.x, 1.0 - v_uv.y);
     vec2 frag = uv * u_resolution;
-
     vec2 q = (frag - u_center) / max(u_radius, 1.0);
 
     float speed = clamp(u_speed, 0.0, 1.0);
@@ -110,15 +109,15 @@
     shadowQ.x *= 0.90;
     shadowQ.y *= 1.12;
     float shadowR = length(shadowQ);
-    float shadow = (1.0 - smoothstep(0.88, 1.34, shadowR)) * (1.0 - dropMask) * 0.040;
-    float causticOutside = exp(-pow(shadowQ.x / 0.58, 2.0) - pow((shadowQ.y - 0.86) / 0.105, 2.0));
-    causticOutside *= (1.0 - dropMask) * 0.145 * u_glossBoost;
+    float shadow = (1.0 - smoothstep(0.90, 1.34, shadowR)) * (1.0 - dropMask) * 0.026;
+    float causticOutside = exp(-pow(shadowQ.x / 0.56, 2.0) - pow((shadowQ.y - 0.86) / 0.095, 2.0));
+    causticOutside *= (1.0 - dropMask) * 0.18 * u_glossBoost;
 
     if (dropMask < 0.001) {
       vec3 outsideTint = mix(
         vec3(0.055, 0.175, 0.225),
-        vec3(0.88, 0.98, 1.0),
-        clamp(causticOutside * 6.5, 0.0, 1.0)
+        vec3(0.90, 0.985, 1.0),
+        clamp(causticOutside * 6.8, 0.0, 1.0)
       );
       outColor = vec4(outsideTint, shadow + causticOutside);
       return;
@@ -134,18 +133,25 @@
     vec2 deltaUV = uv - centerUV;
     vec2 radiusUV = vec2(u_radius) / u_resolution;
 
-    float edgeBend = smoothstep(0.10, 1.0, safeR);
-    vec2 snellOffset = refracted.xy * radiusUV * (0.76 + 0.61 * edgeBend);
-    vec2 lensCompress = deltaUV * mix(0.90, 0.992, safeR);
+    float edgeBend = smoothstep(0.12, 1.0, safeR);
+    vec2 snellOffset = refracted.xy * radiusUV * (0.72 + 0.64 * edgeBend);
+    vec2 lensCompress = deltaUV * mix(0.935, 0.996, safeR);
     vec2 sampleUV = centerUV + lensCompress + snellOffset;
     sampleUV = clamp(sampleUV, vec2(0.002), vec2(0.998));
 
-    float chroma = smoothstep(0.84, 1.0, safeR) * 0.30;
+    float chroma = smoothstep(0.88, 1.0, safeR) * 0.22;
     vec2 chromaUV = normal.xy / u_resolution * chroma;
+
+    vec3 baseScene = heroBackground(uv);
     vec3 scene;
     scene.r = heroBackground(clamp(sampleUV + chromaUV, vec2(0.0), vec2(1.0))).r;
     scene.g = heroBackground(sampleUV).g;
     scene.b = heroBackground(clamp(sampleUV - chromaUV, vec2(0.0), vec2(1.0))).b;
+
+    float luminance = dot(baseScene, vec3(0.2126, 0.7152, 0.0722));
+    float darkness = 1.0 - smoothstep(0.56, 0.86, luminance);
+    float envGloss = mix(0.90, 1.24, darkness);
+    float refractionSignal = clamp(length(scene - baseScene) * 3.1, 0.0, 1.0);
 
     float cosTheta = clamp(z, 0.0, 1.0);
     float fresnel = F0 + (1.0 - F0) * pow(1.0 - cosTheta, 5.0);
@@ -153,34 +159,47 @@
     vec3 lightDir = normalize(vec3(-0.52, -0.60, 0.79));
     vec3 halfDir = normalize(lightDir - viewDir);
     float ndh = max(dot(normal, halfDir), 0.0);
-    float specular = pow(ndh, 205.0) * 1.52 * u_glossBoost;
-    float broadSpecular = pow(ndh, 44.0) * 0.085 * u_glossBoost;
+    float specular = pow(ndh, 235.0) * 1.75 * u_glossBoost * envGloss;
+    float broadSpecular = pow(ndh, 54.0) * 0.052 * u_glossBoost * envGloss;
 
-    float drift = sin(u_time * 0.00045) * 0.010;
-    vec2 glintQ = vec2((q.x + 0.44 + drift) * 4.9, (q.y + 0.51) * 6.9);
-    float glint = exp(-dot(glintQ, glintQ) * 2.28) * dropMask;
-    vec2 sparkleQ = vec2((q.x + 0.255) * 10.2, (q.y + 0.705) * 12.4);
-    float sparkle = exp(-dot(sparkleQ, sparkleQ) * 2.38) * dropMask;
+    float drift = sin(u_time * 0.00045) * 0.009;
+    vec2 glintQ = vec2((q.x + 0.445 + drift) * 5.25, (q.y + 0.515) * 7.35);
+    float glint = exp(-dot(glintQ, glintQ) * 2.34) * dropMask;
+    vec2 sparkleQ = vec2((q.x + 0.258) * 11.2, (q.y + 0.710) * 13.3);
+    float sparkle = exp(-dot(sparkleQ, sparkleQ) * 2.50) * dropMask;
 
-    vec2 microQ = vec2((q.x + 0.33 - drift * 0.7) * 14.0, (q.y + 0.60) * 15.5);
-    float microGlint = exp(-dot(microQ, microQ) * 2.55) * dropMask;
+    vec2 streakQ = rot(-0.42) * vec2(q.x + 0.39, q.y + 0.43);
+    streakQ = vec2(streakQ.x * 8.8, streakQ.y * 22.0);
+    float streak = exp(-dot(streakQ, streakQ) * 1.75) * dropMask;
 
     vec3 rimTint = vec3(0.82, 0.96, 1.0);
-    scene += rimTint * fresnel * (0.42 * u_glossBoost);
+    scene += rimTint * fresnel * (0.34 * u_glossBoost * envGloss);
     scene += vec3(1.0) * (specular + broadSpecular);
-    scene += vec3(1.0, 1.0, 0.998) * glint * (0.72 * u_glossBoost);
-    scene += vec3(1.0) * sparkle * (0.36 * u_glossBoost);
-    scene += vec3(1.0) * microGlint * (0.22 * u_glossBoost);
+    scene += vec3(1.0, 1.0, 0.998) * glint * (0.82 * u_glossBoost * envGloss);
+    scene += vec3(1.0) * sparkle * (0.34 * u_glossBoost * envGloss);
+    scene += vec3(1.0) * streak * (0.24 * u_glossBoost * envGloss);
 
-    vec2 causticQ = vec2(q.x * 1.32, (q.y - 0.60) * 4.9);
-    float caustic = exp(-dot(causticQ, causticQ) * 1.90);
-    scene += vec3(0.60, 0.90, 0.98) * caustic * (0.18 * u_glossBoost);
+    vec2 causticQ = vec2(q.x * 1.32, (q.y - 0.60) * 5.15);
+    float caustic = exp(-dot(causticQ, causticQ) * 1.88);
+    scene += vec3(0.60, 0.90, 0.98) * caustic * (0.20 * u_glossBoost);
 
-    float edgeOpacity = pow(1.0 - z, 1.16);
-    float thinRim = exp(-pow((safeR - 0.978) / 0.018, 2.0));
-    float bodyAlpha = 0.008 + 0.44 * edgeOpacity + 0.13 * thinRim;
-    float highlightAlpha = glint * 0.18 + sparkle * 0.10 + microGlint * 0.07 + specular * 0.050;
-    float dropAlpha = dropMask * clamp(bodyAlpha + highlightAlpha, 0.0, 0.90);
+    float brightSky = smoothstep(0.72, 0.92, luminance);
+    float lowerRight = smoothstep(-0.25, 0.72, q.x + q.y);
+    scene -= vec3(0.025, 0.045, 0.052) * fresnel * brightSky * lowerRight * 0.55;
+
+    float edgeOpacity = pow(1.0 - z, 1.22);
+    float thinRim = exp(-pow((safeR - 0.981) / 0.015, 2.0));
+    float bodyAlpha = 0.0025
+                    + 0.285 * edgeOpacity
+                    + 0.075 * thinRim
+                    + 0.105 * refractionSignal;
+    bodyAlpha *= mix(0.88, 1.06, darkness);
+
+    float highlightAlpha = glint * 0.105
+                         + sparkle * 0.060
+                         + streak * 0.050
+                         + specular * 0.030;
+    float dropAlpha = dropMask * clamp(bodyAlpha + highlightAlpha, 0.0, 0.80);
 
     vec3 shadowColor = vec3(0.055, 0.175, 0.225);
     float alpha = dropAlpha + shadow * (1.0 - dropAlpha);
@@ -344,7 +363,7 @@
       const heroHeight = Math.max(heroRect.height, 1);
       const heroY0 = (stageRect.top - heroRect.top) / heroHeight;
       const heroYScale = stageRect.height / heroHeight;
-      const glossBoost = matchMedia('(pointer: coarse)').matches ? 1.48 : 1.20;
+      const glossBoost = matchMedia('(pointer: coarse)').matches ? 1.55 : 1.24;
 
       const now = (time || performance.now()) * 0.001;
       const dt = lastTime > 0 ? Math.min(0.033, Math.max(0.001, now - lastTime)) : 1 / 60;
