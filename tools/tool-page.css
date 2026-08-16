@@ -54,25 +54,10 @@ h1{font-size:clamp(3rem,8vw,6.4rem);line-height:.9;letter-spacing:-.075em;margin
 .side-card p{font-size:.9rem;color:var(--muted);margin:0 0 18px}
 .side-card .button{width:100%;justify-content:center}
 .note{border-left:3px solid var(--accent);padding:2px 0 2px 16px;color:#294557}
-.closing-cta{
-  margin-top:72px;
-  padding-top:34px;
-  border-top:1px solid var(--line);
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:28px;
-}
-.closing-cta .kicker{margin-bottom:10px}
-.closing-cta h2{font-size:clamp(1.8rem,3.6vw,3rem);line-height:1;letter-spacing:-.055em;margin:0;max-width:620px}
-.closing-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end}
 .tool-footer{max-width:1100px;margin:0 auto;padding:28px clamp(20px,4vw,56px) 42px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:.8rem}
 @media(max-width:760px){
   .tool-header nav a:first-child{display:none}
   .tool-grid{grid-template-columns:1fr}
   .side-card{position:static}
-  .closing-cta{align-items:stretch;flex-direction:column}
-  .closing-actions{justify-content:flex-start;width:100%}
-  .closing-actions .button{width:100%;justify-content:center}
   .tool-footer{flex-direction:column}
 }
