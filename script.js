@@ -42,17 +42,26 @@ function smoothstep(value) {
 function updateSemanticReveal(px, py) {
   const stageRect = stage.getBoundingClientRect();
   const wordRect = baseWord.getBoundingClientRect();
-  const wordX = wordRect.left - stageRect.left + wordRect.width / 2;
-  const wordY = wordRect.top - stageRect.top + wordRect.height / 2;
+  const left = wordRect.left - stageRect.left;
+  const top = wordRect.top - stageRect.top;
+  const right = left + wordRect.width;
+  const bottom = top + wordRect.height;
+  const halfW = wordRect.width / 2;
+  const halfH = wordRect.height / 2;
+  const centerX = left + halfW;
+  const centerY = top + halfH;
 
-  const dx = px - wordX;
-  const dy = py - wordY;
-  const distance = Math.hypot(dx, dy);
+  // Signed distance from the drop centre to the actual SEE rectangle.
+  // Morph starts only when the physical drop touches the word and reaches
+  // full strength as the drop centre moves into the word area.
+  const qx = Math.abs(px - centerX) - halfW;
+  const qy = Math.abs(py - centerY) - halfH;
+  const outside = Math.hypot(Math.max(qx, 0), Math.max(qy, 0));
+  const inside = Math.min(Math.max(qx, qy), 0);
+  const signedDistance = outside + inside;
   const lensRadius = lens.offsetWidth / 2;
-  const wordRadius = Math.hypot(wordRect.width / 2, wordRect.height / 2) * .72;
-  const contactDistance = lensRadius + wordRadius;
 
-  const overlap = clamp((contactDistance - distance) / (contactDistance * .72), 0, 1);
+  const overlap = clamp((lensRadius - signedDistance) / Math.max(lensRadius, 1), 0, 1);
   const morph = smoothstep(overlap);
 
   stage.style.setProperty('--morph', morph.toFixed(3));
@@ -205,8 +214,8 @@ function recalibrateForLayoutChange() {
     baseBeta = null;
     baseGamma = null;
     orientationActive = false;
-    waterRenderer?.resize();
     centerLensOnWord(true);
+    waterRenderer?.resize();
     if (coarsePointer) startOrientation(false);
   }, 220);
 }
@@ -218,6 +227,8 @@ window.addEventListener('resize', () => {
   if (nextMode !== layoutMode) {
     layoutMode = nextMode;
     recalibrateForLayoutChange();
+  } else {
+    waterRenderer?.resize();
   }
 });
 
