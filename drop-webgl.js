@@ -159,8 +159,8 @@
     vec3 lightDir = normalize(vec3(-0.52, -0.60, 0.79));
     vec3 halfDir = normalize(lightDir - viewDir);
     float ndh = max(dot(normal, halfDir), 0.0);
-    float specular = pow(ndh, 235.0) * 1.75 * u_glossBoost * envGloss;
-    float broadSpecular = pow(ndh, 54.0) * 0.052 * u_glossBoost * envGloss;
+    float specular = pow(ndh, 122.0) * 1.90 * u_glossBoost * envGloss;
+    float broadSpecular = pow(ndh, 22.0) * 0.14 * u_glossBoost * envGloss;
 
     float drift = sin(u_time * 0.00045) * 0.009;
     vec2 glintQ = vec2((q.x + 0.445 + drift) * 5.25, (q.y + 0.515) * 7.35);
@@ -173,7 +173,7 @@
     float streak = exp(-dot(streakQ, streakQ) * 1.75) * dropMask;
 
     vec3 rimTint = vec3(0.82, 0.96, 1.0);
-    scene += rimTint * fresnel * (0.34 * u_glossBoost * envGloss);
+    scene += rimTint * fresnel * (0.42 * u_glossBoost * envGloss);
     scene += vec3(1.0) * (specular + broadSpecular);
     scene += vec3(1.0, 1.0, 0.998) * glint * (0.82 * u_glossBoost * envGloss);
     scene += vec3(1.0) * sparkle * (0.34 * u_glossBoost * envGloss);
@@ -181,7 +181,7 @@
 
     vec2 causticQ = vec2(q.x * 1.32, (q.y - 0.60) * 5.15);
     float caustic = exp(-dot(causticQ, causticQ) * 1.88);
-    scene += vec3(0.60, 0.90, 0.98) * caustic * (0.20 * u_glossBoost);
+    scene += vec3(0.60, 0.90, 0.98) * caustic * (0.24 * u_glossBoost);
 
     float brightSky = smoothstep(0.72, 0.92, luminance);
     float lowerRight = smoothstep(-0.25, 0.72, q.x + q.y);
