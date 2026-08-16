@@ -1,9 +1,9 @@
 /* Semantic reveal correction.
-   OBSERVE and NOTICE must never read as one merged word. */
+   OBSERVE remains readable; NOTICE is only exposed through the moving drop. */
 
 .perception-stage.webgl-active .base-word {
-  opacity: calc(1 - var(--morph));
-  transition: opacity .08s linear;
+  opacity: 1;
+  transition: none;
   -webkit-mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     transparent 0,
@@ -39,9 +39,14 @@
   );
 }
 
-/* NOTICE is the refracted meaning, not a second full-size word.
-   Keep it comfortably inside the optical core on desktop. */
+/* Desktop composition: words sit lower, in the middle of the water field.
+   The drop lands above them, so OBSERVE is readable before interaction. */
 @media (min-width: 781px) {
+  .perception-stage.webgl-active .base-word::before,
+  .perception-stage.webgl-active .notice-word::before {
+    transform: translateY(clamp(28px, 4.2vh, 46px));
+  }
+
   .perception-stage.webgl-active .notice-word::before {
     font-size: clamp(1.55rem, 2vw, 2.25rem);
     font-weight: 720;
