@@ -37,12 +37,12 @@
   isolation: isolate;
 }
 
-/* SEE and NOTICE share one visual baseline. SEE is deliberately widened to ~3/4 of NOTICE. */
-.base-word {
+/* SEE and NOTICE occupy exactly the same fixed anchor. The drop never owns either word. */
+.base-word,
+.notice-word {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 1;
   margin: 0;
   font-size: clamp(.96rem, 1.35vw, 1.18rem);
   font-weight: 780;
@@ -50,22 +50,26 @@
   letter-spacing: .16em;
   text-transform: uppercase;
   color: rgba(7, 27, 46, .76);
-  opacity: calc(1 - var(--morph));
-  transform: translate(-50%, -50%) scaleX(1.48);
+  transform: translate(-50%, -50%);
   transform-origin: center;
-  transition: opacity .12s linear;
+  transition: opacity .16s linear;
   white-space: nowrap;
   pointer-events: none;
 }
 
-/* The old global NOTICE layer remains disabled; NOTICE belongs to the optical drop. */
+.base-word {
+  z-index: 1;
+  opacity: calc(1 - var(--morph));
+  transform: translate(-50%, -50%) scaleX(1.48);
+}
+
 .notice-word {
-  display: none !important;
+  z-index: 2;
+  opacity: var(--morph);
 }
 
 /* CSS fallback: used when WebGL2 is unavailable or loses context. */
 .lens {
-  --semantic: var(--morph);
   z-index: 4;
   animation: dropFall 1.62s cubic-bezier(.2, .82, .25, 1) both;
   touch-action: none;
@@ -117,26 +121,6 @@
   pointer-events: none;
 }
 
-.lens-word {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  display: grid;
-  place-items: center;
-  color: rgba(5, 30, 47, .94);
-  font-size: clamp(.96rem, 1.35vw, 1.18rem);
-  font-weight: 780;
-  letter-spacing: .16em;
-  line-height: 1;
-  text-transform: uppercase;
-  opacity: var(--morph);
-  transform: scale(calc(.96 + var(--morph) * .04));
-  transition: opacity .12s linear, transform .14s ease-out;
-  text-shadow: 0 1px 5px rgba(255,255,255,.94);
-  white-space: nowrap;
-  pointer-events: none;
-}
-
 /* WebGL renderer covers only the perception-stage and never receives input. */
 .drop-webgl-canvas {
   position: absolute;
@@ -160,8 +144,7 @@
 }
 
 .perception-stage.webgl-active .lens::before,
-.perception-stage.webgl-active .lens::after,
-.perception-stage.webgl-active .lens-word {
+.perception-stage.webgl-active .lens::after {
   display: none !important;
 }
 
@@ -180,7 +163,7 @@
   }
 
   .base-word,
-  .lens-word {
+  .notice-word {
     font-size: .96rem;
     letter-spacing: .15em;
   }
