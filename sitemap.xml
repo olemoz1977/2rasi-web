@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://2rasi.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://2rasi.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://2rasi.com/tools/2pair/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://2rasi.com/tools/mirror/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.com/tools/multipliers/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.com/tools/divergent/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.com/tools/situational-leadership/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.com/tools/drama-triangle/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.com/tools/strategic-thinking/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
