@@ -36,11 +36,13 @@
   --morph: 0;
   --drop-x: 50%;
   --drop-y: 50%;
-  --drop-r: 0px;
+  /* Negative until the drop lands: SEE is intact, NOTICE fully hidden. */
+  --drop-r: -10px;
   isolation: isolate;
 }
 
-/* SEE and NOTICE share one fixed anchor. The moving drop never owns either word. */
+/* Two fixed semantic layers at exactly the same anchor.
+   SEE is the top coating; NOTICE is permanently underneath it. */
 .base-word,
 .notice-word {
   position: absolute;
@@ -55,45 +57,71 @@
   color: rgba(7, 27, 46, .76);
   transform: translate(-50%, -50%);
   transform-origin: center;
-  transition: opacity .16s linear;
   white-space: nowrap;
   pointer-events: none;
 }
 
+/* CSS fallback keeps the previous cross-fade if WebGL is unavailable. */
 .base-word {
-  z-index: 4;
+  z-index: 5;
   opacity: calc(1 - var(--morph));
   transform: translate(-50%, -50%) scaleX(1.48);
+  transition: opacity .16s linear;
 }
 
 .notice-word {
   z-index: 4;
   opacity: var(--morph);
+  transition: opacity .16s linear;
 }
 
-/* WebGL sits below the DOM text. Cut a moving hole in the DOM text exactly
-   where the water drop is, so only the optical water layer is visible there. */
+/* WebGL mode uses a simpler physical metaphor:
+   the moving drop dissolves a circular hole in the SEE coating,
+   revealing the stationary NOTICE layer immediately underneath.
+   When the drop leaves, the mask moves away and SEE restores at once. */
 .perception-stage.webgl-active .base-word,
 .perception-stage.webgl-active .notice-word {
+  opacity: 1;
+  transition: none;
+}
+
+.perception-stage.webgl-active .base-word {
   -webkit-mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     transparent 0,
-    transparent calc(var(--drop-r) - 1px),
-    #000 calc(var(--drop-r) + 2px),
+    transparent calc(var(--drop-r) - 3px),
+    #000 calc(var(--drop-r) + 4px),
     #000 100%
   );
   mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     transparent 0,
-    transparent calc(var(--drop-r) - 1px),
-    #000 calc(var(--drop-r) + 2px),
+    transparent calc(var(--drop-r) - 3px),
+    #000 calc(var(--drop-r) + 4px),
     #000 100%
+  );
+}
+
+.perception-stage.webgl-active .notice-word {
+  -webkit-mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    #000 0,
+    #000 calc(var(--drop-r) - 6px),
+    transparent calc(var(--drop-r) + 3px),
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    #000 0,
+    #000 calc(var(--drop-r) - 6px),
+    transparent calc(var(--drop-r) + 3px),
+    transparent 100%
   );
 }
 
 /* CSS fallback: used when WebGL2 is unavailable or loses context. */
 .lens {
-  z-index: 5;
+  z-index: 6;
   animation: dropFall 1.62s cubic-bezier(.2, .82, .25, 1) both;
   touch-action: none;
   overflow: hidden;
@@ -172,7 +200,7 @@
 }
 
 .perception-stage.webgl-active .hint {
-  z-index: 6;
+  z-index: 7;
 }
 
 .hint {
