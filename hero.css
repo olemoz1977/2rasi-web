@@ -40,7 +40,7 @@
   isolation: isolate;
 }
 
-/* CSS/fallback semantic layers. OBSERVE and NOTICE share one fixed centre. */
+/* CSS/fallback semantic layers. */
 .base-word,
 .notice-word {
   position: absolute;
@@ -113,40 +113,41 @@
   content: 'NOTICE';
 }
 
-/* Upper OBSERVE coating: a soft dissolve hole follows the physical drop. */
+/* Upper OBSERVE coating: a tighter optical core follows the physical drop. */
 .perception-stage.webgl-active .base-word {
   -webkit-mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     transparent 0,
-    transparent calc(var(--drop-r) * 0.70),
-    #000 calc(var(--drop-r) * 1.15),
+    transparent calc(var(--drop-r) * 0.56),
+    #000 calc(var(--drop-r) * 0.96),
     #000 100%
   );
   mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     transparent 0,
-    transparent calc(var(--drop-r) * 0.70),
-    #000 calc(var(--drop-r) * 1.15),
+    transparent calc(var(--drop-r) * 0.56),
+    #000 calc(var(--drop-r) * 0.96),
     #000 100%
   );
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
 
-/* NOTICE stays below the WebGL water and is only exposed in the same drop area. */
+/* NOTICE is exposed only in the inner optical core, and its strength follows overlap. */
 .perception-stage.webgl-active .notice-word {
+  opacity: var(--morph);
   -webkit-mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     #000 0,
-    #000 calc(var(--drop-r) * 0.70),
-    transparent calc(var(--drop-r) * 1.15),
+    #000 calc(var(--drop-r) * 0.56),
+    transparent calc(var(--drop-r) * 0.96),
     transparent 100%
   );
   mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     #000 0,
-    #000 calc(var(--drop-r) * 0.70),
-    transparent calc(var(--drop-r) * 1.15),
+    #000 calc(var(--drop-r) * 0.56),
+    transparent calc(var(--drop-r) * 0.96),
     transparent 100%
   );
   -webkit-mask-repeat: no-repeat;
@@ -288,13 +289,13 @@
   .base-word,
   .notice-word {
     font-size: .98rem;
-    letter-spacing: .14em;
+    letter-spacing: .15em;
   }
 
   .perception-stage.webgl-active .base-word::before,
   .perception-stage.webgl-active .notice-word::before {
     font-size: .98rem;
-    letter-spacing: .14em;
+    letter-spacing: .15em;
   }
 }
 
