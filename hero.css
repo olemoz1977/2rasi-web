@@ -36,7 +36,7 @@
   --morph: 0;
   --drop-x: 50%;
   --drop-y: 50%;
-  --drop-r: -10px;
+  --drop-r: 0px;
   isolation: isolate;
 }
 
@@ -60,24 +60,22 @@
 }
 
 .base-word {
-  z-index: 5;
+  z-index: 4;
   opacity: calc(1 - var(--morph));
   transform: translate(-50%, -50%) scaleX(1.48);
   transition: opacity .16s linear;
 }
 
 .notice-word {
-  z-index: 4;
+  z-index: 2;
   opacity: var(--morph);
   transition: opacity .16s linear;
 }
 
 /*
-  WebGL metaphor: SEE is a coating above NOTICE.
-  IMPORTANT: masks need the same coordinate space as --drop-x/--drop-y.
-  The original word-sized elements made stage pixel coordinates meaningless,
-  so in WebGL mode both semantic layers become full-stage overlays and the
-  visible words are painted by pseudo-elements at the shared centre anchor.
+  WebGL metaphor: SEE is the upper coating, NOTICE sits underneath the water.
+  Both semantic layers become full-stage overlays so the drop coordinates and
+  radial masks share exactly the same coordinate space.
 */
 .perception-stage.webgl-active .base-word,
 .perception-stage.webgl-active .notice-word {
@@ -117,40 +115,42 @@
   content: 'NOTICE';
 }
 
-/* Top coating: remove SEE only under the physical drop. */
+/* Upper SEE coating: a soft dissolve hole follows the physical drop. */
 .perception-stage.webgl-active .base-word {
   -webkit-mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     transparent 0,
-    transparent calc(var(--drop-r) - 2px),
-    #000 calc(var(--drop-r) + 3px),
+    transparent calc(var(--drop-r) * 0.70),
+    #000 calc(var(--drop-r) * 1.15),
     #000 100%
   );
   mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     transparent 0,
-    transparent calc(var(--drop-r) - 2px),
-    #000 calc(var(--drop-r) + 3px),
+    transparent calc(var(--drop-r) * 0.70),
+    #000 calc(var(--drop-r) * 1.15),
     #000 100%
   );
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
 
-/* Under-layer: reveal NOTICE only under that exact same drop. */
+/* NOTICE stays below the WebGL water and is only exposed in the same drop area.
+   Keeping this complementary mask is necessary because the semantic layers are
+   transparent text, not an opaque coating surface. */
 .perception-stage.webgl-active .notice-word {
   -webkit-mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     #000 0,
-    #000 calc(var(--drop-r) - 3px),
-    transparent calc(var(--drop-r) + 2px),
+    #000 calc(var(--drop-r) * 0.70),
+    transparent calc(var(--drop-r) * 1.15),
     transparent 100%
   );
   mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
     #000 0,
-    #000 calc(var(--drop-r) - 3px),
-    transparent calc(var(--drop-r) + 2px),
+    #000 calc(var(--drop-r) * 0.70),
+    transparent calc(var(--drop-r) * 1.15),
     transparent 100%
   );
   -webkit-mask-repeat: no-repeat;
