@@ -68,12 +68,12 @@
     float aa = max(fwidth(sd) * 1.45, 0.0015);
     float dropMask = 1.0 - smoothstep(-aa, aa, sd);
 
-    vec2 shadowQ = (frag - (u_center + vec2(2.0, u_radius * 0.13))) / max(u_radius, 1.0);
-    shadowQ.x *= 0.94;
-    shadowQ.y *= 1.11;
+    vec2 shadowQ = (frag - (u_center + vec2(1.0, u_radius * 0.06))) / max(u_radius, 1.0);
+    shadowQ.x *= 0.95;
+    shadowQ.y *= 1.08;
     float shadowR = length(shadowQ);
-    float shadow = (1.0 - smoothstep(0.78, 1.34, shadowR)) * (1.0 - dropMask);
-    shadow *= 0.14;
+    float shadow = (1.0 - smoothstep(0.86, 1.38, shadowR)) * (1.0 - dropMask);
+    shadow *= 0.06;
 
     if (dropMask < 0.001) {
       outColor = vec4(vec3(0.055, 0.175, 0.225), shadow);
@@ -82,44 +82,45 @@
 
     float safeR = min(r, 0.999);
     float z = sqrt(max(0.0, 1.0 - safeR * safeR));
-    vec3 normal = normalize(vec3(q.x, q.y, z * 0.82 + 0.12));
+    vec3 normal = normalize(vec3(q.x, q.y, z * 0.90 + 0.08));
 
     vec2 centerUV = u_center / u_resolution;
     vec2 deltaUV = uv - centerUV;
 
-    float magnification = mix(0.77, 0.955, smoothstep(0.05, 1.0, safeR));
+    float magnification = mix(0.84, 0.97, smoothstep(0.08, 1.0, safeR));
     vec2 sampleUV = centerUV + deltaUV * magnification;
     vec2 radiusUV = vec2(u_radius) / u_resolution;
-    float bendStrength = 0.035 + 0.105 * pow(safeR, 2.25);
+    float bendStrength = 0.020 + 0.070 * pow(safeR, 2.60);
     sampleUV -= normal.xy * radiusUV * bendStrength;
     sampleUV = clamp(sampleUV, vec2(0.002), vec2(0.998));
 
-    float chroma = smoothstep(0.72, 1.0, safeR) * 0.72;
+    float chroma = smoothstep(0.82, 1.0, safeR) * 0.18;
     vec2 chromaUV = normal.xy / u_resolution * chroma;
     vec3 scene;
     scene.r = heroBackground(clamp(sampleUV + chromaUV, vec2(0.0), vec2(1.0))).r;
     scene.g = heroBackground(sampleUV).g;
     scene.b = heroBackground(clamp(sampleUV - chromaUV, vec2(0.0), vec2(1.0))).b;
 
-    float fresnel = pow(1.0 - z, 2.55);
+    float fresnel = pow(1.0 - z, 4.20);
     vec3 lightDir = normalize(vec3(-0.48, -0.58, 0.72));
     float ndl = max(dot(normal, lightDir), 0.0);
-    float specular = pow(ndl, 74.0) * 0.93;
-    float broadSpecular = pow(ndl, 16.0) * 0.16;
+    float specular = pow(ndl, 92.0) * 0.62;
+    float broadSpecular = pow(ndl, 22.0) * 0.055;
 
-    vec3 rimTint = vec3(0.79, 0.935, 0.985);
-    scene += rimTint * fresnel * 0.29;
+    vec3 rimTint = vec3(0.74, 0.90, 0.96);
+    scene += rimTint * fresnel * 0.18;
     scene += vec3(1.0) * (specular + broadSpecular);
 
     vec2 causticQ = vec2(q.x * 1.55, (q.y - 0.53) * 3.7);
     float caustic = exp(-dot(causticQ, causticQ) * 2.2);
-    scene += vec3(0.44, 0.78, 0.88) * caustic * 0.16;
-    scene *= 1.0 - max(q.y, 0.0) * 0.022;
+    scene += vec3(0.44, 0.78, 0.88) * caustic * 0.08;
+    scene *= 1.0 - max(q.y, 0.0) * 0.012;
 
     float shimmer = sin((q.x * 21.0 + q.y * 17.0) + u_time * 0.0014) * 0.5 + 0.5;
-    scene += rimTint * fresnel * shimmer * 0.014;
+    scene += rimTint * fresnel * shimmer * 0.005;
 
-    float dropAlpha = dropMask * (0.46 + 0.50 * (1.0 - z));
+    float edgeOpacity = pow(1.0 - z, 1.70);
+    float dropAlpha = dropMask * (0.13 + 0.57 * edgeOpacity);
     vec3 shadowColor = vec3(0.055, 0.175, 0.225);
     float alpha = dropAlpha + shadow * (1.0 - dropAlpha);
     vec3 premul = scene * dropAlpha + shadowColor * shadow * (1.0 - dropAlpha);
