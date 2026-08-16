@@ -17,13 +17,15 @@
   uniform vec2 u_resolution;
   uniform vec2 u_center;
   uniform float u_radius;
+  uniform float u_morph;
   uniform float u_time;
   uniform float u_heroY0;
   uniform float u_heroYScale;
+  uniform sampler2D u_see;
+  uniform sampler2D u_notice;
 
   vec3 heroBackground(vec2 uv) {
     float heroY = clamp(u_heroY0 + uv.y * u_heroYScale, 0.0, 1.0);
-
     vec3 skyA = vec3(0.871, 0.929, 0.949);
     vec3 skyB = vec3(0.851, 0.914, 0.933);
     vec3 waterA = vec3(0.686, 0.784, 0.816);
@@ -55,6 +57,7 @@
   }
 
   void main() {
+    // Top-left UV convention matches DOM/stage coordinates.
     vec2 uv = vec2(v_uv.x, 1.0 - v_uv.y);
     vec2 frag = uv * u_resolution;
 
@@ -84,9 +87,10 @@
     float z = sqrt(max(0.0, 1.0 - safeR * safeR));
     vec3 normal = normalize(vec3(q.x, q.y, z * 0.82 + 0.12));
 
+    // Crucial: sampleUV remains in WORLD/STAGE coordinates. The drop only
+    // bends the sampling position; it never owns or translates the text.
     vec2 centerUV = u_center / u_resolution;
     vec2 deltaUV = uv - centerUV;
-
     float magnification = mix(0.77, 0.955, smoothstep(0.05, 1.0, safeR));
     vec2 sampleUV = centerUV + deltaUV * magnification;
     vec2 radiusUV = vec2(u_radius) / u_resolution;
@@ -96,10 +100,19 @@
 
     float chroma = smoothstep(0.72, 1.0, safeR) * 0.72;
     vec2 chromaUV = normal.xy / u_resolution * chroma;
-    vec3 scene;
-    scene.r = heroBackground(clamp(sampleUV + chromaUV, vec2(0.0), vec2(1.0))).r;
-    scene.g = heroBackground(sampleUV).g;
-    scene.b = heroBackground(clamp(sampleUV - chromaUV, vec2(0.0), vec2(1.0))).b;
+    vec3 bg;
+    bg.r = heroBackground(clamp(sampleUV + chromaUV, vec2(0.0), vec2(1.0))).r;
+    bg.g = heroBackground(sampleUV).g;
+    bg.b = heroBackground(clamp(sampleUV - chromaUV, vec2(0.0), vec2(1.0))).b;
+
+    // Both textures are stage-sized and rendered at the fixed DOM word anchor.
+    // The same refracted world UV is used for text and background.
+    float seeA = texture(u_see, sampleUV).a;
+    float noticeA = texture(u_notice, sampleUV).a;
+    float semantic = smoothstep(0.04, 0.96, u_morph);
+    float textA = mix(seeA, noticeA, semantic);
+    vec3 ink = vec3(0.020, 0.105, 0.170);
+    vec3 scene = mix(bg, ink, clamp(textA * 0.96, 0.0, 1.0));
 
     float fresnel = pow(1.0 - z, 2.55);
     vec3 lightDir = normalize(vec3(-0.48, -0.58, 0.72));
@@ -124,7 +137,6 @@
     float alpha = dropAlpha + shadow * (1.0 - dropAlpha);
     vec3 premul = scene * dropAlpha + shadowColor * shadow * (1.0 - dropAlpha);
     vec3 color = alpha > 0.0001 ? premul / alpha : vec3(0.0);
-
     outColor = vec4(color, alpha);
   }`;
 
@@ -157,8 +169,43 @@
     return program;
   }
 
-  window.createWaterDropRenderer = function createWaterDropRenderer({ stage, lens, hero }) {
-    if (!stage || !lens || !hero || !window.WebGL2RenderingContext) return null;
+  function makeTexture(gl) {
+    const texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    return texture;
+  }
+
+  function measureTracked(ctx, word, spacing) {
+    let width = 0;
+    for (let i = 0; i < word.length; i += 1) {
+      width += ctx.measureText(word[i]).width;
+      if (i < word.length - 1) width += spacing;
+    }
+    return width;
+  }
+
+  function drawTrackedToWidth(ctx, word, centerX, centerY, spacing, targetWidth) {
+    const rawWidth = Math.max(measureTracked(ctx, word, spacing), 1);
+    const scaleX = targetWidth / rawWidth;
+    ctx.save();
+    ctx.translate(centerX, centerY);
+    ctx.scale(scaleX, 1);
+    let x = -rawWidth / 2;
+    for (let i = 0; i < word.length; i += 1) {
+      const glyphWidth = ctx.measureText(word[i]).width;
+      ctx.fillText(word[i], x, 0);
+      x += glyphWidth + (i < word.length - 1 ? spacing : 0);
+    }
+    ctx.restore();
+  }
+
+  window.createWaterDropRenderer = function createWaterDropRenderer({ stage, lens, baseWord, hero }) {
+    const noticeWord = stage?.querySelector('.notice-word');
+    if (!stage || !lens || !baseWord || !noticeWord || !hero || !window.WebGL2RenderingContext) return null;
 
     const canvas = document.createElement('canvas');
     canvas.className = 'drop-webgl-canvas';
@@ -187,49 +234,88 @@
     }
 
     const positions = new Float32Array([
-      -1, -1,
-       1, -1,
-      -1,  1,
-      -1,  1,
-       1, -1,
-       1,  1
+      -1, -1, 1, -1, -1, 1,
+      -1, 1, 1, -1, 1, 1
     ]);
     const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
 
     gl.useProgram(program);
-    const positionLocation = 0;
-    gl.enableVertexAttribArray(positionLocation);
-    gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(0);
+    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
 
     const uniforms = {
       resolution: gl.getUniformLocation(program, 'u_resolution'),
       center: gl.getUniformLocation(program, 'u_center'),
       radius: gl.getUniformLocation(program, 'u_radius'),
+      morph: gl.getUniformLocation(program, 'u_morph'),
       time: gl.getUniformLocation(program, 'u_time'),
       heroY0: gl.getUniformLocation(program, 'u_heroY0'),
-      heroYScale: gl.getUniformLocation(program, 'u_heroYScale')
+      heroYScale: gl.getUniformLocation(program, 'u_heroYScale'),
+      see: gl.getUniformLocation(program, 'u_see'),
+      notice: gl.getUniformLocation(program, 'u_notice')
     };
 
+    const seeTexture = makeTexture(gl);
+    const noticeTexture = makeTexture(gl);
     let cssWidth = 0;
     let cssHeight = 0;
     let pixelRatio = 1;
+    let morph = 0;
     let disposed = false;
     let rafId = 0;
 
     stage.prepend(canvas);
     stage.classList.add('webgl-active');
 
-    function resizeRenderer() {
+    function uploadTexture(texture, source, unit) {
+      gl.activeTexture(unit);
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
+    }
+
+    function makeTextCanvas(element, word) {
+      const c = document.createElement('canvas');
+      c.width = canvas.width;
+      c.height = canvas.height;
+      const ctx = c.getContext('2d');
+      const computed = getComputedStyle(element);
+      const fontSizeCss = parseFloat(computed.fontSize) || 16;
+      const spacingCss = parseFloat(computed.letterSpacing) || fontSizeCss * 0.15;
+      const fontWeight = computed.fontWeight || '780';
+      const fontFamily = computed.fontFamily || 'sans-serif';
+      const stageRect = stage.getBoundingClientRect();
+      const wordRect = element.getBoundingClientRect();
+      const centerX = (wordRect.left - stageRect.left + wordRect.width / 2) * pixelRatio;
+      const centerY = (wordRect.top - stageRect.top + wordRect.height / 2) * pixelRatio;
+      const targetWidth = wordRect.width * pixelRatio;
+
+      ctx.clearRect(0, 0, c.width, c.height);
+      ctx.font = `${fontWeight} ${fontSizeCss * pixelRatio}px ${fontFamily}`;
+      ctx.fillStyle = '#ffffff';
+      ctx.textBaseline = 'middle';
+      const spacing = spacingCss * pixelRatio;
+      drawTrackedToWidth(ctx, word, centerX, centerY, spacing, targetWidth);
+      return c;
+    }
+
+    function rebuildTextTextures() {
+      if (!canvas.width || !canvas.height) return;
+      uploadTexture(seeTexture, makeTextCanvas(baseWord, 'SEE'), gl.TEXTURE0);
+      uploadTexture(noticeTexture, makeTextCanvas(noticeWord, 'NOTICE'), gl.TEXTURE1);
+    }
+
+    function resizeRenderer(force = false) {
       const rect = stage.getBoundingClientRect();
       const nextWidth = Math.max(1, Math.round(rect.width));
       const nextHeight = Math.max(1, Math.round(rect.height));
       const coarse = matchMedia('(pointer: coarse)').matches;
       const maxDpr = coarse ? 1.5 : 1.8;
       const nextRatio = Math.min(window.devicePixelRatio || 1, maxDpr);
-
-      if (nextWidth === cssWidth && nextHeight === cssHeight && Math.abs(nextRatio - pixelRatio) < 0.01) return;
+      const changed = force || nextWidth !== cssWidth || nextHeight !== cssHeight || Math.abs(nextRatio - pixelRatio) >= 0.01;
+      if (!changed) return;
 
       cssWidth = nextWidth;
       cssHeight = nextHeight;
@@ -237,6 +323,7 @@
       canvas.width = Math.max(1, Math.round(cssWidth * pixelRatio));
       canvas.height = Math.max(1, Math.round(cssHeight * pixelRatio));
       gl.viewport(0, 0, canvas.width, canvas.height);
+      rebuildTextTextures();
     }
 
     function render(time) {
@@ -257,24 +344,28 @@
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.useProgram(program);
       gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-      gl.enableVertexAttribArray(positionLocation);
-      gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
 
       gl.uniform2f(uniforms.resolution, canvas.width, canvas.height);
       gl.uniform2f(uniforms.center, centerX, centerY);
       gl.uniform1f(uniforms.radius, radius);
+      gl.uniform1f(uniforms.morph, morph);
       gl.uniform1f(uniforms.time, time || 0);
       gl.uniform1f(uniforms.heroY0, heroY0);
       gl.uniform1f(uniforms.heroYScale, heroYScale);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, seeTexture);
+      gl.uniform1i(uniforms.see, 0);
+      gl.activeTexture(gl.TEXTURE1);
+      gl.bindTexture(gl.TEXTURE_2D, noticeTexture);
+      gl.uniform1i(uniforms.notice, 1);
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
       rafId = requestAnimationFrame(render);
     }
 
-    const resizeObserver = new ResizeObserver(() => {
-      cssWidth = 0;
-      resizeRenderer();
-    });
+    const resizeObserver = new ResizeObserver(() => resizeRenderer(true));
     resizeObserver.observe(stage);
 
     canvas.addEventListener('webglcontextlost', (event) => {
@@ -286,15 +377,21 @@
       canvas.remove();
     }, { once: true });
 
-    resizeRenderer();
+    resizeRenderer(true);
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(() => {
+        if (!disposed) rebuildTextTextures();
+      });
+    }
     rafId = requestAnimationFrame(render);
 
     return {
       active: true,
-      setMorph() {},
+      setMorph(value) {
+        morph = Math.max(0, Math.min(1, Number(value) || 0));
+      },
       resize() {
-        cssWidth = 0;
-        resizeRenderer();
+        resizeRenderer(true);
       },
       destroy() {
         if (disposed) return;
@@ -303,6 +400,8 @@
         resizeObserver.disconnect();
         stage.classList.remove('webgl-active');
         canvas.remove();
+        gl.deleteTexture(seeTexture);
+        gl.deleteTexture(noticeTexture);
         gl.deleteBuffer(buffer);
         gl.deleteProgram(program);
       }
