@@ -17,12 +17,9 @@
   uniform vec2 u_resolution;
   uniform vec2 u_center;
   uniform float u_radius;
-  uniform float u_morph;
   uniform float u_time;
   uniform float u_heroY0;
   uniform float u_heroYScale;
-  uniform sampler2D u_see;
-  uniform sampler2D u_notice;
 
   vec3 heroBackground(vec2 uv) {
     float heroY = clamp(u_heroY0 + uv.y * u_heroYScale, 0.0, 1.0);
@@ -46,7 +43,6 @@
 
     float horizon = exp(-pow((heroY - 0.494) / 0.0085, 2.0));
     color += vec3(0.055, 0.070, 0.075) * horizon;
-
     return color;
   }
 
@@ -59,7 +55,6 @@
   }
 
   void main() {
-    // Top-left UV convention to match DOM/canvas coordinates.
     vec2 uv = vec2(v_uv.x, 1.0 - v_uv.y);
     vec2 frag = uv * u_resolution;
 
@@ -73,7 +68,6 @@
     float aa = max(fwidth(sd) * 1.45, 0.0015);
     float dropMask = 1.0 - smoothstep(-aa, aa, sd);
 
-    // Soft contact shadow sits slightly below/right of the water mass.
     vec2 shadowQ = (frag - (u_center + vec2(2.0, u_radius * 0.13))) / max(u_radius, 1.0);
     shadowQ.x *= 0.94;
     shadowQ.y *= 1.11;
@@ -93,7 +87,6 @@
     vec2 centerUV = u_center / u_resolution;
     vec2 deltaUV = uv - centerUV;
 
-    // Spherical-cap magnification + increasingly strong rim refraction.
     float magnification = mix(0.77, 0.955, smoothstep(0.05, 1.0, safeR));
     vec2 sampleUV = centerUV + deltaUV * magnification;
     vec2 radiusUV = vec2(u_radius) / u_resolution;
@@ -101,23 +94,13 @@
     sampleUV -= normal.xy * radiusUV * bendStrength;
     sampleUV = clamp(sampleUV, vec2(0.002), vec2(0.998));
 
-    // Minimal chromatic separation appears only close to the rim.
     float chroma = smoothstep(0.72, 1.0, safeR) * 0.72;
     vec2 chromaUV = normal.xy / u_resolution * chroma;
-    vec3 bg;
-    bg.r = heroBackground(clamp(sampleUV + chromaUV, vec2(0.0), vec2(1.0))).r;
-    bg.g = heroBackground(sampleUV).g;
-    bg.b = heroBackground(clamp(sampleUV - chromaUV, vec2(0.0), vec2(1.0))).b;
+    vec3 scene;
+    scene.r = heroBackground(clamp(sampleUV + chromaUV, vec2(0.0), vec2(1.0))).r;
+    scene.g = heroBackground(sampleUV).g;
+    scene.b = heroBackground(clamp(sampleUV - chromaUV, vec2(0.0), vec2(1.0))).b;
 
-    float seeA = texture(u_see, sampleUV).a;
-    float noticeA = texture(u_notice, sampleUV).a;
-    float semantic = smoothstep(0.04, 0.96, u_morph);
-    float textA = mix(seeA, noticeA, semantic);
-
-    vec3 ink = vec3(0.020, 0.105, 0.170);
-    vec3 scene = mix(bg, ink, clamp(textA * 0.96, 0.0, 1.0));
-
-    // Fresnel-like edge, upper-left specular source and a broad soft highlight.
     float fresnel = pow(1.0 - z, 2.55);
     vec3 lightDir = normalize(vec3(-0.48, -0.58, 0.72));
     float ndl = max(dot(normal, lightDir), 0.0);
@@ -128,13 +111,11 @@
     scene += rimTint * fresnel * 0.29;
     scene += vec3(1.0) * (specular + broadSpecular);
 
-    // Internal lower caustic and mild water absorption toward the lower-right mass.
     vec2 causticQ = vec2(q.x * 1.55, (q.y - 0.53) * 3.7);
     float caustic = exp(-dot(causticQ, causticQ) * 2.2);
     scene += vec3(0.44, 0.78, 0.88) * caustic * 0.16;
     scene *= 1.0 - max(q.y, 0.0) * 0.022;
 
-    // Microsurface shimmer is deliberately tiny and only modulates the bright edge.
     float shimmer = sin((q.x * 21.0 + q.y * 17.0) + u_time * 0.0014) * 0.5 + 0.5;
     scene += rimTint * fresnel * shimmer * 0.014;
 
@@ -176,48 +157,8 @@
     return program;
   }
 
-  function createTextCanvas(width, height) {
-    const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-    return canvas;
-  }
-
-  function measureWord(ctx, word, spacing) {
-    let width = 0;
-    for (let i = 0; i < word.length; i += 1) {
-      width += ctx.measureText(word[i]).width;
-      if (i < word.length - 1) width += spacing;
-    }
-    return width;
-  }
-
-  function drawTrackedWord(ctx, word, centerX, centerY, spacing, scaleX = 1) {
-    const rawWidth = measureWord(ctx, word, spacing);
-    ctx.save();
-    ctx.translate(centerX, centerY);
-    ctx.scale(scaleX, 1);
-    let x = -rawWidth / 2;
-    for (let i = 0; i < word.length; i += 1) {
-      const glyphWidth = ctx.measureText(word[i]).width;
-      ctx.fillText(word[i], x, 0);
-      x += glyphWidth + (i < word.length - 1 ? spacing : 0);
-    }
-    ctx.restore();
-  }
-
-  function makeTexture(gl) {
-    const texture = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    return texture;
-  }
-
-  window.createWaterDropRenderer = function createWaterDropRenderer({ stage, lens, baseWord, hero }) {
-    if (!stage || !lens || !baseWord || !hero || !window.WebGL2RenderingContext) return null;
+  window.createWaterDropRenderer = function createWaterDropRenderer({ stage, lens, hero }) {
+    if (!stage || !lens || !hero || !window.WebGL2RenderingContext) return null;
 
     const canvas = document.createElement('canvas');
     canvas.className = 'drop-webgl-canvas';
@@ -266,71 +207,19 @@
       resolution: gl.getUniformLocation(program, 'u_resolution'),
       center: gl.getUniformLocation(program, 'u_center'),
       radius: gl.getUniformLocation(program, 'u_radius'),
-      morph: gl.getUniformLocation(program, 'u_morph'),
       time: gl.getUniformLocation(program, 'u_time'),
       heroY0: gl.getUniformLocation(program, 'u_heroY0'),
-      heroYScale: gl.getUniformLocation(program, 'u_heroYScale'),
-      see: gl.getUniformLocation(program, 'u_see'),
-      notice: gl.getUniformLocation(program, 'u_notice')
+      heroYScale: gl.getUniformLocation(program, 'u_heroYScale')
     };
-
-    const seeTexture = makeTexture(gl);
-    const noticeTexture = makeTexture(gl);
-    gl.uniform1i(uniforms.see, 0);
-    gl.uniform1i(uniforms.notice, 1);
 
     let cssWidth = 0;
     let cssHeight = 0;
     let pixelRatio = 1;
-    let morph = 0;
     let disposed = false;
     let rafId = 0;
 
     stage.prepend(canvas);
     stage.classList.add('webgl-active');
-
-    function uploadTextTexture(texture, textCanvas, unit) {
-      gl.activeTexture(unit);
-      gl.bindTexture(gl.TEXTURE_2D, texture);
-      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textCanvas);
-    }
-
-    function rebuildTextTextures() {
-      if (!canvas.width || !canvas.height) return;
-
-      const computed = getComputedStyle(baseWord);
-      const fontSizeCss = parseFloat(computed.fontSize) || 16;
-      const fontWeight = computed.fontWeight || '780';
-      const fontFamily = computed.fontFamily || 'Inter, sans-serif';
-      const spacingCss = parseFloat(computed.letterSpacing) || fontSizeCss * 0.15;
-
-      const seeCanvas = createTextCanvas(canvas.width, canvas.height);
-      const noticeCanvas = createTextCanvas(canvas.width, canvas.height);
-      const seeCtx = seeCanvas.getContext('2d');
-      const noticeCtx = noticeCanvas.getContext('2d');
-      const font = `${fontWeight} ${fontSizeCss * pixelRatio}px ${fontFamily}`;
-      const spacing = spacingCss * pixelRatio;
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-
-      for (const ctx of [seeCtx, noticeCtx]) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.font = font;
-        ctx.fillStyle = '#ffffff';
-        ctx.textBaseline = 'middle';
-      }
-
-      const noticeWidth = measureWord(noticeCtx, 'NOTICE', spacing);
-      const seeWidth = measureWord(seeCtx, 'SEE', spacing);
-      const seeScale = seeWidth > 0 ? (noticeWidth * 0.74) / seeWidth : 1.45;
-
-      drawTrackedWord(seeCtx, 'SEE', centerX, centerY, spacing, seeScale);
-      drawTrackedWord(noticeCtx, 'NOTICE', centerX, centerY, spacing, 1);
-
-      uploadTextTexture(seeTexture, seeCanvas, gl.TEXTURE0);
-      uploadTextTexture(noticeTexture, noticeCanvas, gl.TEXTURE1);
-    }
 
     function resizeRenderer() {
       const rect = stage.getBoundingClientRect();
@@ -348,7 +237,6 @@
       canvas.width = Math.max(1, Math.round(cssWidth * pixelRatio));
       canvas.height = Math.max(1, Math.round(cssHeight * pixelRatio));
       gl.viewport(0, 0, canvas.width, canvas.height);
-      rebuildTextTextures();
     }
 
     function render(time) {
@@ -375,15 +263,9 @@
       gl.uniform2f(uniforms.resolution, canvas.width, canvas.height);
       gl.uniform2f(uniforms.center, centerX, centerY);
       gl.uniform1f(uniforms.radius, radius);
-      gl.uniform1f(uniforms.morph, morph);
       gl.uniform1f(uniforms.time, time || 0);
       gl.uniform1f(uniforms.heroY0, heroY0);
       gl.uniform1f(uniforms.heroYScale, heroYScale);
-
-      gl.activeTexture(gl.TEXTURE0);
-      gl.bindTexture(gl.TEXTURE_2D, seeTexture);
-      gl.activeTexture(gl.TEXTURE1);
-      gl.bindTexture(gl.TEXTURE_2D, noticeTexture);
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
       rafId = requestAnimationFrame(render);
@@ -394,9 +276,6 @@
       resizeRenderer();
     });
     resizeObserver.observe(stage);
-
-    const fontReady = document.fonts?.ready;
-    if (fontReady?.then) fontReady.then(() => rebuildTextTextures()).catch(() => {});
 
     canvas.addEventListener('webglcontextlost', (event) => {
       event.preventDefault();
@@ -412,9 +291,7 @@
 
     return {
       active: true,
-      setMorph(value) {
-        morph = Math.max(0, Math.min(1, Number(value) || 0));
-      },
+      setMorph() {},
       resize() {
         cssWidth = 0;
         resizeRenderer();
@@ -426,8 +303,6 @@
         resizeObserver.disconnect();
         stage.classList.remove('webgl-active');
         canvas.remove();
-        gl.deleteTexture(seeTexture);
-        gl.deleteTexture(noticeTexture);
         gl.deleteBuffer(buffer);
         gl.deleteProgram(program);
       }
