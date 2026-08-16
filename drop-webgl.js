@@ -20,6 +20,7 @@
   uniform float u_time;
   uniform float u_heroY0;
   uniform float u_heroYScale;
+  uniform float u_glossBoost;
 
   vec3 heroBackground(vec2 uv) {
     float heroY = clamp(u_heroY0 + uv.y * u_heroYScale, 0.0, 1.0);
@@ -104,23 +105,33 @@
     float fresnel = pow(1.0 - z, 4.20);
     vec3 lightDir = normalize(vec3(-0.48, -0.58, 0.72));
     float ndl = max(dot(normal, lightDir), 0.0);
-    float specular = pow(ndl, 92.0) * 0.62;
-    float broadSpecular = pow(ndl, 22.0) * 0.055;
+    float specular = pow(ndl, 92.0) * 0.78 * u_glossBoost;
+    float broadSpecular = pow(ndl, 22.0) * 0.085 * u_glossBoost;
 
     vec3 rimTint = vec3(0.74, 0.90, 0.96);
-    scene += rimTint * fresnel * 0.18;
+    scene += rimTint * fresnel * (0.21 * u_glossBoost);
     scene += vec3(1.0) * (specular + broadSpecular);
+
+    // Two compact reflected-light patches make the drop read as wet glass,
+    // especially on small mobile screens where the previous highlight was lost.
+    vec2 glintQ = vec2((q.x + 0.36) * 2.9, (q.y + 0.43) * 4.1);
+    float glint = exp(-dot(glintQ, glintQ) * 2.15) * dropMask;
+    vec2 sparkleQ = vec2((q.x + 0.18) * 7.2, (q.y + 0.66) * 8.8);
+    float sparkle = exp(-dot(sparkleQ, sparkleQ) * 2.5) * dropMask;
+    scene += vec3(1.0, 1.0, 0.995) * glint * (0.24 * u_glossBoost);
+    scene += vec3(1.0) * sparkle * (0.18 * u_glossBoost);
 
     vec2 causticQ = vec2(q.x * 1.55, (q.y - 0.53) * 3.7);
     float caustic = exp(-dot(causticQ, causticQ) * 2.2);
-    scene += vec3(0.44, 0.78, 0.88) * caustic * 0.08;
+    scene += vec3(0.44, 0.78, 0.88) * caustic * (0.095 * u_glossBoost);
     scene *= 1.0 - max(q.y, 0.0) * 0.012;
 
     float shimmer = sin((q.x * 21.0 + q.y * 17.0) + u_time * 0.0014) * 0.5 + 0.5;
-    scene += rimTint * fresnel * shimmer * 0.005;
+    scene += rimTint * fresnel * shimmer * (0.009 * u_glossBoost);
 
     float edgeOpacity = pow(1.0 - z, 1.70);
-    float dropAlpha = dropMask * (0.13 + 0.57 * edgeOpacity);
+    float highlightOpacity = glint * 0.085 * u_glossBoost + sparkle * 0.065 * u_glossBoost;
+    float dropAlpha = dropMask * (0.13 + 0.58 * edgeOpacity + highlightOpacity);
     vec3 shadowColor = vec3(0.055, 0.175, 0.225);
     float alpha = dropAlpha + shadow * (1.0 - dropAlpha);
     vec3 premul = scene * dropAlpha + shadowColor * shadow * (1.0 - dropAlpha);
@@ -210,7 +221,8 @@
       radius: gl.getUniformLocation(program, 'u_radius'),
       time: gl.getUniformLocation(program, 'u_time'),
       heroY0: gl.getUniformLocation(program, 'u_heroY0'),
-      heroYScale: gl.getUniformLocation(program, 'u_heroYScale')
+      heroYScale: gl.getUniformLocation(program, 'u_heroYScale'),
+      glossBoost: gl.getUniformLocation(program, 'u_glossBoost')
     };
 
     let cssWidth = 0;
@@ -253,6 +265,7 @@
       const heroHeight = Math.max(heroRect.height, 1);
       const heroY0 = (stageRect.top - heroRect.top) / heroHeight;
       const heroYScale = stageRect.height / heroHeight;
+      const glossBoost = matchMedia('(pointer: coarse)').matches ? 1.32 : 1.0;
 
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
@@ -267,6 +280,7 @@
       gl.uniform1f(uniforms.time, time || 0);
       gl.uniform1f(uniforms.heroY0, heroY0);
       gl.uniform1f(uniforms.heroYScale, heroYScale);
+      gl.uniform1f(uniforms.glossBoost, glossBoost);
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
       rafId = requestAnimationFrame(render);
