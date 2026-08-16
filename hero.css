@@ -40,15 +40,15 @@
   isolation: isolate;
 }
 
-/* CSS/fallback semantic layers. */
+/* CSS/fallback semantic layers. OBSERVE and NOTICE share one fixed centre. */
 .base-word,
 .notice-word {
   position: absolute;
   left: 50%;
   top: 50%;
   margin: 0;
-  font-size: clamp(.96rem, 1.35vw, 1.18rem);
-  font-weight: 780;
+  font-size: clamp(1rem, 1.45vw, 1.25rem);
+  font-weight: 760;
   line-height: 1;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -62,7 +62,6 @@
 .base-word {
   z-index: 4;
   opacity: calc(1 - var(--morph));
-  transform: translate(-50%, -50%) scaleX(1.48);
   transition: opacity .16s linear;
 }
 
@@ -73,7 +72,7 @@
 }
 
 /*
-  WebGL metaphor: SEE is the upper coating, NOTICE sits underneath the water.
+  WebGL metaphor: OBSERVE is the upper coating, NOTICE sits underneath the water.
   Both semantic layers become full-stage overlays so the drop coordinates and
   radial masks share exactly the same coordinate space.
 */
@@ -97,8 +96,8 @@
 .perception-stage.webgl-active .base-word::before,
 .perception-stage.webgl-active .notice-word::before {
   display: inline-block;
-  font-size: clamp(.96rem, 1.35vw, 1.18rem);
-  font-weight: 780;
+  font-size: clamp(1rem, 1.45vw, 1.25rem);
+  font-weight: 760;
   line-height: 1;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -107,15 +106,14 @@
 }
 
 .perception-stage.webgl-active .base-word::before {
-  content: 'SEE';
-  transform: scaleX(1.48);
+  content: 'OBSERVE';
 }
 
 .perception-stage.webgl-active .notice-word::before {
   content: 'NOTICE';
 }
 
-/* Upper SEE coating: a soft dissolve hole follows the physical drop. */
+/* Upper OBSERVE coating: a soft dissolve hole follows the physical drop. */
 .perception-stage.webgl-active .base-word {
   -webkit-mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
@@ -135,9 +133,7 @@
   mask-repeat: no-repeat;
 }
 
-/* NOTICE stays below the WebGL water and is only exposed in the same drop area.
-   Keeping this complementary mask is necessary because the semantic layers are
-   transparent text, not an opaque coating surface. */
+/* NOTICE stays below the WebGL water and is only exposed in the same drop area. */
 .perception-stage.webgl-active .notice-word {
   -webkit-mask-image: radial-gradient(
     circle at var(--drop-x) var(--drop-y),
@@ -245,6 +241,44 @@
   transition: opacity .25s ease, color .25s ease;
 }
 
+/* Desktop: give the word enough physical width for the droplet to travel across it. */
+@media (min-width: 781px) {
+  .perception-stage {
+    right: clamp(28px, 4vw, 72px);
+    bottom: 9vh;
+    width: min(760px, 56vw);
+    height: clamp(250px, 29vh, 330px);
+  }
+
+  .base-word,
+  .notice-word,
+  .perception-stage.webgl-active .base-word::before,
+  .perception-stage.webgl-active .notice-word::before {
+    font-size: clamp(2.6rem, 4.25vw, 4.8rem);
+    font-weight: 700;
+    letter-spacing: .14em;
+  }
+
+  .base-word,
+  .perception-stage.webgl-active .base-word::before {
+    color: rgba(7, 27, 46, .78);
+  }
+
+  .notice-word,
+  .perception-stage.webgl-active .notice-word::before {
+    color: rgba(7, 27, 46, .72);
+  }
+
+  .lens {
+    width: clamp(180px, 15vw, 240px);
+  }
+
+  .hint {
+    bottom: -2px;
+    letter-spacing: .19em;
+  }
+}
+
 @media (max-width: 780px) {
   .lens {
     width: 132px;
@@ -253,14 +287,14 @@
 
   .base-word,
   .notice-word {
-    font-size: .96rem;
-    letter-spacing: .15em;
+    font-size: .98rem;
+    letter-spacing: .14em;
   }
 
   .perception-stage.webgl-active .base-word::before,
   .perception-stage.webgl-active .notice-word::before {
-    font-size: .96rem;
-    letter-spacing: .15em;
+    font-size: .98rem;
+    letter-spacing: .14em;
   }
 }
 
