@@ -34,13 +34,10 @@
 
 .perception-stage {
   --morph: 0;
-  --drop-x: 50%;
-  --drop-y: 50%;
-  --drop-r: 0px;
   isolation: isolate;
 }
 
-/* SEE and NOTICE occupy exactly the same fixed anchor. The drop never owns either word. */
+/* SEE and NOTICE share one fixed anchor. The moving drop never owns either word. */
 .base-word,
 .notice-word {
   position: absolute;
@@ -61,40 +58,19 @@
 }
 
 .base-word {
-  z-index: 1;
+  z-index: 4;
   opacity: calc(1 - var(--morph));
   transform: translate(-50%, -50%) scaleX(1.48);
 }
 
 .notice-word {
-  z-index: 2;
+  z-index: 4;
   opacity: var(--morph);
-}
-
-/* When WebGL is active the normal DOM word remains fixed in space, but the
-   pixels physically covered by the drop are removed. The shader paints only
-   that missing area back with refraction, so the word never travels with the drop. */
-.perception-stage.webgl-active .base-word,
-.perception-stage.webgl-active .notice-word {
-  -webkit-mask-image: radial-gradient(
-    circle at var(--drop-x) var(--drop-y),
-    transparent 0,
-    transparent calc(var(--drop-r) - 1px),
-    #000 calc(var(--drop-r) + 2px),
-    #000 100%
-  );
-  mask-image: radial-gradient(
-    circle at var(--drop-x) var(--drop-y),
-    transparent 0,
-    transparent calc(var(--drop-r) - 1px),
-    #000 calc(var(--drop-r) + 2px),
-    #000 100%
-  );
 }
 
 /* CSS fallback: used when WebGL2 is unavailable or loses context. */
 .lens {
-  z-index: 4;
+  z-index: 5;
   animation: dropFall 1.62s cubic-bezier(.2, .82, .25, 1) both;
   touch-action: none;
   overflow: hidden;
@@ -145,7 +121,7 @@
   pointer-events: none;
 }
 
-/* WebGL renderer covers only the perception-stage and never receives input. */
+/* WebGL renders only the moving water optics. DOM text remains fixed above it. */
 .drop-webgl-canvas {
   position: absolute;
   inset: 0;
@@ -156,7 +132,7 @@
   pointer-events: none;
 }
 
-/* Keep the DOM lens as the motion/hit-test anchor, but let WebGL draw the water. */
+/* Keep the DOM lens as motion/hit-test anchor, but let WebGL draw the water. */
 .perception-stage.webgl-active .lens {
   opacity: 0 !important;
   background: transparent !important;
@@ -173,7 +149,7 @@
 }
 
 .perception-stage.webgl-active .hint {
-  z-index: 5;
+  z-index: 6;
 }
 
 .hint {
