@@ -241,22 +241,22 @@
   transition: opacity .25s ease, color .25s ease;
 }
 
-/* Desktop: give the word enough physical width for the droplet to travel across it. */
+/* Desktop: give the word more runway and pull the whole interaction left. */
 @media (min-width: 781px) {
   .perception-stage {
-    right: clamp(28px, 4vw, 72px);
+    right: clamp(0px, 1.4vw, 24px);
     bottom: 9vh;
-    width: min(760px, 56vw);
-    height: clamp(250px, 29vh, 330px);
+    width: min(980px, 62vw);
+    height: clamp(255px, 30vh, 340px);
   }
 
   .base-word,
   .notice-word,
   .perception-stage.webgl-active .base-word::before,
   .perception-stage.webgl-active .notice-word::before {
-    font-size: clamp(2.6rem, 4.25vw, 4.8rem);
+    font-size: clamp(2.4rem, 3.7vw, 4.35rem);
     font-weight: 700;
-    letter-spacing: .14em;
+    letter-spacing: .11em;
   }
 
   .base-word,
@@ -270,7 +270,7 @@
   }
 
   .lens {
-    width: clamp(180px, 15vw, 240px);
+    width: clamp(166px, 12.8vw, 212px);
   }
 
   .hint {
