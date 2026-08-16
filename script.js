@@ -44,8 +44,6 @@ function updateSemanticReveal(px, py) {
   const wordRect = baseWord.getBoundingClientRect();
   const left = wordRect.left - stageRect.left;
   const top = wordRect.top - stageRect.top;
-  const right = left + wordRect.width;
-  const bottom = top + wordRect.height;
   const halfW = wordRect.width / 2;
   const halfH = wordRect.height / 2;
   const centerX = left + halfW;
@@ -74,11 +72,18 @@ function setLensLocal(x, y, reveal = landed) {
   const maxY = Math.max(min, stage.clientHeight - min);
   const px = clamp(x, min, maxX);
   const py = clamp(y, min, maxY);
+  const radius = lens.offsetWidth / 2;
 
   currentX = px;
   currentY = py;
   lens.style.setProperty('--x', `${px}px`);
   lens.style.setProperty('--y', `${py}px`);
+
+  // The DOM word is stationary. These variables only cut a moving optical
+  // window out of it so WebGL can paint the refracted pixels beneath the drop.
+  stage.style.setProperty('--drop-x', `${px}px`);
+  stage.style.setProperty('--drop-y', `${py}px`);
+  stage.style.setProperty('--drop-r', `${Math.max(0, radius - 1)}px`);
 
   if (reveal) {
     updateSemanticReveal(px, py);
