@@ -34,6 +34,9 @@
 
 .perception-stage {
   --morph: 0;
+  --drop-x: 50%;
+  --drop-y: 50%;
+  --drop-r: 0px;
   isolation: isolate;
 }
 
@@ -66,6 +69,26 @@
 .notice-word {
   z-index: 4;
   opacity: var(--morph);
+}
+
+/* WebGL sits below the DOM text. Cut a moving hole in the DOM text exactly
+   where the water drop is, so only the optical water layer is visible there. */
+.perception-stage.webgl-active .base-word,
+.perception-stage.webgl-active .notice-word {
+  -webkit-mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    transparent 0,
+    transparent calc(var(--drop-r) - 1px),
+    #000 calc(var(--drop-r) + 2px),
+    #000 100%
+  );
+  mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    transparent 0,
+    transparent calc(var(--drop-r) - 1px),
+    #000 calc(var(--drop-r) + 2px),
+    #000 100%
+  );
 }
 
 /* CSS fallback: used when WebGL2 is unavailable or loses context. */
@@ -121,7 +144,7 @@
   pointer-events: none;
 }
 
-/* WebGL renders only the moving water optics. DOM text remains fixed above it. */
+/* WebGL renders only the moving water optics. */
 .drop-webgl-canvas {
   position: absolute;
   inset: 0;
