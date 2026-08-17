@@ -36,6 +36,19 @@
     });
   };
 
+  function setActionLabel(el, en, lt) {
+    if (!el) return;
+    const span = el.querySelector('span');
+    const arrow = span?.textContent || '';
+    const label = lang === 'lt' ? lt : en;
+    if (span) {
+      el.childNodes[0].nodeValue = `${label} `;
+      span.textContent = arrow;
+    } else {
+      el.textContent = label;
+    }
+  }
+
   function addLanguageSwitch() {
     const nav = document.querySelector('header nav');
     if (!nav || nav.querySelector('.language-switch')) return;
@@ -72,9 +85,9 @@
         summary: ['A reflection framework being developed through temporary calibration and validation studies.', 'Refleksijos sistema, kuriama per laikinus kalibravimo ir validavimo tyrimus.'],
         meta: [
           ['Product in development', 'Kuriamas produktas'],
-          ['Wave 1 + Calibration v0.1 live', 'Wave 1 + Calibration v0.1']
+          ['Wave 1 public · Calibration pilot ready', 'Wave 1 viešas · Calibration pilotas paruoštas']
         ],
-        actions: [['About', 'Apie'], ['Wave 1', 'Wave 1'], ['Calibration', 'Calibration']]
+        actions: [['About', 'Apie'], ['Wave 1', 'Wave 1'], ['Calibration status', 'Calibration būsena']]
       },
       'mirror': {
         state: ['Live · EN/LT', 'Veikia · EN/LT'],
@@ -131,13 +144,17 @@
         if (copy.meta[i]) el.textContent = lang === 'lt' ? copy.meta[i][1] : copy.meta[i][0];
       });
       root.querySelectorAll('.experiment-actions a').forEach((el, i) => {
-        if (!copy.actions[i]) return;
-        const arrow = el.querySelector('span')?.textContent || '';
-        const label = lang === 'lt' ? copy.actions[i][1] : copy.actions[i][0];
-        el.childNodes[0].nodeValue = `${label} `;
-        if (arrow && !el.querySelector('span')) el.append(arrow);
+        if (copy.actions[i]) setActionLabel(el, copy.actions[i][0], copy.actions[i][1]);
       });
     });
+
+    const calibrationLink = document.querySelector('#2pair .experiment-actions a:nth-child(3)');
+    if (calibrationLink) {
+      calibrationLink.href = 'tools/2pair/';
+      calibrationLink.removeAttribute('target');
+      calibrationLink.removeAttribute('rel');
+      setActionLabel(calibrationLink, 'Calibration status', 'Calibration būsena');
+    }
 
     setAll('.manifesto-copy p', [
       ['Familiar first.', 'Pirmiausia pažįstama.'],
@@ -156,25 +173,32 @@
     set('.tool-header nav a:nth-child(1)', 'Experiments', 'Eksperimentai');
     set('.tool-header nav a:nth-child(2)', 'About', 'Apie');
     set('.tool-hero .kicker', 'Research active', 'Tyrimas vyksta');
-    set('.tool-hero .lead', 'A reflection framework in development. The current public experiences are research satellites used to calibrate and test parts of the approach.', 'Kuriama refleksijos sistema. Dabartinės viešos patirtys yra laikini tyrimo palydovai, skirti atskiroms metodo dalims kalibruoti ir tikrinti.');
+    set('.tool-hero .lead',
+      'A reflection framework in development. The current research satellites test different parts of the approach before they are folded into the main product.',
+      'Kuriama refleksijos sistema. Dabartiniai tyrimo palydovai tikrina skirtingas metodo dalis prieš jas sujungiant į pagrindinį produktą.'
+    );
     setAll('.tool-meta span', [
       ['Product in development', 'Kuriamas produktas'],
       ['Temporary research satellites', 'Laikini tyrimo palydovai'],
-      ['Wave 1', 'Wave 1'],
-      ['Calibration v0.1', 'Calibration v0.1']
+      ['Wave 1 · public', 'Wave 1 · viešas'],
+      ['Calibration v0.1 · pilot ready', 'Calibration v0.1 · pilotas paruoštas']
     ]);
-    setAll('.tool-hero .tool-actions a', [
-      ['Join Wave 1 ↗', 'Dalyvauti Wave 1 ↗'],
-      ['Calibration v0.1 ↗', 'Calibration v0.1 ↗']
-    ]);
+
+    const heroActions = document.querySelectorAll('.tool-hero .tool-actions > *');
+    if (heroActions[0]) heroActions[0].textContent = lang === 'lt' ? 'Dalyvauti Wave 1 ↗' : 'Join Wave 1 ↗';
+    if (heroActions[1]) heroActions[1].textContent = lang === 'lt' ? 'Calibration · viešas paleidimas dar nepradėtas' : 'Calibration · public launch pending';
 
     const sections = document.querySelectorAll('.tool-section');
     if (sections[0]) {
-      sections[0].querySelector('h2').textContent = lang === 'lt' ? 'Ką tiriame' : 'What is being explored';
-      setAll('.tool-section:nth-of-type(1) p', [
-        ['2Pair is built around repeated observation rather than a one-shot personality label. The broader project asks whether small choices, observed across multiple sessions, can support useful self-reflection without pretending to diagnose the person.', '2Pair remiasi pakartotiniu stebėjimu, o ne vienkartine asmenybės etikete. Projektas tiria, ar maži pasirinkimai, stebimi per kelias sesijas, gali padėti prasmingai savirefleksijai neapsimetant, kad žmogus yra diagnozuojamas.'],
-        ['The public studies are not the final product. They are temporary research tools used to test calibration, stimulus design and the quality of the reflections produced.', 'Vieši tyrimai nėra galutinis produktas. Tai laikini tyrimo įrankiai, skirti kalibravimui, stimulų dizainui ir gaunamos refleksijos kokybei tikrinti.']
-      ]);
+      const heading = sections[0].querySelector('h2');
+      if (heading) heading.textContent = lang === 'lt' ? 'Ką tiriame' : 'What is being explored';
+      const ps = sections[0].querySelectorAll('p');
+      if (ps[0]) ps[0].textContent = lang === 'lt'
+        ? '2Pair remiasi pakartotiniu stebėjimu, o ne vienkartine asmenybės etikete. Projektas tiria, ar maži pasirinkimai, stebimi per kelias sesijas, gali padėti prasmingai savirefleksijai neapsimetant, kad žmogus yra diagnozuojamas.'
+        : '2Pair is built around repeated observation rather than a one-shot personality label. The broader project asks whether small choices, observed across multiple sessions, can support useful self-reflection without pretending to diagnose the person.';
+      if (ps[1]) ps[1].textContent = lang === 'lt'
+        ? 'Tyrimo palydovai nėra galutinis produktas. Tai laikini įrankiai, skirti porų balansui, stimulų dizainui, pasirinkimo laikui ir gaunamos refleksijos kokybei tikrinti.'
+        : 'The research satellites are not the final product. They are temporary tools used to test pair balance, stimulus design, selection timing and the quality of the reflections produced.';
     }
 
     set('#model h2', 'The working idea', 'Darbinė idėja');
@@ -189,26 +213,29 @@
       ['The output is designed to create a question worth noticing, not a fixed label or prediction.', 'Rezultatas skirtas sukurti klausimą, kurį verta pastebėti, o ne fiksuotą etiketę ar prognozę.']
     ]);
 
-    const why = Array.from(document.querySelectorAll('.tool-section')).find((s) => s.querySelector('h2')?.textContent.includes('Why there are two public links'));
-    if (why) {
-      why.querySelector('h2').textContent = lang === 'lt' ? 'Kodėl yra dvi tyrimo nuorodos' : 'Why there are two public links';
-      const ps = why.querySelectorAll('p');
+    if (sections[2]) {
+      const heading = sections[2].querySelector('h2');
+      if (heading) heading.textContent = lang === 'lt' ? 'Kodėl yra du tyrimo palydovai' : 'Why there are two research satellites';
+      const ps = sections[2].querySelectorAll('p');
       if (ps[0]) ps[0].textContent = lang === 'lt'
-        ? 'Wave 1 ir Calibration v0.1 tikrina skirtingas tyrimo proceso dalis. Tobulėjant pagrindinei sistemai jos gali keistis arba išnykti.'
-        : 'Wave 1 and Calibration v0.1 test different parts of the research process. They may change or disappear as the main framework develops.';
+        ? 'Wave 1 tikrina porų balansą ir kitą pasirinkimo mechaniką. Calibration v0.1 daugiausia orientuotas į greito pasirinkimo ir pasirinkimo laiko signalus. Calibration vidinis testavimas baigtas, bet viešas dalyvių kvietimas dar nepradėtas.'
+        : 'Wave 1 tests pair balance and other mechanics. Calibration v0.1 is focused mainly on fast-choice and selection-timing signals. Calibration has completed internal testing but is not yet open for public recruitment.';
       if (ps[1]) ps[1].textContent = lang === 'lt'
-        ? 'Tai yra dalyvavimo tyrime patirtys, o ne užbaigti 2rasi produktai.'
-        : 'Treat these as research participation experiences, not finished 2rasi products.';
+        ? 'Abu palydovai laikini. Jų užduotis yra padėti apsibrėžti galutinį 2Pair mechanizmą ir tada pasitraukti.'
+        : 'Both satellites are temporary. Their job is to inform the final 2Pair mechanism, then step out of the way.';
     }
 
     set('.side-card h3', 'Research, not a finished tool', 'Tyrimas, ne galutinis įrankis');
-    set('.side-card p', 'If you participate, the useful mindset is curiosity: notice the experience and the questions it creates rather than looking for a definitive score.', 'Jei dalyvauji, svarbiausia smalsumas: pastebėk patirtį ir jos keliamus klausimus, o ne ieškok galutinio balo.');
+    set('.side-card p',
+      'If you participate in an open study, the useful mindset is curiosity: notice the experience and the questions it creates rather than looking for a definitive score.',
+      'Jei dalyvauji atvirame tyrime, svarbiausia smalsumas: pastebėk patirtį ir jos keliamus klausimus, o ne ieškok galutinio balo.'
+    );
     set('.side-card .button', 'Open Wave 1 ↗', 'Atidaryti Wave 1 ↗');
     set('.tool-footer a', '← Back to experiments', '← Grįžti į eksperimentus');
   }
 
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  if (path === '' || path === '/' || /\/index\.html$/.test(path)) translateHome();
+  if (path === '/' || /\/index\.html$/.test(path) && !path.includes('/tools/')) translateHome();
   if (path.endsWith('/tools/2pair') || path.endsWith('/tools/2pair/index.html')) translate2Pair();
 
   addLanguageSwitch();
