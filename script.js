@@ -1,3 +1,9 @@
+if (!window.RASI_LANG) {
+  const i18n = document.createElement('script');
+  i18n.src = `i18n.js?v=20260817-0836`;
+  document.head.appendChild(i18n);
+}
+
 const lens = document.querySelector('.lens');
 const stage = document.querySelector('.perception-stage');
 const baseWord = document.querySelector('.base-word');
@@ -8,6 +14,8 @@ const header = document.querySelector('.site-header');
 
 const coarsePointer = matchMedia('(pointer: coarse)').matches;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const localizedHint = (key, fallback) => window.RASI_COPY?.hints?.[window.RASI_LANG]?.[key] || fallback;
 
 const waterRenderer = window.createWaterDropRenderer?.({
   stage,
@@ -120,7 +128,7 @@ function settleLens() {
   centerLensOnWord(true);
 
   if (coarsePointer) {
-    hint.textContent = 'TILT · TOUCH · NOTICE';
+    hint.textContent = localizedHint('tiltTouch', 'TILT · TOUCH · NOTICE');
     startOrientation(false);
   }
 }
@@ -139,7 +147,7 @@ async function startOrientation(fromGesture) {
 
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     if (!fromGesture || permissionRequested) {
-      if (!permissionRequested) hint.textContent = 'TOUCH · TILT · NOTICE';
+      if (!permissionRequested) hint.textContent = localizedHint('touchTilt', 'TOUCH · TILT · NOTICE');
       return;
     }
 
@@ -149,10 +157,10 @@ async function startOrientation(fromGesture) {
       if (permission === 'granted') {
         attachOrientationListener();
       } else {
-        hint.textContent = 'DRAG · TOUCH · NOTICE';
+        hint.textContent = localizedHint('dragTouch', 'DRAG · TOUCH · NOTICE');
       }
     } catch {
-      hint.textContent = 'DRAG · TOUCH · NOTICE';
+      hint.textContent = localizedHint('dragTouch', 'DRAG · TOUCH · NOTICE');
     }
     return;
   }
@@ -171,7 +179,7 @@ function onOrientation(event) {
     targetX = tiltOriginX;
     targetY = tiltOriginY;
     orientationActive = true;
-    hint.textContent = 'TILT · TOUCH · NOTICE';
+    hint.textContent = localizedHint('tiltTouch', 'TILT · TOUCH · NOTICE');
     return;
   }
 
