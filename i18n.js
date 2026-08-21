@@ -42,7 +42,9 @@
     const arrow = span?.textContent || '';
     const label = lang === 'lt' ? lt : en;
     if (span) {
-      el.childNodes[0].nodeValue = `${label} `;
+      const textNode = Array.from(el.childNodes).find((node) => node.nodeType === Node.TEXT_NODE);
+      if (textNode) textNode.nodeValue = `${label} `;
+      else el.insertBefore(document.createTextNode(`${label} `), span);
       span.textContent = arrow;
     } else {
       el.textContent = label;
@@ -67,6 +69,27 @@
     }
     link.setAttribute('aria-label', lang === 'lt' ? 'English version' : 'Lietuviška versija');
     nav.appendChild(link);
+  }
+
+  function translateHomeTail() {
+    set('.manifesto-word', 'LOOK', 'ŽIŪRĖK');
+    setAll('.manifesto-copy p', [
+      ['Familiar first.', 'Pirmiausia pažįstama.'],
+      ['Unexpected second.', 'Tada netikėta.'],
+      ['Meaning third.', 'Galiausiai prasmė.']
+    ]);
+    set('#about .kicker', 'ABOUT', 'APIE');
+    set('.about-lead', '2rasi is a place for experiments in perception, choice and reflection.', '2rasi yra vieta suvokimo, pasirinkimo ir refleksijos eksperimentams.');
+    setAll('#about .about-copy > p:not(.kicker):not(.about-lead)', [
+      ['Some begin with psychology. Some with work. Some with ordinary things we stopped noticing.', 'Vieni prasideda nuo psichologijos. Kiti nuo darbo. Dar kiti nuo paprastų dalykų, kurių nustojome pastebėti.'],
+      ['What happens if we look again?', 'Kas nutinka, jei pažvelgiame dar kartą?']
+    ]);
+
+    const footerDomain = document.querySelector('.footer-links a:last-child');
+    if (footerDomain) {
+      footerDomain.textContent = lang === 'lt' ? '2rasi.lt' : '2rasi.com';
+      footerDomain.href = lang === 'lt' ? 'https://2rasi.lt' : 'https://2rasi.com';
+    }
   }
 
   function translateHome() {
@@ -126,10 +149,10 @@
         actions: [['About', 'Apie'], ['Start', 'Pradėti']]
       },
       'leadership-360': {
-        state: ['Prototype · LT/EN', 'Prototipas · LT/EN'],
+        state: ['Live · LT/EN', 'Veikia · LT/EN'],
         summary: ['A multi-rater leadership development cycle connecting pseudonymous 360° feedback with a 90-day action plan and repeat measurement.', 'Kelių vertintojų lyderystės tobulėjimo ciklas, jungiantis pseudoniminį 360° grįžtamąjį ryšį, 90 dienų veiksmų planą ir pakartotinį matavimą.'],
         meta: [['75 statements · 15 competencies', '75 teiginiai · 15 kompetencijų'], ['C1 → 90 days → C2', 'C1 → 90 dienų → C2']],
-        actions: [['About', 'Apie'], ['Open prototype', 'Atidaryti prototipą']]
+        actions: [['About', 'Apie'], ['Start', 'Pradėti']]
       }
     };
 
@@ -156,24 +179,7 @@
       setActionLabel(calibrationLink, 'Calibration status', 'Calibration būsena');
     }
 
-    set('.manifesto-word', 'LOOK', 'ŽIŪRĖK');
-    setAll('.manifesto-copy p', [
-      ['Familiar first.', 'Pirmiausia pažįstama.'],
-      ['Unexpected second.', 'Tada netikėta.'],
-      ['Meaning third.', 'Galiausiai prasmė.']
-    ]);
-    set('#about .kicker', 'ABOUT', 'APIE');
-    set('.about-lead', '2rasi is a place for experiments in perception, choice and reflection.', '2rasi yra vieta suvokimo, pasirinkimo ir refleksijos eksperimentams.');
-    setAll('#about .about-copy > p:not(.kicker):not(.about-lead)', [
-      ['Some begin with psychology. Some with work. Some with ordinary things we stopped noticing.', 'Vieni prasideda nuo psichologijos. Kiti nuo darbo. Dar kiti nuo paprastų dalykų, kurių nustojome pastebėti.'],
-      ['What happens if we look again?', 'Kas nutinka, jei pažvelgiame dar kartą?']
-    ]);
-
-    const footerDomain = document.querySelector('.footer-links a:last-child');
-    if (footerDomain) {
-      footerDomain.textContent = lang === 'lt' ? '2rasi.lt' : '2rasi.com';
-      footerDomain.href = lang === 'lt' ? 'https://2rasi.lt' : 'https://2rasi.com';
-    }
+    translateHomeTail();
   }
 
   function translate2Pair() {
@@ -242,7 +248,11 @@
   }
 
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  if (path === '/' || /\/index\.html$/.test(path) && !path.includes('/tools/')) translateHome();
+  const isHome = path === '/' || (/\/index\.html$/.test(path) && !path.includes('/tools/'));
+  if (isHome) {
+    setTimeout(translateHomeTail, 0);
+    translateHome();
+  }
   if (path.endsWith('/tools/2pair') || path.endsWith('/tools/2pair/index.html')) translate2Pair();
 
   addLanguageSwitch();
