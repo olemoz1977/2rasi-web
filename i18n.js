@@ -53,22 +53,29 @@
 
   function addLanguageSwitch() {
     const nav = document.querySelector('header nav');
-    if (!nav || nav.querySelector('.language-switch')) return;
+    if (!nav) return;
 
-    const link = document.createElement('a');
-    link.className = 'language-switch';
-    link.textContent = lang === 'lt' ? 'EN' : 'LT';
+    let link = nav.querySelector('.language-switch');
+    if (!link) {
+      link = document.createElement('a');
+      link.className = 'language-switch';
+      nav.appendChild(link);
+    }
 
+    const targetLang = lang === 'lt' ? 'EN' : 'LT';
     const targetHost = lang === 'lt' ? '2rasi.com' : '2rasi.lt';
+    link.textContent = targetLang;
+
     if (host === '2rasi.com' || host === 'www.2rasi.com' || host === '2rasi.lt' || host === 'www.2rasi.lt') {
-      link.href = `https://${targetHost}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      link.href = `https://${targetHost}${window.location.pathname}${window.location.hash}`;
     } else {
       const next = new URL(window.location.href);
       next.searchParams.set('lang', lang === 'lt' ? 'en' : 'lt');
       link.href = next.toString();
     }
-    link.setAttribute('aria-label', lang === 'lt' ? 'English version' : 'Lietuviška versija');
-    nav.appendChild(link);
+
+    link.setAttribute('aria-label', lang === 'lt' ? 'Switch to English' : 'Perjungti į lietuvių kalbą');
+    link.setAttribute('title', lang === 'lt' ? 'English' : 'Lietuvių');
   }
 
   function translateHomeTail() {
@@ -248,12 +255,12 @@
   }
 
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  const isHome = path === '/' || (/\/index\.html$/.test(path) && !path.includes('/tools/'));
-  if (isHome) {
-    setTimeout(translateHomeTail, 0);
-    translateHome();
-  }
+  if (path === '/' || /\/index\.html$/.test(path) && !path.includes('/tools/')) translateHome();
   if (path.endsWith('/tools/2pair') || path.endsWith('/tools/2pair/index.html')) translate2Pair();
 
   addLanguageSwitch();
+  if (path === '/' || /\/index\.html$/.test(path) && !path.includes('/tools/')) {
+    requestAnimationFrame(translateHomeTail);
+    setTimeout(translateHomeTail, 0);
+  }
 })();
