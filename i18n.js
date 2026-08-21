@@ -126,10 +126,10 @@
         actions: [['About', 'Apie'], ['Start', 'Pradėti']]
       },
       'leadership-360': {
-        state: ['Prototype · LT', 'Prototipas · LT'],
-        summary: ['A multi-rater leadership development cycle connecting 360° feedback with reflection, a 90-day plan and repeat measurement.', 'Daugiapakopis vadovavimo tobulėjimo ciklas, jungiantis 360° grįžtamąjį ryšį, refleksiją, 90 dienų planą ir pakartotinį matavimą.'],
-        meta: [['75 statements · 15 competencies', '75 teiginiai · 15 kompetencijų'], ['Professional track', 'Profesionali kryptis']],
-        actions: [['About', 'Apie'], ['Professional page', 'Profesionalus puslapis']]
+        state: ['Prototype · LT/EN', 'Prototipas · LT/EN'],
+        summary: ['A multi-rater leadership development cycle connecting pseudonymous 360° feedback with a 90-day action plan and repeat measurement.', 'Kelių vertintojų lyderystės tobulėjimo ciklas, jungiantis pseudoniminį 360° grįžtamąjį ryšį, 90 dienų veiksmų planą ir pakartotinį matavimą.'],
+        meta: [['75 statements · 15 competencies', '75 teiginiai · 15 kompetencijų'], ['C1 → 90 days → C2', 'C1 → 90 dienų → C2']],
+        actions: [['About', 'Apie'], ['Open prototype', 'Atidaryti prototipą']]
       }
     };
 
@@ -156,6 +156,7 @@
       setActionLabel(calibrationLink, 'Calibration status', 'Calibration būsena');
     }
 
+    set('.manifesto-word', 'LOOK', 'ŽIŪRĖK');
     setAll('.manifesto-copy p', [
       ['Familiar first.', 'Pirmiausia pažįstama.'],
       ['Unexpected second.', 'Tada netikėta.'],
@@ -167,6 +168,12 @@
       ['Some begin with psychology. Some with work. Some with ordinary things we stopped noticing.', 'Vieni prasideda nuo psichologijos. Kiti nuo darbo. Dar kiti nuo paprastų dalykų, kurių nustojome pastebėti.'],
       ['What happens if we look again?', 'Kas nutinka, jei pažvelgiame dar kartą?']
     ]);
+
+    const footerDomain = document.querySelector('.footer-links a:last-child');
+    if (footerDomain) {
+      footerDomain.textContent = lang === 'lt' ? '2rasi.lt' : '2rasi.com';
+      footerDomain.href = lang === 'lt' ? 'https://2rasi.lt' : 'https://2rasi.com';
+    }
   }
 
   function translate2Pair() {
