@@ -1,0 +1,53 @@
+/* Semantic reveal correction.
+   OBSERVE and NOTICE share one typographic system; the drop only changes meaning. */
+
+.perception-stage.webgl-active .base-word {
+  opacity: 1;
+  transition: none;
+  -webkit-mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    transparent 0,
+    transparent calc(var(--drop-r) * 0.88),
+    #000 calc(var(--drop-r) * 0.96),
+    #000 100%
+  );
+  mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    transparent 0,
+    transparent calc(var(--drop-r) * 0.88),
+    #000 calc(var(--drop-r) * 0.96),
+    #000 100%
+  );
+}
+
+.perception-stage.webgl-active .notice-word {
+  opacity: var(--morph);
+  transition: opacity .08s linear;
+  -webkit-mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    #000 0,
+    #000 calc(var(--drop-r) * 0.88),
+    transparent calc(var(--drop-r) * 0.96),
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    #000 0,
+    #000 calc(var(--drop-r) * 0.88),
+    transparent calc(var(--drop-r) * 0.96),
+    transparent 100%
+  );
+}
+
+/* Desktop composition: both meanings use exactly the same size, weight,
+   tracking, colour and baseline so OBSERVE -> NOTICE reads as one transformation. */
+@media (min-width: 781px) {
+  .perception-stage.webgl-active .base-word::before,
+  .perception-stage.webgl-active .notice-word::before {
+    transform: translateY(clamp(28px, 4.2vh, 46px));
+    font-size: clamp(1.55rem, 2vw, 2.25rem);
+    font-weight: 720;
+    letter-spacing: .10em;
+    color: rgba(7, 27, 46, .76);
+  }
+}
