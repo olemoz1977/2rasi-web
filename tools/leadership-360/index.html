@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Leadership 360° — 2rasi</title>
-  <meta name="description" content="A browser-based 360-degree leadership development prototype built around feedback, reflection, a 90-day action plan and repeat measurement." />
+  <meta name="description" content="A bilingual 360-degree leadership development prototype connecting multi-rater feedback, a 90-day action plan and repeat measurement." />
   <link rel="icon" href="../../assets/logo-2.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../tool-page.css" />
 </head>
@@ -12,33 +12,35 @@
 <header class="tool-header"><a class="brand" href="../../">2rasi</a><nav><a href="../../#experiments">Experiments</a><a href="../../#about">About</a></nav></header>
 <main class="tool-main">
   <section class="tool-hero">
-    <p class="kicker">Professional prototype · LT</p>
+    <p class="kicker">Professional prototype · LT/EN</p>
     <h1>Leadership 360°</h1>
-    <p class="lead">Not just a feedback report. A leadership development cycle designed to connect outside perspectives with reflection, action and a second look after 90 days.</p>
-    <div class="tool-meta"><span>75 statements</span><span>15 competencies</span><span>5 feedback groups</span><span>90-day cycle</span></div>
+    <p class="lead">Not just a feedback report. A leadership development cycle connecting outside perspectives with a practical 90-day plan and a second measurement.</p>
+    <div class="tool-meta"><span>75 statements</span><span>15 competencies</span><span>5 feedback groups</span><span>C1 → 90 days → C2</span></div>
     <div class="tool-actions"><a class="button primary" href="https://olemoz1977.github.io/gla360-personal-full/" target="_blank" rel="noopener">Open prototype ↗</a><a class="button" href="#cycle">Understand the cycle</a></div>
   </section>
 
   <div class="tool-grid">
     <div>
-      <section class="tool-section"><h2>What it is</h2><p>Leadership 360° is a personal multi-rater feedback prototype. A leader compares self-perception with feedback from people around them: manager, peers, direct reports and other relevant colleagues.</p><p>The current build runs in the browser. Raters complete the survey and export their responses as local JSON files, which can then be combined into a report without a central response server.</p></section>
+      <section class="tool-section"><h2>What it is</h2><p>Leadership 360° is a multi-rater leadership development prototype. A leader compares self-perception with feedback from people around them: manager, peers, direct reports and other relevant colleagues.</p><p>The current build supports Lithuanian and English, pseudonymous invitations, a separated response collector and a dedicated Guardian administration space. The Guardian manages invitations, completion status and cycles, but does not see individual answers, comments, the leader report or the 90-day plan.</p></section>
 
       <section class="tool-section" id="cycle"><h2>The development cycle</h2><div class="model-list">
-        <div class="model-item"><strong>1 · Collect perspectives</strong><span>Self, Boss, Peer, Report and Other groups answer 75 behaviour-frequency statements across 15 competencies.</span></div>
-        <div class="model-item"><strong>2 · Compare the view</strong><span>The report shows area averages, a radar profile, strengths and the largest self-versus-others gaps.</span></div>
-        <div class="model-item"><strong>3 · Reflect before acting</strong><span>The result is used as input for reflection rather than treated as a verdict about the person.</span></div>
-        <div class="model-item"><strong>4 · Build a 90-day plan</strong><span>The prototype can generate a structured development plan from the most relevant gaps and focus areas.</span></div>
-        <div class="model-item"><strong>5 · Look again</strong><span>A repeat cycle can be compared with the earlier result to see what changed after the development period.</span></div>
+        <div class="model-item"><strong>1 · Set up C1</strong><span>The assessed leader defines the Guardian and evaluator groups for the first cycle.</span></div>
+        <div class="model-item"><strong>2 · Collect perspectives</strong><span>Self, Manager, Peer, Direct Report and Other groups answer 75 behaviour-frequency statements across 15 competencies.</span></div>
+        <div class="model-item"><strong>3 · Compare the view</strong><span>The leader report shows competency and cluster results, strengths and self-versus-others gaps while anonymity thresholds protect small groups.</span></div>
+        <div class="model-item"><strong>4 · Build a 90-day plan</strong><span>The result can be translated into a structured development plan with a small number of selected actions.</span></div>
+        <div class="model-item"><strong>5 · Run C2 and look again</strong><span>A repeat cycle measures what changed and can generate an adapted next plan.</span></div>
       </div></section>
 
-      <section class="tool-section"><h2>Feedback structure</h2><p>The current prototype uses five competency clusters, 15 competencies and 75 statements on a 1–5 behaviour-frequency scale.</p><p>Peer and direct-report feedback is intended to be interpreted in groups rather than as individual ratings. The prototype includes guidance on minimum group sizes and an optional trusted “guardian” role to reduce the risk of identifying individual raters.</p></section>
+      <section class="tool-section"><h2>Privacy by role</h2><p>Identity and response data are kept separate. Evaluators receive their own invitation context, while the Guardian sees only operational information such as who was invited, whether a response is complete and which cycle is active.</p><p>Reports, individual answers, open-text comments, 90-day plans and C1–C2 comparisons belong outside the Guardian administration role. Small feedback groups are suppressed or merged when anonymity would be too weak.</p></section>
 
-      <section class="tool-section"><h2>The missing layer</h2><p>The original product concept did not stop at the report or even the 90-day plan. The planned next layer is a lightweight Telegram companion that remembers the commitments a person chose, records intermediate milestones and checks in occasionally without turning development into notification spam.</p><p>Its purpose is simple: keep the chosen behaviour change alive between the first 360° and the repeat measurement.</p><p class="note">The Telegram companion is planned, not part of the current public prototype.</p></section>
+      <section class="tool-section"><h2>Between C1 and C2</h2><p>The 90-day plan is not intended to disappear after the report is closed. Selected actions can be exported to a calendar and passed to the Telegram companion so that the development work remains visible between measurements.</p><p class="note">Only selected development actions are passed to the companion. Raw 360° answers, evaluator identities and open comments are not.</p></section>
 
-      <section class="tool-section"><h2>Positioning</h2><p>This is a larger professional-development product rather than a short 2rasi experiment. 2rasi is the discovery layer; the current assessment engine remains available as a GitHub Pages prototype.</p><p class="note">This is an independent prototype. It is not the official GLA360 product and should not be presented as a validated or licensed GLA360 assessment.</p></section>
+      <section class="tool-section"><h2>Organisation layer</h2><p>The prototype also explores an organisation-level analytics layer: programme participation, completion, recurring competency patterns, self-versus-others gaps and C1→C2 movement can be analysed only from aggregated data.</p><p>The purpose is not to diagnose individuals, but to help identify where an organisation may need development, cultural attention or a closer look at systems and practices.</p></section>
+
+      <section class="tool-section"><h2>Positioning</h2><p>This is a larger professional-development prototype within the 2rasi ecosystem rather than a short self-reflection experiment. The public prototype is used to validate the full cycle before a future organisation-ready product layer.</p><p class="note">Leadership 360° is intended for development and reflection, not diagnosis or automated decisions about a person.</p></section>
     </div>
 
-    <aside class="side-card"><h3>A prototype with a full cycle</h3><p>Open the current browser-based build directly.</p><a class="button primary" href="https://olemoz1977.github.io/gla360-personal-full/" target="_blank" rel="noopener">Open prototype ↗</a></aside>
+    <aside class="side-card"><h3>A prototype with a full cycle</h3><p>Open the current LT/EN build directly.</p><a class="button primary" href="https://olemoz1977.github.io/gla360-personal-full/" target="_blank" rel="noopener">Open prototype ↗</a></aside>
   </div>
 </main>
 <footer class="tool-footer"><span>2rasi · Look again.</span><a href="../../#experiments">← Back to experiments</a></footer>
