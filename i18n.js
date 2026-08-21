@@ -2,100 +2,63 @@
   const host = window.location.hostname.toLowerCase();
   const params = new URLSearchParams(window.location.search);
   const forced = params.get('lang');
-  const lang = forced === 'lt' || forced === 'en'
+  const lang = (forced === 'lt' || forced === 'en')
     ? forced
-    : (host === '2rasi.lt' || host.endsWith('.2rasi.lt') ? 'lt' : 'en');
+    : ((host === '2rasi.lt' || host.endsWith('.2rasi.lt')) ? 'lt' : 'en');
 
   window.RASI_LANG = lang;
   window.RASI_COPY = {
     hints: {
-      en: {
-        tiltTouch: 'TILT · TOUCH · NOTICE',
-        touchTilt: 'TOUCH · TILT · NOTICE',
-        dragTouch: 'DRAG · TOUCH · NOTICE'
-      },
-      lt: {
-        tiltTouch: 'PAKREIPK · PALIESK · PASTEBĖK',
-        touchTilt: 'PALIESK · PAKREIPK · PASTEBĖK',
-        dragTouch: 'TEMPK · PALIESK · PASTEBĖK'
-      }
+      en: { tiltTouch: 'TILT · TOUCH · NOTICE', touchTilt: 'TOUCH · TILT · NOTICE', dragTouch: 'DRAG · TOUCH · NOTICE' },
+      lt: { tiltTouch: 'PAKREIPK · PALIESK · PASTEBĖK', touchTilt: 'PALIESK · PAKREIPK · PASTEBĖK', dragTouch: 'TEMPK · PALIESK · PASTEBĖK' }
     }
   };
-
   document.documentElement.lang = lang;
 
+  const pick = (en, lt) => lang === 'lt' ? lt : en;
   const set = (selector, en, lt) => {
     const el = document.querySelector(selector);
-    if (el) el.textContent = lang === 'lt' ? lt : en;
+    if (el) el.textContent = pick(en, lt);
   };
-
   const setAll = (selector, pairs) => {
-    document.querySelectorAll(selector).forEach((el, index) => {
-      const pair = pairs[index];
-      if (pair) el.textContent = lang === 'lt' ? pair[1] : pair[0];
+    document.querySelectorAll(selector).forEach((el, i) => {
+      if (pairs[i]) el.textContent = pick(pairs[i][0], pairs[i][1]);
     });
   };
-
-  function setActionLabel(el, en, lt) {
+  const setAction = (el, en, lt) => {
     if (!el) return;
+    const label = pick(en, lt);
     const span = el.querySelector('span');
-    const arrow = span?.textContent || '';
-    const label = lang === 'lt' ? lt : en;
-    if (span) {
-      const textNode = Array.from(el.childNodes).find((node) => node.nodeType === Node.TEXT_NODE);
-      if (textNode) textNode.nodeValue = `${label} `;
-      else el.insertBefore(document.createTextNode(`${label} `), span);
-      span.textContent = arrow;
-    } else {
-      el.textContent = label;
-    }
-  }
+    if (!span) { el.textContent = label; return; }
+    const textNode = [...el.childNodes].find(n => n.nodeType === Node.TEXT_NODE);
+    if (textNode) textNode.nodeValue = `${label} `;
+    else el.insertBefore(document.createTextNode(`${label} `), span);
+  };
 
-  function addLanguageSwitch() {
-    const nav = document.querySelector('header nav');
-    if (!nav) return;
-
-    let link = nav.querySelector('.language-switch');
-    if (!link) {
-      link = document.createElement('a');
-      link.className = 'language-switch';
-      nav.appendChild(link);
-    }
-
-    const targetLang = lang === 'lt' ? 'EN' : 'LT';
+  function updateLanguageLinks() {
     const targetHost = lang === 'lt' ? '2rasi.com' : '2rasi.lt';
-    link.textContent = targetLang;
+    const targetLabel = lang === 'lt' ? 'EN' : 'LT';
+    const href = `https://${targetHost}${window.location.pathname}${window.location.hash}`;
 
-    if (host === '2rasi.com' || host === 'www.2rasi.com' || host === '2rasi.lt' || host === 'www.2rasi.lt') {
-      link.href = `https://${targetHost}${window.location.pathname}${window.location.hash}`;
-    } else {
-      const next = new URL(window.location.href);
-      next.searchParams.set('lang', lang === 'lt' ? 'en' : 'lt');
-      link.href = next.toString();
+    const nav = document.querySelector('header nav');
+    if (nav) {
+      let link = nav.querySelector('.language-switch');
+      if (!link) {
+        link = document.createElement('a');
+        link.className = 'language-switch';
+        nav.appendChild(link);
+      }
+      link.textContent = targetLabel;
+      link.href = href;
+      link.setAttribute('aria-label', lang === 'lt' ? 'Switch to English' : 'Perjungti į lietuvių kalbą');
+      link.setAttribute('title', lang === 'lt' ? 'English' : 'Lietuvių');
     }
 
-    link.setAttribute('aria-label', lang === 'lt' ? 'Switch to English' : 'Perjungti į lietuvių kalbą');
-    link.setAttribute('title', lang === 'lt' ? 'English' : 'Lietuvių');
-  }
-
-  function translateHomeTail() {
-    set('.manifesto-word', 'LOOK', 'ŽIŪRĖK');
-    setAll('.manifesto-copy p', [
-      ['Familiar first.', 'Pirmiausia pažįstama.'],
-      ['Unexpected second.', 'Tada netikėta.'],
-      ['Meaning third.', 'Galiausiai prasmė.']
-    ]);
-    set('#about .kicker', 'ABOUT', 'APIE');
-    set('.about-lead', '2rasi is a place for experiments in perception, choice and reflection.', '2rasi yra vieta suvokimo, pasirinkimo ir refleksijos eksperimentams.');
-    setAll('#about .about-copy > p:not(.kicker):not(.about-lead)', [
-      ['Some begin with psychology. Some with work. Some with ordinary things we stopped noticing.', 'Vieni prasideda nuo psichologijos. Kiti nuo darbo. Dar kiti nuo paprastų dalykų, kurių nustojome pastebėti.'],
-      ['What happens if we look again?', 'Kas nutinka, jei pažvelgiame dar kartą?']
-    ]);
-
-    const footerDomain = document.querySelector('.footer-links a:last-child');
-    if (footerDomain) {
-      footerDomain.textContent = lang === 'lt' ? '2rasi.lt' : '2rasi.com';
-      footerDomain.href = lang === 'lt' ? 'https://2rasi.lt' : 'https://2rasi.com';
+    const footerLink = document.querySelector('.footer-links a:last-child');
+    if (footerLink) {
+      footerLink.textContent = `${targetLabel} ↗`;
+      footerLink.href = `https://${targetHost}`;
+      footerLink.setAttribute('aria-label', lang === 'lt' ? 'English version' : 'Lietuviška versija');
     }
   }
 
@@ -113,10 +76,7 @@
       '2pair': {
         state: ['Research active', 'Tyrimas vyksta'],
         summary: ['A reflection framework being developed through temporary calibration and validation studies.', 'Refleksijos sistema, kuriama per laikinus kalibravimo ir validavimo tyrimus.'],
-        meta: [
-          ['Product in development', 'Kuriamas produktas'],
-          ['Wave 1 public · Calibration pilot ready', 'Wave 1 viešas · Calibration pilotas paruoštas']
-        ],
+        meta: [['Product in development', 'Kuriamas produktas'], ['Wave 1 public · Calibration pilot ready', 'Wave 1 viešas · Calibration pilotas paruoštas']],
         actions: [['About', 'Apie'], ['Wave 1', 'Wave 1'], ['Calibration status', 'Calibration būsena']]
       },
       'mirror': {
@@ -168,13 +128,13 @@
       if (!root) return;
       const state = root.querySelector('.experiment-state');
       const summary = root.querySelector('.experiment-summary');
-      if (state) state.textContent = lang === 'lt' ? copy.state[1] : copy.state[0];
-      if (summary) summary.textContent = lang === 'lt' ? copy.summary[1] : copy.summary[0];
+      if (state) state.textContent = pick(copy.state[0], copy.state[1]);
+      if (summary) summary.textContent = pick(copy.summary[0], copy.summary[1]);
       root.querySelectorAll('.experiment-meta span').forEach((el, i) => {
-        if (copy.meta[i]) el.textContent = lang === 'lt' ? copy.meta[i][1] : copy.meta[i][0];
+        if (copy.meta[i]) el.textContent = pick(copy.meta[i][0], copy.meta[i][1]);
       });
       root.querySelectorAll('.experiment-actions a').forEach((el, i) => {
-        if (copy.actions[i]) setActionLabel(el, copy.actions[i][0], copy.actions[i][1]);
+        if (copy.actions[i]) setAction(el, copy.actions[i][0], copy.actions[i][1]);
       });
     });
 
@@ -183,10 +143,23 @@
       calibrationLink.href = 'tools/2pair/';
       calibrationLink.removeAttribute('target');
       calibrationLink.removeAttribute('rel');
-      setActionLabel(calibrationLink, 'Calibration status', 'Calibration būsena');
+      setAction(calibrationLink, 'Calibration status', 'Calibration būsena');
     }
 
-    translateHomeTail();
+    set('.manifesto-word', 'LOOK', 'ŽIŪRĖK');
+    setAll('.manifesto-copy p', [
+      ['Familiar first.', 'Pirmiausia pažįstama.'],
+      ['Unexpected second.', 'Tada netikėta.'],
+      ['Meaning third.', 'Galiausiai prasmė.']
+    ]);
+    set('#about .kicker', 'ABOUT', 'APIE');
+    set('.about-lead', '2rasi is a place for experiments in perception, choice and reflection.', '2rasi yra vieta suvokimo, pasirinkimo ir refleksijos eksperimentams.');
+    setAll('#about .about-copy > p:not(.kicker):not(.about-lead)', [
+      ['Some begin with psychology. Some with work. Some with ordinary things we stopped noticing.', 'Vieni prasideda nuo psichologijos. Kiti nuo darbo. Dar kiti nuo paprastų dalykų, kurių nustojome pastebėti.'],
+      ['What happens if we look again?', 'Kas nutinka, jei pažvelgiame dar kartą?']
+    ]);
+
+    updateLanguageLinks();
   }
 
   function translate2Pair() {
@@ -203,48 +176,44 @@
       ['Wave 1 · public', 'Wave 1 · viešas'],
       ['Calibration v0.1 · pilot ready', 'Calibration v0.1 · pilotas paruoštas']
     ]);
-
     const heroActions = document.querySelectorAll('.tool-hero .tool-actions > *');
-    if (heroActions[0]) heroActions[0].textContent = lang === 'lt' ? 'Dalyvauti Wave 1 ↗' : 'Join Wave 1 ↗';
-    if (heroActions[1]) heroActions[1].textContent = lang === 'lt' ? 'Calibration · viešas paleidimas dar nepradėtas' : 'Calibration · public launch pending';
+    if (heroActions[0]) heroActions[0].textContent = pick('Join Wave 1 ↗', 'Dalyvauti Wave 1 ↗');
+    if (heroActions[1]) heroActions[1].textContent = pick('Calibration · public launch pending', 'Calibration · viešas paleidimas dar nepradėtas');
 
     const sections = document.querySelectorAll('.tool-section');
     if (sections[0]) {
       const heading = sections[0].querySelector('h2');
-      if (heading) heading.textContent = lang === 'lt' ? 'Ką tiriame' : 'What is being explored';
+      if (heading) heading.textContent = pick('What is being explored', 'Ką tiriame');
       const ps = sections[0].querySelectorAll('p');
-      if (ps[0]) ps[0].textContent = lang === 'lt'
-        ? '2Pair remiasi pakartotiniu stebėjimu, o ne vienkartine asmenybės etikete. Projektas tiria, ar maži pasirinkimai, stebimi per kelias sesijas, gali padėti prasmingai savirefleksijai neapsimetant, kad žmogus yra diagnozuojamas.'
-        : '2Pair is built around repeated observation rather than a one-shot personality label. The broader project asks whether small choices, observed across multiple sessions, can support useful self-reflection without pretending to diagnose the person.';
-      if (ps[1]) ps[1].textContent = lang === 'lt'
-        ? 'Tyrimo palydovai nėra galutinis produktas. Tai laikini įrankiai, skirti porų balansui, stimulų dizainui, pasirinkimo laikui ir gaunamos refleksijos kokybei tikrinti.'
-        : 'The research satellites are not the final product. They are temporary tools used to test pair balance, stimulus design, selection timing and the quality of the reflections produced.';
+      if (ps[0]) ps[0].textContent = pick(
+        '2Pair is built around repeated observation rather than a one-shot personality label. The broader project asks whether small choices, observed across multiple sessions, can support useful self-reflection without pretending to diagnose the person.',
+        '2Pair remiasi pakartotiniu stebėjimu, o ne vienkartine asmenybės etikete. Projektas tiria, ar maži pasirinkimai, stebimi per kelias sesijas, gali padėti prasmingai savirefleksijai neapsimetant, kad žmogus yra diagnozuojamas.'
+      );
+      if (ps[1]) ps[1].textContent = pick(
+        'The research satellites are not the final product. They are temporary tools used to test pair balance, stimulus design, selection timing and the quality of the reflections produced.',
+        'Tyrimo palydovai nėra galutinis produktas. Tai laikini įrankiai, skirti porų balansui, stimulų dizainui, pasirinkimo laikui ir gaunamos refleksijos kokybei tikrinti.'
+      );
     }
-
     set('#model h2', 'The working idea', 'Darbinė idėja');
-    setAll('#model .model-item strong', [
-      ['Observe choices', 'Stebėti pasirinkimus'],
-      ['Look for repetition', 'Ieškoti pasikartojimo'],
-      ['Reflect, do not diagnose', 'Reflektuoti, ne diagnozuoti']
-    ]);
+    setAll('#model .model-item strong', [['Observe choices','Stebėti pasirinkimus'],['Look for repetition','Ieškoti pasikartojimo'],['Reflect, do not diagnose','Reflektuoti, ne diagnozuoti']]);
     setAll('#model .model-item span', [
       ['Use small decisions as signals rather than asking people to declare who they are.', 'Naudoti mažus sprendimus kaip signalus, užuot prašius žmogaus deklaruoti, kas jis yra.'],
       ['Patterns become more interesting when they recur across different situations and sessions.', 'Modeliai tampa įdomesni, kai kartojasi skirtingose situacijose ir sesijose.'],
       ['The output is designed to create a question worth noticing, not a fixed label or prediction.', 'Rezultatas skirtas sukurti klausimą, kurį verta pastebėti, o ne fiksuotą etiketę ar prognozę.']
     ]);
-
     if (sections[2]) {
       const heading = sections[2].querySelector('h2');
-      if (heading) heading.textContent = lang === 'lt' ? 'Kodėl yra du tyrimo palydovai' : 'Why there are two research satellites';
+      if (heading) heading.textContent = pick('Why there are two research satellites', 'Kodėl yra du tyrimo palydovai');
       const ps = sections[2].querySelectorAll('p');
-      if (ps[0]) ps[0].textContent = lang === 'lt'
-        ? 'Wave 1 tikrina porų balansą ir kitą pasirinkimo mechaniką. Calibration v0.1 daugiausia orientuotas į greito pasirinkimo ir pasirinkimo laiko signalus. Calibration vidinis testavimas baigtas, bet viešas dalyvių kvietimas dar nepradėtas.'
-        : 'Wave 1 tests pair balance and other mechanics. Calibration v0.1 is focused mainly on fast-choice and selection-timing signals. Calibration has completed internal testing but is not yet open for public recruitment.';
-      if (ps[1]) ps[1].textContent = lang === 'lt'
-        ? 'Abu palydovai laikini. Jų užduotis yra padėti apsibrėžti galutinį 2Pair mechanizmą ir tada pasitraukti.'
-        : 'Both satellites are temporary. Their job is to inform the final 2Pair mechanism, then step out of the way.';
+      if (ps[0]) ps[0].textContent = pick(
+        'Wave 1 tests pair balance and other mechanics. Calibration v0.1 is focused mainly on fast-choice and selection-timing signals. Calibration has completed internal testing but is not yet open for public recruitment.',
+        'Wave 1 tikrina porų balansą ir kitą pasirinkimo mechaniką. Calibration v0.1 daugiausia orientuotas į greito pasirinkimo ir pasirinkimo laiko signalus. Calibration vidinis testavimas baigtas, bet viešas dalyvių kvietimas dar nepradėtas.'
+      );
+      if (ps[1]) ps[1].textContent = pick(
+        'Both satellites are temporary. Their job is to inform the final 2Pair mechanism, then step out of the way.',
+        'Abu palydovai laikini. Jų užduotis yra padėti apsibrėžti galutinį 2Pair mechanizmą ir tada pasitraukti.'
+      );
     }
-
     set('.side-card h3', 'Research, not a finished tool', 'Tyrimas, ne galutinis įrankis');
     set('.side-card p',
       'If you participate in an open study, the useful mindset is curiosity: notice the experience and the questions it creates rather than looking for a definitive score.',
@@ -252,15 +221,20 @@
     );
     set('.side-card .button', 'Open Wave 1 ↗', 'Atidaryti Wave 1 ↗');
     set('.tool-footer a', '← Back to experiments', '← Grįžti į eksperimentus');
+    updateLanguageLinks();
   }
 
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  if (path === '/' || /\/index\.html$/.test(path) && !path.includes('/tools/')) translateHome();
-  if (path.endsWith('/tools/2pair') || path.endsWith('/tools/2pair/index.html')) translate2Pair();
+  const isHome = path === '/' || (/\/index\.html$/.test(path) && !path.includes('/tools/'));
+  const apply = () => {
+    if (isHome) translateHome();
+    if (path.endsWith('/tools/2pair') || path.endsWith('/tools/2pair/index.html')) translate2Pair();
+    updateLanguageLinks();
+  };
 
-  addLanguageSwitch();
-  if (path === '/' || /\/index\.html$/.test(path) && !path.includes('/tools/')) {
-    requestAnimationFrame(translateHomeTail);
-    setTimeout(translateHomeTail, 0);
-  }
+  apply();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply, { once: true });
+  requestAnimationFrame(apply);
+  setTimeout(apply, 60);
+  setTimeout(apply, 300);
 })();
