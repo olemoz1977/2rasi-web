@@ -156,7 +156,7 @@ window.WORKSTYLE15 = {
       domain: "influence",
       measures: "Polinkį aiškiai ir pagarbiai išsakyti nesutikimą, ribas ar sudėtingą klausimą.",
       high: "Tikėtina, kad mažiau vengi tiesioginio pokalbio ir aiškiau parodai savo poziciją.",
-      low: "Gali būti atsargesnis, mažinti tiesioginę įtampą ir daugiau laiko skirti santykiui ar kontekstui.",
+      low: "Gali rinktis atsargesnį bendravimą, mažinti tiesioginę įtampą ir daugiau laiko skirti santykiui ar kontekstui.",
       helps: "Konfliktuose, prioritetų derybose, ribų nustatyme ir sprendimų priėmime.",
       watch: "Tiesumas gali tapti spaudimu, o atsargumas — nepasakytu nesutikimu.",
       prompt: "Ar tavo pozicija kitiems aiški dar prieš prasidedant susierzinimui?"
@@ -178,7 +178,7 @@ window.WORKSTYLE15 = {
       domain: "influence",
       measures: "Polinkį aktyviai dalyvauti grupinėje sąveikoje ir išoriškai rodyti energiją bei entuziazmą.",
       high: "Tikėtina, kad greičiau įsitrauki į grupę, inicijuoji judėjimą ir esi matomesnis bendroje diskusijoje.",
-      low: "Gali būti santūresnis, labiau stebėti prieš įsitraukdamas ir nejausti poreikio nuolat būti socialiniame centre.",
+      low: "Gali dažniau rinktis santūresnį įsitraukimą, daugiau stebėti prieš įsitraukiant ir nejausti poreikio nuolat būti socialiniame centre.",
       helps: "Kai komandai reikia impulso, naujuose kontaktuose ar idėjos mobilizavime.",
       watch: "Didelė energija gali užimti per daug erdvės, o santūrumas — paslėpti vertingą indėlį.",
       prompt: "Ar tavo energija atveria erdvę kitiems, ar ją užpildo?"
@@ -211,7 +211,7 @@ window.WORKSTYLE15 = {
       domain: "self-regulation",
       measures: "Polinkį pastebėti savo reakcijų, įpročių, stiprybių ir išankstinių nuostatų poveikį elgesiui.",
       high: "Dažniau analizuoji ne tik tai, ką ketinai padaryti, bet ir kokį poveikį realiai sukėlei.",
-      low: "Gali mažiau užstrigti savianalizėje ir greičiau veikti remdamasis savo įprastu sprendimo būdu.",
+      low: "Gali mažiau užstrigti savianalizėje ir greičiau veikti pagal savo įprastą sprendimo būdą.",
       helps: "Mokantis iš konfliktų, keičiant elgesio įpročius ir dirbant su savo stiprybių „šešėline puse“.",
       watch: "Refleksija gali tapti peranalizavimu, o jos stoka — pasikartojančiais aklais taškais.",
       prompt: "Kokį poveikį tavo elgesys sukėlė, nepriklausomai nuo to, ką ketinai?"
@@ -232,15 +232,15 @@ window.WORKSTYLE15 = {
     {id:"ORG-05",dim:"ORG",dir:"R",text:"Kai darbų daug, dažniausiai pasikliauju atmintimi ir situacija, o ne aiškia sistema."},
 
     {id:"ACH-01",dim:"ACH",dir:"D",text:"Renkuosi tikslus, kurie reikalauja iš manęs daugiau negu įprasta, net kai lengvesnė alternatyva būtų prieinama."},
-    {id:"ACH-02",dim:"ACH",dir:"D",text:"Kai tikslas svarbus, esu linkęs kelti sau aukštesnį standartą negu minimaliai pakanka."},
+    {id:"ACH-02",dim:"ACH",dir:"D",text:"Kai tikslas svarbus, dažnai keliu sau aukštesnį standartą negu minimaliai pakanka."},
     {id:"ACH-03",dim:"ACH",dir:"D",text:"Po gero rezultato dažnai pagalvoju, ką dar būtų galima pakelti į aukštesnį lygį."},
-    {id:"ACH-04",dim:"ACH",dir:"D",text:"Esu pasirengęs imtis svarbaus iššūkio net tada, kai sėkmė nėra garantuota."},
+    {id:"ACH-04",dim:"ACH",dir:"D",text:"Svarbaus iššūkio imuosi net tada, kai sėkmė nėra garantuota."},
     {id:"ACH-05",dim:"ACH",dir:"R",text:"Kai pasiekiu priimtiną rezultatą, dažniausiai nematau reikalo siekti daugiau."},
 
     {id:"SYS-01",dim:"SYS",dir:"D",text:"Kai sprendžiu problemą, ieškau priežasčių, kurios ją sukėlė arba palaiko."},
     {id:"SYS-02",dim:"SYS",dir:"D",text:"Dažnai pastebiu ryšius tarp įvykių ar informacijos, kurie iš pirmo žvilgsnio atrodo nesusiję."},
     {id:"SYS-03",dim:"SYS",dir:"D",text:"Kai vertinu sprendimą, pagalvoju, kokias pasekmes jis gali sukelti kitose proceso ar sistemos vietose."},
-    {id:"SYS-04",dim:"SYS",dir:"D",text:"Prieš pasirinkdamas sprendimą apsvarstau daugiau negu vieną galimą paaiškinimą ar scenarijų."},
+    {id:"SYS-04",dim:"SYS",dir:"D",text:"Prieš galutinį sprendimą apsvarstau daugiau negu vieną galimą paaiškinimą ar scenarijų."},
     {id:"SYS-05",dim:"SYS",dir:"R",text:"Kai sprendžiu problemą, man patogiau sutelkti dėmesį tik į konkretų atvejį, o ne ieškoti platesnių dėsningumų."},
 
     {id:"ADP-01",dim:"ADP",dir:"D",text:"Kai nauja informacija paneigia mano planą, jį koreguoju nelaukdamas, kol problema taps akivaizdi."},
