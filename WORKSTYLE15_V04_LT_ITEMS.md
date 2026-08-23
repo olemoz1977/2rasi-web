@@ -1,6 +1,6 @@
 # WorkStyle 15 — v0.4 LT item bank
 
-Status: PILOT-FROZEN CANDIDATE / POST-LANGUAGE-REVIEW
+Status: PILOT-FROZEN / POST-LANGUAGE-REVIEW
 Last updated: 2026-08-23
 
 Architecture: 5 domains × 3 dimensions × 5 items = 75 items.
@@ -14,7 +14,7 @@ Purpose: workplace self-reflection. This is not a diagnostic instrument and is n
 
 V0.4 preserves the architecture and construct boundaries reviewed independently by Claude and Grok. Changes from v0.3 are limited to Lithuanian cognitive/language cleanup: gender-neutral phrasing, removal of one within-scale semantic duplicate, and reduction of selected ability-claim wording where a behavioural phrasing is clearer.
 
-Public LT display labels are frozen for the cognitive pilot in this version.
+Public LT display labels and item wording are frozen for the cognitive pilot in this version.
 
 ---
 
@@ -48,11 +48,11 @@ Public LT display labels are frozen for the cognitive pilot in this version.
 
 **ACH-01 · D** Renkuosi tikslus, kurie reikalauja iš manęs daugiau negu įprasta, net kai lengvesnė alternatyva būtų prieinama.
 
-**ACH-02 · D** Kai tikslas svarbus, esu linkęs kelti sau aukštesnį standartą negu minimaliai pakanka.
+**ACH-02 · D** Kai tikslas svarbus, dažnai keliu sau aukštesnį standartą negu minimaliai pakanka.
 
 **ACH-03 · D** Po gero rezultato dažnai pagalvoju, ką dar būtų galima pakelti į aukštesnį lygį.
 
-**ACH-04 · D** Esu pasirengęs imtis svarbaus iššūkio net tada, kai sėkmė nėra garantuota.
+**ACH-04 · D** Svarbaus iššūkio imuosi net tada, kai sėkmė nėra garantuota.
 
 **ACH-05 · R** Kai pasiekiu priimtiną rezultatą, dažniausiai nematau reikalo siekti daugiau.
 
@@ -68,7 +68,7 @@ Public LT display labels are frozen for the cognitive pilot in this version.
 
 **SYS-03 · D** Kai vertinu sprendimą, pagalvoju, kokias pasekmes jis gali sukelti kitose proceso ar sistemos vietose.
 
-**SYS-04 · D** Prieš pasirinkdamas sprendimą apsvarstau daugiau negu vieną galimą paaiškinimą ar scenarijų.
+**SYS-04 · D** Prieš galutinį sprendimą apsvarstau daugiau negu vieną galimą paaiškinimą ar scenarijų.
 
 **SYS-05 · R** Kai sprendžiu problemą, man patogiau sutelkti dėmesį tik į konkretų atvejį, o ne ieškoti platesnių dėsningumų.
 
