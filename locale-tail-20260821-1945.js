@@ -11,8 +11,33 @@
     if (el) el.textContent = value;
   };
 
+  const action = (selector, value) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    const span = el.querySelector('span');
+    if (!span) {
+      el.textContent = value;
+      return;
+    }
+    const node = [...el.childNodes].find(n => n.nodeType === Node.TEXT_NODE);
+    if (node) node.nodeValue = `${value} `;
+  };
+
   function apply() {
     const lt = lang === 'lt';
+
+    const workstyle = document.querySelector('#workstyle');
+    if (workstyle) {
+      text('#workstyle .experiment-state', lt ? 'Kognityvinis pilotas · LT' : 'Cognitive pilot · LT');
+      text('#workstyle .experiment-summary', lt
+        ? 'Tyrimo prototipas apie pasirinkimus tarp lygiaverčių darbo strategijų kasdienėse situacijose.'
+        : 'A research prototype exploring choices between equally valid ways of working across everyday situations.');
+      const meta = workstyle.querySelectorAll('.experiment-meta span');
+      if (meta[0]) meta[0].textContent = lt ? '34 situacijos · 8 kandidatinės ašys' : '34 situations · 8 candidate axes';
+      if (meta[1]) meta[1].textContent = lt ? 'Asmeninis profilis dar nerodomas' : 'No personal profile yet';
+      action('#workstyle .experiment-actions a:nth-child(1)', lt ? 'Apie' : 'About');
+      action('#workstyle .experiment-actions a:nth-child(2)', lt ? 'Pradėti pilotą' : 'Start pilot');
+    }
 
     text('.manifesto-word', lt ? 'ŽIŪRĖK' : 'LOOK');
     const manifesto = document.querySelectorAll('.manifesto-copy p');
