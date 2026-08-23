@@ -1,6 +1,6 @@
 # WorkStyle 15 — decision log
 
-Status: ACTIVE PRE-PILOT DECISIONS
+Status: ACTIVE COGNITIVE PILOT
 Last updated: 2026-08-23
 
 ## Current product identity
@@ -32,27 +32,27 @@ Do not use the inherited 6 ADEPT-style groups as the primary product architectur
 
 Current architecture:
 
-1. **Execution**
+1. **Execution / Įgyvendinimas**
    - Goal Persistence / Kryptingumas
    - Work Structure / Struktūra
    - Achievement Drive / Pasiekimų siekis
 
-2. **Adaptation**
+2. **Adaptation / Prisitaikymas**
    - Systems Thinking / Sisteminis mąstymas
    - Adaptability / Prisitaikymas
    - Learning Orientation / Mokymosi orientacija
 
-3. **Collaboration**
+3. **Collaboration / Bendradarbiavimas**
    - Cooperation / Bendradarbiavimas
    - Empathic Attention / Empatinis dėmesys
    - Intellectual Humility / Intelektinis nuolankumas
 
-4. **Influence**
+4. **Influence / Įtaka**
    - Assertive Communication / Asertyvus komunikavimas
    - Persuasive Influence / Įtaka
    - Social Energy / Socialinė energija
 
-5. **Self-Regulation**
+5. **Self-Regulation / Savireguliacija**
    - Emotional Regulation / Emocinė savitvarda
    - Constructive Outlook / Konstruktyvus požiūris
    - Reflective Self-Awareness / Reflektyvi savimonė
@@ -75,7 +75,7 @@ Two completed blind reviews were run independently against the same v0.1 review 
 - confidence: **78/100**;
 - overall overlap judgment: normal/expected for a workplace self-reflection instrument.
 
-Gemini was considered as another possible reviewer but did not complete a review because it could not reliably read the supplied review file. Gemini is therefore **not counted as review evidence**.
+Gemini did not complete a reliable review because it could not reliably read the supplied review file. Gemini is therefore **not counted as review evidence**.
 
 Strong two-review convergence:
 - retain the 5×3 architecture for pilot;
@@ -108,10 +108,13 @@ Decision: **do not force a 2:3 reverse/direct ratio.** Keep one natural reverse 
 
 Full consensus record: `WORKSTYLE15_TWO_REVIEW_CONSENSUS.md`.
 
-## Current item bank
+No additional AI reviewer is required before the cognitive pilot. The next useful evidence must come from real respondents.
 
-Preferred pre-pilot content is now:
-- `WORKSTYLE15_V03_LT_ITEMS.md`
+## Current pilot-frozen item bank
+
+Current source of truth:
+- `WORKSTYLE15_V04_LT_ITEMS.md`
+- status: **PILOT-FROZEN**
 - 75 items = 15 dimensions × 5 items
 - 60 direct-key + 15 reverse-key
 - Likert 1–5
@@ -120,9 +123,28 @@ Preferred pre-pilot content is now:
 Version history:
 - v0.1 = first blind-review baseline;
 - v0.2 = targeted Claude-review revisions;
-- v0.3 = v0.2 plus four low-risk wording refinements independently raised by Grok: PER-05, SYS-01, INF-01, REF-01.
+- v0.3 = v0.2 plus four low-risk wording refinements independently raised by Grok: PER-05, SYS-01, INF-01, REF-01;
+- v0.4 = final LT cognitive/language cleanup before pilot: gender-neutral wording, one within-scale semantic duplicate removed, and selected ability claims made more behavioural.
+
+**Version rule:** after the first recorded v0.4 pilot response, do not edit item wording in place. Any wording change creates a new instrument version.
 
 Do not shorten to 60 until pilot evidence supports removal.
+
+## Current pilot order
+
+Source of truth: `WORKSTYLE15_V04_ORDER.md`.
+
+Form ID: `workstyle15-lt-v0.4-form-a`.
+
+Rules:
+- fixed 75-item order for first cognitive/early pilot;
+- five sections × 15 items;
+- each section contains every dimension once;
+- three reverse items per section;
+- no dimension blocks;
+- reverse-key positions remain balanced and reproducible.
+
+Do not randomize the first pilot. Any later alternate order must receive a separate form/version ID.
 
 ## Scoring
 
@@ -143,24 +165,28 @@ Primary result hierarchy:
 1. 15 measured WorkStyle dimensions;
 2. 5 WorkStyle domains as a summary layer;
 3. strengths/trade-offs and reflection prompts;
-4. optional external correspondence lens.
+4. optional external correspondence lens later.
 
-`WORKSTYLE15_INTERPRETATIONS_LT.md` contains current 15-dimension and 5-domain interpretation content.
+Current interpretation source of truth: `WORKSTYLE15_V04_INTERPRETATIONS_LT.md`.
 
 Do not collapse users into fixed types.
 
+The beta UI must show the 15 dimensions before five domain summaries.
+
 ## PAEI / DISC lenses
 
-PAEI and DISC are optional interpretive correspondence lenses only.
+PAEI and DISC remain optional interpretive correspondence lenses only.
 
 Rules:
 - no official PAEI/DISC claim;
 - no numeric PAEI/DISC score in first pilot;
 - default results show WorkStyle only;
-- PAEI/DISC should sit behind an optional extended view / toggle;
+- PAEI/DISC should sit behind an optional extended view / toggle in a later iteration;
 - visual traceability should show which measured WorkStyle dimensions support each correspondence.
 
 Current crosswalk: `WORKSTYLE15_PAEI_DISC_CROSSWALK.md`.
+
+The current cognitive pilot intentionally does **not** display PAEI/DISC. Establish the WorkStyle core first.
 
 ## Big Five
 
@@ -180,24 +206,60 @@ Separate future product: organization development / PAEI longitudinal measuremen
 
 Do not create it by averaging personal WorkStyle profiles.
 
-## Pilot instrumentation requirements
+## LT web beta
 
-The LT pilot should capture anonymously:
+Implemented under:
+- `tools/workstyle15/index.html`
+- `tools/workstyle15/data.js`
+- `tools/workstyle15/app.js`
+- `tools/workstyle15/styles.css`
+
+Current beta properties:
+- version `0.4`;
+- form `workstyle15-lt-v0.4-form-a`;
+- `noindex,nofollow`;
+- intentionally not linked from the main 2rasi homepage yet;
+- fixed 75-item order;
+- mobile/desktop responsive UI;
+- reverse scoring and dimension/domain scoring in-browser;
+- 15 dimensions shown as the primary result;
+- five domains shown secondarily;
+- result interpretation from the frozen v0.4 content;
+- resume support through browser `localStorage`;
+- no name or email;
+- no server submission;
+- anonymous JSON export for manual pilot collection.
+
+Expected direct path once the current branch is served by production:
+`https://2rasi.com/tools/workstyle15/`
+
+Do not claim the live URL is verified until it has been manually opened and smoke-tested.
+
+## Pilot instrumentation
+
+Current local-only beta captures:
+- anonymous session ID;
 - item responses;
 - item IDs and instrument version;
-- fixed presentation order/version;
-- total completion time;
-- item or block response latency where practical;
-- abandonment point;
-- skipped/unanswered items if skipping is allowed;
+- fixed form/order ID;
+- active completion time;
+- approximate first-response latency per item;
+- visits and answer changes;
+- completion state / answered count;
 - language;
-- anonymous session ID.
+- 15 dimension scores and 5 domain scores after completion;
+- post-result specificity rating 1–5;
+- optional open comment.
 
-After results ask:
-- `Kiek šis aprašymas atrodė būdingas būtent jums?` — 1–5;
-- optional open comment: `Kas atrodė labai tikslu, per daug bendra arba netikslu?`
+Export format is anonymous JSON.
 
-Do not require name or email for research completion.
+No personal contact data is required or collected by the beta.
+
+### Current research boundary
+
+This local-only design is appropriate for a small cognitive pilot where participants can return/export the JSON manually.
+
+It is **not sufficient for a broad unattended public pilot**, because abandonment and completed sessions are not centrally collected. A minimal anonymous backend endpoint may be designed later, but not before the local cognitive pilot proves the flow is worth expanding.
 
 ## Empirical watch list
 
@@ -213,14 +275,13 @@ Do not settle these by theoretical argument alone:
 
 Small cognitive pilots are not formal psychometric validation. Do not present factor analysis, CFA, bifactor or reliability results from an inadequate sample as validation.
 
-## Immediate gates before coding
+## Current next gates
 
-1. Final LT cognitive/language review of `WORKSTYLE15_V03_LT_ITEMS.md`.
-2. Freeze public LT display labels and item wording as a pilot version.
-3. Confirm the existing balanced item order remains valid because item IDs are unchanged.
-4. Create machine-readable item specification for implementation.
-5. Implement LT web beta with anonymous pilot instrumentation.
-6. Test on mobile/desktop and run several cognitive pilot completions.
-7. Inspect early response distributions and completion behaviour before any shortening.
-8. Translate to EN only after LT wording is stable.
-9. Use a larger appropriate sample before structural/psychometric claims or numeric external-lens scoring.
+1. Manually open and smoke-test `https://2rasi.com/tools/workstyle15/` on mobile and desktop.
+2. Verify intro, all five response choices, Back/Next, resume, final scoring, expandable interpretations, feedback save and JSON export.
+3. Complete several real cognitive pilot sessions and collect the exported JSON files plus qualitative comments.
+4. Inspect early response distributions, reverse-item behaviour, completion time and respondent comprehension before changing any item.
+5. Keep WorkStyle 15 off the main homepage and sitemap until the beta flow is manually verified.
+6. Decide whether a central anonymous collection endpoint is justified only after the small cognitive pilot.
+7. Translate to EN only after LT v0.4 has survived the cognitive pilot without wording changes.
+8. Use a larger appropriate sample before structural/psychometric claims or numeric external-lens scoring.
