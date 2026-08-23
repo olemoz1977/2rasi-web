@@ -19,22 +19,29 @@ The immediate goal is to test whether the proposed bipolar work-style dilemmas a
 
 `https://2rasi.com/tools/workstyle15/v07-cognitive.html`
 
-Current version: `0.7-cognitive-8axis-lt-d`.
+Current form/instrument version: `0.7-cognitive-8axis-lt-e`.
+Current LT wording/content version: `v07-lt-d`.
+
+LT-E changed the ordering/instrumentation architecture, not the item wording.
 
 Current form behaviour:
 - response grammar: `Visada / Dažniau / Abu panašiai / Dažniau / Visada`;
 - both behavioural poles are visually separated;
-- same-axis items are prevented from appearing consecutively;
 - `Neaišku / sunku suprasti` and `Primena ankstesnę situaciją` are separate signals;
 - three blocks: `12 + 11 + 11`;
+- all eight candidate axes are represented in every block;
+- each 3-item fragile axis contributes one item per block;
+- each 5-item axis is distributed `2 / 2 / 1` across blocks;
+- the same axis is never intentionally placed in adjacent positions, including across block boundaries;
 - explicit break screens after items 12 and 23;
 - break duration is stored separately and excluded from item timing;
 - item timing stops at first answer rather than continuing until `Toliau`;
 - background/tab-hidden time is excluded from active first-response timing;
 - optional broad pilot context: role, work-experience band, work environment;
+- LT items live in a separate content pack `tools/workstyle15/v07-content-lt.js`;
 - no respondent profile is shown.
 
-The first internal LT-C completion belongs to an earlier instrumentation version and must not be pooled blindly with LT-D timing metrics.
+The earlier internal LT-C completion belongs to an older instrumentation version and must not be pooled blindly with LT-E timing metrics.
 
 ## Small cognitive pilot target
 
@@ -68,13 +75,15 @@ Use `tools/workstyle15/analyze-v07.py` for aggregation. It reports cognitive sig
 
 ## First-completion lessons already incorporated
 
-The first real completion showed that random item ordering can itself create perceived repetition when several items from one axis appear consecutively. Constrained randomisation now prevents adjacent same-axis items.
+The first real completion showed that random item ordering can itself create perceived repetition when several items from one axis appear consecutively. LT-E prevents adjacent same-axis items.
 
-It also showed that end-of-test questions asking respondents to remember exact item numbers are weak. Duplication and ambiguity are now captured at the item itself.
+A further instrumentation audit showed that merely avoiding adjacent axes was not enough for fatigue analysis: one block could accidentally contain much more of the fragile constructs than another. LT-E therefore balances all eight axes across every block.
 
-The response presentation was redesigned after mobile testing. The current LT-D intro uses separate `Apie` and `Pradėti` cards, and answer selection is highlighted rather than covered by dark fills.
+The first completion also showed that end-of-test questions asking respondents to remember exact item numbers are weak. Duplication and ambiguity are now captured at the item itself.
 
-Do not treat the first respondent's axis means as a personal profile or as evidence of construct validity.
+The response presentation was redesigned after mobile testing. The current intro uses separate `Apie` and `Pradėti` cards, and answer selection is highlighted rather than covered by dark fills.
+
+Do not treat any individual respondent's axis direction as a personal profile or as evidence of construct validity.
 
 ## Item-level warning rules
 
@@ -115,7 +124,7 @@ Do not:
 - call the model validated;
 - rewrite the bank after every single respondent;
 - invite a large sample before the cognitive form stabilises;
-- mix LT-C and LT-D timing as if instrumentation were identical;
+- mix LT-C and LT-E timing as if instrumentation were identical;
 - silently submit pilot data to a backend.
 
 ## Gate after 6–10 completions
