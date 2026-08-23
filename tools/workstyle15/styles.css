@@ -45,6 +45,11 @@
 .ws-quiz-actions{display:flex;justify-content:space-between;gap:12px;margin-top:18px}
 .ws-keyhint{font-size:.72rem;color:var(--ws-muted);margin-top:12px;text-align:center}
 
+.ws-checkpoint{max-width:680px;margin:0 auto;border:1px solid var(--ws-line);background:var(--ws-panel);padding:clamp(28px,6vw,52px)}
+.ws-checkpoint h2{font-size:clamp(2rem,5vw,3.5rem);line-height:1;letter-spacing:-.055em;margin:0 0 18px}
+.ws-checkpoint p{max-width:580px}
+.ws-checkpoint-progress{font-size:.82rem;color:var(--ws-muted);margin:0 0 12px}
+
 .ws-results-head{margin-bottom:32px}
 .ws-results-head h1{font-size:clamp(2.7rem,7vw,5.4rem);margin-bottom:18px}
 .ws-disclaimer{padding:15px 17px;border:1px solid var(--ws-line);background:var(--ws-soft);font-size:.88rem;color:#294557;margin:18px 0 26px}
@@ -70,7 +75,7 @@
 .ws-dim-name strong{display:block}
 .ws-dim-name span{display:block;color:var(--ws-muted);font-size:.78rem;margin-top:2px}
 .ws-bar-track{height:7px;background:rgba(7,27,46,.09);overflow:hidden}
-.ws-bar{height:100%;background:var(--ws-accent)}
+.ws-bar{display:block;height:100%;background:var(--ws-accent)}
 .ws-dim-score{font-weight:800;min-width:38px;text-align:right}
 .ws-dim-body{border-top:1px solid var(--ws-line);padding:18px;display:grid;gap:12px}
 .ws-dim-body p{margin:0;font-size:.92rem}
@@ -89,6 +94,7 @@
   .ws-choice label{min-height:52px;flex-direction:row;justify-content:flex-start;text-align:left;padding:10px 13px}
   .ws-choice-num{width:26px}
   .ws-question-card{min-height:auto}
+  .ws-keyhint{display:none}
   .ws-profile-pairs{grid-template-columns:1fr}
   .ws-domain-grid{grid-template-columns:1fr 1fr}
   .ws-dimension summary{grid-template-columns:1fr auto}
