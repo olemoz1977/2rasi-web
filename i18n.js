@@ -77,7 +77,7 @@
         state: ['Research active', 'Tyrimas vyksta'],
         summary: ['A reflection framework being developed through temporary calibration and validation studies.', 'Refleksijos sistema, kuriama per laikinus kalibravimo ir validavimo tyrimus.'],
         meta: [['Product in development', 'Kuriamas produktas'], ['Wave 1 public · Calibration pilot ready', 'Wave 1 viešas · Calibration pilotas paruoštas']],
-        actions: [['About', 'Apie'], ['Wave 1', 'Wave 1'], ['Calibration status', 'Calibration būsena']]
+        actions: [['About', 'Apie'], ['Wave 1', 'Wave 1'], ['Calibration', 'Calibration']]
       },
       'mirror': {
         state: ['Live · EN/LT', 'Veikia · EN/LT'],
@@ -120,6 +120,12 @@
         summary: ['A multi-rater leadership development cycle connecting pseudonymous 360° feedback with a 90-day action plan and repeat measurement.', 'Kelių vertintojų lyderystės tobulėjimo ciklas, jungiantis pseudoniminį 360° grįžtamąjį ryšį, 90 dienų veiksmų planą ir pakartotinį matavimą.'],
         meta: [['75 statements · 15 competencies', '75 teiginiai · 15 kompetencijų'], ['C1 → 90 days → C2', 'C1 → 90 dienų → C2']],
         actions: [['About', 'Apie'], ['Start', 'Pradėti']]
+      },
+      'workstyle': {
+        state: ['Cognitive pilot · LT', 'Kognityvinis pilotas · LT'],
+        summary: ['A research prototype exploring choices between equally valid ways of working across everyday situations.', 'Tyrimo prototipas apie pasirinkimus tarp lygiaverčių darbo strategijų kasdienėse situacijose.'],
+        meta: [['34 situations · 8 candidate axes', '34 situacijos · 8 kandidatinės ašys'], ['No personal profile yet', 'Asmeninis profilis dar nerodomas']],
+        actions: [['About', 'Apie'], ['Start pilot', 'Pradėti pilotą']]
       }
     };
 
@@ -140,10 +146,10 @@
 
     const calibrationLink = document.querySelector('#2pair .experiment-actions a:nth-child(3)');
     if (calibrationLink) {
-      calibrationLink.href = 'tools/2pair/';
-      calibrationLink.removeAttribute('target');
-      calibrationLink.removeAttribute('rel');
-      setAction(calibrationLink, 'Calibration status', 'Calibration būsena');
+      calibrationLink.href = 'https://omesg360.eu/conflictlab/releases/calibration-v0.1/';
+      calibrationLink.setAttribute('target', '_blank');
+      calibrationLink.setAttribute('rel', 'noopener');
+      setAction(calibrationLink, 'Calibration', 'Calibration');
     }
 
     const leadershipStart = document.querySelector('#leadership-360 .experiment-actions a:nth-child(2)');
