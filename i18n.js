@@ -38,7 +38,7 @@
   function updateLanguageLinks() {
     const targetHost = lang === 'lt' ? '2rasi.com' : '2rasi.lt';
     const targetLabel = lang === 'lt' ? 'EN' : 'LT';
-    const href = `https://${targetHost}${window.location.pathname}${window.location.hash}`;
+    const href = `https://${targetHost}/`;
 
     const nav = document.querySelector('header nav');
     if (nav) {
@@ -50,15 +50,15 @@
       }
       link.textContent = targetLabel;
       link.href = href;
-      link.setAttribute('aria-label', lang === 'lt' ? 'Switch to English' : 'Perjungti į lietuvių kalbą');
-      link.setAttribute('title', lang === 'lt' ? 'English' : 'Lietuvių');
+      link.setAttribute('aria-label', lang === 'lt' ? 'Open English site' : 'Atidaryti lietuvišką svetainę');
+      link.setAttribute('title', lang === 'lt' ? '2rasi.com' : '2rasi.lt');
     }
 
     const footerLink = document.querySelector('.footer-links a:last-child');
     if (footerLink) {
       footerLink.textContent = `${targetLabel} ↗`;
-      footerLink.href = `https://${targetHost}`;
-      footerLink.setAttribute('aria-label', lang === 'lt' ? 'English version' : 'Lietuviška versija');
+      footerLink.href = href;
+      footerLink.setAttribute('aria-label', lang === 'lt' ? 'Open English site' : 'Atidaryti lietuvišką svetainę');
     }
   }
 
