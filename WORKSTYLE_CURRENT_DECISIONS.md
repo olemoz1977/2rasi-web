@@ -6,338 +6,266 @@ Branch: `hero-webgl`
 
 Historical files such as `WORKSTYLE15_DECISIONS.md` remain preserved as the record of the 15-dimension / v0.4–v0.6 phase. They are no longer the current architecture source of truth.
 
----
-
-# 1. Product identity
+## 1. Product identity
 
 Current purpose:
 
 > **A lightweight work-style reflection tool showing how a person tends to approach work when more than one legitimate way of acting exists.**
 
-Current product stage:
+Current stage:
 - 2rasi experimental / for-fun / research prototype;
-- designed so its architecture and data can later support a more serious professional product;
+- architecture and data kept traceable so the concept can later mature into a professional product;
 - not currently a hiring, promotion, leadership-potential or role-fit instrument.
 
-Future professional assessment work may move to OMESG360, but WorkStyle development currently remains in the 2rasi R&D environment.
+Future professional assessment work may move to OMESG360. WorkStyle R&D remains in 2rasi for now.
 
-Product principle:
-- fun / visually engaging now;
-- methodologically traceable underneath;
-- no professional claims before evidence supports them.
+Product rule: engaging on the surface, methodologically disciplined underneath, no professional claims before evidence.
 
----
+## 2. Historical 15-dimension phase
 
-# 2. Historical 15-dimension architecture
+The inherited 15-dimension count is no longer a target.
 
-The inherited WorkStyle 15 architecture is no longer treated as a target count.
-
-The 15-dimension phase produced useful evidence:
+Main lessons:
 - 75 items were too fatiguing;
-- 45 items were much more usable;
-- a separate cannot-assess response exposed ambiguity hidden by ordinary midpoints;
-- reverse items often measured legitimate alternative preferences rather than absence of the target trait;
-- several inherited constructs mixed style, competence, self-regulation, or metacognition;
-- the 5×3 architecture created conceptual and visual symmetry not justified by data.
+- 45 items were substantially more usable;
+- separate cannot-assess responses exposed ambiguity hidden by ordinary midpoints;
+- reverse items often measured legitimate alternative styles rather than absence of a trait;
+- several inherited constructs mixed style, competence, self-regulation or metacognition;
+- 5×3 symmetry was visually neat but not data-justified.
 
-The old architecture is retained only as provenance/history.
+The 15-dimension architecture remains provenance/history only.
 
----
+## 3. Measurement direction
 
-# 3. Measurement direction
-
-Current research default:
-
-**primarily bipolar directional WorkStyle axes**.
+Current research default: **primarily bipolar directional WorkStyle axes**.
 
 Requirements:
-- both poles must occupy the same behavioural space;
-- both poles must be professionally legitimate;
-- no pole is `high`, `better`, `more developed`, or `more competent`;
+- both poles occupy the same behavioural choice space;
+- both poles are professionally legitimate;
+- no pole is `high`, `better`, `more developed` or `more competent`;
 - explicit two-anchor wording;
-- five response positions between anchors;
+- visible response grammar: `Visada | Dažniau | Abu panašiai | Dažniau | Visada`;
+- numeric coding remains internal;
 - separate `Priklauso nuo situacijos`;
 - separate `Neteko / negaliu įvertinti`;
-- ordinal treatment in later analysis;
-- no 0–100 public scores;
-- no percentiles/norms yet;
-- no numerical higher-order domain scores yet.
+- no 0–100 public scores, norms or percentiles yet;
+- no numerical higher-order domains yet.
 
-A bipolar axis is accepted only if cognitive/empirical evidence supports it. Semantic antonyms alone are insufficient.
+A bipolar axis survives only if cognitive and later empirical evidence supports it. Semantic antonyms alone are insufficient.
 
-The current response grammar is:
+## 4. Current 8-axis candidate architecture
 
-`Visada | Dažniau | Abu panašiai | Dažniau | Visada`
+1. **Struktūruotas pasiruošimas ↔ Organizavimas eigoje** — STRONG.
+2. **Metodo nuoseklumas ↔ Metodo adaptavimas** — STRONG.
+3. **Konkretus fokusas ↔ Ryšių ir sistemos fokusas** — PROMISING / HIGH-CHALLENGE.
+4. **Išvados stabilumas ↔ Išvados peržiūrėjimas pagal naujus duomenis** — FRAGILE CONDITIONAL.
+5. **Galimybių skenavimas ↔ Rizikų skenavimas** — CONDITIONAL.
+6. **Savarankiškas veikimas ↔ Koordinavimas su kitais** — STRONG.
+7. **Tiesus nesutarimo išsakymas ↔ Derinimosi paieška** — STRONG.
+8. **Aktyvus dalyvavimas ↔ Santūrus dalyvavimas** — STRONG.
 
-Each response word is read together with the behavioural statement below its side. Numeric 1–5 coding is internal only.
+The count `8` is not protected. A clean 7- or 6-axis model is preferable to symmetry.
 
----
+## 5. Felt-distinctness rule
 
-# 4. Current 8-axis candidate architecture
+Constructs must pass both:
+1. latent distinctness;
+2. felt distinctness for respondents.
 
-## 1. Struktūruotas pasiruošimas ↔ Organizavimas eigoje
-Referent: when work structure is created.
-Status: STRONG.
+This rule was added after several `hold ↔ change` candidates felt emotionally like the same question.
 
-## 2. Metodo nuoseklumas ↔ Metodo adaptavimas
-Referent: preserving/modifying an already-used method while the objective remains broadly stable.
-Status: STRONG.
+Decisions already made:
+- Commitment Stability ↔ Goal Reallocation removed from V1;
+- position revisability reframed as conclusion/evidence updating;
+- position assertion reframed as interpersonal disagreement handling.
 
-## 3. Konkretus fokusas ↔ Ryšių ir sistemos fokusas
-Referent: default scope of analysis / attention.
-Status: PROMISING / HIGH-CHALLENGE.
+Detailed source: `WORKSTYLE_8AXIS_FELT_DISTINCTNESS_AUDIT.md`.
 
-## 4. Išvados stabilumas ↔ Išvados peržiūrėjimas pagal naujus duomenis
-Referent: threshold for reopening an already formed conclusion when credible but non-decisive new evidence appears.
-Status: FRAGILE CONDITIONAL.
+## 6. Removed / parked constructs
 
-## 5. Galimybių skenavimas ↔ Rizikų skenavimas
-Referent: first attentional direction under uncertainty.
-Status: CONDITIONAL.
+Removed from primary core:
+- Persuasive Influence;
+- heterogeneous Learning Orientation;
+- Empathic Attention;
+- Emotional Regulation;
+- Reflective Self-Awareness;
+- separate Explore/Exploit axis.
 
-## 6. Savarankiškas veikimas ↔ Koordinavimas su kitais
-Referent: default amount of coordination when both independent and coordinated routes are viable.
-Status: STRONG.
+Parked:
+- Achievement Drive as optional unipolar candidate;
+- Commitment Stability / Goal Reallocation;
+- Pace/Tempo;
+- Conflict Engagement as a possible future distinction;
+- Detail/Gist under observation within analysis scope.
 
-## 7. Tiesus nesutarimo išsakymas ↔ Derinimosi paieška
-Referent: first interpersonal move when genuine disagreement exists.
-Status: STRONG.
+Do not re-add constructs to restore breadth or symmetry.
 
-## 8. Aktyvus dalyvavimas ↔ Santūrus dalyvavimas
-Referent: visible participation intensity in ordinary group interaction.
-Status: STRONG.
-
-The count `8` is not protected. A clean 7-axis or 6-axis model is preferable to retaining a weak axis for symmetry.
-
----
-
-# 5. Felt-distinctness rule
-
-Constructs must pass two separate tests:
-
-1. **latent distinctness** — theoretically / empirically different;
-2. **felt distinctness** — respondents experience them as asking about different parts of work life.
-
-This rule was added after the 9-axis candidate exposed several emotionally similar `hold ↔ change` dilemmas.
-
-Decision:
-- `Commitment Stability ↔ Goal Reallocation` was removed from V1;
-- `Position Stability ↔ Position Revisability` was reframed as conclusion/evidence updating;
-- `Position Assertion ↔ Accommodation` was reframed as interpersonal disagreement handling.
-
-Detailed source:
-`WORKSTYLE_8AXIS_FELT_DISTINCTNESS_AUDIT.md`.
-
----
-
-# 6. Constructs removed / parked
-
-## Removed from primary core
-- Persuasive Influence — competence contamination / overlap with assertion;
-- Learning Orientation — heterogeneous content;
-- Empathic Attention — no clean opposite, desirability/competence contamination;
-- Emotional Regulation — temperament/self-regulation capability rather than neutral style;
-- Reflective Self-Awareness — metacognitive/no clean opposite;
-- Explore/Exploit — too redundant with Method Adaptation for compact V1.
-
-## Parked
-- Achievement Drive — optional unipolar construct;
-- Commitment Stability / Goal Reallocation — too context-heavy for V1;
-- Pace/Tempo — future research candidate;
-- Conflict Engagement — currently item context under disagreement axis;
-- Detail/Gist — monitor under analysis-scope construct.
-
-Do not add parked constructs merely to increase breadth or restore symmetry.
-
----
-
-# 7. WorkStyle vs competence boundary
+## 7. WorkStyle vs competence
 
 WorkStyle asks:
 
 > **How do I usually tend to act when several legitimate approaches are available?**
 
-It does not ask:
-- am I good at this;
-- do I know the correct managerial action;
-- am I suitable for leadership;
-- how well do I perform;
-- what role should I hold.
+It does not ask whether the person is competent, correct, suitable for leadership or suitable for a role.
 
-Constructs that become ability/competence questions should move out of WorkStyle rather than being rescued with wording tricks.
+If a construct becomes an ability/competence question, move it out of WorkStyle rather than rescuing it with wording tricks.
 
----
+## 8. Leadership SJT
 
-# 8. Leadership SJT status
+Leadership SJT work is preserved but **PARKED** from the active WorkStyle path.
 
-Leadership SJT research completed so far is preserved but **PARKED** from the active WorkStyle path.
-
-Future professional architecture may use:
+Future professional stack may use:
 - WorkStyle = behavioural tendencies;
 - Leadership SJT = situational managerial judgement;
 - Role Profile = role requirements;
-- structured interview/work sample = additional evidence.
+- structured interview/work sample = other evidence.
 
-Do not merge SJT scenario logic into the current WorkStyle questionnaire.
+Do not merge SJT logic into the current WorkStyle questionnaire.
 
----
+## 9. Current cognitive prototype
 
-# 9. Current cognitive prototype
+Live path:
+`https://2rasi.com/tools/workstyle15/v07-cognitive.html`
 
-Current file:
-`tools/workstyle15/v07-cognitive.html`
+Current **form/instrument version**:
+`0.7-cognitive-8axis-lt-e`
 
-Current instrument version:
-`0.7-cognitive-8axis-lt-d`
+Current **LT content version**:
+`v07-lt-d`
+
+Files:
+- `tools/workstyle15/v07-cognitive.html` — shell, UX, timing, block/order engine;
+- `tools/workstyle15/v07-content-lt.js` — LT situation content pack.
+
+The content pack split is the first i18n step. LT-E changed ordering/instrumentation, not item wording.
 
 Current form:
 - 34 items;
 - 5 stronger axes × 5 items;
 - 3 fragile axes × 3 items;
-- constrained randomisation prevents the same axis appearing consecutively;
-- two explicit bipolar anchors;
-- five visible response positions using words rather than numbers;
-- separate `Priklauso nuo situacijos`;
-- separate `Neteko / negaliu įvertinti`;
-- separate per-item `Neaišku` and `Primena ankstesnę situaciją` flags;
-- **three blocks: 12 + 11 + 11**;
-- two explicit break screens;
-- break time excluded from item timing;
-- visibility/background time excluded from active first-response timing;
-- optional broad pilot context: role, experience band, work environment;
+- 3 blocks: 12 + 11 + 11;
+- **all 8 axes represented in every block**;
+- five-item axes distributed 2/2/1 across blocks;
+- three-item axes distributed 1/1/1;
+- no adjacent same-axis items;
+- explicit break screens after items 12 and 23;
+- break duration separate from response timing;
+- first-response timing stops at the first answer;
+- hidden/background tab time excluded;
+- separate unclear and duplicate flags;
+- optional broad role/experience/environment context;
+- local browser resume;
 - end qualitative feedback;
-- local browser session + resume;
-- anonymous JSON export;
-- **no score/profile**.
+- JSON export;
+- no profile/score.
 
 Current intro UX:
 - separate `Apie` and `Pradėti` cards;
-- research/privacy details are secondary disclosure rather than a wall of instructions;
-- no black fill as primary interaction feedback;
-- choice highlighting uses a light accent / outline rather than covering text.
+- technical/privacy explanation is secondary disclosure;
+- no black fill as the main interaction state;
+- selection uses a light accent/outline.
 
-Why no result:
-Showing a result before construct survival would teach respondents to treat unvalidated axes as real findings.
+Why no result: a result before construct survival would teach respondents to treat provisional axes as findings.
 
----
-
-# 10. Cognitive survival priorities
+## 10. Cognitive survival priorities
 
 Highest-risk axes:
 1. Išvados stabilumas ↔ peržiūrėjimas;
 2. Galimybių ↔ rizikų skenavimas;
 3. Konkretus ↔ sisteminis fokusas.
 
-Five stronger axes can still fail, but currently have cleaner behavioural identity.
+Review/rework an item or axis when repeated participants show:
+- one pole feels smarter/more moral/more competent;
+- context response dominates;
+- cannot-assess dominates;
+- duplicate/felt-repetition signal;
+- hidden assumptions are needed;
+- very long timing accompanied by interpretation difficulty;
+- both poles can be strongly true in the same referent.
 
-Axis should be dropped/reworked when:
-- one pole is consistently judged more competent/moral;
-- `Priklauso nuo situacijos` dominates because the axis is mostly context, not person tendency;
-- respondents paraphrase it as another axis;
-- items require ability/knowledge to answer;
-- both poles can naturally be simultaneously high in the same referent;
-- item wording needs hidden assumptions to make the trade-off work.
-
----
-
-# 11. Current data policy
+## 11. Data policy
 
 V0.5/v0.6 Likert data must not be retroactively converted to bipolar scores.
 
-V0.7 starts a new measurement series.
+V0.7 is a new measurement series.
 
-For the cognitive stage, primary signals are:
+Primary cognitive signals:
 - response distribution;
-- left / centre / right descriptive response proportions;
-- `Priklauso nuo situacijos` rate;
-- `Neteko / negaliu` rate;
-- unclear rate;
-- duplicate/felt-repetition rate;
-- first-response timing;
-- block-level timing change / fatigue signal;
-- break duration as separate process metadata;
+- left / centre / right descriptive proportions;
+- context / NA / unclear / duplicate rates;
+- first-response time;
+- block-level timing change;
+- break duration as process metadata;
 - free-text feedback;
-- later, respondent paraphrases from cognitive debriefs.
+- respondent paraphrases when available.
 
-Do not interpret direction as a stable personal score until the axis/item set survives cognitive and structural work.
+Do not interpret direction as a stable personal score yet.
 
 Analyzer:
 `tools/workstyle15/analyze-v07.py`
 
-The analyzer accepts v0.7 cognitive schema versions and reports cognitive signals only, never a respondent score.
+It supports v0.7 cognitive schema versions and reports cognitive signals only.
 
----
+## 12. Pilot data intake
 
-# 12. Pilot data intake
+Current participant transfer remains JSON export.
 
-Current live form remains local-first and JSON-export capable.
-
-A future automatic intake backend has been prepared but is **not connected to the live form**:
-
+Prepared but **not connected** backend:
 `workers/workstyle-pilot/`
 
 Prepared architecture:
-- Cloudflare Worker intake;
+- Cloudflare Worker;
 - D1 storage;
-- allowed origin restricted to 2rasi domains;
-- no name/email/employer fields;
-- original JSON retained for reproducible analysis;
-- compact server-calculated metadata retained for quick review;
-- JSON export remains fallback.
+- 2rasi-origin restriction;
+- no requested name/email/employer;
+- raw JSON + compact server summary;
+- synthetic v3 test payload;
+- JSON remains fallback.
 
-Activation gate:
-1. deploy Worker + D1;
+Automatic submission activation gate:
+1. deploy Worker and D1;
 2. verify `/health`;
-3. submit a synthetic session and verify D1;
+3. submit synthetic payload and verify D1;
 4. verify CORS from 2rasi;
-5. update participant-facing privacy wording;
-6. only then add explicit `Pateikti piloto duomenis` action.
+5. update privacy copy;
+6. add explicit participant `Pateikti piloto duomenis` action.
 
-Do not silently submit cognitive-pilot data.
+Do not silently submit cognitive-pilot sessions.
 
----
+## 13. EN / i18n
 
-# 13. EN / i18n rule
+Do not create an independently evolving second test implementation.
 
-Do not create a second independently evolving HTML implementation for English.
+Target architecture:
+`shared engine + language-specific content/UI packs`.
 
-Target architecture after LT cognitive wording stabilises:
+Already implemented:
+- LT situation content is separate from the form engine.
 
-`shared WorkStyle engine + LT content pack + EN content pack`
+Later EN rules:
+- stable item/axis IDs where semantic equivalence is intended;
+- shared randomisation, timing, blocks and data schema;
+- EN is behavioural adaptation, not literal machine translation;
+- EN receives a separate small cognitive check;
+- language/content version remains explicit in exports;
+- do not pool LT/EN psychometric data until equivalence is examined.
 
-Rules:
-- item IDs and axis IDs remain stable across languages when semantic equivalence is intended;
-- timing/randomisation/blocks/data schema stay shared;
-- EN is an adaptation of behavioural meaning, not a literal machine translation;
-- EN wording receives its own small cognitive check;
-- LT and EN versions remain distinguishable in exported data;
-- do not pool LT and EN psychometric data until language equivalence is examined.
+Do not start EN item adaptation until the LT content survives the small cognitive pilot without another wording reset.
 
-EN work starts only after the LT cognitive form survives without another structural wording reset.
-
----
-
-# 14. PAEI / DISC
+## 14. PAEI / DISC
 
 PAEI and DISC remain future qualitative interpretation lenses only.
 
-Current rules:
-- not part of core scoring;
-- no hand-assigned numeric mapping;
-- no claims of official equivalence;
-- no outer ring that visually implies validated integration;
-- any quantitative mapping must wait for external benchmark data and cross-validation.
+No numeric mapping, no official-equivalence claims and no visual outer ring implying validated integration before external benchmark/cross-validation evidence.
 
----
+## 15. Current next gate
 
-# 15. Current next gate
-
-1. Smoke-test the LT-D live page on mobile after deployment.
-2. Verify intro cards, 5-position interaction, flags, Back/Next, resume, both breaks, final feedback, JSON export and restart.
-3. Run a small cognitive pilot with approximately 6–10 people with real work experience.
-4. Keep participant collection manual/JSON until automatic intake passes its backend activation gate.
+1. Smoke-test LT-E live on mobile.
+2. Verify intro cards, five-position interaction, flags, Back/Next, resume, both breaks, final feedback, JSON and restart.
+3. Run approximately 6–10 cognitive participants with real work experience.
+4. Keep collection manual/JSON until backend activation gate passes.
 5. Analyse ambiguity, context dependence, felt redundancy, directional spread and timing by item/axis/block.
-6. Mark each axis `KEEP / REWRITE / MERGE-DROP / OPEN QUESTION`.
-7. Kill/rewrite weak axes/items before adding any result profile.
-8. Only after the cognitive architecture stabilises create a scored reflective prototype and then an EN content pack.
-9. Keep public claims explicitly developmental/research-oriented until substantially stronger evidence exists.
+6. Mark axes `KEEP / REWRITE / MERGE-DROP / OPEN QUESTION`.
+7. Kill/rewrite weak content before any profile.
+8. Only after cognitive architecture stabilises move toward a scored reflective prototype and EN content adaptation.
+9. Keep all public claims developmental/research-oriented until stronger evidence exists.
