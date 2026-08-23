@@ -26,7 +26,7 @@
   }
 
   function uuid() {
-    if (crypto && typeof crypto.randomUUID === "function") return crypto.randomUUID();
+    if (window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID();
     return `ws15-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
   }
 
@@ -79,7 +79,11 @@
   function saveState() {
     if (!state) return;
     state.lastSeenAt = nowIso();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (_) {
+      // The pilot still works without persistence if browser storage is unavailable.
+    }
   }
 
   function stopActiveClock() {
@@ -99,7 +103,7 @@
     els.results.hidden = name !== "results";
     if (name === "quiz") startActiveClock();
     else stopActiveClock();
-    window.scrollTo({ top: 0, behavior: "instant" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }
 
   function initIntro() {
@@ -117,6 +121,11 @@
   }
 
   function startNew() {
+    const existing = loadState();
+    if (existing && !existing.completed && Object.keys(existing.responses || {}).length > 0) {
+      const ok = confirm("Yra nebaigta sesija. Pradėjus naują, šiame įrenginyje ji bus pakeista. Tęsti?");
+      if (!ok) return;
+    }
     state = emptyState();
     state.startedAt = nowIso();
     state.currentIndex = 0;
@@ -318,6 +327,15 @@
     els.feedbackComment.value = state.feedback?.comment || "";
   }
 
+  function captureFeedbackFromUi() {
+    if (!state || els.results.hidden) return;
+    const checked = document.querySelector('input[name="specificity"]:checked');
+    state.feedback = {
+      specificity: checked ? Number(checked.value) : null,
+      comment: els.feedbackComment.value.trim()
+    };
+  }
+
   function buildExportPayload() {
     const scores = state.scores || (state.completed ? calculateScores() : null);
     return {
@@ -357,6 +375,7 @@
 
   function downloadJson() {
     stopActiveClock();
+    captureFeedbackFromUi();
     saveState();
     const payload = buildExportPayload();
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -373,6 +392,7 @@
 
   async function copyJson() {
     stopActiveClock();
+    captureFeedbackFromUi();
     saveState();
     const text = JSON.stringify(buildExportPayload(), null, 2);
     try {
@@ -391,11 +411,7 @@
   }
 
   function saveFeedback() {
-    const checked = document.querySelector('input[name="specificity"]:checked');
-    state.feedback = {
-      specificity: checked ? Number(checked.value) : null,
-      comment: els.feedbackComment.value.trim()
-    };
+    captureFeedbackFromUi();
     saveState();
     els.feedbackStatus.textContent = "Atsiliepimas išsaugotas šiame įrenginyje.";
   }
@@ -409,8 +425,8 @@
   }
 
   function restart() {
-    if (!confirm("Pradėti naują sesiją? Dabartinė sesija liks tik anksčiau eksportuotame faile, jei ją eksportavote.")) return;
-    localStorage.removeItem(STORAGE_KEY);
+    if (!confirm("Pradėti naują sesiją? Dabartinė sesija liks tik anksčiau eksportuotame faile, jei ją eksportavai.")) return;
+    try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
     state = null;
     setScreen("intro");
     initIntro();
@@ -484,6 +500,7 @@
     window.addEventListener("beforeunload", () => {
       if (!state) return;
       stopActiveClock();
+      captureFeedbackFromUi();
       saveState();
     });
   }
