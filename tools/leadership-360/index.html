@@ -4,45 +4,173 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Leadership 360° — 2rasi</title>
-  <meta name="description" content="A bilingual 360-degree leadership development prototype connecting multi-rater feedback, a 90-day action plan and repeat measurement." />
+  <meta name="description" content="Leadership 360° connects multi-rater feedback with focused action and a second look after 90 days." />
   <link rel="icon" href="../../assets/logo-2.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../tool-page.css" />
 </head>
 <body>
-<header class="tool-header"><a class="brand" href="../../">2rasi</a><nav><a href="../../#experiments">Experiments</a><a href="../../#about">About</a></nav></header>
+<header class="tool-header">
+  <a class="brand" href="../../">2rasi</a>
+  <nav>
+    <a href="../../#experiments" data-i18n="nav.experiments">Experiments</a>
+    <a href="../../#about" data-i18n="nav.about">About</a>
+    <a class="language-switch" id="language-switch" href="https://2rasi.lt/tools/leadership-360/" aria-label="Perjungti į lietuvių kalbą">LT</a>
+  </nav>
+</header>
+
 <main class="tool-main">
   <section class="tool-hero">
-    <p class="kicker">Professional prototype · LT/EN</p>
+    <p class="kicker" data-i18n="hero.kicker">Leadership development · LT/EN</p>
     <h1>Leadership 360°</h1>
-    <p class="lead">Not just a feedback report. A leadership development cycle connecting outside perspectives with a practical 90-day plan and a second measurement.</p>
-    <div class="tool-meta"><span>75 statements</span><span>15 competencies</span><span>5 feedback groups</span><span>C1 → 90 days → C2</span></div>
-    <div class="tool-actions"><a class="button primary" href="https://omesg360.eu/leadership-360/" target="_blank" rel="noopener">Open prototype ↗</a><a class="button" href="#cycle">Understand the cycle</a></div>
+    <p class="lead" data-i18n="hero.lead">Feedback is useful only when it changes what happens next. Leadership 360° connects outside perspectives with a focused 90-day action plan and a second measurement.</p>
+    <div class="tool-meta">
+      <span data-i18n="meta.statements">75 statements</span>
+      <span data-i18n="meta.competencies">15 competencies</span>
+      <span data-i18n="meta.cycle">C1 → 90 days → C2</span>
+      <span>LT / EN</span>
+    </div>
+    <div class="tool-actions">
+      <a class="button primary" id="omesg-overview-top" href="https://omesg360.eu/leadership-360/?lang=en" target="_blank" rel="noopener" data-i18n="cta.professional">Professional overview on OMESG360 ↗</a>
+      <a class="button" href="#cycle" data-i18n="cta.cycle">How the cycle works</a>
+    </div>
   </section>
 
   <div class="tool-grid">
     <div>
-      <section class="tool-section"><h2>What it is</h2><p>Leadership 360° is a multi-rater leadership development prototype. A leader compares self-perception with feedback from people around them: manager, peers, direct reports and other relevant colleagues.</p><p>The current build supports Lithuanian and English, pseudonymous invitations, a separated response collector and a dedicated Guardian administration space. The Guardian manages invitations, completion status and cycles, but does not see individual answers, comments, the leader report or the 90-day plan.</p></section>
+      <section class="tool-section">
+        <h2 data-i18n="what.title">What it is</h2>
+        <p data-i18n="what.p1">Leadership 360° is a multi-rater development tool. It compares a leader's self-perception with feedback from people around them, then turns the differences worth working on into a focused 90-day plan.</p>
+        <p data-i18n="what.p2">The point is not the score. The point is to look again after action: C2 repeats the measurement and makes change visible.</p>
+      </section>
 
-      <section class="tool-section" id="cycle"><h2>The development cycle</h2><div class="model-list">
-        <div class="model-item"><strong>1 · Set up C1</strong><span>The assessed leader defines the Guardian and evaluator groups for the first cycle.</span></div>
-        <div class="model-item"><strong>2 · Collect perspectives</strong><span>Self, Manager, Peer, Direct Report and Other groups answer 75 behaviour-frequency statements across 15 competencies.</span></div>
-        <div class="model-item"><strong>3 · Compare the view</strong><span>The leader report shows competency and cluster results, strengths and self-versus-others gaps while anonymity thresholds protect small groups.</span></div>
-        <div class="model-item"><strong>4 · Build a 90-day plan</strong><span>The result can be translated into a structured development plan with a small number of selected actions.</span></div>
-        <div class="model-item"><strong>5 · Run C2 and look again</strong><span>A repeat cycle measures what changed and can generate an adapted next plan.</span></div>
-      </div></section>
+      <section class="tool-section" id="cycle">
+        <h2 data-i18n="cycle.title">See. Act. Look again.</h2>
+        <div class="model-list">
+          <div class="model-item">
+            <strong data-i18n="cycle.1.title">1 · See from more than one angle</strong>
+            <span data-i18n="cycle.1.copy">C1 places self-perception beside feedback from people who work with the leader.</span>
+          </div>
+          <div class="model-item">
+            <strong data-i18n="cycle.2.title">2 · Choose what to change</strong>
+            <span data-i18n="cycle.2.copy">The leader selects a small number of priorities and turns them into concrete actions for the next 90 days.</span>
+          </div>
+          <div class="model-item">
+            <strong data-i18n="cycle.3.title">3 · Look again</strong>
+            <span data-i18n="cycle.3.copy">C2 repeats the measurement so the next conversation can be about change, not just the first report.</span>
+          </div>
+        </div>
+      </section>
 
-      <section class="tool-section"><h2>Privacy by role</h2><p>Identity and response data are kept separate. Evaluators receive their own invitation context, while the Guardian sees only operational information such as who was invited, whether a response is complete and which cycle is active.</p><p>Reports, individual answers, open-text comments, 90-day plans and C1–C2 comparisons belong outside the Guardian administration role. Small feedback groups are suppressed or merged when anonymity would be too weak.</p></section>
-
-      <section class="tool-section"><h2>Between C1 and C2</h2><p>The 90-day plan is not intended to disappear after the report is closed. Selected actions can be exported to a calendar and passed to the Telegram companion so that the development work remains visible between measurements.</p><p class="note">Only selected development actions are passed to the companion. Raw 360° answers, evaluator identities and open comments are not.</p></section>
-
-      <section class="tool-section"><h2>Organisation layer</h2><p>The prototype also explores an organisation-level analytics layer: programme participation, completion, recurring competency patterns, self-versus-others gaps and C1→C2 movement can be analysed only from aggregated data.</p><p>The purpose is not to diagnose individuals, but to help identify where an organisation may need development, cultural attention or a closer look at systems and practices.</p></section>
-
-      <section class="tool-section"><h2>Positioning</h2><p>This is a larger professional-development prototype within the 2rasi ecosystem rather than a short self-reflection experiment. The public prototype is used to validate the full cycle before a future organisation-ready product layer.</p><p class="note">Leadership 360° is intended for development and reflection, not diagnosis or automated decisions about a person.</p></section>
+      <section class="tool-section">
+        <h2 data-i18n="why.title">Why it belongs in 2rasi</h2>
+        <p data-i18n="why.p1">2rasi is built around shifts in perspective. Leadership 360° applies the same idea to leadership: the view from inside is only one view.</p>
+        <p data-i18n="why.p2">Other perspectives can reveal blind spots, but their value appears only when the leader decides what to do with what they see.</p>
+        <p class="note" data-i18n="why.note">Leadership 360° is intended for development and reflection, not diagnosis or automated decisions about a person.</p>
+      </section>
     </div>
 
-    <aside class="side-card"><h3>A prototype with a full cycle</h3><p>Open the current LT/EN build directly.</p><a class="button primary" href="https://omesg360.eu/leadership-360/" target="_blank" rel="noopener">Open prototype ↗</a></aside>
+    <aside class="side-card">
+      <h3 data-i18n="side.title">Professional details live on OMESG360</h3>
+      <p data-i18n="side.copy">The full professional overview, development cycle and privacy boundaries are described in the OMESG360 professional space.</p>
+      <a class="button primary" id="omesg-overview-side" href="https://omesg360.eu/leadership-360/?lang=en" target="_blank" rel="noopener" data-i18n="side.cta">Open OMESG360 overview ↗</a>
+    </aside>
   </div>
 </main>
-<footer class="tool-footer"><span>2rasi · Look again.</span><a href="../../#experiments">← Back to experiments</a></footer>
+
+<footer class="tool-footer">
+  <span>2rasi · Look again.</span>
+  <a href="../../#experiments" data-i18n="footer.back">← Back to experiments</a>
+</footer>
+
+<script>
+(() => {
+  const host = window.location.hostname.toLowerCase();
+  const params = new URLSearchParams(window.location.search);
+  const forced = params.get('lang');
+  const lang = (forced === 'lt' || forced === 'en')
+    ? forced
+    : ((host === '2rasi.lt' || host.endsWith('.2rasi.lt')) ? 'lt' : 'en');
+
+  const copy = {
+    en: {
+      'nav.experiments': 'Experiments',
+      'nav.about': 'About',
+      'hero.kicker': 'Leadership development · LT/EN',
+      'hero.lead': 'Feedback is useful only when it changes what happens next. Leadership 360° connects outside perspectives with a focused 90-day action plan and a second measurement.',
+      'meta.statements': '75 statements',
+      'meta.competencies': '15 competencies',
+      'meta.cycle': 'C1 → 90 days → C2',
+      'cta.professional': 'Professional overview on OMESG360 ↗',
+      'cta.cycle': 'How the cycle works',
+      'what.title': 'What it is',
+      'what.p1': "Leadership 360° is a multi-rater development tool. It compares a leader's self-perception with feedback from people around them, then turns the differences worth working on into a focused 90-day plan.",
+      'what.p2': 'The point is not the score. The point is to look again after action: C2 repeats the measurement and makes change visible.',
+      'cycle.title': 'See. Act. Look again.',
+      'cycle.1.title': '1 · See from more than one angle',
+      'cycle.1.copy': 'C1 places self-perception beside feedback from people who work with the leader.',
+      'cycle.2.title': '2 · Choose what to change',
+      'cycle.2.copy': 'The leader selects a small number of priorities and turns them into concrete actions for the next 90 days.',
+      'cycle.3.title': '3 · Look again',
+      'cycle.3.copy': 'C2 repeats the measurement so the next conversation can be about change, not just the first report.',
+      'why.title': 'Why it belongs in 2rasi',
+      'why.p1': '2rasi is built around shifts in perspective. Leadership 360° applies the same idea to leadership: the view from inside is only one view.',
+      'why.p2': 'Other perspectives can reveal blind spots, but their value appears only when the leader decides what to do with what they see.',
+      'why.note': 'Leadership 360° is intended for development and reflection, not diagnosis or automated decisions about a person.',
+      'side.title': 'Professional details live on OMESG360',
+      'side.copy': 'The full professional overview, development cycle and privacy boundaries are described in the OMESG360 professional space.',
+      'side.cta': 'Open OMESG360 overview ↗',
+      'footer.back': '← Back to experiments'
+    },
+    lt: {
+      'nav.experiments': 'Eksperimentai',
+      'nav.about': 'Apie',
+      'hero.kicker': 'Lyderystės ugdymas · LT/EN',
+      'hero.lead': 'Grįžtamasis ryšys vertingas tik tada, kai pakeičia tai, kas vyksta toliau. Leadership 360° sujungia kitų perspektyvas su fokusuotu 90 dienų veiksmų planu ir pakartotiniu matavimu.',
+      'meta.statements': '75 teiginiai',
+      'meta.competencies': '15 kompetencijų',
+      'meta.cycle': 'C1 → 90 dienų → C2',
+      'cta.professional': 'Profesionalus aprašas OMESG360 ↗',
+      'cta.cycle': 'Kaip veikia ciklas',
+      'what.title': 'Kas tai',
+      'what.p1': 'Leadership 360° yra kelių vertintojų ugdymo įrankis. Jis leidžia palyginti vadovo savivertinimą su aplinkinių stebėjimu ir svarbiausius skirtumus paversti fokusuotu 90 dienų planu.',
+      'what.p2': 'Esmė ne balas. Esmė – po veiksmų pažvelgti dar kartą: C2 pakartoja matavimą ir leidžia pamatyti pokytį.',
+      'cycle.title': 'Pamatyti. Veikti. Pažvelgti dar kartą.',
+      'cycle.1.title': '1 · Pamatyti iš daugiau nei vienos perspektyvos',
+      'cycle.1.copy': 'C1 leidžia greta pamatyti vadovo savivertinimą ir su juo dirbančių žmonių stebėjimą.',
+      'cycle.2.title': '2 · Pasirinkti, ką keisti',
+      'cycle.2.copy': 'Vadovas pasirenka nedaug prioritetų ir paverčia juos konkrečiais veiksmais artimiausioms 90 dienų.',
+      'cycle.3.title': '3 · Pažvelgti dar kartą',
+      'cycle.3.copy': 'C2 pakartoja matavimą, kad kitas pokalbis būtų ne tik apie pirmąją ataskaitą, bet ir apie pokytį.',
+      'why.title': 'Kodėl tai yra 2rasi',
+      'why.p1': '2rasi remiasi perspektyvos poslinkiu. Leadership 360° tą pačią idėją perkelia į vadovavimą: vaizdas iš vidaus yra tik viena perspektyva.',
+      'why.p2': 'Kitų žmonių stebėjimas gali parodyti akląsias zonas, tačiau vertė atsiranda tik tada, kai vadovas pasirenka, ką su tuo daryti.',
+      'why.note': 'Leadership 360° skirtas ugdymui ir refleksijai, o ne diagnozei ar automatizuotiems sprendimams apie žmogų.',
+      'side.title': 'Profesionalus aprašas – OMESG360',
+      'side.copy': 'Pilnas profesionalus aprašas, vystymo ciklas ir privatumo ribos pateikiami profesinėje OMESG360 erdvėje.',
+      'side.cta': 'Atidaryti OMESG360 aprašą ↗',
+      'footer.back': '← Grįžti į eksperimentus'
+    }
+  };
+
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const value = copy[lang][el.dataset.i18n];
+    if (value !== undefined) el.textContent = value;
+  });
+
+  const omesgUrl = `https://omesg360.eu/leadership-360/?lang=${lang}`;
+  document.querySelectorAll('#omesg-overview-top, #omesg-overview-side').forEach(el => el.href = omesgUrl);
+
+  const switchLink = document.getElementById('language-switch');
+  const targetHost = lang === 'lt' ? '2rasi.com' : '2rasi.lt';
+  switchLink.textContent = lang === 'lt' ? 'EN' : 'LT';
+  switchLink.href = `https://${targetHost}${window.location.pathname}`;
+  switchLink.setAttribute('aria-label', lang === 'lt' ? 'Switch to English' : 'Perjungti į lietuvių kalbą');
+
+  document.title = lang === 'lt' ? 'Leadership 360° — 2rasi' : 'Leadership 360° — 2rasi';
+  const description = document.querySelector('meta[name="description"]');
+  if (description && lang === 'lt') description.setAttribute('content', 'Leadership 360° sujungia kelių vertintojų grįžtamąjį ryšį, fokusuotus 90 dienų veiksmus ir pakartotinį C2 matavimą.');
+})();
+</script>
 </body>
 </html>
