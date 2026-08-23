@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>WorkStyle 15 — LT pilotas · 2rasi</title>
+  <meta name="description" content="WorkStyle 15 v0.4 — 75 teiginių darbo stiliaus savirefleksijos pilotinė versija." />
+  <link rel="icon" href="../../assets/logo-2.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../tool-page.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./data.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+<header class="tool-header">
+  <a class="brand" href="../../">2rasi</a>
+  <nav><a href="../../#experiments">Experiments</a><a href="../../#about">About</a></nav>
+</header>
+
+<main class="ws-shell">
+  <section id="intro" class="ws-intro">
+    <p class="ws-eyebrow">Cognitive pilot · LT · v0.4</p>
+    <h1 class="ws-title">WorkStyle 15</h1>
+    <p class="ws-lead">75 teiginiai apie tai, kaip paprastai dirbi: kaip išlaikai kryptį, kuri struktūrą, prisitaikai, bendradarbiauji, darai įtaką ir valdai savo reakcijas.</p>
+
+    <div class="ws-meta">
+      <span>75 teiginiai</span>
+      <span>15 dimensijų</span>
+      <span>5 domenai</span>
+      <span>Likert 1–5</span>
+    </div>
+
+    <p>Vertink tai, kas <strong>paprastai būdinga tavo realiam darbui</strong>, o ne tai, kaip norėtum atrodyti. Čia nėra „gerų“ ir „blogų“ profilių — kiekviena tendencija turi situacijų, kuriose padeda, ir situacijų, kuriose gali trukdyti.</p>
+
+    <div class="ws-note">
+      <strong>Pilotinis privatumas.</strong> Ši versija nesiunčia atsakymų į serverį. Sesija saugoma tik tavo naršyklėje. Vardo ir el. pašto neprašome. Baigus galima atsisiųsti anoniminį JSON failą tyrimo analizei.
+    </div>
+
+    <p class="ws-note">Rezultatų indeksai rodo vietą teorinėje 0–100 skalėje. Jie nėra percentiliai ir nelygina tavęs su kitais žmonėmis.</p>
+
+    <p id="resumeInfo" aria-live="polite"></p>
+    <div class="ws-actions">
+      <button id="startBtn" class="ws-button primary" type="button">Pradėti naują sesiją</button>
+      <button id="resumeBtn" class="ws-button" type="button" hidden>Tęsti nebaigtą sesiją</button>
+      <button id="exportPartialBtn" class="ws-button ghost" type="button" hidden>Eksportuoti nebaigtą sesiją</button>
+    </div>
+  </section>
+
+  <section id="quiz" hidden aria-live="polite">
+    <div class="ws-quiz-top">
+      <button id="saveExitBtn" class="ws-button ghost" type="button">Išsaugoti ir išeiti</button>
+      <div class="ws-progress-track" aria-hidden="true"><div id="progressBar" class="ws-progress-bar"></div></div>
+      <span id="progressLabel" class="ws-progress-label">1 / 75</span>
+    </div>
+
+    <article class="ws-question-card">
+      <p id="itemId" class="ws-item-id">Teiginys 1</p>
+      <h2 id="questionText" class="ws-question"></h2>
+      <div id="scaleOptions" class="ws-scale" role="radiogroup" aria-label="Pasirink atsakymą nuo 1 iki 5"></div>
+      <p class="ws-keyhint">Klaviatūra: 1–5 pasirinkimui · Enter tęsti</p>
+    </article>
+
+    <div class="ws-quiz-actions">
+      <button id="prevBtn" class="ws-button ghost" type="button">Atgal</button>
+      <button id="nextBtn" class="ws-button primary" type="button" disabled>Toliau</button>
+    </div>
+  </section>
+
+  <section id="results" hidden>
+    <header class="ws-results-head">
+      <p class="ws-eyebrow">WorkStyle 15 · tavo profilis</p>
+      <h1>Ne tipas. Profilis.</h1>
+      <p class="ws-lead">Žemiau matai 15 atskirų darbo tendencijų. Pirmiausia žiūrėk į jų tarpusavio santykį, o ne į vieną aukščiausią skaičių.</p>
+      <p id="completionMeta" class="ws-meta"></p>
+      <div class="ws-disclaimer">Skaičiai yra teorinės skalės indeksai nuo 0 iki 100. Jie nėra normos, percentiliai ar kompetencijos įvertinimai. Aukščiau nėra savaime geriau, žemiau nėra savaime blogiau.</div>
+    </header>
+
+    <section class="ws-section">
+      <h2>Kas šiame profilyje ryškiausia</h2>
+      <p class="ws-section-intro">Tai tik palyginimas tavo paties profilio viduje, ne palyginimas su kitais žmonėmis.</p>
+      <div class="ws-profile-pairs">
+        <article class="ws-profile-box"><h3>Labiau išreikšta šiame profilyje</h3><div id="topProfile"></div></article>
+        <article class="ws-profile-box"><h3>Mažiau išreikšta šiame profilyje</h3><div id="lowProfile"></div></article>
+      </div>
+    </section>
+
+    <section class="ws-section">
+      <h2>5 domenai</h2>
+      <p class="ws-section-intro">Domenas yra trijų dimensijų vidurkis. Jis padeda orientuotis, bet neturėtų paslėpti skirtumų tarp jį sudarančių dimensijų.</p>
+      <div id="domainGrid" class="ws-domain-grid"></div>
+    </section>
+
+    <section class="ws-section">
+      <h2>15 dimensijų</h2>
+      <p class="ws-section-intro">Atverk kiekvieną dimensiją ir perskaityk abi puses: ką gali duoti stipresnė tendencija ir ką gali duoti silpnesnė.</p>
+      <div id="dimensionsList" class="ws-dimensions"></div>
+    </section>
+
+    <section class="ws-section">
+      <h2>Ar rezultatas buvo konkretus?</h2>
+      <p class="ws-section-intro">Šis klausimas yra pilotinės metodikos dalis. Jis padeda atskirti tikrai atpažįstamą profilį nuo pernelyg bendrų interpretacijų.</p>
+      <div class="ws-feedback">
+        <fieldset style="border:0;padding:0;margin:0">
+          <legend><strong>Kiek šis aprašymas atrodė būdingas būtent jums?</strong></legend>
+          <div class="ws-feedback-scale">
+            <label><input type="radio" name="specificity" value="1"> 1 · visai nebūdingas</label>
+            <label><input type="radio" name="specificity" value="2"> 2</label>
+            <label><input type="radio" name="specificity" value="3"> 3</label>
+            <label><input type="radio" name="specificity" value="4"> 4</label>
+            <label><input type="radio" name="specificity" value="5"> 5 · labai būdingas</label>
+          </div>
+        </fieldset>
+        <label for="feedbackComment"><strong>Kas atrodė labai tikslu, per daug bendra arba netikslu?</strong></label>
+        <textarea id="feedbackComment" placeholder="Nebūtina. Parašyk tik tai, kas realiai padėtų patobulinti metodiką."></textarea>
+        <div class="ws-actions">
+          <button id="saveFeedbackBtn" class="ws-button" type="button">Išsaugoti atsiliepimą</button>
+        </div>
+        <div id="feedbackStatus" class="ws-feedback-status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="ws-section">
+      <h2>Pilotiniai duomenys</h2>
+      <p class="ws-export-note">Eksportuojamas failas turi anoniminį sesijos ID, instrumentų versiją, item ID, atsakymus, scoring reikšmes, apytikrį pirmo atsakymo laiką, atsakymo keitimų skaičių, dimensijų/domenų indeksus ir tavo savanorišką komentarą. Vardo, el. pašto ar kontaktinių duomenų jame nėra.</p>
+      <div class="ws-actions">
+        <button id="exportBtn" class="ws-button primary" type="button">Atsisiųsti anoniminį JSON</button>
+        <button id="copyBtn" class="ws-button" type="button">Kopijuoti JSON</button>
+        <button id="restartBtn" class="ws-button ghost" type="button">Pradėti naują sesiją</button>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer class="tool-footer">
+  <span>2rasi · Look again.</span>
+  <a href="../../#experiments">← Back to experiments</a>
+</footer>
+</body>
+</html>
