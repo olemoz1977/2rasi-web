@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>WorkStyle v0.7 — 8 ašių cognitive prototipas · 2rasi</title>
+  <meta name="description" content="WorkStyle v0.7 cognitive prototipas: 34 dvipoliai darbo stiliaus klausimai be rezultatų profilio." />
+  <link rel="icon" href="../../assets/logo-2.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../tool-page.css" />
+  <style>
+    :root{--ws-border:rgba(255,255,255,.16);--ws-soft:rgba(255,255,255,.07);--ws-muted:rgba(255,255,255,.68)}
+    .ws-shell{width:min(920px,calc(100% - 28px));margin:0 auto;padding:40px 0 72px}
+    .ws-card{border:1px solid var(--ws-border);border-radius:24px;background:var(--ws-soft);padding:clamp(20px,4vw,38px);backdrop-filter:blur(12px)}
+    .ws-eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.62}
+    .ws-title{font-size:clamp(2.2rem,7vw,4.6rem);line-height:.95;margin:.35em 0 .25em}
+    .ws-lead{font-size:clamp(1.05rem,2.2vw,1.35rem);line-height:1.55;max-width:720px}
+    .ws-note{margin:18px 0;padding:15px 17px;border-left:3px solid currentColor;background:rgba(255,255,255,.045);line-height:1.55}
+    .ws-meta{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0 24px}.ws-meta span{border:1px solid var(--ws-border);border-radius:999px;padding:7px 11px;font-size:.86rem;opacity:.78}
+    .ws-button{appearance:none;border:1px solid var(--ws-border);border-radius:999px;background:transparent;color:inherit;padding:11px 17px;font:inherit;cursor:pointer}.ws-button.primary{background:currentColor;color:#111}.ws-button:disabled{opacity:.35;cursor:not-allowed}.ws-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+    .ws-top{display:grid;gap:10px;margin-bottom:18px}.ws-progress-track{height:4px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden}.ws-progress-bar{height:100%;width:0;background:currentColor;transition:width .2s ease}.ws-progress-row{display:flex;justify-content:space-between;font-size:.86rem;opacity:.65}
+    .ws-question{font-size:clamp(1.2rem,3vw,1.7rem);line-height:1.35;margin:.3em 0 1.15em}.ws-anchor-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}.ws-anchor{padding:16px;border:1px solid var(--ws-border);border-radius:18px;line-height:1.45;background:rgba(255,255,255,.035)}
+    .ws-scale{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:17px 0}.ws-scale button{min-height:50px;border:1px solid var(--ws-border);border-radius:14px;background:rgba(255,255,255,.035);color:inherit;font:inherit;cursor:pointer}.ws-scale button[aria-pressed="true"]{background:currentColor;color:#111}.ws-scale-labels{display:flex;justify-content:space-between;gap:18px;font-size:.82rem;opacity:.65}.ws-scale-labels span{max-width:44%}
+    .ws-special{display:grid;grid-template-columns:1fr;gap:8px;margin-top:20px}.ws-special button{appearance:none;border:1px solid var(--ws-border);border-radius:14px;background:transparent;color:inherit;padding:12px 14px;text-align:left;font:inherit;cursor:pointer}.ws-special button[aria-pressed="true"]{background:rgba(255,255,255,.13)}
+    .ws-unclear{margin-top:16px}.ws-unclear label{display:flex;gap:10px;align-items:flex-start;line-height:1.4;cursor:pointer}.ws-nav{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+    .ws-feedback{display:grid;gap:14px}.ws-feedback textarea{width:100%;min-height:130px;border:1px solid var(--ws-border);border-radius:16px;background:rgba(255,255,255,.04);color:inherit;padding:14px;font:inherit;resize:vertical}.ws-small{font-size:.86rem;opacity:.65;line-height:1.45}.ws-done{font-size:clamp(1.8rem,5vw,3.4rem);margin:.2em 0}.ws-hidden{display:none!important}
+    @media(min-width:720px){.ws-anchor-grid{grid-template-columns:1fr 1fr}.ws-special{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+<header class="tool-header">
+  <a class="brand" href="../../">2rasi</a>
+  <nav><a href="../../#experiments">Experiments</a><a href="../../#about">About</a></nav>
+</header>
+
+<main class="ws-shell">
+  <section id="intro" class="ws-card">
+    <p class="ws-eyebrow">Research prototype · LT · v0.7</p>
+    <h1 class="ws-title">WorkStyle</h1>
+    <p class="ws-lead">34 trumpos darbo situacijos. Kiekvienoje rodomi du galimi elgesio būdai. Čia tikriname ne „teisingą atsakymą“, o ar pačios dilemos tau atrodo aiškios ir realios.</p>
+    <div class="ws-meta"><span>34 situacijos</span><span>8 kandidatinės ašys</span><span>be rezultatų profilio</span><span>be laiko spaudimo</span></div>
+    <div class="ws-note"><strong>Kaip atsakyti.</strong> Pasirink vietą tarp dviejų kraštų pagal tai, kuris elgesys tau dažniau būdingas realiame darbe. Kraštai nėra „geras“ ir „blogas“.</div>
+    <div class="ws-note"><strong>Jei situacija per daug priklauso nuo aplinkybių</strong>, rinkis „Priklauso nuo situacijos“. Jei tokios situacijos neturėjai arba negali savęs įvertinti — rinkis „Neteko / negaliu įvertinti“.</div>
+    <div class="ws-note"><strong>Labai svarbu.</strong> Jei klausimas atrodo painus, dirbtinas arba primena kitą klausimą, pažymėk „Šitas klausimas neaiškus / dubliuojasi“.</div>
+    <div class="ws-note"><strong>Privatumas.</strong> Atsakymai nesiunčiami į serverį. Sesija saugoma tik tavo naršyklėje. Pabaigoje galima atsisiųsti anoniminį JSON.</div>
+    <p id="resumeInfo" class="ws-small" aria-live="polite"></p>
+    <div class="ws-actions"><button id="startBtn" class="ws-button primary" type="button">Pradėti naują</button><button id="resumeBtn" class="ws-button" type="button" hidden>Tęsti</button></div>
+  </section>
+
+  <section id="quiz" class="ws-hidden">
+    <div class="ws-top"><div class="ws-progress-row"><span id="progressText">1 / 34</span><span>cognitive prototipas</span></div><div class="ws-progress-track"><div id="progressBar" class="ws-progress-bar"></div></div></div>
+    <article class="ws-card">
+      <p id="itemLabel" class="ws-eyebrow">Situacija 1</p>
+      <h2 id="stem" class="ws-question"></h2>
+      <div class="ws-anchor-grid"><div id="leftAnchor" class="ws-anchor"></div><div id="rightAnchor" class="ws-anchor"></div></div>
+      <div id="scale" class="ws-scale" role="radiogroup" aria-label="Pasirink vietą tarp dviejų elgesio būdų"></div>
+      <div class="ws-scale-labels"><span>labiau kairysis elgesys</span><span style="text-align:right">labiau dešinysis elgesys</span></div>
+      <div class="ws-special"><button id="contextBtn" type="button" aria-pressed="false">↔ Priklauso nuo situacijos</button><button id="naBtn" type="button" aria-pressed="false">? Neteko / negaliu įvertinti</button></div>
+      <div class="ws-unclear"><label><input id="unclearCheck" type="checkbox" /> <span>Šitas klausimas neaiškus, dirbtinas arba primena kitą klausimą.</span></label></div>
+      <div class="ws-nav"><button id="prevBtn" class="ws-button" type="button">Atgal</button><button id="nextBtn" class="ws-button primary" type="button" disabled>Toliau</button></div>
+    </article>
+  </section>
+
+  <section id="done" class="ws-card ws-hidden">
+    <p class="ws-eyebrow">Baigta</p><h1 class="ws-done">Čia nėra rezultato. Tyčia.</h1>
+    <p class="ws-lead">Ši versija tikrina pačias WorkStyle ašis ir klausimų kalbą. Kol nežinome, ar jos iš tiesų veikia kaip atskiros dilemos, profilis būtų gražus, bet per ankstyvas.</p>
+    <div class="ws-feedback">
+      <label><strong>Kurios situacijos atrodė panašios viena į kitą arba kartojosi?</strong><textarea id="similarFeedback" placeholder="Pvz. 7 ir 19 atrodė apie tą patį... arba įrašyk mintį savais žodžiais."></textarea></label>
+      <label><strong>Kur buvo sunkiausia pasirinkti ne todėl, kad abu variantai tau tinka, o todėl, kad trūko konteksto?</strong><textarea id="contextFeedback" placeholder="Kas konkrečiai keistų tavo atsakymą?"></textarea></label>
+      <label><strong>Kas dar užkliuvo?</strong><textarea id="generalFeedback" placeholder="Dirbtina formuluotė, per ilga, vienas atsakymas atrodo geresnis ir pan."></textarea></label>
+    </div>
+    <div class="ws-actions"><button id="saveFeedbackBtn" class="ws-button" type="button">Išsaugoti komentarus</button><button id="exportBtn" class="ws-button primary" type="button">Atsisiųsti anoniminį JSON</button><button id="restartBtn" class="ws-button" type="button">Nauja sesija</button></div>
+    <p id="doneMeta" class="ws-small"></p>
+  </section>
+</main>
+
+<footer class="tool-footer"><span>2rasi · Look again.</span><a href="../../#experiments">← Back to experiments</a></footer>
+
+<script>
+(() => {
+  const VERSION = '0.7-cognitive-8axis-lt-a';
+  const STORAGE = 'workstyle-v07-cognitive-session';
+  const items = [
+    {id:'A1-01',axis:'structure',stem:'Kai pradedu naują, bet ne itin sudėtingą užduotį...',left:'Prieš pradėdamas susidėlioju pagrindinius žingsnius',right:'Pradedu nuo pirmo aiškaus žingsnio, o tolesnę eigą susidėlioju dirbdamas'},
+    {id:'C1-01',axis:'coordination',stem:'Kai užduotį galiu atlikti pats ir kitų pagalba nėra būtina...',left:'Dažniau imuosi jos savarankiškai',right:'Dažniau trumpai suderinu su kitais prieš judėdamas toliau'},
+    {id:'B3-01',axis:'scan',stem:'Kai išgirstu naują darbo idėją, kurios nauda dar neaiški...',left:'Pirmiausia ieškau, ką iš jos būtų galima išgauti',right:'Pirmiausia ieškau, kur ji gali sukelti problemų'},
+    {id:'C3-01',axis:'participation',stem:'Įprastoje grupės diskusijoje, kai turiu ką pridėti...',left:'Dažniau įsitraukiu gana greitai',right:'Dažniau palaukiu ir pasisakau tada, kai matau aiškią naudą'},
+    {id:'A2-01',axis:'method',stem:'Kai darbo būdas veikia pakankamai gerai, bet atsiranda naujas pasiūlymas...',left:'Pirmiau noriu ilgiau išlaikyti esamą būdą ir sukaupti daugiau patirties',right:'Esu linkęs gana greitai pabandyti pakeitimą ir pažiūrėti, ką jis duoda'},
+    {id:'B2-01',axis:'revision',stem:'Jau esu susidaręs pagrįstą nuomonę apie situaciją, bet atsiranda vienas naujas faktas, kuris su ja ne visai dera...',left:'Pirmiausia tikrinu, ar naujas faktas tikrai pakankamai svarbus keisti bendrą išvadą',right:'Pirmiausia iš naujo peržiūriu bendrą išvadą naujo fakto šviesoje'},
+    {id:'C2-01',axis:'disagreement',stem:'Kai kolegos nuomonė skiriasi nuo manosios, o sprendimą vis tiek reikia rasti...',left:'Pirmiausia aiškiai pasakau, kur tiksliai nesutinku',right:'Pirmiausia ieškau, dėl ko sutariame ir nuo to bandau derinti skirtumą'},
+    {id:'B1-01',axis:'scope',stem:'Kai darbe atsiranda nesklandumas, kurį galima pradėti spręsti iš karto...',left:'Pirmiausia imuosi konkrečios vietos, kurioje jis pasireiškė',right:'Pirmiausia pasižiūriu, su kokiomis kitomis darbo dalimis jis gali būti susijęs'},
+
+    {id:'A1-03',axis:'structure',stem:'Kai imuosi užduoties, kurią dariau tik kelis kartus...',left:'Prieš pradėdamas susikuriu aiškesnę darbo tvarką',right:'Leidžiu darbo tvarkai susiformuoti per pirmus bandymus'},
+    {id:'A2-02',axis:'method',stem:'Kai sąlygos šiek tiek pasikeičia, bet senas būdas vis dar veikia...',left:'Stengiuosi išlaikyti tą patį darbo būdą, kol tam yra pagrindo',right:'Pritaikau darbo būdą prie naujų sąlygų net jei senasis dar veikia'},
+    {id:'C1-03',axis:'coordination',stem:'Kai darbo užduotis aiški, o atsakomybė yra mano...',left:'Man natūraliau pačiam pasirinkti kelią ir veikti',right:'Man natūraliau aptarti kelią su kitais ir tik tada veikti'},
+    {id:'C3-02',axis:'participation',stem:'Kai grupėje prasideda neformalus pokalbis apie darbą...',left:'Dažniau aktyviai prisidedu prie pokalbio',right:'Dažniau daugiau klausau ir įsitraukiu pasirinktinai'},
+    {id:'B3-03',axis:'scan',stem:'Kai atsiranda galimybė sutaupyti laiko, bet kartu yra neaiškumų...',left:'Pirmiausia vertinu, kiek laiko realiai galėtume laimėti',right:'Pirmiausia vertinu, kokių naujų klaidų ar trikdžių galėtų atsirasti'},
+    {id:'C2-02',axis:'disagreement',stem:'Kai matau, kad siūlomas sprendimas man nepatinka, bet klausimas nėra kritinis...',left:'Dažniau tiesiai įvardiju savo prieštaravimą',right:'Dažniau bandau rasti priimtiną kompromisą be stipraus akcento į nesutarimą'},
+    {id:'B1-03',axis:'scope',stem:'Kai turiu nedaug laiko suprasti, kas vyksta...',left:'Susiaurinu dėmesį iki svarbiausios konkrečios vietos',right:'Trumpai peržvelgiu kelias susijusias vietas, kad matyčiau bendrą ryšį'},
+    {id:'B2-03',axis:'revision',stem:'Po kelių panašių atvejų jau matau tam tikrą dėsningumą, bet kitas atvejis į jį ne visai telpa...',left:'Dėsningumo nekeičiu, kol išimtis nepasikartoja',right:'Dėsningumą iš karto laikau mažiau tvirtu ir peržiūriu jo ribas'},
+
+    {id:'A1-04',axis:'structure',stem:'Kai darbo pradžioje dar neaiškios visos detalės...',left:'Vis tiek susidėlioju preliminarią struktūrą ir vėliau ją tikslinu',right:'Palieku daugiau atvirumo ir struktūrą kuriu tik aiškėjant detalėms'},
+    {id:'C1-06',axis:'coordination',stem:'Kai turiu idėją, kurią galiu pradėti tikrinti savarankiškai...',left:'Pirmiau pats pasitikrinu, ar ji verta dėmesio',right:'Pirmiau aptariu ją su kitu žmogumi ir tik tada tikrinu'},
+    {id:'A2-04',axis:'method',stem:'Kai komanda turi nusistovėjusį darbo būdą, o aplinkybės po truputį keičiasi...',left:'Vertinu, kad bendras būdas išliktų stabilus kuo ilgiau',right:'Vertinu, kad bendras būdas būtų koreguojamas kartu su aplinkybėmis'},
+    {id:'C2-04',axis:'disagreement',stem:'Kai kitas žmogus siūlo variantą, kuriam iš dalies nepritariu...',left:'Pirmiausia pasakau, kuri dalis man netinka',right:'Pirmiausia pasakau, kuri dalis man tinka, ir nuo jos bandau derėtis toliau'},
+    {id:'C3-06',axis:'participation',stem:'Kai grupė aptaria temą, apie kurią turiu minčių, bet jos nėra būtinos sprendimui...',left:'Dažniau vis tiek pasidalinu mintimi',right:'Dažniau pasilieku mintį sau, jei ji neprideda aiškios vertės'},
+    {id:'B3-04',axis:'scan',stem:'Kai planuojamas pokytis, apie kurį dar nėra daug duomenų...',left:'Pirmiausia susirašau galimus teigiamus rezultatus',right:'Pirmiausia susirašau galimas nesėkmės vietas'},
+    {id:'B2-05',axis:'revision',stem:'Kai nauja informacija tik iš dalies prieštarauja ankstesnei išvadai...',left:'Daugiau svorio palieku jau sukauptiems įrodymams',right:'Daugiau dėmesio skiriu tam, ką nauja informacija gali pakeisti'},
+    {id:'B1-06',axis:'scope',stem:'Kai pastebiu, kad kažkas darbe pasikeitė, bet poveikis dar nedidelis...',left:'Stebiu tą konkrečią vietą ir laukiu daugiau aiškaus signalo',right:'Patikrinu, ar panašių pokyčių nėra ir kitose susijusiose vietose'},
+
+    {id:'A1-05',axis:'structure',stem:'Kai žinau rezultatą, bet galiu laisvai pasirinkti darbo eigą...',left:'Man patogiau prieš pradžią turėti aiškesnę seką',right:'Man patogiau pradėti ir leisti sekai susidėlioti iš darbo eigos'},
+    {id:'A2-06',axis:'method',stem:'Kai turiu veikiančią rutiną, bet atsiranda naujas įrankis ar galimybė...',left:'Pirmiausia noriu įsitikinti, kad pokytis tikrai vertas keisti rutiną',right:'Pirmiausia noriu praktiškai išbandyti, kaip pokytis pakeistų rutiną'},
+    {id:'C1-07',axis:'coordination',stem:'Kai mano darbo dalis glaudžiai nesusijusi su kitų žmonių darbais...',left:'Man patogiau turėti daugiau savarankiškos erdvės',right:'Man patogiau vis tiek palaikyti dažnesnį derinimą su kitais'},
+    {id:'C2-07',axis:'disagreement',stem:'Kai dėl darbo būdo kyla nesutarimas tarp manęs ir kolegos...',left:'Pirmiausia tiesiai išsakau savo argumentą',right:'Pirmiausia bandau suprasti, koks variantas būtų priimtinas abiem'},
+    {id:'C3-07',axis:'participation',stem:'Kai susitikime keli žmonės kalba aktyviai...',left:'Man natūralu ieškoti vietos įsitraukti',right:'Man natūralu daugiau stebėti ir kalbėti tik esant aiškiam momentui'},
+
+    {id:'A1-06',axis:'structure',stem:'Kai ruošiuosi pasikartojančiai užduočiai, kuri kartais būna kitokia...',left:'Susikuriu bazinę tvarką, nuo kurios pradedu',right:'Kiekvieną kartą daugiau dėliojuosi pagal konkrečią situaciją'},
+    {id:'A2-07',axis:'method',stem:'Kai keli žmonės tą patį darbą atlieka šiek tiek skirtingai...',left:'Dažniau ieškau vieno stabilesnio būdo, kurį būtų galima kartoti',right:'Dažniau palieku daugiau vietos būdą pritaikyti prie žmogaus ar situacijos'},
+    {id:'C1-08',axis:'coordination',stem:'Kai galiu rinktis tarp individualaus ir bendro problemos nagrinėjimo...',left:'Dažniau pirmą variantą susidarau pats',right:'Dažniau pirmą variantą kuriu kartu su kitu žmogumi'},
+    {id:'C2-08',axis:'disagreement',stem:'Kai reikia pasakyti, kad kito žmogaus pasiūlymas man netinka...',left:'Sakau tai gana tiesiai, kad nebūtų neaiškumo',right:'Formuluoju atsargiau ir pirmiau ieškau būdo išlaikyti bendrą toną'},
+    {id:'C3-08',axis:'participation',stem:'Kai grupėje jaučiuosi patogiai...',left:'Paprastai tampu gana matomu pokalbio dalyviu',right:'Net ir tada dažniausiai lieku santūresniu pokalbio dalyviu'}
+  ];
+
+  const byId = id => document.getElementById(id);
+  const intro = byId('intro'), quiz = byId('quiz'), done = byId('done');
+  const startBtn = byId('startBtn'), resumeBtn = byId('resumeBtn'), resumeInfo = byId('resumeInfo');
+  const progressText = byId('progressText'), progressBar = byId('progressBar'), itemLabel = byId('itemLabel'), stem = byId('stem'), leftAnchor = byId('leftAnchor'), rightAnchor = byId('rightAnchor');
+  const scale = byId('scale'), contextBtn = byId('contextBtn'), naBtn = byId('naBtn'), unclearCheck = byId('unclearCheck'), prevBtn = byId('prevBtn'), nextBtn = byId('nextBtn');
+  const similarFeedback = byId('similarFeedback'), contextFeedback = byId('contextFeedback'), generalFeedback = byId('generalFeedback'), saveFeedbackBtn = byId('saveFeedbackBtn'), exportBtn = byId('exportBtn'), restartBtn = byId('restartBtn'), doneMeta = byId('doneMeta');
+
+  let session = null;
+  let enteredAt = 0;
+
+  function uuid(){return (crypto.randomUUID ? crypto.randomUUID() : 'ws-'+Date.now()+'-'+Math.random().toString(16).slice(2));}
+  function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;}
+  function save(){localStorage.setItem(STORAGE,JSON.stringify(session));}
+  function load(){try{return JSON.parse(localStorage.getItem(STORAGE)||'null')}catch{return null}}
+  function newSession(){return {schema:'workstyle-v07-cognitive-session-v1',version:VERSION,sessionId:uuid(),startedAt:new Date().toISOString(),completedAt:null,order:shuffle(items.map(x=>x.id)),index:0,responses:{},timingMs:{},feedback:{similar:'',context:'',general:''}}}
+  function currentItem(){const id=session.order[session.index];return items.find(x=>x.id===id)}
+  function recordTime(){if(!session||!enteredAt)return;const id=currentItem()?.id;if(!id)return;session.timingMs[id]=(session.timingMs[id]||0)+Math.max(0,Date.now()-enteredAt);enteredAt=Date.now();save()}
+  function responseFor(id){return session.responses[id]||{kind:null,value:null,unclear:false}}
+  function answered(r){return !!r.kind}
+
+  function renderScale(r){scale.innerHTML='';for(let v=1;v<=5;v++){const b=document.createElement('button');b.type='button';b.textContent=String(v);b.setAttribute('aria-pressed',r.kind==='scale'&&r.value===v?'true':'false');b.addEventListener('click',()=>{recordTime();session.responses[currentItem().id]={kind:'scale',value:v,unclear:unclearCheck.checked};save();render()});scale.appendChild(b)}}
+  function render(){
+    const it=currentItem();const r=responseFor(it.id);enteredAt=Date.now();
+    progressText.textContent=`${session.index+1} / ${session.order.length}`;progressBar.style.width=`${((session.index+1)/session.order.length)*100}%`;itemLabel.textContent=`Situacija ${session.index+1}`;stem.textContent=it.stem;leftAnchor.textContent=it.left;rightAnchor.textContent=it.right;
+    unclearCheck.checked=!!r.unclear;contextBtn.setAttribute('aria-pressed',r.kind==='context'?'true':'false');naBtn.setAttribute('aria-pressed',r.kind==='na'?'true':'false');renderScale(r);prevBtn.disabled=session.index===0;nextBtn.disabled=!answered(r);nextBtn.textContent=session.index===session.order.length-1?'Baigti':'Toliau';
+  }
+  function showQuiz(){intro.classList.add('ws-hidden');done.classList.add('ws-hidden');quiz.classList.remove('ws-hidden');render()}
+  function showDone(){quiz.classList.add('ws-hidden');intro.classList.add('ws-hidden');done.classList.remove('ws-hidden');similarFeedback.value=session.feedback.similar||'';contextFeedback.value=session.feedback.context||'';generalFeedback.value=session.feedback.general||'';const unclear=Object.values(session.responses).filter(r=>r.unclear).length;const contextual=Object.values(session.responses).filter(r=>r.kind==='context').length;const na=Object.values(session.responses).filter(r=>r.kind==='na').length;doneMeta.textContent=`Pažymėta neaiškių: ${unclear} · „Priklauso nuo situacijos“: ${contextual} · „Neteko / negaliu“: ${na}`}
+  function choose(kind){recordTime();session.responses[currentItem().id]={kind,value:null,unclear:unclearCheck.checked};save();render()}
+
+  contextBtn.addEventListener('click',()=>choose('context'));naBtn.addEventListener('click',()=>choose('na'));
+  unclearCheck.addEventListener('change',()=>{const it=currentItem();const r=responseFor(it.id);session.responses[it.id]={...r,unclear:unclearCheck.checked};save()});
+  prevBtn.addEventListener('click',()=>{recordTime();if(session.index>0){session.index--;save();render()}});
+  nextBtn.addEventListener('click',()=>{recordTime();const r=responseFor(currentItem().id);if(!answered(r))return;if(session.index<session.order.length-1){session.index++;save();render()}else{session.completedAt=new Date().toISOString();save();showDone()}});
+  startBtn.addEventListener('click',()=>{session=newSession();save();showQuiz()});
+  resumeBtn.addEventListener('click',()=>{session=load();if(session)showQuiz()});
+  saveFeedbackBtn.addEventListener('click',()=>{session.feedback={similar:similarFeedback.value.trim(),context:contextFeedback.value.trim(),general:generalFeedback.value.trim()};save();saveFeedbackBtn.textContent='Išsaugota';setTimeout(()=>saveFeedbackBtn.textContent='Išsaugoti komentarus',900)});
+  exportBtn.addEventListener('click',()=>{session.feedback={similar:similarFeedback.value.trim(),context:contextFeedback.value.trim(),general:generalFeedback.value.trim()};save();const axisHiddenItems=items.map(({id,axis})=>({id,axis}));const payload={...session,itemMap:axisHiddenItems,exportedAt:new Date().toISOString()};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`workstyle-v07-cognitive-${session.sessionId}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+  restartBtn.addEventListener('click',()=>{localStorage.removeItem(STORAGE);location.reload()});
+
+  const existing=load();
+  if(existing&&existing.version===VERSION&&!existing.completedAt){resumeBtn.hidden=false;resumeInfo.textContent=`Rasta nebaigta sesija: atsakyta ${Object.keys(existing.responses||{}).length} iš ${existing.order?.length||34}.`}
+  if(existing&&existing.version===VERSION&&existing.completedAt){session=existing;intro.classList.add('ws-hidden');showDone()}
+})();
+</script>
+</body>
+</html>
