@@ -39,6 +39,33 @@ wrangler deploy
 
 Do not commit a generated `wrangler.toml` if it later contains environment-specific details that should remain private. The example file is safe to keep in the public repository.
 
+## GitHub deployment helper
+
+A manual-only GitHub Actions workflow now exists at:
+
+`.github/workflows/workstyle-pilot-worker.yml`
+
+It does not run on pushes. It requires these repository secrets before a manual run:
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+- `WORKSTYLE_D1_DATABASE_ID`
+
+The workflow builds an ephemeral `wrangler.jsonc`, validates it, applies `schema.sql` to the configured D1 database and deploys the Worker. The generated config is not committed.
+
+The D1 database itself remains a one-time Cloudflare account resource and must exist before the workflow is run.
+
+## Prepared frontend intake
+
+The explicit-submit client is prepared but intentionally not loaded by the live cognitive form yet:
+
+- `tools/workstyle15/v07-intake-config.js` — disabled activation config;
+- `tools/workstyle15/v07-intake-client.js` — explicit `Pateikti piloto duomenis` flow with retry and JSON fallback messaging.
+
+When activated, the client reads the same LT-E browser session that JSON export uses, requires a completed 34-response session, sends one payload, and stores only the returned receipt state locally. Repeated submission is safe because the Worker upserts by `sessionId`.
+
+Do not set `enabled: true` or load the intake client from `v07-cognitive.html` until the activation gate below has passed.
+
 ## Frontend activation gate
 
 Do not add automatic submission to `v07-cognitive.html` until all of these are true:
@@ -54,6 +81,13 @@ Recommended frontend flow after activation:
 `Finish -> optional feedback -> Submit pilot data -> received confirmation`
 
 The form should not silently submit a research session without a clear participant action during the cognitive-pilot phase.
+
+Activation should be a small, auditable change:
+1. set the verified `POST /v1/session` URL in `v07-intake-config.js`;
+2. set `enabled: true`;
+3. load `v07-intake-config.js` and `v07-intake-client.js` from `v07-cognitive.html`;
+4. keep the JSON export button visible;
+5. repeat the mobile-first live smoke check before invitations.
 
 ## Data model
 
