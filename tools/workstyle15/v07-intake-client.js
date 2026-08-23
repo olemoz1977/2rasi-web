@@ -40,14 +40,13 @@
   const expectedResponses = Number(cfg.expectedResponses || content.items.length || 34);
   const storageKey = cfg.storageKey || 'workstyle-v07-cognitive-session-e';
   const requestTimeoutMs = Number(cfg.requestTimeoutMs || 15000);
-  const itemMap = Object.fromEntries(
-    content.items.map(item => [item.id, {
-      axis: item.axis,
-      stem: item.stem,
-      left: item.left,
-      right: item.right,
-    }]),
-  );
+  const itemMap = content.items.map(({ id, axis, stem, left, right }) => ({
+    id,
+    axis,
+    stem,
+    left,
+    right,
+  }));
 
   function readSession() {
     try {
@@ -79,8 +78,8 @@
 
     return {
       ...session,
-      submittedAt: new Date().toISOString(),
       itemMap,
+      submittedAt: new Date().toISOString(),
     };
   }
 
