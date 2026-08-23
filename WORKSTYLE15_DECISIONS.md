@@ -59,48 +59,70 @@ Current architecture:
 
 This remains a design hypothesis pending pilot evidence.
 
-## Independent blind review
+## Independent blind reviews
 
-External blind review was performed on the v0.1 package before provenance was revealed.
+Two completed blind reviews were run independently against the same v0.1 review package.
 
-First-pass verdict:
-- **READY AFTER MINOR REVISIONS**;
-- confidence **72/100**;
-- overall construct-overlap judgment **Normal**.
+### Reviewer A — Claude
+- verdict: **READY AFTER MINOR REVISIONS**;
+- confidence: **72/100**;
+- overall construct-overlap judgment: **Normal**;
+- after the ADEPT-like provenance reveal, Claude explicitly stated that the verdict **does not change**;
+- Claude judged WorkStyle 15 sufficiently independent to proceed as its own pre-pilot instrument with provenance documented transparently.
 
-The reviewer identified the main empirical watch-outs as:
-- Social Energy vs Persuasive Influence vs Assertive Communication;
-- Constructive Outlook vs Emotional Regulation;
+### Reviewer B — Grok
+- verdict: **READY AFTER MINOR REVISIONS**;
+- confidence: **78/100**;
+- overall overlap judgment: normal/expected for a workplace self-reflection instrument.
+
+Gemini was considered as another possible reviewer but did not complete a review because it could not reliably read the supplied review file. Gemini is therefore **not counted as review evidence**.
+
+Strong two-review convergence:
+- retain the 5×3 architecture for pilot;
+- no major structural redesign before data;
+- five items per dimension is a defensible pilot starting point;
+- equal weighting is reasonable before evidence exists;
+- 0–100 values are theoretical scale-position indexes only, not norms or percentiles;
+- preserve the non-evaluative interpretation philosophy;
+- show 15 dimensions before five domain summaries;
+- keep PAEI/DISC as optional qualitative correspondence lenses only;
+- do not introduce numeric PAEI/DISC scoring in the first pilot.
+
+Shared empirical watch-outs:
 - Achievement Drive vs Goal Persistence;
+- Social Energy vs Persuasive Influence / Assertive Communication;
+- Constructive Outlook vs Emotional Regulation;
 - Learning Orientation vs Reflective Self-Awareness.
 
-Social Energy received the weakest distinctness judgment and must be tested rather than assumed to be independent.
+Important disagreement:
+- Claude rated Social Energy **Weak** and questioned whether it is narrow-band extraversion/moderator;
+- Grok rated Social Energy **Acceptable** and judged the Influence domain coherent.
 
-After the historical ADEPT-like provenance was revealed, the reviewer explicitly stated that the original verdict **does not change** and judged WorkStyle 15 v0.1 sufficiently independent to proceed as its own pre-pilot instrument, with provenance documented transparently.
+Decision: **KEEP Social Energy for pilot and test discriminant value empirically.**
 
-Full decision resolution: `WORKSTYLE15_EXTERNAL_REVIEW_RESOLUTION.md`.
+Reverse-item disagreement:
+- Claude suggested moving toward two reverse items per dimension;
+- Grok judged the one-reverse-per-dimension design acceptable and flagged only PER-05 for polishing.
+
+Decision: **do not force a 2:3 reverse/direct ratio.** Keep one natural reverse item per dimension and examine method effects in data.
+
+Full consensus record: `WORKSTYLE15_TWO_REVIEW_CONSENSUS.md`.
 
 ## Current item bank
 
 Preferred pre-pilot content is now:
-- `WORKSTYLE15_V02_LT_ITEMS.md`
+- `WORKSTYLE15_V03_LT_ITEMS.md`
 - 75 items = 15 dimensions × 5 items
 - 60 direct-key + 15 reverse-key
 - Likert 1–5
 - reverse scoring `6 - response`
 
-V0.1 is preserved as the blind-review baseline.
+Version history:
+- v0.1 = first blind-review baseline;
+- v0.2 = targeted Claude-review revisions;
+- v0.3 = v0.2 plus four low-risk wording refinements independently raised by Grok: PER-05, SYS-01, INF-01, REF-01.
 
-V0.2 incorporates targeted review revisions, including:
-- behaviour/frequency wording instead of selected ability claims;
-- clearer Goal Persistence wording;
-- stronger separation between Learning Orientation and Reflective Self-Awareness;
-- stronger separation between Emotional Regulation and Constructive Outlook;
-- less socially undesirable Empathic Attention reverse wording;
-- simpler Reflective Self-Awareness reverse wording;
-- workplace-anchored Social Energy item wording.
-
-Do not add a second reverse item per dimension merely to force a numerical R/D ratio before evidence shows a need. The current 15 reverse items are sufficient for a pilot comparison of direct/reverse behaviour.
+Do not shorten to 60 until pilot evidence supports removal.
 
 ## Scoring
 
@@ -193,7 +215,7 @@ Small cognitive pilots are not formal psychometric validation. Do not present fa
 
 ## Immediate gates before coding
 
-1. Final LT cognitive/language review of `WORKSTYLE15_V02_LT_ITEMS.md`.
+1. Final LT cognitive/language review of `WORKSTYLE15_V03_LT_ITEMS.md`.
 2. Freeze public LT display labels and item wording as a pilot version.
 3. Confirm the existing balanced item order remains valid because item IDs are unchanged.
 4. Create machine-readable item specification for implementation.
