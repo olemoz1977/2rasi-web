@@ -1,8 +1,8 @@
 # WorkStyle pilot intake worker
 
-Status: PREPARED, NOT CONNECTED TO THE LIVE FORM.
+Status: ACTIVATION-READY, FRONTEND STILL GATED UNTIL VERIFIED DEPLOYMENT.
 
-Purpose: receive anonymous WorkStyle cognitive-pilot sessions from `2rasi.com` and store them in Cloudflare D1 once the pilot moves beyond manual JSON exchange.
+Purpose: receive WorkStyle cognitive-pilot sessions from `2rasi.com` / `2rasi.lt` and store them in Cloudflare D1 once the verified intake endpoint is activated.
 
 ## Current boundary
 
@@ -17,77 +17,72 @@ Cloudflare infrastructure may retain operational request logs depending on accou
 - `GET /health`
 - `POST /v1/session`
 
-Allowed browser origins are currently:
+Allowed browser origins:
 - `https://2rasi.com`
 - `https://www.2rasi.com`
+- `https://2rasi.lt`
+- `https://www.2rasi.lt`
 
 The worker does not store request IP addresses in D1.
 
-## D1
+## GitHub deployment and activation
 
-Create a D1 database, then apply `schema.sql`.
-
-Example Wrangler workflow:
-
-```bash
-wrangler d1 create workstyle-pilot
-cp wrangler.toml.example wrangler.toml
-# paste the returned database_id into wrangler.toml
-wrangler d1 execute workstyle-pilot --file=schema.sql --remote
-wrangler deploy
-```
-
-Do not commit a generated `wrangler.toml` if it later contains environment-specific details that should remain private. The example file is safe to keep in the public repository.
-
-## GitHub deployment helper
-
-A manual-only GitHub Actions workflow now exists at:
+The manual-only workflow is:
 
 `.github/workflows/workstyle-pilot-worker.yml`
 
-It does not run on pushes. It requires these repository secrets before a manual run:
+Run it from `hero-webgl`.
+
+It requires only these repository secrets:
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
-- `WORKSTYLE_D1_DATABASE_ID`
 
-The workflow builds an ephemeral `wrangler.jsonc`, validates it, applies `schema.sql` to the configured D1 database and deploys the Worker. The generated config is not committed.
+The Cloudflare token must be able to manage Workers Scripts and D1 for the account.
 
-The D1 database itself remains a one-time Cloudflare account resource and must exist before the workflow is run.
+The workflow deliberately performs the activation gate itself:
 
-## Prepared frontend intake
+1. Find an existing `workstyle-pilot` D1 database or create it.
+2. Build an ephemeral Wrangler config with the resolved D1 id.
+3. Dry-run the Worker bundle.
+4. Apply `schema.sql` to remote D1.
+5. Deploy `workstyle-pilot-intake` to `workers.dev`.
+6. Verify `GET /health`.
+7. Verify CORS from `https://2rasi.lt`.
+8. POST `test-session-v3.json`.
+9. Verify that the synthetic session reached D1.
+10. Delete the synthetic row so pilot data stays clean.
+11. If `activate_frontend=true`, write the verified `/v1/session` URL into `tools/workstyle15/v07-intake-config.js`, set `enabled: true`, commit and push that activation to `hero-webgl`.
 
-The explicit-submit client is prepared but intentionally not loaded by the live cognitive form yet:
+Because Hostinger autodeploys `hero-webgl`, the activation commit then reaches the live 2rasi site through the normal publish path.
 
-- `tools/workstyle15/v07-intake-config.js` — disabled activation config;
-- `tools/workstyle15/v07-intake-client.js` — explicit `Pateikti piloto duomenis` flow with retry and JSON fallback messaging.
+No generated Wrangler config or D1 id is committed.
 
-When activated, the client reads the same LT-E browser session that JSON export uses, requires a completed 34-response session, sends one payload, and stores only the returned receipt state locally. Repeated submission is safe because the Worker upserts by `sessionId`.
+## Frontend intake
 
-Do not set `enabled: true` or load the intake client from `v07-cognitive.html` until the activation gate below has passed.
+The LT-E form now loads both intake files, but the config remains disabled until the deployment workflow passes every backend check:
 
-## Frontend activation gate
+- `tools/workstyle15/v07-intake-config.js`
+- `tools/workstyle15/v07-intake-client.js`
 
-Do not add automatic submission to `v07-cognitive.html` until all of these are true:
+With `enabled: false`, these files do not change the live questionnaire UI.
 
-1. Worker deployment exists and `/health` responds.
-2. D1 insert has been manually verified with a synthetic session.
-3. CORS from `https://2rasi.com` is verified.
-4. Participant-facing privacy copy is updated from `local only` to `submitted for pilot analysis with consent`.
-5. JSON export remains available as fallback.
+After verified activation, the completion flow becomes:
 
-Recommended frontend flow after activation:
+`Finish -> optional feedback -> Pateikti piloto duomenis -> Ačiū, sesija gauta`
 
-`Finish -> optional feedback -> Submit pilot data -> received confirmation`
+The participant still makes an explicit submission choice. The cognitive pilot does not silently transmit a completed research session.
 
-The form should not silently submit a research session without a clear participant action during the cognitive-pilot phase.
+The client:
+- requires a completed 34-response LT-E session;
+- sends the same local session used by JSON export;
+- omits browser credentials from the cross-origin request;
+- uses a request timeout and retry path;
+- stores only the returned submission receipt in the local session;
+- keeps JSON export visible as fallback;
+- treats repeated submission as safe because the Worker upserts by `sessionId`.
 
-Activation should be a small, auditable change:
-1. set the verified `POST /v1/session` URL in `v07-intake-config.js`;
-2. set `enabled: true`;
-3. load `v07-intake-config.js` and `v07-intake-client.js` from `v07-cognitive.html`;
-4. keep the JSON export button visible;
-5. repeat the mobile-first live smoke check before invitations.
+When active, participant-facing privacy copy says that answers, marked ambiguities and active response time are submitted for pilot analysis if the participant chooses to submit. It does not claim absolute anonymity.
 
 ## Data model
 
@@ -97,6 +92,20 @@ D1 stores both:
 
 Stored metadata includes version/language, completion state, response count, active first-response time, break time, optional broad role context and cognitive issue counts.
 
+## Manual Wrangler fallback
+
+If GitHub Actions is unavailable, the same worker can still be deployed manually:
+
+```bash
+wrangler d1 create workstyle-pilot
+cp wrangler.toml.example wrangler.toml
+# paste the returned database_id into wrangler.toml
+wrangler d1 execute workstyle-pilot --file=schema.sql --remote
+wrangler deploy
+```
+
+Do not commit a generated `wrangler.toml` if it contains environment-specific details.
+
 ## Abuse / scale boundary
 
-This is adequate for a small invited pilot. Before a broad public launch add rate limiting / abuse controls and a retention policy. Do not treat this worker as production-grade hiring-assessment infrastructure.
+This is adequate for a small invited cognitive pilot. Before a broad public launch add rate limiting / abuse controls and a retention policy. Do not treat this worker as production-grade hiring-assessment infrastructure.
