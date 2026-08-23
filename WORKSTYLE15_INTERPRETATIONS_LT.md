@@ -1,402 +1,359 @@
-# WorkStyle 15 — LT rezultatų interpretacijų juodraštis
+# WorkStyle 15 — LT rezultatų interpretacijos v0.1
 
-Status: WORKING DRAFT / PRE-CODE
+Status: PRE-PILOT / CONTENT DRAFT
 Last updated: 2026-08-23
-Basis: recovered 150-item Lithuanian source bank from the Microsoft Forms / `ADEPT15.xlsx` implementation.
 
-## Interpretation principles
+## Interpretavimo taisyklė
 
-WorkStyle 15 describes tendencies, not fixed personality types.
+WorkStyle 15 nerodo, kad aukštas balas yra geras, o žemas — blogas. Rezultatas aprašo, **kurios darbo tendencijos žmogaus profilyje yra labiau ar mažiau išreikštos** ir kokį trade-off jos gali turėti.
 
-For every dimension:
-- a higher score is not automatically better;
-- a lower score is not automatically worse;
-- both ends of a dimension can be useful in different work contexts;
-- risk appears when a tendency is overused, underused, or mismatched with the situation;
-- result copy should say `linkstate`, `dažniau`, `gali būti`, `verta stebėti`, not `jūs esate`.
-
-Until a proper normative sample exists, scores are positions on the WorkStyle response scale, not percentiles and not comparisons with other people.
-
-Public result should first show the pattern, then help the user observe their own behaviour.
+Kol nėra norminės imties:
+- indeksai nėra percentiliai;
+- negalima sakyti „aukščiau už X % žmonių“;
+- vartoti kalbą „labiau būdinga tavo profilyje“, „mažiau būdinga“, „verta pastebėti“.
 
 ---
 
-## 1. Kryptingumas
+# DOMAIN 1 — EXECUTION / ĮGYVENDINIMAS
 
-**Ką ši dimensija apima**  
-Polinkį išlaikyti dėmesį ties tikslu, laikytis prioritetų, užbaigti pradėtus darbus ir tęsti pastangas susidūrus su sunkumais ar spaudimu.
+Aprašo, kaip žmogus paverčia ketinimą nuosekliu veiksmu: išlaiko kryptį, kuria tvarką ir kelia sau rezultato kartelę.
 
-**Kai kryptingumas aukštesnis**  
-Gali būti lengviau išlaikyti fokusą, užbaigti pradėtą darbą ir neatsisakyti rezultato tada, kai atsiranda kliūčių. Tokia kryptis ypač naudinga ten, kur reikia ištvermės ir aiškios atsakomybės už galutinį rezultatą.
+## 1. Kryptingumas / Goal Persistence
 
-**Ką verta stebėti**  
-Didelis atkaklumas kartais gali virsti per ilgu laikymusi pasirinkto kelio. Tikslas gali likti teisingas, nors būdas jį pasiekti jau nebe pats geriausias.
+**Ką matuoja**  
+Polinkį išlaikyti dėmesį ties svarbiu tikslu ir grįžti prie jo po kliūčių ar nesėkmingų bandymų.
 
-**Kai kryptingumas žemesnis**  
-Gali būti lengviau persiorientuoti, sustoti ar pakeisti prioritetą, kai situacija pasikeičia. Tai gali padėti aplinkoje, kurioje daug kintančių užduočių ir ne visus pradėtus darbus verta užbaigti bet kokia kaina.
+**Kai ši tendencija labiau išreikšta**  
+Tikėtina, kad lengviau išlaikai prioritetą, užbaigi ilgiau trunkančius darbus ir neatsisakai tikslo po pirmos kliūties.
 
-**Ką verta stebėti**  
-Ar naujos užduotys ir trikdžiai pernelyg lengvai nustumia tai, kas iš tikrųjų svarbiausia?
+**Kai ši tendencija mažiau išreikšta**  
+Gali greičiau persiorientuoti, paleisti užduotį, kuri nebeatrodo verta pastangų, ir neįstrigti viename tiksle.
 
-**Refleksijos klausimas**  
-Kai darbas stringa, ar dažniau keičiu būdą, ar pradedu abejoti pačiu tikslu?
+**Gali padėti**  
+Ilgalaikėse užduotyse, spaudžiant terminams, kai rezultatui reikia kelių bandymų.
 
----
+**Verta stebėti**  
+Atkaklumas gali virsti užsispyrimu, o greitas persijungimas — per ankstyvu atsitraukimu.
 
-## 2. Struktūra
+**Pastebėk**  
+Kada tęsi todėl, kad tikslas vis dar svarbus, o kada tik todėl, kad jau daug investavai?
 
-**Ką ši dimensija apima**  
-Polinkį planuoti, organizuoti darbą, laikytis terminų ir nustatytos tvarkos, paskirstyti laiką ir skirti dėmesio detalėms.
+## 2. Struktūra / Work Structure
 
-**Kai struktūra aukštesnė**  
-Aiškus planas, tvarka ir sistema gali padėti sumažinti neapibrėžtumą, išlaikyti terminus ir užtikrinti pakartojamą darbo kokybę.
+**Ką matuoja**  
+Polinkį planuoti, organizuoti informaciją ir kurti aiškią darbo seką.
 
-**Ką verta stebėti**  
-Tvarka gali tapti savitiksle. Kartais procesas, kuris vakar padėjo, šiandien gali lėtinti sprendimą arba trukdyti eksperimentuoti.
+**Kai labiau išreikšta**  
+Dažniau kuri sistemas, planuoji kitą žingsnį ir mažiau pasikliauji vien atmintimi ar improvizacija.
 
-**Kai struktūra žemesnė**  
-Gali būti lengviau veikti be iš anksto aprašyto plano, improvizuoti ir prisitaikyti prie situacijos. Tai gali būti vertinga neapibrėžtoje ar kūrybinėje aplinkoje.
+**Kai mažiau išreikšta**  
+Gali lengviau veikti spontaniškai ir neapkrauti darbo perteklinėmis procedūromis.
 
-**Ką verta stebėti**  
-Ar laisvė ir lankstumas kartais nesukuria praleistų terminų, neaiškių prioritetų ar bereikalingo darbo kartojimo?
+**Gali padėti**  
+Sudėtinguose, pasikartojančiuose ar nuo koordinavimo priklausančiuose procesuose.
 
-**Refleksijos klausimas**  
-Kada struktūra man padeda, o kada ją palaikau vien todėl, kad taip įprasta?
+**Verta stebėti**  
+Tvarka gali tapti biurokratija, o lanksti improvizacija — chaotiškumu.
 
----
+**Pastebėk**  
+Ar tavo sistema padeda darbui judėti, ar darbas jau pradeda tarnauti sistemai?
 
-## 3. Bendradarbiavimas
+## 3. Pasiekimų siekis / Achievement Drive
 
-**Ką ši dimensija apima**  
-Polinkį dirbti kartu, dalintis informacija, klausytis kitų idėjų, padėti kolegoms, siekti bendrų tikslų ir rūpintis įtraukimu bei komandos atmosfera.
+**Ką matuoja**  
+Polinkį kelti sau aukštesnius tikslus ir ieškoti galimybės pagerinti jau priimtiną rezultatą.
 
-**Kai bendradarbiavimas aukštesnis**  
-Gali būti natūraliau įtraukti kitus, dalintis informacija ir ieškoti sprendimo, kurį komanda gali įgyvendinti kartu.
+**Kai labiau išreikšta**  
+Tikėtina, kad renkiesi ambicingesnius iššūkius ir sunkiau pasitenkini vien minimaliu rezultatu.
 
-**Ką verta stebėti**  
-Siekis išlaikyti bendrumą kartais gali sulėtinti sprendimą arba padaryti sunkiau aiškiai nesutikti, kai grupės nuomonė nėra geriausias pasirinkimas.
+**Kai mažiau išreikšta**  
+Gali lengviau priimti „pakankamai gerą“ rezultatą, saugoti energiją ir nekurti nereikalingos konkurencijos su savimi.
 
-**Kai bendradarbiavimas žemesnis**  
-Gali būti lengviau veikti savarankiškai, greitai priimti individualų sprendimą ir nepriklausyti nuo grupės pritarimo.
+**Gali padėti**  
+Augimo, transformacijos ir aukštų standartų aplinkoje.
 
-**Ką verta stebėti**  
-Ar savarankiškumas kartais nevirsta informacijos izoliacija arba situacija, kurioje kiti įtraukiami per vėlai?
+**Verta stebėti**  
+Siekiamybė gali virsti nuolatiniu nepasitenkinimu, o pasitenkinimas rezultatu — per ankstyvu sustojimu.
 
-**Refleksijos klausimas**  
-Kada kitų įtraukimas pagerina mano sprendimą, o kada tik atideda atsakomybės prisiėmimą?
-
----
-
-## 4. Jautrumas
-
-**Ką ši dimensija apima**  
-Polinkį pastebėti kitų emocijas ir nuotaikos pokyčius, atsižvelgti į žmonių reakcijas, rodyti empatiją ir rūpintis emociniu klimatu bei žmonių gerove darbe.
-
-**Kai jautrumas aukštesnis**  
-Gali būti lengviau pastebėti tai, kas nepasakoma tiesiai, suprasti žmonių reakcijas ir pritaikyti bendravimą prie situacijos.
-
-**Ką verta stebėti**  
-Kitų emocijos gali pradėti daryti per didelę įtaką sprendimui. Kartais nepatogus sprendimas vis tiek gali būti reikalingas.
-
-**Kai jautrumas žemesnis**  
-Gali būti lengviau atsiriboti nuo emocinio fono ir susitelkti į užduotį, faktus ar sprendimo logiką.
-
-**Ką verta stebėti**  
-Ar svarbūs žmonių signalai nepastebimi vien todėl, kad jie nėra išsakomi tiesiogiai?
-
-**Refleksijos klausimas**  
-Kai žmogus nesako, kad turi problemą, kiek jo elgesio pokytis vis tiek keičia mano sprendimą?
+**Pastebėk**  
+Kada aukštesnė kartelė kuria vertę, o kada tik padidina kainą?
 
 ---
 
-## 5. Nuolankumas
+# DOMAIN 2 — ADAPTATION / PRISITAIKYMAS
 
-**Ką ši dimensija apima**  
-Polinkį pripažinti klaidas, priimti kritiką, vertinti kitų indėlį, nesieti rezultato vien su asmeniniu pripažinimu ir būti atviram kitų idėjoms.
+Aprašo, kaip žmogus supranta sudėtingumą, keičia požiūrį gavęs naujos informacijos ir mokosi iš patirties.
 
-**Kai nuolankumas aukštesnis**  
-Gali būti lengviau pripažinti, kad nežinai, priimti korekciją ir suteikti erdvės kitų kompetencijai. Tai padeda mokytis ir mažina poreikį visada būti teisiam.
+## 4. Sisteminis mąstymas / Systems Thinking
 
-**Ką verta stebėti**  
-Per didelis pasitraukimas į foną gali sumažinti tavo matomumą, įtaką arba norą aiškiai apginti savo indėlį ir poziciją.
+**Ką matuoja**  
+Polinkį ieškoti priežasčių, ryšių, platesnių dėsningumų ir sprendimo pasekmių kitose sistemos vietose.
 
-**Kai nuolankumas žemesnis**  
-Gali būti natūraliau parodyti savo indėlį, konkuruoti dėl pripažinimo ir tvirčiau laikytis savo pozicijos.
+**Kai labiau išreikšta**  
+Dažniau matai ne tik atskirą problemą, bet ir jos ryšį su procesu, aplinka ar ilgalaikėmis pasekmėmis.
 
-**Ką verta stebėti**  
-Ar poreikis įrodyti savo vertę kartais netrukdo priimti geresnės kito žmogaus idėjos?
+**Kai mažiau išreikšta**  
+Gali greičiau susitelkti į konkretų faktą ar praktinį sprendimą ir neperkomplikuoti paprastos situacijos.
 
-**Refleksijos klausimas**  
-Kaip reaguoju, kai geriausias sprendimas ateina ne iš manęs?
+**Gali padėti**  
+Kai problemos kartojasi, turi daug priežasčių ar vienas sprendimas veikia kelias proceso dalis.
 
----
+**Verta stebėti**  
+Platus vaizdas gali sulėtinti veiksmą, o lokalus sprendimas — perkelti problemą kitur.
 
-## 6. Konceptualus mąstymas
+**Pastebėk**  
+Ar šiai problemai reikia gilesnio sistemos supratimo, ar pakanka sutvarkyti konkretų atvejį?
 
-**Ką ši dimensija apima**  
-Polinkį mąstyti abstrakčiai ir strategiškai, ieškoti naujų požiūrio kampų, matyti ryšius, modeliuoti situacijas ir įsivaizduoti ateities galimybes.
+## 5. Prisitaikymas / Adaptability
 
-**Kai konceptualus mąstymas aukštesnis**  
-Gali būti lengviau atsitraukti nuo atskiros problemos, pamatyti platesnį vaizdą, galimus ryšius ir alternatyvias ateities kryptis.
+**Ką matuoja**  
+Polinkį keisti planą ar darbo būdą, kai pasikeičia faktai ir aplinkybės.
 
-**Ką verta stebėti**  
-Idėjos gali tapti įdomesnės už įgyvendinimą. Kartais paprastas praktiškas sprendimas yra vertingesnis už dar vieną modelį ar viziją.
+**Kai labiau išreikšta**  
+Tikėtina, kad lengviau atnaujini veiksmų planą ir nepriimi pakeitimo kaip asmeninės nesėkmės.
 
-**Kai konceptualus mąstymas žemesnis**  
-Gali būti natūraliau remtis konkrečia informacija, tuo, kas patikrinta, ir spręsti apčiuopiamą dabarties problemą.
+**Kai mažiau išreikšta**  
+Gali suteikti daugiau stabilumo, nuoseklumo ir neatsisakyti gero plano dėl kiekvienos naujos aplinkybės.
 
-**Ką verta stebėti**  
-Ar susitelkimas į tai, kas jau žinoma ir praktiška, neapsunkina naujų galimybių pastebėjimo?
+**Gali padėti**  
+Neapibrėžtoje, greitai besikeičiančioje aplinkoje.
 
-**Refleksijos klausimas**  
-Kada man reikia dar vienos idėjos, o kada jau reikia išbandyti tai, ką žinau?
+**Verta stebėti**  
+Lankstumas gali virsti blaškymusi, o nuoseklumas — nelankstumu.
 
----
+**Pastebėk**  
+Ką šioje situacijoje reikia keisti, o ką svarbu išlaikyti?
 
-## 7. Lankstumas
+## 6. Mokymosi orientacija / Learning Orientation
 
-**Ką ši dimensija apima**  
-Polinkį prisitaikyti prie pokyčių, keisti planą ar strategiją, priimti naujus darbo būdus ir veikti skirtingomis sąlygomis.
+**Ką matuoja**  
+Polinkį reflektuoti po veiklos, ieškoti grįžtamojo ryšio ir patirtį paversti kitu elgesiu.
 
-**Kai lankstumas aukštesnis**  
-Gali būti lengviau pakeisti kryptį, metodą ar darbo būdą, kai atsiranda naujos aplinkybės ar informacija.
+**Kai labiau išreikšta**  
+Dažniau klausi, ką galima išmokti ir ką kitą kartą padaryti kitaip.
 
-**Ką verta stebėti**  
-Dažnas prisitaikymas gali sumažinti nuoseklumą. Ne kiekvienas naujas signalas reiškia, kad reikia keisti planą.
+**Kai mažiau išreikšta**  
+Gali daugiau pasitikėti jau veikiančia praktika ir nešvaistyti energijos nuolatiniam optimizavimui.
 
-**Kai lankstumas žemesnis**  
-Gali būti lengviau išlaikyti stabilumą, laikytis sutarto metodo ir nepasiduoti kiekvienai naujai madai ar trumpalaikiam spaudimui.
+**Gali padėti**  
+Naujose rolėse, po klaidų, keičiantis procesams ar technologijoms.
 
-**Ką verta stebėti**  
-Ar stabilumas kartais netampa pasipriešinimu pokyčiui vien todėl, kad senas būdas yra pažįstamas?
+**Verta stebėti**  
+Nuolatinis tobulinimas gali trukdyti stabilizuoti tai, kas jau veikia, o pasitenkinimas esamu būdu — sustabdyti mokymąsi.
 
-**Refleksijos klausimas**  
-Kokio naujo įrodymo man reikia, kad pakeisčiau jau pasirinktą darbo būdą?
-
----
-
-## 8. Tobulėjimas
-
-**Ką ši dimensija apima**  
-Polinkį mokytis naujų įgūdžių, ieškoti grįžtamojo ryšio, mokytis iš klaidų, rinktis augančius iššūkius ir sąmoningai kelti sau aukštesnius standartus.
-
-**Kai tobulėjimas aukštesnis**  
-Gali būti natūralu ieškoti, ko dar galima išmokti, priimti grįžtamąjį ryšį ir naudoti iššūkius kaip augimo šaltinį.
-
-**Ką verta stebėti**  
-Nuolatinis noras būti geresniam gali sukurti jausmą, kad dabartinio rezultato niekada nepakanka. Mokymasis taip pat gali tapti veiklos pakaitalu.
-
-**Kai tobulėjimas žemesnis**  
-Gali būti lengviau remtis jau sukaupta patirtimi ir neinvestuoti energijos į kiekvieną naują metodą ar mokymą.
-
-**Ką verta stebėti**  
-Ar patirtis kartais nevirsta argumentu nebeperžiūrėti savo darbo būdo?
-
-**Refleksijos klausimas**  
-Kada paskutinį kartą grįžtamasis ryšys realiai pakeitė tai, kaip dirbu?
+**Pastebėk**  
+Kokią paskutinę įžvalgą realiai pavertėi nauju veiksmu?
 
 ---
 
-## 9. Ramybė
+# DOMAIN 3 — COLLABORATION / BENDRADARBIAVIMAS
 
-**Ką ši dimensija apima**  
-Polinkį išlaikyti savitvardą, aiškų mąstymą ir sprendimo gebėjimą spaudimo, konflikto, kritikos ar krizės metu.
+Aprašo, kiek žmogaus darbo būde vietos turi koordinavimas su kitais, žmonių signalų pastebėjimas ir pasirengimas koreguoti savo poziciją.
 
-**Kai ramybė aukštesnė**  
-Gali būti lengviau išlaikyti aiškų mąstymą ir neperduoti įtampos kitiems tada, kai situacija tampa sudėtinga.
+## 7. Bendradarbiavimas / Cooperation
 
-**Ką verta stebėti**  
-Išorinis ramumas gali slėpti per mažą skubos signalą arba sudaryti kitiems įspūdį, kad problema nėra svarbi. Ramybė nėra tas pats, kas emocijų ignoravimas.
+**Ką matuoja**  
+Polinkį dalintis informacija, derinti tarpusavio priklausomybes ir įtraukti kitų kompetenciją.
 
-**Kai ramybė žemesnė**  
-Gali būti stipriau jaučiama situacijos įtampa, grėsmė ar skuba. Tai kartais padeda greičiau pastebėti, kad kažkas reikalauja dėmesio.
+**Kai labiau išreikšta**  
+Tikėtina, kad dažniau kuri bendrą veikimo paveikslą ir mažiau sprendimų laikai tik savo teritorija.
 
-**Ką verta stebėti**  
-Ar emocinė reakcija neperima sprendimo anksčiau, nei surinkti svarbiausi faktai?
+**Kai mažiau išreikšta**  
+Gali greičiau veikti savarankiškai, sumažinti derinimo kainą ir aiškiau prisiimti asmeninę atsakomybę.
 
-**Refleksijos klausimas**  
-Kaip mano reakcija į spaudimą veikia kitų žmonių gebėjimą mąstyti aiškiai?
+**Gali padėti**  
+Kai rezultatas priklauso nuo kelių žmonių ar funkcijų.
 
----
+**Verta stebėti**  
+Bendradarbiavimas gali virsti pertekliniu derinimu, o savarankiškumas — informaciniais silosais.
 
-## 10. Pozityvumas
+**Pastebėk**  
+Kur šiandien derinimas realiai pagerina rezultatą, o kur tik lėtina?
 
-**Ką ši dimensija apima**  
-Polinkį matyti galimybes, tikėti palankia ateities kryptimi, palaikyti optimizmą ir skleisti pozityvią energiją kitiems.
+## 8. Empatinis dėmesys / Empathic Attention
 
-**Kai pozityvumas aukštesnis**  
-Gali būti lengviau išlaikyti energiją sunkioje situacijoje, pamatyti galimybes ir padėti kitiems neprarasti tikėjimo rezultatu.
+**Ką matuoja**  
+Polinkį pastebėti kitų žmonių emocines reakcijas ir laikyti jas prasminga informacija.
 
-**Ką verta stebėti**  
-Optimizmas gali nustelbti rizikas, nepatogius faktus arba žmonių pagrįstą susirūpinimą.
+**Kai labiau išreikšta**  
+Dažniau pastebi, kaip žmonės patiria sprendimus, įtampą ar pokyčius, ir tikrini savo interpretaciją.
 
-**Kai pozityvumas žemesnis**  
-Gali būti natūraliau pirmiausia pastebėti riziką, kliūtį ar tai, kas gali nepavykti. Tai gali padėti anksti pamatyti problemą.
+**Kai mažiau išreikšta**  
+Gali lengviau atsiriboti nuo emocinio triukšmo ir priimti nepopuliarų sprendimą, jei tam yra faktinis pagrindas.
 
-**Ką verta stebėti**  
-Ar rizikų matymas kartais neužgožia galimybių ir neatima energijos dar prieš bandymą?
+**Gali padėti**  
+Pokyčių, konfliktų, mentorystės ir jautrių pokalbių metu.
 
-**Refleksijos klausimas**  
-Kai sakau „viskas bus gerai“ arba „čia nepavyks“, kuo remiuosi: faktais ar savo įprastu žvilgsniu?
+**Verta stebėti**  
+Empatija gali virsti vengimu sukelti diskomfortą, o emocinis atsiribojimas — nepastebėtais žmonių signalais.
 
----
+**Pastebėk**  
+Ar kitų reakciją naudoji kaip informaciją, ar kaip veto sprendimui?
 
-## 11. Savimonė
+## 9. Intelektinis nuolankumas / Intellectual Humility
 
-**Ką ši dimensija apima**  
-Polinkį reflektuoti savo sprendimus, atpažinti stiprybes ir silpnybes, suprasti savo emocijas bei poveikį kitiems ir ieškoti grįžtamojo ryšio apie savo elgesį.
+**Ką matuoja**  
+Pasirengimą pripažinti žinių ribas, klaidą ir pakeisti poziciją, kai atsiranda stipresni argumentai ar duomenys.
 
-**Kai savimonė aukštesnė**  
-Gali būti lengviau pastebėti savo reakcijų modelius, pripažinti ribas ir koreguoti elgesį pagal tai, kokį poveikį jis daro aplinkai.
+**Kai labiau išreikšta**  
+Tikėtina, kad lengviau sakai „nežinau“, tikrini savo išvadą ir nepriimi pozicijos pakeitimo kaip pralaimėjimo.
 
-**Ką verta stebėti**  
-Refleksija gali virsti per ilga savianalize arba perdėtu dėmesiu tam, kaip atrodai kitų akyse.
+**Kai mažiau išreikšta**  
+Gali demonstruoti daugiau tvirtumo ir greičiau laikytis pasirinktos krypties, kai informacija nėra vienareikšmė.
 
-**Kai savimonė žemesnė**  
-Gali būti lengviau veikti spontaniškai ir neperanalizuoti kiekvienos reakcijos ar sprendimo.
+**Gali padėti**  
+Sprendžiant sudėtingas problemas, mokantis ir dirbant su stipriais ekspertais.
 
-**Ką verta stebėti**  
-Ar tavo ketinimas ir realus poveikis kitiems kartais išsiskiria, bet tai lieka nepastebėta?
+**Verta stebėti**  
+Nuolankumas gali virsti nepasitikėjimu savo vertinimu, o tvirtumas — gynyba nuo naujų faktų.
 
-**Refleksijos klausimas**  
-Ką apie mano darbo stilių kiti tikriausiai pastebi greičiau negu aš pats?
-
----
-
-## 12. Ambicija
-
-**Ką ši dimensija apima**  
-Polinkį kelti aukštus tikslus, siekti didesnio rezultato, imtis didelių iššūkių, auginti savo vaidmenį ir norėti matomo poveikio ar pripažinimo.
-
-**Kai ambicija aukštesnė**  
-Gali būti daugiau energijos siekti didesnio masto rezultato, prisiimti iššūkį ir nepasitenkinti vien minimaliu standartu.
-
-**Ką verta stebėti**  
-Aukštesnis tikslas gali pradėti nustelbti kainą, kurią už jį moka pats žmogus, komanda ar kiti prioritetai. Pripažinimo poreikis gali susimaišyti su rezultato poreikiu.
-
-**Kai ambicija žemesnė**  
-Gali būti mažiau poreikio konkuruoti, kilti hierarchijoje ar nuolat didinti mastą. Tai gali padėti išlaikyti stabilų fokusą į darbą, kuris pats savaime atrodo prasmingas.
-
-**Ką verta stebėti**  
-Ar pasitenkinimas dabartiniu lygiu kartais neleidžia imtis galimybės, kuriai jau esi pasirengęs?
-
-**Refleksijos klausimas**  
-Ko iš tikrųjų siekiu: didesnio rezultato, didesnės atsakomybės ar didesnio pripažinimo?
+**Pastebėk**  
+Koks faktas ar argumentas realiai priverstų tave pakeisti dabartinę nuomonę?
 
 ---
 
-## 13. Įtaka
+# DOMAIN 4 — INFLUENCE / ĮTAKA
 
-**Ką ši dimensija apima**  
-Polinkį paveikti sprendimus ir kitų žmonių kryptį, įtikinti, patarti, motyvuoti ir nukreipti kitus bendro tikslo link.
+Aprašo, kaip žmogus išsako poziciją, kuria palaikymą ir kiek socialinės energijos atsineša į bendrą veiklą.
 
-**Kai įtaka aukštesnė**  
-Gali būti lengviau mobilizuoti kitus, argumentuoti idėją ir suteikti grupei kryptį tada, kai reikia apsispręsti ar veikti.
+## 10. Asertyvus komunikavimas / Assertive Communication
 
-**Ką verta stebėti**  
-Stipri asmeninė įtaka gali sumažinti kitų balsų svorį net tada, kai sąmoningai jų nenutildai. Žmonės kartais prisitaiko prie autoritetingos pozicijos greičiau, nei ją iš tikrųjų priima.
+**Ką matuoja**  
+Polinkį aiškiai ir pagarbiai išsakyti nesutikimą, ribas ar sudėtingą klausimą.
 
-**Kai įtaka žemesnė**  
-Gali būti natūraliau daryti poveikį per kompetenciją, darbą ar palaikymą, o ne per aktyvų kitų nukreipimą.
+**Kai labiau išreikšta**  
+Tikėtina, kad mažiau vengi tiesioginio pokalbio ir aiškiau parodai savo poziciją.
 
-**Ką verta stebėti**  
-Ar gera idėja lieka neįgyvendinta todėl, kad nepakankamai aiškiai ją apgini ar suburi aplink ją kitus?
+**Kai mažiau išreikšta**  
+Gali būti atsargesnis, mažinti tiesioginę įtampą ir daugiau laiko skirti santykiui ar kontekstui.
 
-**Refleksijos klausimas**  
-Kai žmonės sutinka su manimi, ar žinau, ar juos įtikino argumentas, ar mano pozicija?
+**Gali padėti**  
+Konfliktuose, prioritetų derybose, ribų nustatyme ir sprendimų priėmime.
 
----
+**Verta stebėti**  
+Tiesumas gali tapti spaudimu, o atsargumas — nepasakytu nesutikimu.
 
-## 14. Asertiškumas
+**Pastebėk**  
+Ar tavo pozicija kitiems aiški dar prieš prasidedant susierzinimui?
 
-**Ką ši dimensija apima**  
-Polinkį tiesiai išsakyti nuomonę ir poreikius, ginti savo idėjas bei ribas, sakyti „ne“, derėtis ir nevengti būtinos konfrontacijos.
+## 11. Įtaka / Persuasive Influence
 
-**Kai asertiškumas aukštesnis**  
-Gali būti lengviau aiškiai pasakyti, ko reikia, kur nesutinki ir kokios ribos tau svarbios. Tai padeda sumažinti nepasakytų lūkesčių ir užslėptų konfliktų kiekį.
+**Ką matuoja**  
+Polinkį formuluoti idėjas taip, kad jos būtų suprantamos ir galėtų sulaukti kitų palaikymo.
 
-**Ką verta stebėti**  
-Tiesumas gali būti išgirstas kaip spaudimas arba palikti mažiau erdvės tylesniam žmogui. Teisė pasakyti tiesą nereiškia, kad kiekvienas būdas ją pasakyti yra vienodai veiksmingas.
+**Kai labiau išreikšta**  
+Dažniau pritaikai argumentą auditorijai, padedi grupei susitelkti ir kuri palaikymą net be formalios valdžios.
 
-**Kai asertiškumas žemesnis**  
-Gali būti natūraliau ieškoti švelnesnio kelio, prisitaikyti ir vengti bereikalingos konfrontacijos.
+**Kai mažiau išreikšta**  
+Gali labiau pasitikėti pačios idėjos kokybe ir mažiau investuoti į kitų įtikinimą ar politinį palaikymą.
 
-**Ką verta stebėti**  
-Ar svarbūs poreikiai, ribos arba nesutikimas neišsakomi tol, kol problema tampa daug didesnė?
+**Gali padėti**  
+Įgyvendinant pokyčius, derantis, buriant palaikymą tarp funkcijų.
 
-**Refleksijos klausimas**  
-Kai nesutinku, ar mano tikslas yra būti išgirstam, laimėti ginčą, ar padėti rasti geresnį sprendimą?
+**Verta stebėti**  
+Įtaka gali virsti manipuliavimu, o nenoras įtikinėti — gera idėja, kuri taip ir neįgauna palaikymo.
 
----
+**Pastebėk**  
+Kai žmonės nepritaria, ar pirmiausia kartoji savo argumentą, ar keiti jo pateikimo būdą?
 
-## 15. Gyvybingumas
+## 12. Socialinė energija / Social Energy
 
-**Ką ši dimensija apima**  
-Polinkį įnešti energijos į bendravimą ir grupės dinamiką, aktyviai dalyvauti diskusijose, inicijuoti veiklas, rodyti entuziazmą ir palaikyti gyvą atmosferą.
+**Ką matuoja**  
+Polinkį aktyviai dalyvauti grupinėje sąveikoje ir išoriškai rodyti energiją bei entuziazmą.
 
-**Kai gyvybingumas aukštesnis**  
-Gali būti lengviau užvesti grupę, palaikyti tempą, inicijuoti veiksmą ir suteikti daugiau energijos susitikimams ar bendram darbui.
+**Kai labiau išreikšta**  
+Tikėtina, kad greičiau įsitrauki į grupę, inicijuoji judėjimą ir esi matomesnis bendroje diskusijoje.
 
-**Ką verta stebėti**  
-Daug energijos gali užimti per daug erdvės arba sukurti tempą, kuriame tylesni žmonės nespėja įsitraukti. Aktyvumas nėra tas pats, kas progresas.
+**Kai mažiau išreikšta**  
+Gali būti santūresnis, labiau stebėti prieš įsitraukdamas ir nejausti poreikio nuolat būti socialiniame centre.
 
-**Kai gyvybingumas žemesnis**  
-Gali būti natūraliau veikti ramiau, mažiau demonstruoti energiją ir daugiau vietos palikti kitų iniciatyvai.
+**Gali padėti**  
+Kai komandai reikia impulso, naujuose kontaktuose ar idėjos mobilizavime.
 
-**Ką verta stebėti**  
-Ar ramus stilius kartais aplinkinių interpretuojamas kaip mažas susidomėjimas ar įsitraukimas, nors taip nėra?
+**Verta stebėti**  
+Didelė energija gali užimti per daug erdvės, o santūrumas — paslėpti vertingą indėlį.
 
-**Refleksijos klausimas**  
-Kada mano energija padeda komandai judėti, o kada jai reikia daugiau erdvės ir tylos?
-
----
-
-# 6 WorkStyle grupių interpretavimo kryptis
-
-Šios šešios grupės yra tiesiogiai atkurtos iš seno modelio. Jos turėtų būti pateikiamos kaip aukštesnio lygio santrauka, o ne kaip šešios naujos nepriklausomos kompetencijos.
-
-## Emocinis stilius
-**Ramybė + Pozityvumas + Savimonė**
-
-Apibendrina, kaip žmogus linkęs išlaikyti vidinę pusiausvyrą, interpretuoti situaciją ir pastebėti savo reakcijas. Aukštas bendras rezultatas neturi reikšti „emocinis intelektas“ — šaltinis tokio konstrukto tiesiogiai nematuoja.
-
-## Komandinio darbo stilius
-**Bendradarbiavimas + Jautrumas + Nuolankumas**
-
-Apibendrina polinkį įtraukti žmones, pastebėti jų perspektyvas ir dalintis erdve bei pripažinimu komandoje. Labai aukštas rezultatas gali padėti kurti saugią aplinką, bet ne visada reiškia, kad bus lengva priimti nepopuliarų sprendimą.
-
-## Pasiekimų stilius
-**Ambicija + Įtaka**
-
-Apibendrina polinkį siekti didesnio poveikio ir mobilizuoti kitus aplink tikslą. Jis nėra tas pats, kas faktinis darbo rezultatyvumas — Kryptingumas į šį seną agregatą nepatenka, todėl rezultato tekstas turi tai aiškiai atskirti.
-
-## Prisitaikymo stilius
-**Konceptualus mąstymas + Lankstumas + Tobulėjimas**
-
-Apibendrina polinkį pamatyti naujas galimybes, keisti būdą ir mokytis. Aukštas rezultatas gali remti adaptaciją, tačiau pats savaime neparodo, ar naujos idėjos stabiliai įgyvendinamos.
-
-## Sąveikos stilius
-**Asertiškumas + Gyvybingumas**
-
-Apibendrina, kiek aktyviai žmogus linkęs reikšti savo poziciją ir energiją socialinėje erdvėje. Tai nėra tas pats, kas ekstraversija: šaltinis nematuoja visų ekstraversijos aspektų.
-
-## Užduočių stilius
-**Kryptingumas + Struktūra**
-
-Apibendrina polinkį išlaikyti rezultatą ir organizuoti kelią iki jo. Aukštesnis rezultatas gali rodyti nuoseklų ir struktūruotą darbo būdą, tačiau aplinkoje, kurioje reikia greitai eksperimentuoti, gali būti svarbu kartu žiūrėti ir į Lankstumą.
+**Pastebėk**  
+Ar tavo energija atveria erdvę kitiems, ar ją užpildo?
 
 ---
 
-# Result-page rule
+# DOMAIN 5 — SELF-REGULATION / SAVIREGULIACIJA
 
-V1 rezultatų puslapyje nereikia rodyti visų 15 ilgų tekstų vienu metu.
+Aprašo, kaip žmogus valdo reakciją spaudimo metu, išlaiko konstruktyvų požiūrį ir reflektuoja savo poveikį.
 
-Rekomenduojama seka:
-1. bendras radialinis profilis;
-2. 6 WorkStyle grupių santrauka;
-3. 3–5 labiausiai išsiskiriančios dimensijos;
-4. vartotojas gali atverti visas 15 dimensijų;
-5. kiekvienoje atvertoje dimensijoje: `Ką tai rodo` → `Kuo gali padėti` → `Ką stebėti` → `Refleksijos klausimas`;
-6. tik po pirminio WorkStyle paaiškinimo siūlyti pasirenkamus `PAEI` ir `DISC` lęšius.
+## 13. Emocinė savitvarda / Emotional Regulation
 
-Do not generate a single fixed personality label from the result.
+**Ką matuoja**  
+Polinkį išlaikyti darbinį funkcionalumą spaudimo, konflikto ar kritikos metu.
+
+**Kai labiau išreikšta**  
+Dažniau pristabdai pirmą reakciją, gali išklausyti kritiką ir greičiau grįžti į darbinį ritmą.
+
+**Kai mažiau išreikšta**  
+Gali reaguoti emocionaliau ir aiškiau signalizuoti, kad situacija tau svarbi ar peržengė ribą.
+
+**Gali padėti**  
+Krizėse, konfliktuose, spaudžiant terminams ir priimant sunkius sprendimus.
+
+**Verta stebėti**  
+Savitvarda gali virsti emocijų slopinimu, o stipri reakcija — sumažinti gebėjimą matyti faktus.
+
+**Pastebėk**  
+Ką darai tarp pirmos emocinės reakcijos ir realaus veiksmo?
+
+## 14. Konstruktyvus požiūris / Constructive Outlook
+
+**Ką matuoja**  
+Polinkį sunkioje situacijoje ieškoti realios veikimo galimybės, o ne sustoti ties nesėkmės scenarijumi.
+
+**Kai labiau išreikšta**  
+Dažniau matai, ką dar galima paveikti, ir po nesėkmės ieškai kito žingsnio.
+
+**Kai mažiau išreikšta**  
+Gali greičiau pastebėti rizikas, silpnas vietas ir priežastis, kodėl planas gali nepavykti.
+
+**Gali padėti**  
+Neapibrėžtume, po nesėkmių ir situacijose, kuriose komandai reikia judėti pirmyn.
+
+**Verta stebėti**  
+Optimizmas gali nuvertinti rizikas, o kritiškumas — uždaryti galimybes dar jų neišbandžius.
+
+**Pastebėk**  
+Ar matai riziką tam, kad ją valdytum, ar tam, kad įrodytum, jog neverta bandyti?
+
+## 15. Reflektyvi savimonė / Reflective Self-Awareness
+
+**Ką matuoja**  
+Polinkį pastebėti savo pačių reakcijų, įpročių, stiprybių ir išankstinių nuostatų poveikį elgesiui.
+
+**Kai labiau išreikšta**  
+Dažniau analizuoji ne tik tai, ką ketinai padaryti, bet ir kokį poveikį realiai sukėlei.
+
+**Kai mažiau išreikšta**  
+Gali mažiau užstrigti savianalizėje ir greičiau veikti remdamasis savo įprastu sprendimo būdu.
+
+**Gali padėti**  
+Mokantis iš konfliktų, keičiant elgesio įpročius ir dirbant su savo stiprybių „šešėline puse“.
+
+**Verta stebėti**  
+Refleksija gali tapti peranalizavimu, o jos stoka — pasikartojančiais aklais taškais.
+
+**Pastebėk**  
+Kokį poveikį tavo elgesys sukėlė, nepriklausomai nuo to, ką ketinai?
+
+---
+
+# 5 domenų santraukos rezultatų ekrane
+
+Domeno indeksas = trijų jį sudarančių dimensijų vidurkis. Domeno balas neturėtų paslėpti dimensijų skirtumų.
+
+Pavyzdžiui, vienodas `Influence` domeno vidurkis gali atsirasti iš labai skirtingų profilių:
+- aukštas Asertyvus komunikavimas + žema Socialinė energija;
+- žemesnis Asertyvus komunikavimas + aukšta Įtaka ir Socialinė energija.
+
+Todėl UX taisyklė:
+- pirmiausia rodyti 15 dimensijų profilį;
+- 5 domenus naudoti kaip orientacinę santrauką;
+- PAEI / DISC palikti pasirenkamu išoriniu lęšiu;
+- niekada nepaversti domeno vienu fiksuotu žmogaus tipu.
