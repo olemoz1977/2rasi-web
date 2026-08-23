@@ -146,6 +146,11 @@
       setAction(calibrationLink, 'Calibration status', 'Calibration būsena');
     }
 
+    const leadershipStart = document.querySelector('#leadership-360 .experiment-actions a:nth-child(2)');
+    if (leadershipStart) {
+      leadershipStart.href = `https://omesg360.eu/leadership-360/?lang=${lang}`;
+    }
+
     set('.manifesto-word', 'LOOK', 'ŽIŪRĖK');
     setAll('.manifesto-copy p', [
       ['Familiar first.', 'Pirmiausia pažįstama.'],
