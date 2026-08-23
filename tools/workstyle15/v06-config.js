@@ -41,7 +41,7 @@
 
     "ADP-01":"Jei matau, kad pasirinktas darbo būdas nebeveikia, išbandau kitą.",
     "ADP-04":"Kai pasikeičia prioritetai, pertvarkau savo darbą pagal naują eilę.",
-    "ADP-05":"Kai jau turiu susidėliojęs planą, man nelengva jį keisti eigoje.",
+    "ADP-05":"Kai planas jau sudėliotas, man nelengva jį keisti eigoje.",
 
     "LRN-02":"Kai noriu pasitikrinti savo sprendimą, klausiu ir tų, kurie jį mato kitaip.",
     "LRN-04":"Po klaidos pakeičiu ką nors konkretaus, kad ji nesikartotų.",
@@ -49,7 +49,7 @@
 
     "COP-02":"Jei informacija gali paveikti kolegų darbą, pasidalinu ja nelaukdamas, kol jie paklaus.",
     "COP-03":"Kai sprendimui trūksta žinių, kreipiuosi į žmogų, kuris jas turi.",
-    "COP-05":"Jei užduotį galiu padaryti pats, dažniausiai taip ir darau, užuot derinęs su kitais.",
+    "COP-05":"Jei užduotį galiu atlikti savarankiškai, dažniausiai taip ir darau, o ne derinu su kitais.",
 
     "EMP-01":"Jei kolega sureaguoja kitaip, nei tikėjausi, paklausiu, kaip jis tai suprato.",
     "EMP-02":"Prieš sprendimą, kuris palies kitus, pagalvoju, kaip jie į jį gali reaguoti.",
@@ -57,7 +57,7 @@
 
     "HUM-02":"Kai suklystu, tai pasakau tiesiai.",
     "HUM-04":"Kai nežinau, pasakau, kad nežinau.",
-    "HUM-05":"Kai dėl sprendimo jau esu apsisprendęs, savo nuomonę keičiu retai.",
+    "HUM-05":"Kai sprendimas jau priimtas, savo nuomonę keičiu retai.",
 
     "AST-01":"Kai nesutinku, tai pasakau aiškiai ir pagarbiai.",
     "AST-02":"Kai papildomas darbas trukdytų svarbesniam, pasakau apie tai ir derinu prioritetus.",
