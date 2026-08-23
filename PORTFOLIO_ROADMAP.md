@@ -124,6 +124,34 @@ Product rule:
 Potential value:
 WorkStyle 15 can describe **how a person tends to work**, while the PAEI lens can explain **what managerial contribution those tendencies may naturally support or under-support**.
 
+### Product visualization hypothesis — WorkStyle 15 multi-lens radial profile
+Idea status: **recorded concept; visualization and mappings require validation.**
+
+Proposed result architecture:
+1. **Core / first layer — 15 WorkStyle dimensions** shown as the primary measured profile.
+2. **Second layer — 6 WorkStyle styles** from the recovered workbook: Emotional, Teamwork, Achievement, Adaptability, Interaction and Task styles.
+3. **Third layer / outer interpretive ring — Adizes PAEI lens** showing conceptual correspondence with P, A, E and I roles.
+4. **Fourth layer / outer interpretive ring — DISC lens** showing conceptual correspondence with D, I, S and C behavioural styles.
+
+The visual can use a concentric radial/radar design so the user sees the same underlying WorkStyle 15 profile through progressively broader frameworks rather than receiving disconnected test reports.
+
+Critical interpretation rule:
+- only the 15 dimensions and 6 recovered WorkStyle styles are direct outputs of the current WorkStyle source model;
+- PAEI and DISC must initially be presented as **derived correspondence lenses**, not independent validated PAEI or DISC scores;
+- do not imply that completing WorkStyle 15 is equivalent to completing an official Adizes or DISC assessment;
+- before assigning numeric PAEI/DISC values, create an explicit item/dimension crosswalk, define weights, review overlap and contradictions, and test whether the derived profiles behave sensibly on real responses.
+
+Preliminary DISC correspondence to investigate, not yet approved scoring:
+- **D — Dominance** may draw most strongly from Asertiškumas, Kryptingumas, Ambicija and Įtaka;
+- **I — Influence** may draw from Gyvybingumas, Pozityvumas, Įtaka and Bendradarbiavimas;
+- **S — Steadiness** may draw from Ramybė, Jautrumas, Bendradarbiavimas and Nuolankumas;
+- **C — Conscientiousness** may draw most strongly from Struktūra and Kryptingumas, with possible secondary relationships to Savimonė and selected conceptual/quality-oriented items.
+
+The DISC crosswalk should be audited at **item level**, not accepted only from dimension names, because several WorkStyle dimensions can plausibly contribute to more than one DISC style.
+
+Product intent:
+The user should first understand **their own 15-dimensional work pattern**, then see how the same pattern can be interpreted through broader management/behaviour frameworks. The outer rings add context, not new claims of measurement.
+
 ### Future product concept — Organization Development / PAEI
 Longer-term idea: build a separate organization-level tool for measuring organizational development, not an extension of the individual self-report score.
 
@@ -185,12 +213,13 @@ Near-term 2Pair work is therefore **data collection and research operations**, n
 ## Suggested sequence from here
 1. Audit WorkStyle 15 item bank and construct/reporting semantics using the recovered workbook as implementation source of truth.
 2. Decide the first public WorkStyle 15 item set and interpretation model before coding.
-3. Preserve and specify the Competency Matrix / Skills Matrix semantics before rebuilding it.
-4. Complete a compact inventory row for every legacy LT-only tool.
-5. Decide which legacy project is genuinely worth upgrading to LT/EN next.
-6. In parallel, continue collecting Wave1 and Calibration data without changing their mechanics.
-7. Reopen 2Pair core only after evidence gives a concrete reason.
-8. Keep Organization Development / PAEI as a later product concept until WorkStyle 15 and the current tools portfolio are stable.
+3. Build and review explicit WorkStyle 15 → PAEI and WorkStyle 15 → DISC crosswalks before any derived outer-ring scoring is implemented.
+4. Preserve and specify the Competency Matrix / Skills Matrix semantics before rebuilding it.
+5. Complete a compact inventory row for every legacy LT-only tool.
+6. Decide which legacy project is genuinely worth upgrading to LT/EN next.
+7. In parallel, continue collecting Wave1 and Calibration data without changing their mechanics.
+8. Reopen 2Pair core only after evidence gives a concrete reason.
+9. Keep Organization Development / PAEI as a later product concept until WorkStyle 15 and the current tools portfolio are stable.
 
 ## Freeze register
 - Leadership 360°: COMPLETE / FROZEN.
