@@ -1,6 +1,8 @@
 const ALLOWED_ORIGINS = new Set([
   "https://2rasi.com",
   "https://www.2rasi.com",
+  "https://2rasi.lt",
+  "https://www.2rasi.lt",
 ]);
 
 const MAX_BODY_BYTES = 220_000;
