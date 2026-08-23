@@ -1,6 +1,6 @@
 # WorkStyle 15 — decision log
 
-Status: ACTIVE COGNITIVE PILOT / V0.5 PRE-PILOT
+Status: ACTIVE COGNITIVE PILOT / V0.6 AMBIGUITY REVIEW
 Last updated: 2026-08-23
 
 ## Product identity
@@ -83,7 +83,7 @@ Decision: **75 items in one form is too long for the target experience.**
 
 The v0.4 bank remains preserved as a candidate/audit bank and must not be deleted.
 
-## V0.5 critical design decision
+## 45-item target decision
 
 Target public-pilot form: **45 items = 15 dimensions × 3 items**.
 
@@ -97,16 +97,7 @@ Rationale:
 - 60–75 items carries too much fatigue risk;
 - 45 is the selected compromise between respondent attention and dimension coverage.
 
-Current draft source:
-- `WORKSTYLE15_V05_45_LT_DRAFT.md`
-
-Current beta config:
-- `tools/workstyle15/v05-config.js`
-- `tools/workstyle15/app-v05.js`
-- `tools/workstyle15/v05.css`
-- `tools/workstyle15/v05.html`
-
-V0.4 production-pilot files remain untouched for audit/history.
+The 45-item form is split into **3 blocks × 15 items**.
 
 ## Plain-language rule
 
@@ -122,7 +113,27 @@ Avoid:
 
 The goal is not to make items simplistic. The goal is to make the behaviour clear.
 
-## V0.5 response scale
+## Ambiguity rule learned in v0.6
+
+Simple vocabulary is not enough. A statement is still weak if the respondent must invent the situation before answering.
+
+Core rule:
+
+> The respondent should rate their usual work behaviour, not solve what situation the item author probably had in mind.
+
+Screen every item for:
+1. undefined magnitude/time (`greitai`, `ilgiau`, `reikia laiko`, `svarbus`);
+2. rationality traps where the reverse pole may be perfectly sensible behaviour;
+3. role/authority dependency;
+4. hidden-context dependency (`problema`, `sprendimas`, `informacija`, `nesėkmė`, `rezultatas` without enough behavioural anchoring);
+5. hidden self-analysis instead of recallable behaviour;
+6. socially obvious reverse poles;
+7. two decisions inside one item: first whether the behaviour is justified, then whether the respondent does it.
+
+Detailed review source:
+- `WORKSTYLE15_V06_AMBIGUITY_REVIEW.md`
+
+## Response scale
 
 Question frame: **Kiek tai tau būdinga darbe?**
 
@@ -135,14 +146,24 @@ Question frame: **Kiek tai tau būdinga darbe?**
 Separate response:
 - **Sunku įvertinti / neteko tokios situacijos**
 
-Critical rule:
+Internal scoring rule:
 - `Sunku įvertinti` is stored as `NA`;
-- it is **not converted to 3**;
 - it does not contribute to the score.
 
-The UI explicitly explains that 5 does not mean better, ideal or correct. It only means the behaviour is strongly characteristic in relevant work situations.
+### Public-copy boundary
 
-## V0.5 missing-response scoring
+Internal scoring mechanics are **not respondent-facing educational copy** unless they are necessary to answer the item.
+
+The earlier public sentence explaining that `Sunku įvertinti` would not be converted to `3` came from an internal pilot reflection. It has been removed from the v0.6 respondent UI.
+
+Public UI may simply explain:
+- what 1 and 5 mean;
+- that 3 means `Kartais taip, kartais ne`;
+- that `Sunku įvertinti / neteko tokios situacijos` is available when the item cannot be rated normally.
+
+Do not expose implementation detail merely because it is useful for analysis.
+
+## Missing-response scoring
 
 Direct item: response as-is.
 Reverse item: `6 - response`.
@@ -158,23 +179,61 @@ Dimension index:
 
 Domain index:
 - mean of available dimension indexes;
-- require at least 2 of the 3 dimensions to have a valid score;
-- otherwise show insufficient data.
+- do not present a domain as a full result when one of its dimensions is missing; the UI should make incomplete coverage explicit.
 
 Indexes are theoretical scale positions, not norms or percentiles.
 
-## V0.5 pilot order
+## V0.5 cognitive pilot finding
 
-45 items are split into **3 blocks × 15 items**.
+First real v0.5 completion:
+- 45/45 completed;
+- active time about 7.6 minutes;
+- 7 `Sunku įvertinti` answers;
+- 17 of 45 items were explicitly captured as awkward/difficult;
+- respondent reported the wording felt better than v0.4 but substantial ambiguity remained.
 
-Rules:
-- every block contains all 15 dimensions exactly once;
-- every block contains exactly 5 reverse items;
-- reverse items are distributed across dimensions and blocks;
-- after items 15 and 30, show a short break/progress screen;
-- do not present a single uninterrupted 45-item wall.
+Important finding: the separate `Sunku įvertinti` option successfully exposed item problems that would previously have disappeared into midpoint `3`.
 
-Current form ID: `workstyle15-lt-v0.5-form-a`.
+Full audit:
+- `WORKSTYLE15_V05_COGNITIVE_FLAGS.md`
+
+## V0.6 cognitive rewrite
+
+V0.6 rewrote all 45 items toward shorter, more observable work behaviour while preserving the same 15 dimensions, 2D+1R structure and the same item order for comparison.
+
+Sources:
+- `WORKSTYLE15_V06_45_LT_DRAFT.md`
+- `tools/workstyle15/v06-config.js`
+- `tools/workstyle15/v06.html`
+
+The same order was deliberately retained so wording effects could be compared without simultaneously changing order effects.
+
+First v0.6 completion:
+- 45/45 completed;
+- active time about 6.7 minutes;
+- 6 `Sunku įvertinti` answers;
+- respondent feedback: wording felt simpler and more human;
+- profile stability improved in several dimensions but important item-level distortions remained.
+
+Notable scoring problems:
+- `SYS-05` can punish rational handling of a genuinely one-off problem and depressed Systems Thinking;
+- `COP-05` can measure autonomy rather than lack of cooperation;
+- `EMP-05` can measure preference for explicit information rather than low empathic attention;
+- Learning Orientation and Reflective Self-Awareness still produced insufficient valid responses;
+- some domain scores should not be displayed as complete when a constituent dimension is missing.
+
+## Current v0.6 ambiguity flags
+
+New screenshot review specifically flagged or questioned:
+- `REG-05` — problem severity and `time to recover` are undefined;
+- `OUT-02` — `failure` and `quickly` are too context-dependent and overlap emotional recovery;
+- `LRN-02` — deliberate disagreement-seeking is role/opportunity dependent and not cleanly learning behaviour;
+- `COP-02` — whether information `can affect` colleagues is too broad and role/confidentiality dependent;
+- `PER-02` — `important work` and `takes longer than expected` are vague and may reflect external delay;
+- `LRN-05` — stable good practice is rational and should not be reverse-scored as low learning orientation;
+- `REF-05` — `my role in the problem` is abstract and revisiting a solved problem may be unnecessary.
+
+These items should be replaced or structurally rewritten before another external pilot.
 
 ## Results hierarchy
 
@@ -185,7 +244,7 @@ Current form ID: `workstyle15-lt-v0.5-form-a`.
 
 Do not collapse respondents into fixed types.
 
-If `Sunku įvertinti` reduces a dimension below the minimum valid-response threshold, say so instead of inventing precision.
+If missing responses reduce a dimension below the minimum valid-response threshold, say so instead of inventing precision.
 
 ## PAEI / DISC / Big Five
 
@@ -197,7 +256,7 @@ Jungian / MBTI-style mapping remains deferred.
 
 ## Pilot instrumentation
 
-V0.5 local pilot should capture:
+Local cognitive pilot captures:
 - anonymous session ID;
 - instrument version and form ID;
 - item response including explicit `NA`;
@@ -216,11 +275,12 @@ No name/email required. No server submission yet. JSON export remains the pilot 
 
 ## Current next gates
 
-1. Manually open `tools/workstyle15/v05.html` on mobile.
-2. Confirm the new `Kiek tai tau būdinga darbe?` scale feels immediately understandable.
-3. Confirm `3` feels like a genuine midpoint and `Sunku įvertinti` removes the need to guess.
-4. Run one full 45-item completion and compare latency/fatigue across the three 15-item blocks.
-5. Flag any item that still feels artificial, patronizing, overly clever or unclear on first read.
-6. Only after this cognitive pass invite outside participants.
-7. Keep EN translation deferred until the LT wording survives the pilot.
-8. Use an appropriately larger sample before structural/psychometric claims.
+1. Replace the structurally ambiguous v0.6 items identified in `WORKSTYLE15_V06_AMBIGUITY_REVIEW.md`.
+2. Re-check all 45 items against the seven ambiguity patterns, not only the screenshot-flagged items.
+3. Keep the 45-item / 3-block structure unchanged unless new fatigue evidence appears.
+4. Keep the same response scale and separate `Sunku įvertinti` option.
+5. Do not display internal scoring commentary in respondent-facing copy.
+6. Run one more internal cognitive completion after the targeted item changes.
+7. Only then invite outside cognitive-pilot participants.
+8. Keep EN translation deferred until LT wording survives the pilot.
+9. Use an appropriately larger sample before structural/psychometric claims.
