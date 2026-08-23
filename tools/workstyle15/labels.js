@@ -3,9 +3,9 @@
 
   const publicDomainLabels = {
     execution: "Įgyvendinimas",
-    adaptation: "Kaita ir mokymasis",
-    collaboration: "Darbas su kitais",
-    influence: "Poveikis kitiems",
+    adaptation: "Adaptacija",
+    collaboration: "Atvirumas kitiems",
+    influence: "Poveikis",
     "self-regulation": "Savireguliacija"
   };
 
