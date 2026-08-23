@@ -1,272 +1,184 @@
-# WorkStyle 15 — PAEI + DISC crosswalk
+# WorkStyle 15 — PAEI + DISC crosswalk v0.2
 
-Status: WORKING HYPOTHESIS / NOT VALIDATED SCORING
+Status: CONCEPTUAL LENS / NOT VALIDATED SCORING
 Last updated: 2026-08-23
-Basis: WorkStyle 15 15-dimension source model + current Beta A content architecture.
 
-## 1. Purpose
+Basis: independent WorkStyle 15 v0.1 construct model, not the inherited ADEPT-style grouping.
 
-This document defines a transparent first mapping from the 15 directly measured WorkStyle dimensions to two optional interpretive lenses:
-- Adizes PAEI;
-- DISC.
+## Rule
 
-The mapping is intentionally separated from the primary WorkStyle score.
+WorkStyle 15 directly measures only its own 15 dimensions.
 
-WorkStyle 15 directly measures only its own 15 dimensions. PAEI and DISC are derived correspondence lenses until separately validated.
+PAEI and DISC are **interpretive correspondence lenses**. They are not official scores and must not be presented as if the respondent completed an Adizes or DISC assessment.
 
-## 2. Mapping levels
+Mapping levels:
+- **Primary** = strong conceptual correspondence;
+- **Secondary** = plausible contribution or expression modifier;
+- blank = do not force a relationship merely to make the diagram symmetrical.
 
-Use two conceptual link strengths:
-
-- **Primary** — the WorkStyle dimension substantially overlaps the behavioural contribution represented by the lens segment.
-- **Secondary** — the dimension may change how that segment is expressed but should not define the segment by itself.
-
-Beta A rule:
-- use the mapping for highlighting / explanation;
-- do not yet present the derived lens as an official numeric PAEI or DISC profile.
-
-A later experimental numeric formula may use Primary = 1.0 and Secondary = 0.5, but only after pilot review. This weighting is a transparent candidate, not a validated coefficient.
+Numeric outer-ring scoring remains disabled until pilot evidence and item-level review support it.
 
 ---
 
-# 3. Adizes PAEI lens
+# Adizes PAEI lens
 
 ## P — Producer
 
-Core idea used here: producing concrete results now, maintaining focus on outcomes and moving work toward completion.
+Core question: **How naturally does this profile support getting meaningful results done now?**
 
-### Primary
-- **Kryptingumas** — direct overlap with persistence, priorities, completion and result focus.
+Primary correspondence:
+- Goal Persistence / Kryptingumas
+- Achievement Drive / Pasiekimų siekis
 
-### Secondary
-- **Ambicija** — can increase the size/difficulty of goals, but ambition is not evidence that results are actually produced.
-- **Asertiškumas** — can support decisive action and removing blockers, but directness alone is not production.
-- **Įtaka** — can mobilize others around execution, but influence alone is not result delivery.
+Secondary correspondence:
+- Assertive Communication / Asertyvus komunikavimas
+- Work Structure / Struktūra
+- Constructive Outlook / Konstruktyvus požiūris
 
-### Important boundary
-Do not make Ambicija the main P signal. A person can want large achievements without consistently completing the work required to produce them.
-
----
+Interpretive caution:
+High achievement drive without persistence may produce ambitious starts without sustained completion. High persistence without achievement drive may support reliable completion without a strong desire to raise the performance bar.
 
 ## A — Administrator
 
-Core idea used here: creating order, repeatability, clarity, predictability and disciplined execution through systems/processes.
+Core question: **How naturally does this profile support order, repeatability and disciplined execution?**
 
-### Primary
-- **Struktūra** — direct overlap with planning, systems, sequence, deadlines, established order and attention to detail.
+Primary correspondence:
+- Work Structure / Struktūra
 
-### Secondary
-- **Kryptingumas** — supports following priorities and completing what was planned.
-- **Ramybė** — may support consistency under pressure, but emotional composure is not administration by itself.
+Secondary correspondence:
+- Goal Persistence / Kryptingumas
+- Emotional Regulation / Emocinė savitvarda
+- Reflective Self-Awareness / Reflektyvi savimonė
 
-### Important boundary
-A is not simply “calm” or “careful”. The strongest WorkStyle evidence is the behavioural preference for structure and repeatability.
-
----
+Interpretive caution:
+Do not equate structure with bureaucracy. A strong A-like contribution is useful when it creates clarity and repeatability; overuse may reduce flexibility.
 
 ## E — Entrepreneur
 
-Core idea used here: seeing possibilities, reframing situations, adapting direction and pursuing development/change.
+Core question: **How naturally does this profile support seeing possibilities, adapting and creating a different future?**
 
-### Primary
-- **Konceptualus mąstymas** — abstract thinking, strategic perspective, connections, models and future possibilities.
-- **Lankstumas** — readiness to change plan/strategy when context changes.
-- **Tobulėjimas** — active search for learning, feedback and better ways of working.
+Primary correspondence:
+- Systems Thinking / Sisteminis mąstymas
+- Adaptability / Prisitaikymas
+- Learning Orientation / Mokymosi orientacija
 
-### Secondary
-- **Ambicija** — can add appetite for larger possibilities, but high goals alone are not entrepreneurship.
-- **Gyvybingumas** — can add activation/initiative energy, but social energy is not entrepreneurial thinking.
+Secondary correspondence:
+- Achievement Drive / Pasiekimų siekis
+- Persuasive Influence / Įtaka
+- Constructive Outlook / Konstruktyvus požiūris
 
-### Important boundary
-E should not collapse into “creative/energetic person”. The core is possibility + adaptation + learning/change orientation.
-
----
+Interpretive caution:
+Adaptability alone is not entrepreneurship. E-like contribution requires some combination of seeing patterns/opportunities and turning new understanding into changed direction.
 
 ## I — Integrator
 
-Core idea used here: creating cohesion, trust, mutual understanding and a sense that people can function together beyond one person’s authority.
+Core question: **How naturally does this profile support trust, cohesion and productive interdependence?**
 
-### Primary
-- **Bendradarbiavimas** — information sharing, inclusion, listening and common goals.
-- **Jautrumas** — noticing people’s emotional signals and reactions.
-- **Nuolankumas** — accepting correction, valuing others’ contribution and giving up the need to be personally central.
+Primary correspondence:
+- Cooperation / Bendradarbiavimas
+- Empathic Attention / Empatinis dėmesys
+- Intellectual Humility / Intelektinis nuolankumas
 
-### Secondary
-- **Savimonė** — awareness of one’s effect on others can support integration.
-- **Pozityvumas** — can support constructive emotional climate, but optimism alone is not integration.
+Secondary correspondence:
+- Reflective Self-Awareness / Reflektyvi savimonė
+- Persuasive Influence / Įtaka
+- Emotional Regulation / Emocinė savitvarda
 
-### Important boundary
-I is not just “being nice”. Integration requires behavioural capacity to include others, understand their perspective and share space/credit.
-
----
-
-# 4. Preliminary PAEI matrix
-
-| WorkStyle dimension | P | A | E | I |
-|---|---|---|---|---|
-| Kryptingumas | **Primary** | Secondary |  |  |
-| Struktūra |  | **Primary** |  |  |
-| Bendradarbiavimas |  |  |  | **Primary** |
-| Jautrumas |  |  |  | **Primary** |
-| Nuolankumas |  |  |  | **Primary** |
-| Konceptualus mąstymas |  |  | **Primary** |  |
-| Lankstumas |  |  | **Primary** |  |
-| Tobulėjimas |  |  | **Primary** |  |
-| Ramybė |  | Secondary |  |  |
-| Pozityvumas |  |  |  | Secondary |
-| Savimonė |  |  |  | Secondary |
-| Ambicija | Secondary |  | Secondary |  |
-| Įtaka | Secondary |  |  |  |
-| Asertiškumas | Secondary |  |  |  |
-| Gyvybingumas |  |  | Secondary |  |
-
-This asymmetry is intentional. The 15-dimension model was not designed to give four equally sized PAEI buckets.
+Interpretive caution:
+High cooperation is not automatically integration. Integration also requires the ability to stay in relationship when views differ and to adjust one's own position when appropriate.
 
 ---
 
-# 5. DISC lens
+# DISC lens
 
 ## D — Dominance
 
-Core idea used here: directness, willingness to push toward an outcome, challenge resistance and state a position.
+Core question: **How strongly does the profile lean toward directness, challenge and active pursuit of outcomes?**
 
-### Primary
-- **Asertiškumas** — direct expression of views, needs and boundaries; willingness to confront when needed.
-- **Kryptingumas** — focus on results and persistence despite obstacles.
+Primary correspondence:
+- Assertive Communication / Asertyvus komunikavimas
+- Achievement Drive / Pasiekimų siekis
+- Persuasive Influence / Įtaka
 
-### Secondary
-- **Ambicija** — appetite for larger achievement can support a stronger D expression.
-- **Įtaka** — can increase ability to move others toward a chosen direction.
+Secondary correspondence:
+- Goal Persistence / Kryptingumas
+- Social Energy / Socialinė energija
 
-### Important boundary
-D is not equivalent to leadership quality or aggression. WorkStyle should describe behavioural tendency, not status or effectiveness.
-
----
+Watch-out:
+A person can be highly persistent and achievement-oriented without being socially forceful; therefore Goal Persistence should not be treated as a direct D equivalent.
 
 ## I — Influence
 
-Core idea used here: visible social energy, persuasion, enthusiasm and the ability to engage others around ideas/activity.
+Core question: **How strongly does the profile lean toward visible social engagement, enthusiasm and gaining support through interaction?**
 
-### Primary
-- **Gyvybingumas** — energetic participation, enthusiasm, activation and social dynamism.
-- **Įtaka** — persuasion, mobilization and impact on others’ decisions.
-- **Pozityvumas** — optimism and positive activation can support an engaging social style.
+Primary correspondence:
+- Social Energy / Socialinė energija
+- Persuasive Influence / Įtaka
+- Constructive Outlook / Konstruktyvus požiūris
 
-### Secondary
-- **Bendradarbiavimas** — supports social involvement, but collaboration is not identical to persuasive/social influence.
+Secondary correspondence:
+- Assertive Communication / Asertyvus komunikavimas
+- Cooperation / Bendradarbiavimas
 
-### Important boundary
-Do not infer extraversion directly. WorkStyle Gyvybingumas/Įtaka cover parts of outward social behaviour, not the full personality construct.
-
----
+Watch-out:
+Persuasive influence can be quiet and analytical; social energy should therefore remain a separate contributor rather than being inferred from influence alone.
 
 ## S — Steadiness
 
-Core idea used here: stability, calm interpersonal presence, cooperation and preference for maintaining workable relationships.
+Core question: **How strongly does the profile lean toward supportive cooperation, interpersonal attunement and calm continuity?**
 
-### Primary
-- **Ramybė** — composure and stability under pressure/conflict.
-- **Bendradarbiavimas** — preference for working together and maintaining inclusion/common goals.
+Primary correspondence:
+- Cooperation / Bendradarbiavimas
+- Empathic Attention / Empatinis dėmesys
+- Emotional Regulation / Emocinė savitvarda
 
-### Secondary
-- **Jautrumas** — awareness of others’ reactions can support a considerate steady style.
-- **Nuolankumas** — willingness to share space/credit can support non-dominating cooperation.
+Secondary correspondence:
+- Intellectual Humility / Intelektinis nuolankumas
+- Work Structure / Struktūra
 
-### Important boundary
-S should not be interpreted as passivity. Calm cooperation and low urgency are not the same thing.
-
----
+Watch-out:
+Emotional regulation does not mean passivity, and cooperation does not mean resistance to change. Do not infer low Adaptability from an S-like correspondence.
 
 ## C — Conscientiousness
 
-Core idea used here: preference for structure, accuracy, standards, careful organization and reliable execution.
+Core question: **How strongly does the profile lean toward structure, disciplined analysis and careful consistency?**
 
-### Primary
-- **Struktūra** — planning, order, deadlines, systems and detail accuracy.
+Primary correspondence:
+- Work Structure / Struktūra
+- Systems Thinking / Sisteminis mąstymas
+- Goal Persistence / Kryptingumas
 
-### Secondary
-- **Kryptingumas** — can support follow-through and reliability.
-- **Savimonė** — can support self-monitoring and correction, but is not a core DISC-C construct.
+Secondary correspondence:
+- Intellectual Humility / Intelektinis nuolankumas
+- Reflective Self-Awareness / Reflektyvi savimonė
+- Learning Orientation / Mokymosi orientacija
 
-### Important boundary
-The current WorkStyle source has much richer coverage for Struktūra than for risk-aversion, analytical caution or rule compliance. DISC-C correspondence should therefore be treated as narrower than a dedicated DISC instrument.
-
----
-
-# 6. Preliminary DISC matrix
-
-| WorkStyle dimension | D | I | S | C |
-|---|---|---|---|---|
-| Kryptingumas | **Primary** |  |  | Secondary |
-| Struktūra |  |  |  | **Primary** |
-| Bendradarbiavimas |  | Secondary | **Primary** |  |
-| Jautrumas |  |  | Secondary |  |
-| Nuolankumas |  |  | Secondary |  |
-| Konceptualus mąstymas |  |  |  |  |
-| Lankstumas |  |  |  |  |
-| Tobulėjimas |  |  |  |  |
-| Ramybė |  |  | **Primary** |  |
-| Pozityvumas |  | **Primary** |  |  |
-| Savimonė |  |  |  | Secondary |
-| Ambicija | Secondary |  |  |  |
-| Įtaka | Secondary | **Primary** |  |  |
-| Asertiškumas | **Primary** |  |  |  |
-| Gyvybingumas |  | **Primary** |  |  |
-
-Blank cells mean “no current positive mapping”, not “opposite tendency”.
+Watch-out:
+DISC-C is not identical to Big Five Conscientiousness. This lens is explanatory only and should not be used to claim construct equivalence.
 
 ---
 
-# 7. Item-level review rule
+# Visualization rule
 
-Dimension mapping is only the first pass.
+Preferred result hierarchy:
+1. measured 15 WorkStyle dimensions;
+2. 5 WorkStyle domains;
+3. optional outer toggle `PAEI | DISC`.
 
-Before numeric outer-ring scoring, review every Beta A item and classify it independently for PAEI/DISC correspondence because:
-- two items inside one dimension may express different behavioural facets;
-- some items may map to no external lens at all;
-- a secondary link may be driven by only one or two items rather than the whole dimension;
-- reverse items must be interpreted by construct direction after scoring, not by the literal sentence alone.
+When a user selects a PAEI or DISC segment:
+- highlight the WorkStyle dimensions that contribute to that lens;
+- use stronger visual emphasis for Primary than Secondary links;
+- allow one WorkStyle dimension to connect to more than one external segment;
+- explain that the lens is a correspondence, not a second hidden test.
 
-Example:
-- an Ambicija item about choosing harder goals may support P/E correspondence;
-- an Ambicija item about recognition/status should probably contribute little or nothing to PAEI.
+This traceability is more important than producing one simplified four-letter score.
 
-External-lens scoring should therefore never be a blind label-to-label conversion.
+# Future scoring experiment
 
----
+Only after sufficient pilot data:
+- define item-level rather than label-only weights;
+- test whether Primary/Secondary weighting creates stable, sensible profiles;
+- inspect whether lens scores add information beyond the 15-dimensional profile;
+- discard numeric lens scoring if it creates false precision.
 
-# 8. Candidate numeric formula for later testing
-
-Only after item-level review and pilot evidence, an experimental lens index could be calculated transparently from WorkStyle dimension indexes:
-
-`lens = weighted_mean(mapped_dimension_indexes)`
-
-Candidate initial weights:
-- Primary = 1.0
-- Secondary = 0.5
-
-Do not ship these coefficients as validated truth.
-
-Before use, test:
-- whether one dimension dominates a lens;
-- whether P/A/E/I and D/I/S/C show useful differentiation;
-- whether the derived lens adds information rather than simply renaming the highest WorkStyle dimensions;
-- whether users understand that it is a correspondence view.
-
----
-
-# 9. Radar UX implication
-
-Recommended V1/Beta visualization:
-
-1. Always show the **15 WorkStyle dimensions** as the measured core.
-2. Show **6 WorkStyle groups** as the recovered summary layer.
-3. Offer one outer toggle: `PAEI | DISC`.
-4. When the user selects P/A/E/I or D/I/S/C, highlight the WorkStyle dimensions/items that support that interpretation.
-5. In Beta A, prefer labels such as:
-   - `Strong correspondence`
-   - `Some correspondence`
-   rather than false-precision numeric lens percentages.
-6. Numeric outer-ring values are a later gate, not required for the first useful radar.
-
-This makes the visualization explainable: every outer interpretation can be traced back to the actual WorkStyle pattern.
+No population norm or validity claim should be attached to derived PAEI/DISC lens values without dedicated evidence.
