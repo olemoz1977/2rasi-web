@@ -33,34 +33,35 @@ The manual-only workflow is:
 
 Run it from `hero-webgl`.
 
-It requires one repository secret:
+It requires:
 
-- `CLOUDFLARE_API_TOKEN`
+- repository secret `CLOUDFLARE_API_TOKEN`;
+- repository variable `CLOUDFLARE_ACCOUNT_ID`.
 
-The token must be able to read the accessible Cloudflare account and manage Workers Scripts and D1. The workflow resolves `CLOUDFLARE_ACCOUNT_ID` itself through the Cloudflare API, so a separate account-id secret is not required.
+The Cloudflare token is account-scoped and needs D1 Write plus Workers Scripts Write for the selected account. The workflow normalizes the secret defensively and then uses the Cloudflare REST API directly instead of Wrangler authentication.
 
 The workflow deliberately performs the activation gate itself:
 
-1. Resolve the Cloudflare account from the API token.
-2. Find an existing `workstyle-pilot` D1 database or create it.
-3. Build an ephemeral Wrangler config with the resolved D1 id.
-4. Dry-run the Worker bundle.
-5. Apply `schema.sql` to remote D1.
-6. Deploy `workstyle-pilot-intake` to `workers.dev`.
+1. Validate the GitHub secret and account id.
+2. Verify D1 API access with the token.
+3. Find an existing `workstyle-pilot` D1 database or create it.
+4. Apply `schema.sql` through the D1 query API.
+5. Upload the `workstyle-pilot-intake` Worker with its D1 binding through the Workers API.
+6. Enable the Worker on the account `workers.dev` subdomain.
 7. Verify `GET /health`.
 8. Verify CORS from `https://2rasi.lt` and `https://2rasi.com`.
 9. POST `test-session-v3.json`.
 10. Verify that the synthetic session reached D1.
 11. Delete the synthetic row so pilot data stays clean.
-12. If `activate_frontend=true`, write the verified `/v1/session` URL into `tools/workstyle15/v07-intake-config.js`, set `enabled: true`, commit and push that activation to `hero-webgl`.
+12. If `activate_frontend=true`, write the verified `/v1/session` URL into `tools/workstyle15/v07-intake-config.js`, set `enabled: true`, refresh intake asset cache-busters, commit and push that activation to `hero-webgl`.
 
 Because Hostinger autodeploys `hero-webgl`, the activation commit then reaches the live 2rasi site through the normal publish path.
 
-No generated Wrangler config, account id or D1 id is committed.
+No account id, D1 id, API token or generated environment config is committed.
 
 ## Frontend intake
 
-The LT-E form now loads both intake files, but the config remains disabled until the deployment workflow passes every backend check:
+The LT-E form loads both intake files, but the config remains disabled until the deployment workflow passes every backend check:
 
 - `tools/workstyle15/v07-intake-config.js`
 - `tools/workstyle15/v07-intake-client.js`
@@ -92,19 +93,9 @@ D1 stores both:
 
 Stored metadata includes version/language, completion state, response count, active first-response time, break time, optional broad role context and cognitive issue counts.
 
-## Manual Wrangler fallback
+## Manual fallback
 
-If GitHub Actions is unavailable, the same worker can still be deployed manually:
-
-```bash
-wrangler d1 create workstyle-pilot
-cp wrangler.toml.example wrangler.toml
-# paste the returned database_id into wrangler.toml
-wrangler d1 execute workstyle-pilot --file=schema.sql --remote
-wrangler deploy
-```
-
-Do not commit a generated `wrangler.toml` if it contains environment-specific details.
+If GitHub Actions is unavailable, the Worker can still be deployed manually through the Cloudflare dashboard or API using the same `src/index.js`, `schema.sql` and D1 binding described above. Avoid committing any API token or account-specific credentials.
 
 ## Abuse / scale boundary
 
