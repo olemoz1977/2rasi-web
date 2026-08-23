@@ -1,5 +1,6 @@
 name: Kick off WorkStyle pilot deploy once
 
+# One-shot dispatcher. Remove after the verified deploy completes.
 on:
   push:
     branches:
