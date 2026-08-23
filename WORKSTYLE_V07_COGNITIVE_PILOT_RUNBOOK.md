@@ -2,13 +2,13 @@
 
 Status: ACTIVE SMALL PILOT / PRE-PSYCHOMETRIC
 Date: 2026-08-23
-Branch: hero-webgl
+Branch: `hero-webgl`
 
 ## Purpose
 
 The current goal is not to validate the 8-axis model and not to produce respondent profiles.
 
-The immediate goal is to test whether the eight proposed bipolar work-style dilemmas are:
+The immediate goal is to test whether the proposed bipolar work-style dilemmas are:
 - understandable after one normal read;
 - experienced as distinct rather than repetitive;
 - balanced enough that neither pole looks obviously better;
@@ -19,14 +19,22 @@ The immediate goal is to test whether the eight proposed bipolar work-style dile
 
 `https://2rasi.com/tools/workstyle15/v07-cognitive.html`
 
-Current version: `0.7-cognitive-8axis-lt-c`.
+Current version: `0.7-cognitive-8axis-lt-d`.
 
-Important instrumentation changes after the first real completion:
+Current form behaviour:
 - response grammar: `Visada / Dažniau / Abu panašiai / Dažniau / Visada`;
 - both behavioural poles are visually separated;
 - same-axis items are prevented from appearing consecutively;
-- `Neaišku / sunku suprasti` and `Primena ankstesnę situaciją` are collected as separate signals;
+- `Neaišku / sunku suprasti` and `Primena ankstesnę situaciją` are separate signals;
+- three blocks: `12 + 11 + 11`;
+- explicit break screens after items 12 and 23;
+- break duration is stored separately and excluded from item timing;
+- item timing stops at first answer rather than continuing until `Toliau`;
+- background/tab-hidden time is excluded from active first-response timing;
+- optional broad pilot context: role, work-experience band, work environment;
 - no respondent profile is shown.
+
+The first internal LT-C completion belongs to an earlier instrumentation version and must not be pooled blindly with LT-D timing metrics.
 
 ## Small cognitive pilot target
 
@@ -34,34 +42,41 @@ Target: **6–10 independent respondents** before any new construct-level decisi
 
 This is not a psychometric sample. It is only enough to find obvious wording, context and duplication problems.
 
-Prefer respondents with real work experience, but do not restrict the pilot to managers. The WorkStyle core is intended to describe work behaviour broadly rather than managerial competence.
+Prefer respondents with real work experience, but do not restrict the pilot to managers. WorkStyle is intended to describe work behaviour broadly rather than managerial competence.
 
 Avoid using only people from one team or one job family if convenient alternatives are available.
 
 ## What to collect
 
-For every completion retain the anonymous JSON export.
+For every completion retain the anonymous JSON export until automatic intake is explicitly activated.
 
 Key signals:
-- completion time;
-- item response time;
+- completion status;
+- active first-response timing by item;
+- block-level timing change;
+- break duration;
 - use of `Abu panašiai`;
 - use of `Priklauso nuo situacijos`;
 - use of `Neteko / negaliu įvertinti`;
 - item marked `unclear`;
 - item marked `similar to earlier`;
 - free-text comments;
-- within-axis directional consistency, interpreted only as a cognitive clue, not reliability evidence.
+- optional broad role/context metadata;
+- within-axis directional spread, interpreted only as a cognitive clue, not reliability evidence.
 
-## First-completion lessons
+Use `tools/workstyle15/analyze-v07.py` for aggregation. It reports cognitive signals only and does not calculate respondent scores.
 
-The first real completion showed that random item ordering can itself create perceived repetition when several items from one axis appear consecutively. This has been corrected in version LT-C.
+## First-completion lessons already incorporated
 
-The first completion also showed that end-of-test questions asking respondents to remember exact item numbers are weak. Duplication and ambiguity should therefore be captured at the item itself.
+The first real completion showed that random item ordering can itself create perceived repetition when several items from one axis appear consecutively. Constrained randomisation now prevents adjacent same-axis items.
+
+It also showed that end-of-test questions asking respondents to remember exact item numbers are weak. Duplication and ambiguity are now captured at the item itself.
+
+The response presentation was redesigned after mobile testing. The current LT-D intro uses separate `Apie` and `Pradėti` cards, and answer selection is highlighted rather than covered by dark fills.
 
 Do not treat the first respondent's axis means as a personal profile or as evidence of construct validity.
 
-## Item-level warning rules for this pilot
+## Item-level warning rules
 
 These are practical cognitive-screening flags, not statistical validation thresholds.
 
@@ -99,7 +114,9 @@ Do not:
 - average axes into domains;
 - call the model validated;
 - rewrite the bank after every single respondent;
-- invite a large sample before the cognitive form stabilises.
+- invite a large sample before the cognitive form stabilises;
+- mix LT-C and LT-D timing as if instrumentation were identical;
+- silently submit pilot data to a backend.
 
 ## Gate after 6–10 completions
 
@@ -113,6 +130,16 @@ Produce one consolidated review with four outputs:
 Only after this gate decide whether the 8-axis architecture survives.
 
 If it survives, the next stage is not a final short test. The next stage is a larger candidate item pool and an external pilot designed to reduce items empirically.
+
+## Data-intake boundary
+
+A Cloudflare Worker + D1 intake package exists under `workers/workstyle-pilot/`, but it is not connected to the live form.
+
+For the current invited pilot:
+- JSON export is the active transfer mechanism;
+- automatic submission is activated only after endpoint health, D1 storage and CORS are verified;
+- participant-facing privacy wording must be updated before activation;
+- JSON remains available as fallback after activation.
 
 ## Product boundary
 
