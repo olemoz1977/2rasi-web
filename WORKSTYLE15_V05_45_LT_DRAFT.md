@@ -92,11 +92,11 @@ Public domains:
 
 ## Bendradarbiavimas / Cooperation
 
-**COP-02 · D** Svarbia informacija su kolegomis pasidalinu dar prieš atsirandant problemai.
+**COP-02 · D** Svarbia informacija su kolegomis pasidaliju dar prieš atsirandant problemai.
 
 **COP-03 · D** Jei kitas žmogus išmano geriau, įtraukiu jį į sprendimą.
 
-**COP-05 · R** Kai žinau, kaip padaryti, man paprasčiau padaryti pačiam nei tartis su kitais.
+**COP-05 · R** Kai žinau, kaip padaryti, man paprasčiau veikti savarankiškai nei tartis su kitais.
 
 ## Empatinis dėmesys / Empathic Attention
 
@@ -110,9 +110,9 @@ Public domains:
 
 **HUM-02 · D** Kai suklystu, tai pasakau tiesiai.
 
-**HUM-04 · D** Kai nežinau, pasakau, kad nežinau.
+**HUM-04 · D** Jei nežinau atsakymo, taip ir pasakau.
 
-**HUM-05 · R** Net gavęs stipresnių argumentų, dažnai laikausi savo pirminės nuomonės.
+**HUM-05 · R** Net kai kito žmogaus argumentai stipresni, dažnai laikausi savo pirminės nuomonės.
 
 ---
 
@@ -122,7 +122,7 @@ Public domains:
 
 **AST-01 · D** Kai nesutinku, tai pasakau aiškiai ir pagarbiai.
 
-**AST-02 · D** Pasakau „ne“, kai naujas darbas pakenktų svarbesniems prioritetams.
+**AST-02 · D** Pasakau „ne“, kai naujas darbas trukdytų svarbesniam.
 
 **AST-05 · R** Kad išvengčiau įtampos, kartais pritariu tam, kam iš tikrųjų nepritariu.
 
@@ -156,7 +156,7 @@ Public domains:
 
 ## Konstruktyvus požiūris / Constructive Outlook
 
-**OUT-02 · D** Neaiškioje situacijoje ieškau daugiau nei vienos galimos baigties.
+**OUT-02 · D** Neaiškioje situacijoje ieškau kelių galimų išeičių.
 
 **OUT-03 · D** Po nesėkmės ieškau kito realaus žingsnio.
 
@@ -166,9 +166,9 @@ Public domains:
 
 **REF-01 · D** Pastebiu, kada mano išankstinė nuomonė veikia sprendimą.
 
-**REF-03 · D** Po sudėtingo pokalbio pagalvoju, kaip mano elgesys prisidėjo prie rezultato.
+**REF-03 · D** Po sudėtingo pokalbio pagalvoju, kaip mano elgesys prisidėjo prie to, kas įvyko.
 
-**REF-05 · R** Kai kyla problema, dažniau žiūriu į išorines priežastis negu į savo veiksmus.
+**REF-05 · R** Kai kyla problema, pirmiausia žiūriu į aplinkybes, o ne į savo veiksmus.
 
 ---
 
