@@ -26,7 +26,7 @@ Project-specific recovery/deployment details for OMESG360 remain in its own `PRO
 | Drama Triangle | Live legacy tool | LT | Review for EN value before translating |
 | Strategic Thinking | Live legacy tool | LT | Review for EN value before translating |
 | Competency Matrix / Skills Matrix | Legacy spreadsheet tool; accepted as future Tools item | LT | KEEP; document semantics, then rebuild as a usable LT/EN web tool |
-| ADEPT 15 analog | Legacy external project in Microsoft Forms | unknown / to inventory | Recover content, document structure, then decide migrate / rebuild / archive |
+| ADEPT 15 analog | Legacy Microsoft Forms assessment; source + scoring logic recovered in `ADEPT15.xlsx` | LT | KEEP FOR REVIEW; validate construct/source, wording and scoring before rebuilding as a web tool |
 
 ## Current priorities
 
@@ -47,7 +47,54 @@ Before translating or rebuilding old tools, record for each one:
 - whether it is worth keeping public;
 - decision: KEEP / IMPROVE / TRANSLATE / REBUILD / ARCHIVE.
 
-First missing inventory item: **ADEPT 15 analog in Microsoft Forms**.
+### Inventoried legacy assessment — ADEPT 15 analog
+Source reviewed: uploaded `ADEPT15.xlsx`, originating from the Microsoft Forms implementation and its analysis workbook.
+
+Recovered structure:
+- 150 Likert statements scored 1–5;
+- 15 dimensions, 10 statements per dimension;
+- statement-to-dimension mapping is explicit in the `Žemelapis` sheet;
+- Microsoft Forms raw response export is preserved in `Sheet1`;
+- response extraction / dimension mapping is represented in `Atsakymai`;
+- dimension and higher-level style calculations are represented in `Rezultatai`.
+
+15 dimensions:
+- Kryptingumas;
+- Struktūra;
+- Bendradarbiavimas;
+- Jautrumas;
+- Nuolankumas;
+- Konceptualus mąstymas;
+- Lankstumas;
+- Tobulėjimas;
+- Ramybė;
+- Pozityvumas;
+- Savimonė;
+- Ambicija;
+- Įtaka;
+- Asertiškumas;
+- Gyvybingumas.
+
+Higher-level style grouping in the workbook:
+- Emocinis stilius = Ramybė + Pozityvumas + Savimonė;
+- Komandinio darbo stilius = Bendradarbiavimas + Jautrumas + Nuolankumas;
+- Pasiekimų stilius = Ambicija + Įtaka;
+- Prisitaikymo stilius = Konceptualus mąstymas + Lankstumas + Tobulėjimas;
+- Sąveikos stilius = Asertiškumas + Gyvybingumas;
+- Užduočių stilius = Kryptingumas + Struktūra.
+
+Scoring recovered from formulas:
+- each 10-item dimension has raw range 10–50;
+- dimension normalization: `(sum - 10) / 40 * 100`;
+- 3-dimension style normalization: `(sum - 30) / 120 * 100`;
+- 2-dimension style normalization: `(sum - 20) / 80 * 100`.
+
+Current caution:
+- this inventory recovers what the existing implementation does; it does **not** yet validate the psychometric or theoretical basis of the statements/dimensions;
+- statement wording and construct source should be reviewed before public migration;
+- the workbook contains a small source-text defect (`QuestionNuolat...`) and its modern `XLOOKUP` formulas may show `#NAME?` in engines that do not support that Excel function; this is an implementation compatibility issue, not necessarily a scoring-design error.
+
+Portfolio decision: **retain as a legacy Tools candidate, but do not publish/rebuild unchanged until the construct source, statements and reporting interpretation are reviewed.**
 
 ### Newly inventoried tool candidate — Competency Matrix / Skills Matrix
 Source reviewed: uploaded legacy Excel workbook.
@@ -73,6 +120,7 @@ Review these LT-only tools one by one:
 4. Drama Triangle
 5. Strategic Thinking
 6. Competency Matrix / Skills Matrix
+7. ADEPT 15 analog
 
 For each, first decide whether the tool is still conceptually worth presenting in the 2rasi ecosystem. Only then invest in EN and UI normalization.
 
@@ -85,7 +133,7 @@ Current rule:
 Near-term 2Pair work is therefore **data collection and research operations**, not core product development.
 
 ## Suggested sequence from here
-1. Inventory ADEPT 15 from Microsoft Forms.
+1. Review ADEPT 15 construct/source, wording and reporting semantics using the recovered workbook as implementation source of truth.
 2. Preserve and specify the Competency Matrix / Skills Matrix semantics before rebuilding it.
 3. Complete a compact inventory row for every legacy LT-only tool.
 4. Decide which legacy project is genuinely worth upgrading to LT/EN next.
