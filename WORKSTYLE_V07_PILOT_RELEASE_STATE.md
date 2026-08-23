@@ -63,14 +63,27 @@ Reason: the pilot is testing construct/item survival, not returning provisional 
 
 ## Data transfer
 
-Active method for this invited batch:
+Active method until the backend activation gate passes:
 - participant exports JSON;
-- JSON is returned manually to the researcher.
+- JSON can be returned manually to the researcher.
 
 Prepared but inactive:
-- `workers/workstyle-pilot/` Cloudflare Worker + D1 intake.
+- `workers/workstyle-pilot/` Cloudflare Worker + D1 intake;
+- `tools/workstyle15/v07-intake-config.js` disabled intake config;
+- `tools/workstyle15/v07-intake-client.js` explicit participant submit client;
+- `.github/workflows/workstyle-pilot-worker.yml` manual-only Worker deployment helper.
 
-Do not activate automatic submission until backend health/storage/CORS and privacy copy are verified.
+The intended pilot UX after activation remains:
+`Finish -> optional feedback -> Pateikti piloto duomenis -> Ačiū — sesija gauta`.
+
+JSON remains visible as fallback/audit after activation.
+
+Do not load or enable the intake client from the live form until:
+1. Worker is deployed;
+2. `/health` responds;
+3. a synthetic v3 payload is verified in D1;
+4. CORS from `https://2rasi.com` is verified;
+5. participant-facing privacy copy describes explicit pilot submission without claiming absolute anonymity.
 
 ## Required live smoke check before invitations
 
@@ -101,6 +114,7 @@ Mobile first, then desktop:
    - optional pilotContext;
    - itemMap.
 16. Restart clears only the LT-E local session.
+17. After backend activation only: explicit submit succeeds, receipt state persists locally, failure leaves JSON fallback usable.
 
 ## Engineering checks
 
@@ -110,7 +124,12 @@ Static validator:
 Analyzer:
 `python tools/workstyle15/analyze-v07.py <exports...>`
 
-The static validator is engineering-only. Passing it does not validate the WorkStyle constructs.
+GitHub engineering check:
+`.github/workflows/workstyle-v07-check.yml`
+
+The workflow runs the LT-E static/order validator and JS syntax checks for the intake client/config and Worker when relevant pilot files change.
+
+The static validator and CI checks are engineering-only. Passing them does not validate the WorkStyle constructs.
 
 ## Stop conditions during invited batch
 
@@ -121,6 +140,7 @@ Fix immediately only if there is a functional/data-integrity bug such as:
 - break logic corrupts index/order;
 - timing includes long hidden periods;
 - JSON cannot be exported;
-- participant cannot proceed on a supported mobile browser.
+- participant cannot proceed on a supported mobile browser;
+- after backend activation, a successful submit does not produce a stored session or a failed submit destroys the local fallback.
 
 Do **not** rewrite wording after one opinion. Wording/construct changes wait for repeated cognitive evidence across the small batch, unless a statement contains an obvious factual/grammar error that changes meaning.
