@@ -111,19 +111,21 @@ jobs:
           echo "worker_url=$WORKER_URL" >> "$GITHUB_OUTPUT"
           echo "Worker URL: $WORKER_URL"
 
-      - name: Verify health and LT CORS
+      - name: Verify health and browser CORS
         shell: bash
         run: |
           set -euo pipefail
           HEALTH="$(curl --fail --silent --show-error "$WORKER_URL/health")"
           printf '%s' "$HEALTH" | jq -e '.ok == true and .service == "workstyle-pilot-intake"' >/dev/null
 
-          HEADERS="$(curl --silent --show-error --dump-header - --output /dev/null \
-            --request OPTIONS \
-            --header 'Origin: https://2rasi.lt' \
-            --header 'Access-Control-Request-Method: POST' \
-            "$WORKER_URL/v1/session")"
-          printf '%s' "$HEADERS" | grep -qi '^access-control-allow-origin: https://2rasi.lt'
+          for ORIGIN in https://2rasi.lt https://2rasi.com; do
+            HEADERS="$(curl --silent --show-error --dump-header - --output /dev/null \
+              --request OPTIONS \
+              --header "Origin: $ORIGIN" \
+              --header 'Access-Control-Request-Method: POST' \
+              "$WORKER_URL/v1/session")"
+            printf '%s' "$HEADERS" | grep -qi "^access-control-allow-origin: $ORIGIN"
+          done
 
       - name: Verify synthetic POST and D1 insert
         shell: bash
@@ -178,14 +180,21 @@ jobs:
           path = Path(os.environ['PILOT_HTML'])
           text = path.read_text(encoding='utf-8')
           cache_key = os.environ['CACHE_KEY']
-          text, count = re.subn(
+
+          patterns = [
               r'v07-intake-config\.js\?v=[^"\']+',
+              r'v07-intake-client\.js\?v=[^"\']+',
+          ]
+          replacements = [
               f'v07-intake-config.js?v={cache_key}',
-              text,
-              count=1,
-          )
-          if count != 1:
-              raise SystemExit('Could not update v07 intake config cache-buster')
+              f'v07-intake-client.js?v={cache_key}',
+          ]
+
+          for pattern, replacement in zip(patterns, replacements):
+              text, count = re.subn(pattern, replacement, text, count=1)
+              if count != 1:
+                  raise SystemExit(f'Could not update intake asset cache-buster: {pattern}')
+
           path.write_text(text, encoding='utf-8')
           PY
 
@@ -208,7 +217,7 @@ jobs:
             echo
             echo "- Worker: $WORKER_URL"
             echo "- Health: verified"
-            echo "- CORS from 2rasi.lt: verified"
+            echo "- CORS from 2rasi.lt and 2rasi.com: verified"
             echo "- Synthetic POST -> D1: verified"
             echo "- Synthetic row cleanup: done"
             echo "- Frontend activation requested: ${{ inputs.activate_frontend }}"
