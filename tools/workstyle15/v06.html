@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>WorkStyle 15 v0.6 — LT cognitive pilotas · 2rasi</title>
+  <meta name="description" content="WorkStyle 15 v0.6 — 45 teiginių darbo stiliaus savirefleksijos cognitive pilotas." />
+  <link rel="icon" href="../../assets/logo-2.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../tool-page.css" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./v05.css" />
+  <script src="./data.js" defer></script>
+  <script src="./v06-config.js" defer></script>
+  <script src="./app-v05.js" defer></script>
+</head>
+<body>
+<header class="tool-header">
+  <a class="brand" href="../../">2rasi</a>
+  <nav><a href="../../#experiments">Experiments</a><a href="../../#about">About</a></nav>
+</header>
+
+<main class="ws-shell">
+  <section id="intro" class="ws-intro">
+    <p class="ws-eyebrow">Cognitive pilot · LT · v0.6</p>
+    <h1 class="ws-title">WorkStyle 15</h1>
+    <p class="ws-lead">45 trumpi teiginiai apie tai, kaip paprastai elgiesi darbe.</p>
+
+    <div class="ws-meta">
+      <span>45 teiginiai</span>
+      <span>3 blokai po 15</span>
+      <span>15 dimensijų</span>
+      <span>be laiko spaudimo</span>
+    </div>
+
+    <p>Vertink ne tai, kaip norėtum atrodyti, o tai, kas <strong>dažniausiai būdinga tavo realiame darbe</strong>. Čia nėra gero ar blogo atsakymo.</p>
+
+    <div class="ws-note">
+      <strong>Šio bandymo taisyklė.</strong> Teiginys turi būti aiškus iš pirmo perskaitymo. Jei turi pradėti aiškintis, ką jis galėtų reikšti, rinkis <strong>„Sunku įvertinti / neteko tokios situacijos“</strong>. Tai padeda rasti silpnus teiginius.
+    </div>
+
+    <div class="ws-note">
+      <strong>Atsakymų skalė.</strong> 1 reiškia „visai nebūdinga“, 5 — „labai būdinga“. Penketas nereiškia „geriau“ ar „teisingiau“. `Sunku įvertinti` nėra verčiama į 3.
+    </div>
+
+    <div class="ws-note">
+      <strong>Pilotinis privatumas.</strong> Atsakymai nesiunčiami į serverį. Sesija saugoma tik tavo naršyklėje. Baigus galima atsisiųsti anoniminį JSON failą.
+    </div>
+
+    <p id="resumeInfo" aria-live="polite"></p>
+    <div class="ws-actions">
+      <button id="startBtn" class="ws-button primary" type="button">Pradėti</button>
+      <button id="resumeBtn" class="ws-button" type="button" hidden>Tęsti nebaigtą sesiją</button>
+    </div>
+  </section>
+
+  <section id="quiz" hidden aria-live="polite">
+    <div class="ws-quiz-top">
+      <span id="blockLabel" class="ws-block-label">Blokas 1 iš 3</span>
+      <div class="ws-progress-track" aria-hidden="true"><div id="progressBar" class="ws-progress-bar"></div></div>
+      <span id="progressLabel" class="ws-progress-label">1 / 45</span>
+    </div>
+
+    <article class="ws-question-card">
+      <p id="itemId" class="ws-item-id">Teiginys 1</p>
+      <p class="ws-question-prompt">Kiek tai tau būdinga darbe?</p>
+      <h2 id="questionText" class="ws-question"></h2>
+      <div id="scaleOptions" class="ws-scale" role="radiogroup" aria-label="Kiek tai tau būdinga darbe, nuo 1 iki 5"></div>
+      <button id="unknownBtn" class="ws-unknown" type="button" aria-pressed="false">? · Sunku įvertinti / neteko tokios situacijos</button>
+      <p class="ws-scale-note">3 = tikras vidurys: kartais taip, kartais ne. Jei neaiškus pats teiginys, rinkis „Sunku įvertinti“.</p>
+    </article>
+
+    <div class="ws-quiz-actions">
+      <button id="prevBtn" class="ws-button ghost" type="button">Atgal</button>
+      <button id="nextBtn" class="ws-button primary" type="button" disabled>Toliau</button>
+    </div>
+  </section>
+
+  <section id="breakScreen" hidden>
+    <article class="ws-break-card">
+      <p class="ws-eyebrow">Trumpa pauzė</p>
+      <h1 id="breakTitle">1 iš 3 blokų baigta</h1>
+      <p id="breakText">Liko 30 teiginių.</p>
+      <button id="continueBtn" class="ws-button primary" type="button">Tęsti</button>
+    </article>
+  </section>
+
+  <section id="results" hidden>
+    <header class="ws-results-head">
+      <p class="ws-eyebrow">WorkStyle 15 · tavo profilis</p>
+      <h1>Ne tipas. Profilis.</h1>
+      <p class="ws-lead">15 darbo tendencijų. Pirmiausia žiūrėk į jų santykį, ne į vieną skaičių.</p>
+      <p id="completionMeta" class="ws-meta"></p>
+      <div class="ws-disclaimer">Indeksai rodo vietą teorinėje 0–100 skalėje. Jie nėra percentiliai, normos ar kompetencijų įvertinimai. Jei dimensijoje liko mažiau nei 2 įvertinti teiginiai, balo nerodome.</div>
+    </header>
+
+    <section class="ws-section">
+      <h2>Kas šiame profilyje ryškiausia</h2>
+      <p class="ws-section-intro">Palyginimas tik tavo paties profilio viduje.</p>
+      <div class="ws-profile-pairs">
+        <article class="ws-profile-box"><h3>Labiau išreikšta</h3><div id="topProfile"></div></article>
+        <article class="ws-profile-box"><h3>Mažiau išreikšta</h3><div id="lowProfile"></div></article>
+      </div>
+    </section>
+
+    <section class="ws-section">
+      <h2>15 dimensijų</h2>
+      <div id="dimensionsList" class="ws-dimensions"></div>
+    </section>
+
+    <section class="ws-section">
+      <h2>5 domenai</h2>
+      <p class="ws-section-intro">Įgyvendinimas · Adaptacija · Atvirumas kitiems · Poveikis · Savireguliacija</p>
+      <div id="domainGrid" class="ws-domain-grid"></div>
+    </section>
+
+    <section class="ws-section">
+      <h2>Ar rezultatas buvo konkretus?</h2>
+      <div class="ws-feedback">
+        <fieldset style="border:0;padding:0;margin:0">
+          <legend><strong>Kiek šis aprašymas atrodė būdingas būtent tau?</strong></legend>
+          <div class="ws-feedback-scale">
+            <label><input type="radio" name="specificity" value="1"> 1 · visai nebūdingas</label>
+            <label><input type="radio" name="specificity" value="2"> 2</label>
+            <label><input type="radio" name="specificity" value="3"> 3</label>
+            <label><input type="radio" name="specificity" value="4"> 4</label>
+            <label><input type="radio" name="specificity" value="5"> 5 · labai būdingas</label>
+          </div>
+        </fieldset>
+        <label for="feedbackComment"><strong>Kas buvo neaišku, dirbtina, per daug bendra ar netikslu?</strong></label>
+        <textarea id="feedbackComment" placeholder="Parašyk tik tai, kas realiai užkliuvo."></textarea>
+        <div class="ws-actions"><button id="saveFeedbackBtn" class="ws-button" type="button">Išsaugoti atsiliepimą</button></div>
+        <div id="feedbackStatus" class="ws-feedback-status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="ws-section">
+      <h2>Pilotiniai duomenys</h2>
+      <p class="ws-export-note">Eksporte „Sunku įvertinti“ lieka kaip atskiras `NA`, o ne kaip vidurinis balas.</p>
+      <div class="ws-actions">
+        <button id="exportBtn" class="ws-button primary" type="button">Atsisiųsti anoniminį JSON</button>
+        <button id="restartBtn" class="ws-button ghost" type="button">Pradėti naują sesiją</button>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer class="tool-footer">
+  <span>2rasi · Look again.</span>
+  <a href="../../#experiments">← Back to experiments</a>
+</footer>
+</body>
+</html>
