@@ -152,6 +152,25 @@ The DISC crosswalk should be audited at **item level**, not accepted only from d
 Product intent:
 The user should first understand **their own 15-dimensional work pattern**, then see how the same pattern can be interpreted through broader management/behaviour frameworks. The outer rings add context, not new claims of measurement.
 
+### Deferred optional lens — Jungian / Myers-Briggs-style preferences
+Idea status: **remembered, intentionally excluded from WorkStyle 15 V1.**
+
+A later exploratory layer may investigate correspondence between WorkStyle 15 tendencies and the familiar preference axes commonly associated with Jungian/Myers-Briggs-style frameworks:
+- E–I;
+- S–N;
+- T–F;
+- J–P.
+
+Potential conceptual links are visible (for example Gyvybingumas with outward social energy, Konceptualus mąstymas with abstract/possibility orientation, Jautrumas with people/values orientation, and Struktūra with preference for order), but these are not yet a defensible measurement model.
+
+Product rule:
+- do **not** add this as another default radial ring in V1;
+- if revisited later, present it as an optional **Jungian preference lens**, not as an MBTI assessment or a claim of an official four-letter type;
+- build any future mapping from audited item-level correspondence, not only dimension labels;
+- keep it subordinate to the primary WorkStyle 15 profile so the product does not become a collection of borrowed typology labels.
+
+Reason for deferral: PAEI + DISC already provide enough external context for the first version. A third external framework should only be added if it creates additional explanatory value rather than visual novelty.
+
 ### Future product concept — Organization Development / PAEI
 Longer-term idea: build a separate organization-level tool for measuring organizational development, not an extension of the individual self-report score.
 
@@ -214,12 +233,13 @@ Near-term 2Pair work is therefore **data collection and research operations**, n
 1. Audit WorkStyle 15 item bank and construct/reporting semantics using the recovered workbook as implementation source of truth.
 2. Decide the first public WorkStyle 15 item set and interpretation model before coding.
 3. Build and review explicit WorkStyle 15 → PAEI and WorkStyle 15 → DISC crosswalks before any derived outer-ring scoring is implemented.
-4. Preserve and specify the Competency Matrix / Skills Matrix semantics before rebuilding it.
-5. Complete a compact inventory row for every legacy LT-only tool.
-6. Decide which legacy project is genuinely worth upgrading to LT/EN next.
-7. In parallel, continue collecting Wave1 and Calibration data without changing their mechanics.
-8. Reopen 2Pair core only after evidence gives a concrete reason.
-9. Keep Organization Development / PAEI as a later product concept until WorkStyle 15 and the current tools portfolio are stable.
+4. Keep the Jungian / Myers-Briggs-style preference lens explicitly deferred until after V1 and revisit only if it adds explanatory value.
+5. Preserve and specify the Competency Matrix / Skills Matrix semantics before rebuilding it.
+6. Complete a compact inventory row for every legacy LT-only tool.
+7. Decide which legacy project is genuinely worth upgrading to LT/EN next.
+8. In parallel, continue collecting Wave1 and Calibration data without changing their mechanics.
+9. Reopen 2Pair core only after evidence gives a concrete reason.
+10. Keep Organization Development / PAEI as a later product concept until WorkStyle 15 and the current tools portfolio are stable.
 
 ## Freeze register
 - Leadership 360°: COMPLETE / FROZEN.
