@@ -25,6 +25,7 @@ Project-specific recovery/deployment details for OMESG360 remain in its own `PRO
 | Situational Leadership | Live legacy tool | LT | Review for EN value before translating |
 | Drama Triangle | Live legacy tool | LT | Review for EN value before translating |
 | Strategic Thinking | Live legacy tool | LT | Review for EN value before translating |
+| Competency Matrix / Skills Matrix | Legacy spreadsheet tool; accepted as future Tools item | LT | KEEP; document semantics, then rebuild as a usable LT/EN web tool |
 | ADEPT 15 analog | Legacy external project in Microsoft Forms | unknown / to inventory | Recover content, document structure, then decide migrate / rebuild / archive |
 
 ## Current priorities
@@ -48,6 +49,20 @@ Before translating or rebuilding old tools, record for each one:
 
 First missing inventory item: **ADEPT 15 analog in Microsoft Forms**.
 
+### Newly inventoried tool candidate — Competency Matrix / Skills Matrix
+Source reviewed: uploaded legacy Excel workbook.
+
+Understood structure without additional explanation:
+- process -> step -> what is done -> how it is done -> quality/safety reason;
+- 0–5 competence scale from unable to perform through able to teach others;
+- responsible person per action/step;
+- January–December training plan using initials;
+- per-person current competence (`Faktas`), required competence (`Tikslas`) and gap (`Skirtumas`);
+- row-level aggregate competence gap across the team;
+- top-level actual competence sum versus target competence sum.
+
+Portfolio decision: **KEEP as a future Tools item.** Do not treat it as ADEPT 15. Before implementation, clarify the few ambiguous semantics identified during review (especially meaning of target `0`, responsibility field, training-plan initials and gap sign convention).
+
 ### P2 — LT/EN parity only where it creates value
 Do not translate every old project automatically.
 
@@ -57,6 +72,7 @@ Review these LT-only tools one by one:
 3. Situational Leadership
 4. Drama Triangle
 5. Strategic Thinking
+6. Competency Matrix / Skills Matrix
 
 For each, first decide whether the tool is still conceptually worth presenting in the 2rasi ecosystem. Only then invest in EN and UI normalization.
 
@@ -70,10 +86,11 @@ Near-term 2Pair work is therefore **data collection and research operations**, n
 
 ## Suggested sequence from here
 1. Inventory ADEPT 15 from Microsoft Forms.
-2. Complete a compact inventory row for every legacy LT-only tool.
-3. Decide which legacy project is genuinely worth upgrading to LT/EN next.
-4. In parallel, continue collecting Wave1 and Calibration data without changing their mechanics.
-5. Reopen 2Pair core only after evidence gives a concrete reason.
+2. Preserve and specify the Competency Matrix / Skills Matrix semantics before rebuilding it.
+3. Complete a compact inventory row for every legacy LT-only tool.
+4. Decide which legacy project is genuinely worth upgrading to LT/EN next.
+5. In parallel, continue collecting Wave1 and Calibration data without changing their mechanics.
+6. Reopen 2Pair core only after evidence gives a concrete reason.
 
 ## Freeze register
 - Leadership 360°: COMPLETE / FROZEN.
