@@ -33,30 +33,30 @@ The manual-only workflow is:
 
 Run it from `hero-webgl`.
 
-It requires only these repository secrets:
+It requires one repository secret:
 
 - `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
 
-The Cloudflare token must be able to manage Workers Scripts and D1 for the account.
+The token must be able to read the accessible Cloudflare account and manage Workers Scripts and D1. The workflow resolves `CLOUDFLARE_ACCOUNT_ID` itself through the Cloudflare API, so a separate account-id secret is not required.
 
 The workflow deliberately performs the activation gate itself:
 
-1. Find an existing `workstyle-pilot` D1 database or create it.
-2. Build an ephemeral Wrangler config with the resolved D1 id.
-3. Dry-run the Worker bundle.
-4. Apply `schema.sql` to remote D1.
-5. Deploy `workstyle-pilot-intake` to `workers.dev`.
-6. Verify `GET /health`.
-7. Verify CORS from `https://2rasi.lt`.
-8. POST `test-session-v3.json`.
-9. Verify that the synthetic session reached D1.
-10. Delete the synthetic row so pilot data stays clean.
-11. If `activate_frontend=true`, write the verified `/v1/session` URL into `tools/workstyle15/v07-intake-config.js`, set `enabled: true`, commit and push that activation to `hero-webgl`.
+1. Resolve the Cloudflare account from the API token.
+2. Find an existing `workstyle-pilot` D1 database or create it.
+3. Build an ephemeral Wrangler config with the resolved D1 id.
+4. Dry-run the Worker bundle.
+5. Apply `schema.sql` to remote D1.
+6. Deploy `workstyle-pilot-intake` to `workers.dev`.
+7. Verify `GET /health`.
+8. Verify CORS from `https://2rasi.lt` and `https://2rasi.com`.
+9. POST `test-session-v3.json`.
+10. Verify that the synthetic session reached D1.
+11. Delete the synthetic row so pilot data stays clean.
+12. If `activate_frontend=true`, write the verified `/v1/session` URL into `tools/workstyle15/v07-intake-config.js`, set `enabled: true`, commit and push that activation to `hero-webgl`.
 
 Because Hostinger autodeploys `hero-webgl`, the activation commit then reaches the live 2rasi site through the normal publish path.
 
-No generated Wrangler config or D1 id is committed.
+No generated Wrangler config, account id or D1 id is committed.
 
 ## Frontend intake
 
