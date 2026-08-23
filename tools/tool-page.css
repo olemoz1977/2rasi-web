@@ -146,3 +146,46 @@ h1{font-size:clamp(3rem,8vw,6.4rem);line-height:.9;letter-spacing:-.075em;margin
   border-color:rgba(7,27,46,.09)!important;
   box-shadow:none;
 }
+
+/* WorkStyle v0.7 cognitive: intro should feel like an experiment, not an admin form. */
+#intro.ws-card{
+  background:
+    radial-gradient(circle at 88% 8%,rgba(34,174,184,.10),transparent 34%),
+    linear-gradient(150deg,rgba(255,255,255,.82),rgba(255,255,255,.48))!important;
+  border:1px solid rgba(7,27,46,.09)!important;
+  box-shadow:0 18px 50px rgba(7,27,46,.055);
+}
+#intro .ws-eyebrow{color:#168b95;opacity:.88!important;font-weight:750}
+#intro .ws-meta span{
+  background:rgba(255,255,255,.58)!important;
+  border-color:rgba(7,27,46,.09)!important;
+}
+#intro .ws-note{
+  border-left:none!important;
+  border:1px solid rgba(7,27,46,.08)!important;
+  border-radius:18px;
+  background:rgba(255,255,255,.54)!important;
+  padding:15px 16px!important;
+  box-shadow:0 7px 20px rgba(7,27,46,.025);
+}
+#intro .ws-note strong{color:#153e53}
+#intro .ws-button.primary,
+#done .ws-button.primary{
+  background:linear-gradient(135deg,rgba(34,174,184,.20),rgba(34,174,184,.09))!important;
+  color:var(--ink)!important;
+  border:1px solid rgba(34,174,184,.66)!important;
+  box-shadow:0 8px 24px rgba(34,174,184,.11);
+  font-weight:760;
+  transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+}
+#intro .ws-button.primary:not(:disabled):hover,
+#done .ws-button.primary:not(:disabled):hover{
+  transform:translateY(-2px);
+  background:linear-gradient(135deg,rgba(34,174,184,.27),rgba(34,174,184,.12))!important;
+  box-shadow:0 11px 28px rgba(34,174,184,.15);
+}
+#intro .ws-button:not(.primary),
+#done .ws-button:not(.primary){
+  background:rgba(255,255,255,.52)!important;
+  border-color:rgba(7,27,46,.10)!important;
+}
