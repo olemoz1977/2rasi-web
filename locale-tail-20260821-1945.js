@@ -26,6 +26,14 @@
   function apply() {
     const lt = lang === 'lt';
 
+    const calibration = document.querySelector('#2pair .experiment-actions a:nth-child(3)');
+    if (calibration) {
+      calibration.href = 'https://omesg360.eu/conflictlab/releases/calibration-v0.1/';
+      calibration.target = '_blank';
+      calibration.rel = 'noopener';
+      action('#2pair .experiment-actions a:nth-child(3)', 'Calibration');
+    }
+
     const workstyle = document.querySelector('#workstyle');
     if (workstyle) {
       text('#workstyle .experiment-state', lt ? 'Kognityvinis pilotas · LT' : 'Cognitive pilot · LT');
