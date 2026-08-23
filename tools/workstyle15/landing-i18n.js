@@ -8,6 +8,16 @@
   const lt = lang === 'lt';
   document.documentElement.lang = lang;
 
+  document.title = lt
+    ? 'WorkStyle — kognityvinis darbo stiliaus pilotas · 2rasi'
+    : 'WorkStyle — cognitive work-style pilot · 2rasi';
+  const description = document.querySelector('meta[name="description"]');
+  if (description) {
+    description.setAttribute('content', lt
+      ? 'Kognityvinis WorkStyle pilotas apie pasirinkimus tarp lygiaverčių darbo strategijų kasdienėse situacijose.'
+      : 'A cognitive pilot exploring how people choose between equally valid work strategies across everyday situations.');
+  }
+
   const text = (selector, en, ltText) => {
     const el = document.querySelector(selector);
     if (el) el.textContent = lt ? ltText : en;
@@ -35,7 +45,8 @@
 
   const sections = document.querySelectorAll('.tool-section');
   if (sections[0]) {
-    text('.tool-section:nth-of-type(1) h2', 'What it explores', 'Ką tiria');
+    const h = sections[0].querySelector('h2');
+    if (h) h.textContent = lt ? 'Ką tiria' : 'What it explores';
     const ps = sections[0].querySelectorAll('p');
     if (ps[0]) ps[0].textContent = lt
       ? 'WorkStyle nesiekia priskirti žmonių asmenybės tipams. Dabartinis prototipas stebi pasikartojančius pasirinkimus tarp dviejų normalių darbo strategijų: pasiruošti iš anksto ar organizuoti eigoje, išlaikyti metodą ar jį adaptuoti, veikti savarankiškai ar derintis su kitais.'
@@ -123,6 +134,7 @@
     'Not whether one pole wins. We are testing whether the choices are understandable, distinct and useful enough to deserve a later measurement model.',
     'Ne kuri pusė „laimi“. Tikriname, ar pasirinkimai yra pakankamai suprantami, skirtingi ir prasmingi, kad vėliau būtų verta kurti matavimo modelį.');
   text('.side-card .button', 'Start cognitive pilot →', 'Pradėti kognityvinį pilotą →');
+  text('.tool-footer span', '2rasi · Look again.', '2rasi · Pažvelk dar kartą.');
   text('.tool-footer a', '← Back to experiments', '← Grįžti į eksperimentus');
 
   const nav = document.querySelector('.tool-header nav');
