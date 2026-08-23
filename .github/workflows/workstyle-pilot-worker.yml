@@ -44,7 +44,7 @@ jobs:
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID repository variable."; exit 1; }
           [[ "$CLOUDFLARE_ACCOUNT_ID" =~ ^[A-Fa-f0-9]{32}$ ]] || { echo "CLOUDFLARE_ACCOUNT_ID must be the 32-character Cloudflare account id."; exit 1; }
 
-      - name: Normalize Cloudflare token
+      - name: Normalize Cloudflare account token
         env:
           RAW_CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         shell: bash
@@ -63,14 +63,16 @@ jobs:
               raise SystemExit('Cloudflare token is empty after normalization.')
           if any(ch.isspace() for ch in token):
               raise SystemExit('Cloudflare token still contains whitespace. Store only the token value.')
-          if not re.fullmatch(r'[A-Za-z0-9_-]{20,}', token):
-              raise SystemExit('Cloudflare token format looks invalid. Store only the token value, without Bearer, quotes or labels.')
+          if not token.startswith('cfat_'):
+              raise SystemExit('CLOUDFLARE_API_TOKEN is not the new account-owned token created for this workflow. It must start with cfat_. Replace the GitHub secret with the token value shown after creating 2rasi-workstyle-pilot.')
+          if not re.fullmatch(r'cfat_[A-Za-z0-9_-]{20,}', token):
+              raise SystemExit('Cloudflare account token format looks invalid. Store only the full cfat_ token value, without Bearer, quotes or labels.')
           print(token, end='')
           PY
           )"
           echo "::add-mask::$TOKEN"
           echo "CLOUDFLARE_API_TOKEN=$TOKEN" >> "$GITHUB_ENV"
-          echo "Cloudflare token normalized without exposing its value."
+          echo "Cloudflare account token format verified."
 
       - name: Verify Cloudflare API access
         shell: bash
