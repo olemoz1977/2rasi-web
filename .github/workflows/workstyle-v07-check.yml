@@ -8,11 +8,13 @@ on:
       - 'tools/workstyle15/v07-*'
       - 'workers/workstyle-pilot/**'
       - '.github/workflows/workstyle-v07-check.yml'
+      - '.github/workflows/workstyle-pilot-worker.yml'
   pull_request:
     paths:
       - 'tools/workstyle15/v07-*'
       - 'workers/workstyle-pilot/**'
       - '.github/workflows/workstyle-v07-check.yml'
+      - '.github/workflows/workstyle-pilot-worker.yml'
   workflow_dispatch:
 
 permissions:
