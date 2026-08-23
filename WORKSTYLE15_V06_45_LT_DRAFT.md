@@ -80,7 +80,7 @@ Public domains:
 
 **ADP-04 · D** Kai pasikeičia prioritetai, pertvarkau savo darbą pagal naują eilę.
 
-**ADP-05 · R** Kai jau turiu susidėliojęs planą, man nelengva jį keisti eigoje.
+**ADP-05 · R** Kai planas jau sudėliotas, man nelengva jį keisti eigoje.
 
 ## Mokymosi orientacija / Learning Orientation
 
@@ -100,7 +100,7 @@ Public domains:
 
 **COP-03 · D** Kai sprendimui trūksta žinių, kreipiuosi į žmogų, kuris jas turi.
 
-**COP-05 · R** Jei užduotį galiu padaryti pats, dažniausiai taip ir darau, užuot derinęs su kitais.
+**COP-05 · R** Jei užduotį galiu atlikti savarankiškai, dažniausiai taip ir darau, o ne derinu su kitais.
 
 ## Empatinis dėmesys / Empathic Attention
 
@@ -116,7 +116,7 @@ Public domains:
 
 **HUM-04 · D** Kai nežinau, pasakau, kad nežinau.
 
-**HUM-05 · R** Kai dėl sprendimo jau esu apsisprendęs, savo nuomonę keičiu retai.
+**HUM-05 · R** Kai sprendimas jau priimtas, savo nuomonę keičiu retai.
 
 ---
 
