@@ -156,6 +156,9 @@ jobs:
         run: |
           set -euo pipefail
           CONFIG="$GITHUB_WORKSPACE/tools/workstyle15/v07-intake-config.js"
+          PILOT_HTML="$GITHUB_WORKSPACE/tools/workstyle15/v07-cognitive.html"
+          CACHE_KEY="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+
           cat > "$CONFIG" <<EOF
           window.WORKSTYLE_V07_INTAKE = Object.freeze({
             enabled: true,
@@ -167,9 +170,28 @@ jobs:
           });
           EOF
 
+          CACHE_KEY="$CACHE_KEY" PILOT_HTML="$PILOT_HTML" python - <<'PY'
+          import os
+          import re
+          from pathlib import Path
+
+          path = Path(os.environ['PILOT_HTML'])
+          text = path.read_text(encoding='utf-8')
+          cache_key = os.environ['CACHE_KEY']
+          text, count = re.subn(
+              r'v07-intake-config\.js\?v=[^"\']+',
+              f'v07-intake-config.js?v={cache_key}',
+              text,
+              count=1,
+          )
+          if count != 1:
+              raise SystemExit('Could not update v07 intake config cache-buster')
+          path.write_text(text, encoding='utf-8')
+          PY
+
           git -C "$GITHUB_WORKSPACE" config user.name "github-actions[bot]"
           git -C "$GITHUB_WORKSPACE" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git -C "$GITHUB_WORKSPACE" add tools/workstyle15/v07-intake-config.js
+          git -C "$GITHUB_WORKSPACE" add tools/workstyle15/v07-intake-config.js tools/workstyle15/v07-cognitive.html
 
           if git -C "$GITHUB_WORKSPACE" diff --cached --quiet; then
             echo "Frontend intake config already points to this endpoint."
