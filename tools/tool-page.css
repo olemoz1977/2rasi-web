@@ -63,3 +63,86 @@ h1{font-size:clamp(3rem,8vw,6.4rem);line-height:.9;letter-spacing:-.075em;margin
   .side-card{position:static}
   .tool-footer{flex-direction:column}
 }
+
+/* WorkStyle v0.7 cognitive: light bipolar interaction.
+   Both poles remain visually equal; selection highlights instead of covering text. */
+.ws-choice-board{
+  --ws-fun:#22aeb8;
+  --ws-fun-soft:rgba(34,174,184,.11);
+  --ws-fun-ring:rgba(34,174,184,.24);
+}
+.ws-choice-board .ws-scale button{
+  background:rgba(255,255,255,.74)!important;
+  color:var(--ink)!important;
+  border:1px solid rgba(7,27,46,.12)!important;
+  box-shadow:0 5px 18px rgba(7,27,46,.035);
+  transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease,background .16s ease;
+}
+.ws-choice-board .ws-scale button:hover{
+  transform:translateY(-1px);
+  border-color:rgba(34,174,184,.48)!important;
+}
+.ws-choice-board .ws-scale button[aria-pressed="true"]{
+  background:var(--ws-fun-soft)!important;
+  color:var(--ink)!important;
+  border:2px solid var(--ws-fun)!important;
+  box-shadow:0 0 0 5px var(--ws-fun-ring),0 8px 22px rgba(7,27,46,.06)!important;
+  transform:translateY(-2px) scale(1.02);
+  font-weight:750;
+}
+.ws-choice-board .ws-pole{
+  background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(255,255,255,.48))!important;
+  border:1px solid rgba(7,27,46,.10)!important;
+  box-shadow:0 12px 30px rgba(7,27,46,.045);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.ws-choice-board .ws-pole[data-active="true"]{
+  background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(34,174,184,.07))!important;
+  border-color:rgba(34,174,184,.62)!important;
+  box-shadow:0 0 0 4px rgba(34,174,184,.09),0 14px 32px rgba(7,27,46,.06)!important;
+  transform:translateY(-2px);
+}
+.ws-choice-board .ws-middle{
+  color:#22aeb8;
+  opacity:.58!important;
+  font-size:1.2rem!important;
+}
+.ws-choice-board ~ .ws-answer-hint{
+  color:var(--muted);
+  opacity:.72!important;
+}
+.ws-choice-board ~ .ws-special button{
+  background:rgba(255,255,255,.46)!important;
+  border-color:rgba(7,27,46,.10)!important;
+  transition:background .16s ease,border-color .16s ease,transform .16s ease;
+}
+.ws-choice-board ~ .ws-special button:hover{
+  transform:translateY(-1px);
+  border-color:rgba(34,174,184,.38)!important;
+}
+.ws-choice-board ~ .ws-special button[aria-pressed="true"]{
+  background:rgba(34,174,184,.09)!important;
+  border-color:rgba(34,174,184,.62)!important;
+  box-shadow:0 0 0 3px rgba(34,174,184,.08);
+}
+.ws-choice-board ~ .ws-special ~ .ws-flags input{
+  accent-color:#22aeb8;
+}
+.ws-choice-board ~ .ws-special ~ .ws-flags ~ .ws-nav .ws-button.primary{
+  background:rgba(34,174,184,.12)!important;
+  color:var(--ink)!important;
+  border:1px solid rgba(34,174,184,.66)!important;
+  box-shadow:0 7px 22px rgba(34,174,184,.09);
+  transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+}
+.ws-choice-board ~ .ws-special ~ .ws-flags ~ .ws-nav .ws-button.primary:not(:disabled):hover{
+  transform:translateY(-1px);
+  background:rgba(34,174,184,.18)!important;
+  box-shadow:0 9px 26px rgba(34,174,184,.13);
+}
+.ws-choice-board ~ .ws-special ~ .ws-flags ~ .ws-nav .ws-button.primary:disabled{
+  background:rgba(7,27,46,.035)!important;
+  color:rgba(7,27,46,.35)!important;
+  border-color:rgba(7,27,46,.09)!important;
+  box-shadow:none;
+}
