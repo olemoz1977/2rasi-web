@@ -23,7 +23,7 @@ The item wording below is original WorkStyle 15 content. It is designed for work
 
 **PER-02 · D** Jei svarbus darbas užsitęsia, prie jo grįžtu tol, kol pasiekiu aiškią pabaigą.
 
-**PER-03 · D** Atsiradus kliūčiai, ieškau kito būdo pasiekti tą patį tikslą.
+**PER-03 · D** Po nesėkmingo bandymo prie svarbios užduoties grįžtu, užuot ją palikęs nuošalyje.
 
 **PER-04 · D** Prireikus galiu atsisakyti mažiau svarbios veiklos, kad nepamesčiau pagrindinio tikslo.
 
@@ -45,7 +45,7 @@ The item wording below is original WorkStyle 15 content. It is designed for work
 
 **ACH-01 · D** Sąmoningai renkuosi tikslus, kurie reikalauja iš manęs daugiau negu įprasta.
 
-**ACH-02 · D** Mane motyvuoja atsakomybė, kuri leidžia turėti didesnį poveikį rezultatui.
+**ACH-02 · D** Kai tikslas svarbus, esu linkęs kelti sau aukštesnį standartą negu minimaliai pakanka.
 
 **ACH-03 · D** Pasiekęs gerą rezultatą dažnai pagalvoju, ką dar būtų galima pakelti į aukštesnį lygį.
 
@@ -99,7 +99,7 @@ The item wording below is original WorkStyle 15 content. It is designed for work
 
 ## 7. Cooperation / Bendradarbiavimas
 
-**COP-01 · D** Kai mano sprendimas palies kitus, prieš galutinai apsispręsdamas pasitikrinu jų perspektyvą.
+**COP-01 · D** Kai mano sprendimas palies kitų darbą, prieš jį priimdamas suderinu, ko iš jų reikės ir ką jie turi žinoti.
 
 **COP-02 · D** Informacija, kurios gali prireikti kolegoms, stengiuosi pasidalinti dar prieš atsirandant problemai.
 
@@ -129,7 +129,7 @@ The item wording below is original WorkStyle 15 content. It is designed for work
 
 **HUM-03 · D** Kai nesu tikras dėl savo išvados, galiu tai pripažinti ir patikrinti papildomą informaciją.
 
-**HUM-04 · D** Galiu paprašyti pagalbos net srityje, kurioje iš manęs tikimasi kompetencijos.
+**HUM-04 · D** Galiu pasakyti „nežinau“, kai neturiu pakankamai pagrindo tvirtai išvadai.
 
 **HUM-05 · R** Man sunku viešai pripažinti, kad mano ankstesnė pozicija buvo klaidinga.
 
@@ -185,7 +185,7 @@ The item wording below is original WorkStyle 15 content. It is designed for work
 
 **REG-03 · D** Po netikėtos problemos paprastai gana greitai grįžtu į darbinį ritmą.
 
-**REG-04 · D** Kritika man netrukdo išnagrinėti, ar joje yra naudingos informacijos.
+**REG-04 · D** Gavęs kritiką galiu suvaldyti pirmą gynybinę reakciją ir išklausyti iki galo.
 
 **REG-05 · R** Netikėta problema lengvai išmuša mane iš darbinio ritmo ilgesniam laikui.
 
@@ -195,7 +195,7 @@ The item wording below is original WorkStyle 15 content. It is designed for work
 
 **OUT-02 · D** Neapibrėžtoje situacijoje gebu matyti daugiau negu vien nesėkmės scenarijų.
 
-**OUT-03 · D** Po nesėkmės gana greitai atgaunu norą bandyti dar kartą.
+**OUT-03 · D** Po nesėkmės stengiuosi pamatyti, kokia reali galimybė ar kitas žingsnis dar lieka.
 
 **OUT-04 · D** Kai situacija bloga, stengiuosi atskirti tai, ko negalime pakeisti, nuo to, ką dar galime paveikti.
 
@@ -203,7 +203,7 @@ The item wording below is original WorkStyle 15 content. It is designed for work
 
 ## 15. Reflective Self-Awareness / Reflektyvi savimonė
 
-**REF-01 · D** Pastebiu, kada mano įprastas darbo būdas konkrečioje situacijoje nebeveikia.
+**REF-01 · D** Pastebiu, kokiose situacijose mano emocijos, įpročiai ar išankstinės nuostatos pradeda veikti mano sprendimus.
 
 **REF-02 · D** Galiu įvardyti situacijas, kuriose mano stiprybė tampa kliūtimi.
 
