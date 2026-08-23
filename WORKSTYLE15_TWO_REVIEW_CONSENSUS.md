@@ -13,14 +13,16 @@ Reviewer A (Claude):
 - overall construct-overlap judgment: **Normal**;
 - provenance reveal did not change the verdict.
 
-Reviewer B (Gemini):
+Reviewer B (Grok):
 - verdict: **READY AFTER MINOR REVISIONS**;
 - confidence: **78/100**;
 - overall overlap judgment: normal/expected for a workplace self-reflection instrument.
 
+Gemini was considered as an additional reviewer but did not complete the review because it could not reliably read the supplied review file. Its non-review is not counted as evidence.
+
 ## Strong convergence
 
-Both reviews independently support:
+Both completed reviews independently support:
 - retaining the 5 domains × 3 dimensions architecture for pilot;
 - no major structural redesign before data;
 - five items per dimension as a defensible pilot starting point;
@@ -44,7 +46,7 @@ The reviews also identified reflection/learning overlap as worth monitoring, alt
 ### Social Energy
 Claude rated Social Energy **Weak** and raised the possibility that it is narrow-band extraversion or a moderator rather than a standalone scale.
 
-Gemini rated Social Energy **Acceptable**, judged the Influence domain coherent, and recommended empirical testing rather than structural removal.
+Grok rated Social Energy **Acceptable**, judged the Influence domain coherent, and recommended empirical testing rather than structural removal.
 
 Decision: **KEEP FOR PILOT / TEST DISCRIMINANT VALUE**.
 
@@ -53,7 +55,7 @@ Do not remove or merge Social Energy before response data exists. The disagreeme
 ### Reverse-item ratio
 Claude recommended moving toward two reverse items per dimension.
 
-Gemini explicitly praised the systematic one-reverse-per-dimension design and found 14/15 reverse items acceptable, with only PER-05 needing polishing.
+Grok explicitly praised the systematic one-reverse-per-dimension design and found 14/15 reverse items acceptable, with only PER-05 needing polishing.
 
 Decision: **DO NOT FORCE A 2:3 R/D RATIO**.
 
@@ -69,7 +71,7 @@ Decision:
 
 ## Accepted second-review item refinements
 
-Gemini independently flagged four low-risk wording improvements not fully resolved in v0.2:
+Grok independently flagged four low-risk wording improvements not fully resolved in v0.2:
 - PER-05: remove the two-behaviour construction;
 - SYS-01: reduce double-barrel wording;
 - INF-01: replace an ability claim with behavioural wording;
@@ -79,7 +81,7 @@ These refinements are incorporated in `WORKSTYLE15_V03_LT_ITEMS.md`.
 
 ## Overall decision
 
-The two independent blind reviews provide sufficient conceptual review coverage before a human cognitive pilot.
+The two completed independent blind reviews provide sufficient conceptual review coverage before a human cognitive pilot.
 
 Current architecture decision: **PROCEED**.
 
