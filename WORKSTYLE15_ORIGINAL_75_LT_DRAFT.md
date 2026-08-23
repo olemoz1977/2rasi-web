@@ -34,7 +34,7 @@ Items are written as work tendencies rather than fixed identity labels. Final wo
 
 **KRY-02 · D** Jei svarbus darbas užsitęsia, prie jo grįžtu tol, kol pasiekiu aiškią pabaigą.
 
-**KRY-03 · D** Atsiradus kliūčiai pirmiausia ieškau kito būdo pasiekti tą patį tikslą.
+**KRY-03 · D** Kliūtis pati savaime man nėra priežastis atsisakyti svarbaus tikslo.
 
 **KRY-04 · D** Man lengviau atsisakyti mažiau svarbios veiklos negu paleisti pagrindinį tikslą.
 
@@ -64,7 +64,7 @@ Items are written as work tendencies rather than fixed identity labels. Final wo
 
 **BEN-03 · D** Kai kito žmogaus kompetencija gali pagerinti rezultatą, įtraukiu jį į sprendimą.
 
-**BEN-04 · D** Bendroje užduotyje man svarbu aiškiai atskirti, ką reikia derinti kartu ir ką galima atlikti savarankiškai.
+**BEN-04 · D** Bendroje užduotyje sąmoningai pasitikrinu, kur mano veiksmai priklauso nuo kitų žmonių darbo.
 
 **BEN-05 · R** Kai žinau, kaip padaryti, man paprasčiau veikti pačiam negu derinti sprendimą su kitais.
 
@@ -120,7 +120,7 @@ Items are written as work tendencies rather than fixed identity labels. Final wo
 
 **LAN-03 · D** Pasikeitus aplinkybėms atskiriu, ką būtina išsaugoti, o ką galima keisti.
 
-**LAN-04 · D** Galiu produktyviai dirbti su žmonėmis, kurių darbo stilius labai skiriasi nuo manojo.
+**LAN-04 · D** Galiu produktyviai dirbti ir tada, kai pasikeičia įprastas procesas ar darbo sąlygos.
 
 **LAN-05 · R** Net pasikeitus aplinkybėms, man patogiau laikytis pirminio plano.
 
@@ -148,7 +148,7 @@ Items are written as work tendencies rather than fixed identity labels. Final wo
 
 **RAM-03 · D** Po netikėtos problemos paprastai gana greitai grįžtu į darbinį ritmą.
 
-**RAM-04 · D** Kritika man netrukdo išnagrinėti, ar joje yra naudingos informacijos.
+**RAM-04 · D** Gavęs kritiką sugebu išlaikyti darbinį toną ir grįžti prie klausimo esmės.
 
 **RAM-05 · R** Netikėta problema lengvai išmuša mane iš darbinio ritmo.
 
@@ -162,7 +162,7 @@ Items are written as work tendencies rather than fixed identity labels. Final wo
 
 **POZ-03 · D** Po nesėkmės gana greitai atgaunu norą bandyti dar kartą.
 
-**POZ-04 · D** Kai komandoje daug nusivylimo, padedu atskirti tai, ko pakeisti negalime, nuo to, ką dar galime paveikti.
+**POZ-04 · D** Net kai dalies situacijos pakeisti negaliu, ieškau to, ką dar galiu paveikti.
 
 **POZ-05 · R** Kai situacija blogėja, pirmiausia matau priežastis, kodėl sprendimas nepavyks.
 
@@ -186,7 +186,7 @@ Items are written as work tendencies rather than fixed identity labels. Final wo
 
 **AMB-01 · D** Sąmoningai renkuosi tikslus, kurie reikalauja iš manęs daugiau negu įprasta.
 
-**AMB-02 · D** Mane traukia atsakomybė, kuri leidžia turėti didesnį poveikį rezultatui.
+**AMB-02 · D** Man svarbu, kad mano darbo tikslų mastas laikui bėgant augtų.
 
 **AMB-03 · D** Pasiekęs gerą rezultatą dažnai galvoju, koks galėtų būti kitas aukštesnis lygis.
 
