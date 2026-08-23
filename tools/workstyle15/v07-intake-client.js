@@ -15,6 +15,8 @@
   const actions = exportBtn.closest('.ws-actions');
   if (!actions) return;
 
+  exportBtn.classList.remove('primary');
+
   const submitBtn = document.createElement('button');
   submitBtn.type = 'button';
   submitBtn.id = 'submitPilotBtn';
@@ -27,6 +29,7 @@
   status.className = 'ws-small';
   status.setAttribute('role', 'status');
   status.setAttribute('aria-live', 'polite');
+  status.textContent = 'Pateikimas nėra automatinis: duomenys siunčiami tik paspaudus šį mygtuką.';
   actions.insertAdjacentElement('afterend', status);
 
   if (details && cfg.privacyText) {
@@ -36,6 +39,7 @@
 
   const expectedResponses = Number(cfg.expectedResponses || content.items.length || 34);
   const storageKey = cfg.storageKey || 'workstyle-v07-cognitive-session-e';
+  const requestTimeoutMs = Number(cfg.requestTimeoutMs || 15000);
   const itemMap = Object.fromEntries(
     content.items.map(item => [item.id, {
       axis: item.axis,
@@ -110,11 +114,17 @@
     submitBtn.textContent = 'Pateikiama…';
     status.textContent = 'Siunčiama viena užbaigta piloto sesija…';
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), requestTimeoutMs);
+
     try {
       const response = await fetch(cfg.sessionUrl, {
         method: 'POST',
+        mode: 'cors',
+        credentials: 'omit',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(makePayload(session)),
+        signal: controller.signal,
       });
 
       let body = null;
@@ -127,6 +137,9 @@
       if (!response.ok || !body?.ok) {
         throw new Error(body?.error || `HTTP ${response.status}`);
       }
+      if (body.sessionId && body.sessionId !== session.sessionId) {
+        throw new Error('session_receipt_mismatch');
+      }
 
       session.submission = {
         status: 'received',
@@ -138,7 +151,11 @@
       console.error('WorkStyle pilot submission failed', error);
       submitBtn.disabled = false;
       submitBtn.textContent = 'Bandyti pateikti dar kartą';
-      status.textContent = 'Nepavyko pateikti. Sesija liko naršyklėje — gali bandyti dar kartą arba atsisiųsti JSON kopiją.';
+      status.textContent = error?.name === 'AbortError'
+        ? 'Pateikimas užtruko per ilgai. Sesija liko naršyklėje — gali bandyti dar kartą arba atsisiųsti JSON kopiją.'
+        : 'Nepavyko pateikti. Sesija liko naršyklėje — gali bandyti dar kartą arba atsisiųsti JSON kopiją.';
+    } finally {
+      clearTimeout(timeoutId);
     }
   }
 
