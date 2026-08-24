@@ -1,10 +1,10 @@
 # WorkStyle — Current Decision Log
 
 Status: ACTIVE SOURCE OF TRUTH FOR CURRENT WORKSTYLE R&D
-Date: 2026-08-23
+Date: 2026-08-24
 Branch: `hero-webgl`
 
-Historical files such as `WORKSTYLE15_DECISIONS.md` remain preserved as the record of the 15-dimension / v0.4–v0.6 phase. They are no longer the current architecture source of truth.
+Historical files such as `WORKSTYLE15_DECISIONS.md` remain preserved as the record of the 15-dimension / v0.4-v0.6 phase. They are not the current architecture source of truth.
 
 ## 1. Product identity
 
@@ -13,29 +13,14 @@ Current purpose:
 > **A lightweight work-style reflection tool showing how a person tends to approach work when more than one legitimate way of acting exists.**
 
 Current stage:
-- 2rasi experimental / for-fun / research prototype;
-- architecture and data kept traceable so the concept can later mature into a professional product;
-- not currently a hiring, promotion, leadership-potential or role-fit instrument.
+- 2rasi experimental / research prototype;
+- not a hiring, promotion, leadership-potential or role-fit instrument;
+- no professional claims before evidence;
+- engaging on the surface, methodologically disciplined underneath.
 
 Future professional assessment work may move to OMESG360. WorkStyle R&D remains in 2rasi for now.
 
-Product rule: engaging on the surface, methodologically disciplined underneath, no professional claims before evidence.
-
-## 2. Historical 15-dimension phase
-
-The inherited 15-dimension count is no longer a target.
-
-Main lessons:
-- 75 items were too fatiguing;
-- 45 items were substantially more usable;
-- separate cannot-assess responses exposed ambiguity hidden by ordinary midpoints;
-- reverse items often measured legitimate alternative styles rather than absence of a trait;
-- several inherited constructs mixed style, competence, self-regulation or metacognition;
-- 5×3 symmetry was visually neat but not data-justified.
-
-The 15-dimension architecture remains provenance/history only.
-
-## 3. Measurement direction
+## 2. Measurement direction
 
 Current research default: **primarily bipolar directional WorkStyle axes**.
 
@@ -48,12 +33,12 @@ Requirements:
 - numeric coding remains internal;
 - separate `Priklauso nuo situacijos`;
 - separate `Neteko / negaliu įvertinti`;
-- no 0–100 public scores, norms or percentiles yet;
+- no 0-100 public scores, norms or percentiles yet;
 - no numerical higher-order domains yet.
 
 A bipolar axis survives only if cognitive and later empirical evidence supports it. Semantic antonyms alone are insufficient.
 
-## 4. Current 8-axis candidate architecture
+## 3. Current 8-axis candidate architecture
 
 1. **Struktūruotas pasiruošimas ↔ Organizavimas eigoje** — STRONG.
 2. **Metodo nuoseklumas ↔ Metodo adaptavimas** — STRONG.
@@ -66,13 +51,13 @@ A bipolar axis survives only if cognitive and later empirical evidence supports 
 
 The count `8` is not protected. A clean 7- or 6-axis model is preferable to symmetry.
 
-## 5. Felt-distinctness rule
+## 4. Felt-distinctness rule
 
 Constructs must pass both:
 1. latent distinctness;
 2. felt distinctness for respondents.
 
-This rule was added after several `hold ↔ change` candidates felt emotionally like the same question.
+This rule was added after several candidates felt emotionally like the same question despite conceptual differences.
 
 Decisions already made:
 - Commitment Stability ↔ Goal Reallocation removed from V1;
@@ -81,7 +66,7 @@ Decisions already made:
 
 Detailed source: `WORKSTYLE_8AXIS_FELT_DISTINCTNESS_AUDIT.md`.
 
-## 6. Removed / parked constructs
+## 5. Removed / parked constructs
 
 Removed from primary core:
 - Persuasive Influence;
@@ -95,12 +80,12 @@ Parked:
 - Achievement Drive as optional unipolar candidate;
 - Commitment Stability / Goal Reallocation;
 - Pace/Tempo;
-- Conflict Engagement as a possible future distinction;
+- Conflict Engagement as possible future distinction;
 - Detail/Gist under observation within analysis scope.
 
 Do not re-add constructs to restore breadth or symmetry.
 
-## 7. WorkStyle vs competence
+## 6. WorkStyle vs competence
 
 WorkStyle asks:
 
@@ -110,11 +95,16 @@ It does not ask whether the person is competent, correct, suitable for leadershi
 
 If a construct becomes an ability/competence question, move it out of WorkStyle rather than rescuing it with wording tricks.
 
-## 8. Leadership SJT
+## 7. Leadership SJT
 
-Leadership SJT work is preserved but **PARKED** from the active WorkStyle path.
+Leadership SJT work is preserved but **FROZEN / PARKED**.
 
-Future professional stack may use:
+Current portfolio decision:
+- Leadership SJT is a possible **next WorkStyle evolution stage**, not a parallel active project;
+- do not start Critical Incident Stage 0, participant recruitment or new SJT item writing while WorkStyle v0.7 is collecting evidence;
+- reopen only after the WorkStyle architecture reaches and survives its current evidence gate or the portfolio is explicitly reprioritized.
+
+Future professional stack may still use:
 - WorkStyle = behavioural tendencies;
 - Leadership SJT = situational managerial judgement;
 - Role Profile = role requirements;
@@ -122,29 +112,27 @@ Future professional stack may use:
 
 Do not merge SJT logic into the current WorkStyle questionnaire.
 
-## 9. Current cognitive prototype
+## 8. Current cognitive prototype
 
 Live path:
 `https://2rasi.com/tools/workstyle15/v07-cognitive.html`
 
-Current **form/instrument version**:
+Current form/instrument version:
 `0.7-cognitive-8axis-lt-e`
 
-Current **LT content version**:
+Current LT content version:
 `v07-lt-d`
 
 Files:
 - `tools/workstyle15/v07-cognitive.html` — shell, UX, timing, block/order engine;
 - `tools/workstyle15/v07-content-lt.js` — LT situation content pack.
 
-The content pack split is the first i18n step. LT-E changed ordering/instrumentation, not item wording.
-
 Current form:
 - 34 items;
 - 5 stronger axes × 5 items;
 - 3 fragile axes × 3 items;
 - 3 blocks: 12 + 11 + 11;
-- **all 8 axes represented in every block**;
+- all 8 axes represented in every block;
 - five-item axes distributed 2/2/1 across blocks;
 - three-item axes distributed 1/1/1;
 - no adjacent same-axis items;
@@ -156,18 +144,20 @@ Current form:
 - optional broad role/experience/environment context;
 - local browser resume;
 - end qualitative feedback;
-- JSON export;
+- JSON export/fallback;
 - no profile/score.
 
-Current intro UX:
-- separate `Apie` and `Pradėti` cards;
-- technical/privacy explanation is secondary disclosure;
-- no black fill as the main interaction state;
-- selection uses a light accent/outline.
+Q01-Q07 remain unchanged.
+
+Current Q08:
+- EN conceptual source: `When I travel, I prefer to organize as I go, rather than prepare everything in advance.`
+- LT: `Keliaudamas dažniau organizuojuosi eigoje, užuot viską iš anksto susiplanavęs.`
+
+After Q08, v0.7 content is frozen pending evidence.
 
 Why no result: a result before construct survival would teach respondents to treat provisional axes as findings.
 
-## 10. Cognitive survival priorities
+## 9. Cognitive survival priorities
 
 Highest-risk axes:
 1. Išvados stabilumas ↔ peržiūrėjimas;
@@ -183,7 +173,7 @@ Review/rework an item or axis when repeated participants show:
 - very long timing accompanied by interpretation difficulty;
 - both poles can be strongly true in the same referent.
 
-## 11. Data policy
+## 10. Data policy
 
 V0.5/v0.6 Likert data must not be retroactively converted to bipolar scores.
 
@@ -204,35 +194,30 @@ Do not interpret direction as a stable personal score yet.
 Analyzer:
 `tools/workstyle15/analyze-v07.py`
 
-It supports v0.7 cognitive schema versions and reports cognitive signals only.
+It reports cognitive signals only.
 
-## 12. Pilot data intake
+## 11. Pilot data intake — ACTIVE
 
-Current participant transfer remains JSON export.
+The pilot intake is no longer only prepared. The verified explicit intake was activated on **2026-08-23**.
 
-Prepared but **not connected** backend:
-`workers/workstyle-pilot/`
+Relevant implementation lineage includes:
+- `f67891e90e10a01b64b0feff1c328ecffe60fe08` — `chore(workstyle): activate verified pilot intake`;
+- `446c195c80a620f0c8bd9ee06776399d3a29327c` — `fix(workstyle): align landing with active intake`.
 
-Prepared architecture:
-- Cloudflare Worker;
-- D1 storage;
-- 2rasi-origin restriction;
+Current boundary:
+- participant submission is explicit, not silent;
 - no requested name/email/employer;
-- raw JSON + compact server summary;
-- synthetic v3 test payload;
-- JSON remains fallback.
+- broad pilot context remains optional;
+- JSON export remains available as fallback;
+- intake architecture uses the prepared Cloudflare Worker / D1 path;
+- participant data must not be committed to the public repository.
 
-Automatic submission activation gate:
-1. deploy Worker and D1;
-2. verify `/health`;
-3. submit synthetic payload and verify D1;
-4. verify CORS from 2rasi;
-5. update privacy copy;
-6. add explicit participant `Pateikti piloto duomenis` action.
+Current state:
+**COLLECTING DATA**.
 
-Do not silently submit cognitive-pilot sessions.
+Do not redesign intake or questionnaire mechanics merely to create activity while the pilot is running. Fix only critical defects/data-loss issues without an evidence-driven version decision.
 
-## 13. EN / i18n
+## 12. EN / i18n
 
 Do not create an independently evolving second test implementation.
 
@@ -250,22 +235,35 @@ Later EN rules:
 - language/content version remains explicit in exports;
 - do not pool LT/EN psychometric data until equivalence is examined.
 
-Do not start EN item adaptation until the LT content survives the small cognitive pilot without another wording reset.
+Do not start EN adaptation until LT evidence supports the current architecture.
 
-## 14. PAEI / DISC
+## 13. PAEI / DISC
 
 PAEI and DISC remain future qualitative interpretation lenses only.
 
-No numeric mapping, no official-equivalence claims and no visual outer ring implying validated integration before external benchmark/cross-validation evidence.
+No numeric mapping, official-equivalence claims or validated-looking integration before external benchmark/cross-validation evidence.
 
-## 15. Current next gate
+## 14. Current evidence gate
 
-1. Smoke-test LT-E live on mobile.
-2. Verify intro cards, five-position interaction, flags, Back/Next, resume, both breaks, final feedback, JSON and restart.
-3. Run approximately 6–10 cognitive participants with real work experience.
-4. Keep collection manual/JSON until backend activation gate passes.
-5. Analyse ambiguity, context dependence, felt redundancy, directional spread and timing by item/axis/block.
-6. Mark axes `KEEP / REWRITE / MERGE-DROP / OPEN QUESTION`.
-7. Kill/rewrite weak content before any profile.
-8. Only after cognitive architecture stabilises move toward a scored reflective prototype and EN content adaptation.
-9. Keep all public claims developmental/research-oriented until stronger evidence exists.
+Current stance:
+**COLLECT, FREEZE, THEN ANALYSE.**
+
+Target pilot batch remains approximately 6-10 cognitive participants with real work experience before the first structured survival review, unless data quality provides a concrete reason to change the gate.
+
+At the checkpoint:
+1. freeze the analysis set and version scope;
+2. inspect ambiguity / unclear signals;
+3. inspect context and cannot-assess rates;
+4. inspect duplicate / felt-repetition signals;
+5. inspect directional spread;
+6. inspect first-response timing and block effects;
+7. focus especially on the three fragile/high-challenge axes;
+8. classify each axis `KEEP / REWRITE / MERGE-DROP / OPEN QUESTION`;
+9. kill/rewrite weak content before any profile/scoring layer.
+
+Only after cognitive architecture stabilises consider:
+- scored reflective prototype;
+- EN content adaptation;
+- later professional evolution.
+
+Keep all public claims developmental/research-oriented until stronger evidence exists.
