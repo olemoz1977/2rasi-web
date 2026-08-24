@@ -36,7 +36,7 @@ If an active research stream reaches its evidence checkpoint, pause unrelated wo
 | Team Lead / `Vilko valanda` training material | LEGACY SOURCE MATERIAL | Keep as future leadership-learning source; audit/rebuild before productization |
 | Multipliers | KEEP / LEGACY | Keep as 2rasi leadership reflection; no active development |
 | Divergent | KEEP / LEGACY | Keep as 2rasi creative/self-reflection experiment; no active development |
-| Situational Leadership | ARCHIVE | Preserve repository/history; do not treat as active leadership product |
+| Situational Leadership | KEEP / FROZEN | Keep public and accessible until a better successor is ready; no active development |
 | Drama Triangle | REBUILD LATER | Preserve concept/source; current scoring is not future foundation |
 | Strategic Thinking | REBUILD LATER | Preserve concept/source; re-derive before future promotion |
 | Organization Development / PAEI | PARKED CONCEPT | Do not develop yet |
@@ -201,7 +201,7 @@ Verdicts:
 |---|---|---|
 | Multipliers | KEEP | Legacy 2rasi leadership reflection; no active development |
 | Divergent | KEEP | Legacy 2rasi creative/self-reflection experiment; no active development |
-| Situational Leadership | ARCHIVE | Preserve source/history; future SJT must use the separate research-first path |
+| Situational Leadership | KEEP / FROZEN | Keep public until a better successor is actually ready; future SJT uses the separate research-first path |
 | Drama Triangle | REBUILD | Preserve concept/source; current percentage/threshold scoring is not future foundation |
 | Strategic Thinking | REBUILD | Preserve concept/source; re-derive measurement/provenance before future promotion |
 
@@ -209,9 +209,10 @@ Do not:
 - translate all five automatically;
 - normalize UI just for consistency;
 - merge scores into WorkStyle / Leadership 360 / Leadership SJT;
+- remove functioning legacy tools from the public catalogue merely because a future replacement is planned;
 - delete repositories as part of portfolio cleanup.
 
-Public catalogue/status presentation may be aligned with these verdicts as a separate navigation cleanup.
+Public availability and development status are separate decisions. A legacy tool may remain public while its development line is frozen.
 
 ## Current priority sequence
 
@@ -223,7 +224,7 @@ Public catalogue/status presentation may be aligned with these verdicts as a sep
 
 ### P1 — safe cleanup while waiting
 1. keep source-of-truth documents current;
-2. align public catalogue/status labels with the completed legacy audit;
+2. align public catalogue wording only where it improves accuracy without unnecessarily removing useful legacy access;
 3. maintain analysis/data-quality tooling where it directly supports active research.
 
 ### P2 — frozen until evidence / explicit reprioritization
