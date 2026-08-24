@@ -25,11 +25,11 @@
 <header class="tool-header"><a class="brand" href="../../">2rasi</a><nav><a href="../../#experiments">Experiments</a><a href="../../#about">About</a></nav></header>
 <main class="tool-main">
   <section class="tool-hero">
-    <p class="kicker">Conflict reflection · LT</p>
+    <p class="kicker">Conflict reflection · EN/LT</p>
     <h1>Drama Triangle</h1>
     <p class="lead">When tension rises, people can fall into familiar interaction patterns. This reflection helps you notice which direction may become easier to slip into.</p>
-    <div class="tool-meta"><span>18 statements</span><span>3 behaviour directions</span><span>Lithuanian</span><span>Browser-only</span></div>
-    <div class="tool-actions"><a class="button primary" href="https://olemoz1977.github.io/karpman-apklausa/public/" target="_blank" rel="noopener">Start reflection ↗</a><a class="button" href="#model">Understand the triangle</a></div>
+    <div class="tool-meta"><span>18 statements</span><span>3 behaviour directions</span><span>English &amp; Lithuanian</span><span>Browser-only</span></div>
+    <div class="tool-actions"><a class="button primary" data-drama-start href="https://olemoz1977.github.io/karpman-apklausa/public/en/">Start reflection ↗</a><a class="button" href="#model">Understand the triangle</a></div>
   </section>
   <div class="tool-grid">
     <div>
@@ -42,10 +42,24 @@
       <section class="tool-section"><h2>The exit direction</h2><p>The reflection pairs each drama position with a more constructive direction: Victim toward Creator, Rescuer toward Coach, and Persecutor toward Challenger.</p><p>The aim is not to eliminate tension. It is to notice the move earlier and choose a response with more agency, clearer boundaries and more respect for ownership.</p></section>
       <section class="tool-section"><h2>How to read the result</h2><p>The profile is relative. A stronger bar means that pattern appeared more often in your answers compared with the other two directions. It is not a clinical score or a statement about who you are.</p><p class="note">This is an independent 2rasi reflection inspired by Stephen Karpman’s Drama Triangle. It is not an official Karpman assessment or diagnostic instrument.</p></section>
     </div>
-    <aside class="side-card"><h3>Notice the move before the label</h3><p>Think about real conflict situations. The useful question is not “which role am I?” but “what do I start doing when pressure rises?”</p><a class="button primary" href="https://olemoz1977.github.io/karpman-apklausa/public/" target="_blank" rel="noopener">Start reflection ↗</a></aside>
+    <aside class="side-card"><h3>Notice the move before the label</h3><p>Think about real conflict situations. The useful question is not “which role am I?” but “what do I start doing when pressure rises?”</p><a class="button primary" data-drama-start href="https://olemoz1977.github.io/karpman-apklausa/public/en/">Start reflection ↗</a></aside>
   </div>
 </main>
 <footer class="tool-footer"><span>2rasi · Look again.</span><a href="../../#experiments">← Back to experiments</a></footer>
 <script src="../tool-landing-i18n.js?v=20260824-0135"></script>
+<script>
+  (() => {
+    const h = location.hostname.toLowerCase();
+    const lt = h === '2rasi.lt' || h.endsWith('.2rasi.lt');
+    const target = lt
+      ? 'https://olemoz1977.github.io/karpman-apklausa/public/'
+      : 'https://olemoz1977.github.io/karpman-apklausa/public/en/';
+    document.querySelectorAll('[data-drama-start]').forEach(a => {
+      a.href = target;
+      a.target = '_self';
+      a.removeAttribute('rel');
+    });
+  })();
+</script>
 </body>
 </html>
