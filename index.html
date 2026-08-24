@@ -3,21 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>2rasi — Look again.</title>
-  <meta name="description" content="Tools and experiments for seeing things differently." />
+  <title>2rasi — Self-reflection &amp; leadership tools</title>
+  <meta name="description" content="Self-reflection, leadership and thinking tools for seeing your patterns from another angle." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="theme-color" content="#dbeaf0" />
-  <link rel="canonical" href="https://2rasi.com/" />
+  <link rel="alternate" hreflang="en" href="https://2rasi.com/" />
+  <link rel="alternate" hreflang="lt" href="https://2rasi.lt/" />
+  <link rel="alternate" hreflang="x-default" href="https://2rasi.com/" />
+  <script>
+    (() => {
+      const host = window.location.hostname.toLowerCase();
+      const origin = (host === '2rasi.lt' || host.endsWith('.2rasi.lt')) ? 'https://2rasi.lt' : 'https://2rasi.com';
+      const link = document.createElement('link');
+      link.rel = 'canonical';
+      link.href = `${origin}/`;
+      document.head.appendChild(link);
+    })();
+  </script>
   <meta property="og:title" content="2rasi — Look again." />
-  <meta property="og:description" content="Tools and experiments for seeing things differently." />
+  <meta property="og:description" content="Self-reflection &amp; leadership tools · Savirefleksijos ir vadovavimo įrankiai" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://2rasi.com/" />
   <meta property="og:site_name" content="2rasi" />
   <meta property="og:image" content="https://2rasi.com/assets/hero-2rasi.webp" />
   <meta property="og:image:alt" content="2rasi — Look again." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="2rasi — Look again." />
-  <meta name="twitter:description" content="Tools and experiments for seeing things differently." />
+  <meta name="twitter:description" content="Self-reflection &amp; leadership tools · Savirefleksijos ir vadovavimo įrankiai" />
   <meta name="twitter:image" content="https://2rasi.com/assets/hero-2rasi.webp" />
   <meta name="twitter:image:alt" content="2rasi — Look again." />
   <link rel="icon" href="assets/logo-2.svg" type="image/svg+xml" />
@@ -32,7 +43,7 @@
       "@type": "WebSite",
       "name": "2rasi",
       "url": "https://2rasi.com/",
-      "description": "Tools and experiments for seeing things differently."
+      "description": "Self-reflection, leadership and thinking tools for seeing your patterns from another angle."
     }
   </script>
 </head>
@@ -212,7 +223,7 @@
         </article>
 
         <div class="reveal" style="grid-column:1 / -1; padding-top:24px;">
-          <p class="kicker">HELP TO BUILD</p>
+          <p class="kicker help-build-label">HELP TO BUILD</p>
         </div>
 
         <article class="experiment-card reveal" id="2pair">
@@ -287,6 +298,24 @@
   </footer>
 
   <script src="i18n.js?v=20260824-0215"></script>
+  <script>
+    (() => {
+      const syncSeoAndHelp = () => {
+        const lt = document.documentElement.lang === 'lt';
+        document.title = lt
+          ? '2rasi — Savirefleksijos ir vadovavimo įrankiai'
+          : '2rasi — Self-reflection & leadership tools';
+        const description = document.querySelector('meta[name="description"]');
+        if (description) description.content = lt
+          ? 'Savirefleksijos, vadovavimo ir mąstymo įrankiai, padedantys pažvelgti į savo elgesio modelius kitu kampu.'
+          : 'Self-reflection, leadership and thinking tools for seeing your patterns from another angle.';
+        const help = document.querySelector('.help-build-label');
+        if (help) help.textContent = lt ? 'PADĖK KURTI' : 'HELP TO BUILD';
+      };
+      syncSeoAndHelp();
+      requestAnimationFrame(syncSeoAndHelp);
+    })();
+  </script>
   <script src="drop-webgl.js?v=20260816-1145"></script>
   <script src="script.js?v=20260816-1145"></script>
 </body>
