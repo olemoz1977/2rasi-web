@@ -75,13 +75,13 @@
       actions: [['About', 'Apie'], ['Start', 'Pradėti']]
     },
     multipliers: {
-      state: ['Live · LT', 'Veikia · LT'],
+      state: ['Live · EN/LT', 'Veikia · EN/LT'],
       summary: ['A leadership reflection experiment inspired by the Multipliers framework.', 'Vadovavimo refleksijos eksperimentas, įkvėptas „Multipliers“ modelio.'],
       meta: [['Leadership reflection', 'Vadovavimo refleksija'], ['15 situations', '15 situacijų']],
       actions: [['About', 'Apie'], ['Start', 'Pradėti']]
     },
     divergent: {
-      state: ['Live · LT', 'Veikia · LT'],
+      state: ['Live · EN/LT', 'Veikia · EN/LT'],
       summary: ['A self-reflection experiment combining a Big Five profile with exploratory archetypes.', 'Savirefleksijos eksperimentas, jungiantis Big Five profilį su tyrinėjamais archetipais.'],
       meta: [['OCEAN reflection', 'OCEAN refleksija'], ['60 statements', '60 teiginių']],
       actions: [['About', 'Apie'], ['Start', 'Pradėti']]
