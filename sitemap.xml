@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://2rasi.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://2rasi.com/tools/2pair/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://2rasi.com/tools/mirror/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.com/tools/multipliers/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.com/tools/divergent/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.com/tools/situational-leadership/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.com/tools/drama-triangle/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.com/tools/strategic-thinking/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.com/tools/leadership-360/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://2rasi.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/" />
+    <xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://2rasi.com/" />
+    <changefreq>weekly</changefreq><priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://2rasi.lt/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/" />
+    <xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://2rasi.com/" />
+    <changefreq>weekly</changefreq><priority>1.0</priority>
+  </url>
+
+  <url><loc>https://2rasi.com/tools/2pair/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/2pair/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/2pair/" /><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://2rasi.lt/tools/2pair/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/2pair/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/2pair/" /><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <url><loc>https://2rasi.com/tools/mirror/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/mirror/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/mirror/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.lt/tools/mirror/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/mirror/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/mirror/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://2rasi.com/tools/multipliers/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/multipliers/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/multipliers/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.lt/tools/multipliers/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/multipliers/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/multipliers/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://2rasi.com/tools/divergent/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/divergent/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/divergent/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.lt/tools/divergent/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/divergent/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/divergent/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://2rasi.com/tools/situational-leadership/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/situational-leadership/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/situational-leadership/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.lt/tools/situational-leadership/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/situational-leadership/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/situational-leadership/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://2rasi.com/tools/drama-triangle/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/drama-triangle/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/drama-triangle/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.lt/tools/drama-triangle/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/drama-triangle/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/drama-triangle/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://2rasi.com/tools/strategic-thinking/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/strategic-thinking/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/strategic-thinking/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.lt/tools/strategic-thinking/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/strategic-thinking/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/strategic-thinking/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://2rasi.com/tools/leadership-360/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/leadership-360/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/leadership-360/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://2rasi.lt/tools/leadership-360/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/leadership-360/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/leadership-360/" /><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
