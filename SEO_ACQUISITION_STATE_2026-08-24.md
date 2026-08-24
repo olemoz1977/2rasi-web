@@ -84,11 +84,30 @@ Homepage order:
 
 Cards 8–9 are separated under `HELP TO BUILD` / `PADĖK KURTI`.
 
+### English acquisition pilot
+
+Two legacy tools were selected for the first EN acquisition experiment because they have the broadest immediate user value without requiring changes to the active research streams:
+
+- Divergent — EN version added at `https://olemoz1977.github.io/Divergent-test-2/public/en/`
+- Multipliers — EN version added at `https://olemoz1977.github.io/multipliers-test/pilnas/en/`
+
+Rules:
+
+- Original LT versions remain unchanged and available.
+- `2rasi.com` routes Start to the EN versions.
+- `2rasi.lt` routes Start to the existing LT versions.
+- Both cards are marked `EN/LT`.
+- The EN versions preserve the existing scoring structures; this is localization, not methodology redevelopment.
+- Both EN result flows provide a direct path back to 2rasi.
+
+Situational Leadership, Drama Triangle and Strategic Thinking remain LT-only for now. Do not translate all legacy tools automatically before observing whether the first two EN tools attract real usage.
+
 ### Retention
 
 - Legacy tool launches from the 2rasi homepage stay in the same browsing context so browser Back returns to 2rasi instead of leaving an orphaned external tab.
 - The same behaviour is applied when a legacy tool is launched from its 2rasi About landing.
 - Mirror additionally has a direct `← 2rasi` link on its result screen.
+- The new EN Divergent and Multipliers versions also include direct `← 2rasi` links.
 
 ## Known unresolved observation
 
@@ -117,5 +136,6 @@ Priority questions after recrawl:
 3. Which landing pages receive impressions but weak CTR?
 4. Do `www/http` duplicates disappear or consolidate?
 5. Which existing tool proves capable of bringing users to 2rasi without a research recruitment ask?
+6. Do EN Divergent or Multipliers generate measurable external usage before more legacy tools are translated?
 
 Until that evidence arrives, product methodology and active research pilots remain unchanged.
