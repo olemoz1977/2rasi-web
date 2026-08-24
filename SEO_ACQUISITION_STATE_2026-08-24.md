@@ -33,6 +33,20 @@ Important interpretation: the count of 8 includes duplicate host/protocol homepa
 
 WorkStyle is intentionally not treated as an organic-search acquisition page while the cognitive pilot is collecting evidence.
 
+## SERP baseline before recrawl
+
+A search check on 2026-08-24, before Google had recrawled the new metadata, did not surface 2rasi for the main Lithuanian intent phrases checked, including variants around:
+
+- situacinio vadovavimo testas
+- strateginio mąstymo testas
+- Karpmano dramos trikampio testas
+- savirefleksijos testas
+- Big Five / OCEAN testas lietuviškai
+
+This is the `before` state, not a failure verdict. Search Console shows the relevant pages were last checked mainly on 2026-08-18/19, before the SEO cleanup.
+
+A useful external signal: older LinkedIn content about the situational leadership test already appears for the relevant search phrase, indicating that the topic itself can surface in search even though the 2rasi domain has not yet established visibility.
+
 ## Changes made on 2026-08-24
 
 ### Technical SEO
@@ -45,6 +59,14 @@ WorkStyle is intentionally not treated as an organic-search acquisition page whi
 - Homepage title/description now describe self-reflection, leadership and thinking tools instead of relying only on the brand phrase `Look again.`
 - Individual indexed tool landings received page-specific Open Graph / Twitter metadata.
 - Lithuanian tool landing browser titles target natural search intent such as `Situacinio vadovavimo testas`, `Strateginio mąstymo testas`, `Karpmano dramos trikampio testas`, and `Savirefleksijos testas`.
+
+### Canonical consolidation expectation
+
+The host-aware canonical logic intentionally maps `www.2rasi.com` pages to the non-`www` canonical form under `https://2rasi.com/...`.
+
+Therefore, after Google recrawls the updated pages, the old Search Console `www` variants are expected to consolidate toward the non-`www` canonical URLs even if the hosting-level redirect chain has not yet been independently verified.
+
+Do not make a DNS/hosting change unless a reliable live HTTP check later shows that the redirect behaviour itself is wrong.
 
 ### Portfolio / acquisition hierarchy
 
@@ -70,7 +92,9 @@ Cards 8–9 are separated under `HELP TO BUILD` / `PADĖK KURTI`.
 
 ## Known unresolved observation
 
-Search Console had indexed `www`, non-`www`, HTTP and HTTPS homepage variants before this cleanup. The 2rasi repository itself does not generate `www.2rasi.com` or `http://2rasi.com` links. The actual DNS/hosting redirect chain still needs confirmation from a reliable live HTTP source before any hosting-level change is made.
+Search Console had indexed `www`, non-`www`, HTTP and HTTPS homepage variants before this cleanup. The 2rasi repository itself does not generate `www.2rasi.com` or `http://2rasi.com` links.
+
+The actual DNS/hosting redirect chain still needs confirmation from a reliable live HTTP source before any hosting-level change is made.
 
 Do not modify DNS/hosting based only on the old Coverage export.
 
