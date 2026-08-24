@@ -10,6 +10,7 @@ Classify the five older public LT tools before spending effort on translation, r
 
 Allowed verdicts:
 - `KEEP` — concept and current public role still make sense; maintain as legacy experiment without active development;
+- `KEEP / FROZEN` — keep the current public version available because it still fills a useful role, but do not invest in further development; replace/remove only when a better successor is actually ready;
 - `REBUILD` — concept is worth preserving, but current measurement/content architecture should not be promoted or expanded as-is;
 - `ARCHIVE` — preserve source/history, but it should no longer be treated as an active portfolio product;
 - `DROP` — no meaningful reason to preserve as portfolio material beyond repository history.
@@ -89,18 +90,26 @@ Current public role:
 
 Observed strengths:
 - situational judgement is a valuable leadership-learning format;
-- concrete scenarios are more behaviourally grounded than generic self-rating statements.
+- concrete scenarios are more behaviourally grounded than generic self-rating statements;
+- until an original successor exists, the current public tool still fills a useful portfolio role.
 
 Observed issues:
 - the current architecture assumes one pre-keyed correct style for each scenario;
 - scenario and scoring logic are tied to the classic directing / selling-coaching / participating-supporting / delegating model;
 - provenance / external-framework dependence is too strong for this to become the basis of the future original Leadership SJT;
-- future Leadership SJT work already has a research-first path and must not inherit this item bank by default;
-- current public test can confuse the portfolio by looking like the active leadership judgement instrument when that work is actually frozen and being re-derived.
+- future Leadership SJT work already has a research-first path and must not inherit this item bank by default.
 
-### Verdict: `ARCHIVE`
+### Verdict: `KEEP / FROZEN`
 
-Preserve the repository and historical learning value, but do not treat it as an active portfolio product.
+Keep the current Situational Leadership tool **public and accessible in the 2rasi catalogue while no better replacement exists**.
+
+`FROZEN` means:
+- no active feature development;
+- no EN translation priority;
+- no scoring/model expansion;
+- no automatic reuse as the basis of the future Leadership SJT.
+
+Do **not** remove it merely because a future original Leadership SJT is planned. Remove or replace the public catalogue entry only when a successor is actually ready and clearly better for that role.
 
 If leadership situational judgement returns later, use the frozen Leadership SJT research path rather than rebuilding this legacy test around the same keyed model.
 
@@ -171,7 +180,7 @@ Potential future home:
 |---|---|---|
 | Multipliers | KEEP | Legacy 2rasi leadership reflection; no active development |
 | Divergent | KEEP | Legacy 2rasi creative/self-reflection experiment; no active development |
-| Situational Leadership | ARCHIVE | Preserve repository/history; remove from active-product framing |
+| Situational Leadership | KEEP / FROZEN | Keep public until a better successor is ready; no active development |
 | Drama Triangle | REBUILD | Preserve concept/source; current scoring not future foundation |
 | Strategic Thinking | REBUILD | Preserve concept/source; re-derive before future promotion |
 
@@ -181,10 +190,13 @@ Potential future home:
 - do not normalize their UI just for consistency;
 - do not merge their scores into WorkStyle, Leadership 360 or future Leadership SJT;
 - do not productize them inside OMESG360 merely because related teaching material exists;
+- do not remove a functioning legacy tool from the public catalogue solely because a future replacement is planned;
 - do not delete repositories as part of this audit.
 
 ## Next cleanup decision
 
-Public catalogue presentation can now be aligned with these verdicts separately.
+Public catalogue presentation can be aligned with these verdicts separately, but **availability and development status are different things**.
+
+A tool may remain publicly available while being frozen as a development line.
 
 That is a **portfolio/navigation cleanup**, not a rebuild of the tools themselves.
