@@ -132,7 +132,7 @@
           <div class="experiment-copy">
             <div class="experiment-heading">
               <h3>Multipliers</h3>
-              <span class="experiment-state live">Live · LT</span>
+              <span class="experiment-state live">Live · EN/LT</span>
             </div>
             <p class="experiment-summary">A leadership reflection experiment inspired by the Multipliers framework.</p>
             <div class="experiment-meta" aria-label="Multipliers details">
@@ -142,7 +142,7 @@
           </div>
           <div class="experiment-actions" aria-label="Multipliers actions">
             <a href="tools/multipliers/">About <span>→</span></a>
-            <a href="https://olemoz1977.github.io/multipliers-test/pilnas/" target="_blank" rel="noopener">Start <span>↗</span></a>
+            <a data-en-legacy="multipliers" href="https://olemoz1977.github.io/multipliers-test/pilnas/en/">Start <span>↗</span></a>
           </div>
         </article>
 
@@ -151,7 +151,7 @@
           <div class="experiment-copy">
             <div class="experiment-heading">
               <h3>Divergent</h3>
-              <span class="experiment-state live">Live · LT</span>
+              <span class="experiment-state live">Live · EN/LT</span>
             </div>
             <p class="experiment-summary">A self-reflection experiment combining a Big Five profile with exploratory archetypes.</p>
             <div class="experiment-meta" aria-label="Divergent details">
@@ -161,7 +161,7 @@
           </div>
           <div class="experiment-actions" aria-label="Divergent actions">
             <a href="tools/divergent/">About <span>→</span></a>
-            <a href="https://olemoz1977.github.io/Divergent-test-2/public/" target="_blank" rel="noopener">Start <span>↗</span></a>
+            <a data-en-legacy="divergent" href="https://olemoz1977.github.io/Divergent-test-2/public/en/">Start <span>↗</span></a>
           </div>
         </article>
 
@@ -311,6 +311,21 @@
           : 'Self-reflection, leadership and thinking tools for seeing your patterns from another angle.';
         const help = document.querySelector('.help-build-label');
         if (help) help.textContent = lt ? 'PADĖK KURTI' : 'HELP TO BUILD';
+
+        const routes = {
+          multipliers: lt
+            ? 'https://olemoz1977.github.io/multipliers-test/pilnas/'
+            : 'https://olemoz1977.github.io/multipliers-test/pilnas/en/',
+          divergent: lt
+            ? 'https://olemoz1977.github.io/Divergent-test-2/public/'
+            : 'https://olemoz1977.github.io/Divergent-test-2/public/en/'
+        };
+        document.querySelectorAll('[data-en-legacy]').forEach(link => {
+          const key = link.getAttribute('data-en-legacy');
+          if (routes[key]) link.href = routes[key];
+          link.target = '_self';
+          link.removeAttribute('rel');
+        });
       };
       syncSeoAndHelp();
       requestAnimationFrame(syncSeoAndHelp);
