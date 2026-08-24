@@ -1,290 +1,242 @@
 # 2rasi / OMESG360 portfolio roadmap
 
 Status: ACTIVE MASTER PORTFOLIO
-Last updated: 2026-08-23
+Last updated: 2026-08-24
 Primary 2rasi branch: `hero-webgl`
+Primary OMESG360 branch: `main`
 
 ## Purpose
-This file is the cross-project source of truth for what exists, what is frozen, what needs validation, and what should be considered next across the 2rasi / OMESG360 ecosystem.
 
-Project-specific recovery/deployment details for OMESG360 remain in its own `PROJECT_ROADMAP.md` and `RECOVERY_AND_INTEGRATION_PLAN.md`.
+This file is the cross-project source of truth for **current portfolio state and priority**.
 
-## Current portfolio
+Detailed methodology, implementation and recovery history stays in project-specific documents. Historical files remain provenance and must not be treated as current architecture when a newer source-of-truth file exists.
 
-| Project | Current state | Languages | Next stance |
-|---|---|---|---|
-| 2rasi web | Live | LT/EN by domain | Maintain; use as ecosystem entry point |
-| OMESG360 | Healthy production baseline | LT/EN | Maintain; Hostinger Git auto-deploy stays OFF |
-| Leadership 360° | COMPLETE / FROZEN | LT/EN | No changes without a concrete new requirement |
-| Mirror / Veidrodis | Live | LT/EN | Maintain |
-| 2Pair core | Research product in development | not yet a product release target | FREEZE core until evidence improves |
-| Wave1 | Research satellite, live | current public research surface | Collect participants/data; do not redesign from weak evidence |
-| Calibration v0.1 | Research satellite, live | current public research surface | Collect calibration data before changing 2Pair core |
-| Multipliers | Live legacy tool | LT | Review for EN value before translating |
-| Divergent | Live legacy tool | LT | Review for EN value before translating |
-| Situational Leadership | Live legacy tool | LT | Review for EN value before translating |
-| Drama Triangle | Live legacy tool | LT | Review for EN value before translating |
-| Strategic Thinking | Live legacy tool | LT | Review for EN value before translating |
-| Competency Matrix / Skills Matrix | Legacy spreadsheet tool; accepted as future Tools item | LT | KEEP; document semantics, then rebuild as LT/EN web tool |
-| WorkStyle 15 | **v0.4 PILOT-FROZEN; LT cognitive-pilot web beta implemented, not yet homepage-linked** | LT pilot | MANUAL SMOKE TEST → cognitive pilot → inspect evidence before any redesign |
-| Organization Development / PAEI | Future concept | future LT/EN | IDEA ONLY; later build separate organization-level longitudinal tool |
+## Portfolio rule
 
-## P0 — Protect the healthy baseline
+Prefer evidence-driven validation, maintenance and source-of-truth cleanup over adding features to under-tested products.
 
-- Do not reopen Leadership 360° unless there is a concrete product requirement.
-- Keep OMESG360 Hostinger Git auto-deployment OFF.
-- Keep normal OMESG360 deployments frontend-only through the controlled GitHub Actions -> FTP path.
-- Do not modify Wave1 or Calibration mechanics merely to create activity.
+If an active research stream reaches its evidence checkpoint, pause unrelated work and analyse that evidence first.
 
-## P1 — WorkStyle 15 cognitive pilot
+## Current state at a glance
 
-### Historical source and provenance
+| Project / stream | State | Current stance |
+|---|---|---|
+| 2rasi web | LIVE / STABLE | Maintain as creative / experimental ecosystem entry point |
+| OMESG360 | LIVE / STABLE | Maintain as professional / operational space; protect production baseline |
+| Leadership 360° | COMPLETE / FROZEN | Reopen only for a concrete requirement or defect |
+| Mirror / Veidrodis | LIVE / STABLE | Maintain; visual polish is not a current priority |
+| Wave1 | COLLECTING DATA | Freeze participant semantics; analyse at Gate A |
+| Calibration v0.1 | COLLECTING DATA | Mechanical timing / UX evidence only; analyse at timing gate |
+| WorkStyle v0.7 LT-E | COLLECTING DATA | Freeze content except critical defect/data-loss issue; analyse pilot evidence |
+| Leadership SJT | FROZEN / PARKED | Future WorkStyle evolution stage; do not run Stage 0 or write new items now |
+| 2Pair core | FROZEN / EVIDENCE-GATED | Reopen only from Wave / Calibration evidence gates |
+| Competency Matrix / Capability | VISION CAPTURED | OMESG360 professional tool direction; not in active development |
+| Darbo vietos knyga / Workplace Book | VISION CAPTURED | KEEP / merge into future OMESG360 operational core; not in active development |
+| Lean / Six Sigma / TOC learning material | LEGACY SOURCE MATERIAL | Keep as future OMESG360 knowledge-base source; rebuild before product/public use |
+| Team Lead / `Vilko valanda` training material | LEGACY SOURCE MATERIAL | Keep as future leadership-learning source; audit/rebuild before productization |
+| Multipliers | LEGACY LIVE TOOL | Audit: KEEP / REBUILD / ARCHIVE / DROP |
+| Divergent | LEGACY LIVE TOOL | Audit: KEEP / REBUILD / ARCHIVE / DROP |
+| Situational Leadership | LEGACY LIVE TOOL | Audit: KEEP / REBUILD / ARCHIVE / DROP |
+| Drama Triangle | LEGACY LIVE TOOL | Audit: KEEP / REBUILD / ARCHIVE / DROP |
+| Strategic Thinking | LEGACY LIVE TOOL | Audit: KEEP / REBUILD / ARCHIVE / DROP |
+| Organization Development / PAEI | PARKED CONCEPT | Do not develop yet |
+| GLA360 / OMESG360Bot | PARKED | Do not reopen unless reprioritized |
 
-Uploaded `ADEPT15.xlsx` preserves the old Microsoft Forms implementation:
-- 150 Likert statements scored 1–5;
-- 15 dimensions × 10 statements;
-- explicit statement-to-dimension map;
-- 6 higher-level styles;
-- raw Forms responses and Excel scoring logic.
+## Active evidence streams
 
-The workbook remains a historical/research source only. Raw respondent data must not be published to the public repo.
+### Wave1
 
-External review showed that the legacy **15 dimensions + 6 styles align essentially one-to-one with Aon's ADEPT-15 architecture**.
+Current source: `2PAIR_LAUNCH_STATE.md`.
 
-The project owner does not recall the exact origin of the legacy 150 Lithuanian statements and suspects they may have been generated by Microsoft Copilot from an international example. Treat this as plausible but unverified.
+Purpose:
+- human evidence for stimulus families and choice mechanics;
+- reason-language / confound inspection;
+- Gate A before second exemplars or directional validation.
 
-Important boundary:
-- the legacy Forms tool is not the official ADEPT-15 instrument;
-- do not use ADEPT-15 branding, proprietary item claims, adaptive scoring claims or imply equivalence to Aon's assessment;
-- the current 75-item WorkStyle bank is newly written WorkStyle content, not described as copied or translated ADEPT item content.
+Rule:
+- collect data;
+- do not redesign from weak interim patterns;
+- when sample reaches the study gate, freeze export and run the preregistered/descriptive analysis sequence.
 
-### Architecture decision — independent WorkStyle 15
+### Calibration v0.1
 
-Chosen direction: **independently re-derived workplace-reflection model**, not the inherited six ADEPT-like groups.
+Current source: `2PAIR_LAUNCH_STATE.md` plus the active Calibration protocol sources.
 
-Current architecture: **5 domains × 3 dimensions**.
+Purpose:
+- mechanical timing and UX calibration only.
 
-1. **Execution / Įgyvendinimas**
-   - Goal Persistence / Kryptingumas
-   - Work Structure / Struktūra
-   - Achievement Drive / Pasiekimų siekis
+Rule:
+- collect data;
+- timing evidence cannot create psychological meaning;
+- only the preregistered timing decision may reopen timing mechanics.
 
-2. **Adaptation / Prisitaikymas**
-   - Systems Thinking / Sisteminis mąstymas
-   - Adaptability / Prisitaikymas
-   - Learning Orientation / Mokymosi orientacija
+### WorkStyle v0.7 LT-E
 
-3. **Collaboration / Bendradarbiavimas**
-   - Cooperation / Bendradarbiavimas
-   - Empathic Attention / Empatinis dėmesys
-   - Intellectual Humility / Intelektinis nuolankumas
+Current source: `WORKSTYLE_CURRENT_DECISIONS.md`.
 
-4. **Influence / Įtaka**
-   - Assertive Communication / Asertyvus komunikavimas
-   - Persuasive Influence / Įtaka
-   - Social Energy / Socialinė energija
+Live cognitive form:
+`https://2rasi.com/tools/workstyle15/v07-cognitive.html`
 
-5. **Self-Regulation / Savireguliacija**
-   - Emotional Regulation / Emocinė savitvarda
-   - Constructive Outlook / Konstruktyvus požiūris
-   - Reflective Self-Awareness / Reflektyvi savimonė
+Current instrument:
+- version `0.7-cognitive-8axis-lt-e`;
+- 34 items;
+- 8 candidate bipolar axes;
+- 3 blocks: 12 + 11 + 11;
+- first-response timing;
+- context / cannot-assess / unclear / duplicate signals;
+- optional broad pilot context;
+- no public profile/score.
 
-Detailed construct rationale: `WORKSTYLE15_INDEPENDENT_MODEL_V01.md`.
-
-This architecture is a design hypothesis pending pilot evidence; it is not psychometric validation.
-
-### Independent review status
-
-Two independent blind reviews were completed against the same v0.1 package:
-- **Claude**: `READY AFTER MINOR REVISIONS`, confidence 72/100; provenance reveal did not change the verdict;
-- **Grok**: `READY AFTER MINOR REVISIONS`, confidence 78/100.
-
-Gemini did not complete a reliable review and is not counted as review evidence.
-
-Two-review consensus supports proceeding to real respondent testing without another AI review.
-
-Main empirical boundaries to watch:
-- Achievement Drive vs Goal Persistence;
-- Social Energy vs Persuasive Influence / Assertive Communication;
-- Constructive Outlook vs Emotional Regulation;
-- Learning Orientation vs Reflective Self-Awareness.
-
-Social Energy remains intentionally separate for the pilot because Claude and Grok disagreed on its distinctness. Let data decide.
-
-Review records:
-- `WORKSTYLE15_EXTERNAL_REVIEW_RESOLUTION.md`;
-- `WORKSTYLE15_TWO_REVIEW_CONSENSUS.md`.
-
-### Current v0.4 pilot package
-
-**PILOT-FROZEN sources:**
-- `WORKSTYLE15_V04_LT_ITEMS.md` — 75 final LT pilot items;
-- `WORKSTYLE15_V04_ORDER.md` — fixed balanced Form A order;
-- `WORKSTYLE15_V04_INTERPRETATIONS_LT.md` — frozen LT result interpretations;
-- `WORKSTYLE15_DECISIONS.md` — active WorkStyle source of truth;
-- `WORKSTYLE15_PAEI_DISC_CROSSWALK.md` — optional future lens mapping.
-
-Instrument settings:
-- 75 items = 15 dimensions × 5;
-- 60 direct + 15 reverse;
-- Likert 1–5;
-- reverse scoring `6 - response`;
-- dimension raw 5–25;
-- `dimension_index = (sum - 5) / 20 * 100`;
-- domain = average of its 3 dimension indexes;
-- indexes are theoretical scale positions, **not population percentiles**.
-
-Version rule: once the first v0.4 pilot response is recorded, any wording change creates a new instrument version. Do not edit v0.4 in place.
-
-### LT web beta implemented
-
-Path in repo: `tools/workstyle15/`.
-
-Files:
-- `index.html` — nonindexed LT pilot UI;
-- `data.js` — machine-readable v0.4 instrument + interpretations + order;
-- `app.js` — session, scoring, resume, timing, feedback, JSON export;
-- `styles.css` — responsive pilot styling.
-
-Expected direct production path:
-`https://2rasi.com/tools/workstyle15/`
-
-**Live path still requires manual smoke verification.** Do not call it verified until opened/tested.
-
-Beta boundaries:
-- `noindex,nofollow`;
-- not linked from the main homepage yet;
-- 15 dimensions shown before five domains;
-- no PAEI/DISC shown in the cognitive pilot;
-- no backend submission;
-- no name/email;
-- data stays in local browser storage unless participant exports anonymous JSON.
-
-Pilot export includes:
-- anonymous session ID;
-- instrument version/form/language;
-- responses + reverse-scored values;
-- item position/dimension;
-- approximate first-response latency;
-- visits and answer changes;
-- active completion time;
-- 15 dimension + 5 domain indices after completion;
-- result-specificity rating 1–5;
-- optional qualitative comment.
-
-The local-only design is appropriate for a **small cognitive pilot**. It is not sufficient for an unattended broad public pilot because incomplete/abandoned sessions are not centrally collected.
-
-### Result architecture
-
-Primary result:
-1. 15 measured WorkStyle dimensions;
-2. 5 WorkStyle domains as secondary summary;
-3. higher/lower tendency trade-offs and reflection prompts.
-
-Do not:
-- equate high with good or low with weak;
-- call theoretical indices percentiles;
-- assign a fixed personality type;
-- treat WorkStyle as an official ADEPT, DISC, PAEI or Big Five assessment.
-
-### External lenses
-
-PAEI and DISC remain optional correspondence lenses for a later iteration.
+The verified explicit pilot intake was activated on 2026-08-23. JSON remains a fallback/export path.
 
 Current rule:
-- no numeric external-lens scores in the cognitive pilot;
-- WorkStyle core must first stand on its own;
-- if later added, lenses should be optional and traceable back to measured dimensions.
+- **COLLECTING DATA / CONTENT FROZEN**;
+- no EN adaptation, scoring/profile, higher-order domain claims or external-lens scoring before LT evidence;
+- after the pilot batch, analyse ambiguity, context dependence, duplicate/felt-repetition, directional spread, timing and the fragile axes;
+- classify axes `KEEP / REWRITE / MERGE-DROP / OPEN QUESTION`.
 
-Big Five is only a behind-the-scenes construct sanity check, **not a WorkStyle output layer**, to avoid duplicating Divergent.
+Historical WorkStyle 15-dimension / v0.4-v0.6 files remain provenance only and are not current architecture.
 
-Jungian / MBTI-style mapping remains deferred beyond V1.
+## Frozen research / assessment work
 
-### Current WorkStyle next gates
+### Leadership SJT
 
-1. Manually smoke-test `https://2rasi.com/tools/workstyle15/` on mobile and desktop.
-2. Verify start, 1–5 responses, Back/Next, save/resume, final scoring, interpretations, feedback, JSON download/copy and restart.
-3. Run several real cognitive pilot completions and collect exported JSON + comments.
-4. Inspect comprehension, completion time, reverse items, ceiling/floor patterns and neighboring-scale correlations before changing content.
-5. Keep WorkStyle off the homepage/sitemap until the pilot UI is manually verified.
-6. Decide on a minimal anonymous backend only if the cognitive pilot justifies broader collection.
-7. Translate to EN only after LT v0.4 survives the cognitive pilot without wording changes.
-8. Use a larger appropriate sample before structural/psychometric claims or numeric PAEI/DISC scoring.
+Leadership SJT is not a parallel active project.
 
-## Future concept — Organization Development / PAEI
+Decision:
+- preserve existing research/review files;
+- **freeze it while WorkStyle is collecting evidence**;
+- treat it as a possible next WorkStyle evolution stage after the WorkStyle architecture survives its evidence gate;
+- do not start Critical Incident Stage 0, recruitment or a new SJT item bank now.
 
-Separate product concept, not an extension of individual WorkStyle scores.
+### 2Pair core
 
-Core idea:
-- multiple people rate observable organizational behaviour across functions/levels;
-- measure organizational P/A/E/I-related capabilities;
-- aggregate at team/unit/organization level;
-- repeat periodically to show development direction;
-- identify imbalances/tensions rather than one fixed label.
+Current source: `2PAIR_LAUNCH_STATE.md`.
 
-Important boundary:
-**do not create an organization PAEI score by averaging employees' personal WorkStyle profiles.**
+Rule:
+- no core redesign while Wave / Calibration evidence is insufficient;
+- product-shaped future-session components already exist and should not be rebuilt as if missing;
+- allowed work while waiting is limited to analysis tooling, blind-package tooling, tests, manifests/preregistration templates, data-quality diagnostics and documentation.
 
-## Competency Matrix / Skills Matrix
+## OMESG360 operational product direction
 
-KEEP as future Tools item.
+OMESG360 is the professional / operational space. New operational product concepts should be evaluated as parts of one future system rather than isolated spreadsheets or disconnected tools.
 
-Understood structure:
-- process -> step -> what/how/why;
-- 0–5 competence scale;
-- responsible person;
-- monthly training plan;
-- per-person actual/target/gap;
-- team competence gap and aggregate view.
+### Competency Matrix / Capability
 
-Before rebuild clarify:
-- whether target `0` means N/A;
-- exact meaning of responsibility field;
-- whose initials are used in training plan;
-- preferred sign convention for competence gap.
+Current vision source in `olemoz1977/omesg360`:
+`COMPETENCY_MATRIX_VISION.md`.
 
-## P2 — Legacy-project inventory / LT-EN parity
+Status:
+**VISION CAPTURED / NOT IN ACTIVE DEVELOPMENT**.
 
-Do not translate every old project automatically.
+Core direction:
+`Process -> current standard -> team capability -> gap -> Globėjas/trainer -> training plan -> reassessment -> improvement`.
 
-Review one by one:
+Important semantics from the historical Excel source:
+- `N` or `-` = no need for that person/role to know the competence;
+- `0` = required but cannot perform / does not know;
+- `1-5` = current competence / independence level;
+- `N/-` is not zero.
+
+Key principle:
+A strong system cannot depend on one `superhero`. Individual mastery and system resilience must remain separate questions. Future analysis may include independent coverage, backup coverage, trainer coverage, single-point dependency and knowledge concentration.
+
+### Darbo vietos knyga / Workplace Book
+
+Current vision source in `olemoz1977/omesg360`:
+`WORKPLACE_BOOK_VISION.md`.
+
+Status:
+**KEEP / MERGE INTO FUTURE OMESG360 CORE / NOT IN ACTIVE DEVELOPMENT**.
+
+Direction:
+- operator/shop-floor view of the current relevant workplace knowledge;
+- standard work / SOP / TWI / quality / safety / SMED / abnormal-condition guidance where contextually relevant;
+- Team Lead/supervisor maintenance view later;
+- do not duplicate process knowledge between DVK and Competency Matrix;
+- SOP is part of standardization and remains versioned/improvable, not permanent truth.
+
+Long-term conceptual loop:
+`Process / Flow -> Stability -> Standardization -> People Capability -> Improvement -> improved process / standard`.
+
+### Knowledge / learning sources
+
+Two source-material families have been identified but are **not products yet**:
+
+1. Lean / Six Sigma / TOC teaching material
+   - broad methods and problem-solving reference;
+   - potential future OMESG360 knowledge-base source;
+   - do not publish 1:1; review accuracy, provenance and product framing first.
+
+2. Team Lead / `Vilko valanda` training material
+   - feedback, engagement, collaboration, leadership, resilience, situational leadership, PAEI/organizational lifecycle, Karpman, growth mindset and related manager-learning material;
+   - potential future Team Lead learning source;
+   - do not productize or publish 1:1 before audit/rebuild.
+
+These sources may later support the same OMESG360 operational ecosystem, but no Academy or Knowledge Base development is active now.
+
+## OMESG360 production guard
+
+Project-specific deployment source of truth remains in the OMESG360 repo:
+- `PROJECT_ROADMAP.md`;
+- `RECOVERY_AND_INTEGRATION_PLAN.md`.
+
+Rules that remain in force:
+- Hostinger Git auto-deployment stays OFF;
+- no destructive whole-root sync or `--delete` over `public_html`;
+- new folders and necessary `public_html` changes are allowed when impact on the existing system is checked first;
+- prefer isolated/backward-compatible additions;
+- preserve server-only secrets/config/data;
+- do not damage Leadership 360, Wave1, Calibration or other existing runtime surfaces while adding future modules.
+
+## Legacy audit queue
+
+When no active evidence stream is ready for analysis, the safe portfolio task is to audit legacy tools one by one:
+
 1. Multipliers
 2. Divergent
 3. Situational Leadership
 4. Drama Triangle
 5. Strategic Thinking
-6. Competency Matrix / Skills Matrix
-7. WorkStyle 15 EN only after LT pilot stabilizes
 
-For each first decide whether the tool is still conceptually worth keeping public, then invest in EN/UI normalization.
+For each, decide only:
+`KEEP / REBUILD / ARCHIVE / DROP`.
 
-## P3 — 2Pair remains evidence-gated
+Do not automatically translate, redesign or add features during the audit.
 
-Current rule:
-- no 2Pair core redesign while Calibration has insufficient data and Wave1 is weakly tested;
-- no large new stimulus/pair batch without evidence showing what is missing;
-- reopen core only after data shows a concrete imbalance, dominant choices, weak discrimination, timing anomaly, stimulus gap, or another identifiable issue.
+## Current priority sequence
 
-Near-term 2Pair work is data collection/research operations, not feature development.
+### P0 — collect and protect evidence
+1. Wave1 data collection.
+2. Calibration data collection.
+3. WorkStyle v0.7 data collection.
+4. If any reaches its analysis gate, pause other work and analyse it.
 
-## Suggested sequence from here
+### P1 — safe cleanup while waiting
+1. keep source-of-truth documents current;
+2. perform compact legacy-tool audit;
+3. maintain analysis/data-quality tooling where it directly supports active research.
 
-1. Smoke-test WorkStyle 15 v0.4 LT web beta.
-2. Run small WorkStyle cognitive pilot and collect anonymous exported sessions/comments.
-3. Inspect evidence before any shortening, restructuring or external-lens scoring.
-4. Preserve/specify Competency Matrix semantics.
-5. Complete compact inventory for remaining LT-only legacy tools.
-6. Continue Wave1 + Calibration data collection without changing mechanics.
-7. Reopen 2Pair core only from evidence.
-8. Keep Organization Development / PAEI as a later separate product concept.
+### P2 — frozen until evidence / explicit reprioritization
+- Leadership SJT;
+- 2Pair core feature development;
+- Competency Matrix implementation;
+- Darbo vietos knyga implementation;
+- OMESG360 Knowledge Base / Team Lead Academy;
+- WorkStyle EN/profile/scoring;
+- Organization Development / PAEI;
+- GLA360 / OMESG360Bot;
+- unrelated visual redesign.
 
 ## Freeze register
 
 - Leadership 360°: COMPLETE / FROZEN.
-- OMESG360 recovery: COMPLETE.
-- 2Pair core: TEMPORARY RESEARCH FREEZE pending stronger Wave1 + Calibration evidence.
-- WorkStyle 15 LT v0.4 wording/order/interpretations: **PILOT-FROZEN** until cognitive-pilot evidence.
-
-## Rule for new work
-
-Prefer evidence-driven maintenance, validation and product cleanup over adding new features to under-tested products.
+- OMESG360 recovery: COMPLETE / production baseline protected.
+- Wave1: COLLECTING DATA / semantics frozen.
+- Calibration: COLLECTING DATA / mechanics frozen pending timing evidence.
+- WorkStyle v0.7 LT-E: COLLECTING DATA / content frozen except critical defects.
+- Leadership SJT: FROZEN as future WorkStyle evolution.
+- 2Pair core: TEMPORARY RESEARCH FREEZE pending evidence.
+- Competency Matrix: VISION CAPTURED / NOT ACTIVE.
+- Workplace Book: VISION CAPTURED / NOT ACTIVE.
