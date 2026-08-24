@@ -332,3 +332,21 @@
     link.removeAttribute('rel');
   });
 })();
+
+// Match Lithuanian page titles to the phrases people actually use when
+// searching for these reflection tools. This changes browser/search metadata,
+// not the test model or visible result semantics.
+(() => {
+  const host = window.location.hostname.toLowerCase();
+  if (!(host === '2rasi.lt' || host.endsWith('.2rasi.lt'))) return;
+  const slug = window.location.pathname.split('/').filter(Boolean).pop() || '';
+  const titles = {
+    mirror: 'Savirefleksijos testas „Veidrodis“ — 2rasi',
+    multipliers: 'Vadovavimo refleksijos testas „Multipliers“ — 2rasi',
+    divergent: 'Big Five / OCEAN asmenybės refleksijos testas — 2rasi',
+    'situational-leadership': 'Situacinio vadovavimo testas — 2rasi',
+    'drama-triangle': 'Karpmano dramos trikampio testas — 2rasi',
+    'strategic-thinking': 'Strateginio mąstymo testas — 2rasi'
+  };
+  if (titles[slug]) document.title = titles[slug];
+})();
