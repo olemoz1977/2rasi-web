@@ -1,0 +1,71 @@
+name: Check WorkStyle pilot count
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - hero-webgl
+    paths:
+      - .github/workflows/workstyle-pilot-count.yml
+
+permissions:
+  contents: read
+
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Query WorkStyle D1 read-only
+        env:
+          RAW_CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          TOKEN="$(python - <<'PY'
+          import os
+          token = os.environ.get('RAW_CLOUDFLARE_API_TOKEN', '').strip()
+          if token.lower().startswith('bearer '):
+              token = token[7:].strip()
+          if len(token) >= 2 and token[0] == token[-1] and token[0] in {'"', "'"}:
+              token = token[1:-1].strip()
+          if not token:
+              raise SystemExit('Missing Cloudflare token')
+          print(token, end='')
+          PY
+          )"
+          echo "::add-mask::$TOKEN"
+
+          API="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database"
+          DBS="$(curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $TOKEN" \
+            --header 'Content-Type: application/json' \
+            "$API?per_page=100")"
+          DB_ID="$(printf '%s' "$DBS" | jq -r '.result[]? | select(.name == "workstyle-pilot") | (.uuid // .id // empty)' | head -n 1)"
+          test -n "$DB_ID" || { echo 'workstyle-pilot D1 database not found'; exit 1; }
+
+          QUERY_URL="$API/$DB_ID/query"
+          PAYLOAD='{"sql":"SELECT COUNT(*) AS total_sessions, SUM(CASE WHEN answered = 34 THEN 1 ELSE 0 END) AS complete_34, SUM(CASE WHEN answered < 34 THEN 1 ELSE 0 END) AS incomplete, MAX(received_at) AS last_received_at FROM workstyle_sessions"}'
+          RESULT="$(curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer $TOKEN" \
+            --header 'Content-Type: application/json' \
+            --data "$PAYLOAD" \
+            "$QUERY_URL")"
+          printf '%s' "$RESULT" | jq -e '.success == true' >/dev/null
+
+          ROW="$(printf '%s' "$RESULT" | jq -c '.result[0].results[0]')"
+          echo "WORKSTYLE_PILOT_COUNT $ROW"
+
+          {
+            echo '## WorkStyle pilot D1'
+            echo
+            echo "- Total stored sessions: $(printf '%s' "$ROW" | jq -r '.total_sessions // 0')"
+            echo "- Complete 34/34: $(printf '%s' "$ROW" | jq -r '.complete_34 // 0')"
+            echo "- Incomplete: $(printf '%s' "$ROW" | jq -r '.incomplete // 0')"
+            echo "- Last received: $(printf '%s' "$ROW" | jq -r '.last_received_at // "—"')"
+            echo
+            echo 'Read-only query; no participant rows were changed.'
+          } >> "$GITHUB_STEP_SUMMARY"
