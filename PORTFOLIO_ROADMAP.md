@@ -34,11 +34,11 @@ If an active research stream reaches its evidence checkpoint, pause unrelated wo
 | Darbo vietos knyga / Workplace Book | VISION CAPTURED | KEEP / merge into future OMESG360 operational core; not in active development |
 | Lean / Six Sigma / TOC learning material | LEGACY SOURCE MATERIAL | Keep as future OMESG360 knowledge-base source; rebuild before product/public use |
 | Team Lead / `Vilko valanda` training material | LEGACY SOURCE MATERIAL | Keep as future leadership-learning source; audit/rebuild before productization |
-| Multipliers | LEGACY LIVE TOOL | Audit: KEEP / REBUILD / ARCHIVE / DROP |
-| Divergent | LEGACY LIVE TOOL | Audit: KEEP / REBUILD / ARCHIVE / DROP |
-| Situational Leadership | LEGACY LIVE TOOL | Audit: KEEP / REBUILD / ARCHIVE / DROP |
-| Drama Triangle | LEGACY LIVE TOOL | Audit: KEEP / REBUILD / ARCHIVE / DROP |
-| Strategic Thinking | LEGACY LIVE TOOL | Audit: KEEP / REBUILD / ARCHIVE / DROP |
+| Multipliers | KEEP / LEGACY | Keep as 2rasi leadership reflection; no active development |
+| Divergent | KEEP / LEGACY | Keep as 2rasi creative/self-reflection experiment; no active development |
+| Situational Leadership | ARCHIVE | Preserve repository/history; do not treat as active leadership product |
+| Drama Triangle | REBUILD LATER | Preserve concept/source; current scoring is not future foundation |
+| Strategic Thinking | REBUILD LATER | Preserve concept/source; re-derive before future promotion |
 | Organization Development / PAEI | PARKED CONCEPT | Do not develop yet |
 | GLA360 / OMESG360Bot | PARKED | Do not reopen unless reprioritized |
 
@@ -190,20 +190,28 @@ Rules that remain in force:
 - preserve server-only secrets/config/data;
 - do not damage Leadership 360, Wave1, Calibration or other existing runtime surfaces while adding future modules.
 
-## Legacy audit queue
+## Legacy tool audit — COMPLETE
 
-When no active evidence stream is ready for analysis, the safe portfolio task is to audit legacy tools one by one:
+Current audit source:
+`LEGACY_TOOL_AUDIT_2026-08-24.md`.
 
-1. Multipliers
-2. Divergent
-3. Situational Leadership
-4. Drama Triangle
-5. Strategic Thinking
+Verdicts:
 
-For each, decide only:
-`KEEP / REBUILD / ARCHIVE / DROP`.
+| Tool | Verdict | Meaning |
+|---|---|---|
+| Multipliers | KEEP | Legacy 2rasi leadership reflection; no active development |
+| Divergent | KEEP | Legacy 2rasi creative/self-reflection experiment; no active development |
+| Situational Leadership | ARCHIVE | Preserve source/history; future SJT must use the separate research-first path |
+| Drama Triangle | REBUILD | Preserve concept/source; current percentage/threshold scoring is not future foundation |
+| Strategic Thinking | REBUILD | Preserve concept/source; re-derive measurement/provenance before future promotion |
 
-Do not automatically translate, redesign or add features during the audit.
+Do not:
+- translate all five automatically;
+- normalize UI just for consistency;
+- merge scores into WorkStyle / Leadership 360 / Leadership SJT;
+- delete repositories as part of portfolio cleanup.
+
+Public catalogue/status presentation may be aligned with these verdicts as a separate navigation cleanup.
 
 ## Current priority sequence
 
@@ -215,7 +223,7 @@ Do not automatically translate, redesign or add features during the audit.
 
 ### P1 — safe cleanup while waiting
 1. keep source-of-truth documents current;
-2. perform compact legacy-tool audit;
+2. align public catalogue/status labels with the completed legacy audit;
 3. maintain analysis/data-quality tooling where it directly supports active research.
 
 ### P2 — frozen until evidence / explicit reprioritization
