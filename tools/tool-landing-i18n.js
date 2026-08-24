@@ -322,3 +322,13 @@
     if (back) back.textContent = '← Grįžti į eksperimentus';
   }
 })();
+
+// Legacy tools live on GitHub Pages. Keep them in the same browsing context
+// so Back naturally returns to this 2rasi landing instead of leaving an
+// orphaned tab after the reflection is finished.
+(() => {
+  document.querySelectorAll('a[href*="olemoz1977.github.io/"]').forEach((link) => {
+    link.target = '_self';
+    link.removeAttribute('rel');
+  });
+})();
