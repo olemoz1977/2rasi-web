@@ -294,3 +294,13 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: .15 });
 
 document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+// Keep the legacy reflection tools in the same browsing context so the
+// browser Back action naturally returns to 2rasi. Research/professional
+// destinations keep their explicit new-tab behaviour.
+['mirror', 'multipliers', 'divergent', 'situational-leadership', 'karpman', 'strategic-thinking'].forEach((id) => {
+  const start = document.querySelector(`#${id} .experiment-actions a:nth-child(2)`);
+  if (!start) return;
+  start.target = '_self';
+  start.removeAttribute('rel');
+});
