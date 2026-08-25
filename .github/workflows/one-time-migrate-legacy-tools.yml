@@ -1,0 +1,253 @@
+name: One-time migrate legacy tools to 2rasi
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - hero-webgl
+    paths:
+      - .github/workflows/one-time-migrate-legacy-tools.yml
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 2rasi
+        uses: actions/checkout@v4
+        with:
+          ref: hero-webgl
+          fetch-depth: 0
+
+      - name: Checkout Mirror source
+        uses: actions/checkout@v4
+        with:
+          repository: olemoz1977/savirefleksijos-testas
+          ref: main
+          path: sources/mirror
+          persist-credentials: false
+
+      - name: Checkout Multipliers source
+        uses: actions/checkout@v4
+        with:
+          repository: olemoz1977/multipliers-test
+          ref: main
+          path: sources/multipliers
+          persist-credentials: false
+
+      - name: Checkout Divergent source
+        uses: actions/checkout@v4
+        with:
+          repository: olemoz1977/Divergent-test-2
+          ref: main
+          path: sources/divergent
+          persist-credentials: false
+
+      - name: Checkout Situational Leadership source
+        uses: actions/checkout@v4
+        with:
+          repository: olemoz1977/Situacinio-vadovavimo-testas
+          ref: main
+          path: sources/situational
+          persist-credentials: false
+
+      - name: Checkout Strategic Thinking source
+        uses: actions/checkout@v4
+        with:
+          repository: olemoz1977/Strateginio_M-stymo_Testas
+          ref: main
+          path: sources/strategic
+          persist-credentials: false
+
+      - name: Checkout Drama Triangle source
+        uses: actions/checkout@v4
+        with:
+          repository: olemoz1977/karpman-apklausa
+          ref: main
+          path: sources/drama
+          persist-credentials: false
+
+      - name: Verify source revisions
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C sources/mirror rev-parse HEAD)" = "10daa73594f5c68765f2788932e9773f546d550a" || { echo 'Mirror source moved'; exit 1; }
+          test "$(git -C sources/multipliers rev-parse HEAD)" = "7526a75479fb839d81214ec3b1096a6ae3215993" || { echo 'Multipliers source moved'; exit 1; }
+          test "$(git -C sources/divergent rev-parse HEAD)" = "1d4603a647f2937914dcf19c479f2c35535131a3" || { echo 'Divergent source moved'; exit 1; }
+          test "$(git -C sources/situational rev-parse HEAD)" = "f543ec121993a2aec9ab10300c40cc4f32ae38f6" || { echo 'Situational source moved'; exit 1; }
+          test "$(git -C sources/strategic rev-parse HEAD)" = "4ff01945b79749b975481be9affdd5cb38d396da" || { echo 'Strategic source moved'; exit 1; }
+          test "$(git -C sources/drama rev-parse HEAD)" = "3f931276a58969ce3c7e32cdd764980e96d7803d" || { echo 'Drama source moved'; exit 1; }
+
+      - name: Copy exact runtime sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tools/mirror/run
+          cp sources/mirror/index.html sources/mirror/styles.css sources/mirror/app.js sources/mirror/data.js tools/mirror/run/
+
+          mkdir -p tools/multipliers/run/en
+          cp sources/multipliers/pilnas/index.html tools/multipliers/run/index.html
+          cp sources/multipliers/pilnas/en/index.html tools/multipliers/run/en/index.html
+
+          mkdir -p tools/divergent/run/en
+          cp sources/divergent/public/index.html tools/divergent/run/index.html
+          cp sources/divergent/public/en/index.html tools/divergent/run/en/index.html
+
+          mkdir -p tools/situational-leadership/run
+          cp sources/situational/index.html tools/situational-leadership/run/index.html
+
+          mkdir -p tools/strategic-thinking/run
+          cp sources/strategic/Public/index.html tools/strategic-thinking/run/index.html
+
+          mkdir -p tools/drama-triangle/run/en
+          cp sources/drama/public/index.html tools/drama-triangle/run/index.html
+          cp sources/drama/public/en/index.html tools/drama-triangle/run/en/index.html
+
+          mkdir -p tools/drama-triangle/pilot/action-loop-v01/en
+          cp sources/drama/public/pilot/action-loop-v01/index.html tools/drama-triangle/pilot/action-loop-v01/index.html
+          cp sources/drama/public/pilot/action-loop-v01/en/index.html tools/drama-triangle/pilot/action-loop-v01/en/index.html
+
+      - name: Patch local routes and runtime indexing
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          replacements = [
+              ('https://olemoz1977.github.io/multipliers-test/pilnas/en/', '/tools/multipliers/run/en/'),
+              ('https://olemoz1977.github.io/multipliers-test/pilnas/', '/tools/multipliers/run/'),
+              ('https://olemoz1977.github.io/Divergent-test-2/public/en/', '/tools/divergent/run/en/'),
+              ('https://olemoz1977.github.io/Divergent-test-2/public/', '/tools/divergent/run/'),
+              ('https://olemoz1977.github.io/karpman-apklausa/public/pilot/action-loop-v01/en/', '/tools/drama-triangle/pilot/action-loop-v01/en/'),
+              ('https://olemoz1977.github.io/karpman-apklausa/public/pilot/action-loop-v01/', '/tools/drama-triangle/pilot/action-loop-v01/'),
+              ('https://olemoz1977.github.io/karpman-apklausa/public/en/', '/tools/drama-triangle/run/en/'),
+              ('https://olemoz1977.github.io/karpman-apklausa/public/', '/tools/drama-triangle/run/'),
+              ('https://olemoz1977.github.io/savirefleksijos-testas/', '/tools/mirror/run/'),
+              ('https://olemoz1977.github.io/Situacinio-vadovavimo-testas/', '/tools/situational-leadership/run/'),
+              ('https://olemoz1977.github.io/Strateginio_M-stymo_Testas/Public/', '/tools/strategic-thinking/run/'),
+          ]
+
+          files = [Path('index.html')]
+          files += list(Path('tools').glob('*/index.html'))
+          files += list(Path('tools').glob('*/run/**/*.html'))
+          files += list(Path('tools/drama-triangle/pilot').rglob('*.html'))
+          files = list(dict.fromkeys(files))
+
+          for path in files:
+              text = path.read_text(encoding='utf-8')
+              for old, new in replacements:
+                  text = text.replace(old, new)
+              # Local links must feel like one site, not open a new platform/tab.
+              def clean_local_anchor(match):
+                  tag = match.group(0)
+                  tag = re.sub(r'\s+target=("|\')_blank\1', '', tag)
+                  tag = re.sub(r'\s+rel=("|\')noopener\1', '', tag)
+                  return tag
+              text = re.sub(r'<a\b[^>]*href=("|\')/tools/[^>]*>', clean_local_anchor, text, flags=re.I)
+              path.write_text(text, encoding='utf-8')
+
+          # Runtime pages are implementation surfaces. Keep indexed product pages at /tools/<tool>/.
+          runtime_pages = list(Path('tools').glob('*/run/**/*.html'))
+          for path in runtime_pages:
+              text = path.read_text(encoding='utf-8')
+              if re.search(r'<meta\s+name=["\']robots["\']', text, flags=re.I):
+                  continue
+              viewport = re.search(r'(<meta\s+name=["\']viewport["\'][^>]*>)', text, flags=re.I)
+              if viewport:
+                  text = text[:viewport.end()] + '\n<meta name="robots" content="noindex,follow" />' + text[viewport.end():]
+              else:
+                  text = text.replace('<head>', '<head>\n<meta name="robots" content="noindex,follow" />', 1)
+              path.write_text(text, encoding='utf-8')
+
+          # LT hero: make the interaction understandable without knowing English.
+          i18n = Path('i18n.js')
+          text = i18n.read_text(encoding='utf-8')
+          anchor = "    set('.hint', 'Move · look · notice', 'Judink · žiūrėk · pastebėk');"
+          addition = anchor + "\n    set('.base-word', 'OBSERVE', 'STEBĖK');\n    set('.notice-word', 'NOTICE', 'PASTEBĖK');"
+          if "set('.base-word', 'OBSERVE', 'STEBĖK')" not in text:
+              if anchor not in text:
+                  raise SystemExit('Hero translation anchor not found')
+              text = text.replace(anchor, addition, 1)
+          i18n.write_text(text, encoding='utf-8')
+
+          # Calendar return links from the copied Drama pilot must stay on the active 2rasi host.
+          pilot_targets = [
+              (Path('tools/drama-triangle/pilot/action-loop-v01/index.html'), '/tools/drama-triangle/pilot/action-loop-v01/#experiment'),
+              (Path('tools/drama-triangle/pilot/action-loop-v01/en/index.html'), '/tools/drama-triangle/pilot/action-loop-v01/en/#experiment'),
+          ]
+          for path, route in pilot_targets:
+              text = path.read_text(encoding='utf-8')
+              text, count = re.subn(r"const PILOT_URL='[^']+';", f"const PILOT_URL=location.origin+'{route}';", text, count=1)
+              if count != 1:
+                  raise SystemExit(f'PILOT_URL not patched in {path}')
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Record runtime source provenance
+        shell: bash
+        run: |
+          cat > tools/LEGACY_RUNTIME_SOURCES.md <<'EOF'
+          # Legacy runtime source map
+
+          These runtime copies keep the user on `2rasi.lt` / `2rasi.com`. The original repositories remain source-of-truth for their legacy tool logic.
+
+          | 2rasi runtime | Source repository | Source revision |
+          | --- | --- | --- |
+          | `tools/mirror/run/` | `olemoz1977/savirefleksijos-testas` | `10daa73594f5c68765f2788932e9773f546d550a` |
+          | `tools/multipliers/run/` | `olemoz1977/multipliers-test` | `7526a75479fb839d81214ec3b1096a6ae3215993` |
+          | `tools/divergent/run/` | `olemoz1977/Divergent-test-2` | `1d4603a647f2937914dcf19c479f2c35535131a3` |
+          | `tools/situational-leadership/run/` | `olemoz1977/Situacinio-vadovavimo-testas` | `f543ec121993a2aec9ab10300c40cc4f32ae38f6` |
+          | `tools/strategic-thinking/run/` | `olemoz1977/Strateginio_M-stymo_Testas` | `4ff01945b79749b975481be9affdd5cb38d396da` |
+          | `tools/drama-triangle/run/` + pilot | `olemoz1977/karpman-apklausa` | `3f931276a58969ce3c7e32cdd764980e96d7803d` |
+
+          Runtime HTML is marked `noindex,follow`; indexed product/SEO surfaces remain the existing `/tools/<tool>/` pages.
+          EOF
+
+      - name: Verify migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f tools/mirror/run/index.html
+          test -f tools/multipliers/run/en/index.html
+          test -f tools/divergent/run/en/index.html
+          test -f tools/situational-leadership/run/index.html
+          test -f tools/strategic-thinking/run/index.html
+          test -f tools/drama-triangle/run/en/index.html
+          test -f tools/drama-triangle/pilot/action-loop-v01/en/index.html
+
+          if grep -R -n --include='index.html' 'olemoz1977.github.io' index.html tools/*/index.html; then
+            echo 'A user-facing landing still points to github.io'
+            exit 1
+          fi
+
+          grep -q "STEBĖK" i18n.js
+          grep -q "PASTEBĖK" i18n.js
+          grep -q '/tools/mirror/run/' index.html
+          grep -q '/tools/drama-triangle/run/en/' index.html
+
+      - name: Ensure branch did not move underneath this run
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin hero-webgl
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/hero-webgl)" || {
+            echo 'hero-webgl moved during migration; aborting rather than overwriting newer work'
+            exit 1
+          }
+
+      - name: Commit migration and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf sources
+          rm -f .github/workflows/one-time-migrate-legacy-tools.yml
+          git config user.name 'olemoz1977'
+          git config user.email 'olemoz1977@gmail.com'
+          git add index.html i18n.js tools .github/workflows/one-time-migrate-legacy-tools.yml
+          git diff --cached --check
+          git commit -m 'fix(trust): keep legacy tools on 2rasi domain'
+          git push origin HEAD:hero-webgl
