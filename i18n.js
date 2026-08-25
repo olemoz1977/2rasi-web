@@ -93,7 +93,7 @@
       actions: [['About', 'Apie'], ['Start', 'Pradėti']]
     },
     karpman: {
-      state: ['Live · LT', 'Veikia · LT'],
+      state: ['Live · EN/LT', 'Veikia · EN/LT'],
       summary: ['A reflection on the roles we may slip into when tension rises.', 'Refleksija apie vaidmenis, į kuriuos galime įslysti augant įtampai.'],
       meta: [['Conflict patterns', 'Konflikto modeliai'], ['18 statements', '18 teiginių']],
       actions: [['About', 'Apie'], ['Start', 'Pradėti']]
