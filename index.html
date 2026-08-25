@@ -297,7 +297,7 @@
     </div>
   </footer>
 
-  <script src="i18n.js?v=20260824-0732"></script>
+  <script src="i18n.js?v=20260825-trust"></script>
   <script>
     (() => {
       const syncSeoAndHelp = () => {
@@ -333,6 +333,13 @@
           if (routes[key]) link.href = routes[key];
           link.target = '_self';
           link.removeAttribute('rel');
+        });
+
+        document.querySelectorAll('.experiment-actions a[href^="/tools/"]').forEach(link => {
+          link.target = '_self';
+          link.removeAttribute('rel');
+          const arrow = link.querySelector('span');
+          if (arrow && arrow.textContent.trim() === '↗') arrow.textContent = '→';
         });
       };
       syncSeoAndHelp();

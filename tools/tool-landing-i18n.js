@@ -323,13 +323,14 @@
   }
 })();
 
-// Legacy tools live on GitHub Pages. Keep them in the same browsing context
-// so Back naturally returns to this 2rasi landing instead of leaving an
-// orphaned tab after the reflection is finished.
+// Legacy runtimes now live under the same 2rasi domain. Keep local navigation
+// in the same browsing context and use an internal arrow rather than the
+// external-link symbol. True external systems keep their ↗ marker.
 (() => {
-  document.querySelectorAll('a[href*="olemoz1977.github.io/"]').forEach((link) => {
+  document.querySelectorAll('a[href^="/tools/"]').forEach((link) => {
     link.target = '_self';
     link.removeAttribute('rel');
+    if (link.textContent.includes('↗')) link.textContent = link.textContent.replace('↗', '→');
   });
 })();
 
