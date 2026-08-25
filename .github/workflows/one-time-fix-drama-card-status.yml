@@ -2,9 +2,10 @@ name: One-time fix Drama Triangle card status
 
 on:
   push:
-    branches: [hero-webgl]
+    branches:
+      - hero-webgl
     paths:
-      - .github/workflows/one-time-fix-drama-card-status.yml
+      - '.github/workflows/one-time-fix-drama-card-status.yml'
 
 permissions:
   contents: write
@@ -29,7 +30,8 @@ jobs:
           p.write_text(s.replace(old, new, 1), encoding='utf-8')
           PY
       - name: Verify
-        run: grep -F "state: ['Live · EN/LT', 'Veikia · EN/LT']" i18n.js
+        run: |
+          grep -F "state: ['Live · EN/LT', 'Veikia · EN/LT']" i18n.js
       - name: Commit
         run: |
           rm .github/workflows/one-time-fix-drama-card-status.yml
