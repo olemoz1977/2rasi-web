@@ -1,0 +1,517 @@
+
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,follow" />
+  <meta name="color-scheme" content="dark light">
+  <title>Strateginio mąstymo testas (STQ)</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#121821; --text:#e6edf3; --muted:#9aa7b5;
+      --brand:#2f81f7; --ok:#3fb950; --warn:#f85149; --border:#1f2a37;
+    }
+    body.light { --bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --brand:#0a66c2; --ok:#157347; --warn:#b02a37; --border:#e5e7eb; }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+    header{padding:18px 20px;border-bottom:1px solid var(--border);background:var(--panel);position:sticky;top:0;z-index:10}
+    h1{margin:0;font-size:24px}
+    h2{margin:6px 0 0;font-size:15px;color:var(--muted)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    button{appearance:none;border:1px solid var(--border);background:var(--panel);color:var(--text);padding:8px 12px;border-radius:8px;cursor:pointer;transition:.15s ease;font-weight:600}
+    button:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.25)}
+    .primary{background:var(--brand);border-color:var(--brand);color:#fff}
+    .success{background:var(--ok);border-color:var(--ok);color:#fff}
+    .danger{background:var(--warn);border-color:var(--warn);color:#fff}
+    .ghost{background:transparent}
+    .meta{display:flex;gap:16px;align-items:center;color:var(--muted);font-weight:600;margin-top:8px}
+
+    main{max-width:980px;margin:0 auto;padding:20px}
+    .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+    @media(min-width:900px){ .grid{grid-template-columns:1fr 1fr} }
+    section.block{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px}
+    section.block h3{margin:0 0 8px}
+    .q{margin:10px 0 14px}
+    .q-title{font-weight:700}
+    .options{margin-top:8px;display:grid;gap:6px}
+    .radio{display:flex;gap:10px;align-items:flex-start;background:transparent;border:1px solid var(--border);border-radius:10px;padding:8px}
+    .radio input{margin-top:3px}
+
+    .scorecard{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+    .card .num{font-size:22px;font-weight:800}
+
+    .footnote{margin-top:18px;color:var(--muted);font-size:13px}
+    .copyright{margin-top:8px;color:var(--muted)}
+    .error{color:var(--warn);font-weight:700;margin-top:8px}
+    .hidden{display:none}
+
+    /* Interpretacijų blokas */
+    .insight-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px}
+    @media(min-width:900px){ .insight-grid{grid-template-columns:1fr 1fr} }
+    .insight-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px}
+    .insight-card h4{margin:0 0 6px}
+    .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;margin-left:8px}
+    .badge.low{background:#2d1f1f;color:#fda4a4;border:1px solid #7f1d1d}
+    .badge.mid{background:#1f2d25;color:#a7f3d0;border:1px solid #14532d}
+    .badge.high{background:#1f2633;color:#93c5fd;border:1px solid #1d4ed8}
+    .insight-list{margin:8px 0 0;padding-left:18px}
+    .insight-list li{margin:4px 0}
+
+    @media print{
+      body{background:#fff;color:#000}
+      header{position:static;border:none;background:#fff;color:#000}
+      .toolbar{display:none}
+      section.block{background:#fff;border:1px solid #ccc}
+      .radio{border-color:#ccc}
+      .scorecard .card,.insight-card{background:#fff;border:1px solid #ccc}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Strateginio mąstymo testas (STQ)</h1>
+  <h2>Instrukcija: Pasirinkite vieną atsakymą, kuris tiksliausiai atspindi Jūsų įprastą veiksmą tokioje situacijoje.</h2>
+  <div class="toolbar">
+    <button id="submitBtn" class="primary">Pateikti atsakymus</button>
+    <button id="saveBtn">Išsaugoti naršyklėje</button>
+    <button id="restoreBtn">Atkurti iš naršyklės</button>
+    <button id="printBtn">Spausdinti / PDF</button>
+    <button id="clearBtn" class="danger">Išvalyti</button>
+    <button id="themeBtn" class="ghost">Tema: Tamsi/Šviesi</button>
+  </div>
+  <div class="meta">
+    <div id="progress">Atsakyta: 0/15</div>
+    <div id="errorBox" class="error hidden"></div>
+  </div>
+</header>
+
+<main>
+  <!-- Klausimai bus sugeneruoti čia (turi būti matomi, NE paslėpti) -->
+  <div class="grid" id="blocksContainer"></div>
+
+  <!-- REZULTATAI: paslėpta iki „Pateikti atsakymus“ -->
+  <div id="results" class="hidden">
+    <h3>Rezultatai</h3>
+    <div class="scorecard">
+      <div class="card"><div>Sisteminis mąstymas</div><div class="num" id="scoreSystemic">0/25</div></div>
+      <div class="card"><div>Perframinimas</div><div class="num" id="scoreReframing">0/25</div></div>
+      <div class="card"><div>Refleksija</div><div class="num" id="scoreReflection">0/25</div></div>
+      <div class="card"><div>Bendras rezultatas</div><div class="num" id="scoreTotal">0/75</div></div>
+    </div>
+
+    <section id="insights" style="margin-top:22px;">
+      <h3>Žodinis vertinimas</h3>
+      <div id="verbalSummary" class="insight-grid"></div>
+
+      <h3 style="margin-top:18px;">Praktinės rekomendacijos (30 dienų)</h3>
+      <div id="actionPlan" class="insight-grid"></div>
+    </section>
+  </div>
+
+  <p class="footnote">
+    Skaičiavimas: pasirinkimai vertinami 1–5 balais pagal kiekvieno varianto priskirtą <em>score</em>.
+    Kiekviena subskalė turi 5 klausimus → maks. 25; bendras maks. 75.
+  </p>
+  <p class="copyright">© 2025 STQ. Sukurta Oleg Mozochin („GitHub Pages“). Veikia be serverio, duomenys saugomi tik naršyklėje.</p>
+</main>
+
+<!-- TURINYS iš .docx (1:1 tekstai ir balai) -->
+<script id="STQ_DATA" type="application/json">
+{
+  "blocks": [
+    {
+      "blockId": "systemic",
+      "title": "I. Sisteminis mąstymas",
+      "questions": [
+        { "id":"q1", "text":"Kai sprendžiu skyriaus biudžeto sumažinimo problemą, aš...",
+          "options":[
+            {"text":"Naudoju formalią matricą, kad įvertinčiau tiesioginį poveikį visiems susijusiems skyriams ir skyrių motyvacijai.","score":4},
+            {"text":"Visą dėmesį sutelkiu į savo skyriaus išlaidų mažinimą, ignoruodamas galimus padarinius kitur.","score":1},
+            {"text":"Analizuoju biudžeto sumažinimo poveikį visos organizacijos vertės grandinei, kad užtikrinčiau, jog pokytis nepažeis bendro įmonės konkurencinio pranašumo.","score":5},
+            {"text":"Paklausiu kelių kitų skyrių vadovų nuomonės apie galimus neigiamus padarinius jų darbui.","score":3},
+            {"text":"Atsižvelgiu į gretimų skyrių prieštaravimus, bet vis tiek darau tai, kas geriausia mano skyriui.","score":2}
+          ]
+        },
+        { "id":"q2", "text":"Susidūrus su klientų praradimu, aš...",
+          "options":[
+            {"text":"Analizuoju ne tik vidinius procesus, bet ir išorinius rinkos pokyčius bei konkurentų veiksmus, siekdamas atpažinti ilgalaikes tendencijas, kurios galėjo pakeisti klientų poreikius.","score":5},
+            {"text":"Peržiūriu paskutinių savaičių pardavimų ataskaitas, kad pamatyčiau, kurioje srityje praradome daugiausiai.","score":2},
+            {"text":"Iš karto kaltinu pardavimų skyrių ir reikalauju nedelsiant padidinti pardavimus per šį mėnesį.","score":1},
+            {"text":"Stengiuosi atsekti, kokios vidinės klaidos (pvz., IT sistemos lėtumas ar biurokratiniai procesai) lėmė klientų patirties pablogėjimą.","score":4},
+            {"text":"Peržiūriu tiek pardavimų, tiek produktų kokybės duomenis, ieškodamas akivaizdžių nesutapimų.","score":3}
+          ]
+        },
+        { "id":"q3", "text":"Mano požiūris į ilgalaikes makroekonomines ir technologines tendencijas (pvz., AI, reguliavimas) yra...",
+          "options":[
+            {"text":"Aš perskaitau pagrindines naujienas, bet tai neturi įtakos mano savaitiniams sprendimams.","score":2},
+            {"text":"Aš reguliariai inicijuoju scenarijų planavimo susitikimus, kad įvertinčiau, kaip šios tendencijos gali priversti mūsų įmonę fundamentaliai pakeisti verslo modelį per ateinančius 3-5 metus.","score":5},
+            {"text":"Kad tai yra aukščiausios vadovybės reikalas, o aš turiu susitelkti į šiandienos rezultatus.","score":1},
+            {"text":"Aš kartais diskutuoju apie tai su komanda, bandydamas rasti idėjų, bet neturiu nuolatinio proceso.","score":3},
+            {"text":"Aš nuolat stebiu šias tendencijas ir peržiūriu savo skyriaus prioritetus kas ketvirtį.","score":4}
+          ]
+        },
+        { "id":"q4", "text":"Kai iškyla problemos, kurios viršija mano skyriaus kompetenciją, aš...",
+          "options":[
+            {"text":"Bandau išspręsti problemą tik savo skyriaus resursais, kad parodyčiau efektyvumą.","score":2},
+            {"text":"Sistemiškai ieškau pasikartojančios organizacinės priežasties (pvz., neaiškių atsakomybių, silpnų IT sąsajų), dėl kurios ši problema nuolat atsiranda keliuose skyriuose.","score":5},
+            {"text":"Visą atsakomybę perduodu aukštesnei vadovybei arba kitam skyriui, ir nustoju stebėti eigą.","score":1},
+            {"text":"Bendradarbiauju su vienu ar dviem susijusiais skyriais, kad rasčiau kompromisą.","score":3},
+            {"text":"Inicijuoju tarpfunkcinį (angl. cross-functional) susitikimą, kad išanalizuočiau, kaip problemai spręsti reikia bendros kelių skyrių sistemos.","score":4}
+          ]
+        },
+        { "id":"q5", "text":"Planuojant ilgalaikę strategiją, didžiausią dėmesį skiriu...",
+          "options":[
+            {"text":"Kritinių prielaidų nustatymui apie ateitį (pvz., ar rinka augs, ar technologijos keisis) ir planų kūrimui, kaip veiksime, jei tos prielaidos pasirodys klaidingos.","score":5},
+            {"text":"Išteklių paskirstymui pagal dabartinius projektų prioritetus.","score":2},
+            {"text":"Tikslų nustatymui, pagrįstam praėjusių metų rezultatais.","score":1},
+            {"text":"Įvairioms rizikoms ir galimybėms, įtraukiant tiek vidinius, tiek išorinius veiksnius.","score":4},
+            {"text":"Išsamiai analizei, kaip pasiekti konkurencinį pranašumą artimiausiu metu (iki 1 metų).","score":3}
+          ]
+        }
+      ]
+    },
+    {
+      "blockId": "reframing",
+      "title": "II. Perframinimas",
+      "questions": [
+        { "id":"q6", "text":"Komandai nepavykstant įveikti sudėtingos kliūties (pvz., nepasiekiami pardavimų tikslai), aš...",
+          "options":[
+            {"text":"Liepiu komandai pilnai sustabdyti veiklą ir sugalvoti 5 skirtingus būdus, kaip būtų galima iš naujo apibrėžti problemą (pvz., ne „pardavimų trūkumas“, o „vertės pasiūlymo neatitikimas“).","score":4},
+            {"text":"Organizuoju dirbtuves, kurios skirtos problemai spręsti iš kito vaidmens perspektyvos (pvz., „Ką darytų mūsų konkurentas/klientas šioje situacijoje?“), kad sugeneruotume visiškai naują požiūrį.","score":5},
+            {"text":"Prašau pateikti 3–4 naujus, bet panašius veiksmų planus.","score":2},
+            {"text":"Primenu, kad reikia stengtis labiau ir naudoti jau patvirtintas taktikas.","score":1},
+            {"text":"Inicijuoju diskusiją, kurios metu siūlomos ir radikaliai kitokios idėjos.","score":3}
+          ]
+        },
+        { "id":"q7", "text":"Ruošiantis svarbiam sprendimui, aš visada...",
+          "options":[
+            {"text":"Inicijuoju procesą, kurio metu sąmoningai kuriami keli nesuderinami scenarijai (pvz., geriausias atvejis, blogiausias atvejis, neįtikėtinas atvejis), kad išvengčiau „tunelinio mąstymo“ ir parengčiau save staigiems pokyčiams.","score":5},
+            {"text":"Ieškau objektyvių duomenų, kurie padėtų apsispręsti tarp dviejų akivaizdžių pasirinkimų.","score":2},
+            {"text":"Prašau komandos surinkti duomenis, kurie patvirtintų ir paneigtų mano pradinę idėją.","score":3},
+            {"text":"Ieškau įrodymų, kurie patvirtintų mano pradinę idėją ir požiūrį.","score":1},
+            {"text":"Ieškau aktyvių oponentų (žmonių su priešinga nuomone) ir prašau jų paruošti atsakomąjį pasiūlymą, kad galečiau patikrinti savo prielaidas.","score":4}
+          ]
+        },
+        { "id":"q8", "text":"Susidūrus su sudėtingu tikslu, aš...",
+          "options":[
+            {"text":"Naudoju tik tuos metodus ir įrankius, kuriuos jau esu išbandęs anksčiau ir žinau, kad veikia.","score":1},
+            {"text":"Naudoju populiariausius pramonės standartus (pvz., SWOT) analizei atlikti.","score":2},
+            {"text":"Ieškau visiškai nekonvencinių ir kūrybinių sprendimų, kurie gali atrodyti rizikingi, bet gali duoti didžiulę grąžą.","score":4},
+            {"text":"Manau, kad paties tikslo apibrėžimas gali būti klaidingas, todėl prieš dirbdamas bandau išsiaiškinti, koks yra tikrasis verslo poreikis už to tikslo, ir galbūt pakeisti kryptį.","score":5},
+            {"text":"Svarstau apie metodų adaptavimą iš kitų pramonės šakų (pvz., logistikos metodai IT projektui).","score":3}
+          ]
+        },
+        { "id":"q9", "text":"Iškilo netikėta nauja problema. Aš...",
+          "options":[
+            {"text":"Bandau pritaikyti standartines organizacijos procedūras naujai problemai.","score":2},
+            {"text":"Gaištu laiką ieškodamas analogiškų problemų sprendimų savo patirtyje.","score":1},
+            {"text":"Sistemiškai ieškau sprendimų, kurie buvo sėkmingai taikomi visiškai skirtingose pramonės šakose ar situacijose, kad atversčiau požiūrį.","score":4},
+            {"text":"Greitai pasitelkiu išorinius ekspertus, kad gaučiau patikrintą sprendimą.","score":3},
+            {"text":"Sistemiškai dekonstruoju problemą, nustatydamas visas prielaidas, ir tada bandau jas išardyti arba apversti aukštyn kojomis (pvz., „O kas, jei mes niekada neišspręsime šios problemos, bet tiesiog apeisime ją?“).","score":5}
+          ]
+        },
+        { "id":"q10", "text":"Kai komanda generuoja idėjas, mano vaidmuo yra...",
+          "options":[
+            {"text":"Iš karto atmesti bet kokias idėjas, kurios atrodo per daug rizikingos.","score":2},
+            {"text":"Užtikrinti, kad idėjos būtų realistiškos ir atitiktų dabartinį biudžetą.","score":1},
+            {"text":"Paskirti vieną asmenį atstovauti „velnio advokato“ pozicijai, kuris visada privalo abejoti prielaidomis, metodais ir tikslais, taip užtikrinant nuolatinį idėjos peržiūrėjimą.","score":5},
+            {"text":"Leisti generuoti laisvai, bet galiausiai pasirinkti geriausią iš akivaizdžių variantų.","score":3},
+            {"text":"Aktyviai paskatinti komandą generuoti idėjas, kurios prieštarautų dabartinei strategijai ir atrodytų neįgyvendinamos per artimiausius metus.","score":4}
+          ]
+        }
+      ]
+    },
+    {
+      "blockId": "reflection",
+      "title": "III. Refleksija",
+      "questions": [
+        { "id":"q11", "text":"Po didelės sėkmės/nesėkmės, aš...",
+          "options":[
+            {"text":"Naudoju rezultatus kaip medžiagą asmeniniam strateginiam dienoraščiui, kad suformuluočiau naujas taisykles ar metodologijas (principus), kurios galėtų būti taikomos bet kurioje ateities situacijoje.","score":5},
+            {"text":"Surengiu trumpą susitikimą rezultatams aptarti ir padėkoti komandai.","score":2},
+            {"text":"Greitai einu prie kito darbo, nes praeitis neturi įtakos ateičiai.","score":1},
+            {"text":"Organizuoju struktūrizuotą peržiūrą, kurioje dokumentuojami ne tik rezultatai, bet ir sąlygos/prielaidos, kuriomis priėmėme sprendimus.","score":4},
+            {"text":"Parašau trumpą atmintinę apie pagrindines išmoktas pamokas, skirtą tik komandos nariams.","score":3}
+          ]
+        },
+        { "id":"q12", "text":"Aš aktyviai ieškau kritinio grįžtamojo ryšio apie savo sprendimų priėmimo procesą...",
+          "options":[
+            {"text":"Iš nepriklausomų patarėjų ar vadovų iš kitų pramonės šakų, kad galečiau patikrinti savo įsitikinimams ir aptikčiau „akląsias zonas“.","score":5},
+            {"text":"Tik iš tų asmenų, kuriais pasitikiu ir kurie neabejotinai palaiko mano sprendimus.","score":2},
+            {"text":"Iš platesnio suinteresuotųjų šalių rato, įskaitant tuos, kurie buvo nepatogūs ar su manimi nesutiko.","score":4},
+            {"text":"Tik tada, kai man jo reikia.","score":1},
+            {"text":"Iš savo tiesioginių pavaldinių ir vadovų.","score":3}
+          ]
+        },
+        { "id":"q13", "text":"Kai analizuoju praeities klaidas, aš visų pirma ieškau...",
+          "options":[
+            {"text":"Pamokų, kurios padėtų išvengti tų pačių klaidų ateityje.","score":3},
+            {"text":"Klaidų padariusių asmenų, kad galėčiau užtikrinti atsakomybę.","score":1},
+            {"text":"Prieladų, kuriomis buvo remiamasi priimant sprendimus, kad išmokčiau atpažinti klaidingas prielaidas anksčiau.","score":4},
+            {"text":"Kaip šios klaidos atspindi platesnes organizacines tendencijas ar kultūrines spragas, ir bandau sukurti ilgalaikę mokymosi sistemą organizacijoje.","score":5},
+            {"text":"Akivaizdžių sistemų trūkumų, kad juos greitai pataisyčiau.","score":2}
+          ]
+        },
+        { "id":"q14", "text":"Mano nuomonė apie strategijos keitimą (perplanavimą) yra...",
+          "options":[
+            {"text":"Kad strategija turi būti nuolat peržiūrima, bet pakeitimai turėtų būti daromi tik po išsamios analizės.","score":4},
+            {"text":"Kad tai rodo silpnumą ir neapgalvotą pradinį planą, todėl stengiuosi laikytis pirminio plano.","score":1},
+            {"text":"Kad planą galima keisti, bet tik metų pabaigoje, kad išvengtume chaoso.","score":3},
+            {"text":"Kad keisti reikia tik tada, kai pasiekiami blogi rezultatai.","score":2},
+            {"text":"Kad strateginis planavimas yra nuolatinė mokymosi funkcija, todėl gavus naujų duomenų ar atradus naują perspektyvą, pakeitimas turi būti inicijuojamas nedelsiant, net jei tai sukelia trumpalaikį nepatogumą.","score":5}
+          ]
+        },
+        { "id":"q15", "text":"Priėmęs svarbų sprendimą, kuris pasirodė sėkmingas, aš...",
+          "options":[
+            {"text":"Dokumentuoju sėkmės istoriją ir nustatau, kokios vidinės/išorinės sąlygos turi būti pakartotos kituose projektuose.","score":4},
+            {"text":"Tiesiog džiaugiuosi sėkme ir imuosi kito projekto.","score":1},
+            {"text":"Išvedu bendrą principą (metareglamentą) iš tos sėkmės ir bandau jį pritaikyti visiškai skirtingose situacijose (ne tik panašiuose projektuose), kad patikrinčiau jo universalumą.","score":5},
+            {"text":"Analizuoju, kurie veiksmai atvedė prie sėkmės.","score":3},
+            {"text":"Greitai pasidalinu pamoka apie sėkmę su kolegomis.","score":2}
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded', init);
+  function init(){
+    const errorBox = document.getElementById('errorBox');
+    const blocksContainer = document.getElementById('blocksContainer');
+    const progressEl = document.getElementById('progress');
+    const resultsContainer = document.getElementById('results');
+    const STORAGE_KEY = 'STQ_answers_v5';
+    let submitted = false;
+
+    function showError(msg){ errorBox.textContent = msg; errorBox.classList.remove('hidden'); }
+    function clearError(){ errorBox.classList.add('hidden'); errorBox.textContent = ''; }
+
+    // Įkeliame turinį
+    const DATA = JSON.parse(document.getElementById('STQ_DATA').textContent);
+    const STQ = DATA.blocks;
+
+    // Render klausimų
+    function render(){
+      blocksContainer.innerHTML = '';
+      STQ.forEach(block => {
+        const sec = document.createElement('section');
+        sec.className = 'block'; sec.id = `block-${block.blockId}`;
+        const h3 = document.createElement('h3'); h3.textContent = block.title;
+        sec.appendChild(h3);
+
+        block.questions.forEach((q, qi) => {
+          const qDiv = document.createElement('div'); qDiv.className = 'q';
+          const qTitle = document.createElement('div'); qTitle.className='q-title';
+          qTitle.textContent = `${qi+1}. ${q.text}`;
+          qDiv.appendChild(qTitle);
+
+          const opts = document.createElement('div'); opts.className='options';
+          q.options.forEach((opt, oi) => {
+            const id = `${q.id}_${oi}`;
+            const row = document.createElement('label'); row.className='radio';
+            const input = document.createElement('input'); input.type='radio'; input.id=id; input.name=q.id; input.value=oi;
+            const span = document.createElement('span'); span.textContent = opt.text;
+            row.appendChild(input); row.appendChild(span); opts.appendChild(row);
+          });
+
+          qDiv.appendChild(opts);
+          sec.appendChild(qDiv);
+        });
+
+        blocksContainer.appendChild(sec);
+      });
+    }
+
+    // Deleguotas change: tik progresas; rezultatus rodome tik jei jau submitted
+    blocksContainer.addEventListener('change', (ev) => {
+      if(ev.target && ev.target.type === 'radio'){
+        clearError();
+        updateProgress();
+        if(submitted) showScores();
+      }
+    });
+
+    // Helpers
+    function getAnswers(){
+      const answers = {};
+      STQ.forEach(block => block.questions.forEach(q => {
+        const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+        answers[q.id] = selected ? Number(selected.value) : null;
+      }));
+      return answers;
+    }
+    function updateProgress(){
+      const answered = Object.values(getAnswers()).filter(v => v !== null).length;
+      progressEl.textContent = `Atsakyta: ${answered}/15`;
+    }
+    function scoreOf(q, idx){
+      if(idx === null || idx === undefined) return 0;
+      const opt = q.options[idx];
+      return opt && typeof opt.score === 'number' ? opt.score : 0;
+    }
+    function computeScores(){
+      const a = getAnswers();
+      let sys=0, refra=0, refl=0;
+      STQ[0].questions.forEach(q => { sys   += scoreOf(q, a[q.id]); });
+      STQ[1].questions.forEach(q => { refra += scoreOf(q, a[q.id]); });
+      STQ[2].questions.forEach(q => { refl  += scoreOf(q, a[q.id]); });
+      return {sys, refra, refl, total: sys+refra+refl};
+    }
+
+    // Interpretacijos ir planas
+    function describeScale(label, score){
+      let level, text;
+      if(score <= 10){ level='low'; text=`${label}: žemas lygis. Rekomenduojama sistemingai stiprinti pagrindinius įpročius ir procesus.`; }
+      else if(score <= 18){ level='mid'; text=`${label}: vidutinis lygis. Pagrindai veikia, bet yra „aklųjų zonų“ ir nenuoseklumo.`; }
+      else { level='high'; text=`${label}: aukštas lygis. Stiprybę verta institucionalizuoti – dalintis praktika, kurti standartus ir mentoruoti.`; }
+      return { level, text };
+    }
+    function buildActions(s){
+      const actions=[];
+      if(s.sys<=10){ actions.push({title:'Sisteminis mąstymas (0–10)', items:[
+        'Sukurk 1 puslapio „Vertės grandinės žemėlapį“ (A3).',
+        'Kassavaitinis „assumption check“: 3 prielaidos + ką darysi, jei klaidingos.',
+        '2 kryžminių skyrių susitikimai: 1 problemos savininkas, 1 KPI.'
+      ]}); }else if(s.sys<=18){ actions.push({title:'Sisteminis mąstymas (11–18)', items:[
+        '„Pareto + priežasties“ šablonas: top defektai → sisteminės priežastys.',
+        'Ketvirtiniai scenarijai (best/worst/wild) + prioritetų peržiūra.',
+        'Kanban „risk lane“: top-5 rizikos, trigeriai, atsakomybės.'
+      ]}); }else{ actions.push({title:'Sisteminis mąstymas (19–25)', items:[
+        '„Cross-functional playbook“ (PDF/Confluence).',
+        'Mentorystė 2 meistrams (sisteminės matricos).',
+        'Trimestrinis „systems review“ su vadovybe.'
+      ]}); }
+      if(s.refra<=10){ actions.push({title:'Perframinimas (0–10)', items:[
+        '„Velnio advokato“ rolė idėjų sesijose (rotacija).',
+        '30 min. „role-flip“: ką darytų klientas/konkurentas?',
+        '3 alternatyvūs problemos apibrėžimai kiekvienam tikslui.'
+      ]}); }else if(s.refra<=18){ actions.push({title:'Perframinimas (11–18)', items:[
+        '3 scenarijai prieš tvirtinant planą + signalai.',
+        'Perkelk 1 metodą iš kitos industrijos.',
+        '„Reframe log“: formuluotės pakeitimas → KPI efektas.'
+      ]}); }else{ actions.push({title:'Perframinimas (19–25)', items:[
+        '1 val. dirbtuvės komandai su realiais pavyzdžiais.',
+        'Idėjų standartas: 30% „anti-strategy“ idėjų per sesiją.',
+        '„Reframe casebook“: 6 geriausi atvejai per ketvirtį.'
+      ]}); }
+      if(s.refl<=10){ actions.push({title:'Refleksija (0–10)', items:[
+        'AAR (After Action Review) po svarbių įvykių.',
+        'Kiekvienai nesėkmei – 3 prielaidos ir jų validacija.',
+        'Kritinis grįžtamasis ryšys iš išorinio patarėjo.'
+      ]}); }else if(s.refl<=18){ actions.push({title:'Refleksija (11–18)', items:[
+        'Savaitinis „learning stand-up“: 10 min. pamokos.',
+        'Principų sąrašas (metareguliavimas) ir testavimas.',
+        'Platesnis grįžtamasis ryšys (įsk. nesutinkančius) kas mėn.'
+      ]}); }else{ actions.push({title:'Refleksija (19–25)', items:[
+        'Standartizuok AAR šabloną ir taikyk N>3 komandoms.',
+        'Mentorystė 2 vadovams (prielaidų auditas).',
+        '„Learning KPI“: įgyvendintų korekcijų % per mėn.'
+      ]}); }
+      return actions;
+    }
+    function renderInsights(scores){
+      const verbal = document.getElementById('verbalSummary');
+      const plan   = document.getElementById('actionPlan');
+      const dSys  = describeScale('Sisteminis mąstymas', scores.sys);
+      const dRefa = describeScale('Perframinimas', scores.refra);
+      const dRefl = describeScale('Refleksija', scores.refl);
+      const cards = [
+        {title:'Sisteminis mąstymas', desc:dSys},
+        {title:'Perframinimas', desc:dRefa},
+        {title:'Refleksija', desc:dRefl}
+      ];
+      verbal.innerHTML = cards.map(c => `
+        <div class="insight-card">
+          <h4>${c.title}
+            <span class="badge ${c.desc.level}">${c.desc.level==='low'?'Žemas':c.desc.level==='mid'?'Vidutinis':'Aukštas'}</span>
+          </h4>
+          <p>${c.desc.text}</p>
+        </div>`).join('');
+      const actions = buildActions(scores);
+      plan.innerHTML = actions.map(a => `
+        <div class="insight-card">
+          <h4>${a.title}</h4>
+          <ul class="insight-list">${a.items.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>`).join('');
+    }
+
+    // Rodome rezultatus tik po "Pateikti"
+    function showScores(){
+      const {sys, refra, refl, total} = computeScores();
+      document.getElementById('scoreSystemic').textContent   = `${sys}/25`;
+      document.getElementById('scoreReframing').textContent  = `${refra}/25`;
+      document.getElementById('scoreReflection').textContent = `${refl}/25`;
+      document.getElementById('scoreTotal').textContent      = `${total}/75`;
+      renderInsights({sys, refra, refl, total});
+    }
+
+    // Saugojimas/atkūrimas/išvalymas
+    function saveToStorage(){
+      try{
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(getAnswers()));
+        alert('Atsakymai išsaugoti naršyklėje.');
+      }catch(e){ showError('Nepavyko išsaugoti: ' + e.message); }
+    }
+    function restoreFromStorage(showAlert=true){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw){ if(showAlert) alert('Naršyklėje nerasta išsaugotų atsakymų.'); return; }
+        const answers = JSON.parse(raw);
+        STQ.forEach(block => block.questions.forEach(q => {
+          const v = answers[q.id];
+          if(v !== null && v !== undefined){
+            const input = document.getElementById(`${q.id}_${v}`);
+            if(input) input.checked = true;
+          }
+        }));
+        if(showAlert) alert('Atsakymai atkurti iš naršyklės.');
+        updateProgress();
+        // Atkūrus nesiunčiame rezultatų, kol nepaspaustas „Pateikti“
+      }catch(e){ showError('Atkūrimo klaida: ' + e.message); }
+    }
+    function clearAll(){
+      document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+      updateProgress();
+      submitted = false;
+      resultsContainer.classList.add('hidden');
+    }
+
+    // Mygtukai
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      const answered = Object.values(getAnswers()).filter(v => v !== null).length;
+      if(answered < 15){ alert(`Neatsakyta į ${15-answered} klausimą(-us). Užpildykite visus 15.`); return; }
+      submitted = true;
+      resultsContainer.classList.remove('hidden');
+      showScores();
+      const card = document.getElementById('scoreTotal').parentElement;
+      card.style.outline = '2px solid var(--ok)'; setTimeout(() => card.style.outline='none', 1200);
+    });
+    document.getElementById('saveBtn').addEventListener('click', saveToStorage);
+    document.getElementById('restoreBtn').addEventListener('click', () => restoreFromStorage(true));
+    document.getElementById('printBtn').addEventListener('click', () => {
+      if(!submitted){ alert('Pirmiausia pateikite atsakymus.'); return; }
+      requestAnimationFrame(() => window.print());
+    });
+    document.getElementById('clearBtn').addEventListener('click', () => { if(confirm('Išvalyti visus atsakymus?')) clearAll(); });
+    document.getElementById('themeBtn').addEventListener('click', () => document.body.classList.toggle('light'));
+
+    // Tema pagal sistemą
+    try{
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      if(prefersLight){ document.body.classList.add('light'); }
+    }catch{}
+
+    // Start
+    render();              // ← Sugeneruoja klausimus
+    restoreFromStorage(false);
+    updateProgress();      // ← Tik progresas; be rezultatų
+  }
+})();
+</script>
+</body>
+</html>

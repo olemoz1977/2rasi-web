@@ -29,7 +29,7 @@
     <h1>Multipliers</h1>
     <p class="lead">A 15-situation reflection on the ways a leader can amplify capability, ownership and thinking in other people.</p>
     <div class="tool-meta"><span>15 situations</span><span>5 leadership directions</span><span>EN/LT</span><span>Browser-only</span></div>
-    <div class="tool-actions"><a class="button primary" data-legacy-start href="https://olemoz1977.github.io/multipliers-test/pilnas/en/">Start Multipliers ↗</a><a class="button" href="#model">Understand the model</a></div>
+    <div class="tool-actions"><a class="button primary" data-legacy-start href="/tools/multipliers/run/en/">Start Multipliers ↗</a><a class="button" href="#model">Understand the model</a></div>
   </section>
   <div class="tool-grid">
     <div>
@@ -43,7 +43,7 @@
       </div></section>
       <section class="tool-section"><h2>How to use the result</h2><p>Look at the pattern, not just the highest score. A useful question is: <em>which leadership move do I reach for first, and which one do I forget when pressure rises?</em></p><p class="note">This is an independent 2rasi reflection experiment inspired by the Multipliers framework. It is not an official or validated Multipliers assessment.</p></section>
     </div>
-    <aside class="side-card"><h3>Try the full version</h3><p>The 2rasi catalogue uses the 15-situation version as the main Multipliers experiment.</p><a class="button primary" data-legacy-start href="https://olemoz1977.github.io/multipliers-test/pilnas/en/">Start Multipliers ↗</a></aside>
+    <aside class="side-card"><h3>Try the full version</h3><p>The 2rasi catalogue uses the 15-situation version as the main Multipliers experiment.</p><a class="button primary" data-legacy-start href="/tools/multipliers/run/en/">Start Multipliers ↗</a></aside>
   </div>
 </main>
 <footer class="tool-footer"><span>2rasi · Look again.</span><a href="../../#experiments">← Back to experiments</a></footer>
@@ -53,8 +53,8 @@
   const host = location.hostname.toLowerCase();
   const lt = host === '2rasi.lt' || host.endsWith('.2rasi.lt');
   const url = lt
-    ? 'https://olemoz1977.github.io/multipliers-test/pilnas/'
-    : 'https://olemoz1977.github.io/multipliers-test/pilnas/en/';
+    ? '/tools/multipliers/run/'
+    : '/tools/multipliers/run/en/';
   document.querySelectorAll('[data-legacy-start]').forEach(link => { link.href = url; link.target = '_self'; link.removeAttribute('rel'); });
 })();
 </script>

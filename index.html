@@ -123,7 +123,7 @@
           </div>
           <div class="experiment-actions" aria-label="Mirror / Veidrodis actions">
             <a href="tools/mirror/">About <span>→</span></a>
-            <a href="https://olemoz1977.github.io/savirefleksijos-testas/" target="_blank" rel="noopener">Start <span>↗</span></a>
+            <a href="/tools/mirror/run/">Start <span>↗</span></a>
           </div>
         </article>
 
@@ -142,7 +142,7 @@
           </div>
           <div class="experiment-actions" aria-label="Multipliers actions">
             <a href="tools/multipliers/">About <span>→</span></a>
-            <a data-en-legacy="multipliers" href="https://olemoz1977.github.io/multipliers-test/pilnas/en/">Start <span>↗</span></a>
+            <a data-en-legacy="multipliers" href="/tools/multipliers/run/en/">Start <span>↗</span></a>
           </div>
         </article>
 
@@ -161,7 +161,7 @@
           </div>
           <div class="experiment-actions" aria-label="Divergent actions">
             <a href="tools/divergent/">About <span>→</span></a>
-            <a data-en-legacy="divergent" href="https://olemoz1977.github.io/Divergent-test-2/public/en/">Start <span>↗</span></a>
+            <a data-en-legacy="divergent" href="/tools/divergent/run/en/">Start <span>↗</span></a>
           </div>
         </article>
 
@@ -180,7 +180,7 @@
           </div>
           <div class="experiment-actions" aria-label="Situational Leadership actions">
             <a href="tools/situational-leadership/">About <span>→</span></a>
-            <a href="https://olemoz1977.github.io/Situacinio-vadovavimo-testas/" target="_blank" rel="noopener">Start <span>↗</span></a>
+            <a href="/tools/situational-leadership/run/">Start <span>↗</span></a>
           </div>
         </article>
 
@@ -199,7 +199,7 @@
           </div>
           <div class="experiment-actions" aria-label="Drama Triangle actions">
             <a href="tools/drama-triangle/">About <span>→</span></a>
-            <a data-en-legacy="karpman" href="https://olemoz1977.github.io/karpman-apklausa/public/en/">Start <span>↗</span></a>
+            <a data-en-legacy="karpman" href="/tools/drama-triangle/run/en/">Start <span>↗</span></a>
           </div>
         </article>
 
@@ -218,7 +218,7 @@
           </div>
           <div class="experiment-actions" aria-label="Strategic Thinking actions">
             <a href="tools/strategic-thinking/">About <span>→</span></a>
-            <a href="https://olemoz1977.github.io/Strateginio_M-stymo_Testas/Public/" target="_blank" rel="noopener">Start <span>↗</span></a>
+            <a href="/tools/strategic-thinking/run/">Start <span>↗</span></a>
           </div>
         </article>
 
@@ -319,14 +319,14 @@
 
         const routes = {
           multipliers: lt
-            ? 'https://olemoz1977.github.io/multipliers-test/pilnas/'
-            : 'https://olemoz1977.github.io/multipliers-test/pilnas/en/',
+            ? '/tools/multipliers/run/'
+            : '/tools/multipliers/run/en/',
           divergent: lt
-            ? 'https://olemoz1977.github.io/Divergent-test-2/public/'
-            : 'https://olemoz1977.github.io/Divergent-test-2/public/en/',
+            ? '/tools/divergent/run/'
+            : '/tools/divergent/run/en/',
           karpman: lt
-            ? 'https://olemoz1977.github.io/karpman-apklausa/public/'
-            : 'https://olemoz1977.github.io/karpman-apklausa/public/en/'
+            ? '/tools/drama-triangle/run/'
+            : '/tools/drama-triangle/run/en/'
         };
         document.querySelectorAll('[data-en-legacy]').forEach(link => {
           const key = link.getAttribute('data-en-legacy');

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow" />
+    <title>Situacinio Vadovavimo Ekspertinė Sistema</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7f6;
+            color: var(--primary);
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header { text-align: center; margin-bottom: 40px; border-bottom: 3px solid var(--accent); padding-bottom: 20px; }
+        .header h1 { color: var(--primary); margin-bottom: 10px; }
+
+        .question-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .options label {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .options label:hover { background: #f0f7f9; border-color: var(--accent); }
+        input[type="radio"] { margin-right: 10px; }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-pdf { background: var(--success); color: white; display: none; }
+        
+        #appendix-section, #results-section { display: none; }
+
+        .result-header { text-align: center; margin-bottom: 30px; }
+        .score-circle {
+            width: 100px; height: 100px; border-radius: 50%;
+            background: var(--accent); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2em; font-weight: bold; margin: 0 auto 10px;
+        }
+
+        .badge {
+            padding: 8px 15px; border-radius: 20px; color: white; font-weight: bold;
+        }
+
+        @media print {
+            .btn, .header p, #appendix-section, #main-test-section { display: none !important; }
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; width: 100%; max-width: 100%; }
+            #results-section { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="main-test-section">
+        <div class="header">
+            <h1>Situacinio Vadovavimo Diagnostika</h1>
+            <p>I pakopa: 20 bazinių situacijų jūsų stiliui nustatyti</p>
+        </div>
+        <div id="main-questions"></div>
+        <button class="btn btn-primary" onclick="processMainTest()">Tęsti į II pakopą (Streso testas)</button>
+    </div>
+
+    <div id="appendix-section">
+        <div class="header">
+            <h1>Appendix: Lankstumo Patikra</h1>
+            <p>II pakopa: Patikriname, ar jūsų tendencija yra lanksti, ar klaidinga.</p>
+        </div>
+        <div id="appendix-questions"></div>
+        <button class="btn btn-primary" onclick="processFinalResults()">Gauti galutinę analizę</button>
+    </div>
+
+    <div id="results-section">
+        <div class="header">
+            <h1>Galutinė Vadovavimo Ataskaita</h1>
+        </div>
+        <div id="final-content"></div>
+        <button class="btn btn-pdf" id="pdf-btn" onclick="window.print()">Išsaugoti PDF / Spausdinti</button>
+        <button class="btn btn-primary" style="background: #95a5a6;" onclick="location.reload()">Atlikti testą iš naujo</button>
+    </div>
+</div>
+
+<script>
+    const mainQuestions = [
+        { id: 1, text: "Skyriuje dirba naujas darbuotojas. Jis entuziastingas, bet neturi patirties.", options: [
+            { text: "Tiksliai nurodyti užduotis ir kontroliuoti eigą.", s: "S1", w: 4 },
+            { text: "Padrąsinti ir paaiškinti prasmę.", s: "S2", w: 2 },
+            { text: "Leisti pačiam nuspręsti eigą.", s: "S4", w: 0 },
+            { text: "Paklausti jo nuomonės dėl darbo.", s: "S3", w: 1 }
+        ]},
+        { id: 2, text: "Patyręs darbuotojas gavo nepažįstamą projektą ir jaučiasi neužtikrintas.", options: [
+            { text: "Paskirti ir nesikišti.", s: "S4", w: 1 },
+            { text: "Paaiškinti, nukreipti ir motyvuoti.", s: "S2", w: 4 },
+            { text: "Griežtai kontroliuoti žingsnius.", s: "S1", w: 2 },
+            { text: "Išklausyti baimes ir palaikyti.", s: "S3", w: 3 }
+        ]},
+        { id: 3, text: "Grupė specialistų dirba puikiai, tačiau kyla konfliktų dėl vidinių taisyklių.", options: [
+            { text: "Įsikišti ir nustatyti griežtas naujas taisykles.", s: "S1", w: 1 },
+            { text: "Pakviesti grupę kartu rasti sprendimą.", s: "S3", w: 4 },
+            { text: "Tikėtis, kad jie patys išspręs savo bėdas.", s: "S4", w: 2 },
+            { text: "Pabrėžti komandinio darbo naudą ir pasiūlyti viziją.", s: "S2", w: 3 }
+        ]},
+        { id: 4, text: "Darbuotojas, kuris visada dirbo puikiai, pastaruoju metu pradėjo vėluoti ir atrodo demotyvuotas.", options: [
+            { text: "Priminti jam apie darbo drausmę ir terminus.", s: "S1", w: 0 },
+            { text: "Atvirai pasikalbėti, išklausyti ir kartu ieškoti sprendimų.", s: "S3", w: 4 },
+            { text: "Suteikti jam daugiau laisvės ir tikėtis rezultato.", s: "S4", w: 1 },
+            { text: "Padrąsinti jį ir aiškiau apibrėžti tikslus.", s: "S2", w: 2 }
+        ]},
+        { id: 5, text: "Komanda sėkmingai užbaigė etapą. Dabar laukia kitas, labai panašus etapas.", options: [
+            { text: "Leisti komandai savarankiškai tęsti darbą.", s: "S4", w: 4 },
+            { text: "Vėl detaliai paaiškinti instrukcijas.", s: "S1", w: 0 },
+            { text: "Palaikyti ryšį ir pasidžiaugti sėkme.", s: "S3", w: 3 },
+            { text: "Motyvuoti juos dar didesniems iššūkiams.", s: "S2", w: 2 }
+        ]},
+        { id: 6, text: "Naujai suformuota komanda nežino tikslų, nors nariai kompetentingi atskirai.", options: [
+            { text: "Leisti jiems patiems susiorganizuoti procesą.", s: "S4", w: 1 },
+            { text: "Tiksliai įvardyti tikslus ir darbo tvarką.", s: "S1", w: 4 },
+            { text: "Pasiūlyti viziją ir paprašyti nuomonės.", s: "S2", w: 3 },
+            { text: "Organizuoti diskusiją, kad jie patys susikurtų tikslus.", s: "S3", w: 2 }
+        ]},
+        { id: 7, text: "Asistentas atlieka užduotis gerai, bet visada laukia jūsų patvirtinimo prieš baigdamas.", options: [
+            { text: "Nurodyti jam būti drąsesniam.", s: "S1", w: 1 },
+            { text: "Aptarti, kodėl jis jaučia abejonę, ir paskatinti.", s: "S3", w: 4 },
+            { text: "Pradėti deleguoti užduotis be patvirtinimo poreikio.", s: "S4", w: 3 },
+            { text: "Pagyvinti pasitikėjimą aiškinant jo sėkmes.", s: "S2", w: 2 }
+        ]},
+        { id: 8, text: "Dėl pokyčių komandos moralė krito, nors darbas vis dar atliekamas laiku.", options: [
+            { text: "Sutelkti dėmesį į santykius ir išklausyti baimes.", s: "S3", w: 4 },
+            { text: "Paskelbti, kad rezultatai yra prioritetas.", s: "S1", w: 0 },
+            { text: "Paaiškinti pokyčių naudą ir įkvėpti.", s: "S2", w: 3 },
+            { text: "Nesikišti, kol darbas yra atliekamas.", s: "S4", w: 1 }
+        ]},
+        { id: 9, text: "Komandos narys nori imtis atsakomybės, bet jam trūksta techninių žinių.", options: [
+            { text: "Leisti jam bandyti ir mokytis iš klaidų.", s: "S4", w: 1 },
+            { text: "Apmokyti jį ir kartu aptarti eigą.", s: "S2", w: 4 },
+            { text: "Duoti instrukcijas ir kontroliuoti.", s: "S1", w: 2 },
+            { text: "Pasiūlyti mentorių ir palaikyti emociškai.", s: "S3", w: 3 }
+        ]},
+        { id: 10, text: "Patyręs darbuotojas padarė klaidą ir dėl to labai išgyvena.", options: [
+            { text: "Nurodyti, kaip ištaisyti, ir stebėti.", s: "S1", w: 1 },
+            { text: "Pasikalbėti, nuraminti ir leisti jam spręsti.", s: "S3", w: 4 },
+            { text: "Pasakyti, kad pasitaiko visiems, ir palikti jį.", s: "S4", w: 2 },
+            { text: "Išanalizuoti klaidą kartu ir paaiškinti prevenciją.", s: "S2", w: 3 }
+        ]},
+        { id: 11, text: "Reikia paskirti žmogų skubiai užduočiai. Turite kompetentingą, bet abejojantį savimi.", options: [
+            { text: "Nurodyti tiksliai, ką daryti.", s: "S1", w: 2 },
+            { text: "Paskirti ir pasakyti, kad pasitikite 100%.", s: "S4", w: 2 },
+            { text: "Kartu aptarti ir padrąsinti viso proceso metu.", s: "S3", w: 4 },
+            { text: "Pabrėžti svarbą ir duoti gaires.", s: "S2", w: 3 }
+        ]},
+        { id: 12, text: "Komanda pasiekė puikių rezultatų, tapo savarankiška ir iniciatyvi.", options: [
+            { text: "Sumažinti kontrolę ir leisti veikti patiems.", s: "S4", w: 4 },
+            { text: "Toliau prižiūrėti eigą susirinkimuose.", s: "S3", w: 2 },
+            { text: "Nustatyti dar griežtesnius tikslus.", s: "S1", w: 0 },
+            { text: "Pagyvinti jų sėkmę naujomis idėjomis.", s: "S2", w: 1 }
+        ]},
+        { id: 13, text: "Projektas stringa, nes darbuotojai nesutaria dėl atsakomybių.", options: [
+            { text: "Leisti jiems patiems išsiaiškinti vaidmenis.", s: "S4", w: 1 },
+            { text: "Sušaukti susirinkimą ir nurodyti vaidmenis.", s: "S1", w: 4 },
+            { text: "Išklausyti nuomones ir padėti susitarti.", s: "S3", w: 3 },
+            { text: "Paaiškinti svarbą ir pasiūlyti savo planą.", s: "S2", w: 2 }
+        ]},
+        { id: 14, text: "Darbuotojas vėl ir vėl klausia tų pačių paprastų dalykų.", options: [
+            { text: "Dar kartą paaiškinti ir liepti užsirašyti.", s: "S1", w: 4 },
+            { text: "Paklausti, kas trukdo suprasti.", s: "S3", w: 2 },
+            { text: "Nusiųsti pas kolegą mokymams.", s: "S2", w: 3 },
+            { text: "Pasakyti, kad būtų savarankiškesnis.", s: "S4", w: 0 }
+        ]},
+        { id: 15, text: "Geriausias specialistas skundžiasi dėl per didelio dėmesio jo darbui.", options: [
+            { text: "Paaiškinti, kad kontrolė būtina tikslui.", s: "S2", w: 1 },
+            { text: "Atsitraukti ir suteikti autonomiją.", s: "S4", w: 4 },
+            { text: "Aptarti, kokio lygio palaikymo jam reikia.", s: "S3", w: 3 },
+            { text: "Griežtai nustatyti atsiskaitymo tvarką.", s: "S1", w: 0 }
+        ]},
+        { id: 16, text: "Komanda susidūrė su kliūtimi ir pasimetusi laukia jūsų sprendimo.", options: [
+            { text: "Priimti sprendimą ir duoti nurodymus.", s: "S1", w: 4 },
+            { text: "Paklausti nuomonės ir kartu rasti išeitį.", s: "S3", w: 3 },
+            { text: "Motyvuoti rasti sprendimą patiems.", s: "S2", w: 3 },
+            { text: "Palikti juos rasti išeitį patiems.", s: "S4", w: 1 }
+        ]},
+        { id: 17, text: "Jaunas darbuotojas atliko užduotį vidutiniškai, bet labai stengėsi.", options: [
+            { text: "Pagyvinti už pastangas ir parodyti, kaip tobulėti.", s: "S2", w: 4 },
+            { text: "Tiksliai nurodyti klaidas ir liepti taisyti.", s: "S1", w: 2 },
+            { text: "Aptarti, kaip jis pats vertina rezultatą.", s: "S3", w: 3 },
+            { text: "Priimti darbą toks, koks yra.", s: "S4", w: 1 }
+        ]},
+        { id: 18, text: "Ekspertas nemėgsta prisiimti atsakomybės už sprendimus.", options: [
+            { text: "Versti jį priimti sprendimus.", s: "S1", w: 1 },
+            { text: "Padrąsinti, aptarti abejones ir būti šalia.", s: "S3", w: 4 },
+            { text: "Paaiškinti naudą jo karjerai.", s: "S2", w: 2 },
+            { text: "Deleguoti ir pasakyti, kad pasitikite juo.", s: "S4", w: 3 }
+        ]},
+        { id: 19, text: "Diegiama naujovė, patyrę darbuotojai yra skeptiški.", options: [
+            { text: "Nurodyti visiems privalomai naudotis.", s: "S1", w: 1 },
+            { text: "Pristatyti naudą, išklausyti abejones ir įtraukti.", s: "S2", w: 4 },
+            { text: "Leisti patiems nuspręsti kada pereiti.", s: "S4", w: 1 },
+            { text: "Organizuoti diskusiją apie pokyčius.", s: "S3", w: 3 }
+        ]},
+        { id: 20, text: "Komanda dirba efektyviai, bet trūksta kūrybiškumo.", options: [
+            { text: "Nurodyti pateikti po naują idėją kas savaitę.", s: "S1", w: 1 },
+            { text: "Sukurti saugią aplinką idėjoms ir dalyvauti.", s: "S3", w: 4 },
+            { text: "Paskatinti ieškoti naujovių savarankiškai.", s: "S4", w: 3 },
+            { text: "Uždegti juos inovacijų vizija.", s: "S2", w: 2 }
+        ]}
+    ];
+
+    const appendixQuestions = [
+        { id: 'a1', text: "KRIZĖ: Serveriai lūžta, duomenys dingsta. Naujokas IT specialistas sustingęs laukia.", options: [
+            { text: "Klausti jo nuomonės dėl sprendimo.", s: "S3", w: 0 },
+            { text: "Įsakyti konkrečius žingsnius nedelsiant.", s: "S1", w: 4 },
+            { text: "Padrąsinti, kad jis viską moka.", s: "S4", w: 1 }
+        ]},
+        { id: 'a2', text: "EKSPERTAS: Jūsų geriausias darbuotojas dvejus metus viršija tikslus. Pavedate jam naują strateginį projektą.", options: [
+            { text: "Pasakyti: 'Projektas tavo, sėkmės, informuok jei reikės ko nors'.", s: "S4", w: 4 },
+            { text: "Aptarti kartu kiekvieną plano detalę.", s: "S3", w: 1 },
+            { text: "Nustatyti griežtus tarpinius atsiskaitymus.", s: "S1", w: 0 }
+        ]},
+        { id: 'a3', text: "SAUGUMAS: Komanda ignoruoja saugumo taisykles dėl greičio. Tai pavojinga.", options: [
+            { text: "Diskutuoti, kaip padaryti taisykles patogesnes.", s: "S3", w: 1 },
+            { text: "Griežtai uždrausti pažeidimus ir įvesti nuobaudas.", s: "S1", w: 4 },
+            { text: "Tikėtis, kad jie patys susipras.", s: "S4", w: 0 }
+        ]}
+    ];
+
+    let mainResults = { S1:0, S2:0, S3:0, S4:0 };
+    let totalScore = 0;
+
+    function renderQuestions(data, containerId, prefix) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = data.map((q) => `
+            <div class="question-card">
+                <strong>${q.text}</strong>
+                <div class="options">
+                    ${q.options.map((opt, i) => `
+                        <label><input type="radio" name="${prefix}${q.id}" value="${i}"> ${opt.text}</label>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function processMainTest() {
+        const inputs = document.querySelectorAll('#main-questions input:checked');
+        if (inputs.length < 20) { alert(`Atsakykite į visus 20 klausimų! (Atsakyta: ${inputs.length})`); return; }
+        
+        mainQuestions.forEach(q => {
+            const idx = document.querySelector(`input[name="m${q.id}"]:checked`).value;
+            const opt = q.options[idx];
+            mainResults[opt.s]++;
+            totalScore += opt.w;
+        });
+
+        document.getElementById('main-test-section').style.display = 'none';
+        document.getElementById('appendix-section').style.display = 'block';
+        renderQuestions(appendixQuestions, 'appendix-questions', 'a');
+        window.scrollTo(0,0);
+    }
+
+    function processFinalResults() {
+        const inputs = document.querySelectorAll('#appendix-questions input:checked');
+        if (inputs.length < 3) { alert("Atsakykite į visus 3 streso klausimus!"); return; }
+
+        let appendixPoints = 0;
+        appendixQuestions.forEach(q => {
+            const idx = document.querySelector(`input[name="a${q.id}"]:checked`).value;
+            appendixPoints += q.options[idx].w;
+        });
+
+        showFinalReport(appendixPoints);
+    }
+
+    function showFinalReport(appScore) {
+        document.getElementById('appendix-section').style.display = 'none';
+        document.getElementById('results-section').style.display = 'block';
+        document.getElementById('pdf-btn').style.display = 'block';
+
+        const efficiency = Math.round((totalScore / 80) * 100);
+        const domStyle = Object.keys(mainResults).reduce((a, b) => mainResults[a] > mainResults[b] ? a : b);
+        const isFlexible = appScore >= 8;
+
+        let analysis = `
+            <div class="result-header">
+                <div class="score-circle">${efficiency}%</div>
+                <p>Bendras Efektyvumas</p>
+                <p>Dominuojantis stilius: <strong>${domStyle}</strong></p>
+                <div style="margin-top:10px;">
+                    Lankstumo patikra: 
+                    <span class="badge" style="background:${isFlexible ? '#27ae60':'#e74c3c'}">
+                        ${isFlexible ? 'PATVIRTINTA (Lankstus)' : 'RIBOTA TENDENCIJA'}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="score-box" style="background:#f9f9f9; padding:20px; border-radius:10px;">
+                <h3>Analizė ir Interpretacija</h3>
+                <p>${getAnalysisText(domStyle, isFlexible)}</p>
+                
+                <h4 style="margin-top:20px;">Jūsų stilių pasiskirstymas (20-ies situacijų):</h4>
+                <ul>
+                    <li>S1 (Nukreipimas): ${mainResults.S1} k.</li>
+                    <li>S2 (Įtikinimas): ${mainResults.S2} k.</li>
+                    <li>S3 (Dalyvavimas): ${mainResults.S3} k.</li>
+                    <li>S4 (Delegavimas): ${mainResults.S4} k.</li>
+                </ul>
+            </div>
+
+            <div style="margin-top:20px; padding:15px; border-left:5px solid var(--accent); background:#eef2f3;">
+                <strong>Strateginė rekomendacija:</strong>
+                <p>${isFlexible ? 
+                    'Jūs puikiai jaučiate ribą tarp palaikymo ir kontrolės. Tęskite darbą stebėdami komandos brandos pokyčius.' : 
+                    'Jums sunku išeiti iš savo komforto zonos ('+domStyle+'). Rekomenduojama praktikuotis kraštutinius stilius: griežtesnį S1 krizėse ir drąsesnį S4 su savo srities profesionalais.'}</p>
+            </div>
+        `;
+
+        document.getElementById('final-content').innerHTML = analysis;
+    }
+
+    function getAnalysisText(style, flexible) {
+        if (style === 'S3') {
+            return flexible ? 
+                "Esate 'Empatiškas Profesionalas'. Nors kasdienybėje renkatės diskusiją, prireikus gebate būti kietas lyderis arba visiškai pasitikėti kitais." : 
+                "Esate 'Demokratijos Įkaitas'. Linkstate tartis net ten, kur reikia greitų sprendimų (krizių metu) arba visiško atsitraukimo. Tai gali lėtinti procesus.";
+        }
+        return "Jūsų profilis rodo stabilią tendenciją į " + style + " stilių. Lankstumo patikra patvirtino jūsų gebėjimą prisitaikyti prie skirtingų darbuotojų brandos lygių.";
+    }
+
+    renderQuestions(mainQuestions, 'main-questions', 'm');
+</script>
+
+</body>
+</html>
