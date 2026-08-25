@@ -12,3 +12,11 @@ These runtime copies keep the user on `2rasi.lt` / `2rasi.com`. The original rep
 | `tools/drama-triangle/run/` + pilot | `olemoz1977/karpman-apklausa` | `3f931276a58969ce3c7e32cdd764980e96d7803d` |
 
 Runtime HTML is marked `noindex,follow`; indexed product/SEO surfaces remain the existing `/tools/<tool>/` pages.
+
+## Unified-domain trust migration
+
+- Runtime migration: `861ac38bc1be0a4570435a9813bbca3802d37399`
+- Local navigation cue polish: `247a56518324e06094cc88f53de55faf6a78a645`
+- Legacy `Start` links now stay under the active `2rasi.lt` / `2rasi.com` host instead of jumping to `olemoz1977.github.io`.
+- Local navigation uses `→`; true external OMESG360 systems retain the `↗` cue.
+- Lithuanian hero copy uses `STEBĖK / PASTEBĖK`; no scoring, test semantics, or research data were changed by this migration.
