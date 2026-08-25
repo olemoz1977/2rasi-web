@@ -73,7 +73,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git -C sources/mirror rev-parse HEAD)" = "10daa73594f5c68765f2788932e9773f546d550a" || { echo 'Mirror source moved'; exit 1; }
+          test "$(git -C sources/mirror rev-parse HEAD)" = "85d73189ca56f50e2afccf6eb88036341d026d39" || { echo 'Mirror source moved'; exit 1; }
           test "$(git -C sources/multipliers rev-parse HEAD)" = "7526a75479fb839d81214ec3b1096a6ae3215993" || { echo 'Multipliers source moved'; exit 1; }
           test "$(git -C sources/divergent rev-parse HEAD)" = "1d4603a647f2937914dcf19c479f2c35535131a3" || { echo 'Divergent source moved'; exit 1; }
           test "$(git -C sources/situational rev-parse HEAD)" = "f543ec121993a2aec9ab10300c40cc4f32ae38f6" || { echo 'Situational source moved'; exit 1; }
@@ -141,7 +141,6 @@ jobs:
               text = path.read_text(encoding='utf-8')
               for old, new in replacements:
                   text = text.replace(old, new)
-              # Local links must feel like one site, not open a new platform/tab.
               def clean_local_anchor(match):
                   tag = match.group(0)
                   tag = re.sub(r'\s+target=("|\')_blank\1', '', tag)
@@ -150,7 +149,6 @@ jobs:
               text = re.sub(r'<a\b[^>]*href=("|\')/tools/[^>]*>', clean_local_anchor, text, flags=re.I)
               path.write_text(text, encoding='utf-8')
 
-          # Runtime pages are implementation surfaces. Keep indexed product pages at /tools/<tool>/.
           runtime_pages = list(Path('tools').glob('*/run/**/*.html'))
           for path in runtime_pages:
               text = path.read_text(encoding='utf-8')
@@ -163,7 +161,6 @@ jobs:
                   text = text.replace('<head>', '<head>\n<meta name="robots" content="noindex,follow" />', 1)
               path.write_text(text, encoding='utf-8')
 
-          # LT hero: make the interaction understandable without knowing English.
           i18n = Path('i18n.js')
           text = i18n.read_text(encoding='utf-8')
           anchor = "    set('.hint', 'Move · look · notice', 'Judink · žiūrėk · pastebėk');"
@@ -174,7 +171,6 @@ jobs:
               text = text.replace(anchor, addition, 1)
           i18n.write_text(text, encoding='utf-8')
 
-          # Calendar return links from the copied Drama pilot must stay on the active 2rasi host.
           pilot_targets = [
               (Path('tools/drama-triangle/pilot/action-loop-v01/index.html'), '/tools/drama-triangle/pilot/action-loop-v01/#experiment'),
               (Path('tools/drama-triangle/pilot/action-loop-v01/en/index.html'), '/tools/drama-triangle/pilot/action-loop-v01/en/#experiment'),
@@ -197,7 +193,7 @@ jobs:
 
           | 2rasi runtime | Source repository | Source revision |
           | --- | --- | --- |
-          | `tools/mirror/run/` | `olemoz1977/savirefleksijos-testas` | `10daa73594f5c68765f2788932e9773f546d550a` |
+          | `tools/mirror/run/` | `olemoz1977/savirefleksijos-testas` | `85d73189ca56f50e2afccf6eb88036341d026d39` |
           | `tools/multipliers/run/` | `olemoz1977/multipliers-test` | `7526a75479fb839d81214ec3b1096a6ae3215993` |
           | `tools/divergent/run/` | `olemoz1977/Divergent-test-2` | `1d4603a647f2937914dcf19c479f2c35535131a3` |
           | `tools/situational-leadership/run/` | `olemoz1977/Situacinio-vadovavimo-testas` | `f543ec121993a2aec9ab10300c40cc4f32ae38f6` |
