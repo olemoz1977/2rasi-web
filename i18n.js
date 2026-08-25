@@ -132,7 +132,7 @@
     set('#hero-title', 'Look again.', 'Pažvelk dar kartą.');
     set('.hero-sub', 'Tools and experiments for seeing things differently.', 'Įrankiai ir eksperimentai, padedantys pamatyti kitaip.');
     set('.hint', 'Move · look · notice', 'Judink · žiūrėk · pastebėk');
-    set('.base-word', 'OBSERVE', 'STEBĖK');
+    set('.base-word', 'OBSERVE', 'PAŽVELK');
     set('.notice-word', 'NOTICE', 'PASTEBĖK');
     set('.section-intro .kicker', 'EXPERIMENTS', 'EKSPERIMENTAI');
     set('#experiments-title', 'Small shifts. Different views.', 'Maži poslinkiai. Kitas vaizdas.');

@@ -306,7 +306,7 @@
 
 /* LT WebGL semantic words */
 html[lang="lt"] .perception-stage.webgl-active .base-word::before {
-  content: 'STEBĖK';
+  content: 'PAŽVELK';
 }
 
 html[lang="lt"] .perception-stage.webgl-active .notice-word::before {
