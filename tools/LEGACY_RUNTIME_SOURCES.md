@@ -4,7 +4,7 @@ These runtime copies keep the user on `2rasi.lt` / `2rasi.com`. The original rep
 
 | 2rasi runtime | Source repository | Source revision |
 | --- | --- | --- |
-| `tools/mirror/run/` | `olemoz1977/savirefleksijos-testas` | `85d73189ca56f50e2afccf6eb88036341d026d39` |
+| `tools/mirror/run/` | `olemoz1977/savirefleksijos-testas` | `278252acbd402f4f68f0ae598ce30640528bf8ea` |
 | `tools/multipliers/run/` | `olemoz1977/multipliers-test` | `7526a75479fb839d81214ec3b1096a6ae3215993` |
 | `tools/divergent/run/` | `olemoz1977/Divergent-test-2` | `1d4603a647f2937914dcf19c479f2c35535131a3` |
 | `tools/situational-leadership/run/` | `olemoz1977/Situacinio-vadovavimo-testas` | `f543ec121993a2aec9ab10300c40cc4f32ae38f6` |
