@@ -9,13 +9,11 @@
 <style>
 :root{--ink:#071b2e;--soft:rgba(7,27,46,.62);--glass:rgba(235,247,250,.22);--line:rgba(255,255,255,.48);--shadow:0 28px 80px rgba(4,31,48,.18)}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-snap-type:y proximity}body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#bfd5dc}
-body::before{content:"";position:fixed;inset:0;z-index:-3;background:
-linear-gradient(180deg,rgba(235,248,251,.24),rgba(7,45,65,.12)),
-url("../../assets/hero-2rasi.webp") center center/cover no-repeat}
+body::before{content:"";position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(235,248,251,.24),rgba(7,45,65,.12)),url("../../assets/hero-2rasi.webp") center center/cover no-repeat}
 body::after{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 50% 26%,rgba(255,255,255,.36),transparent 38%),linear-gradient(180deg,rgba(255,255,255,.06),rgba(4,35,52,.16))}
 a{color:inherit;text-decoration:none}.top{position:fixed;z-index:50;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(20px,5vw,64px);background:linear-gradient(180deg,rgba(220,239,245,.82),rgba(220,239,245,0));backdrop-filter:blur(2px)}
 .brand{font-size:1.45rem;font-weight:760;letter-spacing:-.05em}.lab{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;opacity:.52}
-.intro,.portal-section{min-height:100svh;scroll-snap-align:start;display:grid;place-items:center;padding:100px 22px 46px}
+.intro,.portal-section{min-height:100svh;scroll-snap-align:start;display:grid;place-items:center;padding:100px 22px 46px}.intro{position:relative}
 .intro-copy{text-align:center;max-width:940px}.eyebrow{font-size:.68rem;font-weight:760;letter-spacing:.24em;text-transform:uppercase;opacity:.58;margin:0 0 22px}
 h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(4.2rem,14vw,10rem);font-weight:500;line-height:.84;letter-spacing:-.065em;margin:0}
 .intro-copy p:last-child{max-width:510px;margin:28px auto 0;font-size:clamp(1rem,2vw,1.2rem);line-height:1.5;color:var(--soft)}
@@ -24,13 +22,50 @@ h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(4.2rem,14vw,10rem
 .portal-copy{padding:clamp(28px,5vw,70px);display:flex;flex-direction:column;justify-content:center}.number{font-size:.66rem;letter-spacing:.18em;opacity:.44}.portal h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(3.5rem,8vw,7.5rem);font-weight:500;line-height:.9;letter-spacing:-.055em;margin:24px 0 18px}.hook{font-size:clamp(1.05rem,2vw,1.4rem);line-height:1.45;max-width:470px;margin:0;color:rgba(7,27,46,.72)}
 .open{align-self:flex-start;margin-top:34px;padding:13px 20px;border:1px solid rgba(7,27,46,.22);border-radius:999px;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.22)}
 .visual{position:relative;min-height:400px;display:grid;place-items:center;overflow:hidden}.visual::after{content:"";position:absolute;width:74%;height:18%;left:13%;bottom:20%;border-radius:50%;background:radial-gradient(ellipse,rgba(2,54,78,.2),transparent 66%);filter:blur(14px)}
-.mirror-orb{width:min(230px,45vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 34% 25%,rgba(255,255,255,.96) 0 5%,rgba(210,238,245,.42) 20%,rgba(40,101,126,.18) 70%,rgba(255,255,255,.34));border:1px solid rgba(255,255,255,.74);box-shadow:inset -20px -26px 48px rgba(9,64,88,.15),0 26px 55px rgba(6,49,70,.18);transform:translateY(-54px)}
-.mirror-reflection{position:absolute;width:min(210px,41vw);aspect-ratio:1;border-radius:50%;top:55%;transform:scaleY(.42);opacity:.3;filter:blur(3px);background:radial-gradient(circle at 50% 70%,rgba(10,58,83,.38),rgba(213,239,245,.18) 60%,transparent)}
-.triangle{position:relative;width:min(360px,68vw);aspect-ratio:1}.node{position:absolute;width:92px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 32% 24%,rgba(255,255,255,.92),rgba(164,207,219,.28) 35%,rgba(7,54,76,.25));border:1px solid rgba(255,255,255,.65);box-shadow:0 18px 38px rgba(4,40,58,.16)}.n1{left:50%;top:8%;transform:translateX(-50%)}.n2{left:8%;bottom:8%}.n3{right:8%;bottom:8%}
-.triangle svg{position:absolute;inset:0;width:100%;height:100%;opacity:.4;filter:drop-shadow(0 0 8px rgba(255,255,255,.35))}
-.pair{display:flex;gap:18px;width:min(390px,76vw)}.choice{flex:1;aspect-ratio:.78;border-radius:28px;border:1px solid rgba(255,255,255,.62);background:linear-gradient(145deg,rgba(255,255,255,.38),rgba(166,206,218,.14));display:grid;place-items:center;box-shadow:0 22px 50px rgba(4,40,60,.12)}.curve{width:72%;height:58%;border-radius:100% 0 90% 10%/90% 0 100% 10%;background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(169,214,225,.24));transform:rotate(18deg);box-shadow:0 12px 24px rgba(7,49,69,.12)}.stone{width:45%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.72),rgba(28,67,83,.7));box-shadow:0 16px 24px rgba(3,35,52,.24)}
+
+/* MIRROR — object and reflection visibly answer each other. */
+.mirror-orb{position:relative;z-index:3;width:min(230px,45vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 34% 25%,rgba(255,255,255,.96) 0 5%,rgba(210,238,245,.42) 20%,rgba(40,101,126,.18) 70%,rgba(255,255,255,.34));border:1px solid rgba(255,255,255,.74);box-shadow:inset -20px -26px 48px rgba(9,64,88,.15),0 26px 55px rgba(6,49,70,.18);transform:translateY(-64px)}
+.mirror-orb::after{content:"";position:absolute;left:50%;bottom:-31%;width:125%;height:28%;transform:translateX(-50%) scale(.25);border:2px solid rgba(86,162,183,.5);border-radius:50%;opacity:0}
+.mirror-reflection{position:absolute;z-index:2;width:min(210px,41vw);aspect-ratio:1;border-radius:50%;top:55%;transform:scaleY(.36) translateY(18px);opacity:.18;filter:blur(4px);background:radial-gradient(circle at 50% 70%,rgba(10,58,83,.52),rgba(213,239,245,.18) 60%,transparent)}
+
+/* DRAMA — three positions tighten into one tension point, then release. */
+.triangle{position:relative;width:min(360px,68vw);aspect-ratio:1}.triangle::after{content:"";position:absolute;left:50%;top:55%;width:42px;aspect-ratio:1;border:2px solid rgba(67,139,160,.6);border-radius:50%;transform:translate(-50%,-50%) scale(.25);opacity:0;box-shadow:0 0 0 0 rgba(72,153,174,.18)}
+.node{position:absolute;z-index:3;width:92px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 32% 24%,rgba(255,255,255,.92),rgba(164,207,219,.28) 35%,rgba(7,54,76,.25));border:1px solid rgba(255,255,255,.65);box-shadow:0 18px 38px rgba(4,40,58,.16)}.n1{left:50%;top:8%;transform:translateX(-50%)}.n2{left:8%;bottom:8%}.n3{right:8%;bottom:8%}
+.triangle svg{position:absolute;z-index:1;inset:0;width:100%;height:100%;opacity:.36;filter:drop-shadow(0 0 8px rgba(255,255,255,.35))}.triangle path{stroke-dasharray:190;stroke-dashoffset:0}
+
+/* 2PAIR — two equally valid choices take turns asking for attention. */
+.pair{display:flex;gap:18px;width:min(390px,76vw);perspective:800px}.choice{position:relative;z-index:2;flex:1;aspect-ratio:.78;border-radius:28px;border:1px solid rgba(255,255,255,.62);background:linear-gradient(145deg,rgba(255,255,255,.38),rgba(166,206,218,.14));display:grid;place-items:center;box-shadow:0 22px 50px rgba(4,40,60,.12);transform-origin:50% 85%}.choice::after{content:"";position:absolute;inset:8px;border:1px solid rgba(255,255,255,.0);border-radius:22px;transition:border-color .3s ease}.curve{width:72%;height:58%;border-radius:100% 0 90% 10%/90% 0 100% 10%;background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(169,214,225,.24));transform:rotate(18deg);box-shadow:0 12px 24px rgba(7,49,69,.12)}.stone{width:45%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.72),rgba(28,67,83,.7));box-shadow:0 16px 24px rgba(3,35,52,.24)}
+
 @media(max-width:720px){.top{padding:17px 20px}.portal{grid-template-columns:1fr;min-height:82svh;border-radius:28px}.portal-copy{padding:28px 28px 16px}.portal h2{font-size:clamp(3.2rem,16vw,5.5rem);margin:16px 0 12px}.hook{font-size:1rem}.open{margin-top:22px}.visual{min-height:310px}.mirror-orb{width:170px}.mirror-reflection{width:160px}.triangle{width:270px}.node{width:72px}.pair{width:290px}.portal-section{padding-inline:16px}}
-@media(prefers-reduced-motion:no-preference){.mirror-orb{animation:float 5s ease-in-out infinite}.node{animation:breathe 4.6s ease-in-out infinite}.n2{animation-delay:-1.4s}.n3{animation-delay:-2.7s}.choice{animation:rise 5s ease-in-out infinite}.choice:nth-child(2){animation-delay:-2.2s}@keyframes float{50%{transform:translateY(-62px)}}@keyframes breathe{50%{scale:1.035}}@keyframes rise{50%{transform:translateY(-6px)}}}
+
+@media(prefers-reduced-motion:no-preference){
+  .portal.in-view .mirror-orb{animation:mirrorMeet 5.2s cubic-bezier(.45,0,.15,1) infinite}
+  .portal.in-view .mirror-orb::after{animation:mirrorRipple 5.2s ease-out infinite}
+  .portal.in-view .mirror-reflection{animation:mirrorAnswer 5.2s cubic-bezier(.45,0,.15,1) infinite}
+  @keyframes mirrorMeet{0%,14%,100%{transform:translateY(-64px) scale(1)}38%{transform:translateY(-30px) scale(.94)}52%{transform:translateY(-48px) scale(1.02)}68%{transform:translateY(-58px) scale(1)}}
+  @keyframes mirrorAnswer{0%,16%,100%{transform:scaleY(.36) translateY(18px);opacity:.18;filter:blur(4px)}38%{transform:scaleY(.58) translateY(-3px);opacity:.48;filter:blur(1.5px)}55%{transform:scaleY(.44) translateY(8px);opacity:.32;filter:blur(2.5px)}}
+  @keyframes mirrorRipple{0%,31%{transform:translateX(-50%) scale(.25);opacity:0}39%{opacity:.72}64%{transform:translateX(-50%) scale(1.7);opacity:0}100%{opacity:0}}
+
+  .portal.in-view .triangle::after{animation:tensionPulse 6s ease-in-out infinite}
+  .portal.in-view .triangle path{animation:traceTriangle 6s ease-in-out infinite}
+  .portal.in-view .n1{animation:dramaTop 6s cubic-bezier(.5,0,.2,1) infinite}
+  .portal.in-view .n2{animation:dramaLeft 6s cubic-bezier(.5,0,.2,1) infinite}
+  .portal.in-view .n3{animation:dramaRight 6s cubic-bezier(.5,0,.2,1) infinite}
+  @keyframes dramaTop{0%,15%,100%{transform:translateX(-50%) translateY(0)}42%{transform:translateX(-50%) translateY(34px) scale(1.08)}62%{transform:translateX(-50%) translateY(18px) scale(.98)}}
+  @keyframes dramaLeft{0%,15%,100%{transform:translate(0,0)}42%{transform:translate(34px,-25px) scale(1.08)}62%{transform:translate(17px,-12px) scale(.98)}}
+  @keyframes dramaRight{0%,15%,100%{transform:translate(0,0)}42%{transform:translate(-34px,-25px) scale(1.08)}62%{transform:translate(-17px,-12px) scale(.98)}}
+  @keyframes tensionPulse{0%,28%,100%{transform:translate(-50%,-50%) scale(.25);opacity:0;box-shadow:0 0 0 0 rgba(72,153,174,.18)}42%{transform:translate(-50%,-50%) scale(1);opacity:.85;box-shadow:0 0 0 28px rgba(72,153,174,.08)}68%{transform:translate(-50%,-50%) scale(1.8);opacity:0;box-shadow:0 0 0 54px rgba(72,153,174,0)}}
+  @keyframes traceTriangle{0%,12%,100%{stroke-dashoffset:190;opacity:.18}38%,66%{stroke-dashoffset:0;opacity:.65}78%{opacity:.25}}
+
+  .portal.in-view .choice:first-child{animation:pairLeft 5.6s cubic-bezier(.45,0,.2,1) infinite}
+  .portal.in-view .choice:nth-child(2){animation:pairRight 5.6s cubic-bezier(.45,0,.2,1) infinite}
+  .portal.in-view .curve{animation:curveRespond 5.6s ease-in-out infinite}
+  .portal.in-view .stone{animation:stoneRespond 5.6s ease-in-out infinite}
+  @keyframes pairLeft{0%,10%,100%{transform:translateY(0) rotateY(0) scale(1);box-shadow:0 22px 50px rgba(4,40,60,.12)}24%,38%{transform:translateY(-18px) rotateY(5deg) scale(1.045);box-shadow:0 34px 64px rgba(4,40,60,.22)}55%{transform:translateY(0) scale(1)}}
+  @keyframes pairRight{0%,42%,100%{transform:translateY(0) rotateY(0) scale(1);box-shadow:0 22px 50px rgba(4,40,60,.12)}58%,72%{transform:translateY(-18px) rotateY(-5deg) scale(1.045);box-shadow:0 34px 64px rgba(4,40,60,.22)}88%{transform:translateY(0) scale(1)}}
+  @keyframes curveRespond{0%,12%,100%{transform:rotate(18deg) scale(1)}26%,38%{transform:rotate(7deg) scale(1.08)}56%{transform:rotate(18deg) scale(1)}}
+  @keyframes stoneRespond{0%,44%,100%{transform:translateX(0) scale(1)}60%,72%{transform:translateX(-8px) scale(1.1)}88%{transform:translateX(0) scale(1)}}
+}
 </style>
 </head>
 <body>
@@ -60,6 +95,19 @@ h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(4.2rem,14vw,10rem
 </article></section>
 </main>
 <script>
-(()=>{const p=new URLSearchParams(location.search),h=location.hostname.toLowerCase(),l=p.get('lang')||((h==='2rasi.lt'||h.endsWith('.2rasi.lt'))?'lt':'en');document.documentElement.lang=l;document.querySelectorAll('[data-en]').forEach(e=>e.textContent=l==='lt'?e.dataset.lt:e.dataset.en);})();
+(()=>{
+  const p=new URLSearchParams(location.search),h=location.hostname.toLowerCase(),l=p.get('lang')||((h==='2rasi.lt'||h.endsWith('.2rasi.lt'))?'lt':'en');
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-en]').forEach(e=>e.textContent=l==='lt'?e.dataset.lt:e.dataset.en);
+
+  const portals=[...document.querySelectorAll('.portal')];
+  if(!('IntersectionObserver' in window)) portals.forEach(p=>p.classList.add('in-view'));
+  else {
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      entry.target.classList.toggle('in-view',entry.isIntersecting&&entry.intersectionRatio>.42);
+    }),{threshold:[.2,.42,.65]});
+    portals.forEach(p=>observer.observe(p));
+  }
+})();
 </script>
 </body></html>
