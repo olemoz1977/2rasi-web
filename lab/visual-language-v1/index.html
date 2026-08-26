@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#d9e8ed">
+<title>2rasi · visual language lab</title>
+<style>
+:root{--ink:#071b2e;--soft:rgba(7,27,46,.62);--glass:rgba(235,247,250,.22);--line:rgba(255,255,255,.48);--shadow:0 28px 80px rgba(4,31,48,.18)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-snap-type:y proximity}body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#bfd5dc}
+body::before{content:"";position:fixed;inset:0;z-index:-3;background:
+linear-gradient(180deg,rgba(235,248,251,.24),rgba(7,45,65,.12)),
+url("../../assets/hero-2rasi.webp") center center/cover no-repeat}
+body::after{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 50% 26%,rgba(255,255,255,.36),transparent 38%),linear-gradient(180deg,rgba(255,255,255,.06),rgba(4,35,52,.16))}
+a{color:inherit;text-decoration:none}.top{position:fixed;z-index:50;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(20px,5vw,64px);background:linear-gradient(180deg,rgba(220,239,245,.82),rgba(220,239,245,0));backdrop-filter:blur(2px)}
+.brand{font-size:1.45rem;font-weight:760;letter-spacing:-.05em}.lab{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;opacity:.52}
+.intro,.portal-section{min-height:100svh;scroll-snap-align:start;display:grid;place-items:center;padding:100px 22px 46px}
+.intro-copy{text-align:center;max-width:940px}.eyebrow{font-size:.68rem;font-weight:760;letter-spacing:.24em;text-transform:uppercase;opacity:.58;margin:0 0 22px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(4.2rem,14vw,10rem);font-weight:500;line-height:.84;letter-spacing:-.065em;margin:0}
+.intro-copy p:last-child{max-width:510px;margin:28px auto 0;font-size:clamp(1rem,2vw,1.2rem);line-height:1.5;color:var(--soft)}
+.scroll-mark{position:absolute;bottom:28px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.44}
+.portal{width:min(980px,92vw);min-height:min(680px,78svh);border:1px solid var(--line);border-radius:34px;background:linear-gradient(150deg,rgba(248,253,254,.34),rgba(210,233,239,.12));backdrop-filter:blur(18px) saturate(1.08);box-shadow:var(--shadow);display:grid;grid-template-columns:1.05fr .95fr;overflow:hidden;position:relative}
+.portal-copy{padding:clamp(28px,5vw,70px);display:flex;flex-direction:column;justify-content:center}.number{font-size:.66rem;letter-spacing:.18em;opacity:.44}.portal h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(3.5rem,8vw,7.5rem);font-weight:500;line-height:.9;letter-spacing:-.055em;margin:24px 0 18px}.hook{font-size:clamp(1.05rem,2vw,1.4rem);line-height:1.45;max-width:470px;margin:0;color:rgba(7,27,46,.72)}
+.open{align-self:flex-start;margin-top:34px;padding:13px 20px;border:1px solid rgba(7,27,46,.22);border-radius:999px;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.22)}
+.visual{position:relative;min-height:400px;display:grid;place-items:center;overflow:hidden}.visual::after{content:"";position:absolute;width:74%;height:18%;left:13%;bottom:20%;border-radius:50%;background:radial-gradient(ellipse,rgba(2,54,78,.2),transparent 66%);filter:blur(14px)}
+.mirror-orb{width:min(230px,45vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 34% 25%,rgba(255,255,255,.96) 0 5%,rgba(210,238,245,.42) 20%,rgba(40,101,126,.18) 70%,rgba(255,255,255,.34));border:1px solid rgba(255,255,255,.74);box-shadow:inset -20px -26px 48px rgba(9,64,88,.15),0 26px 55px rgba(6,49,70,.18);transform:translateY(-54px)}
+.mirror-reflection{position:absolute;width:min(210px,41vw);aspect-ratio:1;border-radius:50%;top:55%;transform:scaleY(.42);opacity:.3;filter:blur(3px);background:radial-gradient(circle at 50% 70%,rgba(10,58,83,.38),rgba(213,239,245,.18) 60%,transparent)}
+.triangle{position:relative;width:min(360px,68vw);aspect-ratio:1}.node{position:absolute;width:92px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 32% 24%,rgba(255,255,255,.92),rgba(164,207,219,.28) 35%,rgba(7,54,76,.25));border:1px solid rgba(255,255,255,.65);box-shadow:0 18px 38px rgba(4,40,58,.16)}.n1{left:50%;top:8%;transform:translateX(-50%)}.n2{left:8%;bottom:8%}.n3{right:8%;bottom:8%}
+.triangle svg{position:absolute;inset:0;width:100%;height:100%;opacity:.4;filter:drop-shadow(0 0 8px rgba(255,255,255,.35))}
+.pair{display:flex;gap:18px;width:min(390px,76vw)}.choice{flex:1;aspect-ratio:.78;border-radius:28px;border:1px solid rgba(255,255,255,.62);background:linear-gradient(145deg,rgba(255,255,255,.38),rgba(166,206,218,.14));display:grid;place-items:center;box-shadow:0 22px 50px rgba(4,40,60,.12)}.curve{width:72%;height:58%;border-radius:100% 0 90% 10%/90% 0 100% 10%;background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(169,214,225,.24));transform:rotate(18deg);box-shadow:0 12px 24px rgba(7,49,69,.12)}.stone{width:45%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.72),rgba(28,67,83,.7));box-shadow:0 16px 24px rgba(3,35,52,.24)}
+@media(max-width:720px){.top{padding:17px 20px}.portal{grid-template-columns:1fr;min-height:82svh;border-radius:28px}.portal-copy{padding:28px 28px 16px}.portal h2{font-size:clamp(3.2rem,16vw,5.5rem);margin:16px 0 12px}.hook{font-size:1rem}.open{margin-top:22px}.visual{min-height:310px}.mirror-orb{width:170px}.mirror-reflection{width:160px}.triangle{width:270px}.node{width:72px}.pair{width:290px}.portal-section{padding-inline:16px}}
+@media(prefers-reduced-motion:no-preference){.mirror-orb{animation:float 5s ease-in-out infinite}.node{animation:breathe 4.6s ease-in-out infinite}.n2{animation-delay:-1.4s}.n3{animation-delay:-2.7s}.choice{animation:rise 5s ease-in-out infinite}.choice:nth-child(2){animation-delay:-2.2s}@keyframes float{50%{transform:translateY(-62px)}}@keyframes breathe{50%{scale:1.035}}@keyframes rise{50%{transform:translateY(-6px)}}}
+</style>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">2rasi</a><span class="lab">visual language · v1</span></header>
+<main>
+<section class="intro">
+<div class="intro-copy">
+<p class="eyebrow" data-en="Not a catalogue" data-lt="Ne katalogas">Not a catalogue</p>
+<h1 data-en="Choose what pulls you in." data-lt="Pasirink, kas užkabina.">Choose what pulls you in.</h1>
+<p data-en="Each experiment keeps the same world, but carries its own visual idea." data-lt="Tas pats pasaulis. Kiekvienas eksperimentas turi savo vizualinę mintį.">Each experiment keeps the same world, but carries its own visual idea.</p>
+</div><span class="scroll-mark" data-en="scroll" data-lt="slink">scroll</span>
+</section>
+
+<section class="portal-section" id="mirror"><article class="portal">
+<div class="portal-copy"><span class="number">01</span><h2>Mirror</h2><p class="hook" data-en="What changes when you look again?" data-lt="Kas pasikeičia, kai pažvelgi dar kartą?">What changes when you look again?</p><a class="open" href="./mirror/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+<div class="visual"><div class="mirror-orb"></div><div class="mirror-reflection"></div></div>
+</article></section>
+
+<section class="portal-section" id="drama"><article class="portal">
+<div class="portal-copy"><span class="number">02</span><h2>Drama<br>Triangle</h2><p class="hook" data-en="What appears first when tension rises?" data-lt="Kas pasirodo pirmiausia, kai kyla įtampa?">What appears first when tension rises?</p><a class="open" href="./drama/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+<div class="visual"><div class="triangle"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 18 L18 78 L82 78 Z" fill="none" stroke="rgba(7,27,46,.55)" stroke-width=".8"/></svg><i class="node n1"></i><i class="node n2"></i><i class="node n3"></i></div></div>
+</article></section>
+
+<section class="portal-section" id="pair"><article class="portal">
+<div class="portal-copy"><span class="number">03</span><h2>2Pair</h2><p class="hook" data-en="Which would you choose first?" data-lt="Kurį pasirinktum pirma?">Which would you choose first?</p><a class="open" href="./2pair/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+<div class="visual"><div class="pair"><div class="choice"><div class="curve"></div></div><div class="choice"><div class="stone"></div></div></div></div>
+</article></section>
+</main>
+<script>
+(()=>{const p=new URLSearchParams(location.search),h=location.hostname.toLowerCase(),l=p.get('lang')||((h==='2rasi.lt'||h.endsWith('.2rasi.lt'))?'lt':'en');document.documentElement.lang=l;document.querySelectorAll('[data-en]').forEach(e=>e.textContent=l==='lt'?e.dataset.lt:e.dataset.en);})();
+</script>
+</body></html>
