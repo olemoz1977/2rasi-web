@@ -304,30 +304,3 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   start.target = '_self';
   start.removeAttribute('rel');
 });
-
-// Lab-only localization. This path guard keeps the production homepage and
-// production tool pages untouched while the full visual homepage is tested.
-(() => {
-  const path = window.location.pathname.replace(/\/+$/, '');
-  if (path !== '/lab/homepage-visual-v3') return;
-
-  const lt = window.location.hostname === '2rasi.lt' || window.location.hostname.endsWith('.2rasi.lt');
-  if (!lt) return;
-
-  const setText = (selector, text) => {
-    const el = document.querySelector(selector);
-    if (el) el.textContent = text;
-  };
-
-  setText('.site-header nav a:nth-child(1)', 'Eksperimentai');
-  setText('.site-header nav a:nth-child(2)', 'Apie');
-  setText('.eyebrow', 'Mažas poslinkis gali pakeisti vaizdą');
-  setText('#hero-title', 'Pažvelk dar kartą.');
-  setText('.hero-sub', 'Įrankiai ir eksperimentai, padedantys pamatyti kitaip.');
-  setText('#about .kicker', 'APIE');
-  setText('.about-lead', '2rasi yra vieta suvokimo, pasirinkimo ir refleksijos eksperimentams.');
-
-  const aboutParagraphs = document.querySelectorAll('#about .about-copy > p:not(.kicker):not(.about-lead)');
-  if (aboutParagraphs[0]) aboutParagraphs[0].textContent = 'Vieni prasideda nuo psichologijos. Kiti nuo darbo. Dar kiti nuo paprastų dalykų, kurių nustojome pastebėti.';
-  if (aboutParagraphs[1]) aboutParagraphs[1].textContent = 'Kas nutinka, jei pažvelgiame dar kartą?';
-})();
