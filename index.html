@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="hero.css?v=20260825-pazvelk" />
   <link rel="stylesheet" href="hero-landscape.css?v=20260816-1145" />
   <link rel="stylesheet" href="semantic-reveal.css?v=20260816-1145" />
-  <link rel="stylesheet" href="experiment-actions.css?v=20260816-1145" />
+  <link rel="stylesheet" href="visual-home.css?v=20260827-1" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -51,9 +51,9 @@
   <header class="site-header" aria-label="Primary navigation">
     <a class="brand" href="#top" aria-label="2rasi home">2rasi</a>
     <nav>
-      <a href="#experiments">Experiments</a>
-      <a href="#about">About</a>
-      <a class="language-switch" href="https://2rasi.lt" aria-label="Perjungti į lietuvių kalbą">LT</a>
+      <a href="#experiments" data-en="Experiments" data-lt="Eksperimentai">Experiments</a>
+      <a href="#about" data-en="About" data-lt="Apie">About</a>
+      <a class="language-switch" href="https://2rasi.lt" aria-label="Perjungti kalbą">LT</a>
     </nav>
   </header>
 
@@ -61,291 +61,87 @@
     <section id="top" class="hero" aria-labelledby="hero-title">
       <div class="hero-image" aria-hidden="true"></div>
       <div class="veil" aria-hidden="true"></div>
-
       <div class="hero-copy">
-        <p class="eyebrow">A small shift can change the view</p>
-        <h1 id="hero-title">Look again.</h1>
-        <p class="hero-sub">Tools and experiments for seeing things differently.</p>
+        <p class="eyebrow" data-en="A small shift can change the view" data-lt="Mažas poslinkis gali pakeisti vaizdą">A small shift can change the view</p>
+        <h1 id="hero-title" data-en="Look again." data-lt="Pažvelk dar kartą.">Look again.</h1>
+        <p class="hero-sub" data-en="Tools and experiments for seeing things differently." data-lt="Įrankiai ir eksperimentai, padedantys pamatyti kitaip.">Tools and experiments for seeing things differently.</p>
       </div>
-
       <div class="perception-stage" aria-label="Interactive perception experiment">
         <span class="base-word" aria-hidden="true">OBSERVE</span>
         <span class="notice-word" aria-hidden="true">NOTICE</span>
         <button class="lens" type="button" aria-label="Move the lens to reveal another view"></button>
         <p class="hint">Move · look · notice</p>
       </div>
-
-      <button class="scroll-cue" type="button" aria-label="Explore experiments">
-        <span></span>
-      </button>
+      <button class="scroll-cue" type="button" aria-label="Explore experiments"><span></span></button>
       <div class="ripple ripple-a" aria-hidden="true"></div>
       <div class="ripple ripple-b" aria-hidden="true"></div>
     </section>
 
-    <section id="experiments" class="experiments section-shell" aria-labelledby="experiments-title">
-      <div class="section-intro reveal">
-        <p class="kicker">EXPERIMENTS</p>
-        <h2 id="experiments-title">Small shifts.<br />Different views.</h2>
-      </div>
-
-      <div class="experiment-grid">
-        <article class="experiment-card reveal" id="leadership-360">
-          <span class="index">01</span>
-          <div class="experiment-copy">
-            <div class="experiment-heading">
-              <h3>Leadership 360°</h3>
-              <span class="experiment-state live">Live · LT/EN</span>
-            </div>
-            <p class="experiment-summary">A multi-rater leadership development cycle connecting pseudonymous 360° feedback with a 90-day action plan and repeat measurement.</p>
-            <div class="experiment-meta" aria-label="Leadership 360 details">
-              <span>75 statements · 15 competencies</span>
-              <span>C1 → 90 days → C2</span>
-            </div>
-          </div>
-          <div class="experiment-actions" aria-label="Leadership 360 actions">
-            <a href="tools/leadership-360/">About <span>→</span></a>
-            <a href="https://omesg360.eu/leadership-360/?lang=en" target="_blank" rel="noopener">Start <span>↗</span></a>
-          </div>
-        </article>
-
-        <article class="experiment-card reveal" id="mirror">
-          <span class="index">02</span>
-          <div class="experiment-copy">
-            <div class="experiment-heading">
-              <h3>Mirror / Veidrodis</h3>
-              <span class="experiment-state live">Live · EN/LT</span>
-            </div>
-            <p class="experiment-summary">Notice what may be getting in your way.</p>
-            <div class="experiment-meta" aria-label="Mirror / Veidrodis details">
-              <span>Reflection experiment</span>
-              <span>English &amp; Lithuanian</span>
-            </div>
-          </div>
-          <div class="experiment-actions" aria-label="Mirror / Veidrodis actions">
-            <a href="tools/mirror/">About <span>→</span></a>
-            <a href="/tools/mirror/run/">Start <span>↗</span></a>
-          </div>
-        </article>
-
-        <article class="experiment-card reveal" id="multipliers">
-          <span class="index">03</span>
-          <div class="experiment-copy">
-            <div class="experiment-heading">
-              <h3>Multipliers</h3>
-              <span class="experiment-state live">Live · EN/LT</span>
-            </div>
-            <p class="experiment-summary">A leadership reflection experiment inspired by the Multipliers framework.</p>
-            <div class="experiment-meta" aria-label="Multipliers details">
-              <span>Leadership reflection</span>
-              <span>15 situations</span>
-            </div>
-          </div>
-          <div class="experiment-actions" aria-label="Multipliers actions">
-            <a href="tools/multipliers/">About <span>→</span></a>
-            <a data-en-legacy="multipliers" href="/tools/multipliers/run/en/">Start <span>↗</span></a>
-          </div>
-        </article>
-
-        <article class="experiment-card reveal" id="divergent">
-          <span class="index">04</span>
-          <div class="experiment-copy">
-            <div class="experiment-heading">
-              <h3>Divergent</h3>
-              <span class="experiment-state live">Live · EN/LT</span>
-            </div>
-            <p class="experiment-summary">A self-reflection experiment combining a Big Five profile with exploratory archetypes.</p>
-            <div class="experiment-meta" aria-label="Divergent details">
-              <span>OCEAN reflection</span>
-              <span>60 statements</span>
-            </div>
-          </div>
-          <div class="experiment-actions" aria-label="Divergent actions">
-            <a href="tools/divergent/">About <span>→</span></a>
-            <a data-en-legacy="divergent" href="/tools/divergent/run/en/">Start <span>↗</span></a>
-          </div>
-        </article>
-
-        <article class="experiment-card reveal" id="situational-leadership">
-          <span class="index">05</span>
-          <div class="experiment-copy">
-            <div class="experiment-heading">
-              <h3>Situational Leadership</h3>
-              <span class="experiment-state live">Live · LT</span>
-            </div>
-            <p class="experiment-summary">A leadership reflection tool for exploring how your approach shifts with the situation.</p>
-            <div class="experiment-meta" aria-label="Situational Leadership details">
-              <span>Leadership reflection</span>
-              <span>20 + 3 situations</span>
-            </div>
-          </div>
-          <div class="experiment-actions" aria-label="Situational Leadership actions">
-            <a href="tools/situational-leadership/">About <span>→</span></a>
-            <a href="/tools/situational-leadership/run/">Start <span>↗</span></a>
-          </div>
-        </article>
-
-        <article class="experiment-card reveal" id="karpman">
-          <span class="index">06</span>
-          <div class="experiment-copy">
-            <div class="experiment-heading">
-              <h3>Drama Triangle</h3>
-              <span class="experiment-state live">Live · EN/LT</span>
-            </div>
-            <p class="experiment-summary">A reflection on the roles we may slip into when tension rises.</p>
-            <div class="experiment-meta" aria-label="Drama Triangle details">
-              <span>Conflict patterns</span>
-              <span>18 statements</span>
-            </div>
-          </div>
-          <div class="experiment-actions" aria-label="Drama Triangle actions">
-            <a href="tools/drama-triangle/">About <span>→</span></a>
-            <a data-en-legacy="karpman" href="/tools/drama-triangle/run/en/">Start <span>↗</span></a>
-          </div>
-        </article>
-
-        <article class="experiment-card reveal" id="strategic-thinking">
-          <span class="index">07</span>
-          <div class="experiment-copy">
-            <div class="experiment-heading">
-              <h3>Strategic Thinking</h3>
-              <span class="experiment-state live">Live · LT</span>
-            </div>
-            <p class="experiment-summary">A self-reflection experiment exploring systems thinking, reframing and reflection.</p>
-            <div class="experiment-meta" aria-label="Strategic Thinking details">
-              <span>15 situations · 3 dimensions</span>
-              <span>Browser-only data</span>
-            </div>
-          </div>
-          <div class="experiment-actions" aria-label="Strategic Thinking actions">
-            <a href="tools/strategic-thinking/">About <span>→</span></a>
-            <a href="/tools/strategic-thinking/run/">Start <span>↗</span></a>
-          </div>
-        </article>
-
-        <div class="reveal" style="grid-column:1 / -1; padding-top:24px;">
-          <p class="kicker help-build-label">HELP TO BUILD</p>
+    <section id="experiments" class="visual-experiments" aria-labelledby="experiments-title">
+      <div class="visual-shell">
+        <div class="visual-intro">
+          <p class="kicker" data-en="EXPERIMENTS" data-lt="EKSPERIMENTAI">EXPERIMENTS</p>
+          <h2 id="experiments-title" data-en="Choose what pulls you in." data-lt="Pasirink, kas užkabina.">Choose what pulls you in.</h2>
         </div>
 
-        <article class="experiment-card reveal" id="2pair">
-          <span class="index">08</span>
-          <div class="experiment-copy">
-            <div class="experiment-heading">
-              <h3>2Pair</h3>
-              <span class="experiment-state live">Research active</span>
-            </div>
-            <p class="experiment-summary">A reflection framework being developed through temporary calibration and validation studies.</p>
-            <div class="experiment-meta" aria-label="2Pair details">
-              <span>Product in development</span>
-              <span>Wave 1 + Calibration v0.1 live</span>
-            </div>
-          </div>
-          <div class="experiment-actions" aria-label="2Pair actions">
-            <a href="tools/2pair/">About <span>→</span></a>
-            <a href="https://omesg360.eu/wave1/" target="_blank" rel="noopener">Wave 1 <span>↗</span></a>
-            <a href="https://omesg360.eu/conflictlab/releases/calibration-v0.1/" target="_blank" rel="noopener">Calibration <span>↗</span></a>
-          </div>
+        <article class="portal-card" id="leadership-360">
+          <div class="portal-copy"><span class="portal-index">01</span><h3>Leadership<br>360°</h3><p class="portal-hook" data-en="How different is the leader you see from the leader others experience?" data-lt="Kuo skiriasi vadovas, kurį matai tu, nuo vadovo, kurį patiria kiti?">How different is the leader you see from the leader others experience?</p><a class="portal-enter" href="/tools/leadership-360/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual"><div class="l360"><div class="view v1"></div><div class="view v2"></div><div class="view v3"></div><div class="leader"></div><div class="cycle"><b>C1</b><i></i><b>90D</b><i></i><b>C2</b></div></div></div>
         </article>
 
-        <article class="experiment-card reveal" id="workstyle">
-          <span class="index">09</span>
-          <div class="experiment-copy">
-            <div class="experiment-heading">
-              <h3>WorkStyle</h3>
-              <span class="experiment-state live">Cognitive pilot · LT</span>
-            </div>
-            <p class="experiment-summary">A research prototype exploring choices between equally valid ways of working across everyday situations.</p>
-            <div class="experiment-meta" aria-label="WorkStyle details">
-              <span>34 situations · 8 candidate axes</span>
-              <span>No personal profile yet</span>
-            </div>
-          </div>
-          <div class="experiment-actions" aria-label="WorkStyle actions">
-            <a href="tools/workstyle15/">About <span>→</span></a>
-            <a href="tools/workstyle15/v07-cognitive.html">Start pilot <span>→</span></a>
-          </div>
+        <article class="portal-card" id="mirror">
+          <div class="portal-copy"><span class="portal-index">02</span><h3 data-en="Mirror" data-lt="Veidrodis">Mirror</h3><p class="portal-hook" data-en="Will you dare to look at yourself in the mirror?" data-lt="Ar išdrįsi pažvelgti į save veidrodyje?">Will you dare to look at yourself in the mirror?</p><a class="portal-enter" href="/tools/mirror/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual"><div class="mirror-stage"><div class="mirror-frame"><div class="mirror-glass"><div class="mirror-person"><div class="mirror-head"></div><div class="mirror-body"></div></div></div></div></div></div>
+        </article>
+
+        <article class="portal-card" id="multipliers">
+          <div class="portal-copy"><span class="portal-index">03</span><h3>Multipliers</h3><p class="portal-hook" data-en="What does your presence unlock in others?" data-lt="Ką tavo buvimas pažadina kituose?">What does your presence unlock in others?</p><a class="portal-enter" href="/tools/multipliers/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual"><div class="mult"><div class="m-main"></div><div class="m-ring"></div><i class="m-small s1"></i><i class="m-small s2"></i><i class="m-small s3"></i></div></div>
+        </article>
+
+        <article class="portal-card" id="divergent">
+          <div class="portal-copy"><span class="portal-index">04</span><h3>Divergent</h3><p class="portal-hook" data-en="Five traits. One distinctive mix." data-lt="Penki bruožai. Vienas savitas derinys.">Five traits. One distinctive mix.</p><a class="portal-enter" href="/tools/divergent/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual"><div class="div-stage"><div class="ocean"><span>O</span><span>C</span><span>E</span><span>A</span><span>N</span></div><svg viewBox="0 0 100 100" aria-hidden="true"><path class="trait t1" pathLength="1" d="M3 18 C24 18 31 42 50 48 C68 53 79 49 97 50"/><path class="trait t2" pathLength="1" d="M3 31 C25 31 34 47 51 49 C69 51 80 52 97 50"/><path class="trait t3" pathLength="1" d="M3 44 C26 44 36 58 52 50 C70 42 80 55 97 50"/><path class="trait t4" pathLength="1" d="M3 58 C27 58 36 54 52 51 C69 48 81 49 97 50"/><path class="trait t5" pathLength="1" d="M3 72 C27 72 35 61 52 52 C70 43 82 47 97 50"/><path class="sig" pathLength="1" d="M53 50 C66 31 83 33 91 48 C99 64 84 78 67 70 C51 62 45 56 53 50 Z"/></svg></div></div>
+        </article>
+
+        <article class="portal-card" id="situational-leadership">
+          <div class="portal-copy"><span class="portal-index">05</span><h3>Situational<br>Leadership</h3><p class="portal-hook" data-en="Same destination. Different conditions. Different response." data-lt="Tas pats tikslas. Kitos sąlygos. Kitas atsakas.">Same destination. Different conditions. Different response.</p><a class="portal-enter" href="/tools/situational-leadership/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual"><div class="sit"><div class="wind"><i></i><i></i><i></i></div><div class="horizon"></div><div class="boat"><div class="mast"></div><div class="sail"></div><div class="hull"></div></div><div class="goal"></div></div></div>
+        </article>
+
+        <article class="portal-card" id="karpman">
+          <div class="portal-copy"><span class="portal-index">06</span><h3>Drama<br>Triangle</h3><p class="portal-hook" data-en="What role do you slip into when tension rises?" data-lt="Į kokį vaidmenį nuslysti, kai kyla įtampa?">What role do you slip into when tension rises?</p><a class="portal-enter" href="/tools/drama-triangle/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual"><div class="drama"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 13 L13 82 L87 82 Z" fill="none" stroke="rgba(72,138,159,.62)" stroke-width="1.1"/></svg><i class="dnode dn1"></i><i class="dnode dn2"></i><i class="dnode dn3"></i></div></div>
+        </article>
+
+        <article class="portal-card" id="strategic-thinking">
+          <div class="portal-copy"><span class="portal-index">07</span><h3>Strategic<br>Thinking</h3><p class="portal-hook" data-en="Wider. Different. Again." data-lt="Plačiau. Kitaip. Dar kartą.">Wider. Different. Again.</p><a class="portal-enter" href="/tools/strategic-thinking/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual"><div class="strategic"><div class="str-world"><div class="str-panel sp1"></div><div class="str-panel sp2"></div><div class="str-panel sp3"></div></div><div class="str-frame"></div><div class="str-label"><span class="sl1" data-en="WIDER" data-lt="PLAČIAU">WIDER</span><span class="sl2" data-en="DIFFERENT" data-lt="KITAIP">DIFFERENT</span><span class="sl3" data-en="AGAIN" data-lt="DAR KARTĄ">AGAIN</span></div></div></div>
+        </article>
+
+        <div class="build-divider"><p class="kicker help-build-label" data-en="HELP TO BUILD" data-lt="PADĖK KURTI">HELP TO BUILD</p><h3 data-en="The unfinished ones." data-lt="Tie, kurie dar kuriami.">The unfinished ones.</h3></div>
+
+        <article class="portal-card" id="2pair">
+          <div class="portal-copy"><span class="portal-index">08</span><h3>2Pair</h3><p class="portal-hook" data-en="Two valid choices. What do you reach for first?" data-lt="Du lygiaverčiai pasirinkimai. Kurį renkiesi pirmiausia?">Two valid choices. What do you reach for first?</p><a class="portal-enter" href="/tools/2pair/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual"><div class="pair"><div class="choice a">A</div><div class="pair-mid"></div><div class="choice b">B</div></div></div>
+        </article>
+
+        <article class="portal-card" id="workstyle">
+          <div class="portal-copy"><span class="portal-index">09</span><h3>WorkStyle</h3><p class="portal-hook" data-en="Different routes can still reach the same result." data-lt="Skirtingi keliai vis tiek gali nuvesti į tą patį rezultatą.">Different routes can still reach the same result.</p><a class="portal-enter" href="/tools/workstyle15/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual"><div class="work"><svg viewBox="0 0 100 100" aria-hidden="true"><path class="route ra" pathLength="1" d="M5 50 C25 50 27 24 50 24 C74 24 75 50 95 50"/><path class="route rb" pathLength="1" d="M5 50 C25 50 27 76 50 76 C74 76 75 50 95 50"/></svg><div class="start"></div><div class="rock"></div><div class="finish"></div><i class="trav ta"></i><i class="trav tb"></i></div></div>
         </article>
       </div>
     </section>
 
-    <section class="manifesto" aria-label="2rasi philosophy">
-      <div class="manifesto-word" aria-hidden="true">LOOK</div>
-      <div class="manifesto-copy reveal">
-        <p>Familiar first.</p>
-        <p>Unexpected second.</p>
-        <p>Meaning third.</p>
-      </div>
-    </section>
+    <section class="manifesto" aria-label="2rasi philosophy"><div class="manifesto-word" aria-hidden="true">LOOK</div><div class="manifesto-copy reveal"><p>Familiar first.</p><p>Unexpected second.</p><p>Meaning third.</p></div></section>
 
-    <section id="about" class="about section-shell">
-      <div class="about-copy reveal">
-        <p class="kicker">ABOUT</p>
-        <p class="about-lead">2rasi is a place for experiments in perception, choice and reflection.</p>
-        <p>Some begin with psychology. Some with work. Some with ordinary things we stopped noticing.</p>
-        <p class="question">What happens if we look again?</p>
-      </div>
-    </section>
+    <section id="about" class="about section-shell"><div class="about-copy reveal"><p class="kicker">ABOUT</p><p class="about-lead">2rasi is a place for experiments in perception, choice and reflection.</p><p>Some begin with psychology. Some with work. Some with ordinary things we stopped noticing.</p><p class="question">What happens if we look again?</p></div></section>
   </main>
 
-  <footer>
-    <div>
-      <strong>2rasi</strong>
-      <span>© 2026</span>
-    </div>
-    <div class="footer-links">
-      <a href="mailto:hello@2rasi.com">hello@2rasi.com</a>
-      <a href="https://2rasi.com">2rasi.com</a>
-    </div>
-  </footer>
+  <footer><div><strong>2rasi</strong><span>© 2026</span></div><div class="footer-links"><a href="mailto:hello@2rasi.com">hello@2rasi.com</a><a href="https://2rasi.com">2rasi.com</a></div></footer>
 
   <script src="i18n.js?v=20260825-pazvelk"></script>
-  <script>
-    (() => {
-      const syncSeoAndHelp = () => {
-        const lt = document.documentElement.lang === 'lt';
-        document.title = lt
-          ? '2rasi — Savirefleksijos ir vadovavimo įrankiai'
-          : '2rasi — Self-reflection & leadership tools';
-        const description = document.querySelector('meta[name="description"]');
-        if (description) description.content = lt
-          ? 'Savirefleksijos, vadovavimo ir mąstymo įrankiai, padedantys pažvelgti į savo elgesio modelius kitu kampu.'
-          : 'Self-reflection, leadership and thinking tools for seeing your patterns from another angle.';
-        const help = document.querySelector('.help-build-label');
-        if (help) help.textContent = lt ? 'PADĖK KURTI' : 'HELP TO BUILD';
-
-        ['multipliers', 'divergent', 'karpman'].forEach(id => {
-          const state = document.querySelector(`#${id} .experiment-state`);
-          if (state) state.textContent = lt ? 'Veikia · EN/LT' : 'Live · EN/LT';
-        });
-
-        const routes = {
-          multipliers: lt
-            ? '/tools/multipliers/run/'
-            : '/tools/multipliers/run/en/',
-          divergent: lt
-            ? '/tools/divergent/run/'
-            : '/tools/divergent/run/en/',
-          karpman: lt
-            ? '/tools/drama-triangle/run/'
-            : '/tools/drama-triangle/run/en/'
-        };
-        document.querySelectorAll('[data-en-legacy]').forEach(link => {
-          const key = link.getAttribute('data-en-legacy');
-          if (routes[key]) link.href = routes[key];
-          link.target = '_self';
-          link.removeAttribute('rel');
-        });
-
-        document.querySelectorAll('.experiment-actions a[href^="/tools/"]').forEach(link => {
-          link.target = '_self';
-          link.removeAttribute('rel');
-          const arrow = link.querySelector('span');
-          if (arrow && arrow.textContent.trim() === '↗') arrow.textContent = '→';
-        });
-      };
-      syncSeoAndHelp();
-      requestAnimationFrame(syncSeoAndHelp);
-    })();
-  </script>
+  <script src="visual-home.js?v=20260827-1"></script>
   <script src="drop-webgl.js?v=20260816-1145"></script>
   <script src="script.js?v=20260816-1145"></script>
 </body>
