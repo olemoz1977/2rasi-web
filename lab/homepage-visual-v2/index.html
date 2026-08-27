@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#dbeaf0" />
+  <title>2rasi · homepage visual integration lab v2</title>
+  <link rel="icon" href="../../assets/logo-2.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../styles.css?v=20260821-1910" />
+  <link rel="stylesheet" href="../../hero.css?v=20260825-pazvelk" />
+  <link rel="stylesheet" href="../../hero-landscape.css?v=20260816-1145" />
+  <link rel="stylesheet" href="../../semantic-reveal.css?v=20260816-1145" />
+  <style>
+    :root{--ink:#071b2e;--soft:rgba(7,27,46,.64);--glass:rgba(238,249,252,.25);--line:rgba(255,255,255,.52)}
+    .visual-experiments{position:relative;padding:88px 0 120px;background:linear-gradient(180deg,rgba(221,239,244,.12),rgba(179,208,217,.18));overflow:hidden}
+    .visual-experiments::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(239,248,250,.08),rgba(4,37,54,.08)),url("../../assets/hero-2rasi.webp") center/cover fixed no-repeat;opacity:.8;pointer-events:none}
+    .visual-shell{position:relative;z-index:1;width:min(100% - 28px,1040px);margin:0 auto}.visual-intro{padding:0 10px 34px}.visual-intro .kicker{margin-bottom:10px}.visual-intro h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.055em;line-height:.94;font-size:clamp(3rem,9vw,6.8rem);margin:0;color:var(--ink)}
+    .portal-card{position:relative;min-height:76svh;margin:0 0 22px;border:1px solid var(--line);border-radius:32px;background:linear-gradient(150deg,rgba(249,254,255,.36),rgba(201,226,233,.14));backdrop-filter:blur(18px) saturate(1.06);-webkit-backdrop-filter:blur(18px) saturate(1.06);box-shadow:0 28px 76px rgba(4,31,48,.17);overflow:hidden;display:grid;grid-template-columns:1.02fr .98fr}
+    .portal-copy{padding:clamp(28px,5vw,64px);display:flex;flex-direction:column;justify-content:center}.portal-index{font-size:.65rem;letter-spacing:.2em;opacity:.42}.portal-card h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.055em;line-height:.9;font-size:clamp(3.5rem,8vw,7rem);margin:20px 0 16px}.portal-hook{font-size:clamp(1rem,2vw,1.3rem);line-height:1.45;max-width:450px;color:var(--soft);margin:0}.portal-enter{align-self:flex-start;margin-top:28px;padding:12px 18px;border:1px solid rgba(7,27,46,.23);border-radius:999px;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;background:rgba(255,255,255,.2);transition:transform .2s ease,background .2s ease}.portal-enter:hover{transform:translateY(-2px);background:rgba(255,255,255,.34)}
+    .card-visual{position:relative;min-height:390px;display:grid;place-items:center;overflow:hidden;touch-action:manipulation}.card-visual::after{content:"";position:absolute;left:12%;right:12%;bottom:16%;height:17%;border-radius:50%;background:radial-gradient(ellipse,rgba(2,54,78,.2),transparent 68%);filter:blur(14px)}
+
+    /* Mirror v2: the object is secondary; the reflection carries the meaning. */
+    #visual-mirror .card-visual::after{display:none}
+    .mirror-stage{position:relative;width:min(390px,78vw);height:min(440px,54svh);min-height:330px;overflow:hidden}
+    .mirror-surface{position:absolute;z-index:5;left:8%;right:8%;top:35%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.96) 18%,rgba(58,130,151,.52) 50%,rgba(255,255,255,.96) 82%,transparent);box-shadow:0 0 12px rgba(255,255,255,.48)}
+    .mirror-object{position:absolute;z-index:6;left:50%;top:8%;width:68px;height:112px;transform:translateX(-50%) rotate(-4deg);clip-path:polygon(43% 0,82% 12%,100% 48%,74% 100%,24% 92%,0 53%,15% 16%);background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(190,226,236,.34) 40%,rgba(26,93,118,.2));border:1px solid rgba(255,255,255,.76);filter:drop-shadow(0 16px 24px rgba(3,43,61,.16));opacity:.88}
+    .mirror-object::before{content:"";position:absolute;inset:8% 16% 18% 18%;clip-path:polygon(38% 0,100% 16%,82% 100%,0 72%);background:linear-gradient(130deg,rgba(255,255,255,.54),rgba(255,255,255,0));opacity:.7}
+    .mirror-reflection{position:absolute;z-index:3;left:50%;top:35%;width:184px;height:245px;transform:translateX(-50%) scaleY(1.02) skewX(-3deg);transform-origin:50% 0;clip-path:polygon(37% 0,80% 5%,100% 31%,88% 76%,59% 100%,19% 90%,0 56%,11% 17%);background:linear-gradient(180deg,rgba(228,247,251,.42),rgba(53,126,149,.24) 26%,rgba(10,58,82,.38) 72%,rgba(7,39,57,.12));border-left:1px solid rgba(255,255,255,.34);border-right:1px solid rgba(255,255,255,.18);filter:blur(.6px) saturate(.9);opacity:.72;box-shadow:inset 20px 0 40px rgba(255,255,255,.08)}
+    .mirror-reflection::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.17) 0 2px,rgba(255,255,255,0) 2px 18px);mix-blend-mode:screen;opacity:.55}
+    .mirror-reflection::after{content:"";position:absolute;left:18%;right:10%;top:12%;height:68%;background:linear-gradient(125deg,rgba(255,255,255,.23),transparent 48%);clip-path:polygon(10% 0,100% 9%,78% 100%,0 75%);opacity:.5}
+    .mirror-ripple{position:absolute;z-index:4;left:50%;top:35%;width:110px;height:22px;border:1.5px solid rgba(73,153,176,.58);border-radius:50%;transform:translate(-50%,-50%) scale(.2);opacity:0}
+    .mirror-glint{position:absolute;z-index:4;left:50%;top:43%;width:150px;height:180px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);filter:blur(7px);opacity:.08}
+
+    .mult-stage{position:relative;width:min(370px,76vw);aspect-ratio:1}.mult-main{position:absolute;z-index:4;left:50%;top:11%;width:82px;aspect-ratio:1;border-radius:50%;transform:translateX(-50%);background:radial-gradient(circle at 33% 24%,rgba(255,255,255,.95),rgba(157,207,219,.28) 36%,rgba(7,55,76,.32));border:1px solid rgba(255,255,255,.7);box-shadow:0 18px 40px rgba(3,39,57,.18)}.mult-ring{position:absolute;z-index:2;left:50%;top:62%;width:84px;height:25px;border:2px solid rgba(75,154,176,.7);border-radius:50%;transform:translate(-50%,-50%) scale(.2);opacity:0}.mult-orb{position:absolute;z-index:3;width:48px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 26%,rgba(255,255,255,.88),rgba(79,136,157,.36));border:1px solid rgba(255,255,255,.58);opacity:.38}.mult-orb.a{left:8%;bottom:11%}.mult-orb.b{left:43%;bottom:1%}.mult-orb.c{right:7%;bottom:14%}
+    .triangle{position:relative;width:min(340px,68vw);aspect-ratio:1}.triangle svg{position:absolute;z-index:1;inset:0;width:100%;height:100%;opacity:.38}.triangle path{stroke-dasharray:190;stroke-dashoffset:190}.tri-node{position:absolute;z-index:3;width:84px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 32% 24%,rgba(255,255,255,.92),rgba(164,207,219,.28) 35%,rgba(7,54,76,.25));border:1px solid rgba(255,255,255,.65);box-shadow:0 18px 38px rgba(4,40,58,.16)}.tri-node.n1{left:50%;top:8%;transform:translateX(-50%)}.tri-node.n2{left:8%;bottom:8%}.tri-node.n3{right:8%;bottom:8%}.triangle::after{content:"";position:absolute;left:50%;top:55%;width:42px;aspect-ratio:1;border:2px solid rgba(67,139,160,.6);border-radius:50%;transform:translate(-50%,-50%) scale(.25);opacity:0}
+    .lab-note{position:relative;z-index:1;width:min(100% - 36px,920px);margin:18px auto 0;padding:18px 20px;border-top:1px solid rgba(7,27,46,.14);font-size:.78rem;line-height:1.5;color:rgba(7,27,46,.56)}
+
+    @media(max-width:720px){
+      .visual-experiments{padding-top:58px}.visual-intro{padding:0 8px 24px}.visual-intro h2{font-size:clamp(3rem,15vw,5rem)}.portal-card{min-height:74svh;grid-template-columns:1fr;border-radius:27px}.portal-copy{padding:27px 27px 8px}.portal-card h3{font-size:clamp(3.15rem,15vw,5rem);margin:14px 0 10px}.portal-hook{font-size:1rem}.portal-enter{margin-top:20px}.card-visual{min-height:300px}
+      .mirror-stage{width:290px;height:330px;min-height:0}.mirror-object{width:48px;height:82px;top:7%}.mirror-surface{top:33%}.mirror-reflection{top:33%;width:148px;height:208px}.mirror-ripple{top:33%;width:92px}.mirror-glint{top:39%;width:120px;height:160px}
+      .mult-stage{width:290px}.mult-main{width:66px}.mult-orb{width:38px}.triangle{width:255px}.tri-node{width:66px}
+    }
+    @media(max-height:720px) and (max-width:720px){.portal-card{min-height:82svh}.portal-copy{padding-top:22px}.portal-card h3{font-size:clamp(2.8rem,14vw,4.3rem)}.card-visual{min-height:255px}.mirror-stage{height:285px;width:260px}.mirror-reflection{height:174px;width:132px}.mirror-object{width:42px;height:70px}}
+
+    @media(prefers-reduced-motion:no-preference){
+      .portal-card.in-view .mirror-object{animation:mirrorObject 6s ease-in-out infinite}.portal-card.in-view .mirror-reflection{animation:mirrorReflection 6s cubic-bezier(.42,0,.18,1) infinite}.portal-card.in-view .mirror-ripple{animation:mirrorRipple 6s ease-out infinite}.portal-card.in-view .mirror-glint{animation:mirrorGlint 6s ease-in-out infinite}
+      @keyframes mirrorObject{0%,18%,100%{transform:translateX(-50%) rotate(-4deg)}48%{transform:translateX(-50%) rotate(-2deg)}68%{transform:translateX(-50%) rotate(-5deg)}}
+      @keyframes mirrorReflection{0%,16%,100%{transform:translateX(-50%) scaleY(1.02) skewX(-3deg);clip-path:polygon(37% 0,80% 5%,100% 31%,88% 76%,59% 100%,19% 90%,0 56%,11% 17%);opacity:.64;filter:blur(.8px) saturate(.86)}36%{transform:translateX(-50%) scaleY(1.17) skewX(7deg);clip-path:polygon(26% 0,72% 4%,100% 20%,82% 61%,96% 83%,55% 100%,13% 88%,0 48%,18% 21%);opacity:.94;filter:blur(.25px) contrast(1.07) saturate(.95)}58%{transform:translateX(-50%) scaleY(.94) skewX(-8deg);clip-path:polygon(42% 0,88% 8%,92% 34%,100% 59%,69% 96%,31% 100%,5% 76%,0 38%,17% 12%);opacity:.82;filter:blur(.5px) contrast(1.04)}78%{transform:translateX(-50%) scaleY(1.08) skewX(2deg);clip-path:polygon(34% 0,78% 5%,100% 30%,90% 73%,60% 100%,17% 91%,0 55%,12% 18%);opacity:.72;filter:blur(.7px)}}
+      @keyframes mirrorRipple{0%,23%,100%{transform:translate(-50%,-50%) scale(.2);opacity:0}32%{opacity:.82}57%{transform:translate(-50%,-50%) scale(3.2,2.1);opacity:0}}
+      @keyframes mirrorGlint{0%,18%,100%{transform:translateX(-50%) translateX(-22px);opacity:.04}38%{transform:translateX(-50%) translateX(24px);opacity:.34}62%{transform:translateX(-50%) translateX(-12px);opacity:.14}}
+
+      .portal-card.in-view .mult-main{animation:multImpact 5.3s cubic-bezier(.42,0,.18,1) infinite}.portal-card.in-view .mult-ring{animation:multRing 5.3s ease-out infinite}.portal-card.in-view .mult-orb.a{animation:growA 5.3s ease-in-out infinite}.portal-card.in-view .mult-orb.b{animation:growB 5.3s ease-in-out infinite}.portal-card.in-view .mult-orb.c{animation:growC 5.3s ease-in-out infinite}
+      @keyframes multImpact{0%,14%,100%{transform:translateX(-50%) translateY(0) scale(1)}36%{transform:translateX(-50%) translateY(114px) scale(.88,1.1)}44%{transform:translateX(-50%) translateY(102px) scale(1.08,.88)}58%{transform:translateX(-50%) translateY(12px) scale(1)}}@keyframes multRing{0%,34%{transform:translate(-50%,-50%) scale(.2);opacity:0}43%{opacity:.9}68%{transform:translate(-50%,-50%) scale(4.1,2.2);opacity:0}100%{opacity:0}}@keyframes growA{0%,42%,100%{transform:translateY(0) scale(1);opacity:.38}58%{transform:translateY(-24px) scale(1.82);opacity:1}77%{transform:translateY(-5px) scale(1.22);opacity:.68}}@keyframes growB{0%,48%,100%{transform:translateY(0) scale(1);opacity:.38}64%{transform:translateY(-31px) scale(1.95);opacity:1}83%{transform:translateY(-6px) scale(1.25);opacity:.68}}@keyframes growC{0%,54%,100%{transform:translateY(0) scale(1);opacity:.38}70%{transform:translateY(-22px) scale(1.75);opacity:1}89%{transform:translateY(-4px) scale(1.2);opacity:.68}}
+
+      .portal-card.in-view .triangle path{animation:triTrace 6s ease-in-out infinite}.portal-card.in-view .triangle::after{animation:triPulse 6s ease-out infinite}.portal-card.in-view .tri-node.n1{animation:triOne 6s cubic-bezier(.45,0,.2,1) infinite}.portal-card.in-view .tri-node.n2{animation:triTwo 6s cubic-bezier(.45,0,.2,1) infinite}.portal-card.in-view .tri-node.n3{animation:triThree 6s cubic-bezier(.45,0,.2,1) infinite}
+      @keyframes triOne{0%,15%,100%{transform:translateX(-50%) translateY(0)}38%{transform:translateX(-50%) translateY(34px) scale(1.1)}58%{transform:translate(30%,-5%) scale(.92)}76%{transform:translate(-115%,132%) scale(1.02)}}@keyframes triTwo{0%,15%,100%{transform:translate(0,0)}38%{transform:translate(34px,-25px) scale(1.1)}58%{transform:translate(190px,-152px) scale(1.02)}76%{transform:translate(98px,4px) scale(.94)}}@keyframes triThree{0%,15%,100%{transform:translate(0,0)}38%{transform:translate(-34px,-25px) scale(1.1)}58%{transform:translate(-104px,5px) scale(.94)}76%{transform:translate(-190px,-152px) scale(1.02)}}@keyframes triTrace{0%,12%,100%{stroke-dashoffset:190;opacity:.18}38%,72%{stroke-dashoffset:0;opacity:.66}86%{opacity:.25}}@keyframes triPulse{0%,28%,100%{transform:translate(-50%,-50%) scale(.25);opacity:0}42%{transform:translate(-50%,-50%) scale(1);opacity:.85}68%{transform:translate(-50%,-50%) scale(2.1);opacity:0}}
+    }
+    @media(prefers-reduced-motion:reduce){.mirror-reflection{opacity:.82;filter:blur(.5px)}.triangle path{stroke-dashoffset:0}.mult-orb{opacity:.72}}
+  </style>
+</head>
+<body>
+  <header class="site-header" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="2rasi home">2rasi</a>
+    <nav>
+      <a href="#experiments">Experiments</a>
+      <a href="#about">About</a>
+      <a class="language-switch" href="https://2rasi.lt" aria-label="Perjungti į lietuvių kalbą">LT</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="top" class="hero" aria-labelledby="hero-title">
+      <div class="hero-image" aria-hidden="true"></div>
+      <div class="veil" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">A small shift can change the view</p>
+        <h1 id="hero-title">Look again.</h1>
+        <p class="hero-sub">Tools and experiments for seeing things differently.</p>
+      </div>
+      <div class="perception-stage" aria-label="Interactive perception experiment">
+        <span class="base-word" aria-hidden="true">OBSERVE</span>
+        <span class="notice-word" aria-hidden="true">NOTICE</span>
+        <button class="lens" type="button" aria-label="Move the lens to reveal another view"></button>
+        <p class="hint">Move · look · notice</p>
+      </div>
+      <button class="scroll-cue" type="button" aria-label="Explore experiments"><span></span></button>
+      <div class="ripple ripple-a" aria-hidden="true"></div>
+      <div class="ripple ripple-b" aria-hidden="true"></div>
+    </section>
+
+    <section id="experiments" class="visual-experiments" aria-labelledby="visual-title">
+      <div class="visual-shell">
+        <div class="visual-intro">
+          <p class="kicker" data-en="EXPERIMENTS" data-lt="EKSPERIMENTAI">EXPERIMENTS</p>
+          <h2 id="visual-title" data-en="Choose what pulls you in." data-lt="Pasirink, kas užkabina.">Choose what pulls you in.</h2>
+        </div>
+
+        <article class="portal-card" id="visual-mirror">
+          <div class="portal-copy"><span class="portal-index">01</span><h3>Mirror</h3><p class="portal-hook" data-en="What changes when you look again?" data-lt="Kas pasikeičia, kai pažvelgi dar kartą?">What changes when you look again?</p><a class="portal-enter" href="/tools/mirror/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual" aria-hidden="true"><div class="mirror-stage"><div class="mirror-object"></div><div class="mirror-surface"></div><div class="mirror-reflection"></div><div class="mirror-ripple"></div><div class="mirror-glint"></div></div></div>
+        </article>
+
+        <article class="portal-card" id="visual-multipliers">
+          <div class="portal-copy"><span class="portal-index">02</span><h3>Multipliers</h3><p class="portal-hook" data-en="What does your presence unlock in others?" data-lt="Ką tavo buvimas pažadina kituose?">What does your presence unlock in others?</p><a class="portal-enter" href="/tools/multipliers/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual" aria-hidden="true"><div class="mult-stage"><div class="mult-main"></div><div class="mult-ring"></div><i class="mult-orb a"></i><i class="mult-orb b"></i><i class="mult-orb c"></i></div></div>
+        </article>
+
+        <article class="portal-card" id="visual-drama">
+          <div class="portal-copy"><span class="portal-index">03</span><h3>Drama<br>Triangle</h3><p class="portal-hook" data-en="What role do you slip into when tension rises?" data-lt="Į kokį vaidmenį nuslysti, kai kyla įtampa?">What role do you slip into when tension rises?</p><a class="portal-enter" href="/tools/drama-triangle/" data-en="Enter" data-lt="Įeiti">Enter</a></div>
+          <div class="card-visual" aria-hidden="true"><div class="triangle"><svg viewBox="0 0 100 100"><path d="M50 13 L13 82 L87 82 Z" fill="none" stroke="rgba(72,138,159,.62)" stroke-width="1.1"/></svg><i class="tri-node n1"></i><i class="tri-node n2"></i><i class="tri-node n3"></i></div></div>
+        </article>
+      </div>
+      <p class="lab-note" data-en="Integration lab only. The live homepage and tool pages are unchanged." data-lt="Tik integracijos laboratorija. Gyvas pagrindinis puslapis ir įrankių puslapiai nepakeisti.">Integration lab only. The live homepage and tool pages are unchanged.</p>
+    </section>
+
+    <section id="about" class="about section-shell">
+      <div class="about-copy reveal">
+        <p class="kicker">ABOUT</p>
+        <p class="about-lead">2rasi is a place for experiments in perception, choice and reflection.</p>
+        <p>Some begin with psychology. Some with work. Some with ordinary things we stopped noticing.</p>
+        <p class="question">What happens if we look again?</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>2rasi</strong><span>© 2026</span></div>
+    <div class="footer-links"><a href="mailto:hello@2rasi.com">hello@2rasi.com</a><a href="https://2rasi.com">2rasi.com</a></div>
+  </footer>
+
+  <script src="../../i18n.js?v=20260825-pazvelk"></script>
+  <script>
+    (()=>{
+      const lang=(location.hostname==='2rasi.lt'||location.hostname.endsWith('.2rasi.lt'))?'lt':'en';
+      document.querySelectorAll('[data-'+lang+']').forEach(el=>{el.textContent=el.dataset[lang]});
+      const observer=new IntersectionObserver(entries=>entries.forEach(entry=>entry.target.classList.toggle('in-view',entry.isIntersecting)),{threshold:.42});
+      document.querySelectorAll('.portal-card').forEach(card=>observer.observe(card));
+      document.querySelectorAll('.card-visual').forEach(visual=>visual.addEventListener('click',()=>{const card=visual.closest('.portal-card');card.classList.remove('in-view');void card.offsetWidth;card.classList.add('in-view')}));
+    })();
+  </script>
+  <script src="../../drop-webgl.js?v=20260816-1145"></script>
+  <script src="../../script.js?v=20260816-1145"></script>
+</body>
+</html>
