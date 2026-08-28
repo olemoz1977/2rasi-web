@@ -4,6 +4,5 @@ window.WORKSTYLE_V07_INTAKE = Object.freeze({
   storageKey: 'workstyle-v07-cognitive-session-e',
   expectedResponses: 34,
   requestTimeoutMs: 15000,
-  autosavePollMs: 200,
-  privacyText: 'Pradėjus pilotą, atsakymai, pažymėti neaiškumai ir aktyvus atsakymo laikas automatiškai perduodami tyrimo analizei. Saugomos ir nebaigtos sesijos. Vardo, el. pašto ar darbdavio neprašome.'
+  privacyText: 'Jei pasirinksi pateikti piloto duomenis, atsakymai, pažymėti neaiškumai ir aktyvus atsakymo laikas bus perduoti tyrimo analizei. Vardo, el. pašto ar darbdavio neprašome.'
 });
