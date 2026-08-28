@@ -52,6 +52,7 @@ function summarize(payload) {
     ? payload.timingMs
     : {};
 
+  let answered = 0;
   let unclear = 0;
   let duplicate = 0;
   let context = 0;
@@ -59,6 +60,7 @@ function summarize(payload) {
 
   for (const response of Object.values(responses)) {
     if (!response || typeof response !== "object") continue;
+    if (response.kind) answered += 1;
     if (response.unclear) unclear += 1;
     if (response.duplicate) duplicate += 1;
     if (response.kind === "context") context += 1;
@@ -78,7 +80,7 @@ function summarize(payload) {
     : {};
 
   return {
-    answered: Object.keys(responses).length,
+    answered,
     activeMs,
     breakMs,
     unclear,
@@ -185,6 +187,13 @@ export default {
           context_count=excluded.context_count,
           na_count=excluded.na_count,
           payload_json=excluded.payload_json
+        WHERE
+          excluded.answered > workstyle_sessions.answered
+          OR (
+            excluded.answered = workstyle_sessions.answered
+            AND COALESCE(CAST(json_extract(excluded.payload_json, '$.autosaveSeq') AS INTEGER), 0)
+                >= COALESCE(CAST(json_extract(workstyle_sessions.payload_json, '$.autosaveSeq') AS INTEGER), 0)
+          )
       `).bind(
         sessionId,
         receivedAt,
@@ -208,6 +217,6 @@ export default {
       return json({ ok: false, error: "storage_failed" }, 500, origin);
     }
 
-    return json({ ok: true, sessionId, receivedAt }, 201, origin);
+    return json({ ok: true, sessionId, receivedAt, answered: summary.answered }, 201, origin);
   },
 };
