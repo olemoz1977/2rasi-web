@@ -21,7 +21,7 @@
   submitBtn.type = 'button';
   submitBtn.id = 'submitPilotBtn';
   submitBtn.className = 'ws-button primary';
-  submitBtn.textContent = 'Pateikti piloto duomenis';
+  submitBtn.textContent = 'Baigti ir pateikti piloto duomenis';
   actions.insertBefore(submitBtn, exportBtn);
 
   const status = document.createElement('p');
@@ -29,7 +29,7 @@
   status.className = 'ws-small';
   status.setAttribute('role', 'status');
   status.setAttribute('aria-live', 'polite');
-  status.textContent = 'Pateikimas nėra automatinis: duomenys siunčiami tik paspaudus šį mygtuką.';
+  status.textContent = 'Pilotas baigiamas tik pateikus sesiją. JSON atsisiuntimas paliktas kaip atsarginė kopija.';
   actions.insertAdjacentElement('afterend', status);
 
   if (details && cfg.privacyText) {
