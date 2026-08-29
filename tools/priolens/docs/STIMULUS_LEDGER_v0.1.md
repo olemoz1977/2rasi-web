@@ -25,7 +25,7 @@ Rules:
 | Direction | Slot 1 | Slot 2 | State |
 |---|---|---|---|
 | AUT | missing | missing | **0/2** |
-| CER | missing | missing | **0/2** |
+| CER | `4650` transparent container with fully visible neutral contents | missing | **1/2 provisional** |
 | EXP | `3098` forest road | `4649` opening unknown drawer contents | **2/2 provisional** |
 | MAS | `4635` precision caliper | `4636` potter | **2/2 PASS** |
 | CON | `4646` reciprocal dyadic conversation | `2624` small-group belonging | **2/2 provisional** |
@@ -33,11 +33,11 @@ Rules:
 | PRO | `2723` wet umbrella | `4645` horizontal wine glass in foam case | **2/2 provisional** |
 | OPP | `4637` productive greenhouse | `4638` prepared food table | **2/2 provisional** |
 
-Strict candidate count: **12/16 occupied; 4 remain open.**
+Strict candidate count: **13/16 occupied; 3 remain open.**
 
 Open slots:
 
-- CER: 2
+- CER: 1
 - AUT: 2
 
 ## Current candidate decisions
@@ -174,13 +174,22 @@ Other CON candidates:
 
 ### CER
 
-Rejected families:
+#### `4650` transparent container with fully visible neutral contents
+- Semantic: `PROVISIONAL PASS`.
+- Why: all contents are directly visible and identifiable at once; the scene supports knowing what is present without opening, searching or guessing.
+- Nearest neighbours: CER > EXP because no unknown content is being approached or revealed; CER > OPP because the contents are deliberately neutral and not visibly valuable; PRO is weak because the container is not functioning as impact/safety protection.
+- Confound: moderate organization/storage reading. This must be challenged in full-set audit because the scene can also evoke tidy storage, but visible-state clarity is currently the stronger intended signal.
+- Disposition: **KEEP / CER-1 PROVISIONAL PASS**.
+
+Rejected CER families:
 - `2722` eyeglasses on printed material: reading/vision/intellect, not certainty.
 - organized shelf with labels: order/organization + text confound.
 - measuring vessels/level gauges: scales/numbers + MAS/numeracy confound.
 - question mark / redacted document / foggy crossroads / old map: previously rejected in reconciliation audit.
+- `2621` person facing rainy window: `FAIL`; waiting/uncertainty/introspection dominates.
+- `2620` dark inactive phone: `FAIL`; absence/waiting/unknown state dominates rather than clarity.
 
-**CER remains 0/2.**
+**CER remains 1/2. Need one conceptually independent visible-certainty family.**
 
 ### AUT
 
