@@ -1,0 +1,88 @@
+{
+  "schema": "2rasi.priolens.stimuli.v0.1",
+  "status": "PENDING_STIMULUS_FREEZE",
+  "direction_count": 8,
+  "exemplars_per_direction": 2,
+  "directions": [
+    {
+      "id": "connection",
+      "label_en": "Connection",
+      "label_lt": "Ryšio poreikis",
+      "construct_status": "WORKING_LABEL_NOT_VALIDATED_NEED",
+      "stimuli": [
+        {"id": "connection-01", "asset": null, "asset_hash": null, "status": "PENDING"},
+        {"id": "connection-02", "asset": null, "asset_hash": null, "status": "PENDING"}
+      ]
+    },
+    {
+      "id": "opportunity",
+      "label_en": "Opportunity",
+      "label_lt": "Galimybių trauka",
+      "construct_status": "WORKING_LABEL_NOT_VALIDATED_NEED",
+      "stimuli": [
+        {"id": "opportunity-01", "asset": null, "asset_hash": null, "status": "PENDING"},
+        {"id": "opportunity-02", "asset": null, "asset_hash": null, "status": "PENDING"}
+      ]
+    },
+    {
+      "id": "certainty",
+      "label_en": "Certainty",
+      "label_lt": "Aiškumo poreikis",
+      "construct_status": "WORKING_LABEL_NOT_VALIDATED_NEED",
+      "stimuli": [
+        {"id": "certainty-01", "asset": null, "asset_hash": null, "status": "PENDING"},
+        {"id": "certainty-02", "asset": null, "asset_hash": null, "status": "PENDING"}
+      ]
+    },
+    {
+      "id": "exploration",
+      "label_en": "Exploration",
+      "label_lt": "Tyrinėjimo trauka",
+      "construct_status": "WORKING_LABEL_NOT_VALIDATED_NEED",
+      "stimuli": [
+        {"id": "exploration-01", "asset": null, "asset_hash": null, "status": "PENDING"},
+        {"id": "exploration-02", "asset": null, "asset_hash": null, "status": "PENDING"}
+      ]
+    },
+    {
+      "id": "autonomy",
+      "label_en": "Autonomy",
+      "label_lt": "Pasirinkimo laisvės poreikis",
+      "construct_status": "WORKING_LABEL_NOT_VALIDATED_NEED",
+      "stimuli": [
+        {"id": "autonomy-01", "asset": null, "asset_hash": null, "status": "PENDING"},
+        {"id": "autonomy-02", "asset": null, "asset_hash": null, "status": "PENDING"}
+      ]
+    },
+    {
+      "id": "influence",
+      "label_en": "Influence",
+      "label_lt": "Poveikio siekis",
+      "construct_status": "WORKING_LABEL_NOT_VALIDATED_NEED",
+      "stimuli": [
+        {"id": "influence-01", "asset": null, "asset_hash": null, "status": "PENDING"},
+        {"id": "influence-02", "asset": null, "asset_hash": null, "status": "PENDING"}
+      ]
+    },
+    {
+      "id": "mastery",
+      "label_en": "Mastery",
+      "label_lt": "Meistriškumo siekis",
+      "construct_status": "WORKING_LABEL_NOT_VALIDATED_NEED",
+      "stimuli": [
+        {"id": "mastery-01", "asset": null, "asset_hash": null, "status": "PENDING"},
+        {"id": "mastery-02", "asset": null, "asset_hash": null, "status": "PENDING"}
+      ]
+    },
+    {
+      "id": "protection",
+      "label_en": "Protection",
+      "label_lt": "Apsaugos poreikis",
+      "construct_status": "WORKING_LABEL_NOT_VALIDATED_NEED",
+      "stimuli": [
+        {"id": "protection-01", "asset": null, "asset_hash": null, "status": "PENDING"},
+        {"id": "protection-02", "asset": null, "asset_hash": null, "status": "PENDING"}
+      ]
+    }
+  ]
+}
