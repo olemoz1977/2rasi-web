@@ -148,6 +148,19 @@ Earlier rejected INF attempts:
 - Problem: locking vs unlocking is not visible, so protection vs access remains unresolved.
 - Disposition: **RESERVE only**.
 
+#### `4642` white object in foam case
+- Direction attempted: PRO.
+- Semantic: `FAIL`.
+- Problem: protected object is not clearly recognizable as fragile; foam geometry looks arbitrary/unrealistic, so the viewer must infer what is being protected and why.
+- Disposition: **REJECT**.
+
+#### `4644` upright wine glass in open hard case
+- Direction attempted: PRO.
+- Semantic concept: PRO is legible, but image-level physical realism fails.
+- Fatal issue: the wine glass protrudes far above the lower foam and is not supported around the bowl/stem; the case could not plausibly close without contacting or breaking the glass.
+- Disposition: **REJECT / PHYSICAL_PROTECTION_COHERENCE_FAIL**.
+- Correction direction: if this family is retried, place the wine glass horizontally in a precise full-profile foam cavity with matching lid foam so the entire glass is immobilized when closed.
+
 **PRO remains 1/2.**
 
 ### CON
