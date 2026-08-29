@@ -122,6 +122,27 @@ Human review inventory:
 
 `/tools/priolens/docs/ASSET_INVENTORY_v0.1.md`
 
+### File Library direct visual recovery — ACTIVE
+
+The earlier assumption that direct visual inspection was technically blocked is no longer valid for the overall workflow.
+
+GitHub connector binary access is limited, but the user's File Library contains the historical visual material and exposes the images for direct multimodal review. Numeric filename search is imperfect, so retrieval must use both filename neighbourhoods and visual-content queries.
+
+A first direct File Library review is recorded in:
+
+`/tools/priolens/docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`
+
+The exact `2465.png` handle has not yet surfaced by literal filename search, but the historical numeric series is clearly recoverable, including `2766`, `2767`, `2781`, `2782`, `2783`, `2784`, `2785`, `2787`, `2790`, `2791`, `2792`, `2793`, `2794`, `2795`, `2796`, `2798` and additional later variants.
+
+Current direct-review implications:
+
+- `2790` (two mugs) is a plausible CON candidate, with implied-social-context and warm-aesthetic confounds.
+- `2781` (key in lock) is a plausible PRO candidate, stronger for PRO than CER, but highly literal.
+- `2798` (forked forest path) is too structurally ambiguous across AUT/EXP/OPP to serve as a clean single-direction exemplar.
+- `2766` (generic laptop) confirms that generic work imagery is insufficient for MAS.
+- `2681(1)` (dark faceless figures) carries a strong threat/ominous confound and is unsuitable for clean CON/INF use.
+- No directly reviewed File Library image yet resolves the INF gap.
+
 ### Recovered candidate counts by direction
 
 - AUT 2
@@ -149,7 +170,7 @@ Current triage:
 - CON: current phone/table/chat candidates rely heavily on social/device projection and require strict review.
 - AUT/CER/EXP still require nearest-neighbour cleanup and direct visual review.
 
-This changes the planning assumption: raw recovered count is no longer enough to say that stimulus availability is not a bottleneck. **Usable semantic count may be a bottleneck for INF, MAS and OPP.** New generation is still premature until all 23 reserve candidates are reviewed.
+This changes the planning assumption: raw recovered count is no longer enough to say that stimulus availability is not a bottleneck. **Usable semantic count may be a bottleneck for INF, MAS and OPP.** New generation is still premature until the recoverable File Library reserve has been reviewed.
 
 ## Risk flag
 
@@ -184,12 +205,13 @@ Specific selection rule:
 - `/tools/priolens/docs/ASSET_INVENTORY_v0.1.md`
 - `/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md`
 - `/tools/priolens/docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`
+- `/tools/priolens/docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`
 - `/tools/priolens/PROJECT_STATE.md` (this file)
 
 ## Next priority work
 
-1. Directly inspect all 19 mapped candidates and 23 reserve images; record visual-confound status separately from semantic status.
-2. Review the 23 reserve images without inheriting their old source-family semantics, prioritizing INF, MAS, OPP, then CON/PRO.
+1. Continue direct File Library review of the recoverable historical image set; use visual-content search when numeric filenames do not resolve.
+2. Prioritize INF, MAS and OPP candidates, then CON/PRO; record visual-confound status separately from semantic status.
 3. Reassign candidates across directions where the visible content supports a different working direction; do not preserve old mapping for continuity.
 4. Select two sufficiently independent exemplar candidates per direction and identify only genuine gaps that still require new generation.
 5. Run a cross-set confound audit across the proposed final 16.
@@ -203,10 +225,12 @@ Specific selection rule:
 
 ## Current blocker boundary
 
-The project is **not blocked on planner code**. It is blocked on stimulus evidence quality.
+The project is **not blocked on planner code and no longer blocked on visual access**.
 
-Direct binary/pixel inspection is still required before any candidate can receive a final visual-confound pass. Semantic pre-audit alone does not authorize the 16-stimulus freeze.
+The blocker is evidence quality: completing direct semantic/confound review, resolving the likely INF/MAS/OPP gaps, and obtaining two defensible independent exemplars per direction. File Library access now provides a path to finish the historical visual audit before deciding what must be generated anew.
+
+No candidate can receive a final visual-confound pass until its exact visual has been directly reviewed. No 16-stimulus freeze is authorized yet.
 
 ## New-chat / new-project recovery instruction
 
-If conversation context is lost, start from this file, then `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, `docs/DIRECTION_DEFINITIONS_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, and draft PR #9. Do not reconstruct the product from ConflictLab or 2Pair memory. Treat this file as the current handoff checkpoint until superseded by a newer project-state file or merged architecture decision.
+If conversation context is lost, start from this file, then `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, `docs/DIRECTION_DEFINITIONS_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, and draft PR #9. Do not reconstruct the product from ConflictLab or 2Pair memory. Treat this file as the current handoff checkpoint until superseded by a newer project-state file or merged architecture decision.
