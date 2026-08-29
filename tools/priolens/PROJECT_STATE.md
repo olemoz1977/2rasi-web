@@ -45,6 +45,20 @@ Do not claim subconscious, instinct, hidden-needs, personality diagnosis, employ
 - A participant sees one exemplar combination for each of the 28 direction edges; combinations rotate across sessions/participants.
 - Optional 8-12 alternate-exemplar reliability block is not enabled in base v0.1.
 
+## Working direction semantic contract — FROZEN FOR INTERNAL AUDIT
+
+`/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md` now defines the working semantic boundaries used for stimulus audit.
+
+Important boundary:
+
+- these are internal operational definitions, not validated psychological constructs;
+- a legacy filename/pair label is never sufficient evidence for a PrioLens mapping;
+- nearest-neighbour directions must be challenged explicitly;
+- if two directions are comparably plausible from visible content, the candidate is ambiguous rather than force-mapped;
+- two exemplars for one direction must be conceptually independent scene/content realizations.
+
+Required neighbour checks include AUT↔OPP, AUT↔EXP, AUT↔INF, CER↔PRO, CER↔EXP, EXP↔OPP, MAS↔INF, CON↔INF and CON↔PRO.
+
 ## Presentation freeze
 
 Current v0.1 architecture uses:
@@ -119,17 +133,29 @@ Human review inventory:
 - PRO 2
 - OPP 2
 
-This means raw count is not the current bottleneck. The bottleneck is exemplar independence, semantic defensibility and visual-confound control.
+These are **legacy mapped file counts**, not usable-exemplar counts.
 
-### Risk flag
+### Semantic pre-audit checkpoint
 
-**Influence / INF is the first replacement-review priority.** The old prototype itself called Influence coverage especially weak. Two existing files do not equal two acceptable exemplars.
+`/tools/priolens/docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md` applies the new working direction boundaries to the 19 historically mapped candidates without treating old mappings as authoritative.
 
-Directions with exactly two recovered candidates and therefore no spare inside the old mapping: AUT, MAS, INF, PRO, OPP.
+Current triage:
 
-Directions with one extra candidate available inside the old mapping: CER, EXP, CON.
+- INF: both historical mapped candidates are quarantined; current usable count is effectively 0 pending reserve/direct review.
+- MAS: both historical candidates are weak because generic laptop/notebook work imagery does not by itself establish mastery.
+- OPP: `p0-002-b` is likely closer to EXP; corridor imagery remains ambiguous; OPP is a likely gap.
+- CER: `p0-003-b` is likely closer to PRO than CER.
+- PRO: `p0-002-a` remains possible; `p0-003-b` becomes a possible replacement candidate.
+- CON: current phone/table/chat candidates rely heavily on social/device projection and require strict review.
+- AUT/CER/EXP still require nearest-neighbour cleanup and direct visual review.
 
-The full 23-image reserve must be visually/semantically audited before deciding whether any new generation is necessary.
+This changes the planning assumption: raw recovered count is no longer enough to say that stimulus availability is not a bottleneck. **Usable semantic count may be a bottleneck for INF, MAS and OPP.** New generation is still premature until all 23 reserve candidates are reviewed.
+
+## Risk flag
+
+**Influence / INF remains the first replacement-review priority.** The old prototype already called Influence coverage especially weak, and the semantic pre-audit now quarantines both mapped INF candidates.
+
+Do not keep a weak INF image merely to satisfy a nominal two-file quota.
 
 ## Important methodological warning inherited from earlier review
 
@@ -156,22 +182,31 @@ Specific selection rule:
 - `/tools/priolens/config/candidate-inventory-v0.1.json`
 - `/tools/priolens/docs/DATA_CONTRACT_v0.1.md`
 - `/tools/priolens/docs/ASSET_INVENTORY_v0.1.md`
+- `/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md`
+- `/tools/priolens/docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`
 - `/tools/priolens/PROJECT_STATE.md` (this file)
 
 ## Next priority work
 
-1. Visually inspect the 19 recovered mapped candidates and 23 reserve images.
-2. Re-evaluate mappings to the 8 directions without assuming old pair labels are correct.
-3. Select two sufficiently independent exemplar candidates per direction; identify only the genuine gaps that still require new generation.
-4. Run a confound audit across the proposed final 16.
-5. Copy only selected/frozen assets into a PrioLens-owned asset path; do not create runtime dependency on ConflictLab URLs.
-6. Freeze exact neutral participant prompt.
-7. Freeze choice-commit event (`pointerdown`, `pointerup`, or `click`) based on intended timing semantics and compatibility.
-8. Implement and test deterministic 28-edge session planner with exemplar and position balancing.
-9. Implement measured renderer and preflight.
-10. Implement descriptive result trace.
-11. Only then freeze protocol/stimulus versions and expose public participation.
+1. Directly inspect all 19 mapped candidates and 23 reserve images; record visual-confound status separately from semantic status.
+2. Review the 23 reserve images without inheriting their old source-family semantics, prioritizing INF, MAS, OPP, then CON/PRO.
+3. Reassign candidates across directions where the visible content supports a different working direction; do not preserve old mapping for continuity.
+4. Select two sufficiently independent exemplar candidates per direction and identify only genuine gaps that still require new generation.
+5. Run a cross-set confound audit across the proposed final 16.
+6. Copy only selected/frozen assets into a PrioLens-owned asset path; do not create runtime dependency on ConflictLab URLs.
+7. Freeze exact neutral participant prompt.
+8. Freeze choice-commit event (`pointerdown`, `pointerup`, or `click`) based on intended timing semantics and compatibility.
+9. Implement and test deterministic 28-edge session planner with exemplar and position balancing.
+10. Implement measured renderer and preflight.
+11. Implement descriptive result trace.
+12. Only then freeze protocol/stimulus versions and expose public participation.
+
+## Current blocker boundary
+
+The project is **not blocked on planner code**. It is blocked on stimulus evidence quality.
+
+Direct binary/pixel inspection is still required before any candidate can receive a final visual-confound pass. Semantic pre-audit alone does not authorize the 16-stimulus freeze.
 
 ## New-chat / new-project recovery instruction
 
-If conversation context is lost, start from this file, then `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, and draft PR #9. Do not reconstruct the product from ConflictLab or 2Pair memory. Treat this file as the current handoff checkpoint until superseded by a newer project-state file or merged architecture decision.
+If conversation context is lost, start from this file, then `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, `docs/DIRECTION_DEFINITIONS_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, and draft PR #9. Do not reconstruct the product from ConflictLab or 2Pair memory. Treat this file as the current handoff checkpoint until superseded by a newer project-state file or merged architecture decision.
