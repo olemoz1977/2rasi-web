@@ -5,7 +5,7 @@ Date: 2026-08-29
 
 ## Scope
 
-This checkpoint audits the generated 1:1 weak-direction candidates produced during the current design session. The image binaries are currently conversation uploads and have **not** been copied into the repository or assigned immutable hashes.
+This checkpoint audits the generated 1:1 weak-direction candidates produced during the current design session. The image binaries are currently conversation uploads/generated assets and have **not** been copied into the repository or assigned immutable hashes.
 
 This was an informed design audit, not a blind validation study: the intended directions were known while prompts were written and while images were reviewed. Therefore a `PASS` below means "defensible design candidate", not validated construct evidence.
 
@@ -46,7 +46,26 @@ This was an informed design audit, not a blind validation study: the intended di
 - Main risk: agriculture/nature affinity and moving-water salience.
 - Independence status versus INF-A: `PAIR_INDEPENDENCE_FAIL`.
 - Independence problem: INF-A and INF-C use the same underlying scene logic: **hand + gate/lever + routed physical flow + visible downstream consequence**. Changing marbles to water does not create a conceptually independent exemplar family.
-- Current disposition: **KEEP AS A STRONG INF CANDIDATE, BUT DO NOT PAIR WITH INF-A AS THE FINAL TWO.** One of INF-A/INF-C may survive; a different INF scene family is still required.
+- Current disposition: **KEEP AS A STRONG INF CANDIDATE, BUT DO NOT PAIR WITH INF-A AS THE FINAL TWO.**
+
+#### INF-D · hand switches on lighting across a shared study/classroom space
+
+- Source: latest square generated shared-room light-switch scene from the current design session.
+- Semantic status: `SEMANTIC_PASS_PROVISIONAL`.
+- Rationale: one visible action changes the state of an entire shared external environment; the consequence is visible across many ceiling lights in the same frame, and the room layout (many tables/chairs) makes the affected environment visibly collective rather than a private personal setting.
+- Nearest-neighbour challenge:
+  - vs AUT: the central cue is not freedom of personal choice or route; the action changes a shared environment.
+  - vs MAS: no precision, craftsmanship, practice or competence is required to read the image.
+  - vs PRO: no threat, shielding or loss-prevention cue is present.
+  - vs OPP: the scene does not present an opening/potential gain; it presents a changed external state.
+- Visual status: `VISUAL_PASS_WITH_LUMINANCE_AND_LOW_STAKES_FLAGS`.
+- Main risks:
+  - switched-on lights are inherently salient and positive compared with darkness;
+  - the consequence is lower-stakes than INF-A/INF-C and could be read as ordinary environmental control.
+- Mitigating observation: the room is already daylight-lit, so the image does not rely on a dramatic dark-to-bright contrast; multiple ceiling fixtures and shared-room furniture make the broader consequence visible.
+- Independence status versus INF-A and INF-C: `PAIR_INDEPENDENCE_PASS`.
+- Independence rationale: the scene family is **shared-environment state change through lighting**, not routed-flow control. No gates, valves, branching channels or moving material are required.
+- Current disposition: **KEEP AS INF SLOT-2 PROVISIONAL CANDIDATE.** Final selection between INF-A and INF-C for the other slot must wait for full 16-set confound comparison.
 
 ### MAS · Mastery
 
@@ -102,42 +121,57 @@ This was an informed design audit, not a blind validation study: the intended di
 - Independence rationale: productive access through a greenhouse and immediately consumable prepared value are different immediate scene structures, but both still occupy food/resource domains.
 - Cross-set caution: retain a shared food/reward-domain flag for the final 16-set audit.
 
-## Rejected OPP attempts from the same session
+## Rejected / superseded attempts from the same session
+
+### OPP rejects
 
 - `4606.png` greenhouse with strong poor-outside/rich-inside contrast: semantic OPP pass, visual fail due luminance/color/valence contrast.
 - `4608.png` apple tree + empty basket: semantic pass, but too close in domain/content to greenhouse OPP for a two-exemplar set.
 - `4609.png` woodworking blank + empty bench: visual pass, semantic ambiguity with MAS.
 - `4610.png` metal materials + empty workspace: visual pass, semantic ambiguity with MAS.
 
+### INF rejects / non-independent variants
+
+- first generic room light-switch attempt: visible consequence but too weak/private and luminance-driven; superseded by the later shared-room version INF-D.
+- letter/mailbox scene: external consequence hidden outside the frame; brand/postal-symbol confound.
+- recycling-compactor button scene: result already present; causal consequence not visible.
+- fire-alarm scene: external consequence visible but PRO/threat semantics dominate strongly.
+- park/playground gate scenes: collapse toward OPP/AUT because opening/access dominates.
+- repeated irrigation/pump/sluice variants: individually INF-like but conceptually duplicate INF-C routed-flow logic.
+- first-aid storage / resource-room variants: collapse toward PRO or OPP and often lack a visible causal action.
+- procedural domino and magnet attempts were not accepted because available rendering/compositing quality was not comparable to the photographic candidate set; they do not enter the candidate pool.
+
 ## Six-candidate weak-direction cross-set checkpoint
 
 Current strict status:
 
-- INF: **two strong semantic candidates exist (INF-A, INF-C), but they fail pair independence because both instantiate routed-flow control. The direction still lacks a second independent exemplar family.**
+- INF: **at least two conceptually independent provisional candidates now exist**: one routed-flow candidate (INF-A or INF-C) plus shared-room state-change candidate INF-D. Do not use INF-A and INF-C together.
 - MAS: **2 defensible, independent candidates**. Generation can stop for MAS.
 - OPP: **2 provisional defensible candidates**, but both retain positive-resource/food-domain risk. Generation can stop for OPP for now; the pair must be challenged again in the final 16-set audit.
 
 ### Cross-direction notes
 
-- MAS-A versus INF-A/INF-C: sufficiently separable at the semantic level because MAS-A centers skilled precision while INF centers downstream consequence. However technical/mechanical visual affinity between MAS-A and INF-A remains a set-level style/domain concern.
+- MAS-A versus INF-A/INF-C: sufficiently separable at the semantic level because MAS-A centers skilled precision while INF centers downstream consequence. Technical/mechanical visual affinity remains a set-level style/domain concern.
 - MAS-B provides useful domain diversity and reduces the risk that MAS becomes synonymous with industrial/technical skill.
-- OPP-A and OPP-B have stronger positive/reward valence than the current MAS candidates and likely stronger natural/color salience than INF candidates. This requires later normalization/challenge before final freeze.
+- INF-D reduces the risk that INF becomes synonymous with valves/flows/mechanical routing, but carries a low-stakes consequence and luminance-salience flag.
+- OPP-A and OPP-B have stronger positive/reward valence than the current MAS and INF candidates. This requires later normalization/challenge before final freeze.
 - INF-A and INF-C should **not** both enter the final 16 even though both individually pass.
+
+## Current weak-direction disposition
+
+Stage A weak-direction generation can stop provisionally:
+
+- INF: `2 independent families available provisionally`.
+- MAS: `2 independent candidates available`.
+- OPP: `2 independent candidates available provisionally`.
+
+This does **not** freeze any image. The next evidence bottleneck is no longer weak-direction generation; it is completing the same direct semantic + independence + visual-confound review for AUT/CER/EXP/CON/PRO and then running the full 16-set comparison.
 
 ## Next action
 
-Do **not** generate more MAS or OPP candidates now.
-
-INF still needs **one conceptually independent scene family** in which a visible action changes a consequential external/shared outcome, while avoiding:
-
-- routed flows, gates, valves or branching channels;
-- generic control panels with no visible consequence;
-- authority/status/social-role stereotypes;
-- dominance/coercion;
-- precision/craft imagery that collapses into MAS.
-
-Candidate design should be solved before any additional rendering. No further image generation is authorized merely to fill quota.
-
-After a genuinely different INF concept exists and passes review, rerun the weak-direction cross-set audit and then return to the full 16-stimulus candidate set.
-
-No generated candidate is frozen or copied into runtime assets by this document.
+1. Stop additional INF/MAS/OPP rendering unless the full-set audit later invalidates a candidate.
+2. Return to AUT/CER/EXP/CON/PRO and identify two defensible independent candidates per direction using the frozen semantic contract.
+3. Assemble a proposed 16-candidate set.
+4. Run full-set luminance/contrast/complexity/salience/style/valence/domain-overlap audit.
+5. Only after that choose INF-A versus INF-C, confirm INF-D, and confirm the OPP pair.
+6. No generated candidate is frozen or copied into runtime assets by this document.
