@@ -80,43 +80,70 @@ Initial participant result must remain descriptive:
 
 Bradley-Terry or another model-based estimator, if introduced later, requires a separately versioned analysis contract and uncertainty reporting.
 
-## Existing visual asset inventory already recoverable
+## Historical asset recovery — COMPLETE FOR INVENTORY STAGE
 
 Do NOT ask the user to re-upload the old visual set just because a chat changed.
 
-A File Library artifact named `decision_drivers_8x8_prototype_v0.4.html` contains the current 8-direction prototype and direct references to historical assets in the ConflictLab repository. Its source roots are:
+The recovered File Library artifact `decision_drivers_8x8_prototype_v0.4.html` and the historical ConflictLab branch were cross-checked. The reusable still-image roots are:
 
+- `docs/experiments/stimulus-validation/assets/`
 - `docs/experiments/pair-p0/images/`
 - `docs/media/`
-- `docs/experiments/stimulus-validation/assets/`
 
-The v0.4 prototype currently references these historical assets:
+Inventory checkpoint:
 
-- `CR-PO-01/open-space.png`
-- `CR-PO-01/partitioned-space.png`
-- `p0-003-a.png`
-- `p0-003-b.png`
-- `n0-004-a.webp`
-- `p5_person_laptop.png`
-- `v2_p3_notebook.png`
-- `p1_phone_table.png`
-- `p4_empty_table.png`
-- `n0-009-a-prototype-v0.png`
-- `n0-009-b-prototype-v0.png`
-- `p0-002-a.png`
-- `p0-002-b.png`
-- `v2_p2_corridor.png`
-- `p0-001-a.png`
-- `p0-001-b.png`
-- `CS-PR-01/more-reveal.webp`
-- `CS-PR-01/less-reveal.jpg`
-- `p3_chat_screen.png`
+- 12 Wave 1 still images
+- 18 Pair P0 / N0 non-placeholder still images
+- 12 historical media still images
+- **42 non-placeholder still-image files total**
+- old v0.4 prototype references **19 unique images**
+- **23 non-placeholder reserve images** remain unassigned by v0.4
+- 4 additional Pair P0 filenames are explicitly placeholder-labelled and are not preferred candidates
 
-These are historical candidate assets / seeds, not automatically the final PrioLens 16-image set. The v0.4 prototype itself marks several mappings EXPERIMENTAL or WEAK, especially Influence coverage.
+Machine-readable inventory:
+
+`/tools/priolens/config/candidate-inventory-v0.1.json`
+
+Human review inventory:
+
+`/tools/priolens/docs/ASSET_INVENTORY_v0.1.md`
+
+### Recovered candidate counts by direction
+
+- AUT 2
+- CER 3
+- EXP 3
+- MAS 2
+- CON 3
+- INF 2
+- PRO 2
+- OPP 2
+
+This means raw count is not the current bottleneck. The bottleneck is exemplar independence, semantic defensibility and visual-confound control.
+
+### Risk flag
+
+**Influence / INF is the first replacement-review priority.** The old prototype itself called Influence coverage especially weak. Two existing files do not equal two acceptable exemplars.
+
+Directions with exactly two recovered candidates and therefore no spare inside the old mapping: AUT, MAS, INF, PRO, OPP.
+
+Directions with one extra candidate available inside the old mapping: CER, EXP, CON.
+
+The full 23-image reserve must be visually/semantically audited before deciding whether any new generation is necessary.
 
 ## Important methodological warning inherited from earlier review
 
 Do not treat existing images as validated constructs merely because they were used in an earlier prototype. Previous review identified uncontrolled low-level visual confounds (complexity, luminance, spatial frequency, familiarity, style/format differences) and circular construct assignment risks. PrioLens needs exemplar-level review before stimulus freeze.
+
+Specific selection rule:
+
+- two conceptually independent exemplars per direction
+- same intended direction, different scene/content realization
+- avoid using a single old A/B manipulation as the basis for both final exemplars
+- audit brightness/contrast/complexity/salience/style
+- avoid text/UI cues unless controlled across all final assets
+- immutable PrioLens asset ID + content hash after freeze
+- document mapping rationale independently from legacy filenames
 
 ## Current repository files
 
@@ -125,23 +152,26 @@ Do not treat existing images as validated constructs merely because they were us
 - `/tools/priolens/index.html`
 - `/tools/priolens/config/product-v0.1.json`
 - `/tools/priolens/config/protocol-v0.1.json`
-- `/tools/priolens/config/stimuli-v0.1.json`
+- `/tools/priolens/config/stimuli-v0.1.json` — still deliberately PENDING / assets null
+- `/tools/priolens/config/candidate-inventory-v0.1.json`
 - `/tools/priolens/docs/DATA_CONTRACT_v0.1.md`
+- `/tools/priolens/docs/ASSET_INVENTORY_v0.1.md`
 - `/tools/priolens/PROJECT_STATE.md` (this file)
 
 ## Next priority work
 
-1. Build an inventory of all reusable historical images from the three asset roots above.
-2. Assign candidate images to the 8 directions without assuming old pair mappings are valid.
-3. Select at least 2 sufficiently independent exemplars per direction, or identify gaps requiring new generation.
-4. Run a confound audit across the final candidate 16.
-5. Freeze exact neutral participant prompt.
-6. Freeze choice-commit event (`pointerdown`, `pointerup`, or `click`) based on intended timing semantics and compatibility.
-7. Implement and test deterministic 28-edge session planner with exemplar and position balancing.
-8. Implement measured renderer and preflight.
-9. Implement descriptive result trace.
-10. Only then freeze protocol/stimulus versions and expose public participation.
+1. Visually inspect the 19 recovered mapped candidates and 23 reserve images.
+2. Re-evaluate mappings to the 8 directions without assuming old pair labels are correct.
+3. Select two sufficiently independent exemplar candidates per direction; identify only the genuine gaps that still require new generation.
+4. Run a confound audit across the proposed final 16.
+5. Copy only selected/frozen assets into a PrioLens-owned asset path; do not create runtime dependency on ConflictLab URLs.
+6. Freeze exact neutral participant prompt.
+7. Freeze choice-commit event (`pointerdown`, `pointerup`, or `click`) based on intended timing semantics and compatibility.
+8. Implement and test deterministic 28-edge session planner with exemplar and position balancing.
+9. Implement measured renderer and preflight.
+10. Implement descriptive result trace.
+11. Only then freeze protocol/stimulus versions and expose public participation.
 
-## New-chat recovery instruction
+## New-chat / new-project recovery instruction
 
-If conversation context is lost, start from this file and `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, then inspect draft PR #9. Do not reconstruct the product from ConflictLab or 2Pair memory. Treat this file as the current handoff checkpoint until superseded by a newer dated project-state file or merged architecture decision.
+If conversation context is lost, start from this file, then `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, and draft PR #9. Do not reconstruct the product from ConflictLab or 2Pair memory. Treat this file as the current handoff checkpoint until superseded by a newer project-state file or merged architecture decision.
