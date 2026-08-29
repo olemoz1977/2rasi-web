@@ -159,12 +159,17 @@ Generation is governed by:
 
 `/tools/priolens/docs/STIMULUS_GENERATION_BRIEFS_v0.1.md`
 
+Machine-readable Stage A manifest:
+
+`/tools/priolens/config/generation-candidates-v0.1.json`
+
 Generation policy:
 
 - initial pool is 3 conceptually different candidates per weak direction, 9 scenes total;
 - target remains at least 2 independent passing exemplars per direction;
 - generating exactly two is forbidden because it creates quota pressure;
-- generated candidates use neutral IDs during blind review;
+- generated candidates use neutral IDs `G01`…`G09` during blind review;
+- the manifest is currently `STAGE_A_BRIEFS_FROZEN_NOT_RENDERED`;
 - no generated image enters `stimuli-v0.1.json` until semantic and visual-confound gates pass;
 - OPP carries the highest semantic-risk flag because physical openness repeatedly overlaps AUT/EXP.
 
@@ -229,6 +234,7 @@ Specific selection rule:
 - `/tools/priolens/config/protocol-v0.1.json`
 - `/tools/priolens/config/stimuli-v0.1.json` — still deliberately PENDING / assets null
 - `/tools/priolens/config/candidate-inventory-v0.1.json`
+- `/tools/priolens/config/generation-candidates-v0.1.json` — Stage A briefs frozen, assets not yet rendered
 - `/tools/priolens/docs/DATA_CONTRACT_v0.1.md`
 - `/tools/priolens/docs/ASSET_INVENTORY_v0.1.md`
 - `/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md`
@@ -239,7 +245,7 @@ Specific selection rule:
 
 ## Next priority work
 
-1. Generate the Stage A weak-direction candidate pool defined in `STIMULUS_GENERATION_BRIEFS_v0.1.md`: 3 INF + 3 MAS + 3 OPP neutral-ID scenes.
+1. Render the Stage A weak-direction candidate pool frozen in `generation-candidates-v0.1.json`: 3 INF + 3 MAS + 3 OPP neutral-ID scenes.
 2. Directly review every generated candidate for semantic fit and low-level visual confounds; reject rather than rescue ambiguous outputs.
 3. Run the required nearest-neighbour challenge, especially MAS↔INF and OPP↔AUT/EXP.
 4. Continue direct historical review opportunistically for CON/PRO and AUT/CER/EXP; exact historical reserves remain eligible if they beat generated candidates.
@@ -257,10 +263,10 @@ Specific selection rule:
 
 The project is **not blocked on planner code, visual access or exact retrieval of every historical reserve**.
 
-The active blocker is stimulus evidence quality: generate and audit defensible INF/MAS/OPP candidates, then obtain two independent exemplars for all eight directions and pass the cross-set confound audit.
+The active blocker is stimulus evidence quality: render and audit defensible INF/MAS/OPP candidates, then obtain two independent exemplars for all eight directions and pass the cross-set confound audit.
 
 No generated or historical candidate can receive a final visual-confound pass without direct visual review. No 16-stimulus freeze is authorized yet.
 
 ## New-chat / new-project recovery instruction
 
-If conversation context is lost, start from this file, then `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, `docs/DIRECTION_DEFINITIONS_v0.1.md`, `docs/STIMULUS_GENERATION_BRIEFS_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, and draft PR #9. Do not reconstruct the product from ConflictLab or 2Pair memory. Treat this file as the current handoff checkpoint until superseded by a newer project-state file or merged architecture decision.
+If conversation context is lost, start from this file, then `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, `docs/DIRECTION_DEFINITIONS_v0.1.md`, `config/generation-candidates-v0.1.json`, `docs/STIMULUS_GENERATION_BRIEFS_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, and draft PR #9. Do not reconstruct the product from ConflictLab or 2Pair memory. Treat this file as the current handoff checkpoint until superseded by a newer project-state file or merged architecture decision.
