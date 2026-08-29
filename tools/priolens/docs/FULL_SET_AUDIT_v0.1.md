@@ -22,11 +22,7 @@ This audit evaluates candidate suitability for a pilot stimulus freeze. It does 
 
 **16/16 semantic candidate coverage exists, but the set is NOT freeze-ready yet.**
 
-No direction currently requires wholesale redesign. The remaining work separates into:
-
-1. **hard asset-cleanup blockers** that must be fixed before freeze;
-2. **cross-set structural risks** that can remain only if explicitly carried into pilot monitoring;
-3. routine watermark/version/hash cleanup.
+No direction currently requires wholesale redesign.
 
 ## Hard blockers before freeze
 
@@ -36,29 +32,42 @@ The three bottle openers support AUT/method choice, but the visible bottle/cap r
 
 **Required:** edit the bottle/cap into one physically coherent same-task scene. Do not solve this only by cropping away the task cue, because then the three tools become generic objects and AUT weakens.
 
-### H2 — CER-2 `CER-CHECKLIST-01`: green success cue
+### H2 — generator marks
 
-Semantic mapping is defensible: all rows visibly share one completed/known status. However the green checkmarks introduce a learned positive/success cue that is not part of CER.
+Visible KlingAI / generator marks must not enter the frozen stimulus set.
 
-**Required:** neutralize all checks to dark gray/black while preserving identical completed status. No celebratory icon, stamp or colored coding.
+At minimum visible cleanup is required for selected generated files that still show a mark, including `4655`, `4656`, `4650`, `4649`, `4646`, `4641`, `4645` and any other final binary where a mark remains.
 
-### H3 — CON-2 `2624`: extreme luminance/format outlier
+## Preliminary non-semantic cleanup completed in working runtime
 
-Raw source is portrait `867×1536`, mean relative luminance approximately **0.169**, the darkest item in the proposed set. It also has warm pendant-light salience and a focal smiling face.
+These are **working previews only**, not repository-owned or frozen binaries.
 
-**Required:** create a reviewed square normalization and exposure-normalized working asset without changing the social interaction. Do not simply stretch. Confirm the group remains visibly reciprocal after normalization.
+### CER-2 `CER-CHECKLIST-01`
 
-### H4 — PRO-1 `2723`: portrait-format / threat-valence normalization
+- Green checks were converted to neutral dark gray.
+- Overall tone was reduced so the stimulus is no longer the brightest extreme.
+- Semantic content is unchanged: all six rows remain visibly in the same completed/known state.
+- Working preview mean luminance: ~**0.591**.
+- Preliminary judgement: **cleanup PASS**.
 
-Raw source is portrait `867×1536` and has strong dark/rain contrast. Protection is semantically legible, but presentation would differ substantially from square peers.
+### CON-2 `2624`
 
-**Required:** reviewed square normalization plus restrained tonal normalization. Preserve visible wet/rain context; do not brighten until the protection cue disappears.
+- A square crop centered on the reciprocal three-person interaction was produced.
+- Exposure/shadows were lifted and color saturation reduced without changing who is present or their interaction.
+- The hanging-lamp/portrait-format dominance was substantially reduced.
+- Working preview mean luminance: ~**0.351**, versus raw ~0.169.
+- Preliminary judgement: **cleanup PASS**, pending final binary review.
 
-### H5 — watermarks / generator marks
+### PRO-1 `2723`
 
-Generated candidates with visible KlingAI marks must not enter the frozen stimulus set.
+- A square crop centered on the wet umbrella was produced.
+- Tonal normalization was restrained so wet/rain evidence remains visible.
+- Working preview mean luminance: ~**0.353**.
+- Preliminary judgement: **cleanup PASS**, pending final binary review.
 
-At minimum visible cleanup is required for: `4655`, `4656`, `4650`, `4649`, `4646`, `4641`, `4645` and any other selected source that still contains a generator mark in the final binary.
+After these three working cleanups, approximate mean-luminance range becomes **0.351–0.618** instead of raw **0.169–0.718**. That is a material improvement and removes the previous direction-correlated brightness extremes.
+
+Therefore H2/H3/H4 from the initial audit are no longer conceptual blockers; they are now implementation/final-binary cleanup tasks. The only remaining **content-level hard blocker** is AUT-1 `4655` physical coherence.
 
 ## Cross-set structural risks
 
@@ -80,16 +89,11 @@ Both CON exemplars contain people/faces, while most other directions do not. Hum
 
 **Decision:** retain provisionally because removing reciprocal social content weakened CON semantics in prior candidates. Treat face/social-salience as a known modality confound and inspect pair-level choice patterns in pilot.
 
-### R3 — CER is currently a bright/minimal still-life family
+### R3 — CER visual-family correlation
 
-Measured mean relative luminance:
+Even after tonal normalization, both CER exemplars remain simple, low-clutter, explicit-state scenes. This is partly inherent to the direction but may correlate CER with visual simplicity.
 
-- `4650`: ~0.618
-- `CER-CHECKLIST-01`: ~0.718
-
-The checklist is currently the brightest proposed stimulus. CER could therefore correlate with bright, low-clutter presentation.
-
-**Required:** tonal normalization before freeze; do not leave both CER exemplars as the two brightest images.
+**Decision:** accept for pilot, retain exemplar IDs and test for unusually consistent CER preference independent of counterpart direction.
 
 ### R4 — EXP valence/style heterogeneity
 
@@ -109,7 +113,7 @@ Semantics remain separable, but domain preference may create correlated choices.
 
 ## Quantitative visual check
 
-Approximate mean relative luminance / contrast standard deviation from current working binaries:
+Raw working binaries before cleanup:
 
 | Slot | Mean luminance | Contrast SD |
 |---|---:|---:|
@@ -130,11 +134,15 @@ Approximate mean relative luminance / contrast standard deviation from current w
 | OPP-1 `4637` | 0.400 | 0.236 |
 | OPP-2 `4638` | 0.617 | 0.161 |
 
-The present range **0.169–0.718** is too wide to freeze without normalization, especially because the extremes are direction-correlated (`CON-2` darkest, `CER-2` brightest).
+Preliminary cleaned substitutions:
+
+- CER-2: ~0.591
+- CON-2: ~0.351
+- PRO-1: ~0.353
+
+Resulting working range: approximately **0.351–0.618**.
 
 ## Within-direction independence
-
-Current judgement:
 
 - AUT `4655` vs `4656`: **PASS** — method choice vs environment configuration.
 - CER `4650` vs checklist: **PASS** — known contents vs explicit known status.
@@ -149,7 +157,7 @@ Current judgement:
 
 No current candidate is rejected purely on nearest-neighbour semantics after the latest review.
 
-Highest semantic leakage to keep watching:
+Highest semantic leakage to watch in pilot:
 
 1. OPP-2 `4638` → residual CON / appetite-reward.
 2. CER-2 checklist → task completion / achievement association.
@@ -157,21 +165,19 @@ Highest semantic leakage to keep watching:
 4. EXP-1 `3098` → AUT/open-route association.
 5. CON-1 `4646` → romantic/intimacy association.
 
-These are weaker than the intended direction at candidate-review level but require pilot diagnostics.
-
 ## Freeze gate
 
 Do **not** populate `stimuli-v0.1.json` with final hashes yet.
 
-Before candidate freeze:
+Remaining required sequence:
 
-1. fix H1 AUT-1 physical coherence;
-2. neutralize CER-2 green checks;
-3. square/tonally normalize CON-2 and PRO-1;
-4. remove all watermarks/generator marks;
-5. re-run the same luminance/contrast + semantic visual audit on cleaned binaries;
-6. confirm no cleanup altered semantic meaning;
-7. then copy 16 binaries into a PrioLens-owned asset path and record hashes.
+1. fix AUT-1 `4655` bottle/cap physical coherence;
+2. finalize cleaned square/tonal CER-2, CON-2 and PRO-1 binaries;
+3. remove all visible generator marks;
+4. re-run semantic + luminance/contrast review on the exact cleaned binaries;
+5. confirm cleanup did not alter intended meaning;
+6. copy 16 exact binaries into a PrioLens-owned asset path and record immutable hashes;
+7. only then populate/freeze `stimuli-v0.1.json`.
 
 ## Pilot interpretation boundary
 
