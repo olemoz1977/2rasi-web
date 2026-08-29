@@ -176,6 +176,19 @@ Strict count: **7/16 slots currently occupied by PASS or PROVISIONAL PASS candid
 - Problem: absence/separation dominates connection.
 - Disposition: **REJECT**.
 
+#### `3370` — two mannequin figures side by side facing a blank canvas
+- Direction attempted: CON.
+- Semantic status: `FAIL`.
+- Problem: co-presence is visible, but mutual contact/reciprocity/belonging is not; attention is directed toward the canvas rather than toward each other.
+- Visual/confound status: art-gallery/mannequin artificiality and strong architectural aesthetics.
+- Disposition: **REJECT**.
+
+#### `3372` — two mannequin figures several feet apart in museum gallery
+- Direction attempted: CON.
+- Semantic status: `FAIL`.
+- Problem: separation and exhibition context dominate; no reciprocal interaction or clear relationship cue.
+- Disposition: **REJECT**.
+
 **CON remains 0/2.**
 
 ### CER
@@ -207,6 +220,27 @@ No candidate has passed.
 Rejected/ambiguous families include open doors/gates, forked roads and vehicles because they collapse into OPP and/or EXP or introduce product/status cues.
 
 **AUT remains 0/2.**
+
+## Latest targeted File Library sweep
+
+A targeted search for additional CON/CER/AUT/PRO/EXP/INF assets did not produce any new candidate that survives the frozen semantic contract.
+
+Notable non-additions:
+
+- open gate / garden / playground scenes remain OPP/EXP/AUT ambiguous rather than clean AUT;
+- clear water gauges remain CER-attractive only through scale/numeracy cues and therefore remain rejected;
+- first-aid / alarm / emergency assets remain PRO-dominant or medical/safety-confounded and cannot serve as clean INF;
+- two-person mannequin/gallery scenes fail CON because reciprocal interaction is absent.
+
+## Current-chat generator failure mode
+
+During the latest generation attempts, the image generator repeatedly returned **multi-panel PrioLens moodboards/infographics instead of the requested single 1:1 standalone stimulus**, even when the immediate instruction specified a single photorealistic scene.
+
+Disposition rule:
+
+- these generated boards are `GENERATOR_CONTEXT_FAILURE / NOT CANDIDATES`;
+- no auto-assigned labels, IDs, statuses or scene suggestions printed inside those boards are project decisions;
+- do not count or audit those board panels as individual stimuli unless a panel is independently regenerated/exported as a standalone asset and reviewed under this ledger.
 
 ## Open slots in priority terms
 
