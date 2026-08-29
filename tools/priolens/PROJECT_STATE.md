@@ -110,11 +110,11 @@ Historical recovery did not produce defensible independent coverage for the weak
 
 ## Generated weak-direction checkpoint — CURRENT
 
-Source of detailed audit:
+Detailed source:
 
 `/tools/priolens/docs/GENERATED_CANDIDATE_AUDIT_v0.1.md`
 
-Generated image binaries are still conversation uploads and are **not** yet repository assets or hash-frozen stimuli.
+Generated image binaries are still conversation uploads/generated assets and are **not** repository assets or hash-frozen stimuli.
 
 ### MAS
 
@@ -140,50 +140,71 @@ No more OPP generation is currently justified until full-set comparison shows a 
 
 ### INF
 
-Current status: **semantic coverage exists, but independent two-exemplar coverage is still missing**.
+Current status: **two independent scene families are now available provisionally**.
+
+Strong routed-flow family candidates:
 
 - INF-A: hand redirects marble flow through a physical gate (`4602.png`) — semantic pass.
-- INF-B: generic control panel (`4599.png`) — semantic ambiguous; do not freeze.
 - INF-C: hand opens irrigation gate and visible water reaches several young-plant beds (`4612.png`) — semantic pass.
+- INF-A and INF-C must **not** both enter the final pair because they instantiate the same underlying `hand + gate/lever + routed physical flow + downstream consequence` logic.
 
-Critical correction: INF-A and INF-C **must not be the final pair**. Both instantiate the same underlying logic: `hand + gate/lever + routed physical flow + visible downstream consequence`. This fails the conceptual-independence rule even though both individually pass.
+Independent second family:
 
-Therefore INF still requires one different scene family. Do not generate another gate/valve/flow variant.
+- INF-D: hand switches on lighting across a visibly shared study/classroom space — `SEMANTIC_PASS_PROVISIONAL`, `PAIR_INDEPENDENCE_PASS` versus INF-A/INF-C.
+- Rationale: one action changes the state of the whole shared environment; multiple ceiling fixtures and many tables/chairs make the affected external setting visible.
+- Flags: luminance salience and low-stakes consequence. The room is already daylight-lit, reducing but not eliminating the brightness confound.
+
+Generic control-panel INF-B (`4599.png`) remains ambiguous and must not freeze.
+
+Current provisional INF pairing strategy: choose **one of INF-A or INF-C** plus INF-D only after full-set confound comparison.
+
+## Weak-direction generation disposition
+
+Stage A generation for INF/MAS/OPP can now stop provisionally.
+
+- INF: 2 independent scene families available provisionally.
+- MAS: 2 independent candidates available.
+- OPP: 2 independent candidates available provisionally.
+
+This does **not** freeze any image. The generation exercise also exposed an implementation/process warning: long image-generation context repeatedly biased outputs toward recently used gate/flow/control motifs. Future replacement generation should use isolated generation context where possible rather than treating repeated same-chat attempts as independent designs.
 
 ## Current cross-set concerns
 
-- MAS-A vs INF-A/INF-C is semantically separable, but technical/mechanical visual affinity remains a style/domain concern.
+- MAS-A vs routed-flow INF is semantically separable, but technical/mechanical visual affinity remains a style/domain concern.
 - MAS-B provides useful domain diversity.
+- INF-D reduces the risk that INF becomes synonymous with mechanical routing, but its consequence is lower-stakes and luminance-based.
 - OPP pair currently has stronger positive/reward valence than MAS and INF candidates; final set must challenge this before freeze.
-- INF needs a genuinely different external-impact scene, not another flow-routing metaphor.
+- INF-A and INF-C must not be used together.
 
 ## Current blocker boundary
 
-The project is not blocked on planner code, visual access or historical retrieval.
+The project is not blocked on planner code, visual access, historical retrieval, or weak-direction generation.
 
-The active blocker is stimulus-set quality:
+The active blocker is now completing stimulus-set quality review for the remaining directions:
 
-1. solve one conceptually independent INF scene family;
-2. re-run weak-direction cross-set audit;
-3. return to AUT/CER/EXP/CON/PRO and identify two defensible independent exemplars for every direction;
-4. run final 16-set semantic + visual-confound audit;
-5. only then copy selected assets into a PrioLens-owned path and hash/freeze them.
+1. audit AUT/CER/EXP/CON/PRO directly against the frozen definitions;
+2. identify two defensible independent exemplars per remaining direction;
+3. assemble a proposed 16-candidate set;
+4. run full-set semantic + luminance/contrast/complexity/salience/style/valence/domain-overlap audit;
+5. resolve flagged weak candidates, including INF-A vs INF-C choice, INF-D luminance/low-stakes risk, and OPP food/reward overlap;
+6. only then copy selected assets into a PrioLens-owned path and hash/freeze them.
 
 No generated or historical image is a frozen PrioLens stimulus yet.
 
 ## Next priority work
 
-1. **Do not generate more MAS or OPP now.**
-2. Design, before rendering, one genuinely different INF concept that shows visible external/shared consequence without routed flows, generic control panels, authority/status stereotypes, coercion or MAS-like precision/craft.
-3. Audit that INF candidate and re-run the six-candidate weak-direction cross-set comparison.
-4. Continue the same strict direct review for AUT/CER/EXP/CON/PRO.
-5. Assemble a proposed 16-candidate set and run cross-set luminance/contrast/complexity/salience/style/valence review.
-6. Copy only selected/frozen assets into a PrioLens-owned asset path and capture immutable hashes.
-7. Freeze neutral participant prompt.
-8. Freeze choice-commit event.
-9. Implement deterministic 28-edge planner with exemplar + position balancing.
-10. Implement renderer/preflight and descriptive result trace.
-11. Only then freeze protocol/stimulus versions and expose public participation.
+1. **Stop additional INF/MAS/OPP rendering unless the full-set audit later invalidates a candidate.**
+2. Continue strict direct review for AUT/CER/EXP/CON/PRO using File Library + recovered historical assets.
+3. Select two conceptually independent candidates per remaining direction; generate replacements only for demonstrated gaps.
+4. Assemble a proposed 16-candidate set and run full-set luminance/contrast/complexity/salience/style/valence review.
+5. Choose INF-A versus INF-C and re-check INF-D in that full-set context.
+6. Re-check OPP pair against CON and against reward/food preference confounds.
+7. Copy only selected/frozen assets into a PrioLens-owned asset path and capture immutable hashes.
+8. Freeze neutral participant prompt.
+9. Freeze choice-commit event.
+10. Implement deterministic 28-edge planner with exemplar + position balancing.
+11. Implement renderer/preflight and descriptive result trace.
+12. Only then freeze protocol/stimulus versions and expose public participation.
 
 ## Current repository files
 
@@ -206,4 +227,4 @@ No generated or historical image is a frozen PrioLens stimulus yet.
 
 ## Recovery instruction
 
-If conversation context is lost, start from this file, then `docs/DIRECTION_DEFINITIONS_v0.1.md`, `docs/GENERATED_CANDIDATE_AUDIT_v0.1.md`, `docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, and draft PR #9. Do not reconstruct PrioLens from ConflictLab or 2Pair memory.
+If conversation context is lost, start from this file, then `docs/DIRECTION_DEFINITIONS_v0.1.md`, `docs/GENERATED_CANDIDATE_AUDIT_v0.1.md`, `docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, and draft PR #9. Do not reconstruct PrioLens from ConflictLab or 2Pair memory. Treat this file as the current source of truth until superseded.
