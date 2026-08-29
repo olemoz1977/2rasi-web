@@ -18,7 +18,7 @@ Updated: 2026-08-30
 | Direction | Slot 1 | Slot 2 | State |
 |---|---|---|---|
 | AUT | `4655` three equivalent bottle openers / method choice | `4656` user-configured workspace | **2/2 provisional** |
-| CER | `4650` transparent container with visible contents | `4657` transparent single-exit cup dispenser | **2/2 provisional** |
+| CER | `4650` transparent container with visible contents | missing | **1/2 provisional** |
 | EXP | `3098` forest road into unknown | `4649` opening unknown drawer contents | **2/2 provisional** |
 | MAS | `4635` precision caliper | `4636` potter shaping vessel | **2/2 PASS** |
 | CON | `4646` reciprocal dyadic conversation | `2624` small-group belonging | **2/2 provisional** |
@@ -26,9 +26,12 @@ Updated: 2026-08-30
 | PRO | `2723` wet umbrella | `4645` fragile wine glass in fitted foam case | **2/2 provisional** |
 | OPP | `4637` productive greenhouse | `4638` prepared food table | **2/2 provisional** |
 
-Strict candidate coverage: **16/16 occupied.**
+Strict candidate coverage: **15/16 occupied.**
 
-This is candidate coverage only. No asset is frozen yet.
+Open slot:
+- CER: 1
+
+No asset is frozen yet.
 
 ## Current candidate decisions
 
@@ -58,21 +61,18 @@ This is candidate coverage only. No asset is frozen yet.
 - Semantic: `PROVISIONAL PASS`.
 - Why: what is present is directly visible without opening, searching or guessing.
 - Nearest neighbours: CER > EXP because no unknown content is approached; CER > PRO because container is not protecting from harm; CER > OPP because contents are neutral/non-rewarding.
-- Independence vs `4657`: `PASS`; known present state vs predictable next state.
 - Confound: storage/organization reading.
 - Disposition: **KEEP / CER-1 PROVISIONAL**.
 
-#### `4657` — transparent single-exit cup dispenser
-- Semantic: `PROVISIONAL PASS`.
-- Why: a familiar physical stack plus one exit makes the next available item/state visible and predictable.
-- Nearest neighbours: CER currently stronger than MAS/PRO; OPP remains a challenge because the protruding cup is also an available resource.
-- Independence vs `4650`: `PASS`.
-- Confound: dispenser/storage/order reading; mild OPP availability leakage.
-- Disposition: **KEEP / CER-2 PROVISIONAL pending full-set semantic challenge**.
+#### `4657` — transparent cup-dispenser attempt
+- Semantic intent: CER/predictable next state.
+- Image-level physical realism: `FAIL`.
+- Fatal issue: the bottom protruding cup does not plausibly emerge from the same vertical nested stack; it reads like a separate attached tube/scoop rather than a real dispenser exit. The visible mechanism therefore cannot support the intended predictability claim without researcher explanation.
+- Disposition: **REJECT / PHYSICAL_COHERENCE_FAIL**.
 
-Rejected CER families include: eyeglasses/reading (`2722`), labeled organization shelf, scales/gauges, question-mark/redacted-document/foggy-crossroads/map, rainy-window waiting (`2621`), inactive phone (`2620`), physically incoherent disc dispensers (`4651`,`4652`), jigsaw fit (`4653`), hourglass/time-flow (`4654`,`3111`,`3112`).
+Rejected CER families include: eyeglasses/reading (`2722`), labeled organization shelf, scales/gauges, question-mark/redacted-document/foggy-crossroads/map, rainy-window waiting (`2621`), inactive phone (`2620`), physically incoherent disc dispensers (`4651`,`4652`), jigsaw fit (`4653`), hourglass/time-flow (`4654`,`3111`,`3112`), physically incoherent cup dispenser (`4657`).
 
-**CER candidate generation closed; full-set audit may still reopen CER-2.**
+**CER remains 1/2. One independent CER slot is still open.**
 
 ### EXP
 
@@ -190,7 +190,9 @@ Rejected PRO: `2781` lock/unlock ambiguity; `4642` unclear object/unrealistic fo
 
 ## Full-set stage
 
-All 16 working slots are now occupied. Next required step is the full-set audit across:
+The proposed set currently has 15/16 occupied candidate slots. Do not start stimulus freeze until CER-2 is replaced by a physically coherent independent candidate.
+
+Once 16/16 is restored, run the full-set audit across:
 
 1. nearest-neighbour semantic leakage;
 2. within-direction independence;
