@@ -7,38 +7,37 @@ Updated: 2026-08-29
 
 Persistent source of truth for current stimulus decisions. A chat decision is not retained until recorded here.
 
-For every candidate track:
+Track for each candidate:
 
-`source -> intended direction -> semantic status -> independence -> visual/confound status -> disposition`
+`source -> direction -> semantic status -> independence -> confounds -> disposition`
 
 Rules:
 
-- Do not re-open accepted/rejected candidates without new evidence.
-- Do not generate more for a direction already at 2/2 unless the full-set audit exposes a concrete problem.
-- `PASS` means defensible design candidate, not validated construct evidence.
-- `PROVISIONAL PASS` counts as an occupied candidate slot but must survive full-set audit / cleanup.
+- Do not reopen accepted/rejected candidates without new evidence.
+- Do not generate more for a direction already at 2/2 unless full-set audit exposes a concrete problem.
+- `PASS` = defensible design candidate, not validated construct evidence.
+- `PROVISIONAL PASS` occupies a working slot but must survive cleanup + full-set audit.
 - `RESERVE` does not count toward the 16.
 - Procedural mockups and generated moodboards are never stimuli.
 
 ## Current slot ledger
 
-| Direction | Slot 1 | Slot 2 | Current state |
+| Direction | Slot 1 | Slot 2 | State |
 |---|---|---|---|
 | AUT | missing | missing | **0/2** |
 | CER | missing | missing | **0/2** |
 | EXP | `3098` forest road | missing | **1/2 provisional** |
 | MAS | `4635` precision caliper | `4636` potter | **2/2 PASS** |
-| CON | `4646` reciprocal face-to-face conversation | missing | **1/2 provisional** |
+| CON | `4646` reciprocal dyadic conversation | `2624` small-group belonging | **2/2 provisional** |
 | INF | routed consequence family: `4602` OR `4612` | `4641` domino chain reaction | **2/2 candidate coverage; slot 2 provisional** |
 | PRO | `2723` wet umbrella | `4645` horizontal wine glass in foam case | **2/2 provisional** |
 | OPP | `4637` productive greenhouse | `4638` prepared food table | **2/2 provisional** |
 
-Strict candidate count: **10/16 occupied; 6 remain open.**
+Strict candidate count: **11/16 occupied; 5 remain open.**
 
 Open slots:
 
 - EXP: 1
-- CON: 1
 - CER: 2
 - AUT: 2
 
@@ -47,19 +46,17 @@ Open slots:
 ### MAS
 
 #### `4635` precision caliper / fine mechanical adjustment
-- Direction: MAS.
 - Semantic: `PASS`.
 - Why: precision, measurement, fine adjustment and quality control are directly visible.
-- Nearest neighbour: MAS dominates INF because skilled execution, not external consequence, is central.
-- Confound: technical/mechanical domain flag.
+- Nearest neighbour: MAS > INF because skilled execution, not external consequence, is central.
+- Confound: technical/mechanical domain.
 - Disposition: **KEEP / MAS-1**.
 
 #### `4636` potter forms symmetrical clay vessel
-- Direction: MAS.
 - Semantic: `PASS`.
 - Why: practiced hand control, refinement, symmetry and skill are visible.
 - Independence vs `4635`: `PASS`.
-- Confound: craft/tactile domain flag.
+- Confound: craft/tactile domain.
 - Disposition: **KEEP / MAS-2**.
 
 **MAS closed at 2/2.**
@@ -67,61 +64,53 @@ Open slots:
 ### OPP
 
 #### `4637` open greenhouse with visible productive value
-- Direction: OPP.
 - Semantic: `PROVISIONAL PASS`.
-- Why: a concrete valuable possibility is visibly available and accessible now.
-- Nearest neighbour: stronger OPP than AUT/EXP because visible value, not freedom/discovery, is central.
+- Why: concrete valuable possibility is visibly available and accessible now.
+- Nearest neighbour: OPP > AUT/EXP because visible value, not freedom/discovery, is central.
 - Confound: nature/food positive valence.
 - Disposition: **KEEP / OPP-1 provisional**.
 
 #### `4638` prepared food table with one empty plate
-- Direction: OPP.
 - Semantic: `PROVISIONAL PASS`.
 - Why: prepared value is visibly available for immediate use.
-- Nearest neighbour: weak residual CON reading, but no people/celebration/multiple place settings.
-- Independence vs `4637`: provisional pass; scenes differ but both remain positive resource/food domains.
+- Nearest neighbour: weak residual CON reading but no people/celebration/multiple place settings.
+- Independence vs `4637`: provisional pass; different scenes but same positive resource/food domain.
 - Confound: appetite/reward.
 - Disposition: **KEEP / OPP-2 provisional**.
 
-**OPP closed provisionally at 2/2; reopen only if cross-set audit rejects one.**
+**OPP closed provisionally.**
 
 ### INF
 
 #### `4602` hand redirects marble flow through physical gate
-- Direction: INF.
 - Semantic: `PASS`.
 - Why: one visible action changes the outcome of a wider external physical system.
 - Confound: mechanism/control affinity.
 - Disposition: **KEEP as routed-consequence family option**.
 
 #### `4612` irrigation gate distributes water toward several plant beds
-- Direction: INF.
 - Semantic: `PASS`.
-- Why: one visible action changes a wider external system and consequence is visible in-frame.
 - Independence vs `4602`: `FAIL`; same routed-flow family.
 - Disposition: **KEEP only as alternative to `4602`; never pair 4602 + 4612**.
 
 #### `4641` fingertip initiates domino chain reaction
-- Direction: INF.
 - Semantic: `PASS`.
-- Physical causality: `PASS` compared with 4615/4616; first tile leans away from finger, contacts next tile, and propagation is visible.
+- Physical causality: `PASS`; first tile leans away from finger, contacts next tile, downstream propagation is visible.
 - Nearest neighbours: MAS and AUT materially weaker.
 - Independence vs routed-flow family: `PASS`.
-- Branching is not required by the frozen INF definition.
 - Confound: wooden game-piece salience acceptable; KlingAI watermark must be absent before freeze.
 - Disposition: **KEEP / INF-2 PROVISIONAL PASS**.
 
-Earlier rejected INF attempts: `4599` hidden consequence; `4614` procedural reference; `4615` incoherent causality; `4616` finger read as holding/stopping.
+Rejected INF: `4599` hidden consequence; `4614` procedural only; `4615` incoherent causality; `4616` finger read as holding/stopping.
 
 **INF closed provisionally at 2/2 candidate families.**
 
 ### EXP
 
 #### `3098` single forest road disappearing deeper into trees
-- Direction: EXP.
 - Semantic: `PROVISIONAL PASS`.
 - Why: one path into partially unknown space supports approach-to-unknown without a choice fork.
-- Nearest neighbour: cleaner than AUT forked paths; weaker OPP because no visible gain/reward.
+- Nearest neighbour: EXP > AUT because no choice fork; OPP weaker because no visible gain/reward.
 - Confound: nature/travel aesthetic.
 - Disposition: **KEEP / EXP-1 provisional**.
 
@@ -130,58 +119,59 @@ Earlier rejected INF attempts: `4599` hidden consequence; `4614` procedural refe
 ### PRO
 
 #### `2723` wet black umbrella by doorway
-- Direction: PRO.
 - Semantic: `PROVISIONAL PASS`.
 - Why: protective function against visible rain/wetness is directly legible.
-- Nearest neighbour: clearer PRO than CER/AUT/OPP.
+- Nearest neighbour: PRO > CER/AUT/OPP.
 - Confound: dark/rain negative valence.
 - Disposition: **KEEP / PRO-1 provisional**.
 
 #### `4645` horizontal fragile wine glass in fitted foam case
-- Direction: PRO.
 - Semantic: `PROVISIONAL PASS`.
-- Why: the fragile glass is clearly recognizable and visibly immobilized by a fitted lower foam cavity plus protective lid foam; physical protection from impact/breakage is directly legible.
-- Physical coherence: `PASS` at candidate level. The glass lies horizontally, stem/base/bowl are supported, and the case can plausibly close with compressible lid foam.
-- Nearest neighbour: PRO clearly dominates CER because the visible function is reducing damage exposure, not reducing uncertainty.
-- Independence vs `2723`: `PASS`; weather shielding vs transport/impact cushioning are different protection families.
-- Confound: product/packaging aesthetic is mild; KlingAI watermark must be absent before freeze.
-- Disposition: **KEEP / PRO-2 PROVISIONAL PASS pending clean asset + full-set audit**.
+- Why: fragile glass is recognizable and visibly immobilized by fitted lower foam plus protective lid foam.
+- Physical coherence: `PASS` at candidate level.
+- Nearest neighbour: PRO > CER because function is reducing damage exposure, not uncertainty.
+- Independence vs `2723`: `PASS`; weather shielding vs transport/impact cushioning.
+- Confound: mild product/packaging aesthetic; KlingAI watermark must be absent before freeze.
+- Disposition: **KEEP / PRO-2 provisional**.
 
-Rejected PRO attempts:
-- `2781`: lock vs unlock ambiguous.
-- `4642`: protected object unclear and foam unrealistic.
-- `4644`: upright wine glass protruded above support and case could not plausibly close safely.
+Rejected PRO: `2781` lock/unlock ambiguity; `4642` unclear object/unrealistic foam; `4644` case could not plausibly close safely.
 
-**PRO closed provisionally at 2/2 candidate families.**
+**PRO closed provisionally.**
 
 ### CON
 
 #### `4646` two adults in reciprocal face-to-face conversation
-- Direction: CON.
 - Semantic: `PROVISIONAL PASS`.
-- Why: mutual eye contact, reciprocal body orientation and equal engagement make interpersonal connection directly visible rather than inferred from shared objects or mere co-presence.
-- Nearest neighbours: INF is weak because no one is visibly directing the other or shaping an external outcome; PRO is weak because no safeguarding cue is present.
-- Confound: opposite-sex pairing plus warm smiles may add a mild romantic/intimacy valence. This must be challenged in full-set audit and should not be repeated in CON-2.
-- Disposition: **KEEP / CON-1 PROVISIONAL PASS pending clean watermark-free asset + full-set audit**.
+- Why: mutual eye contact, reciprocal body orientation and equal engagement make interpersonal connection directly visible.
+- Nearest neighbours: INF weak because neither directs the other; PRO absent.
+- Confound: opposite-sex pairing + warm smiles may add mild romantic/intimacy valence.
+- Disposition: **KEEP / CON-1 provisional**.
 
-Reserves:
-- `2790` two mugs: relationship inferred, absence/warmth confounds.
-- `2720` two glasses of water: neutral but no reciprocal connection.
+#### `2624` three adults around a table in warm reciprocal social interaction
+- Semantic: `PROVISIONAL PASS`.
+- Why: all three are visibly oriented toward the same small social group and the scene reads as shared belonging/interaction rather than mere co-presence.
+- Independence vs `4646`: `PASS`; dyadic face-to-face reciprocity vs small-group belonging are different connection families.
+- Nearest neighbour: INF is weaker because no leader, presentation or directional control is visible; MAS absent.
+- Confounds: warm pendant light, dark ambience and the forward-facing smiling woman create positive/social salience and mild focal asymmetry. Must survive full-set valence/salience audit.
+- Disposition: **KEEP / CON-2 PROVISIONAL PASS**.
 
-Rejected families:
-- empty adjacent seats;
-- `3370` mannequins side by side facing canvas;
-- `3372` mannequins apart in gallery.
+Other CON candidates:
+- `4647` two adults carrying one box together: `RESERVE`; reads as couple/moving-household and repeats opposite-sex smiling social family.
+- `4648` three adults standing in bright room: `RESERVE`; center person + blazer creates status/business/INF leakage and stock-social aesthetic.
+- `2625` four adults seated around a table: `FAIL/RESERVE`; meeting/work interpretation and one focal serious participant dominate belonging.
+- `2790` two mugs: `RESERVE`; relationship inferred, warmth/absence confounds.
+- `2720` two water glasses: `RESERVE`; neutral but no reciprocal connection.
+- empty seats, `3370`, `3372`: `FAIL`.
 
-**CON remains 1/2. Need one conceptually independent reciprocal-connection family.**
+**CON closed provisionally at 2/2 candidate families.**
 
 ### CER
 
 Rejected families:
 - `2722` eyeglasses on printed material: reading/vision/intellect, not certainty.
-- organized shelf with labels: order/organization plus text confound.
-- measuring vessels/level gauges: numbers/scales and MAS/numeracy confound.
-- question mark / redacted document / foggy crossroads / old map per reconciliation audit.
+- organized shelf with labels: order/organization + text confound.
+- measuring vessels/level gauges: scales/numbers + MAS/numeracy confound.
+- question mark / redacted document / foggy crossroads / old map: previously rejected in reconciliation audit.
 
 **CER remains 0/2.**
 
