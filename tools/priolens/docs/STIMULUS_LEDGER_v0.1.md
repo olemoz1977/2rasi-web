@@ -28,17 +28,17 @@ Rules:
 | CER | missing | missing | **0/2** |
 | EXP | `3098` forest road | missing | **1/2 provisional** |
 | MAS | `4635` precision caliper | `4636` potter | **2/2 PASS** |
-| CON | missing | missing | **0/2**; `2790`, `2720` reserves |
+| CON | `4646` reciprocal face-to-face conversation | missing | **1/2 provisional** |
 | INF | routed consequence family: `4602` OR `4612` | `4641` domino chain reaction | **2/2 candidate coverage; slot 2 provisional** |
 | PRO | `2723` wet umbrella | `4645` horizontal wine glass in foam case | **2/2 provisional** |
 | OPP | `4637` productive greenhouse | `4638` prepared food table | **2/2 provisional** |
 
-Strict candidate count: **9/16 occupied; 7 remain open.**
+Strict candidate count: **10/16 occupied; 6 remain open.**
 
 Open slots:
 
 - EXP: 1
-- CON: 2
+- CON: 1
 - CER: 2
 - AUT: 2
 
@@ -156,6 +156,14 @@ Rejected PRO attempts:
 
 ### CON
 
+#### `4646` two adults in reciprocal face-to-face conversation
+- Direction: CON.
+- Semantic: `PROVISIONAL PASS`.
+- Why: mutual eye contact, reciprocal body orientation and equal engagement make interpersonal connection directly visible rather than inferred from shared objects or mere co-presence.
+- Nearest neighbours: INF is weak because no one is visibly directing the other or shaping an external outcome; PRO is weak because no safeguarding cue is present.
+- Confound: opposite-sex pairing plus warm smiles may add a mild romantic/intimacy valence. This must be challenged in full-set audit and should not be repeated in CON-2.
+- Disposition: **KEEP / CON-1 PROVISIONAL PASS pending clean watermark-free asset + full-set audit**.
+
 Reserves:
 - `2790` two mugs: relationship inferred, absence/warmth confounds.
 - `2720` two glasses of water: neutral but no reciprocal connection.
@@ -165,7 +173,7 @@ Rejected families:
 - `3370` mannequins side by side facing canvas;
 - `3372` mannequins apart in gallery.
 
-**CON remains 0/2.**
+**CON remains 1/2. Need one conceptually independent reciprocal-connection family.**
 
 ### CER
 
