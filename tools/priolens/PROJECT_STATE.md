@@ -102,88 +102,93 @@ Recovered inventory:
 - 19 used by old v0.4
 - 23 non-placeholder reserves
 
-File Library direct visual access is available. Historical recovery did not produce clean independent coverage for the weakest directions without weakening the semantic contract, so controlled generation was authorized.
+File Library direct visual access is available. Historical recovery did not produce clean independent coverage for every direction without weakening the semantic contract, so controlled generation was authorized where a demonstrated gap remains.
 
-## Generated weak-direction checkpoint — CURRENT
+## Live stimulus decision source — CURRENT
 
-Detailed source:
+**Candidate-level source of truth:**
 
-`/tools/priolens/docs/GENERATED_CANDIDATE_AUDIT_v0.1.md`
+`/tools/priolens/docs/STIMULUS_LEDGER_v0.1.md`
 
-Generated binaries are conversation uploads/generated assets and are **not** repository assets or hash-frozen stimuli.
+The ledger must be updated after each candidate decision before moving to another concept. Chat decisions alone are not durable project state.
 
-### MAS
+Supporting audit history remains in:
 
-Current status: **2 defensible independent candidates**.
+- `/tools/priolens/docs/GENERATED_CANDIDATE_AUDIT_v0.1.md`
+- `/tools/priolens/docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`
 
-- MAS-A: precision mechanical adjustment (`4604.png`) — semantic pass, technical-domain flag.
-- MAS-B: potter forms a symmetrical clay vessel (`4605.png`) — semantic pass, craft/tactile-domain flag.
-- Pair independence: PASS.
+If those supporting files conflict with `STIMULUS_LEDGER_v0.1.md` on current candidate status, **the ledger wins**.
 
-No more MAS generation is justified now.
+Generated/re-uploaded binaries are conversation/File Library assets and are **not** repository assets or hash-frozen stimuli yet.
 
-### OPP
+### Current strict slot status
 
-Current status: **2 provisional independent candidates**.
+| Direction | Status | Current candidates |
+|---|---:|---|
+| AUT | **0/2** | none passed |
+| CER | **0/2** | none passed |
+| EXP | **1/2 provisional** | `3098` forest road |
+| MAS | **2/2 PASS** | `4635` precision caliper; `4636` potter |
+| CON | **0/2** | `2790` mugs and `2720` water glasses are reserves only |
+| INF | **1/2** | routed physical consequence family represented by `4602` OR `4612`; these two are not independent |
+| PRO | **1/2 provisional** | `2723` wet umbrella |
+| OPP | **2/2 provisional** | `4637` productive greenhouse; `4638` prepared food table |
 
-- OPP-A: open greenhouse with visibly productive value (`4607.png`) — semantic pass, nature/food positive-valence flag.
-- OPP-B: neutral prepared food table with one empty plate (`4611.png`) — provisional semantic pass, appetite/reward flag.
-- Pair independence: provisional pass, but both remain positive food/resource domains.
+Strict total: **7/16 occupied candidate slots; 9 remain open.**
 
-No more OPP generation is justified until full-set comparison shows a real need.
+Open slots:
 
-### INF
+- INF: 1
+- EXP: 1
+- PRO: 1
+- CON: 2
+- CER: 2
+- AUT: 2
 
-Current strict status: **1 independent defensible scene family only**.
+### Closed directions for generation
 
-Routed physical consequence family:
+- **MAS:** closed at 2/2. Do not generate more unless cross-set audit rejects one.
+- **OPP:** closed provisionally at 2/2. Re-open only if cross-set valence/domain audit rejects one.
 
-- INF-A: hand redirects marble flow through a physical gate (`4602.png`) — semantic pass.
-- INF-C: irrigation gate distributes water toward several young-plant beds (`4612.png`) — semantic pass.
-- INF-A and INF-C are **not independent** and must not become the final pair together. Both instantiate `hand + gate/lever + routed physical flow + downstream consequence`.
+### INF caution
 
-Other attempts:
-
-- generic control panel `4599.png`: ambiguous because external consequence is not visible.
-- light-switch attempts: rejected as low-stakes and luminance-driven; **no INF-D candidate exists**.
-- mailbox, compactor, alarm, gates, windows, first-aid/resource rooms, drinking fountain and repeated irrigation/pump variants were rejected for hidden consequence, neighbour-direction dominance, same-family duplication or visual confounds.
-
-Important correction:
-
-- `4614.png` is a crude Python-drawn domino composition reference only.
-- Status: `PROCEDURAL_REFERENCE_ONLY / NOT A STIMULUS`.
-- It must never be counted as a positive INF result, candidate image or visual-quality evidence.
-
-Therefore **INF generation remains open**. A second photorealistic, conceptually independent INF exemplar is still missing.
+- `4602` marble gate and `4612` irrigation gate are both semantic passes but **same-family**, so they cannot form the final INF pair.
+- `4614` is a crude Python procedural domino reference only and is never a stimulus.
+- Domino is still a viable independent INF concept, but attempted photorealistic renders failed physical causal coherence because the finger read as holding/stopping the first block or the chain was already falling before contact.
 
 ## Current blocker boundary
 
-The active blocker is stimulus evidence quality, specifically:
+The active blocker is no longer “find images generally.” It is exactly **9 unresolved slots** under the frozen semantic contract.
 
-1. obtain one second conceptually independent photorealistic INF exemplar;
-2. then audit AUT/CER/EXP/CON/PRO directly against frozen definitions;
-3. identify two defensible independent exemplars per remaining direction;
-4. assemble a proposed 16-candidate set;
-5. run full-set semantic + luminance/contrast/complexity/salience/style/valence/domain-overlap audit;
-6. only then copy selected assets into a PrioLens-owned path and hash/freeze them.
+Work should proceed slot-by-slot. Do not reopen completed directions or run broad untargeted generation/library sweeps.
+
+Before any 16-stimulus freeze:
+
+1. fill the 9 open slots with defensible candidates;
+2. verify conceptual independence within each direction;
+3. assemble the proposed 16-candidate set;
+4. run full-set semantic + luminance/contrast/complexity/salience/style/valence/domain-overlap audit;
+5. only then copy selected assets into a PrioLens-owned path and hash/freeze them.
 
 No generated or historical image is a frozen PrioLens stimulus yet.
 
 ## Current cross-set concerns
 
-- MAS-A vs routed-flow INF is semantically separable, but technical/mechanical affinity remains a style/domain concern.
-- MAS-B provides useful domain diversity.
-- OPP pair has stronger positive/reward valence than current MAS and INF candidates.
-- INF-A and INF-C must not both enter the final 16.
-- Long same-chat generation context repeatedly biases image output toward recently used gate/flow/control motifs; replacement generation should use isolated context or strong visual references where possible.
+- MAS-1 has technical/mechanical affinity with routed-flow INF, but semantics are separable.
+- MAS-2 provides useful domain diversity.
+- OPP pair has stronger positive/reward valence than current MAS/INF candidates.
+- `4637` and `4638` both use visible food/resource value and therefore need a domain/valence challenge in the full-set audit.
+- `3098` carries nature/travel aesthetic salience.
+- `2723` carries dark/rain negative-valence salience.
+- INF `4602` and `4612` must not both enter the final 16.
 
 ## Next priority work
 
-1. **Continue INF concept design until a second independent photorealistic candidate passes semantics, pair independence and visual-confound review.**
-2. Do not count procedural references/mockups as stimuli.
-3. Once INF is complete, audit AUT/CER/EXP/CON/PRO using File Library + recovered historical assets.
-4. Generate replacements only for demonstrated gaps.
-5. Assemble proposed 16-candidate set and run full-set confound review.
+1. Work only on the 9 open slots recorded in `STIMULUS_LEDGER_v0.1.md`.
+2. After every candidate review, persist the decision in the ledger before changing direction.
+3. Prefer existing File Library/recovered assets when they meet the definition; generate only for demonstrated gaps.
+4. Do not count procedural references/mockups as stimuli.
+5. Once all 16 candidate slots are occupied, run the full-set confound audit.
 6. Copy only selected/frozen assets into a PrioLens-owned path and capture immutable hashes.
 7. Freeze neutral participant prompt.
 8. Freeze choice-commit event.
@@ -208,8 +213,9 @@ No generated or historical image is a frozen PrioLens stimulus yet.
 - `/tools/priolens/docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`
 - `/tools/priolens/docs/STIMULUS_GENERATION_BRIEFS_v0.1.md`
 - `/tools/priolens/docs/GENERATED_CANDIDATE_AUDIT_v0.1.md`
+- `/tools/priolens/docs/STIMULUS_LEDGER_v0.1.md` — live candidate decision log
 - `/tools/priolens/PROJECT_STATE.md` (this file)
 
 ## Recovery instruction
 
-If conversation context is lost, start from this file, then `docs/DIRECTION_DEFINITIONS_v0.1.md`, `docs/GENERATED_CANDIDATE_AUDIT_v0.1.md`, `docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, and draft PR #9. Do not reconstruct PrioLens from ConflictLab or 2Pair memory. Treat this file as the current source of truth until superseded.
+If conversation context is lost, start from this file, then `docs/STIMULUS_LEDGER_v0.1.md`, `docs/DIRECTION_DEFINITIONS_v0.1.md`, `docs/GENERATED_CANDIDATE_AUDIT_v0.1.md`, `docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, and draft PR #9. Do not reconstruct PrioLens from ConflictLab or 2Pair memory. Treat this file as the project source of truth; for candidate-level status, defer to `STIMULUS_LEDGER_v0.1.md`.
