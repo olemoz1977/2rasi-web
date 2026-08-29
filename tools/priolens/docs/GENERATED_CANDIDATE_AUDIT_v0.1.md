@@ -31,7 +31,22 @@ This was an informed design audit, not a blind validation study: the intended di
 - Strict semantic re-audit: `SEMANTIC_AMBIGUOUS`.
 - Problem: the panel visibly affords control, but the image does **not** show what external/shared outcome changes. Under the frozen INF definition, control affordance alone is insufficient evidence of influence.
 - Nearest-neighbour risk: MAS/control-system competence and AUT/personal control remain plausible.
-- Current disposition: **DO NOT FREEZE. Replacement needed unless a paired/context-normalized rendering makes the external consequence visible without adding hidden story.**
+- Current disposition: **DO NOT FREEZE.**
+
+#### INF-C · hand opens an irrigation gate and water reaches several young-plant beds
+
+- Source upload: `4612.png`.
+- Semantic status: `SEMANTIC_PASS`.
+- Rationale: one visible action changes a wider external system and its consequence is visible in the same frame as water is distributed toward multiple beds.
+- Nearest-neighbour challenge:
+  - vs AUT: the action is not about choosing the actor's own route; it changes what happens across the external irrigation system.
+  - vs MAS: the image does not depend on precision, craftsmanship or quality of execution; the central cue is consequence.
+  - vs OPP: young plants are neutral and no valuable harvest/potential-gain cue dominates.
+- Visual status: `VISUAL_PASS_WITH_NATURAL_SYSTEM_FLAG`.
+- Main risk: agriculture/nature affinity and moving-water salience.
+- Independence status versus INF-A: `PAIR_INDEPENDENCE_FAIL`.
+- Independence problem: INF-A and INF-C use the same underlying scene logic: **hand + gate/lever + routed physical flow + visible downstream consequence**. Changing marbles to water does not create a conceptually independent exemplar family.
+- Current disposition: **KEEP AS A STRONG INF CANDIDATE, BUT DO NOT PAIR WITH INF-A AS THE FINAL TWO.** One of INF-A/INF-C may survive; a different INF scene family is still required.
 
 ### MAS · Mastery
 
@@ -56,6 +71,8 @@ This was an informed design audit, not a blind validation study: the intended di
   - vs OPP: no opening/potential-gain cue dominates.
 - Visual status: `VISUAL_PASS_WITH_DOMAIN_FLAG`.
 - Main risk: craft/tactile aesthetic affinity.
+- Independence status versus MAS-A: `PAIR_INDEPENDENCE_PASS`.
+- Independence rationale: technical measurement/adjustment and tactile form-making are different scene/content families while preserving skilled execution as the shared priority.
 
 ### OPP · Opportunity
 
@@ -81,7 +98,9 @@ This was an informed design audit, not a blind validation study: the intended di
   - vs EXP/AUT: no unknown content or multiple-choice structure is present.
 - Visual status: `VISUAL_PASS_WITH_REWARD_FLAG`.
 - Main risk: appetite/hunger state and food reward salience may influence choice independently of OPP.
-- Independence note: conceptually different from the greenhouse scene (ready consumption vs productive access), but both are food/resource domains; retain a cross-set domain-overlap flag.
+- Independence status versus OPP-A: `PAIR_INDEPENDENCE_PROVISIONAL_PASS`.
+- Independence rationale: productive access through a greenhouse and immediately consumable prepared value are different immediate scene structures, but both still occupy food/resource domains.
+- Cross-set caution: retain a shared food/reward-domain flag for the final 16-set audit.
 
 ## Rejected OPP attempts from the same session
 
@@ -90,26 +109,35 @@ This was an informed design audit, not a blind validation study: the intended di
 - `4609.png` woodworking blank + empty bench: visual pass, semantic ambiguity with MAS.
 - `4610.png` metal materials + empty workspace: visual pass, semantic ambiguity with MAS.
 
-## Mini cross-set conclusion for the weak directions
+## Six-candidate weak-direction cross-set checkpoint
 
 Current strict status:
 
-- INF: **1 defensible + 1 ambiguous** → still one genuine gap.
-- MAS: **2 defensible, independent candidates** → generation can stop for now.
-- OPP: **2 provisional defensible candidates**, with a shared positive-resource/food valence risk → generation can stop for now, but the pair must be challenged again in the final 16-set audit.
+- INF: **two strong semantic candidates exist (INF-A, INF-C), but they fail pair independence because both instantiate routed-flow control. The direction still lacks a second independent exemplar family.**
+- MAS: **2 defensible, independent candidates**. Generation can stop for MAS.
+- OPP: **2 provisional defensible candidates**, but both retain positive-resource/food-domain risk. Generation can stop for OPP for now; the pair must be challenged again in the final 16-set audit.
 
-The earlier statement that INF had two strong candidates was too permissive. The control-panel image shows control affordance but not a visible external/shared consequence, which conflicts with the frozen INF semantic contract.
+### Cross-direction notes
+
+- MAS-A versus INF-A/INF-C: sufficiently separable at the semantic level because MAS-A centers skilled precision while INF centers downstream consequence. However technical/mechanical visual affinity between MAS-A and INF-A remains a set-level style/domain concern.
+- MAS-B provides useful domain diversity and reduces the risk that MAS becomes synonymous with industrial/technical skill.
+- OPP-A and OPP-B have stronger positive/reward valence than the current MAS candidates and likely stronger natural/color salience than INF candidates. This requires later normalization/challenge before final freeze.
+- INF-A and INF-C should **not** both enter the final 16 even though both individually pass.
 
 ## Next action
 
-Generate **one conceptually independent replacement INF candidate** whose visible scene shows an action changing a consequential external/shared outcome. Avoid:
+Do **not** generate more MAS or OPP candidates now.
 
+INF still needs **one conceptually independent scene family** in which a visible action changes a consequential external/shared outcome, while avoiding:
+
+- routed flows, gates, valves or branching channels;
 - generic control panels with no visible consequence;
 - authority/status/social-role stereotypes;
 - dominance/coercion;
-- another marble/ball-routing scene;
-- skilled-adjustment imagery that would collapse into MAS.
+- precision/craft imagery that collapses into MAS.
 
-After that candidate is reviewed, rerun the six-candidate weak-direction cross-set audit before any promotion toward the final 16.
+Candidate design should be solved before any additional rendering. No further image generation is authorized merely to fill quota.
+
+After a genuinely different INF concept exists and passes review, rerun the weak-direction cross-set audit and then return to the full 16-stimulus candidate set.
 
 No generated candidate is frozen or copied into runtime assets by this document.
