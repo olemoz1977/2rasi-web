@@ -47,7 +47,7 @@ Do not claim subconscious, instinct, hidden-needs, personality diagnosis, employ
 
 ## Working direction semantic contract — FROZEN FOR INTERNAL AUDIT
 
-`/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md` now defines the working semantic boundaries used for stimulus audit.
+`/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md` defines the working semantic boundaries used for stimulus audit.
 
 Important boundary:
 
@@ -126,13 +126,13 @@ Human review inventory:
 
 The earlier assumption that direct visual inspection was technically blocked is no longer valid for the overall workflow.
 
-GitHub connector binary access is limited, but the user's File Library contains the historical visual material and exposes the images for direct multimodal review. Numeric filename search is imperfect, so retrieval must use both filename neighbourhoods and visual-content queries.
+GitHub connector binary access is limited, but the user's File Library contains the historical visual material and exposes images for direct multimodal review. Numeric filename search is imperfect, so retrieval uses both filename neighbourhoods and visual-content queries.
 
-A first direct File Library review is recorded in:
+Direct File Library review is recorded in:
 
 `/tools/priolens/docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`
 
-The exact `2465.png` handle has not yet surfaced by literal filename search, but the historical numeric series is clearly recoverable, including `2766`, `2767`, `2781`, `2782`, `2783`, `2784`, `2785`, `2787`, `2790`, `2791`, `2792`, `2793`, `2794`, `2795`, `2796`, `2798` and additional later variants.
+The exact `2465.png` handle has not surfaced by literal filename search, but the historical numeric series is recoverable, including `2766`, `2767`, `2781`, `2782`, `2783`, `2784`, `2785`, `2787`, `2790`, `2791`, `2792`, `2793`, `2794`, `2795`, `2796`, `2798` and additional later variants.
 
 Current direct-review implications:
 
@@ -141,7 +141,32 @@ Current direct-review implications:
 - `2798` (forked forest path) is too structurally ambiguous across AUT/EXP/OPP to serve as a clean single-direction exemplar.
 - `2766` (generic laptop) confirms that generic work imagery is insufficient for MAS.
 - `2681(1)` (dark faceless figures) carries a strong threat/ominous confound and is unsuitable for clean CON/INF use.
-- No directly reviewed File Library image yet resolves the INF gap.
+- no directly reviewed historical image resolves the INF gap.
+
+### Weak-direction historical reserve checkpoint — GENERATION AUTHORIZED
+
+The 23 unassigned reserves were additionally checked at source-family / historical-cue level without pretending that every exact reserve binary received a direct pixel pass.
+
+The recovered evidence shows:
+
+- Wave 1 reserves are legacy reveal/evidence/reference and spatial-structure/capacity manipulations rather than natural INF/MAS/OPP scenes.
+- N0-004…N0-008 historical reactions cluster around moving forward/end-state, texture/touch and object arrangement/crowding; they do not reveal an obvious INF or MAS scene and remain ambiguous for OPP.
+- historical media reserves center on approach/release/uncertainty, window silhouette, empty room and person alone; none naturally establishes INF or MAS, while approach/uncertainty risks collapsing OPP into EXP/AUT.
+
+Therefore the historical library is now considered **semantically exhausted enough for INF, MAS and OPP to authorize controlled new candidate generation**. This is not a claim that all 23 reserve files are pixel-audited. Exact reserves remain eligible if later direct review shows they outperform generated candidates.
+
+Generation is governed by:
+
+`/tools/priolens/docs/STIMULUS_GENERATION_BRIEFS_v0.1.md`
+
+Generation policy:
+
+- initial pool is 3 conceptually different candidates per weak direction, 9 scenes total;
+- target remains at least 2 independent passing exemplars per direction;
+- generating exactly two is forbidden because it creates quota pressure;
+- generated candidates use neutral IDs during blind review;
+- no generated image enters `stimuli-v0.1.json` until semantic and visual-confound gates pass;
+- OPP carries the highest semantic-risk flag because physical openness repeatedly overlaps AUT/EXP.
 
 ### Recovered candidate counts by direction
 
@@ -162,25 +187,27 @@ These are **legacy mapped file counts**, not usable-exemplar counts.
 
 Current triage:
 
-- INF: both historical mapped candidates are quarantined; current usable count is effectively 0 pending reserve/direct review.
-- MAS: both historical candidates are weak because generic laptop/notebook work imagery does not by itself establish mastery.
-- OPP: `p0-002-b` is likely closer to EXP; corridor imagery remains ambiguous; OPP is a likely gap.
+- INF: both historical mapped candidates are quarantined; historical recovery did not produce a defensible replacement, so controlled generation is active.
+- MAS: historical laptop/notebook and recovered work/craft material remain too generic or domain-confounded, so controlled generation is active.
+- OPP: `p0-002-b` is likely closer to EXP; corridor/opening imagery remains ambiguous, so controlled generation is active with a strict AUT/EXP challenge.
 - CER: `p0-003-b` is likely closer to PRO than CER.
 - PRO: `p0-002-a` remains possible; `p0-003-b` becomes a possible replacement candidate.
-- CON: current phone/table/chat candidates rely heavily on social/device projection and require strict review.
+- CON: `2790` is a plausible first candidate but a second independent exemplar still needs evidence.
 - AUT/CER/EXP still require nearest-neighbour cleanup and direct visual review.
 
-This changes the planning assumption: raw recovered count is no longer enough to say that stimulus availability is not a bottleneck. **Usable semantic count may be a bottleneck for INF, MAS and OPP.** New generation is still premature until the recoverable File Library reserve has been reviewed.
+Raw recovered count is not evidence of usable semantic coverage. **INF, MAS and OPP are confirmed design gaps at the current evidence threshold.**
 
 ## Risk flag
 
-**Influence / INF remains the first replacement-review priority.** The old prototype already called Influence coverage especially weak, and the semantic pre-audit now quarantines both mapped INF candidates.
+**Influence / INF remains the first generation-review priority.** The old prototype called Influence coverage especially weak, the semantic pre-audit quarantined both mapped INF candidates, and the File Library recovery did not provide a clean replacement.
 
 Do not keep a weak INF image merely to satisfy a nominal two-file quota.
 
+**Opportunity / OPP is the highest semantic-overlap risk.** A generated OPP scene must show future value/gain, not just openness, movement, curiosity or choice.
+
 ## Important methodological warning inherited from earlier review
 
-Do not treat existing images as validated constructs merely because they were used in an earlier prototype. Previous review identified uncontrolled low-level visual confounds (complexity, luminance, spatial frequency, familiarity, style/format differences) and circular construct assignment risks. PrioLens needs exemplar-level review before stimulus freeze.
+Do not treat existing or generated images as validated constructs merely because they were designed for a direction. Previous review identified uncontrolled low-level visual confounds and circular construct-assignment risks. PrioLens needs exemplar-level review before stimulus freeze.
 
 Specific selection rule:
 
@@ -191,6 +218,7 @@ Specific selection rule:
 - avoid text/UI cues unless controlled across all final assets
 - immutable PrioLens asset ID + content hash after freeze
 - document mapping rationale independently from legacy filenames
+- generated candidates must receive blind semantic screening before final-set promotion
 
 ## Current repository files
 
@@ -206,31 +234,33 @@ Specific selection rule:
 - `/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md`
 - `/tools/priolens/docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`
 - `/tools/priolens/docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`
+- `/tools/priolens/docs/STIMULUS_GENERATION_BRIEFS_v0.1.md`
 - `/tools/priolens/PROJECT_STATE.md` (this file)
 
 ## Next priority work
 
-1. Continue direct File Library review of the recoverable historical image set; use visual-content search when numeric filenames do not resolve.
-2. Prioritize INF, MAS and OPP candidates, then CON/PRO; record visual-confound status separately from semantic status.
-3. Reassign candidates across directions where the visible content supports a different working direction; do not preserve old mapping for continuity.
-4. Select two sufficiently independent exemplar candidates per direction and identify only genuine gaps that still require new generation.
-5. Run a cross-set confound audit across the proposed final 16.
-6. Copy only selected/frozen assets into a PrioLens-owned asset path; do not create runtime dependency on ConflictLab URLs.
-7. Freeze exact neutral participant prompt.
-8. Freeze choice-commit event (`pointerdown`, `pointerup`, or `click`) based on intended timing semantics and compatibility.
-9. Implement and test deterministic 28-edge session planner with exemplar and position balancing.
-10. Implement measured renderer and preflight.
-11. Implement descriptive result trace.
-12. Only then freeze protocol/stimulus versions and expose public participation.
+1. Generate the Stage A weak-direction candidate pool defined in `STIMULUS_GENERATION_BRIEFS_v0.1.md`: 3 INF + 3 MAS + 3 OPP neutral-ID scenes.
+2. Directly review every generated candidate for semantic fit and low-level visual confounds; reject rather than rescue ambiguous outputs.
+3. Run the required nearest-neighbour challenge, especially MAS↔INF and OPP↔AUT/EXP.
+4. Continue direct historical review opportunistically for CON/PRO and AUT/CER/EXP; exact historical reserves remain eligible if they beat generated candidates.
+5. Select two sufficiently independent candidates per direction only after evidence supports them.
+6. Run a cross-set confound audit across the proposed final 16 and re-render selected generated concepts if normalization is needed.
+7. Copy only selected/frozen assets into a PrioLens-owned asset path; do not create runtime dependency on ConflictLab URLs.
+8. Freeze exact neutral participant prompt.
+9. Freeze choice-commit event (`pointerdown`, `pointerup`, or `click`) based on intended timing semantics and compatibility.
+10. Implement and test deterministic 28-edge session planner with exemplar and position balancing.
+11. Implement measured renderer and preflight.
+12. Implement descriptive result trace.
+13. Only then freeze protocol/stimulus versions and expose public participation.
 
 ## Current blocker boundary
 
-The project is **not blocked on planner code and no longer blocked on visual access**.
+The project is **not blocked on planner code, visual access or exact retrieval of every historical reserve**.
 
-The blocker is evidence quality: completing direct semantic/confound review, resolving the likely INF/MAS/OPP gaps, and obtaining two defensible independent exemplars per direction. File Library access now provides a path to finish the historical visual audit before deciding what must be generated anew.
+The active blocker is stimulus evidence quality: generate and audit defensible INF/MAS/OPP candidates, then obtain two independent exemplars for all eight directions and pass the cross-set confound audit.
 
-No candidate can receive a final visual-confound pass until its exact visual has been directly reviewed. No 16-stimulus freeze is authorized yet.
+No generated or historical candidate can receive a final visual-confound pass without direct visual review. No 16-stimulus freeze is authorized yet.
 
 ## New-chat / new-project recovery instruction
 
-If conversation context is lost, start from this file, then `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, `docs/DIRECTION_DEFINITIONS_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, and draft PR #9. Do not reconstruct the product from ConflictLab or 2Pair memory. Treat this file as the current handoff checkpoint until superseded by a newer project-state file or merged architecture decision.
+If conversation context is lost, start from this file, then `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`, `docs/DIRECTION_DEFINITIONS_v0.1.md`, `docs/STIMULUS_GENERATION_BRIEFS_v0.1.md`, `docs/STIMULUS_SEMANTIC_PREAUDIT_v0.1.md`, `docs/FILE_LIBRARY_VISUAL_AUDIT_v0.1.md`, `docs/ASSET_INVENTORY_v0.1.md`, and draft PR #9. Do not reconstruct the product from ConflictLab or 2Pair memory. Treat this file as the current handoff checkpoint until superseded by a newer project-state file or merged architecture decision.
