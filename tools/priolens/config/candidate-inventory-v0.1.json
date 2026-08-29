@@ -1,0 +1,139 @@
+{
+  "schema": "2rasi.priolens.candidate-inventory.v0.1",
+  "status": "RECOVERED_NOT_FROZEN",
+  "source_repository": "olemoz1977/ConflictLab",
+  "source_branch": "feature/2pair-integrated-v0.1",
+  "prototype_source": "decision_drivers_8x8_prototype_v0.4.html",
+  "counts": {
+    "wave1_non_placeholder": 12,
+    "pair_p0_non_placeholder": 18,
+    "historical_media_stills": 12,
+    "total_non_placeholder_stills": 42,
+    "prototype_used_unique": 19,
+    "reserve_unassigned_non_placeholder": 23,
+    "placeholder_labelled_files": 4
+  },
+  "direction_candidates": [
+    {
+      "direction_id": "autonomy",
+      "code": "AUT",
+      "review_priority": "NORMAL",
+      "assets": [
+        {"source_family": "WAVE1", "path": "docs/experiments/stimulus-validation/assets/CR-PO-01/open-space.png"},
+        {"source_family": "PAIR_P0", "path": "docs/experiments/pair-p0/images/p0-001-b.png"}
+      ]
+    },
+    {
+      "direction_id": "certainty",
+      "code": "CER",
+      "review_priority": "NORMAL",
+      "assets": [
+        {"source_family": "WAVE1", "path": "docs/experiments/stimulus-validation/assets/CR-PO-01/partitioned-space.png"},
+        {"source_family": "PAIR_P0", "path": "docs/experiments/pair-p0/images/p0-003-b.png"},
+        {"source_family": "WAVE1", "path": "docs/experiments/stimulus-validation/assets/CS-PR-01/more-reveal.webp"}
+      ]
+    },
+    {
+      "direction_id": "exploration",
+      "code": "EXP",
+      "review_priority": "NORMAL",
+      "assets": [
+        {"source_family": "PAIR_P0", "path": "docs/experiments/pair-p0/images/p0-003-a.png"},
+        {"source_family": "PAIR_P0", "path": "docs/experiments/pair-p0/images/n0-004-a.webp"},
+        {"source_family": "WAVE1", "path": "docs/experiments/stimulus-validation/assets/CS-PR-01/less-reveal.jpg"}
+      ]
+    },
+    {
+      "direction_id": "mastery",
+      "code": "MAS",
+      "review_priority": "NORMAL",
+      "assets": [
+        {"source_family": "HISTORICAL_MEDIA", "path": "docs/media/p5_person_laptop.png"},
+        {"source_family": "HISTORICAL_MEDIA", "path": "docs/media/v2_p3_notebook.png"}
+      ]
+    },
+    {
+      "direction_id": "connection",
+      "code": "CON",
+      "review_priority": "NORMAL",
+      "assets": [
+        {"source_family": "HISTORICAL_MEDIA", "path": "docs/media/p1_phone_table.png"},
+        {"source_family": "HISTORICAL_MEDIA", "path": "docs/media/p4_empty_table.png"},
+        {"source_family": "HISTORICAL_MEDIA", "path": "docs/media/p3_chat_screen.png"}
+      ]
+    },
+    {
+      "direction_id": "influence",
+      "code": "INF",
+      "review_priority": "HIGH",
+      "assets": [
+        {"source_family": "PAIR_P0", "path": "docs/experiments/pair-p0/images/n0-009-a-prototype-v0.png"},
+        {"source_family": "PAIR_P0", "path": "docs/experiments/pair-p0/images/p0-001-a.png"}
+      ],
+      "note": "Old v0.4 prototype explicitly identified Influence visual coverage as especially weak."
+    },
+    {
+      "direction_id": "protection",
+      "code": "PRO",
+      "review_priority": "NORMAL",
+      "assets": [
+        {"source_family": "PAIR_P0", "path": "docs/experiments/pair-p0/images/n0-009-b-prototype-v0.png"},
+        {"source_family": "PAIR_P0", "path": "docs/experiments/pair-p0/images/p0-002-a.png"}
+      ]
+    },
+    {
+      "direction_id": "opportunity",
+      "code": "OPP",
+      "review_priority": "NORMAL",
+      "assets": [
+        {"source_family": "PAIR_P0", "path": "docs/experiments/pair-p0/images/p0-002-b.png"},
+        {"source_family": "HISTORICAL_MEDIA", "path": "docs/media/v2_p2_corridor.png"}
+      ]
+    }
+  ],
+  "reserve_unassigned": {
+    "wave1": [
+      "docs/experiments/stimulus-validation/assets/CR-FS-01/continuous-capacity.png",
+      "docs/experiments/stimulus-validation/assets/CR-FS-01/fixed-slots.png",
+      "docs/experiments/stimulus-validation/assets/CR-PZ-01/no-predefined-zones.png",
+      "docs/experiments/stimulus-validation/assets/CR-PZ-01/predefined-zones.png",
+      "docs/experiments/stimulus-validation/assets/CS-CA-01/less-reference.png",
+      "docs/experiments/stimulus-validation/assets/CS-CA-01/more-reference.png",
+      "docs/experiments/stimulus-validation/assets/CS-RE-01/less-evidence.png",
+      "docs/experiments/stimulus-validation/assets/CS-RE-01/more-evidence.png"
+    ],
+    "pair_p0": [
+      "docs/experiments/pair-p0/images/n0-004-b.png",
+      "docs/experiments/pair-p0/images/n0-005-a.png",
+      "docs/experiments/pair-p0/images/n0-005-b.png",
+      "docs/experiments/pair-p0/images/n0-006-a.png",
+      "docs/experiments/pair-p0/images/n0-006-b.png",
+      "docs/experiments/pair-p0/images/n0-007-a-prototype-v0.png",
+      "docs/experiments/pair-p0/images/n0-007-b-prototype-v0.webp",
+      "docs/experiments/pair-p0/images/n0-008-a-prototype-v0.png",
+      "docs/experiments/pair-p0/images/n0-008-b-prototype-v0.png"
+    ],
+    "historical_media": [
+      "docs/media/ax_approach.png",
+      "docs/media/ax_release.png",
+      "docs/media/ax_uncertainty.png",
+      "docs/media/p2_window_silhouette.png",
+      "docs/media/v2_p1_empty_room.png",
+      "docs/media/v2_p4_person_alone.png"
+    ]
+  },
+  "placeholder_labelled": [
+    "docs/experiments/pair-p0/images/n0-005-a-placeholder-v0.png",
+    "docs/experiments/pair-p0/images/n0-005-b-placeholder-v0.png",
+    "docs/experiments/pair-p0/images/n0-006-a-placeholder-v0.png",
+    "docs/experiments/pair-p0/images/n0-006-b-placeholder-v0.png"
+  ],
+  "selection_policy": {
+    "required_exemplars_per_direction": 2,
+    "conceptual_independence_required": true,
+    "same_old_pair_not_sufficient_as_two_exemplars": true,
+    "visual_confound_audit_required": true,
+    "copy_to_priolens_owned_asset_path_only_after_selection": true,
+    "stimuli_v0_1_remains_unfrozen_until_audit": true
+  }
+}
