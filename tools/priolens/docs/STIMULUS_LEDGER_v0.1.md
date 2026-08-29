@@ -30,15 +30,14 @@ Rules:
 | MAS | `4635` precision caliper | `4636` potter | **2/2 PASS** |
 | CON | missing | missing | **0/2**; `2790`, `2720` reserves |
 | INF | routed consequence family: `4602` OR `4612` | `4641` domino chain reaction | **2/2 candidate coverage; slot 2 provisional** |
-| PRO | `2723` wet umbrella | missing | **1/2 provisional** |
+| PRO | `2723` wet umbrella | `4645` horizontal wine glass in foam case | **2/2 provisional** |
 | OPP | `4637` productive greenhouse | `4638` prepared food table | **2/2 provisional** |
 
-Strict candidate count: **8/16 occupied; 8 remain open.**
+Strict candidate count: **9/16 occupied; 7 remain open.**
 
 Open slots:
 
 - EXP: 1
-- PRO: 1
 - CON: 2
 - CER: 2
 - AUT: 2
@@ -99,34 +98,29 @@ Open slots:
 - Direction: INF.
 - Semantic: `PASS`.
 - Why: one visible action changes a wider external system and consequence is visible in-frame.
-- Independence vs `4602`: `FAIL`; both are `hand + gate/lever + routed physical flow + downstream consequence`.
+- Independence vs `4602`: `FAIL`; same routed-flow family.
 - Disposition: **KEEP only as alternative to `4602`; never pair 4602 + 4612**.
 
 #### `4641` fingertip initiates domino chain reaction
 - Direction: INF.
 - Semantic: `PASS`.
-- Why: the fingertip visibly initiates the first falling domino and the effect propagates through multiple downstream pieces in the same frame; a small action visibly changes a wider external system state.
-- Physical causality: **PASS compared with 4615/4616**. The first tile is already leaning away from the finger and contacts the next tile; downstream falling and upright pieces make propagation legible.
-- Nearest neighbours: MAS weak (no skill/refinement task); AUT weak (not directing one's own course); INF is the clearest reading.
-- Independence vs routed-flow family (`4602`/`4612`): `PASS`; causal chain reaction is a different scene/mechanism family from routed flow.
-- Branching: not clearly legible, but **not required by the frozen INF definition**; visible external propagation is sufficient.
-- Visual/confound: wooden game-piece salience is acceptable; **KlingAI watermark must be absent/removed before freeze**. Final crop/export must not introduce composition imbalance.
-- Disposition: **KEEP / INF-2 PROVISIONAL PASS pending clean watermark-free asset + full-set audit**.
+- Physical causality: `PASS` compared with 4615/4616; first tile leans away from finger, contacts next tile, and propagation is visible.
+- Nearest neighbours: MAS and AUT materially weaker.
+- Independence vs routed-flow family: `PASS`.
+- Branching is not required by the frozen INF definition.
+- Confound: wooden game-piece salience acceptable; KlingAI watermark must be absent before freeze.
+- Disposition: **KEEP / INF-2 PROVISIONAL PASS**.
 
-Earlier rejected INF attempts:
-- `4599` generic control panel: `FAIL`, external consequence hidden.
-- `4614`: procedural domino sketch only, never a stimulus.
-- `4615`: concept pass, image fail because causal sequence incoherent.
-- `4616`: image fail because finger read as holding/stopping the first tile.
+Earlier rejected INF attempts: `4599` hidden consequence; `4614` procedural reference; `4615` incoherent causality; `4616` finger read as holding/stopping.
 
-**INF now has two conceptually independent candidate families. Do not generate more INF unless `4641` cannot be obtained cleanly or full-set audit rejects it.**
+**INF closed provisionally at 2/2 candidate families.**
 
 ### EXP
 
 #### `3098` single forest road disappearing deeper into trees
 - Direction: EXP.
 - Semantic: `PROVISIONAL PASS`.
-- Why: one path into partially unknown space supports approach-to-unknown without a visible choice fork.
+- Why: one path into partially unknown space supports approach-to-unknown without a choice fork.
 - Nearest neighbour: cleaner than AUT forked paths; weaker OPP because no visible gain/reward.
 - Confound: nature/travel aesthetic.
 - Disposition: **KEEP / EXP-1 provisional**.
@@ -143,53 +137,43 @@ Earlier rejected INF attempts:
 - Confound: dark/rain negative valence.
 - Disposition: **KEEP / PRO-1 provisional**.
 
-#### `2781` key inserted in door lock
-- Semantic: `AMBIGUOUS`.
-- Problem: locking vs unlocking is not visible, so protection vs access remains unresolved.
-- Disposition: **RESERVE only**.
+#### `4645` horizontal fragile wine glass in fitted foam case
+- Direction: PRO.
+- Semantic: `PROVISIONAL PASS`.
+- Why: the fragile glass is clearly recognizable and visibly immobilized by a fitted lower foam cavity plus protective lid foam; physical protection from impact/breakage is directly legible.
+- Physical coherence: `PASS` at candidate level. The glass lies horizontally, stem/base/bowl are supported, and the case can plausibly close with compressible lid foam.
+- Nearest neighbour: PRO clearly dominates CER because the visible function is reducing damage exposure, not reducing uncertainty.
+- Independence vs `2723`: `PASS`; weather shielding vs transport/impact cushioning are different protection families.
+- Confound: product/packaging aesthetic is mild; KlingAI watermark must be absent before freeze.
+- Disposition: **KEEP / PRO-2 PROVISIONAL PASS pending clean asset + full-set audit**.
 
-#### `4642` white object in foam case
-- Direction attempted: PRO.
-- Semantic: `FAIL`.
-- Problem: protected object is not clearly recognizable as fragile; foam geometry looks arbitrary/unrealistic, so the viewer must infer what is being protected and why.
-- Disposition: **REJECT**.
+Rejected PRO attempts:
+- `2781`: lock vs unlock ambiguous.
+- `4642`: protected object unclear and foam unrealistic.
+- `4644`: upright wine glass protruded above support and case could not plausibly close safely.
 
-#### `4644` upright wine glass in open hard case
-- Direction attempted: PRO.
-- Semantic concept: PRO is legible, but image-level physical realism fails.
-- Fatal issue: the wine glass protrudes far above the lower foam and is not supported around the bowl/stem; the case could not plausibly close without contacting or breaking the glass.
-- Disposition: **REJECT / PHYSICAL_PROTECTION_COHERENCE_FAIL**.
-- Correction direction: if this family is retried, place the wine glass horizontally in a precise full-profile foam cavity with matching lid foam so the entire glass is immobilized when closed.
-
-**PRO remains 1/2.**
+**PRO closed provisionally at 2/2 candidate families.**
 
 ### CON
 
-#### `2790` two mugs, one steaming
-- Semantic: `AMBIGUOUS`.
-- Problem: relationship is inferred through absent people; can read as waiting/absence. Warm coffee adds positive valence.
-- Disposition: **RESERVE**.
+Reserves:
+- `2790` two mugs: relationship inferred, absence/warmth confounds.
+- `2720` two glasses of water: neutral but no reciprocal connection.
 
-#### `2720` two glasses of water
-- Semantic: `AMBIGUOUS`.
-- Strength: neutral.
-- Problem: two objects alone do not establish reciprocal connection/belonging.
-- Disposition: **RESERVE**.
-
-Rejected CON families:
-- two adjacent empty seats: absence/separation dominates.
-- `3370`: two mannequins side by side facing canvas, co-presence without reciprocity.
-- `3372`: two mannequins apart in gallery, separation/exhibition dominates.
+Rejected families:
+- empty adjacent seats;
+- `3370` mannequins side by side facing canvas;
+- `3372` mannequins apart in gallery.
 
 **CON remains 0/2.**
 
 ### CER
 
-Rejected CER families:
+Rejected families:
 - `2722` eyeglasses on printed material: reading/vision/intellect, not certainty.
 - organized shelf with labels: order/organization plus text confound.
 - measuring vessels/level gauges: numbers/scales and MAS/numeracy confound.
-- question mark / redacted document / foggy crossroads / old map families remain rejected per reconciliation audit.
+- question mark / redacted document / foggy crossroads / old map per reconciliation audit.
 
 **CER remains 0/2.**
 
@@ -201,24 +185,9 @@ Rejected/ambiguous families include open doors/gates, forked roads and vehicles 
 
 **AUT remains 0/2.**
 
-## Latest targeted File Library sweep
-
-Targeted search for CON/CER/AUT/PRO/EXP/INF did not produce additional candidates that survive the frozen semantic contract.
-
-Notable non-additions:
-- open gate / garden / playground remain OPP/EXP/AUT ambiguous;
-- water gauges remain rejected CER family;
-- first-aid / alarm / emergency assets are PRO-dominant or medical/safety-confounded for INF;
-- mannequin/gallery scenes fail CON because reciprocal interaction is absent.
-
 ## Current-chat generator failure mode
 
-The image generator in this long chat repeatedly returned multi-panel PrioLens moodboards instead of requested single 1:1 stimuli.
-
-Rule:
-- those boards are `GENERATOR_CONTEXT_FAILURE / NOT CANDIDATES`;
-- labels/statuses invented inside them are not project decisions;
-- do not audit board panels as stimuli unless independently exported/regenerated and reviewed.
+The image generator in this long chat repeatedly returned multi-panel PrioLens moodboards instead of requested single 1:1 stimuli. Those boards are `GENERATOR_CONTEXT_FAILURE / NOT CANDIDATES`.
 
 ## Decision discipline
 
