@@ -59,6 +59,40 @@ The targeted retrieval mainly returned the same weak candidates (`2792` chess, `
 
 This is evidence that the currently recoverable numeric-series subset is becoming exhausted for the three weakest directions. It is not proof that the entire File Library has been exhaustively searched, because numeric filename indexing is incomplete.
 
+## Reserve-family exhaustion checkpoint
+
+The 23 unassigned repository reserves were also checked at the **source-family / historical-cue level**, without pretending that every exact reserve binary received a direct pixel pass.
+
+### Wave 1 reserve family
+
+The eight Wave 1 reserve assets are members of legacy reveal/evidence/reference and spatial-structure/capacity manipulations. Their old source design is about perceptual information or structure, and previous review already flags strong low-level confound risk. There is no natural INF or MAS realization in this family; using it for OPP would require semantic re-interpretation rather than visible future value.
+
+### Pair P0 N0-004 through N0-008 reserve family
+
+Recovered participant cue history characterizes these scenes around:
+
+- moving forward / curiosity about what comes next (N0-004);
+- progress, remaining time or approaching an end (N0-005);
+- surface texture / touching / unevenness (N0-006);
+- separation, crowding or rearrangement of pieces (N0-007);
+- deliberate vs more interesting side/composition (N0-008).
+
+These historical cues are not validation evidence for any PrioLens direction, but they are useful provenance evidence that this reserve family does not hide an obvious INF or MAS scene. OPP would still be indirect and nearest-neighbour ambiguous.
+
+### Historical media reserve family
+
+The remaining reserve labels (`ax_approach`, `ax_release`, `ax_uncertainty`, window silhouette, empty room, person alone) are historically centered on approach/release/uncertainty or social isolation. They do not supply a natural visible INF or MAS scene. `ax_approach` could superficially overlap OPP but risks collapsing into EXP/AUT unless future value is visibly present.
+
+### Decision
+
+For **INF and MAS**, the recoverable historical library is now considered semantically exhausted enough to authorize controlled new candidate generation.
+
+For **OPP**, historical material remains only borderline: openings/transitions/approach are available, but future value is not sufficiently distinct from AUT/EXP. Controlled candidate generation is therefore also authorized for OPP.
+
+This is **not** the same as declaring all 23 reserve files pixel-audited. If an exact reserve later surfaces visually, it can still be reviewed and admitted if it beats the generated candidates. What changes is that exact reserve retrieval is no longer a blocker to generating candidates for INF/MAS/OPP.
+
+Generation rules are frozen separately in `STIMULUS_GENERATION_BRIEFS_v0.1.md`.
+
 ## Immediate implications by weak direction
 
 ### INF
@@ -67,7 +101,7 @@ No reviewed File Library item yet provides a defensible Influence exemplar. Ches
 
 A valid INF exemplar needs visible content where changing a shared/external direction, decision or outcome is the central cue without relying on status clothing, dominance, facial authority or a hidden story.
 
-**Current state: genuine generation gap is now likely, not merely possible.**
+**Current state: controlled new candidate generation authorized.**
 
 ### MAS
 
@@ -75,7 +109,7 @@ Laptop remains weak. Chess and crafted/folded-book imagery are stronger than lap
 
 A valid MAS exemplar needs the act/result of skill, precision, refinement or competence to be visible rather than inferred from a generic work object.
 
-**Current state: genuine generation gap is likely unless a not-yet-surfaced File Library item shows visible skilled action.**
+**Current state: controlled new candidate generation authorized.**
 
 ### OPP
 
@@ -83,7 +117,7 @@ Door, elevator and forked-path imagery all express opening/transition, but they 
 
 A valid OPP exemplar needs visible potential gain/opening without collapsing into freedom-of-choice or curiosity/discovery.
 
-**Current state: only borderline candidates; likely generation gap.**
+**Current state: controlled new candidate generation authorized, with highest semantic-risk flag.**
 
 ### CON
 
@@ -95,12 +129,12 @@ Key-in-lock is a plausible candidate. Pill and damaged-road imagery are too affe
 
 ## Audit policy going forward
 
-1. Continue File Library retrieval by visual content, not numeric filename alone.
-2. Prioritize INF, MAS and OPP searches first.
-3. For every candidate, record nearest-neighbour alternatives before assigning a direction.
+1. Continue File Library retrieval opportunistically by visual content, not numeric filename alone.
+2. Do not delay INF/MAS/OPP candidate generation merely because some exact historical reserve handles remain difficult to surface.
+3. For every historical or generated candidate, record nearest-neighbour alternatives before assigning a direction.
 4. Separate semantic ambiguity from low-level visual confounds.
-5. Do not generate new images until the recoverable File Library reserve has been exhausted for the weak directions.
-6. Once targeted retrieval stops producing new candidates, treat INF/MAS/OPP as explicit generation briefs rather than weakening the semantic contract to fit old assets.
-7. Do not copy File Library items into PrioLens runtime assets until final selection and provenance/hash capture are possible.
+5. Use the controlled generation contract for INF/MAS/OPP; do not weaken the semantic definitions to fit legacy assets.
+6. Keep exact historical reserve candidates eligible if later direct review shows they outperform generated candidates.
+7. Do not copy File Library or generated items into PrioLens runtime assets until final selection and provenance/hash capture are possible.
 
 No 16-stimulus freeze is authorized by this checkpoint.
