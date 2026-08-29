@@ -1,7 +1,7 @@
 # PrioLens stimulus ledger v0.1
 
 Status: LIVE DECISION LOG / NOT A STIMULUS FREEZE
-Updated: 2026-08-29
+Updated: 2026-08-30
 
 ## Purpose
 
@@ -26,18 +26,17 @@ Rules:
 |---|---|---|---|
 | AUT | missing | missing | **0/2** |
 | CER | missing | missing | **0/2** |
-| EXP | `3098` forest road | missing | **1/2 provisional** |
+| EXP | `3098` forest road | `4649` opening unknown drawer contents | **2/2 provisional** |
 | MAS | `4635` precision caliper | `4636` potter | **2/2 PASS** |
 | CON | `4646` reciprocal dyadic conversation | `2624` small-group belonging | **2/2 provisional** |
 | INF | routed consequence family: `4602` OR `4612` | `4641` domino chain reaction | **2/2 candidate coverage; slot 2 provisional** |
 | PRO | `2723` wet umbrella | `4645` horizontal wine glass in foam case | **2/2 provisional** |
 | OPP | `4637` productive greenhouse | `4638` prepared food table | **2/2 provisional** |
 
-Strict candidate count: **11/16 occupied; 5 remain open.**
+Strict candidate count: **12/16 occupied; 4 remain open.**
 
 Open slots:
 
-- EXP: 1
 - CER: 2
 - AUT: 2
 
@@ -114,7 +113,15 @@ Rejected INF: `4599` hidden consequence; `4614` procedural only; `4615` incohere
 - Confound: nature/travel aesthetic.
 - Disposition: **KEEP / EXP-1 provisional**.
 
-**EXP remains 1/2.**
+#### `4649` hand opens drawer revealing previously unseen neutral contents
+- Semantic: `PROVISIONAL PASS`.
+- Why: the visible action reveals previously unseen, non-rewarding contents and reads as finding out what is inside rather than choosing among alternatives or accessing obvious value.
+- Nearest neighbours: EXP > OPP because no visible gain/reward; EXP > AUT because no meaningful choice freedom is shown; CER is weaker because the image depicts approaching/revealing unknown content rather than a stable known state.
+- Independence vs `3098`: `PASS`; spatial exploration into an unknown path vs object/content discovery are different exploration families.
+- Confound: warm wood/product aesthetic mild; KlingAI watermark must be absent before freeze.
+- Disposition: **KEEP / EXP-2 PROVISIONAL PASS pending clean asset + full-set audit**.
+
+**EXP closed provisionally at 2/2 candidate families.**
 
 ### PRO
 
