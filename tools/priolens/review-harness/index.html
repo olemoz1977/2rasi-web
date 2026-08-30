@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PrioLens AI Review Harness</title>
+  <style>
+    :root { color-scheme: light dark; font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: Canvas; color: CanvasText; }
+    main { width: min(920px, 100%); margin: 0 auto; padding: 18px 14px 56px; }
+    h1 { font-size: 1.35rem; margin: 0 0 4px; }
+    h2 { font-size: 1.05rem; margin: 0 0 10px; }
+    p { line-height: 1.45; }
+    .muted { opacity: .72; font-size: .92rem; }
+    .panel { border: 1px solid color-mix(in srgb, CanvasText 18%, transparent); border-radius: 14px; padding: 14px; margin-top: 14px; }
+    label { display: block; font-size: .9rem; margin: 12px 0 6px; font-weight: 650; }
+    input[type="text"], input[type="password"], textarea { width: 100%; border: 1px solid color-mix(in srgb, CanvasText 24%, transparent); border-radius: 10px; padding: 11px 12px; background: Canvas; color: CanvasText; font: inherit; }
+    textarea { min-height: 220px; resize: vertical; line-height: 1.35; }
+    #revealPrompt { min-height: 180px; }
+    .reviewers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 8px 0 2px; }
+    .reviewer { border: 1px solid color-mix(in srgb, CanvasText 20%, transparent); padding: 10px; border-radius: 10px; font-size: .9rem; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    button { border: 0; border-radius: 10px; padding: 11px 14px; font: inherit; font-weight: 700; cursor: pointer; background: CanvasText; color: Canvas; }
+    button.secondary { background: color-mix(in srgb, CanvasText 10%, Canvas); color: CanvasText; border: 1px solid color-mix(in srgb, CanvasText 20%, transparent); }
+    button:disabled { opacity: .42; cursor: default; }
+    .status { margin-top: 10px; font-size: .9rem; white-space: pre-wrap; }
+    .result { border-top: 1px solid color-mix(in srgb, CanvasText 14%, transparent); padding-top: 12px; margin-top: 12px; }
+    .result:first-child { border-top: 0; padding-top: 0; }
+    .tag { display: inline-block; font-size: .75rem; padding: 3px 7px; border-radius: 999px; background: color-mix(in srgb, CanvasText 9%, Canvas); margin-right: 6px; }
+    pre { white-space: pre-wrap; word-break: break-word; font: .88rem/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; margin: 8px 0 0; }
+    @media (max-width: 620px) { .reviewers { grid-template-columns: 1fr; } main { padding: 14px 10px 48px; } textarea { min-height: 260px; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>PrioLens AI Review Harness</h1>
+  <div class="muted">Blind Stage 1 → cryptographic lock → Stage 2 reveal. Claude, Grok and Gemini run independently.</div>
+
+  <section class="panel">
+    <h2>Access</h2>
+    <label for="accessKey">Harness access key</label>
+    <input id="accessKey" type="password" autocomplete="off" placeholder="Personal harness key" />
+    <div class="muted">Stored only for this browser session. Provider API key stays server-side.</div>
+  </section>
+
+  <section class="panel">
+    <h2>Review package</h2>
+    <label for="packageId">Package ID</label>
+    <input id="packageId" type="text" placeholder="MAS-D2-v0.1" />
+
+    <label>Independent reviewers</label>
+    <div class="reviewers">
+      <label class="reviewer"><input type="checkbox" name="reviewer" value="claude" checked /> Claude</label>
+      <label class="reviewer"><input type="checkbox" name="reviewer" value="grok" checked /> Grok</label>
+      <label class="reviewer"><input type="checkbox" name="reviewer" value="gemini" checked /> Gemini</label>
+    </div>
+
+    <label for="blindPrompt">Stage 1 blind prompt</label>
+    <textarea id="blindPrompt" placeholder="Paste the full blind package once."></textarea>
+
+    <div class="row">
+      <button id="runStage1">Run Stage 1</button>
+      <button id="clearAll" class="secondary">Clear</button>
+    </div>
+    <div id="stage1Status" class="status muted"></div>
+    <div id="stage1Results"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Stage 2 reveal</h2>
+    <div class="muted">Enabled only after Stage 1 returns signed locks. Stage 2 replays each model's own locked Stage 1 answer before revealing mappings.</div>
+    <label for="revealPrompt">Reveal prompt</label>
+    <textarea id="revealPrompt" placeholder="Paste mapping + Stage 2 questions."></textarea>
+    <div class="row">
+      <button id="runStage2" disabled>Run Stage 2</button>
+    </div>
+    <div id="stage2Status" class="status muted"></div>
+    <div id="stage2Results"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Export</h2>
+    <div class="row">
+      <button id="copyAll" class="secondary" disabled>Copy all results</button>
+      <button id="downloadJson" class="secondary" disabled>Download JSON</button>
+    </div>
+  </section>
+</main>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const state = { stage1: null, stage2: null, lockTokens: [] };
+
+  const accessKey = $('accessKey');
+  const packageId = $('packageId');
+  const blindPrompt = $('blindPrompt');
+  const revealPrompt = $('revealPrompt');
+
+  accessKey.value = sessionStorage.getItem('priolensHarnessKey') || '';
+  packageId.value = localStorage.getItem('priolensPackageId') || '';
+  blindPrompt.value = localStorage.getItem('priolensBlindPrompt') || '';
+  revealPrompt.value = localStorage.getItem('priolensRevealPrompt') || '';
+
+  accessKey.addEventListener('input', () => sessionStorage.setItem('priolensHarnessKey', accessKey.value));
+  packageId.addEventListener('input', () => localStorage.setItem('priolensPackageId', packageId.value));
+  blindPrompt.addEventListener('input', () => localStorage.setItem('priolensBlindPrompt', blindPrompt.value));
+  revealPrompt.addEventListener('input', () => localStorage.setItem('priolensRevealPrompt', revealPrompt.value));
+
+  function selectedReviewers() {
+    return [...document.querySelectorAll('input[name="reviewer"]:checked')].map((x) => x.value);
+  }
+
+  async function api(payload) {
+    const response = await fetch('/api/review', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-harness-key': accessKey.value },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.ok) throw new Error(data.error || `HTTP ${response.status}`);
+    return data;
+  }
+
+  function renderResults(target, results, stage) {
+    target.innerHTML = '';
+    for (const r of results || []) {
+      const div = document.createElement('div');
+      div.className = 'result';
+      const meta = document.createElement('div');
+      meta.innerHTML = `<span class="tag">${escapeHtml(r.reviewer || 'unknown')}</span><span class="tag">${escapeHtml(r.model || 'error')}</span>`;
+      const pre = document.createElement('pre');
+      pre.textContent = r.ok ? (stage === 1 ? r.output : r.stage2Output) : `ERROR: ${r.error}`;
+      div.append(meta, pre);
+      target.append(div);
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>'"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+
+  function setBusy(button, busy, label) {
+    button.disabled = busy;
+    if (label) button.textContent = busy ? 'Running…' : label;
+  }
+
+  function refreshExportButtons() {
+    const has = !!state.stage1;
+    $('copyAll').disabled = !has;
+    $('downloadJson').disabled = !has;
+  }
+
+  $('runStage1').addEventListener('click', async () => {
+    const button = $('runStage1');
+    const reviewers = selectedReviewers();
+    if (!accessKey.value) return $('stage1Status').textContent = 'Enter the harness access key.';
+    if (!blindPrompt.value.trim()) return $('stage1Status').textContent = 'Stage 1 blind prompt is empty.';
+    if (!reviewers.length) return $('stage1Status').textContent = 'Select at least one reviewer.';
+
+    state.stage1 = null; state.stage2 = null; state.lockTokens = [];
+    $('stage1Results').innerHTML = ''; $('stage2Results').innerHTML = '';
+    $('runStage2').disabled = true; refreshExportButtons();
+    $('stage1Status').textContent = `Running ${reviewers.length} independent blind review(s)…`;
+    setBusy(button, true, 'Run Stage 1');
+    try {
+      const data = await api({ action: 'stage1', packageId: packageId.value, blindPrompt: blindPrompt.value, reviewers });
+      state.stage1 = data;
+      state.lockTokens = data.results.filter((r) => r.ok && r.lockToken).map((r) => r.lockToken);
+      renderResults($('stage1Results'), data.results, 1);
+      $('stage1Status').textContent = `${state.lockTokens.length}/${reviewers.length} Stage 1 responses locked.`;
+      $('runStage2').disabled = state.lockTokens.length === 0;
+      refreshExportButtons();
+    } catch (err) {
+      $('stage1Status').textContent = `Stage 1 failed: ${err.message}`;
+    } finally {
+      setBusy(button, false, 'Run Stage 1');
+    }
+  });
+
+  $('runStage2').addEventListener('click', async () => {
+    const button = $('runStage2');
+    if (!revealPrompt.value.trim()) return $('stage2Status').textContent = 'Reveal prompt is empty.';
+    if (!state.lockTokens.length) return $('stage2Status').textContent = 'No locked Stage 1 responses.';
+
+    $('stage2Status').textContent = `Replaying ${state.lockTokens.length} locked Stage 1 thread(s) with reveal…`;
+    setBusy(button, true, 'Run Stage 2');
+    try {
+      const data = await api({ action: 'stage2', revealPrompt: revealPrompt.value, lockTokens: state.lockTokens });
+      state.stage2 = data;
+      renderResults($('stage2Results'), data.results, 2);
+      $('stage2Status').textContent = `${data.results.filter((r) => r.ok).length}/${data.results.length} Stage 2 responses completed.`;
+      refreshExportButtons();
+    } catch (err) {
+      $('stage2Status').textContent = `Stage 2 failed: ${err.message}`;
+    } finally {
+      setBusy(button, false, 'Run Stage 2');
+    }
+  });
+
+  function exportObject() {
+    return {
+      exportedAt: new Date().toISOString(),
+      packageId: packageId.value,
+      reviewers: selectedReviewers(),
+      blindPrompt: blindPrompt.value,
+      revealPrompt: revealPrompt.value,
+      stage1: state.stage1?.results || null,
+      stage2: state.stage2?.results || null,
+    };
+  }
+
+  $('copyAll').addEventListener('click', async () => {
+    await navigator.clipboard.writeText(JSON.stringify(exportObject(), null, 2));
+    $('copyAll').textContent = 'Copied';
+    setTimeout(() => $('copyAll').textContent = 'Copy all results', 1200);
+  });
+
+  $('downloadJson').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(exportObject(), null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `${(packageId.value || 'priolens-review').replace(/[^a-z0-9._-]+/gi, '_')}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+
+  $('clearAll').addEventListener('click', () => {
+    if (!confirm('Clear prompts and current results?')) return;
+    state.stage1 = null; state.stage2 = null; state.lockTokens = [];
+    packageId.value = ''; blindPrompt.value = ''; revealPrompt.value = '';
+    localStorage.removeItem('priolensPackageId');
+    localStorage.removeItem('priolensBlindPrompt');
+    localStorage.removeItem('priolensRevealPrompt');
+    $('stage1Results').innerHTML = ''; $('stage2Results').innerHTML = '';
+    $('stage1Status').textContent = ''; $('stage2Status').textContent = '';
+    $('runStage2').disabled = true; refreshExportButtons();
+  });
+</script>
+</body>
+</html>
