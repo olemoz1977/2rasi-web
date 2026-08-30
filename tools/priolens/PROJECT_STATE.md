@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / DIRECTION-FIRST AGGREGATION NOT SUPPORTED / OBSERVABLE-TRADEOFF PIVOT ACTIVE
+Status: ACTIVE RESEARCH / DIRECTION-FIRST AGGREGATION NOT SUPPORTED / OT REPLICATION PACKAGE READY
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -52,36 +52,24 @@ Exactly eight scores are not a product requirement.
 
 ## Gate D1 · INF
 
-Working INF:
-> meaningful impact on the direction, decision or outcome of an external/shared situation.
-
 Result:
 > **NOT PASSED / PARTIAL_IDENTITY / HOLD**
 
-Evidence that survived:
-- CON↔INF and AUT↔INF produced useful local external-steering patterns.
-
-Why D1 failed:
-- third-opponent attempts repeatedly collapsed to routing/control, fairness, observe-vs-act or hidden shared consequence.
+Useful local pattern survived around external steering/redirection, but third-opponent tests collapsed into routing/control, fairness, observe-vs-act or hidden shared consequence.
 
 Do not search another INF opponent and do not relabel routing/control as Influence.
 
 ## Gate D2 · MAS
 
-Working MAS:
-> developing or applying competence, precision, skill or quality.
-
-MAS was selected as the strongest static-image falsification target.
+MAS was the strongest static-image falsification target.
 
 Claude:
 - Stage 1 found a recurring correctness/quality family;
-- Stage 2: R01 SUPPORTED, R02 CROSS_LOAD, R03 SUPPORTED;
-- final outcome: **PARTIAL_IDENTITY**.
+- Stage 2 final: **PARTIAL_IDENTITY**.
 
 Grok:
-- Stage 1 judged all three local pairs CLEAN_CONTRAST but found **no recurring broader idea**;
-- Stage 2 judged all local mappings readable after reveal;
-- final outcome: **LOCAL_ONLY**.
+- Stage 1 found **no recurring broader idea** across the intended MAS variants;
+- Stage 2 final: **LOCAL_ONLY**.
 
 Decision:
 > **MAS Gate D2 NOT PASSED at direction level.**
@@ -132,7 +120,7 @@ Status: **RECOMMENDED DISCOVERY PATH**.
 
 ## Observable tradeoff taxonomy v0.1
 
-Created: `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md`.
+Source: `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md`.
 
 First-wave candidates:
 1. OT-01 · OBSERVE STATE ↔ CHANGE STATE
@@ -144,29 +132,61 @@ Held due higher social-modality risk:
 - OT-04 · RECIPROCAL EXCHANGE ↔ INDEPENDENT QUALITY EXECUTION
 - OT-06 · RECIPROCAL RELATION ↔ SHARED-SYSTEM STEERING
 
-Important boundary:
-- these are observable tradeoffs, not psychological traits;
-- safe interpretation stays close to the manipulated visible difference;
-- broad labels such as Certainty, Influence, Mastery, Connection remain disallowed unless later evidence supports them.
+These are observable tradeoffs, not psychological traits.
+
+## OT replication gate v0.1
+
+Prepared text-level replication set:
+- `docs/OT_REPLICATION_CONCEPT_SET_v0.1.md`
+- `docs/OT_REPLICATION_BLIND_STAGE1_v0.1.md`
+- `docs/OT_REPLICATION_STAGE2_REVEAL_v0.1.md`
+
+Design:
+- 4 OT families;
+- 3 materially different scene realizations per family;
+- 12 blind IDs total;
+- family order interleaved;
+- A/B polarity reversed across realizations;
+- no psychological labels in Stage 1.
+
+Hidden assignment:
+- OT-01: X02, X05, X09
+- OT-02: X04, X07, X11
+- OT-03: X01, X06, X12
+- OT-05: X03, X08, X10
+
+Stage 1 task:
+- describe each local A/B contrast;
+- flag nuisance asymmetry;
+- independently group pairs that instantiate the same recurring relation;
+- track polarity;
+- judge whether grouping survives scene/domain changes.
+
+Stage 2 task:
+- reveal intended OT families only after Stage 1 is locked;
+- compare recovered blind groups with intended families;
+- classify each OT as STRONG_REPLICATION / PARTIAL_REPLICATION / LOCAL_ONLY / NO_REPLICATION;
+- classify architecture as OBSERVABLE_REPLICATION_SUPPORTED / PARTIAL / WEAK / FAIL.
+
+Architecture-level SUPPORTED requires at least 3 of 4 intended OT families to show clear cross-scene identity in the locked blind review, not merely after reveal.
+
+AI review is concept screening only. Human semantic replication remains required before public interpretation.
 
 ## Immediate next action
 
-Do **not** start Gate D3.
+Run `docs/OT_REPLICATION_BLIND_STAGE1_v0.1.md` in a fresh independent reviewer session.
 
-Do **not** generate a large asset pool yet.
+Do not reveal family names or assignments.
 
-For each first-wave OT candidate, create **three materially different text-level scene realizations** while preserving the same observable relation.
+Lock the verbatim Stage 1 response before sending `docs/OT_REPLICATION_STAGE2_REVEAL_v0.1.md` in the same reviewer session.
 
-Then blind-review only this question:
+Preferred sequence:
+1. Claude Stage 1 → lock → Stage 2;
+2. Grok Stage 1 → lock → Stage 2 with the exact same package;
+3. compare recovery of the four OT families;
+4. render only families that survive text-level replication.
 
-> Does the same local tradeoff remain recognizable across different scene families without hidden labels?
-
-If an OT survives text-level replication:
-- render one pair at a time;
-- run a compact human semantic screen;
-- only then test repeated session patterns.
-
-If even observable tradeoffs fail cross-scene identity, reconsider static-image PrioLens more radically.
+Do not generate images yet.
 
 ## Product interpretation direction
 
@@ -189,8 +209,6 @@ This is descriptive and session-bound, not a hidden-self claim.
 
 PrioLens remains distinct if it tests whether the **same observable tradeoff** recurs across multiple scene families and produces a short repeated-pattern mirror.
 
-PrioLens does not need broad psychological categories merely to be different from 2Pair.
-
 ## AI Review Harness
 
 Vercel harness is deployed and reaches AI Gateway.
@@ -208,25 +226,28 @@ When rendering becomes justified:
 4. match context/legitimacy/valence/salience;
 5. reject labels, collages, multi-state images and unrelated scene changes.
 
-No current direction-validation set is cleared for rendering.
+No current OT family is cleared for rendering until text-level replication survives.
 
 ## Source-of-truth order
 
 1. `PROJECT_STATE.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md`
-4. `docs/ARCHITECTURE_REASSESSMENT_AFTER_D1_D2_v0.1.md`
-5. `docs/GROK_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-6. `docs/CLAUDE_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-7. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
-8. `docs/AI_REVIEW_HARNESS_v0.1.md`
-9. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
-10. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-11. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-12. older matched-edge/global-stimulus material as historical context only.
+3. `docs/OT_REPLICATION_CONCEPT_SET_v0.1.md`
+4. `docs/OT_REPLICATION_BLIND_STAGE1_v0.1.md`
+5. `docs/OT_REPLICATION_STAGE2_REVEAL_v0.1.md`
+6. `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md`
+7. `docs/ARCHITECTURE_REASSESSMENT_AFTER_D1_D2_v0.1.md`
+8. `docs/GROK_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
+9. `docs/CLAUDE_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
+10. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
+11. `docs/AI_REVIEW_HARNESS_v0.1.md`
+12. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
+13. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+14. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+15. older matched-edge/global-stimulus material as historical context only.
 
 ## Recovery instruction
 
 If context is lost, start from this file.
 
-Do not restart INF edge-searching, do not start another broad-direction Gate D3, do not assume the eight directions are score units, do not return to Vercel billing now, and do not turn the public product into a long reflection questionnaire.
+Do not restart INF edge-searching, do not start another broad-direction Gate D3, do not assume the eight directions are score units, do not return to Vercel billing now, do not generate images before OT replication survives, and do not turn the public product into a long reflection questionnaire.
