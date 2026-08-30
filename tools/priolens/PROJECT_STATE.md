@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / INF GATE D1 NOT PASSED / INF HOLD / MAS GATE D2 BLIND PACKAGE READY
+Status: ACTIVE RESEARCH / DIRECTION-FIRST AGGREGATION NOT SUPPORTED / NEXT = OBSERVABLE TRADEOFF TAXONOMY
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -46,33 +46,23 @@ Working object:
 
 > repeated pre-deliberative choice tendencies within this session and empirically supported visual tradeoffs.
 
-Preferred result language is session-bound, e.g.:
-
-> `Kai rinkaisi greitai, be ilgos analizės, tavo pasirinkimuose dažniau laimėdavo ...`
+Preferred result language is session-bound.
 
 Do not claim hidden/subconscious true self, stable trait, strict personality rank or employment suitability.
 
-Exactly eight public scores are not a requirement. Keep only directions that survive research.
+Exactly eight public scores are not a requirement.
 
-## 3. Inference boundary
+## 3. Core inference boundary
 
 ```text
-WORKING DIRECTION HYPOTHESIS
-→ SCENE PROPERTY / CONTROLLED CONTRAST
+SCENE PROPERTY / CONTROLLED CONTRAST
 → PARTICIPANT RESPONSE
-→ EMPIRICAL MAPPING EVIDENCE
-→ DIRECTION-LEVEL DESCRIPTIVE INFERENCE
+→ EMPIRICAL INTERPRETATION
 ```
 
+A higher-order direction label may be added only if cross-context evidence earns it.
+
 Designer intent does not give psychological meaning to raw A/B choice.
-
-Matched-edge rule:
-
-> Match context, legitimacy, valence, status and visual salience strongly enough to control nuisance differences, while preserving the target meanings.
-
-A pair can be visually clean yet semantically too thin.
-
-PrioLens remains distinct from 2Pair only if a higher-level working direction preserves coherent meaning across different opponents and scene mechanisms.
 
 ## 4. Current working directions
 
@@ -86,7 +76,11 @@ Research hypotheses only:
 - PRO · Protection / Apsauga
 - OPP · Opportunity / Galimybė
 
-No direction is guaranteed a public score.
+Current architecture decision:
+
+> These labels are **not approved scoring units**.
+
+They remain candidate higher-order lenses that may return only if human and cross-context evidence supports them.
 
 ## 5. Gate D1 · INF cross-edge identity
 
@@ -94,198 +88,240 @@ Working INF definition:
 
 > meaningful impact on the direction, decision or outcome of an external/shared situation.
 
-Evidence that survived:
-- R01 · CON↔INF: SUPPORTED
-- R03 · AUT↔INF: SUPPORTED
-- original blind review independently found a recurring idea: actor effect extends outward and changes shared/external routing or allocation.
+Evidence:
+- R01 CON↔INF: SUPPORTED
+- R03 AUT↔INF: SUPPORTED
+- blind review found a recurring idea around external steering/redirection.
 
-Third-opponent attempts failed:
-- MAS↔INF: three attempts ended in skill/complexity confound, construct dilution or generic routing/control;
-- PRO↔INF R04: zero-sum allocation introduced fairness/deprivation and valence asymmetry;
-- CER↔INF R05: blind contrast was clean, but reveal CROSS_LOAD; `observe vs act` explained the pair more parsimoniously and INF remained generic routing/causality.
+But third-opponent attempts failed:
+- MAS↔INF repeatedly collapsed into skill/complexity or generic routing;
+- PRO↔INF introduced zero-sum fairness/deprivation;
+- CER↔INF remained observe-vs-act / generic routing.
 
 Decision:
 
-> **INF Gate D1 is NOT PASSED.**
+> **INF Gate D1 NOT PASSED**
 
-Current INF status:
+Status:
 
 > `HOLD / PARTIAL_IDENTITY / NOT PUBLIC-SCORE READY`
 
-Do not search for another INF opponent edge-by-edge and do not silently rename `redirection/control` as Influence.
+Do not search another INF opponent edge-by-edge and do not rename redirection/control as Influence.
 
-Sources:
-- `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
-- `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`
-- `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-
-## 6. Structural INF diagnosis
-
-Static scenes can reliably depict a narrower observable family:
-
-> **external steering / redirection**: actor changes the course, routing or allocation of something beyond the actor's local task.
-
-Current INF additionally requires the consequence to be meaningful and shared/external. Showing that tends to introduce confounds:
-- affected people → social salience/status/fairness;
-- visibly better/worse outcome → reward/loss/valence;
-- more affected objects → magnitude/salience;
-- scarce resource → zero-sum fairness;
-- complex mechanism → Mastery;
-- invisible downstream importance → hidden story.
-
-Therefore `redirection/control` is not equivalent to INF.
-
-## 7. Gate D2 · MAS cross-edge identity
+## 6. Gate D2 · MAS cross-edge identity
 
 Working MAS definition:
 
 > developing or applying competence, precision, skill or quality.
 
-Why MAS:
-- highest static-image feasibility in the operationalizability audit;
-- quality/skill of execution is more directly observable than INF shared consequence;
-- if MAS also fails across opponents, architecture-wide direction aggregation becomes doubtful;
-- if MAS succeeds while INF remains partial, PrioLens may work selectively.
+MAS was chosen because it had the highest static-image feasibility in the operationalizability audit. It was intended as an architecture falsification test.
 
-### D2 concept set v0.1
+D2 set:
+- R01 PRO↔MAS: preservation vs form refinement
+- R02 MAS↔CER: alignment/correction vs state reveal
+- R03 CON↔MAS: reciprocal exchange vs quality-focused independent execution
 
-Three opponents:
-- MAS↔CER · fine alignment vs state visibility;
-- MAS↔PRO · form refinement vs preservation;
-- MAS↔CON · quality-focused independent execution vs reciprocal exchange.
+### Claude
 
-INF is deliberately excluded because MAS↔INF was exhausted during Gate D1.
+Blind Stage 1:
+- found a recurring family across the intended MAS variants;
+- described it mainly as a visible correctness/quality criterion;
+- also identified systematic skill/progress asymmetries.
 
-The three MAS realizations deliberately span:
-1. mechanical alignment;
-2. material form refinement;
-3. quality-focused execution in a social scene with people-count controlled.
+Stage 2:
+- R01 SUPPORTED
+- R02 CROSS_LOAD
+- R03 SUPPORTED
+- final Gate D2 outcome: **PARTIAL_IDENTITY**
+- diagnosis: R01/R03 converge on a narrow manual precision / precision-to-standard family; R02 drifts toward functional fixing/progress.
 
-Critical falsification rule:
+Source: `docs/CLAUDE_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`.
 
-> If the recurring reviewer-generated MAS core is only `careful hands`, `manual dexterity`, `craft work`, `technical tools`, `difficulty` or `independent work`, Gate D2 is not passed at direction level.
+### Grok
 
-Prepared files:
-- `docs/MAS_CROSS_EDGE_IDENTITY_CONCEPTS_v0.1.md`
-- `docs/MAS_CROSS_EDGE_BLIND_STAGE1_v0.1.md`
-- `docs/MAS_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`
+Blind Stage 1:
+- all three local contrasts judged CLEAN_CONTRAST;
+- **no recurring broader idea found across the intended MAS variants**.
 
-Blind randomized mappings:
-- R01: A=PRO, B=MAS
-- R02: A=MAS, B=CER
-- R03: A=CON, B=MAS
+Stage 2:
+- all three local mappings judged SUPPORTED after reveal;
+- but no coherent cross-edge semantic core stronger than local mechanisms;
+- final Gate D2 outcome: **LOCAL_ONLY**.
 
-Stage 2 may be shown only after Stage 1 response is locked.
+Source: `docs/GROK_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`.
 
-Possible D2 outcomes:
-- PROMISING_IDENTITY
-- PARTIAL_IDENTITY
-- LOCAL_ONLY
-- FAIL
+### D2 decision
 
-No AI text review validates MAS. PROMISING only justifies rendered blind human testing.
+> **MAS Gate D2 NOT PASSED at direction level.**
 
-## 8. AI Review Harness v0.1
+The per-edge labels being readable after reveal are not enough. Cross-edge identity must exist before reveal and survive materially different mechanisms.
 
-Implemented and deployed at the Vercel project `priolens-review-harness`.
+Do not render the D2 set as a Mastery-validation set.
 
-Architecture:
+## 7. Architecture consequence after D1 + D2
+
+INF failed to establish robust broad identity.
+MAS, the strongest static-image candidate, also failed to establish robust broad identity across two independent AI reviewers.
+
+This does **not** prove broad directions are psychologically invalid.
+
+It does mean the current architecture is not justified in assuming:
 
 ```text
-browser
-→ Vercel serverless API
-→ Vercel AI Gateway
-→ Claude / Grok / Gemini independently
+broad direction
+→ several different scene mechanisms
+→ aggregate participant choices into one direction score
 ```
 
-Implemented research integrity:
-- Stage 1 sends only the blind prompt to each reviewer independently;
-- each exact Stage 1 prompt + answer is cryptographically signed server-side;
-- Stage 2 accepts only signed Stage 1 lock tokens;
-- Stage 2 reconstructs each model's exact blind prompt → locked answer → reveal thread;
-- reviewers never see each other's responses.
+Current evidence supports local semantic contrasts more strongly than higher-order direction aggregation.
 
-Security configured:
-- `AI_GATEWAY_API_KEY` server-side;
-- `HARNESS_ACCESS_KEY` server-side check;
-- `REVIEW_LOCK_SECRET` server-side signing;
-- AI Gateway key budget set to $10, no refresh.
+Source: `docs/ARCHITECTURE_REASSESSMENT_AFTER_D1_D2_v0.1.md`.
 
-Deployment/smoke-test result:
-- frontend and serverless endpoint are live;
-- request successfully reaches Vercel AI Gateway;
-- first Gateway call was blocked because free-tier credits cannot access the selected model;
-- Vercel requires at least a $10 paid credit top-up plus processing fee/tax (~$12.81 shown at checkout);
-- user deliberately chose not to buy paid Gateway credits at this stage.
+## 8. Architecture candidates
 
-Decision:
+### A. Direction-first aggregation
 
-> **HARNESS DEPLOYED / PIPELINE REACHES GATEWAY / PAID MODEL EXECUTION DEFERRED**
+Current hypothesis:
 
-Do not keep spending time on Vercel billing now. Preserve the harness as a working prototype for later use.
+```text
+broad direction → scene mechanisms → choices → direction score
+```
 
-Temporary review fallback:
-- use fresh independent Claude/Grok sessions manually;
-- one complete Stage 1 package per reviewer;
-- lock the verbatim Stage 1 response before reveal;
-- then send Stage 2 in the same reviewer session;
-- avoid repeated piecemeal copy-paste.
+Status:
 
-Source: `docs/AI_REVIEW_HARNESS_v0.1.md` and deployed repo code under `review-harness/`.
+> **NOT SUPPORTED ENOUGH TO FREEZE**
+
+Do not proceed to a third broad-direction gate as if D1/D2 were only asset-quality problems.
+
+### B. Observable-tradeoff-first
+
+```text
+controlled local contrast
+→ participant choice
+→ repeated observable choice pattern
+→ descriptive session mirror
+```
+
+No requirement that every pair maps to one of eight predeclared directions.
+
+Status:
+
+> **SAFE BASELINE CANDIDATE**
+
+### C. Empirical-cluster discovery
+
+```text
+validated local contrasts
+→ human semantic evidence + repeated choice data
+→ empirical clusters
+→ provisional higher-order labels if earned
+```
+
+Status:
+
+> **RECOMMENDED DISCOVERY PATH**
+
+Broad labels return only after data demonstrate a common cross-context core.
 
 ## 9. Immediate next action
 
-Run **Gate D2 MAS blind Stage 1** manually using `docs/MAS_CROSS_EDGE_BLIND_STAGE1_v0.1.md` in a fresh independent reviewer session.
+Do **not** design Gate D3 for another broad direction yet.
 
-Process:
-1. send only the blind Stage 1 package;
-2. do not mention PrioLens, MAS, CER, PRO, CON or mappings;
-3. capture the full verbatim reviewer response;
-4. save/lock it before reveal;
-5. inspect whether one recurring idea appears across R01-B, R02-A and R03-B without labels;
-6. only if Stage 1 is not structurally dead, send `MAS_CROSS_EDGE_STAGE2_REVEAL_v0.1.md` in the same session;
-7. classify Gate D2;
-8. do not render before text-level D2 survives.
+Do **not** render INF or MAS as direction-validation sets.
 
-Preferred sequence: one reviewer first (Claude or Grok). If Stage 1 is clearly dead, revise before spending another reviewer pass. If promising, replicate with the second independent reviewer.
+Build an **observable tradeoff taxonomy** from local contrasts that survived blind concept review.
 
-## 10. Public-product implication
+For each candidate tradeoff define:
+1. exact visible property difference;
+2. matched scene constraints;
+3. nuisance cues to control;
+4. safe local interpretation;
+5. interpretations explicitly not yet allowed;
+6. whether the pair remains interesting enough for the short public product.
 
-A complete 28-edge tournament is not automatically required.
+Then design a compact human semantic screen around those local contrasts.
 
-If some directions survive cross-edge identity and later rendered human research, investigate balanced incomplete/adaptive schedules. Bradley–Terry / Thurstone-style models remain statistical candidates, not selected methodology.
+The next architecture question is:
 
-12–18 trials are a UX target, not a validated measurement minimum. Uncertainty, ties, cycles and `no_clear_choice` must remain visible.
+> Can PrioLens produce useful, repeatable and interesting session-level mirrors from validated local tradeoffs without pretending they are already broad psychological dimensions?
 
-## 11. Render execution rule
+## 10. AI Review Harness v0.1
+
+Implemented and deployed at Vercel project `priolens-review-harness`.
+
+Pipeline reaches Vercel AI Gateway successfully.
+
+Paid model execution is currently deferred because Vercel requires a minimum $10 paid top-up plus fees/tax. The user deliberately chose not to buy credits at this stage.
+
+Security already configured:
+- `AI_GATEWAY_API_KEY` server-side;
+- `HARNESS_ACCESS_KEY`;
+- `REVIEW_LOCK_SECRET`;
+- AI Gateway key budget $10, no refresh.
+
+Decision:
+
+> **PRESERVE HARNESS / DO NOT SPEND MORE TIME ON BILLING NOW**
+
+Temporary fallback is manual fresh Claude/Grok sessions with Stage 1 locked before Stage 2 reveal.
+
+## 11. Public-product implication
+
+The product ambition does not change:
+- visual;
+- fast;
+- playful;
+- little reading;
+- no mandatory writing;
+- 2–4 minutes;
+- short session mirror;
+- no diagnosis or hidden-self claim.
+
+A result does not need eight percentages.
+
+A safer result can be close to observed tradeoffs, e.g.:
+- what repeatedly won in this session;
+- which tradeoffs were stable;
+- which choices changed by context;
+- where no clear pattern emerged.
+
+Exact wording remains research-dependent.
+
+## 12. Render execution rule
 
 When rendering becomes justified:
 1. one image task at a time;
 2. new scene = new generation context;
-3. use controlled edit of an accepted base where appropriate;
-4. if target meanings require different actions, match context/legitimacy/valence/salience rather than forcing microscopic edits;
+3. controlled edit of accepted base when appropriate;
+4. match context/legitimacy/valence/salience;
 5. reject labels, collages, multi-state images and unrelated scene changes.
 
-## 12. Source-of-truth order
+No current direction-validation set is cleared for rendering.
+
+## 13. Source-of-truth order
 
 1. `PROJECT_STATE.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/MAS_CROSS_EDGE_IDENTITY_CONCEPTS_v0.1.md`
-4. `docs/MAS_CROSS_EDGE_BLIND_STAGE1_v0.1.md`
-5. `docs/MAS_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`
-6. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
-7. `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`
-8. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-9. `docs/AI_REVIEW_HARNESS_v0.1.md`
-10. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
-11. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-12. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-13. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
-14. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
-15. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
-16. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
-17. older global-stimulus material as historical context only.
+3. `docs/ARCHITECTURE_REASSESSMENT_AFTER_D1_D2_v0.1.md`
+4. `docs/GROK_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
+5. `docs/CLAUDE_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
+6. `docs/MAS_CROSS_EDGE_BLIND_STAGE1_v0.1.md`
+7. `docs/MAS_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`
+8. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
+9. `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`
+10. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
+11. `docs/AI_REVIEW_HARNESS_v0.1.md`
+12. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
+13. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+14. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+15. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
+16. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
+17. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+18. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
+19. older global-stimulus material as historical context only.
 
 ## Recovery instruction
 
-If context is lost, start from this file. Do not restart INF edge-searching, do not return to Vercel billing unless paid Gateway execution becomes worth the cost, do not reconstruct PrioLens from the old 16-stimulus/28-edge freeze plan, do not import ConflictLab scoring assumptions, and do not turn the public product back into a long per-choice reflection protocol.
+If context is lost, start from this file.
+
+Do not restart INF edge-searching, do not start Gate D3, do not assume the eight directions are score units, do not return to Vercel billing now, do not reconstruct PrioLens from the old 16-stimulus/28-edge freeze plan, and do not turn the public product into a long per-choice reflection protocol.
