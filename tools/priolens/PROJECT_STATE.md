@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / INF GATE D1 = PARTIAL_IDENTITY / R02R BLIND REVIEW READY
+Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / INF GATE D1 = PARTIAL_IDENTITY / MAS↔INF NEEDS NEW GRAMMAR
 Updated: 2026-08-30
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -151,54 +151,71 @@ Final Gate D1 result:
 
 Interpretation:
 - R01 and R03 support a coherent INF core across different opponents;
-- R02 carries the same external/shared directional consequence but is contaminated by unmatched skill/complexity structure;
+- R02 carried the same external/shared directional consequence but was contaminated by unmatched skill/complexity structure;
 - INF identity remains plausible, but current three-edge pooling is unsafe;
 - no construct validation or public INF score is justified yet.
 
-Important R02 finding:
-- deleting `low-skill` is not enough;
-- original MAS action was multi-step/tool-mediated while original INF action was a simple selector;
-- action complexity, tool involvement and perceived deliberateness had to be structurally rebalanced.
-
 Source: `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`.
 
-## 9. R02R repair candidate
+## 9. R02R repair result · clean pair, weak constructs
 
-Old R02 is superseded as the active MAS ↔ INF repair candidate by **R02R**.
-
-R02R shared control strategy:
+R02R structurally rebalanced the original MAS↔INF pair:
 - same neutral tabletop apparatus;
-- same central handwheel/control family;
+- same handwheel/control family;
 - same two-hand involvement;
 - same camera, lighting, material amount, path count and object density;
-- similar apparent effort and mechanical involvement;
 - no gauge/caliper/tool-prestige cue;
 - no expert-vs-simple staging;
 - no bigger/more/busier INF cue.
 
-R02R Variant A candidate (hidden MAS):
-- same handwheel moves one small component inside narrow physical guides;
-- fine positional control is visibly relevant;
-- consequence stays bounded to exact fit/alignment/position of one component;
-- no target mark, scale, gauge or perfect-completion cue.
+### Grok blind Stage 1
 
-R02R Variant B candidate (hidden INF):
-- same-size handwheel moves a same-size central diverter;
-- same existing flow is redirected between two equal paths;
-- total amount, speed, path count and destination attractiveness stay unchanged;
-- visible consequence is external system course, not magnitude.
+Verdict: `CLEAN_CONTRAST`.
 
-Residual risks:
-- A may still read as generic accuracy rather than broad Mastery;
-- B may still read as generic routing/causality rather than broad Influence;
-- B route change could become more visually salient than A fine positioning;
-- if A still appears more skilled/difficult than B, repair fails.
+Grok found no obvious advantage in competence, difficulty, effort, tool use, complexity, usefulness, attractiveness or salience.
+
+### Grok Stage 2 reveal
+
+Hidden mapping:
+- A = MAS
+- B = INF
+
+Verdict: `INSUFFICIENT`
+Final action: `REVISE`
+
+Reason:
+- A reads as generic accuracy / precise positioning more clearly than Mastery;
+- B reads as generic routing / causality more clearly than Influence;
+- balancing the mechanics removed the original confound but also stripped away too much of the broader construct meaning.
+
+This is now treated as a **construct-dilution warning**:
+
+> A matched pair can be locally very clean yet be too semantically thin to justify direction-level inference.
+
+Therefore R02R is not render-ready and should not receive another tiny mechanical repair.
 
 Sources:
-- `docs/MAS_INF_R02_REDESIGN_v0.1.md`
-- `docs/MAS_INF_R02R_BLIND_STAGE1_v0.1.md`
+- `docs/GROK_MAS_INF_R02R_STAGE1_RESULT_v0.1.md`
+- `docs/GROK_MAS_INF_R02R_STAGE2_RESULT_v0.1.md`
 
-## 10. Short-product implication
+## 10. Revised matched-edge rule
+
+Matched-edge no longer means `make both sides as mechanically identical as possible`.
+
+The active rule is:
+
+> **Match context, legitimacy, valence, status and visual salience strongly enough to control obvious confounds, but allow materially different actions when that is necessary for the target meanings to remain visible.**
+
+For MAS↔INF specifically:
+- MAS must visibly involve quality of execution / competence, not only small positional difference;
+- INF must visibly involve consequence on a genuinely external/shared situation, not only internal routing;
+- both sides should remain equally legitimate and similarly engaging;
+- INF must not rely on larger magnitude, more objects affected, authority or passive followers;
+- MAS must not win merely by looking harder, more expert, more technical or more prestigious.
+
+This changes the design target from exact-mechanism matching to **shared-context balanced contrast**.
+
+## 11. Short-product implication
 
 A complete 28-edge tournament is not automatically required for the public product.
 
@@ -209,7 +226,7 @@ Boundaries:
 - 12–18 trials are a UX target, not a validated measurement minimum;
 - uncertainty, ties, cycles and `no_clear_choice` must not become false precision.
 
-## 11. Approach / avoidance research idea
+## 12. Approach / avoidance research idea
 
 Preserve separately:
 - approach: `Kurį rinktumeisi?`;
@@ -217,52 +234,48 @@ Preserve separately:
 - counterbalance framing/scenes across participants;
 - do not double-count the two framings as two votes toward one score.
 
-## 12. Render execution rule
+## 13. Render execution rule
 
 One CER↔PRO diagnostic pair demonstrated the workable technical process:
 1. generate one standalone base image;
 2. accept/reject it;
-3. separately edit that exact image;
-4. change only the target property;
+3. separately edit that exact image where the pair genuinely supports controlled editing;
+4. change only intended properties where feasible;
 5. reject collages, labels, multi-state images or unrelated scene changes.
 
-> One image task at a time. New scene = new generation context. Second side of matched pair = controlled edit of accepted first side.
+Important update: not every valid matched edge must be reducible to one microscopic edit. If construct preservation requires different actions within the same controlled context, scene matching should be enforced at the context/visual-legitimacy level rather than by forcing identical mechanics.
 
-## 13. Immediate next action
+## 14. Immediate next action
 
-Do not render INF yet.
+Do not render R02R.
 
-R02R is now ready for one fresh blind concept review.
+Next research task:
+1. design one new **shared-context MAS↔INF** concept that preserves the broader meanings rather than the exact mechanism;
+2. keep actor status, valence, attractiveness and approximate visual salience balanced;
+3. make MAS visibly about quality/skill of execution;
+4. make INF visibly about consequence on a genuinely shared/external situation;
+5. run blind Stage 1 and reveal Stage 2 once;
+6. if it still collapses to `accuracy vs causality` or `expert vs simple`, stop forcing MAS↔INF and replace it with another INF opponent for Gate D1 rather than iterating indefinitely.
 
-Next:
-1. send only `MAS_INF_R02R_BLIND_STAGE1_v0.1.md` to a reviewer that has not seen the mapping;
-2. lock its full response;
-3. only then reveal A=MAS, B=INF and definitions;
-4. require explicit judgment on whether action complexity/skill/salience is now balanced;
-5. if R02R is SUPPORTED and B is read through external/shared directional consequence, advance R01/R02R/R03 to rendered diagnostic validation;
-6. otherwise redesign R02 again or drop MAS↔INF from the INF identity set.
+R01 and R03 remain the two currently supported INF identity anchors.
 
-## 14. Source-of-truth order
+## 15. Source-of-truth order
 
 1. `PROJECT_STATE.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-4. `docs/MAS_INF_R02_REDESIGN_v0.1.md`
-5. `docs/MAS_INF_R02R_BLIND_STAGE1_v0.1.md`
+3. `docs/GROK_MAS_INF_R02R_STAGE2_RESULT_v0.1.md`
+4. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
+5. `docs/MAS_INF_R02_REDESIGN_v0.1.md`
 6. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
 7. `docs/INF_CROSS_EDGE_IDENTITY_CONCEPTS_v0.1.md`
-8. `docs/INF_CROSS_EDGE_BLIND_STAGE1_v0.1.md`
-9. `docs/INF_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`
-10. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
-11. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
-12. `docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
-13. `docs/CLAUDE_MATCHED_EDGE_STAGE2_v0.1.md`
-14. `docs/GROK_MATCHED_EDGE_STAGE2_v0.1.md`
-15. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-16. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-17. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
-18. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
-19. older global-stimulus material as historical context only.
+8. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
+9. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
+10. `docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
+11. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+12. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+13. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+14. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
+15. older global-stimulus material as historical context only.
 
 ## Recovery instruction
 
