@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / CROSS-EDGE DIRECTION IDENTITY GATE
+Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / INF CROSS-EDGE BLIND REVIEW READY
 Updated: 2026-08-30
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -14,7 +14,7 @@ Working product principle:
 
 > **For Fun, but with Wisdom.**
 
-The public interaction should be almost trivial:
+Public flow target:
 
 ```text
 START
@@ -34,20 +34,20 @@ Production boundary:
 - no claim that response time reveals a hidden motive;
 - no need to read new instructions before every pair;
 - `no_clear_choice` remains possible;
-- target public duration approximately 2–4 minutes;
-- initial product interaction budget approximately 12–18 meaningful choices, with 20 as a soft ceiling until UX evidence says otherwise.
+- target public duration about 2–4 minutes;
+- working public interaction budget about 12–18 meaningful choices, with 20 as a soft ceiling until UX evidence says otherwise.
 
 Methodological complexity belongs behind the product, not inside the user's flow.
 
 Source: `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`.
 
-## 2. What PrioLens may claim
+## 2. Safe inference target
 
 Do not describe a hidden/subconscious true self.
 
-Safer working object:
+Working object:
 
-> repeated pre-deliberative choice tendencies within this session and these validated visual tradeoffs.
+> repeated pre-deliberative choice tendencies within this session and these empirically supported visual tradeoffs.
 
 Preferred result language is session-bound, for example:
 
@@ -57,7 +57,7 @@ Avoid `Tu esi`, `Tavo pasąmonė nori`, strict personality ranking, employment s
 
 ## 3. Current eight directions are research hypotheses
 
-The current working set is non-exhaustive and not validated:
+Current non-exhaustive working set:
 - AUT · Autonomy / Pasirinkimo laisvė
 - CER · Certainty / Aiškumas
 - EXP · Exploration / Tyrinėjimas
@@ -69,7 +69,7 @@ The current working set is non-exhaustive and not validated:
 
 Exactly eight public scores are **not** a product requirement.
 
-If only five directions survive research, build five. If cross-edge direction identity fails, do not manufacture eight scores by summing researcher-assigned edge labels.
+If only some directions survive research, build only those. If cross-edge identity fails, do not manufacture direction scores by summing researcher-assigned edge labels.
 
 ## 4. Non-negotiable inference boundary
 
@@ -86,44 +86,20 @@ Designer intent does not assign psychological meaning to raw A/B choice.
 ## 5. Research layer vs product layer
 
 ### Research layer
-
-May be deliberately slower and include:
-- open reasons;
-- `hard_to_identify`;
-- approach vs forfeit framing;
-- repeated edge realizations;
-- context manipulations;
-- blind semantic coding;
-- cross-edge identity testing;
-- longer balanced/complete comparison schedules.
-
-This research validates the stimuli and inference model before they are used in the public flow.
+May include open reasons, `hard_to_identify`, framing experiments, repeated edge realizations, context manipulations, blind semantic coding and longer schedules.
 
 ### Product layer
+Consumes only mappings/stimuli that survived research. The public user should not be asked to perform the researchers' validation work.
 
-The public product consumes only mappings/stimuli that survived research. It must not ask the public user to do the researchers' validation work.
+This is the central product distinction from the current 2Pair research flow.
 
-This is the main product distinction from the current 2Pair research flow.
+## 6. Architecture history
 
-## 6. Historical global-exemplar architecture
+The old global-exemplar candidate used 8 directions, 2 exemplars per direction, 16 standalone stimuli and a complete `C(8,2)=28` tournament. Independent red-team work stopped freeze-readiness because of direction-correlated visual families and semantic instability. The old 16 remain historical only.
 
-The old freeze candidate used:
-- 8 directions;
-- 2 exemplars per direction;
-- 16 standalone stimuli;
-- complete `C(8,2)=28` tournament.
+Architecture M uses edge-specific matched pairs: two controlled variants of the same/functionally equivalent scene. Text-only Gate F2 made M the primary research path, not a product freeze.
 
-Independent red-team work stopped freeze-readiness because of direction-correlated visual families and semantic instability. The old 16 are historical/research references only.
-
-Source: `docs/RED_TEAM_SYNTHESIS_v0.1.md`.
-
-## 7. Matched-edge architecture
-
-Architecture M uses edge-specific matched pairs: two controlled variants of the same/functionally equivalent scene expressing a candidate tradeoff.
-
-Gate F2 made M the primary research path, not a product freeze.
-
-Claude text-only Stage 2 authoritative per-pair classifications:
+Claude Stage 2 authoritative concept classifications:
 - 5 SUPPORTED: M01, M03, M06, M08, M11
 - 6 CROSS_LOAD: M02, M04, M07, M09, M10, M13
 - 3 INSUFFICIENT: M05, M12, M14
@@ -140,114 +116,150 @@ Sources:
 - `docs/CLAUDE_MATCHED_EDGE_STAGE2_v0.1.md`
 - `docs/GROK_MATCHED_EDGE_STAGE2_v0.1.md`
 
-## 8. PrioLens vs 2Pair boundary
+## 7. PrioLens vs 2Pair boundary
 
-Matched-edge visual discipline makes PrioLens stimuli look like 2Pair stimuli. That is not itself a problem.
+Matched-edge visual discipline makes PrioLens stimuli resemble 2Pair. The critical difference must be inferential.
 
-The critical difference must be inferential:
+2Pair may remain at local pair/manipulation + participant response/reflection.
 
-### 2Pair
-The local pair/manipulation + participant response can remain the primary observation unit. Raw A/B choice has no inherent psychological polarity until empirical mapping evidence exists.
-
-### PrioLens
-A higher-level direction is useful only if the same direction preserves coherent meaning across different opponents and different scene mechanisms.
+PrioLens needs evidence that a higher-level direction preserves coherent meaning across different opponents and different scene mechanisms.
 
 If INF in INF↔MAS, INF↔AUT and INF↔CON becomes three unrelated local meanings, summing those outcomes into an INF score is researcher-imposed aggregation.
 
 Source: `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`.
 
-## 9. Current Gate D1 · Cross-edge Direction Identity
-
-This gate precedes large-scale rendering or a public scoring model.
+## 8. Gate D1 · INF cross-edge direction identity
 
 Core question:
 
-> When the same working direction appears against different opponents, do blind participant reasons preserve a coherent common meaning stronger than scenario/mechanism-specific explanations?
+> When INF appears against different opponents, does blind interpretation preserve a coherent common meaning stronger than scenario/mechanism-specific explanations?
 
-First target: INF across three edges:
-1. MAS ↔ INF
-2. AUT ↔ INF
-3. CON ↔ INF
+Working INF definition:
 
-Requirements:
-- materially different scene mechanisms;
-- local matched-pair control retained;
-- no direction labels shown;
-- INF not represented only by more/bigger/busier;
-- INF not represented by one powerful actor vs passive others;
-- blind/open reasons preserved in research mode before mapping.
+> meaningful impact on the direction, decision or outcome of an external/shared situation.
 
-If INF fails, pause direction-level aggregation before expanding the asset library.
+Three text-only concepts are now designed:
+
+1. **MAS ↔ INF** · precision vs routing direction
+   - same tabletop mechanical flow apparatus;
+   - MAS = fine alignment/tolerance correction;
+   - INF = same existing flow redirected between equal downstream paths;
+   - total amount/speed/destination count held constant to avoid magnitude shortcut.
+
+2. **AUT ↔ INF** · self-configuration vs shared process configuration
+   - three equal workstations and equal-status participants;
+   - AUT = meaningful adjustment of one's own work method/setup;
+   - INF = simple central routing change alters where the shared next item goes;
+   - other people remain active and non-subordinate.
+
+3. **CON ↔ INF** · reciprocal relation vs consequence on shared state
+   - three equal participants around a round table;
+   - CON = reciprocal exchange/contact loop;
+   - INF = one of three equal controls changes route/allocation in a shared tabletop system;
+   - no head-of-table or passive-followers shortcut.
+
+Source: `docs/INF_CROSS_EDGE_IDENTITY_CONCEPTS_v0.1.md`.
+
+## 9. Gate D1 blind review package
+
+Stage 1 is ready and must be locked before mappings are revealed.
+
+Blind package:
+- `docs/INF_CROSS_EDGE_BLIND_STAGE1_v0.1.md`
+
+Reviewer does not see direction labels, intended mappings or the INF identity hypothesis.
+
+Stage 1 asks for each pair:
+1. dominant meaningful A/B difference;
+2. reasons to prefer A;
+3. reasons to prefer B;
+4. obvious competence/safety/completion/attractiveness/power/usefulness/salience asymmetry;
+5. hidden story required;
+6. verdict: CLEAN_CONTRAST / AMBIGUOUS / NONSEMANTIC_DOMINATED / INFEASIBLE_AS_MATCHED_PAIR;
+7. only after all three, whether any variants appear to express one recurring broader idea.
+
+Stage 2 reveal is separate:
+- `docs/INF_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`
+
+Hidden mapping:
+- R01 A=INF, B=CON
+- R02 A=MAS, B=INF
+- R03 A=INF, B=AUT
+
+Stage 2 asks whether the intended INF variants share one semantic core stronger than scale, authority, generic causality, complexity or local utility.
+
+Possible Gate D1 concept outcomes:
+- PROMISING_IDENTITY
+- PARTIAL_IDENTITY
+- LOCAL_ONLY
+- FAIL
+
+AI concept review can only decide whether rendering is worth attempting. It cannot validate INF or human interpretation.
 
 ## 10. Short-product implication
 
 A complete 28-edge tournament is not automatically required for the public product.
 
-If direction identity survives research, investigate pairwise-preference estimation with a **balanced incomplete or adaptive comparison schedule** rather than assuming every edge must be shown.
-
-Candidate statistical families include Bradley–Terry / Thurstone-style paired-comparison models, but no model is selected yet.
+If direction identity survives, investigate a balanced incomplete or adaptive comparison schedule. Bradley–Terry / Thurstone-style models remain statistical candidates, not selected methodology.
 
 Important boundary:
-- these models assume a meaningful recurring latent item/direction across comparisons;
-- therefore model convenience cannot substitute for Gate D1 evidence;
-- 12–18 trials are a UX target, not yet a validated measurement minimum;
-- scoring method must be stress-tested by simulation and human data;
-- uncertainty, ties, cycles and `no_clear_choice` must remain visible rather than being forced into false precision.
-
-A promising initial design hypothesis, to test rather than assume, is a balanced partial graph where every surviving direction appears multiple times against different opponents while the total trial count stays within the public interaction budget.
+- the recurring item/direction must first have empirical meaning across comparisons;
+- 12–18 trials are a UX target, not a validated measurement minimum;
+- uncertainty, ties, cycles and `no_clear_choice` must not be converted into false precision.
 
 ## 11. Approach / avoidance research idea
 
-Preserve as a separate robustness experiment:
-- one realization: `Kurį rinktumeisi?`;
-- a different realization of the same edge: `Jei vieno iš šių dviejų turėtum atsisakyti, kurio atsisakytum?`;
+Preserve separately:
+- approach: `Kurį rinktumeisi?`;
+- different realization of same edge: `Jei vieno iš šių dviejų turėtum atsisakyti, kurio atsisakytum?`;
 - counterbalance framing/scenes across participants;
 - do not double-count the two framings as two votes toward one score.
 
-This belongs in research mode, not the default public flow unless later evidence justifies it.
+This belongs in research mode unless later evidence justifies public use.
 
-## 12. Render execution checkpoint
+## 12. Render execution rule
 
-One CER↔PRO diagnostic pair was successfully produced using the correct image workflow:
+One CER↔PRO diagnostic pair demonstrated the workable technical process:
 1. generate one standalone base image;
-2. accept/reject that image;
+2. accept/reject it;
 3. separately edit that exact image;
 4. change only the target property;
 5. reject collages, labels, multi-state images or unrelated scene changes.
 
-Execution rule:
+> One image task at a time. New scene = new generation context. Second side of matched pair = controlled edit of accepted first side.
 
-> One image task at a time. New scene = new generation context. Second side of a matched pair = controlled edit of the accepted first side.
-
-This is an execution constraint, not validation evidence.
+This is execution discipline, not validation evidence.
 
 ## 13. Immediate next action
 
-Do not mechanically continue D02/D03/D04 and do not render 56 assets.
+Do not render the three INF pairs yet.
 
-Next research task:
-
-1. design the three-pair INF cross-edge identity mini-set;
-2. ensure the three INF realizations use materially different mechanisms;
-3. conduct blind semantic validation in research mode;
-4. use the results to decide whether direction-level aggregation deserves continued development;
-5. only after at least one direction survives cross-edge identity, prototype a short balanced 12–18-choice product schedule and test whether a paired-comparison model can summarize it without false precision.
+Next:
+1. send `INF_CROSS_EDGE_BLIND_STAGE1_v0.1.md` to an independent reviewer without reveal material;
+2. lock the full Stage 1 response;
+3. only then provide `INF_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`;
+4. classify Gate D1 as PROMISING_IDENTITY / PARTIAL_IDENTITY / LOCAL_ONLY / FAIL;
+5. render only the concept(s) that survive text-level adversarial review;
+6. after rendered blind human evidence, decide whether INF deserves direction-level aggregation.
 
 ## 14. Source-of-truth order
 
 1. `PROJECT_STATE.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
 3. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
-4. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
-5. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
-6. `docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
-7. `docs/CLAUDE_MATCHED_EDGE_STAGE2_v0.1.md`
-8. `docs/GROK_MATCHED_EDGE_STAGE2_v0.1.md`
-9. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-10. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-11. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
-12. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
-13. older global-stimulus material only as historical context.
+4. `docs/INF_CROSS_EDGE_IDENTITY_CONCEPTS_v0.1.md`
+5. `docs/INF_CROSS_EDGE_BLIND_STAGE1_v0.1.md`
+6. `docs/INF_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`
+7. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
+8. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
+9. `docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
+10. `docs/CLAUDE_MATCHED_EDGE_STAGE2_v0.1.md`
+11. `docs/GROK_MATCHED_EDGE_STAGE2_v0.1.md`
+12. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+13. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+14. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+15. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
+16. older global-stimulus material as historical context only.
 
 ## Recovery instruction
 
