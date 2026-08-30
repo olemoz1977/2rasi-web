@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / INF GATE D1 = PARTIAL_IDENTITY / CER↔INF R05 STAGE 2 REVEAL READY
+Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / INF GATE D1 = NOT PASSED / INF HOLD / NEXT = MAS GATE D2
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -34,7 +34,7 @@ Production boundary:
 - no claim that response time reveals a motive;
 - `no_clear_choice` remains possible;
 - target duration about 2–4 minutes;
-- working public interaction budget about 12–18 meaningful choices, 20 soft ceiling until UX evidence says otherwise.
+- working interaction budget about 12–18 meaningful choices, 20 soft ceiling until UX evidence says otherwise.
 
 Methodological complexity belongs behind the product, not inside the public flow.
 
@@ -50,23 +50,11 @@ Preferred result language is session-bound, e.g.:
 
 > `Kai rinkaisi greitai, be ilgos analizės, tavo pasirinkimuose dažniau laimėdavo ...`
 
-Do not claim a hidden/subconscious true self, strict personality rank, employment suitability or stable trait.
-
-## 3. Current directions are research hypotheses
-
-Current non-exhaustive working set:
-- AUT · Autonomy / Pasirinkimo laisvė
-- CER · Certainty / Aiškumas
-- EXP · Exploration / Tyrinėjimas
-- MAS · Mastery / Meistriškumas
-- CON · Connection / Ryšys
-- INF · Influence / Poveikis
-- PRO · Protection / Apsauga
-- OPP · Opportunity / Galimybė
+Do not claim hidden/subconscious true self, strict personality rank, employment suitability or stable trait.
 
 Exactly eight public scores are not a requirement. Keep only directions that survive research.
 
-## 4. Inference boundary
+## 3. Inference boundary
 
 ```text
 WORKING DIRECTION HYPOTHESIS
@@ -78,9 +66,7 @@ WORKING DIRECTION HYPOTHESIS
 
 Designer intent does not give psychological meaning to raw A/B choice.
 
-## 5. Matched-edge rule
-
-Matched-edge is the primary research path, but `matched` does not mean mechanically identical at any cost.
+Matched-edge rule:
 
 > Match context, legitimacy, valence, status and visual salience strongly enough to control nuisance differences, while preserving the target meanings.
 
@@ -90,131 +76,145 @@ PrioLens remains distinct from 2Pair only if a higher-level working direction pr
 
 Source: `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`.
 
-## 6. Gate D1 · INF cross-edge direction identity
+## 4. Current working directions
+
+Research hypotheses only:
+- AUT · Autonomy / Pasirinkimo laisvė
+- CER · Certainty / Aiškumas
+- EXP · Exploration / Tyrinėjimas
+- MAS · Mastery / Meistriškumas
+- CON · Connection / Ryšys
+- INF · Influence / Poveikis
+- PRO · Protection / Apsauga
+- OPP · Opportunity / Galimybė
+
+No direction is guaranteed a public score.
+
+## 5. Gate D1 · INF cross-edge identity
 
 Working INF definition:
 
 > meaningful impact on the direction, decision or outcome of an external/shared situation.
 
-Original test:
-- R01 · CON ↔ INF
-- R02 · MAS ↔ INF
-- R03 · AUT ↔ INF
+### Evidence that survived
 
-Claude blind Stage 1 independently grouped intended INF sides R01-A, R02-B and R03-A under a recurring idea: actor effect extends outward and changes shared/external routing or allocation.
+Original cross-edge blind review found a recurring INF-like idea before mapping reveal: the actor's effect extends outward and changes shared/external routing or allocation.
 
-Claude Stage 2:
-- R01: SUPPORTED
-- R02: CROSS_LOAD
-- R03: SUPPORTED
-- Gate result: **PARTIAL_IDENTITY**
+Supported anchors:
+- R01 · CON↔INF: SUPPORTED
+- R03 · AUT↔INF: SUPPORTED
 
-R01 and R03 remain the two current INF identity anchors.
+These two anchors remain useful evidence.
 
-Source: `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`.
+### Failed third-opponent paths
 
-## 7. Closed third-opponent attempts
-
-### MAS↔INF · STOPPED
+#### MAS↔INF · STOPPED
 Three attempts failed for different reasons:
 - original R02: skill/tool-complexity asymmetry;
 - R02R: clean mechanics but construct dilution, MAS→accuracy and INF→routing;
-- R02S: clean blind contrast but reveal CROSS_LOAD, MAS→careful manual action and INF→neutral control/routing.
+- R02S: blind CLEAN_CONTRAST, reveal CROSS_LOAD, MAS→careful manual action and INF→neutral routing/control.
 
 Decision: do not iterate MAS↔INF again for Gate D1.
 
-### PRO↔INF R04 · STOPPED BEFORE REVEAL
+#### PRO↔INF R04 · STOPPED BEFORE REVEAL
 Blind verdict: AMBIGUOUS.
 
 Problem:
-- PRO side = preventive/protective action;
-- INF side became zero-sum resource allocation, one equal recipient gets water while another does not;
-- fairness/deprivation / `solving vs creating a problem` valence risk can dominate.
+- INF side became zero-sum allocation: one equal recipient receives the resource while another does not;
+- fairness/deprivation and `solving vs creating a problem` valence could dominate.
 
-Decision: no reveal, no render, no iteration of this zero-sum grammar.
+Decision: no reveal, no render, no iteration of this grammar.
 
-Sources:
-- `docs/GROK_MAS_INF_R02R_STAGE2_RESULT_v0.1.md`
-- `docs/CLAUDE_MAS_INF_R02S_STAGE2_RESULT_v0.1.md`
-- `docs/PRO_INF_R04_BLIND_STAGE1_RESULT_v0.1.md`
+#### CER↔INF R05 · STOPPED AFTER REVEAL
+Blind Stage 1: CLEAN_CONTRAST.
 
-## 8. Current third opponent · CER↔INF R05
+Blind reviewer independently described:
+- A = `look`: reveal current state without changing it;
+- B = `steer`: change which route the flow follows.
 
-R05 shared context:
-- neutral tabletop channel/flow board;
-- same hand, central area, two equal routes and same neutral tokens;
-- same camera, lighting, materials, counts and salience;
-- no labels, color coding, reward, hazard, status or destination advantage.
+Stage 2 reveal:
+- A = CER
+- B = INF
+- verdict: CROSS_LOAD
+- final action: REVISE
 
-Hidden A = CER candidate:
-- slides aside modest frosted inspection cover;
-- current internal path becomes directly visible;
-- flow is not redirected;
-- reveal is not staged as mystery/surprise.
+Failure reason:
+- A is visibly generic inspection/reveal more directly than Certainty;
+- B is visibly generic routing/causality more directly than Influence;
+- `observe vs act` explains the visible contrast more parsimoniously than CER vs INF;
+- B reproduces the local redirection mechanism but does not independently establish meaningful shared/external consequence.
 
-Hidden B = INF candidate:
-- moves central junction piece;
-- same existing flow changes to the other equal route;
-- amount/speed/route count/attractiveness stay unchanged;
-- distinctive consequence is change in external flow course.
+Source: `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`.
 
-### Locked blind Stage 1 result
+## 6. Gate D1 decision
 
-Verdict: **CLEAN_CONTRAST**.
+> **INF Gate D1 is NOT PASSED.**
 
-Reviewer independently described:
-- A = `look`: reveals existing internal state without changing downstream routing;
-- B = `steer`: changes routing so the flow follows the other route.
+Do not search for a fourth INF opponent edge-by-edge.
 
-Spontaneous preference language:
-- A: certainty/confirmation before acting, value of knowing current state, possible curiosity;
-- B: direct action/control, changing outcomes rather than observing.
+Current INF status:
 
-Reviewer found no obvious dominance in competence, difficulty, prestige, safety, completion, attractiveness, power, usefulness, consequence or visual salience.
+> `HOLD / PARTIAL_IDENTITY / NOT PUBLIC-SCORE READY`
 
-One-sentence blind contrast:
+This does not prove INF is invalid as a psychological idea. It means the current static matched-image architecture has not established a safe direction-level mapping.
 
-> One option shows the current path without changing it, while the other option changes which path the flow follows.
+Do not render R01/R03 as a three-edge INF validation set yet.
 
-Residual semantic risks:
-- A could still be generic inspection/reveal or EXP;
-- B could still be generic control/routing rather than INF;
-- `look vs steer` could reflect passive/active preference rather than CER↔INF.
+## 7. Structural INF diagnosis
 
-Source: `docs/CER_INF_R05_BLIND_STAGE1_RESULT_v0.1.md`.
+Repeated reviews show that static scenes can reliably depict a narrower observable family:
 
-## 9. Immediate next action
+> **external steering / redirection**: the actor changes the course, routing or allocation of something beyond the actor's local task.
 
-Run one Stage 2 reveal in the SAME reviewer thread so Stage 1 remains locked.
+But current INF also requires that the consequence be **meaningful and shared/external**.
 
-Reveal:
-- A = CER · Certainty / Aiškumas
-- B = INF · Influence / Poveikis
+That second requirement is difficult to depict without introducing confounds:
+- other affected people → social salience/status/fairness;
+- visibly better/worse outcome → valence/reward/loss;
+- more affected objects → magnitude/salience;
+- scarce resource → zero-sum fairness;
+- complex mechanism → Mastery;
+- invisible downstream importance → hidden story.
 
-Definitions:
-- CER: clarity, predictability or knowing what applies, what is present or what is likely to happen.
-- INF: meaningful impact on the direction, decision or outcome of an external/shared situation.
+Therefore `redirection/control` must not be silently treated as equivalent to INF.
 
-Stage 2 must judge:
-1. whether mapping fits locked Stage 1 interpretation;
-2. SUPPORTED / CROSS_LOAD / INSUFFICIENT;
-3. strongest competing interpretation for A and B;
-4. whether A is CER beyond generic inspection/reveal or curiosity;
-5. whether B is INF beyond generic control/routing/causality;
-6. whether passive-vs-active framing dominates;
-7. whether R05 is safe enough to advance to rendered visual testing;
-8. whether R05's INF meaning matches R01/R03's common external/shared directional-consequence core.
+Source: `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`.
 
-Final action:
-- ADVANCE_TO_RENDER / REVISE / REJECT.
+## 8. Strategic decision after INF
 
-If R05 fails, STOP searching edge-by-edge for a third INF opponent and reassess INF representation strategy. If R05 is SUPPORTED and cross-edge meaning matches R01/R03, advance R01/R03/R05 to rendered diagnostic validation. AI concept review still does not validate INF or justify a public score.
+Do **not** narrow or rename INF merely to rescue the architecture.
 
-## 10. Short-product implication
+Keep INF on HOLD and test whether the architecture works for a more visually tractable direction.
+
+Next falsification target:
+
+> **Gate D2 · MAS cross-edge identity**
+
+Why MAS:
+- the operationalizability audit rates MAS highest for static-image feasibility;
+- quality/skill of execution is more directly observable than INF's shared consequence;
+- if MAS also fails across opponents, the problem may be architecture-wide;
+- if MAS succeeds while INF remains partial, PrioLens may work selectively and the public set should include only directions that survive.
+
+## 9. Gate D2 constraints
+
+Do not use INF as one of the first MAS opponents; MAS↔INF has already been exhausted.
+
+For MAS:
+- test at least three materially different opponents/mechanisms;
+- require blind recurrence of a common core such as `quality / competence / skill of execution`;
+- reject a result explained mainly by craft aesthetics, hands, specialist tools, technical difficulty or professional prestige;
+- keep contexts/valence/status/salience balanced;
+- blind Stage 1 first, reveal only after response lock;
+- no rendering until text-level cross-edge identity survives.
+
+This is a project architecture test, not validation of MAS as a trait.
+
+## 10. Public-product implication
 
 A complete 28-edge tournament is not automatically required.
 
-If direction identity survives rendered human research, investigate balanced incomplete/adaptive schedules. Bradley–Terry / Thurstone-style models remain candidates, not selected methodology.
+If some directions survive cross-edge identity and later rendered human research, investigate balanced incomplete/adaptive schedules. Bradley–Terry / Thurstone-style models remain statistical candidates, not selected methodology.
 
 12–18 trials are a UX target, not a validated measurement minimum. Uncertainty, ties, cycles and `no_clear_choice` must remain visible.
 
@@ -223,30 +223,39 @@ If direction identity survives rendered human research, investigate balanced inc
 When rendering becomes justified:
 1. one image task at a time;
 2. new scene = new generation context;
-3. controlled edit of accepted base where appropriate;
+3. use controlled edit of an accepted base where appropriate;
 4. if target meanings require different actions, match context/legitimacy/valence/salience rather than forcing microscopic edits;
 5. reject labels, collages, multi-state images and unrelated scene changes.
 
-## 12. Source-of-truth order
+## 12. Immediate next action
+
+Do not render INF.
+
+Design **Gate D2 · MAS cross-edge identity** as a text-only three-opponent concept set, excluding INF.
+
+Before generating any assets:
+1. choose three opponents that force MAS to appear through materially different scene mechanisms;
+2. avoid repeating the `close-up skilled hands / craft tool` visual family;
+3. create a randomized blind Stage 1 package with hidden mappings;
+4. run blind review before reveal.
+
+## 13. Source-of-truth order
 
 1. `PROJECT_STATE.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/CER_INF_R05_BLIND_STAGE1_RESULT_v0.1.md`
-4. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-5. `docs/PRO_INF_R04_BLIND_STAGE1_RESULT_v0.1.md`
-6. `docs/CER_INF_R05_CONCEPT_v0.1.md`
-7. `docs/CER_INF_R05_BLIND_STAGE1_v0.1.md`
-8. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
-9. `docs/GROK_MAS_INF_R02R_STAGE2_RESULT_v0.1.md`
-10. `docs/CLAUDE_MAS_INF_R02S_STAGE2_RESULT_v0.1.md`
-11. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
-12. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
-13. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-14. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-15. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
-16. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
-17. older global-stimulus material as historical context only.
+3. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
+4. `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`
+5. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
+6. `docs/PRO_INF_R04_BLIND_STAGE1_RESULT_v0.1.md`
+7. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
+8. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+9. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+10. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
+11. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
+12. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+13. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
+14. older global-stimulus material as historical context only.
 
 ## Recovery instruction
 
-If context is lost, start from this file. Do not reconstruct PrioLens from the old 16-stimulus/28-edge freeze plan, do not import ConflictLab scoring assumptions, and do not turn the public product back into a long per-choice reflection protocol.
+If context is lost, start from this file. Do not restart INF edge-searching, do not reconstruct PrioLens from the old 16-stimulus/28-edge freeze plan, do not import ConflictLab scoring assumptions, and do not turn the public product back into a long per-choice reflection protocol.
