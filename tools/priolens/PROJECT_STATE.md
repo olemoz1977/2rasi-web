@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / INF GATE D1 = PARTIAL_IDENTITY / MAS↔INF NEEDS NEW GRAMMAR
+Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / INF GATE D1 = PARTIAL_IDENTITY / PRO↔INF R04 BLIND REVIEW READY
 Updated: 2026-08-30
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -10,7 +10,7 @@ Draft PR: #9
 
 PrioLens is intended to be a short image-choice experience, not a long reflection questionnaire.
 
-Working product principle:
+Working principle:
 
 > **For Fun, but with Wisdom.**
 
@@ -32,7 +32,6 @@ Production boundary:
 - no explanation after every choice;
 - no personality or diagnosis language;
 - no claim that response time reveals a hidden motive;
-- no need to read new instructions before every pair;
 - `no_clear_choice` remains possible;
 - target public duration about 2–4 minutes;
 - working public interaction budget about 12–18 meaningful choices, with 20 as a soft ceiling until UX evidence says otherwise.
@@ -45,15 +44,15 @@ Source: `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`.
 
 Working object:
 
-> repeated pre-deliberative choice tendencies within this session and these empirically supported visual tradeoffs.
+> repeated pre-deliberative choice tendencies within this session and empirically supported visual tradeoffs.
 
-Preferred result language is session-bound, e.g.:
+Preferred result language remains session-bound, e.g.:
 
 > `Kai rinkaisi greitai, be ilgos analizės, tavo pasirinkimuose dažniau laimėdavo ...`
 
 Avoid hidden/subconscious true-self claims, strict personality ranking, employment suitability or trait language.
 
-## 3. Current eight directions are research hypotheses
+## 3. Current directions are research hypotheses
 
 Current non-exhaustive working set:
 - AUT · Autonomy / Pasirinkimo laisvė
@@ -79,37 +78,29 @@ WORKING DIRECTION HYPOTHESIS
 
 Designer intent does not assign psychological meaning to raw A/B choice.
 
-## 5. Research layer vs product layer
+## 5. Research layer vs public product
 
-Research mode may include open reasons, `hard_to_identify`, framing experiments, repeated edge realizations, context manipulations, blind semantic coding and longer schedules.
+Research mode may include open reasons, hard-to-identify, framing experiments, repeated edge realizations, blind semantic coding and longer schedules.
 
-Public product should consume only mappings/stimuli that survived research. The public user should not do the researchers' validation work.
+Public product should consume only mappings/stimuli that survived research. The public user should not perform the researchers' validation work.
 
 ## 6. Architecture history
 
-The old global-exemplar candidate used 8 directions, 2 exemplars per direction, 16 standalone stimuli and a complete `C(8,2)=28` tournament. Independent red-team work stopped freeze-readiness because of direction-correlated visual families and semantic instability. The old 16 remain historical only.
+The old global-exemplar candidate used 8 directions, 2 exemplars per direction, 16 standalone stimuli and a complete `C(8,2)=28` tournament. Red-team work stopped freeze-readiness because of semantic instability and direction-correlated visual families. Those assets remain historical only.
 
-Architecture M uses edge-specific matched pairs: two controlled variants of the same/functionally equivalent scene. Text-only Gate F2 made M the primary research path, not a product freeze.
+Architecture M uses edge-specific matched comparisons. Gate F2 made M the primary research path, not a product freeze.
 
-Claude earlier concept classifications:
-- 5 SUPPORTED: M01, M03, M06, M08, M11
-- 6 CROSS_LOAD: M02, M04, M07, M09, M10, M13
-- 3 INSUFFICIENT: M05, M12, M14
+Important refinement from later work:
 
-Repeated failure grammars:
-- OPP: resolved/ready/completed advantage;
-- AUT: option count mistaken for autonomy;
-- EXP: hidden prior-knowledge story;
-- INF: status/dominance shortcut;
-- INF: magnitude/scale shortcut.
+> matched-edge does not mean making both sides mechanically identical at any cost.
+
+Match context, legitimacy, valence, status and visual salience strongly enough to control obvious nuisance differences, but preserve the target meanings. A pair can be visually clean yet semantically too thin.
 
 ## 7. PrioLens vs 2Pair boundary
 
-Matched-edge visual discipline makes PrioLens stimuli resemble 2Pair. The critical difference must be inferential.
+Matched-edge visual discipline can resemble 2Pair. The critical PrioLens distinction must be higher-level direction identity across different opponents and scene mechanisms.
 
-2Pair may remain at local pair/manipulation + participant response/reflection.
-
-PrioLens needs evidence that a higher-level direction preserves coherent meaning across different opponents and scene mechanisms. If not, summing edge outcomes into one direction score is researcher-imposed aggregation.
+If INF in different edges becomes unrelated local meanings, summing them into one INF result is researcher-imposed aggregation.
 
 Source: `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`.
 
@@ -119,163 +110,183 @@ Working INF definition:
 
 > meaningful impact on the direction, decision or outcome of an external/shared situation.
 
-Three text-only concepts were tested:
+Original three-edge test:
 - R01 · CON ↔ INF
 - R02 · MAS ↔ INF
 - R03 · AUT ↔ INF
 
-Hidden mapping:
-- R01 A=INF, B=CON
-- R02 A=MAS, B=INF
-- R03 A=INF, B=AUT
+Claude blind Stage 1, before seeing mapping, independently grouped intended INF sides R01-A, R02-B and R03-A under a recurring broader idea: the actor's effect extends outward and changes a shared/external routing or allocation.
 
-### Claude blind Stage 1
-
-Before seeing the mapping, Claude independently grouped the intended INF sides R01-A, R02-B and R03-A under a recurring broader idea: the actor's effect extends outward and changes a shared/external routing or allocation.
-
-Stage 1 verdicts:
-- R01: AMBIGUOUS
-- R02: NONSEMANTIC_DOMINATED
-- R03: CLEAN_CONTRAST
-
-### Claude Stage 2 reveal
-
-Per-pair verdicts:
+Claude Stage 2:
 - R01: SUPPORTED
 - R02: CROSS_LOAD
 - R03: SUPPORTED
+- Gate result: **PARTIAL_IDENTITY**
 
-Final Gate D1 result:
-
-> **PARTIAL_IDENTITY**
-
-Interpretation:
-- R01 and R03 support a coherent INF core across different opponents;
-- R02 carried the same external/shared directional consequence but was contaminated by unmatched skill/complexity structure;
-- INF identity remains plausible, but current three-edge pooling is unsafe;
-- no construct validation or public INF score is justified yet.
+R01 and R03 remain the two current INF identity anchors.
 
 Source: `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`.
 
-## 9. R02R repair result · clean pair, weak constructs
+## 9. MAS↔INF path is now STOPPED for Gate D1
 
-R02R structurally rebalanced the original MAS↔INF pair:
-- same neutral tabletop apparatus;
-- same handwheel/control family;
-- same two-hand involvement;
-- same camera, lighting, material amount, path count and object density;
-- no gauge/caliper/tool-prestige cue;
-- no expert-vs-simple staging;
-- no bigger/more/busier INF cue.
+Three MAS↔INF attempts were informative but unsuccessful as the third INF identity edge.
 
-### Grok blind Stage 1
+### Original R02
+Problem:
+- MAS side used visibly more skill/tool complexity;
+- INF side used a simpler selector;
+- Stage 2: CROSS_LOAD.
 
-Verdict: `CLEAN_CONTRAST`.
+### R02R
+Repair:
+- strongly equalized mechanics, control family, effort and complexity.
 
-Grok found no obvious advantage in competence, difficulty, effort, tool use, complexity, usefulness, attractiveness or salience.
+Result:
+- blind Stage 1: CLEAN_CONTRAST;
+- reveal Stage 2: INSUFFICIENT / REVISE;
+- MAS collapsed to generic accuracy;
+- INF collapsed to generic routing/causality.
 
-### Grok Stage 2 reveal
+Lesson:
 
-Hidden mapping:
-- A = MAS
-- B = INF
+> over-matching can remove confounds while also removing the constructs.
 
-Verdict: `INSUFFICIENT`
-Final action: `REVISE`
+### R02S
+Shared greenhouse context with materially different meaningful actions:
+- A = precise grafting/pruning candidate for MAS;
+- B = irrigation redistribution candidate for INF.
+
+Claude blind Stage 1:
+- CLEAN_CONTRAST;
+- A spontaneously read as precision/skill execution;
+- B spontaneously read as allocation/distribution.
+
+Claude Stage 2:
+- CROSS_LOAD;
+- final action: REVISE.
 
 Reason:
-- A reads as generic accuracy / precise positioning more clearly than Mastery;
-- B reads as generic routing / causality more clearly than Influence;
-- balancing the mechanics removed the original confound but also stripped away too much of the broader construct meaning.
+- A still closer to careful manual action than broad Mastery;
+- B still closer to generic control/routing than meaningful external/shared Influence;
+- deliberately neutralizing downstream value under-powered INF consequence.
 
-This is now treated as a **construct-dilution warning**:
+Project decision:
 
-> A matched pair can be locally very clean yet be too semantically thin to justify direction-level inference.
+> **Do not iterate MAS↔INF again for Gate D1.**
 
-Therefore R02R is not render-ready and should not receive another tiny mechanical repair.
+This does not reject MAS or INF as working directions. It means this edge is currently a poor identity test under static matched-scene constraints.
 
 Sources:
-- `docs/GROK_MAS_INF_R02R_STAGE1_RESULT_v0.1.md`
 - `docs/GROK_MAS_INF_R02R_STAGE2_RESULT_v0.1.md`
+- `docs/CLAUDE_MAS_INF_R02S_STAGE2_RESULT_v0.1.md`
 
-## 10. Revised matched-edge rule
+## 10. New third INF opponent · R04 PRO↔INF
 
-Matched-edge no longer means `make both sides as mechanically identical as possible`.
+PRO is selected instead of CER as the replacement third opponent.
 
-The active rule is:
+Reason:
+- PRO has comparatively direct static visual grammar through barrier/shielding/preservation;
+- CER would likely require an information-visibility/inspection mechanism that risks EXP/inspection cross-load;
+- PRO's main threat/valence risk can be deliberately suppressed with low-arousal environmental exposure.
 
-> **Match context, legitimacy, valence, status and visual salience strongly enough to control obvious confounds, but allow materially different actions when that is necessary for the target meanings to remain visible.**
+R04 shared context:
+- ordinary outdoor garden/work area;
+- two equal planting beds;
+- one simple central irrigation manifold;
+- same worker, camera, lighting, plant density, water amount and visual attractiveness.
 
-For MAS↔INF specifically:
-- MAS must visibly involve quality of execution / competence, not only small positional difference;
-- INF must visibly involve consequence on a genuinely external/shared situation, not only internal routing;
-- both sides should remain equally legitimate and similarly engaging;
-- INF must not rely on larger magnitude, more objects affected, authority or passive followers;
-- MAS must not win merely by looking harder, more expert, more technical or more prestigious.
+Hidden Variant A = PRO candidate:
+- worker closes a fitted protective cover around the central manifold;
+- mild dry leaves/light dust are physically intercepted;
+- no storm, damage, danger, darkness, locks or security symbolism;
+- routing remains unchanged.
 
-This changes the design target from exact-mechanism matching to **shared-context balanced contrast**.
+Hidden Variant B = INF candidate:
+- worker uses the central routing gate;
+- the same fixed water flow is redirected from one equal bed to the other;
+- during the visible moment one bed receives the shared flow and the other does not;
+- total water, number of beds and attractiveness remain fixed;
+- no greener/better/rewarded destination.
 
-## 11. Short-product implication
+Why this is strategically useful:
+- R01/R03 test INF in social/shared contexts;
+- R04 tests whether INF survives in a non-social external system;
+- if the same external-direction/outcome core survives, identity evidence is more diverse.
+
+Sources:
+- `docs/PRO_INF_R04_CONCEPT_v0.1.md`
+- `docs/PRO_INF_R04_BLIND_STAGE1_v0.1.md`
+
+## 11. Current Gate D1 decision rule
+
+Do not render R04 yet.
+
+Run one fresh blind Stage 1 reviewer who has not seen PRO/INF mapping.
+
+Blind reviewer must judge:
+- dominant A/B difference;
+- preference reasons;
+- safety/competence/difficulty/prestige/completion/attractiveness/power/usefulness/consequence/salience asymmetry;
+- nuisance vs meaningful differences;
+- hidden story required;
+- CLEAN_CONTRAST / AMBIGUOUS / NONSEMANTIC_DOMINATED / INFEASIBLE_AS_MATCHED_PAIR;
+- one-sentence own-language contrast.
+
+Only after Stage 1 is locked reveal:
+- A = PRO
+- B = INF
+
+Stage 2 must ask whether B is genuinely read through external/shared directional consequence rather than generic irrigation control/routing.
+
+If R04 is SUPPORTED and INF meaning aligns with R01/R03, Gate D1 may advance from PARTIAL_IDENTITY to a stronger concept-level candidate state. This still does not validate INF or justify a public score without rendered human evidence.
+
+## 12. Short-product implication
 
 A complete 28-edge tournament is not automatically required for the public product.
 
-If direction identity survives, investigate a balanced incomplete or adaptive comparison schedule. Bradley–Terry / Thurstone-style models remain statistical candidates, not selected methodology.
+If direction identity survives, investigate balanced incomplete/adaptive comparison schedules. Bradley–Terry / Thurstone-style models remain candidates, not selected methodology.
 
-Boundaries:
-- recurring direction meaning must come before model convenience;
-- 12–18 trials are a UX target, not a validated measurement minimum;
-- uncertainty, ties, cycles and `no_clear_choice` must not become false precision.
+12–18 trials remain a UX target, not a validated measurement minimum. Uncertainty, ties, cycles and `no_clear_choice` must not be converted into false precision.
 
-## 12. Approach / avoidance research idea
+## 13. Approach / avoidance research idea
 
 Preserve separately:
 - approach: `Kurį rinktumeisi?`;
-- a different realization of the same edge: `Jei vieno iš šių dviejų turėtum atsisakyti, kurio atsisakytum?`;
+- different realization of same edge: `Jei vieno iš šių dviejų turėtum atsisakyti, kurio atsisakytum?`;
 - counterbalance framing/scenes across participants;
-- do not double-count the two framings as two votes toward one score.
+- do not double-count framings as two votes toward one score.
 
-## 13. Render execution rule
+## 14. Render execution rule
 
-One CER↔PRO diagnostic pair demonstrated the workable technical process:
-1. generate one standalone base image;
-2. accept/reject it;
-3. separately edit that exact image where the pair genuinely supports controlled editing;
-4. change only intended properties where feasible;
-5. reject collages, labels, multi-state images or unrelated scene changes.
+When rendering becomes justified:
+1. one image task at a time;
+2. new scene = new generation context;
+3. where a pair supports controlled editing, generate one accepted base then edit that exact image;
+4. if construct preservation requires materially different actions, enforce matching at context/legitimacy/valence/salience level rather than forcing microscopic edits;
+5. reject labels, collages, multi-state images and unrelated scene changes.
 
-Important update: not every valid matched edge must be reducible to one microscopic edit. If construct preservation requires different actions within the same controlled context, scene matching should be enforced at the context/visual-legitimacy level rather than by forcing identical mechanics.
+## 15. Immediate next action
 
-## 14. Immediate next action
+Run blind Stage 1 on `docs/PRO_INF_R04_BLIND_STAGE1_v0.1.md` in a fresh neutral reviewer context.
 
-Do not render R02R.
+Do not reveal PRO/INF mapping until the full Stage 1 response is locked.
 
-Next research task:
-1. design one new **shared-context MAS↔INF** concept that preserves the broader meanings rather than the exact mechanism;
-2. keep actor status, valence, attractiveness and approximate visual salience balanced;
-3. make MAS visibly about quality/skill of execution;
-4. make INF visibly about consequence on a genuinely shared/external situation;
-5. run blind Stage 1 and reveal Stage 2 once;
-6. if it still collapses to `accuracy vs causality` or `expert vs simple`, stop forcing MAS↔INF and replace it with another INF opponent for Gate D1 rather than iterating indefinitely.
-
-R01 and R03 remain the two currently supported INF identity anchors.
-
-## 15. Source-of-truth order
+## 16. Source-of-truth order
 
 1. `PROJECT_STATE.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/GROK_MAS_INF_R02R_STAGE2_RESULT_v0.1.md`
+3. `docs/CLAUDE_MAS_INF_R02S_STAGE2_RESULT_v0.1.md`
 4. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-5. `docs/MAS_INF_R02_REDESIGN_v0.1.md`
-6. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
-7. `docs/INF_CROSS_EDGE_IDENTITY_CONCEPTS_v0.1.md`
+5. `docs/PRO_INF_R04_CONCEPT_v0.1.md`
+6. `docs/PRO_INF_R04_BLIND_STAGE1_v0.1.md`
+7. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
 8. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
 9. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
-10. `docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
-11. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-12. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-13. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
-14. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
-15. older global-stimulus material as historical context only.
+10. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+11. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+12. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+13. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
+14. older global-stimulus material as historical context only.
 
 ## Recovery instruction
 
