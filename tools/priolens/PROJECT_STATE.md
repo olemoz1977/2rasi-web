@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / INF GATE D1 = PARTIAL_IDENTITY / MAS↔INF REDESIGN
+Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / INF GATE D1 = PARTIAL_IDENTITY / R02R BLIND REVIEW READY
 Updated: 2026-08-30
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -138,8 +138,6 @@ Stage 1 verdicts:
 - R02: NONSEMANTIC_DOMINATED
 - R03: CLEAN_CONTRAST
 
-R02 contained an avoidable design/review artefact: the description explicitly called the INF action `low-skill`.
-
 ### Claude Stage 2 reveal
 
 Per-pair verdicts:
@@ -154,32 +152,51 @@ Final Gate D1 result:
 Interpretation:
 - R01 and R03 support a coherent INF core across different opponents;
 - R02 carries the same external/shared directional consequence but is contaminated by unmatched skill/complexity structure;
-- INF identity therefore remains plausible, but current three-edge pooling is unsafe;
+- INF identity remains plausible, but current three-edge pooling is unsafe;
 - no construct validation or public INF score is justified yet.
 
 Important R02 finding:
-- deleting the phrase `low-skill` is not enough;
-- MAS uses a multi-step, tool-mediated fine-tolerance action while INF uses a single selector;
-- step-count, tool involvement and perceived deliberateness must be structurally rebalanced.
+- deleting `low-skill` is not enough;
+- original MAS action was multi-step/tool-mediated while original INF action was a simple selector;
+- action complexity, tool involvement and perceived deliberateness had to be structurally rebalanced.
 
 Source: `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`.
 
-## 9. Current design task · repair MAS ↔ INF only
+## 9. R02R repair candidate
 
-Preserve R01 and R03 conceptually unchanged.
+Old R02 is superseded as the active MAS ↔ INF repair candidate by **R02R**.
 
-Redesign R02 under these constraints:
-- equalize action complexity and apparent deliberateness;
-- avoid `expert vs simple` or `skilled vs unskilled` staging;
-- similar control/tool involvement where possible;
-- no status, scale, speed, amount or destination-count advantage;
-- MAS side should express precision/quality of one bounded outcome;
-- INF side should express directional consequence in an external/shared system;
-- both sides must remain ordinary, legitimate and similarly effortful.
+R02R shared control strategy:
+- same neutral tabletop apparatus;
+- same central handwheel/control family;
+- same two-hand involvement;
+- same camera, lighting, material amount, path count and object density;
+- similar apparent effort and mechanical involvement;
+- no gauge/caliper/tool-prestige cue;
+- no expert-vs-simple staging;
+- no bigger/more/busier INF cue.
 
-The revised R02 must be reviewed blind by a fresh reviewer that has not seen the INF mapping. Do not reuse the revealed Claude thread as a blind reviewer.
+R02R Variant A candidate (hidden MAS):
+- same handwheel moves one small component inside narrow physical guides;
+- fine positional control is visibly relevant;
+- consequence stays bounded to exact fit/alignment/position of one component;
+- no target mark, scale, gauge or perfect-completion cue.
 
-Only if revised R02 survives should the three-edge INF set advance to rendering.
+R02R Variant B candidate (hidden INF):
+- same-size handwheel moves a same-size central diverter;
+- same existing flow is redirected between two equal paths;
+- total amount, speed, path count and destination attractiveness stay unchanged;
+- visible consequence is external system course, not magnitude.
+
+Residual risks:
+- A may still read as generic accuracy rather than broad Mastery;
+- B may still read as generic routing/causality rather than broad Influence;
+- B route change could become more visually salient than A fine positioning;
+- if A still appears more skilled/difficult than B, repair fails.
+
+Sources:
+- `docs/MAS_INF_R02_REDESIGN_v0.1.md`
+- `docs/MAS_INF_R02R_BLIND_STAGE1_v0.1.md`
 
 ## 10. Short-product implication
 
@@ -215,33 +232,37 @@ One CER↔PRO diagnostic pair demonstrated the workable technical process:
 
 Do not render INF yet.
 
+R02R is now ready for one fresh blind concept review.
+
 Next:
-1. redesign only R02 MAS ↔ INF to remove structural skill/complexity asymmetry;
-2. prepare a one-pair blind Stage 1 package without direction labels or mapping;
-3. send it to a fresh independent reviewer;
-4. only after its response is locked reveal MAS ↔ INF mapping;
-5. if revised R02 is SUPPORTED and the INF reading remains external/shared directional consequence, advance R01/R02/R03 to rendered diagnostic validation;
-6. otherwise redesign again or drop MAS↔INF from the INF identity set.
+1. send only `MAS_INF_R02R_BLIND_STAGE1_v0.1.md` to a reviewer that has not seen the mapping;
+2. lock its full response;
+3. only then reveal A=MAS, B=INF and definitions;
+4. require explicit judgment on whether action complexity/skill/salience is now balanced;
+5. if R02R is SUPPORTED and B is read through external/shared directional consequence, advance R01/R02R/R03 to rendered diagnostic validation;
+6. otherwise redesign R02 again or drop MAS↔INF from the INF identity set.
 
 ## 14. Source-of-truth order
 
 1. `PROJECT_STATE.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
 3. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-4. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
-5. `docs/INF_CROSS_EDGE_IDENTITY_CONCEPTS_v0.1.md`
-6. `docs/INF_CROSS_EDGE_BLIND_STAGE1_v0.1.md`
-7. `docs/INF_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`
-8. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
-9. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
-10. `docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
-11. `docs/CLAUDE_MATCHED_EDGE_STAGE2_v0.1.md`
-12. `docs/GROK_MATCHED_EDGE_STAGE2_v0.1.md`
-13. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-14. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-15. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
-16. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
-17. older global-stimulus material as historical context only.
+4. `docs/MAS_INF_R02_REDESIGN_v0.1.md`
+5. `docs/MAS_INF_R02R_BLIND_STAGE1_v0.1.md`
+6. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
+7. `docs/INF_CROSS_EDGE_IDENTITY_CONCEPTS_v0.1.md`
+8. `docs/INF_CROSS_EDGE_BLIND_STAGE1_v0.1.md`
+9. `docs/INF_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`
+10. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
+11. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
+12. `docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
+13. `docs/CLAUDE_MATCHED_EDGE_STAGE2_v0.1.md`
+14. `docs/GROK_MATCHED_EDGE_STAGE2_v0.1.md`
+15. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+16. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+17. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+18. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
+19. older global-stimulus material as historical context only.
 
 ## Recovery instruction
 
