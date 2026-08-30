@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / INF GATE D1 NOT PASSED / INF HOLD / AI REVIEW HARNESS IMPLEMENTED NOT DEPLOYED / NEXT = DEPLOY HARNESS THEN MAS GATE D2
+Status: ACTIVE RESEARCH / INF GATE D1 NOT PASSED / INF HOLD / MAS GATE D2 BLIND PACKAGE READY
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -74,8 +74,6 @@ A pair can be visually clean yet semantically too thin.
 
 PrioLens remains distinct from 2Pair only if a higher-level working direction preserves coherent meaning across different opponents and scene mechanisms.
 
-Source: `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`.
-
 ## 4. Current working directions
 
 Research hypotheses only:
@@ -137,108 +135,121 @@ Current INF additionally requires the consequence to be meaningful and shared/ex
 
 Therefore `redirection/control` is not equivalent to INF.
 
-## 7. Next falsification target · Gate D2 MAS
+## 7. Gate D2 · MAS cross-edge identity
 
-Keep INF on HOLD and test whether the architecture works for a more visually tractable direction.
+Working MAS definition:
 
-Target:
-
-> **Gate D2 · MAS cross-edge identity**
+> developing or applying competence, precision, skill or quality.
 
 Why MAS:
 - highest static-image feasibility in the operationalizability audit;
 - quality/skill of execution is more directly observable than INF shared consequence;
-- if MAS also fails across opponents, architecture-wide aggregation becomes doubtful;
-- if MAS succeeds, PrioLens may work selectively and only surviving directions should enter the product.
+- if MAS also fails across opponents, architecture-wide direction aggregation becomes doubtful;
+- if MAS succeeds while INF remains partial, PrioLens may work selectively.
 
-Constraints:
-- do not use INF as an initial opponent;
-- test at least three materially different opponents/mechanisms;
-- require blind recurrence of `quality / competence / skill of execution` or a close reviewer-generated equivalent;
-- reject results driven mainly by craft aesthetics, hands, specialist tools, technical difficulty or professional prestige;
-- keep context/valence/status/salience balanced;
-- blind Stage 1 first, reveal only after Stage 1 response lock;
-- no rendering until text-level cross-edge identity survives.
+### D2 concept set v0.1
 
-This is an architecture falsification test, not validation of MAS as a trait.
+Three opponents:
+- MAS↔CER · fine alignment vs state visibility;
+- MAS↔PRO · form refinement vs preservation;
+- MAS↔CON · quality-focused independent execution vs reciprocal exchange.
+
+INF is deliberately excluded because MAS↔INF was exhausted during Gate D1.
+
+The three MAS realizations deliberately span:
+1. mechanical alignment;
+2. material form refinement;
+3. quality-focused execution in a social scene with people-count controlled.
+
+Critical falsification rule:
+
+> If the recurring reviewer-generated MAS core is only `careful hands`, `manual dexterity`, `craft work`, `technical tools`, `difficulty` or `independent work`, Gate D2 is not passed at direction level.
+
+Prepared files:
+- `docs/MAS_CROSS_EDGE_IDENTITY_CONCEPTS_v0.1.md`
+- `docs/MAS_CROSS_EDGE_BLIND_STAGE1_v0.1.md`
+- `docs/MAS_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`
+
+Blind randomized mappings:
+- R01: A=PRO, B=MAS
+- R02: A=MAS, B=CER
+- R03: A=CON, B=MAS
+
+Stage 2 may be shown only after Stage 1 response is locked.
+
+Possible D2 outcomes:
+- PROMISING_IDENTITY
+- PARTIAL_IDENTITY
+- LOCAL_ONLY
+- FAIL
+
+No AI text review validates MAS. PROMISING only justifies rendered blind human testing.
 
 ## 8. AI Review Harness v0.1
 
-Reason for building it: manual phone copy-paste across separate Claude/Grok/Gemini chats is slow and creates avoidable process errors.
-
-Implemented in repo:
-- `review-harness/index.html` - mobile-first UI;
-- `review-harness/api/review.js` - Vercel serverless API;
-- `review-harness/vercel.json`;
-- `review-harness/.env.example`;
-- `docs/AI_REVIEW_HARNESS_v0.1.md`.
+Implemented and deployed at the Vercel project `priolens-review-harness`.
 
 Architecture:
 
 ```text
-phone
-→ one PrioLens review page
+browser
 → Vercel serverless API
 → Vercel AI Gateway
 → Claude / Grok / Gemini independently
 ```
 
-Default reviewer slots:
-- Claude: `anthropic/claude-opus-5`
-- Grok: `xai/grok-4.6` with narrow `spacexai/grok-4.6` catalog-slug fallback
-- Gemini: `google/gemini-3.6-flash`
-
-The model IDs are environment-overridable.
-
-Research integrity:
+Implemented research integrity:
 - Stage 1 sends only the blind prompt to each reviewer independently;
 - each exact Stage 1 prompt + answer is cryptographically signed server-side;
 - Stage 2 accepts only signed Stage 1 lock tokens;
-- Stage 2 reconstructs each model's own exact thread as blind prompt → locked answer → reveal;
-- reviewers never see each other's responses;
-- no database is required for the lock mechanism.
+- Stage 2 reconstructs each model's exact blind prompt → locked answer → reveal thread;
+- reviewers never see each other's responses.
 
-Security:
-- `AI_GATEWAY_API_KEY` stays server-side;
-- personal `HARNESS_ACCESS_KEY` protects the endpoint from casual public use;
-- `REVIEW_LOCK_SECRET` signs Stage 1 records;
-- use a conservative AI Gateway per-key spend budget;
-- never place provider/Gateway secrets in GitHub Pages or browser JavaScript.
+Security configured:
+- `AI_GATEWAY_API_KEY` server-side;
+- `HARNESS_ACCESS_KEY` server-side check;
+- `REVIEW_LOCK_SECRET` server-side signing;
+- AI Gateway key budget set to $10, no refresh.
 
-Status:
+Deployment/smoke-test result:
+- frontend and serverless endpoint are live;
+- request successfully reaches Vercel AI Gateway;
+- first Gateway call was blocked because free-tier credits cannot access the selected model;
+- Vercel requires at least a $10 paid credit top-up plus processing fee/tax (~$12.81 shown at checkout);
+- user deliberately chose not to buy paid Gateway credits at this stage.
 
-> **CODE IMPLEMENTED / NOT DEPLOYED / NOT LIVE-TESTED**
+Decision:
 
-Source: `docs/AI_REVIEW_HARNESS_v0.1.md`.
+> **HARNESS DEPLOYED / PIPELINE REACHES GATEWAY / PAID MODEL EXECUTION DEFERRED**
+
+Do not keep spending time on Vercel billing now. Preserve the harness as a working prototype for later use.
+
+Temporary review fallback:
+- use fresh independent Claude/Grok sessions manually;
+- one complete Stage 1 package per reviewer;
+- lock the verbatim Stage 1 response before reveal;
+- then send Stage 2 in the same reviewer session;
+- avoid repeated piecemeal copy-paste.
+
+Source: `docs/AI_REVIEW_HARNESS_v0.1.md` and deployed repo code under `review-harness/`.
 
 ## 9. Immediate next action
 
-Do not start MAS D2 manual reviews yet.
+Run **Gate D2 MAS blind Stage 1** manually using `docs/MAS_CROSS_EDGE_BLIND_STAGE1_v0.1.md` in a fresh independent reviewer session.
 
-First deploy and smoke-test the harness:
-1. create/connect a Vercel project with root directory `tools/priolens/review-harness`;
-2. create one Vercel AI Gateway key;
-3. set `AI_GATEWAY_API_KEY`, `HARNESS_ACCESS_KEY`, `REVIEW_LOCK_SECRET` in Vercel environment variables;
-4. set a low Gateway key spend budget;
-5. deploy;
-6. run a harmless one-line Stage 1 call across Claude/Grok/Gemini;
-7. run a harmless Stage 2 reveal and verify that the three Stage 1 records remain locked;
-8. only then design/load Gate D2 MAS as the first real research package.
+Process:
+1. send only the blind Stage 1 package;
+2. do not mention PrioLens, MAS, CER, PRO, CON or mappings;
+3. capture the full verbatim reviewer response;
+4. save/lock it before reveal;
+5. inspect whether one recurring idea appears across R01-B, R02-A and R03-B without labels;
+6. only if Stage 1 is not structurally dead, send `MAS_CROSS_EDGE_STAGE2_REVEAL_v0.1.md` in the same session;
+7. classify Gate D2;
+8. do not render before text-level D2 survives.
 
-If deployment is blocked, do not revert to repeated three-chat copy-paste by default; fix the harness or deliberately choose a temporary fallback.
+Preferred sequence: one reviewer first (Claude or Grok). If Stage 1 is clearly dead, revise before spending another reviewer pass. If promising, replicate with the second independent reviewer.
 
-## 10. Later harness improvements
-
-Only after v0.1 works on the phone:
-- repo-backed package dropdown so the user pastes nothing;
-- automatic result commit to a research-results branch;
-- server-side A/B randomization;
-- cost/model/version capture;
-- optional human-review mode using the same package schema.
-
-Do not expand scope before the Stage 1 → lock → Stage 2 flow is proven.
-
-## 11. Public-product implication
+## 10. Public-product implication
 
 A complete 28-edge tournament is not automatically required.
 
@@ -246,7 +257,7 @@ If some directions survive cross-edge identity and later rendered human research
 
 12–18 trials are a UX target, not a validated measurement minimum. Uncertainty, ties, cycles and `no_clear_choice` must remain visible.
 
-## 12. Render execution rule
+## 11. Render execution rule
 
 When rendering becomes justified:
 1. one image task at a time;
@@ -255,23 +266,26 @@ When rendering becomes justified:
 4. if target meanings require different actions, match context/legitimacy/valence/salience rather than forcing microscopic edits;
 5. reject labels, collages, multi-state images and unrelated scene changes.
 
-## 13. Source-of-truth order
+## 12. Source-of-truth order
 
 1. `PROJECT_STATE.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/AI_REVIEW_HARNESS_v0.1.md`
-4. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
-5. `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`
-6. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-7. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
-8. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-9. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-10. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
-11. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
-12. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
-13. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
-14. older global-stimulus material as historical context only.
+3. `docs/MAS_CROSS_EDGE_IDENTITY_CONCEPTS_v0.1.md`
+4. `docs/MAS_CROSS_EDGE_BLIND_STAGE1_v0.1.md`
+5. `docs/MAS_CROSS_EDGE_STAGE2_REVEAL_v0.1.md`
+6. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
+7. `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`
+8. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
+9. `docs/AI_REVIEW_HARNESS_v0.1.md`
+10. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
+11. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+12. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+13. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
+14. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
+15. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+16. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
+17. older global-stimulus material as historical context only.
 
 ## Recovery instruction
 
-If context is lost, start from this file. Do not restart INF edge-searching, do not restart manual three-model copy-paste if the harness can be repaired, do not reconstruct PrioLens from the old 16-stimulus/28-edge freeze plan, do not import ConflictLab scoring assumptions, and do not turn the public product back into a long per-choice reflection protocol.
+If context is lost, start from this file. Do not restart INF edge-searching, do not return to Vercel billing unless paid Gateway execution becomes worth the cost, do not reconstruct PrioLens from the old 16-stimulus/28-edge freeze plan, do not import ConflictLab scoring assumptions, and do not turn the public product back into a long per-choice reflection protocol.
