@@ -1,18 +1,63 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / MATCHED-EDGE PRIMARY PATH / CROSS-EDGE DIRECTION IDENTITY GATE
+Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / CROSS-EDGE DIRECTION IDENTITY GATE
 Updated: 2026-08-30
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 Draft PR: #9
 
-## Product boundary
+## 1. Product job
 
-PrioLens is a new 2rasi-native research/product hypothesis, not a ConflictLab revival.
+PrioLens is intended to be a short image-choice experience, not a long reflection questionnaire.
 
-No diagnosis, personality type, hidden/subconscious need, employment suitability, validated trait, latency psychology or strict forced-rank claims.
+Working product principle:
 
-Current eight items are a **non-exhaustive set of working priority lenses chosen for experimental comparison**, not eight fundamental or validated human dimensions:
+> **For Fun, but with Wisdom.**
+
+The public interaction should be almost trivial:
+
+```text
+START
+→ visual pair
+→ choose
+→ visual pair
+→ choose
+→ ...
+→ short result / mirror
+```
+
+Production boundary:
+- no mandatory free text;
+- no mandatory rating/confidence/intensity questions;
+- no explanation after every choice;
+- no personality or diagnosis language;
+- no claim that response time reveals a hidden motive;
+- no need to read new instructions before every pair;
+- `no_clear_choice` remains possible;
+- target public duration approximately 2–4 minutes;
+- initial product interaction budget approximately 12–18 meaningful choices, with 20 as a soft ceiling until UX evidence says otherwise.
+
+Methodological complexity belongs behind the product, not inside the user's flow.
+
+Source: `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`.
+
+## 2. What PrioLens may claim
+
+Do not describe a hidden/subconscious true self.
+
+Safer working object:
+
+> repeated pre-deliberative choice tendencies within this session and these validated visual tradeoffs.
+
+Preferred result language is session-bound, for example:
+
+> `Kai rinkaisi greitai, be ilgos analizės, tavo pasirinkimuose dažniau laimėdavo ...`
+
+Avoid `Tu esi`, `Tavo pasąmonė nori`, strict personality ranking, employment suitability or trait claims.
+
+## 3. Current eight directions are research hypotheses
+
+The current working set is non-exhaustive and not validated:
 - AUT · Autonomy / Pasirinkimo laisvė
 - CER · Certainty / Aiškumas
 - EXP · Exploration / Tyrinėjimas
@@ -22,7 +67,11 @@ Current eight items are a **non-exhaustive set of working priority lenses chosen
 - PRO · Protection / Apsauga
 - OPP · Opportunity / Galimybė
 
-## Non-negotiable inference boundary
+Exactly eight public scores are **not** a product requirement.
+
+If only five directions survive research, build five. If cross-edge direction identity fails, do not manufacture eight scores by summing researcher-assigned edge labels.
+
+## 4. Non-negotiable inference boundary
 
 ```text
 WORKING DIRECTION HYPOTHESIS
@@ -34,217 +83,172 @@ WORKING DIRECTION HYPOTHESIS
 
 Designer intent does not assign psychological meaning to raw A/B choice.
 
-## Old global-exemplar architecture
+## 5. Research layer vs product layer
 
-The previous freeze candidate used 8 directions, 2 exemplars per direction, 16 stimuli and a complete `C(8,2)=28` tournament.
+### Research layer
 
-Independent Kimi/Gemini/Claude stimulus reviews stopped that freeze because of direction-correlated visual families and semantic instability. The old 16 remain historical/research references only.
+May be deliberately slower and include:
+- open reasons;
+- `hard_to_identify`;
+- approach vs forfeit framing;
+- repeated edge realizations;
+- context manipulations;
+- blind semantic coding;
+- cross-edge identity testing;
+- longer balanced/complete comparison schedules.
+
+This research validates the stimuli and inference model before they are used in the public flow.
+
+### Product layer
+
+The public product consumes only mappings/stimuli that survived research. It must not ask the public user to do the researchers' validation work.
+
+This is the main product distinction from the current 2Pair research flow.
+
+## 6. Historical global-exemplar architecture
+
+The old freeze candidate used:
+- 8 directions;
+- 2 exemplars per direction;
+- 16 standalone stimuli;
+- complete `C(8,2)=28` tournament.
+
+Independent red-team work stopped freeze-readiness because of direction-correlated visual families and semantic instability. The old 16 are historical/research references only.
 
 Source: `docs/RED_TEAM_SYNTHESIS_v0.1.md`.
 
-## Framework-only status
+## 7. Matched-edge architecture
 
-Grok framework review did not find a purely logical fatal flaw under the narrow session/stimulus-bound descriptive claim:
-- Stage A: REVISE 72
-- Stage B: REVISE 68
+Architecture M uses edge-specific matched pairs: two controlled variants of the same/functionally equivalent scene expressing a candidate tradeoff.
 
-The 28-edge idea does not require transitivity. Ties/cycles remain legitimate raw structure. Direction-level wording remains evidence-dependent.
+Gate F2 made M the primary research path, not a product freeze.
 
-## ConflictLab / 2Pair transfer lesson
-
-ConflictLab v0.8 / 2Pair provides methodological precedent only:
-- scene property → participant response → interpretation separation;
-- choose before explaining;
-- blind/open reason before mapping;
-- equal legitimacy;
-- dominant visible manipulation;
-- no cue/explanation rescues a weak stimulus;
-- some static visual constructs may simply fail.
-
-Do not import AW/CS/CR, cue vectors, AHA scoring, 3+3+3 or historical latency interpretations.
-
-## Direction operationalizability
-
-Current broad feasibility:
-- MAS: HIGH
-- CER: MEDIUM-HIGH
-- CON: MEDIUM-HIGH semantic / social-salience risk
-- PRO: MEDIUM-HIGH semantic / valence risk
-- INF: MEDIUM
-- EXP: MEDIUM-LOW
-- AUT: MEDIUM-LOW
-- OPP: LOW-MEDIUM
-
-Highest operationalization risks remain AUT, INF and OPP, with EXP closely involved.
-
-Sources:
-- `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-- `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-
-## Gate F2: matched-edge architecture
-
-Global exemplars and edge-specific matched pairs were compared conceptually.
-
-Text-only matched-edge sprint tested seven hard edges with two scene concepts each:
-- AUT ↔ OPP
-- AUT ↔ EXP
-- AUT ↔ INF
-- CER ↔ PRO
-- EXP ↔ OPP
-- MAS ↔ INF
-- CON ↔ INF
-
-### Grok
-Stage 1 blind to hidden mapping; Stage 2 classified all 14 SUPPORTED. Treat as permissive/supportive concept evidence only.
-
-### Claude
-Stage 1 blind to intended directions/mapping but with minor project-name leakage. Stage 2 authoritative per-pair count:
+Claude text-only Stage 2 authoritative per-pair classifications:
 - 5 SUPPORTED: M01, M03, M06, M08, M11
 - 6 CROSS_LOAD: M02, M04, M07, M09, M10, M13
 - 3 INSUFFICIENT: M05, M12, M14
 
-### F2 decision
-
-**Architecture M · matched-edge becomes the primary research path.**
-
-This is not a product freeze and not construct/method validation. Architecture G remains fallback/comparator.
+Repeated failure grammars:
+- OPP: resolved/ready/completed advantage;
+- AUT: option count mistaken for autonomy;
+- EXP: hidden prior-knowledge story;
+- INF: status/dominance shortcut;
+- INF: magnitude/scale shortcut.
 
 Sources:
 - `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
 - `docs/CLAUDE_MATCHED_EDGE_STAGE2_v0.1.md`
 - `docs/GROK_MATCHED_EDGE_STAGE2_v0.1.md`
 
-## Known repeated failure grammars
+## 8. PrioLens vs 2Pair boundary
 
-### OPP
-Do not render OPP as an already-resolved, ready, matching or cashed-in outcome. That creates completion/readiness desirability.
+Matched-edge visual discipline makes PrioLens stimuli look like 2Pair stimuli. That is not itself a problem.
 
-### AUT
-Option count is not autonomy. AUT needs visible meaningful control over method/course rather than arbitrary multiple options.
-
-### EXP
-Prior unknownness is often hidden story. EXP needs visible investigation/reveal in-frame.
-
-### INF
-Avoid both shortcuts:
-- active controller vs passive others = status/dominance;
-- bigger/more/busier consequence = magnitude/scale rather than influence.
-
-## Render experience checkpoint
-
-One CER↔PRO diagnostic pair has now been successfully produced with a disciplined workflow:
-1. generate one standalone base image;
-2. make a separate controlled edit of that exact image;
-3. change only the target scene property;
-4. reject collage/multi-state generations and edits that alter unrelated geometry.
-
-Important execution rule:
-
-> One image task at a time. A new scene must not inherit the previous scene's edit context. Within a pair, the second side should be a controlled edit of the accepted first side.
-
-This is an execution constraint, not methodological evidence.
-
-## New product-identity problem: PrioLens vs 2Pair
-
-Matched-edge discipline makes PrioLens stimuli visually/procedurally similar to 2Pair. That is acceptable only if PrioLens supports a higher inferential unit.
+The critical difference must be inferential:
 
 ### 2Pair
-Primary unit can remain the local pair/manipulation + participant response/reflection. Current ConflictLab Wave 1 explicitly keeps raw A/B choice without inherent psychological polarity and `signal_mapping_status: NONE` until evidence.
+The local pair/manipulation + participant response can remain the primary observation unit. Raw A/B choice has no inherent psychological polarity until empirical mapping evidence exists.
 
 ### PrioLens
-A stronger claim is implicit: the same working direction recurs across different opponents. Example: INF in INF↔MAS, INF↔AUT and INF↔CON would need to remain recognizably the same direction across different scene mechanisms.
+A higher-level direction is useful only if the same direction preserves coherent meaning across different opponents and different scene mechanisms.
 
-If that cross-edge identity does not survive, summing seven edge outcomes into one direction total is only a researcher-imposed grouping. In that case PrioLens risks becoming 2Pair with different labels.
+If INF in INF↔MAS, INF↔AUT and INF↔CON becomes three unrelated local meanings, summing those outcomes into an INF score is researcher-imposed aggregation.
 
 Source: `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`.
 
-## Gate D1 · Cross-edge Direction Identity
+## 9. Current Gate D1 · Cross-edge Direction Identity
 
-This gate now takes priority over the previous plan to render four mostly independent diagnostic edges.
+This gate precedes large-scale rendering or a public scoring model.
 
 Core question:
 
-> When the same working direction appears against different opponents, do blind participant reasons preserve a coherent common meaning that is stronger than scenario/mechanism-specific explanations?
+> When the same working direction appears against different opponents, do blind participant reasons preserve a coherent common meaning stronger than scenario/mechanism-specific explanations?
 
-### First target: INF
-
-Build a small cross-edge INF identity set:
+First target: INF across three edges:
 1. MAS ↔ INF
 2. AUT ↔ INF
 3. CON ↔ INF
 
 Requirements:
 - materially different scene mechanisms;
-- no direction labels shown;
 - local matched-pair control retained;
-- INF must not be represented only by `more/bigger/busier`;
-- INF must not be represented by one powerful actor vs passive others;
-- open reasons preserved before mapping.
+- no direction labels shown;
+- INF not represented only by more/bigger/busier;
+- INF not represented by one powerful actor vs passive others;
+- blind/open reasons preserved in research mode before mapping.
 
-Evidence of INF identity requires the same broad `impact on external/shared direction/outcome` meaning to recur across opponent contexts rather than three unrelated visual mechanisms.
+If INF fails, pause direction-level aggregation before expanding the asset library.
 
-If INF fails this test, pause direction-level aggregation before any 28-edge expansion.
+## 10. Short-product implication
 
-## Approach / avoidance framing experiment
+A complete 28-edge tournament is not automatically required for the public product.
 
-Preserve this methodological idea for later testing:
+If direction identity survives research, investigate pairwise-preference estimation with a **balanced incomplete or adaptive comparison schedule** rather than assuming every edge must be shown.
 
-- one stage uses `Kurį rinktumeisi?`;
-- another stage uses a different realization of the same edge and asks `Jei vieno iš šių dviejų turėtum atsisakyti, kurio atsisakytum?`;
-- framing/scenes are counterbalanced across participants;
-- do not show the exact same pair twice to one participant as the primary design;
-- approach and avoidance are separate observations, not two votes to add into one score.
+Candidate statistical families include Bradley–Terry / Thurstone-style paired-comparison models, but no model is selected yet.
 
-This can test framing robustness/asymmetry, but it cannot rescue a direction that lacks cross-edge semantic identity.
+Important boundary:
+- these models assume a meaningful recurring latent item/direction across comparisons;
+- therefore model convenience cannot substitute for Gate D1 evidence;
+- 12–18 trials are a UX target, not yet a validated measurement minimum;
+- scoring method must be stress-tested by simulation and human data;
+- uncertainty, ties, cycles and `no_clear_choice` must remain visible rather than being forced into false precision.
 
-## Human Path M later
+A promising initial design hypothesis, to test rather than assume, is a balanced partial graph where every surviving direction appears multiple times against different opponents while the total trial count stays within the public interaction budget.
 
-For each rendered validation pair:
-1. show pair blind, randomized side order;
-2. ask `Kurį renkiesi?` including `no_clear_choice`;
-3. lock choice;
-4. ask open reason;
-5. preserve `hard_to_identify` separately;
-6. only afterwards code reason as side-A relevant / side-B relevant / cross-load / confound / insufficient / none;
-7. replicate critical edges across independent scene families before direction-level claims.
+## 11. Approach / avoidance research idea
 
-## Full-session constraints retained if reached
+Preserve as a separate robustness experiment:
+- one realization: `Kurį rinktumeisi?`;
+- a different realization of the same edge: `Jei vieno iš šių dviejų turėtum atsisakyti, kurio atsisakytum?`;
+- counterbalance framing/scenes across participants;
+- do not double-count the two framings as two votes toward one score.
 
-- vertical top/bottom;
-- equal 1:1 frames;
-- both visible simultaneously;
-- `object-fit: contain`;
-- no scrolling during measured trial;
-- position randomized/counterbalanced;
-- preload/decode before mechanical timing;
-- latency diagnostic only;
-- retain participant, edge, direction, asset, family/scenario, position and sequence IDs;
-- ties/cycles visible;
-- no strict rank or latency-derived psychological score.
+This belongs in research mode, not the default public flow unless later evidence justifies it.
 
-## Immediate next action
+## 12. Render execution checkpoint
 
-Do **not** proceed mechanically through D02/D03/D04 as unrelated edge demonstrations.
+One CER↔PRO diagnostic pair was successfully produced using the correct image workflow:
+1. generate one standalone base image;
+2. accept/reject that image;
+3. separately edit that exact image;
+4. change only the target property;
+5. reject collages, labels, multi-state images or unrelated scene changes.
 
-Design the three-pair **INF cross-edge identity mini-set** first. The already-rendered CER↔PRO pair remains a clean local-control baseline but does not test PrioLens product identity.
+Execution rule:
 
-Do not generate a large asset library or build a 28-edge session until Gate D1 gives evidence that at least one working direction generalizes across opponents.
+> One image task at a time. New scene = new generation context. Second side of a matched pair = controlled edit of the accepted first side.
 
-## Source-of-truth order
+This is an execution constraint, not validation evidence.
+
+## 13. Immediate next action
+
+Do not mechanically continue D02/D03/D04 and do not render 56 assets.
+
+Next research task:
+
+1. design the three-pair INF cross-edge identity mini-set;
+2. ensure the three INF realizations use materially different mechanisms;
+3. conduct blind semantic validation in research mode;
+4. use the results to decide whether direction-level aggregation deserves continued development;
+5. only after at least one direction survives cross-edge identity, prototype a short balanced 12–18-choice product schedule and test whether a paired-comparison model can summarize it without false precision.
+
+## 14. Source-of-truth order
 
 1. `PROJECT_STATE.md`
-2. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
-3. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
-4. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
-5. `docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
-6. `docs/CLAUDE_MATCHED_EDGE_STAGE2_v0.1.md`
-7. `docs/GROK_MATCHED_EDGE_STAGE2_v0.1.md`
-8. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-9. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-10. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
-11. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
-12. older global-stimulus documents as historical context only.
+2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
+3. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
+4. `docs/MATCHED_EDGE_GATE_F2_SYNTHESIS_v0.1.md`
+5. `docs/STIMULUS_RESEARCH_GATES_v0.2.md`
+6. `docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
+7. `docs/CLAUDE_MATCHED_EDGE_STAGE2_v0.1.md`
+8. `docs/GROK_MATCHED_EDGE_STAGE2_v0.1.md`
+9. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+10. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+11. `docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+12. `docs/RED_TEAM_SYNTHESIS_v0.1.md`
+13. older global-stimulus material only as historical context.
 
 ## Recovery instruction
 
-If context is lost, start from this file. Do not reconstruct PrioLens from the old 16-stimulus freeze plan or from ConflictLab/2Pair scoring memory.
+If context is lost, start from this file. Do not reconstruct PrioLens from the old 16-stimulus/28-edge freeze plan, do not import ConflictLab scoring assumptions, and do not turn the public product back into a long per-choice reflection protocol.
