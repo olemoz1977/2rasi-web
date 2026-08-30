@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / FRAMEWORK + STIMULUS REDESIGN / FREEZE STOPPED
+Status: ACTIVE RESEARCH / PRE-ASSET CONCEPT VALIDATION / FREEZE STOPPED
 Updated: 2026-08-30
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -12,13 +12,14 @@ Public target: `https://2rasi.com/tools/priolens/` and `https://2rasi.lt/tools/p
 - PrioLens is a new 2rasi-native product, not a ConflictLab revival.
 - 2Pair remains frozen.
 - No runtime dependency on `omesg360.eu`.
-- Intended promise remains narrow and descriptive: repeated pairwise choices may clarify which competing direction took precedence in this session and with these stimuli.
+- Intended promise remains narrow and descriptive.
 - No diagnosis, subconscious/hidden-needs, personality-type, employment-suitability or validated-trait claims.
 
-Working public wording remains provisional:
+The strongest currently defensible wording is narrower than the original public phrase:
 
-- EN: `When two things matter, what takes priority?`
-- LT: `Kai svarbūs abu, kam teiki pirmenybę?`
+> `These observed choices describe which competing direction-exemplar pairs were selected more often than their alternatives in this session under these exact presentation and stimulus conditions.`
+
+Any stronger direction-level wording requires cross-exemplar evidence.
 
 ## Eight working directions
 
@@ -35,22 +36,166 @@ Source: `/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md`
 
 Status: INTERNAL WORKING CONTRACT / NOT VALIDATED CONSTRUCTS.
 
-## Framework under review
+Current framework stance:
 
-The original architecture used:
+> Treat the eight as a **non-exhaustive set of working priority lenses chosen for experimental comparison**, not as eight fundamental, exhaustive, orthogonal or validated human dimensions.
 
+No dedicated PrioLens provenance artifact currently establishes why these eight form a validated common ontology. This is an explicit framework gap, not permission to invent one.
+
+## Framework red-team status
+
+### Stimulus-level adversarial review
+
+Kimi, Gemini and Claude independently reviewed the same blind 16-stimulus package.
+
+Source:
+- `/tools/priolens/docs/RED_TEAM_SYNTHESIS_v0.1.md`
+
+Decision:
+
+**STOP stimulus freeze. CONTINUE research. REDESIGN stimulus architecture before external preference collection.**
+
+The current 16 are research references/candidates only, not freeze-ready.
+
+### Framework-only adversarial review
+
+Grok reviewed the architecture while assuming ideal stimuli and without seeing the current image audit.
+
+Sources:
+- `/tools/priolens/docs/FRAMEWORK_RED_TEAM_RESULT_GROK_v0.1.md`
+- `/tools/priolens/docs/GROK_FRAMEWORK_STAGE_B_v0.1.md`
+
+Stage A verdict: `REVISE`, confidence 72.
+Stage B after seeing the stimulus synthesis: `REVISE`, confidence 68.
+
+No purely logical fatal flaw was identified under the narrow descriptive claim.
+
+Accepted framework conclusions:
+- the 28-edge tournament does not require transitivity;
+- non-transitive cycles do not invalidate the raw pairwise trace;
+- strict 1–8 rank, cardinal latent score and latency psychology remain excluded;
+- the unresolved core question is empirical: does direction-level structure survive exemplar substitution?
+
+## ConflictLab / 2Pair transfer review
+
+Source:
+- `/tools/priolens/docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+
+The useful historical methodological boundary is:
+
+```text
+SCENE PROPERTY / VISUAL MANIPULATION
+        ↓
+PARTICIPANT RESPONSE
+        ↓
+DERIVED INTERPRETATION
+```
+
+PrioLens must not collapse these levels.
+
+Important historical warnings:
+- ConflictLab v0.8 suspended AW as a peer static-stimulus axis after repeated concepts collapsed into other meanings/confounds;
+- raw A/B choice was explicitly treated as having no inherent psychological polarity;
+- blind human stimulus-family validation preceded signal mapping;
+- `no_clear_choice`, `hard_to_identify`, free-text reaction and mechanical latency were preserved as distinct raw data;
+- historical choice->cue->vector logic, 3+3+3 balance and 18-pair assumptions are prototype history, not PrioLens methodology.
+
+Transfer the validation discipline, not the old constructs/scoring.
+
+## Direction operationalizability audit
+
+Source:
+- `/tools/priolens/docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+
+Current pre-asset feasibility:
+
+| Direction | Static-image feasibility | Current risk |
+|---|---|---|
+| MAS | HIGH | shared craft/action family |
+| CER | MEDIUM-HIGH | organization/completion/PRO leakage |
+| CON | MEDIUM-HIGH semantic | structural face/social salience |
+| PRO | MEDIUM-HIGH semantic | threat/loss/valence asymmetry |
+| INF | MEDIUM | generic causality/MAS leakage; shared outcome may need story |
+| EXP | MEDIUM-LOW | AUT/OPP/CER leakage; curiosity is response-level |
+| AUT | MEDIUM-LOW | freedom is relational to constraints/options |
+| OPP | LOW-MEDIUM | future gain is counterfactual and reward-laden |
+
+Highest current construct-level operationalization risks:
+- AUT
+- INF
+- OPP
+
+Key structural finding:
+
+The eight directions are not equally easy to represent as static images. MAS/CER/PRO can be anchored in present visible action/state; AUT/INF require relational agency; EXP/OPP require epistemic/future inference. This representation-class asymmetry must be treated as a potential confound, not merely an asset-cleanup issue.
+
+## Research gates now in force
+
+Source:
+- `/tools/priolens/docs/STIMULUS_RESEARCH_GATES_v0.1.md`
+
+Required sequence:
+
+```text
+DIRECTION HYPOTHESIS
+    ↓
+SCENE-PROPERTY FAMILY
+    ↓
+CONCRETE ASSET
+    ↓
+HUMAN SEMANTIC RESPONSE
+    ↓
+CROSS-EXEMPLAR GENERALIZATION
+    ↓
+PAIRWISE PREFERENCE RESPONSE
+    ↓
+DIRECTION-LEVEL DESCRIPTIVE INFERENCE
+```
+
+No stage may be skipped by AI review, designer explanation or scoring logic.
+
+### Gate 0A
+Direction-to-scene concept feasibility before image generation.
+
+### Gate 0B
+Blind concept interpretation without direction label.
+
+### Gate A
+Concrete asset visual control / confound audit.
+
+### Gate B
+Human blind semantic response: one image at a time, open meaning first, direction mapping only after open coding.
+
+### Gate C
+Cross-family semantic generalization.
+
+### Gate D
+Pairwise choice viability, choice before explanation.
+
+### Gate E
+Direction-vs-exemplar evidence using an appropriate repeated binary/pairwise model.
+
+### Gate F
+Participant-facing interpretation boundary.
+
+## Original architecture status
+
+The original draft used:
 - 8 directions;
 - 2 exemplars per direction;
 - 16 active stimuli;
-- complete 8-direction tournament `C(8,2) = 28` core trials;
-- one exemplar combination per direction edge per participant;
+- complete `C(8,2)=28` direction tournament;
 - descriptive result only.
 
-After independent adversarial review, **2 exemplars per direction are no longer considered sufficient for a freeze-ready research architecture**. A larger rotating candidate pool, provisionally at least 4 materially different exemplars per direction, is under consideration so direction effects can be separated from exemplar effects.
+Current decisions:
+- `2 exemplars/direction` is **rejected as freeze-ready evidence architecture**;
+- `16 active stimuli` is not a current target;
+- the 28-edge tournament remains a viable later preference-research structure but is **not the next research step**;
+- no normal preference pilot with the current 16.
 
-The 28-edge tournament itself remains a framework hypothesis, not a rejected or frozen design. It does not require transitivity or a strict 1–8 ranking.
+The draft architecture file is historical/current design context and is partially superseded by the research checkpoints above.
 
-## Presentation / data rules that still stand
+## Presentation / raw-data rules that still stand for later pairwise research
 
 - vertical top/bottom presentation;
 - equal 1:1 frames;
@@ -58,85 +203,47 @@ The 28-edge tournament itself remains a framework hypothesis, not a rejected or 
 - `object-fit: contain`;
 - no scrolling during measured trial;
 - top/bottom randomized/counterbalanced independently from direction;
-- unsupported viewport fails preflight;
 - preload + decode before measured timing;
-- `performance.now()` for mechanical latency diagnostics only;
-- exact choice-commit event still unresolved.
-
-Participant result boundary remains descriptive:
-
-- raw observed selections / wins may be shown only with appropriate caveats;
-- pairwise trace/matrix is allowed;
-- ties and intransitive cycles must remain visible rather than forced into false precision;
-- no latency-derived psychological score;
-- no combined choice+latency score;
-- no validated latent-trait claim.
-
-## Red-team checkpoint
-
-Source: `/tools/priolens/docs/RED_TEAM_SYNTHESIS_v0.1.md`
-
-Independent blind reviews by Kimi, Gemini and Claude found enough semantic disagreement and direction-specific confounding to invalidate the previous assumption that the current 16 were close to freeze.
-
-Immediate decision:
-
-**STOP stimulus freeze. CONTINUE research. REDESIGN stimulus architecture before external preference collection.**
-
-The current 16 may remain as research references/candidates, but they are no longer a freeze-ready set.
-
-Strongest surviving question:
-
-> Can materially different exemplars of the same direction produce a reproducible direction-level choice signal after semantic fit and low-level visual confounds are controlled?
-
-If not, PrioLens should stop or be reframed as an image-preference reflection task rather than a direction-level priority trace.
+- mechanical latency diagnostic only;
+- `no_clear_choice` retained;
+- exemplar ID and scene-property family ID retained;
+- participant, opponent, position and sequence retained for analysis.
 
 ## Current blocker boundary
 
-The active blocker is no longer cosmetic cleanup.
+There are now three upstream questions before normal preference testing:
 
-There are now two upstream blockers:
+1. **Direction-set structure:** are the eight working lenses coherent enough to compare, and what would cause merge/split/reframe/removal?
+2. **Scene-property feasibility:** can each direction be instantiated through multiple independent visible families without hidden story or dominant confound?
+3. **Human semantic generalization:** do people independently map those families to the intended direction before any pairwise preference inference?
 
-1. **Framework validity:** even with ideal stimuli, is the narrow direction-level descriptive inference defensible and empirically falsifiable?
-2. **Stimulus operationalization:** can the eight directions be represented by materially different visual exemplars without direction-specific modality/valence/salience confounds?
-
-Do not spend major effort polishing the current 16 until these questions are addressed.
-
-## Current review protocols
-
-- `/tools/priolens/docs/RED_TEAM_REVIEW_PROTOCOL_v0.1.md` — stimulus/method adversarial review.
-- `/tools/priolens/docs/FRAMEWORK_RED_TEAM_PROTOCOL_v0.1.md` — framework-only review assuming ideal stimuli.
-- `/tools/priolens/docs/RED_TEAM_SYNTHESIS_v0.1.md` — current synthesis and freeze-stop decision.
+Do not spend major effort polishing the old 16 while these remain unresolved.
 
 ## Next priority work
 
-1. Run an independent **framework-only adversarial review** without current images or prior red-team conclusions.
-2. Separate logical framework flaws from empirical uncertainties and reviewer criticisms that do not apply to the stated protocol.
-3. Decide whether the 8-direction / pairwise-tradeoff framework survives before rebuilding a large stimulus library.
-4. If it survives, design a broader stimulus candidate architecture, provisionally >=4 materially different exemplars per direction.
-5. Run human semantic validation before preference testing:
-   - blind open-ended image meaning;
-   - mapping to direction definitions only after open coding;
-   - intended-direction hit / neighbour-confusion / confound ratings.
-6. Quantify low-level visual features and categorical confounds.
-7. Only after semantic screening run balanced pairwise preference research.
-8. Retain exemplar IDs and model participant, direction, exemplar and presentation effects separately.
-9. Add descriptive intransitive-triad diagnostics.
-10. Freeze protocol/stimuli only if the direction-level signal survives these tests.
+1. Build a surplus of **3–5 scene-property families per direction** in observable terms only.
+2. Gate 0A: classify each family `CANDIDATE / HIGH_RISK / HOLD / RETIRED`.
+3. Gate 0B: prepare a blind concept-review package that hides intended direction on first pass.
+4. Pay special attention to AUT / INF / OPP; do not rescue weak families with narrative.
+5. Only surviving families receive concrete asset generation briefs.
+6. Design the separate human semantic-validation protocol before generating a polished library.
+7. Do not freeze numeric semantic pass thresholds until an analysis/power/simulation plan exists.
+8. Only after semantic and cross-family survival return to a balanced pairwise preference experiment.
+9. In the preference phase, model participant, direction/opponent, exemplar/family, position, sequence and measured visual covariates separately where design permits.
+10. If direction effects do not generalize across exemplars/families, stop or reframe PrioLens rather than improve scoring/UI.
 
-## Current repository files
+## Current repository source-of-truth order
 
-Key current files:
-
-- `/PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md` — original draft architecture; now partially superseded by red-team decisions.
-- `/tools/priolens/config/protocol-v0.1.json` — draft protocol scaffold, not externally frozen.
-- `/tools/priolens/config/stimuli-v0.1.json` — PENDING / no frozen hashes.
-- `/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md`
-- `/tools/priolens/docs/STIMULUS_LEDGER_v0.1.md` — historical/current-candidate ledger, not a freeze.
-- `/tools/priolens/docs/FULL_SET_AUDIT_v0.1.md` — superseded on freeze-readiness by red-team synthesis.
-- `/tools/priolens/docs/RED_TEAM_SYNTHESIS_v0.1.md`
-- `/tools/priolens/docs/FRAMEWORK_RED_TEAM_PROTOCOL_v0.1.md`
-- `/tools/priolens/PROJECT_STATE.md`
+1. `/tools/priolens/PROJECT_STATE.md`
+2. `/tools/priolens/docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+3. `/tools/priolens/docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+4. `/tools/priolens/docs/STIMULUS_RESEARCH_GATES_v0.1.md`
+5. `/tools/priolens/docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+6. `/tools/priolens/docs/RED_TEAM_SYNTHESIS_v0.1.md`
+7. `/tools/priolens/docs/GROK_FRAMEWORK_STAGE_B_v0.1.md`
+8. `/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md`
+9. older stimulus ledger/full-set audit/draft architecture only for historical candidate context.
 
 ## Recovery instruction
 
-If conversation context is lost, start from this file, then `docs/RED_TEAM_SYNTHESIS_v0.1.md`, `docs/FRAMEWORK_RED_TEAM_PROTOCOL_v0.1.md`, `docs/DIRECTION_DEFINITIONS_v0.1.md`, and only then the older stimulus ledger/full-set audit and draft architecture. Do not reconstruct PrioLens from ConflictLab or 2Pair memory.
+If conversation context is lost, start from this file and follow the source-of-truth order above. Do not reconstruct PrioLens from ConflictLab/2Pair scoring memory or from the old 16-stimulus freeze plan.
