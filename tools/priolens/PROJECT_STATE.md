@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / FUN-WITH-WISDOM PRODUCT BOUNDARY / INF GATE D1 = NOT PASSED / INF HOLD / NEXT = MAS GATE D2
+Status: ACTIVE RESEARCH / INF GATE D1 NOT PASSED / INF HOLD / AI REVIEW HARNESS IMPLEMENTED NOT DEPLOYED / NEXT = DEPLOY HARNESS THEN MAS GATE D2
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -14,7 +14,7 @@ Working principle:
 
 > **For Fun, but with Wisdom.**
 
-Public flow target:
+Public flow:
 
 ```text
 START
@@ -26,14 +26,14 @@ START
 → short result / mirror
 ```
 
-Production boundary:
+Boundary:
 - no mandatory free text;
 - no mandatory ratings/confidence/intensity;
 - no explanation after every choice;
 - no personality/diagnosis/hidden-self language;
-- no claim that response time reveals a motive;
+- no claim that response time reveals a hidden motive;
 - `no_clear_choice` remains possible;
-- target duration about 2–4 minutes;
+- target public duration about 2–4 minutes;
 - working interaction budget about 12–18 meaningful choices, 20 soft ceiling until UX evidence says otherwise.
 
 Methodological complexity belongs behind the product, not inside the public flow.
@@ -50,7 +50,7 @@ Preferred result language is session-bound, e.g.:
 
 > `Kai rinkaisi greitai, be ilgos analizės, tavo pasirinkimuose dažniau laimėdavo ...`
 
-Do not claim hidden/subconscious true self, strict personality rank, employment suitability or stable trait.
+Do not claim hidden/subconscious true self, stable trait, strict personality rank or employment suitability.
 
 Exactly eight public scores are not a requirement. Keep only directions that survive research.
 
@@ -96,121 +96,149 @@ Working INF definition:
 
 > meaningful impact on the direction, decision or outcome of an external/shared situation.
 
-### Evidence that survived
-
-Original cross-edge blind review found a recurring INF-like idea before mapping reveal: the actor's effect extends outward and changes shared/external routing or allocation.
-
-Supported anchors:
+Evidence that survived:
 - R01 · CON↔INF: SUPPORTED
 - R03 · AUT↔INF: SUPPORTED
+- original blind review independently found a recurring idea: actor effect extends outward and changes shared/external routing or allocation.
 
-These two anchors remain useful evidence.
+Third-opponent attempts failed:
+- MAS↔INF: three attempts ended in skill/complexity confound, construct dilution or generic routing/control;
+- PRO↔INF R04: zero-sum allocation introduced fairness/deprivation and valence asymmetry;
+- CER↔INF R05: blind contrast was clean, but reveal CROSS_LOAD; `observe vs act` explained the pair more parsimoniously and INF remained generic routing/causality.
 
-### Failed third-opponent paths
-
-#### MAS↔INF · STOPPED
-Three attempts failed for different reasons:
-- original R02: skill/tool-complexity asymmetry;
-- R02R: clean mechanics but construct dilution, MAS→accuracy and INF→routing;
-- R02S: blind CLEAN_CONTRAST, reveal CROSS_LOAD, MAS→careful manual action and INF→neutral routing/control.
-
-Decision: do not iterate MAS↔INF again for Gate D1.
-
-#### PRO↔INF R04 · STOPPED BEFORE REVEAL
-Blind verdict: AMBIGUOUS.
-
-Problem:
-- INF side became zero-sum allocation: one equal recipient receives the resource while another does not;
-- fairness/deprivation and `solving vs creating a problem` valence could dominate.
-
-Decision: no reveal, no render, no iteration of this grammar.
-
-#### CER↔INF R05 · STOPPED AFTER REVEAL
-Blind Stage 1: CLEAN_CONTRAST.
-
-Blind reviewer independently described:
-- A = `look`: reveal current state without changing it;
-- B = `steer`: change which route the flow follows.
-
-Stage 2 reveal:
-- A = CER
-- B = INF
-- verdict: CROSS_LOAD
-- final action: REVISE
-
-Failure reason:
-- A is visibly generic inspection/reveal more directly than Certainty;
-- B is visibly generic routing/causality more directly than Influence;
-- `observe vs act` explains the visible contrast more parsimoniously than CER vs INF;
-- B reproduces the local redirection mechanism but does not independently establish meaningful shared/external consequence.
-
-Source: `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`.
-
-## 6. Gate D1 decision
+Decision:
 
 > **INF Gate D1 is NOT PASSED.**
-
-Do not search for a fourth INF opponent edge-by-edge.
 
 Current INF status:
 
 > `HOLD / PARTIAL_IDENTITY / NOT PUBLIC-SCORE READY`
 
-This does not prove INF is invalid as a psychological idea. It means the current static matched-image architecture has not established a safe direction-level mapping.
+Do not search for another INF opponent edge-by-edge and do not silently rename `redirection/control` as Influence.
 
-Do not render R01/R03 as a three-edge INF validation set yet.
+Sources:
+- `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
+- `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`
+- `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
 
-## 7. Structural INF diagnosis
+## 6. Structural INF diagnosis
 
-Repeated reviews show that static scenes can reliably depict a narrower observable family:
+Static scenes can reliably depict a narrower observable family:
 
-> **external steering / redirection**: the actor changes the course, routing or allocation of something beyond the actor's local task.
+> **external steering / redirection**: actor changes the course, routing or allocation of something beyond the actor's local task.
 
-But current INF also requires that the consequence be **meaningful and shared/external**.
-
-That second requirement is difficult to depict without introducing confounds:
-- other affected people → social salience/status/fairness;
-- visibly better/worse outcome → valence/reward/loss;
+Current INF additionally requires the consequence to be meaningful and shared/external. Showing that tends to introduce confounds:
+- affected people → social salience/status/fairness;
+- visibly better/worse outcome → reward/loss/valence;
 - more affected objects → magnitude/salience;
 - scarce resource → zero-sum fairness;
 - complex mechanism → Mastery;
 - invisible downstream importance → hidden story.
 
-Therefore `redirection/control` must not be silently treated as equivalent to INF.
+Therefore `redirection/control` is not equivalent to INF.
 
-Source: `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`.
-
-## 8. Strategic decision after INF
-
-Do **not** narrow or rename INF merely to rescue the architecture.
+## 7. Next falsification target · Gate D2 MAS
 
 Keep INF on HOLD and test whether the architecture works for a more visually tractable direction.
 
-Next falsification target:
+Target:
 
 > **Gate D2 · MAS cross-edge identity**
 
 Why MAS:
-- the operationalizability audit rates MAS highest for static-image feasibility;
-- quality/skill of execution is more directly observable than INF's shared consequence;
-- if MAS also fails across opponents, the problem may be architecture-wide;
-- if MAS succeeds while INF remains partial, PrioLens may work selectively and the public set should include only directions that survive.
+- highest static-image feasibility in the operationalizability audit;
+- quality/skill of execution is more directly observable than INF shared consequence;
+- if MAS also fails across opponents, architecture-wide aggregation becomes doubtful;
+- if MAS succeeds, PrioLens may work selectively and only surviving directions should enter the product.
 
-## 9. Gate D2 constraints
-
-Do not use INF as one of the first MAS opponents; MAS↔INF has already been exhausted.
-
-For MAS:
+Constraints:
+- do not use INF as an initial opponent;
 - test at least three materially different opponents/mechanisms;
-- require blind recurrence of a common core such as `quality / competence / skill of execution`;
-- reject a result explained mainly by craft aesthetics, hands, specialist tools, technical difficulty or professional prestige;
-- keep contexts/valence/status/salience balanced;
-- blind Stage 1 first, reveal only after response lock;
+- require blind recurrence of `quality / competence / skill of execution` or a close reviewer-generated equivalent;
+- reject results driven mainly by craft aesthetics, hands, specialist tools, technical difficulty or professional prestige;
+- keep context/valence/status/salience balanced;
+- blind Stage 1 first, reveal only after Stage 1 response lock;
 - no rendering until text-level cross-edge identity survives.
 
-This is a project architecture test, not validation of MAS as a trait.
+This is an architecture falsification test, not validation of MAS as a trait.
 
-## 10. Public-product implication
+## 8. AI Review Harness v0.1
+
+Reason for building it: manual phone copy-paste across separate Claude/Grok/Gemini chats is slow and creates avoidable process errors.
+
+Implemented in repo:
+- `review-harness/index.html` - mobile-first UI;
+- `review-harness/api/review.js` - Vercel serverless API;
+- `review-harness/vercel.json`;
+- `review-harness/.env.example`;
+- `docs/AI_REVIEW_HARNESS_v0.1.md`.
+
+Architecture:
+
+```text
+phone
+→ one PrioLens review page
+→ Vercel serverless API
+→ Vercel AI Gateway
+→ Claude / Grok / Gemini independently
+```
+
+Default reviewer slots:
+- Claude: `anthropic/claude-opus-5`
+- Grok: `xai/grok-4.6` with narrow `spacexai/grok-4.6` catalog-slug fallback
+- Gemini: `google/gemini-3.6-flash`
+
+The model IDs are environment-overridable.
+
+Research integrity:
+- Stage 1 sends only the blind prompt to each reviewer independently;
+- each exact Stage 1 prompt + answer is cryptographically signed server-side;
+- Stage 2 accepts only signed Stage 1 lock tokens;
+- Stage 2 reconstructs each model's own exact thread as blind prompt → locked answer → reveal;
+- reviewers never see each other's responses;
+- no database is required for the lock mechanism.
+
+Security:
+- `AI_GATEWAY_API_KEY` stays server-side;
+- personal `HARNESS_ACCESS_KEY` protects the endpoint from casual public use;
+- `REVIEW_LOCK_SECRET` signs Stage 1 records;
+- use a conservative AI Gateway per-key spend budget;
+- never place provider/Gateway secrets in GitHub Pages or browser JavaScript.
+
+Status:
+
+> **CODE IMPLEMENTED / NOT DEPLOYED / NOT LIVE-TESTED**
+
+Source: `docs/AI_REVIEW_HARNESS_v0.1.md`.
+
+## 9. Immediate next action
+
+Do not start MAS D2 manual reviews yet.
+
+First deploy and smoke-test the harness:
+1. create/connect a Vercel project with root directory `tools/priolens/review-harness`;
+2. create one Vercel AI Gateway key;
+3. set `AI_GATEWAY_API_KEY`, `HARNESS_ACCESS_KEY`, `REVIEW_LOCK_SECRET` in Vercel environment variables;
+4. set a low Gateway key spend budget;
+5. deploy;
+6. run a harmless one-line Stage 1 call across Claude/Grok/Gemini;
+7. run a harmless Stage 2 reveal and verify that the three Stage 1 records remain locked;
+8. only then design/load Gate D2 MAS as the first real research package.
+
+If deployment is blocked, do not revert to repeated three-chat copy-paste by default; fix the harness or deliberately choose a temporary fallback.
+
+## 10. Later harness improvements
+
+Only after v0.1 works on the phone:
+- repo-backed package dropdown so the user pastes nothing;
+- automatic result commit to a research-results branch;
+- server-side A/B randomization;
+- cost/model/version capture;
+- optional human-review mode using the same package schema.
+
+Do not expand scope before the Stage 1 → lock → Stage 2 flow is proven.
+
+## 11. Public-product implication
 
 A complete 28-edge tournament is not automatically required.
 
@@ -218,7 +246,7 @@ If some directions survive cross-edge identity and later rendered human research
 
 12–18 trials are a UX target, not a validated measurement minimum. Uncertainty, ties, cycles and `no_clear_choice` must remain visible.
 
-## 11. Render execution rule
+## 12. Render execution rule
 
 When rendering becomes justified:
 1. one image task at a time;
@@ -227,26 +255,14 @@ When rendering becomes justified:
 4. if target meanings require different actions, match context/legitimacy/valence/salience rather than forcing microscopic edits;
 5. reject labels, collages, multi-state images and unrelated scene changes.
 
-## 12. Immediate next action
-
-Do not render INF.
-
-Design **Gate D2 · MAS cross-edge identity** as a text-only three-opponent concept set, excluding INF.
-
-Before generating any assets:
-1. choose three opponents that force MAS to appear through materially different scene mechanisms;
-2. avoid repeating the `close-up skilled hands / craft tool` visual family;
-3. create a randomized blind Stage 1 package with hidden mappings;
-4. run blind review before reveal.
-
 ## 13. Source-of-truth order
 
 1. `PROJECT_STATE.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
-4. `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`
-5. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-6. `docs/PRO_INF_R04_BLIND_STAGE1_RESULT_v0.1.md`
+3. `docs/AI_REVIEW_HARNESS_v0.1.md`
+4. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
+5. `docs/CLAUDE_CER_INF_R05_STAGE2_RESULT_v0.1.md`
+6. `docs/CLAUDE_INF_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
 7. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
 8. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
 9. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
@@ -258,4 +274,4 @@ Before generating any assets:
 
 ## Recovery instruction
 
-If context is lost, start from this file. Do not restart INF edge-searching, do not reconstruct PrioLens from the old 16-stimulus/28-edge freeze plan, do not import ConflictLab scoring assumptions, and do not turn the public product back into a long per-choice reflection protocol.
+If context is lost, start from this file. Do not restart INF edge-searching, do not restart manual three-model copy-paste if the harness can be repaired, do not reconstruct PrioLens from the old 16-stimulus/28-edge freeze plan, do not import ConflictLab scoring assumptions, and do not turn the public product back into a long per-choice reflection protocol.
