@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / PRE-ASSET CONCEPT VALIDATION / FREEZE STOPPED
+Status: ACTIVE RESEARCH / STIMULUS ARCHITECTURE REOPENED / FREEZE STOPPED
 Updated: 2026-08-30
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -15,11 +15,11 @@ Public target: `https://2rasi.com/tools/priolens/` and `https://2rasi.lt/tools/p
 - Intended promise remains narrow and descriptive.
 - No diagnosis, subconscious/hidden-needs, personality-type, employment-suitability or validated-trait claims.
 
-The strongest currently defensible wording is narrower than the original public phrase:
+Strongest currently defensible wording:
 
 > `These observed choices describe which competing direction-exemplar pairs were selected more often than their alternatives in this session under these exact presentation and stimulus conditions.`
 
-Any stronger direction-level wording requires cross-exemplar evidence.
+Any stronger direction-level wording requires empirical cross-exemplar or cross-scenario evidence.
 
 ## Eight working directions
 
@@ -34,54 +34,53 @@ Any stronger direction-level wording requires cross-exemplar evidence.
 
 Source: `/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md`
 
-Status: INTERNAL WORKING CONTRACT / NOT VALIDATED CONSTRUCTS.
-
 Current framework stance:
 
 > Treat the eight as a **non-exhaustive set of working priority lenses chosen for experimental comparison**, not as eight fundamental, exhaustive, orthogonal or validated human dimensions.
 
-No dedicated PrioLens provenance artifact currently establishes why these eight form a validated common ontology. This is an explicit framework gap, not permission to invent one.
+No dedicated PrioLens provenance artifact currently establishes why these eight form a validated common ontology. This is an explicit framework gap.
 
-## Framework red-team status
+## Red-team checkpoint
 
-### Stimulus-level adversarial review
+### Current 16-stimulus set
 
-Kimi, Gemini and Claude independently reviewed the same blind 16-stimulus package.
+Independent blind reviews by Kimi, Gemini and Claude were sufficient to stop the previous stimulus freeze.
 
 Source:
 - `/tools/priolens/docs/RED_TEAM_SYNTHESIS_v0.1.md`
 
 Decision:
 
-**STOP stimulus freeze. CONTINUE research. REDESIGN stimulus architecture before external preference collection.**
+**STOP stimulus freeze. CONTINUE research.**
 
-The current 16 are research references/candidates only, not freeze-ready.
+The current 16 remain historical/research candidates only.
 
-### Framework-only adversarial review
+### Framework-only review
 
-Grok reviewed the architecture while assuming ideal stimuli and without seeing the current image audit.
+Grok reviewed the framework first without stimulus-audit findings and then after seeing the synthesis.
 
 Sources:
 - `/tools/priolens/docs/FRAMEWORK_RED_TEAM_RESULT_GROK_v0.1.md`
 - `/tools/priolens/docs/GROK_FRAMEWORK_STAGE_B_v0.1.md`
 
-Stage A verdict: `REVISE`, confidence 72.
-Stage B after seeing the stimulus synthesis: `REVISE`, confidence 68.
+Verdicts:
+- Stage A: `REVISE`, confidence 72;
+- Stage B: `REVISE`, confidence 68.
 
 No purely logical fatal flaw was identified under the narrow descriptive claim.
 
-Accepted framework conclusions:
+Accepted conclusions:
 - the 28-edge tournament does not require transitivity;
-- non-transitive cycles do not invalidate the raw pairwise trace;
-- strict 1–8 rank, cardinal latent score and latency psychology remain excluded;
-- the unresolved core question is empirical: does direction-level structure survive exemplar substitution?
+- cycles do not invalidate the raw pairwise trace;
+- strict rank/cardinal score/latency psychology remain excluded;
+- the unresolved core question is empirical generalization beyond specific stimuli/scenarios.
 
 ## ConflictLab / 2Pair transfer review
 
 Source:
 - `/tools/priolens/docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
 
-The useful historical methodological boundary is:
+Transferable boundary:
 
 ```text
 SCENE PROPERTY / VISUAL MANIPULATION
@@ -91,25 +90,20 @@ PARTICIPANT RESPONSE
 DERIVED INTERPRETATION
 ```
 
-PrioLens must not collapse these levels.
+Important historical lesson:
+ConflictLab v0.8 ultimately stopped treating AW as a peer static-image axis after repeated candidates collapsed into other interpretations/confounds. Raw A/B choice was explicitly separated from psychological mapping, and controlled matched pairs were validated through blind human reactions before signal claims.
 
-Important historical warnings:
-- ConflictLab v0.8 suspended AW as a peer static-stimulus axis after repeated concepts collapsed into other meanings/confounds;
-- raw A/B choice was explicitly treated as having no inherent psychological polarity;
-- blind human stimulus-family validation preceded signal mapping;
-- `no_clear_choice`, `hard_to_identify`, free-text reaction and mechanical latency were preserved as distinct raw data;
-- historical choice->cue->vector logic, 3+3+3 balance and 18-pair assumptions are prototype history, not PrioLens methodology.
+PrioLens imports this **discipline**, not AW/CS/CR, cue vectors, AHA scoring or the historical 3+3+3 architecture.
 
-Transfer the validation discipline, not the old constructs/scoring.
+## Direction-set / operationalizability status
 
-## Direction operationalizability audit
-
-Source:
+Sources:
+- `/tools/priolens/docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
 - `/tools/priolens/docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
 
-Current pre-asset feasibility:
+Current static-image feasibility:
 
-| Direction | Static-image feasibility | Current risk |
+| Direction | Feasibility | Main risk |
 |---|---|---|
 | MAS | HIGH | shared craft/action family |
 | CER | MEDIUM-HIGH | organization/completion/PRO leakage |
@@ -120,130 +114,162 @@ Current pre-asset feasibility:
 | AUT | MEDIUM-LOW | freedom is relational to constraints/options |
 | OPP | LOW-MEDIUM | future gain is counterfactual and reward-laden |
 
-Highest current construct-level operationalization risks:
+Highest current operationalization risks:
 - AUT
 - INF
 - OPP
 
-Key structural finding:
+The eight directions also differ in representation class:
+- present visible state/action: CER, MAS, PRO, partly CON;
+- relational agency: AUT, INF;
+- epistemic/future orientation: EXP, OPP.
 
-The eight directions are not equally easy to represent as static images. MAS/CER/PRO can be anchored in present visible action/state; AUT/INF require relational agency; EXP/OPP require epistemic/future inference. This representation-class asymmetry must be treated as a potential confound, not merely an asset-cleanup issue.
+This asymmetry may itself bias static-image comparisons.
 
-## Research gates now in force
+## Stimulus architecture reopened
 
 Source:
-- `/tools/priolens/docs/STIMULUS_RESEARCH_GATES_v0.1.md`
+- `/tools/priolens/docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
 
-Required sequence:
+Two live candidates now exist.
 
+### G · Global exemplar pool
+- >=4 materially different standalone exemplars per direction;
+- cross-pair direction exemplars;
+- single-image semantic validation required;
+- main risk: direction-correlated modality/valence/aesthetic confounds remain within trials.
+
+### M · Matched-edge tradeoff pairs
+- each direction-v-direction edge receives a same/functionally-equivalent scene with two controlled variants;
+- the intended priority tradeoff is the dominant meaningful difference;
+- main strength: people/food/nature/threat/technical domain can be held much more constant within a trial;
+- main risk: 28 bespoke edge designs, opponent-specific direction meaning and large asset burden.
+
+No architecture is frozen.
+
+Key methodological correction:
+
+> If the product is intrinsically pairwise, requiring every standalone image to be independently nameable as a direction may be stronger than necessary. Under matched-edge architecture the primary semantic object is the **controlled A↔B contrast and participant reason**, not the isolated image label.
+
+## Current architecture-feasibility sprint
+
+Sources:
+- `/tools/priolens/docs/MATCHED_EDGE_CONCEPT_SPRINT_v0.1.md`
+- `/tools/priolens/docs/MATCHED_EDGE_BLIND_STAGE1_v0.1.md`
+- `/tools/priolens/docs/MATCHED_EDGE_BLIND_STAGE1_PROMPT_v0.1.md`
+- `/tools/priolens/docs/MATCHED_EDGE_STAGE2_REVEAL_v0.1.md`
+
+Text-only Gate F2 test prepared:
+- 7 hardest nearest-neighbour edges;
+- 2 independent matched scene concepts per edge;
+- 14 concepts total;
+- randomized blind IDs M01–M14;
+- intended edge/side mapping hidden until Stage 2.
+
+Edges:
+1. AUT ↔ OPP
+2. AUT ↔ EXP
+3. AUT ↔ INF
+4. CER ↔ PRO
+5. EXP ↔ OPP
+6. MAS ↔ INF
+7. CON ↔ INF
+
+Internal pre-blind assessment suggests CER↔PRO and MAS↔INF are most promising; AUT/OPP/EXP edges remain structurally hardest. This must not be given to blind reviewers before Stage 2.
+
+## Active research gates
+
+Source:
+- `/tools/priolens/docs/STIMULUS_RESEARCH_GATES_v0.2.md`
+
+v0.2 supersedes v0.1 and keeps architecture-specific validation paths separate.
+
+Common:
 ```text
-DIRECTION HYPOTHESIS
-    ↓
-SCENE-PROPERTY FAMILY
-    ↓
-CONCRETE ASSET
-    ↓
-HUMAN SEMANTIC RESPONSE
-    ↓
-CROSS-EXEMPLAR GENERALIZATION
-    ↓
-PAIRWISE PREFERENCE RESPONSE
-    ↓
-DIRECTION-LEVEL DESCRIPTIVE INFERENCE
+WORKING DIRECTION
+→ SCENE PROPERTY / CONTROLLED CONTRAST
+→ PARTICIPANT RESPONSE
+→ EMPIRICAL MAPPING EVIDENCE
+→ DIRECTION-LEVEL DESCRIPTIVE INFERENCE
 ```
 
-No stage may be skipped by AI review, designer explanation or scoring logic.
+Path G:
+- standalone asset visual control;
+- human single-image open coding;
+- direction mapping only after open response;
+- cross-family generalization.
 
-### Gate 0A
-Direction-to-scene concept feasibility before image generation.
+Path M:
+- matched-pair visual control;
+- blind pair choice before explanation;
+- open reason after locked choice;
+- reason coded against intended edge only after preservation;
+- edge replication across independent scenes.
 
-### Gate 0B
-Blind concept interpretation without direction label.
-
-### Gate A
-Concrete asset visual control / confound audit.
-
-### Gate B
-Human blind semantic response: one image at a time, open meaning first, direction mapping only after open coding.
-
-### Gate C
-Cross-family semantic generalization.
-
-### Gate D
-Pairwise choice viability, choice before explanation.
-
-### Gate E
-Direction-vs-exemplar evidence using an appropriate repeated binary/pairwise model.
-
-### Gate F
-Participant-facing interpretation boundary.
+Both paths converge only later on a full pairwise session and direction-vs-exemplar/scenario analysis.
 
 ## Original architecture status
 
-The original draft used:
+Original draft:
 - 8 directions;
 - 2 exemplars per direction;
 - 16 active stimuli;
-- complete `C(8,2)=28` direction tournament;
-- descriptive result only.
+- complete `C(8,2)=28` tournament.
 
-Current decisions:
-- `2 exemplars/direction` is **rejected as freeze-ready evidence architecture**;
-- `16 active stimuli` is not a current target;
-- the 28-edge tournament remains a viable later preference-research structure but is **not the next research step**;
-- no normal preference pilot with the current 16.
+Current:
+- `2 exemplars/direction` rejected as freeze-ready evidence architecture;
+- old 16 not a current target;
+- 28-edge full session remains a possible later structure;
+- no normal preference pilot until stimulus architecture and semantic validation survive.
 
-The draft architecture file is historical/current design context and is partially superseded by the research checkpoints above.
+## Presentation / raw-data rules retained for later pairwise work
 
-## Presentation / raw-data rules that still stand for later pairwise research
-
-- vertical top/bottom presentation;
+- vertical top/bottom;
 - equal 1:1 frames;
 - both visible simultaneously;
 - `object-fit: contain`;
 - no scrolling during measured trial;
-- top/bottom randomized/counterbalanced independently from direction;
-- preload + decode before measured timing;
+- position randomized/counterbalanced;
+- preload/decode before timing;
 - mechanical latency diagnostic only;
 - `no_clear_choice` retained;
-- exemplar ID and scene-property family ID retained;
-- participant, opponent, position and sequence retained for analysis.
+- choice before post-choice explanation;
+- participant, edge, direction, asset, family/scenario, position and sequence IDs retained.
 
 ## Current blocker boundary
 
-There are now three upstream questions before normal preference testing:
+Before any new polished visual library:
 
-1. **Direction-set structure:** are the eight working lenses coherent enough to compare, and what would cause merge/split/reframe/removal?
-2. **Scene-property feasibility:** can each direction be instantiated through multiple independent visible families without hidden story or dominant confound?
-3. **Human semantic generalization:** do people independently map those families to the intended direction before any pairwise preference inference?
+1. **Architecture choice:** does a global exemplar pool or matched-edge architecture create cleaner intended tradeoffs?
+2. **Direction feasibility:** can AUT/INF/OPP and other directions survive without hidden narrative/confound rescue?
+3. **Human mapping:** whichever architecture survives must be validated with human responses before direction-level inference.
 
-Do not spend major effort polishing the old 16 while these remain unresolved.
+## Immediate next action
 
-## Next priority work
+Run the prepared **blind text-only matched-edge concept review** with independent reviewers who have not seen the intended mapping.
 
-1. Build a surplus of **3–5 scene-property families per direction** in observable terms only.
-2. Gate 0A: classify each family `CANDIDATE / HIGH_RISK / HOLD / RETIRED`.
-3. Gate 0B: prepare a blind concept-review package that hides intended direction on first pass.
-4. Pay special attention to AUT / INF / OPP; do not rescue weak families with narrative.
-5. Only surviving families receive concrete asset generation briefs.
-6. Design the separate human semantic-validation protocol before generating a polished library.
-7. Do not freeze numeric semantic pass thresholds until an analysis/power/simulation plan exists.
-8. Only after semantic and cross-family survival return to a balanced pairwise preference experiment.
-9. In the preference phase, model participant, direction/opponent, exemplar/family, position, sequence and measured visual covariates separately where design permits.
-10. If direction effects do not generalize across exemplars/families, stop or reframe PrioLens rather than improve scoring/UI.
+Required order:
+1. give only `MATCHED_EDGE_BLIND_STAGE1_v0.1.md` + `MATCHED_EDGE_BLIND_STAGE1_PROMPT_v0.1.md`;
+2. preserve Stage 1 response;
+3. then provide `MATCHED_EDGE_STAGE2_REVEAL_v0.1.md`;
+4. do not show reviewers one another's outputs;
+5. aggregate failure modes, not confidence averages.
 
-## Current repository source-of-truth order
+Do not generate new images until this Gate F2 checkpoint is complete.
+
+## Current source-of-truth order
 
 1. `/tools/priolens/PROJECT_STATE.md`
-2. `/tools/priolens/docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-3. `/tools/priolens/docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-4. `/tools/priolens/docs/STIMULUS_RESEARCH_GATES_v0.1.md`
-5. `/tools/priolens/docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
-6. `/tools/priolens/docs/RED_TEAM_SYNTHESIS_v0.1.md`
-7. `/tools/priolens/docs/GROK_FRAMEWORK_STAGE_B_v0.1.md`
-8. `/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md`
-9. older stimulus ledger/full-set audit/draft architecture only for historical candidate context.
+2. `/tools/priolens/docs/STIMULUS_ARCHITECTURE_ALTERNATIVES_v0.1.md`
+3. `/tools/priolens/docs/STIMULUS_RESEARCH_GATES_v0.2.md`
+4. `/tools/priolens/docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
+5. `/tools/priolens/docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
+6. `/tools/priolens/docs/CONFLICTLAB_2PAIR_LESSONS_FOR_PRIOLENS_v0.1.md`
+7. `/tools/priolens/docs/RED_TEAM_SYNTHESIS_v0.1.md`
+8. `/tools/priolens/docs/GROK_FRAMEWORK_STAGE_B_v0.1.md`
+9. `/tools/priolens/docs/DIRECTION_DEFINITIONS_v0.1.md`
+10. older stimulus ledger/full-set audit/draft architecture only as historical context.
 
 ## Recovery instruction
 
-If conversation context is lost, start from this file and follow the source-of-truth order above. Do not reconstruct PrioLens from ConflictLab/2Pair scoring memory or from the old 16-stimulus freeze plan.
+If context is lost, start from this file and follow the source-of-truth order above. Do not reconstruct PrioLens from ConflictLab/2Pair scoring memory or from the old 16-stimulus freeze plan.
