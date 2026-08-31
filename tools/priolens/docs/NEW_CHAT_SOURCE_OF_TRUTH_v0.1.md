@@ -8,186 +8,189 @@ Updated: 2026-09-01
 PrioLens work spans multiple chats, repos and uploaded artifacts. Conversation history is not the project source of truth.
 
 Past failure modes that must not recur:
-1. treating a File Library artifact as missing because it was not attached to the current chat;
-2. following an older chat summary after the repo had advanced;
-3. forgetting that `olemoz1977/omesg360` already provides the working Hostinger deployment channel;
-4. restoring an older seven-direction or Open14-v0.1 stimulus model after later architecture decisions.
+1. treating a File Library artifact as missing because it is not attached to the current chat;
+2. following an older chat summary after the repo has advanced;
+3. forgetting that `olemoz1977/omesg360` already provides the Hostinger/research-runtime repo;
+4. restoring the old seven-direction or Open14-v0.1 model after later architecture decisions;
+5. treating one repeated exemplar as family-level evidence;
+6. generating new stimuli without an explicit user request.
 
 ## Startup order for every new PrioLens chat
 
 1. Read `tools/priolens/RESUME_HERE.md`.
 2. Read `tools/priolens/PROJECT_STATE.md`.
-3. Read `tools/priolens/docs/NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`.
-4. Read `tools/priolens/docs/OPEN14_SOCIAL_SPLIT_AND_SUCCESS_DECISION_v0.1.md`.
-5. Read `tools/priolens/docs/P3_OPEN_SPECTRUM_14_SPEC_v0.2.md`.
-6. Read `tools/priolens/docs/OPEN14_ASSET_MATRIX_v0.2.md`.
-7. Continue only from `PROJECT_STATE.md > Immediate next action`.
-8. Search File Library only if an actual historical/runtime artifact is needed.
+3. Continue from `PROJECT_STATE.md > Immediate next action`.
+4. Open only the specific canonical docs needed for the task.
+5. Search File Library only when an actual historical/runtime artifact is needed.
 
 If chat memory conflicts with repo state, **repo state wins**.
 
-## Current checkpoint
+## Current architecture
 
-Completed:
-- Gallery inventory: 223 files / 222 byte-unique images;
-- full first-impulse audit exists; do not restart it;
-- historical P3 v0.4 seven-family runtime remains live on `omesg360.eu/priolens/`;
-- repeated owner runs on the same old bank are familiarity-contaminated and not validation;
-- two-layer architecture is active: visual priority first, perceived sufficiency second;
-- open impulse spectrum work is complete enough to define Open14 v0.2;
-- Open14 v0.2 planner implemented and smoke-tested across 1000 deterministic seeds;
-- Open14 v0.2 asset matrix has 24 existing/recovered assets and 4 intentional blanks.
+PrioLens uses two separate channels:
 
-## Active two-layer architecture
+### A — revealed visual priority
+Low-deliberation comparative image choice without need labels.
 
-### Channel A — revealed visual priority
+### B — current perceived sufficiency
+12 short self-ratings across six broad domains, shown only after the visual task.
 
-Low-deliberation image choice without need labels.
+Do not collapse the channels into one score.
+Do not assign one global Maslow stage.
+Do not claim visual pull = unmet need.
 
-### Channel B — perceived sufficiency
-
-Short self-assessment after the visual task about how sufficiently broader need areas feel present in the person's life.
-
-Compare the channels afterward. Do not collapse them into one unmet-need score.
-
-Maslow-style levels are coverage buckets, not one global stage.
+Canonical docs:
+- `NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`;
+- `PERCEIVED_SUFFICIENCY_LAYER_v0.2.md`;
+- `TWO_CHANNEL_RESULT_SYNTHESIS_SPEC_v0.1.md`.
 
 ## Active Open14 v0.2 family set
 
-### Basic / stability
+Basic / stability:
 - REST
 - RESOURCE
 - SAFETY
 - ORDER
 
-### Social
-- CONNECTION — direct contact / reciprocity
-- BELONGING — being with / part of others
-- CARE — acting for another's welfare
+Social:
+- CONNECTION
+- BELONGING
+- CARE
 
-### Agency / esteem
+Agency / esteem:
 - AUTONOMY
 - CONTROL
 - RECOGNITION
 
-### Growth / cognitive / possibility
+Growth / cognitive / possibility:
 - MASTERY
 - EXPLORATION
-- KNOWLEDGE — working display concept: Learning / Understanding
+- KNOWLEDGE / Learning-Understanding
 - OPPORTUNITY
 
 This is a discovery shortlist, not a validated taxonomy.
 
-## Critical v0.2 decision
+`SUCCESS / ACHIEVEMENT` is no longer an active atomic visual family.
+Status: `DERIVED / THEORY-HOLD`.
 
-`SUCCESS / ACHIEVEMENT` is **not** an active Open14 atomic family.
+## Four accepted missing-stimulus mechanisms
 
-Reason:
-- a success endpoint can be attractive because of mastery, recognition, reward/resource, control, autonomy or opportunity;
-- current one-frame representation does not isolate a useful atomic pull.
+All four text mechanisms have passed the human gate.
 
-Current status:
-- `SUCCESS / ACHIEVEMENT = DERIVED / THEORY-HOLD`.
+### CARE-A
+`pasirūpinti kitu savo komforto sąskaita`
 
-`BELONGING` replaces SUCCESS in the 14-family scan because the Gallery already shows a meaningful distinction between direct connection/reciprocity and group/togetherness.
+One person shifts the only umbrella toward another and accepts modest exposure to rain.
 
-## CARE boundary
+### CARE-B
+`pastebėti ir padėti neprašytam`
 
-CARE is intentionally narrower than warmth or connection.
+One person starts helping gather another person's dropped everyday items before any visible request.
 
-Working pull:
-> act for another person's welfare, including with a small personal cost or before being asked.
+### RECOGNITION-A
+`būti pastebėtam ir įvertintam kitų`
 
-Accepted mechanism space:
-- modest self-sacrifice / giving another person protection, comfort or resource at some visible personal cost;
-- proactive practical help before a visible request.
+Small peer group gives restrained applause, natural smiles and one or more thumbs-up gestures toward one ordinary focal person.
 
-Do not make CARE depend on heroic danger.
+### RECOGNITION-B — boundary probe
+`mano nuomonė / kompetencija čia vertinama`
+
+Visually equal peers actively seek one person's judgement on neutral shared material. No leader, teacher or specialist-status cues.
+
+Main risk: RECOGNITION-B may collapse into MASTERY, CONTROL/leadership, CONNECTION or BELONGING.
+
+Canonical production constraints:
+`OPEN14_MISSING_STIMULUS_PRODUCTION_SPECS_v0.1.md`.
+
+**Do not generate any image unless the user explicitly asks.**
 
 ## Active asset state
+
+Existing/recovered assets cover 12 of 14 families.
+
+Still missing as real image assets:
+- CARE-A;
+- CARE-B;
+- RECOGNITION-A;
+- RECOGNITION-B.
+
+AUT-B backpack exists in `olemoz1977/omesg360/priolens/recovered-assets/priolens_aut_backpack_v01.webp`, but its intended Hostinger URL must not be treated as live until a real smoke check verifies it.
 
 Canonical matrix:
 `OPEN14_ASSET_MATRIX_v0.2.md`.
 
-Existing Gallery/recovered assets cover 12 of 14 families.
-
-BELONGING reuses:
-- `S14.webp` — social circle / group interaction;
-- `20260731_043300801.png` — shared warmth / being together.
-
-Current true visual gaps:
-- CARE A/B;
-- RECOGNITION A/B.
-
-Approximately **4 new prototypes at most**, not 6 and not a rebuilt library.
-
-Do not create any image without a human review gate for the missing scene mechanisms.
-
-## Active planner
-
-Source:
-`tools/priolens/research/p3_open14_planner_v02.mjs`
+## Planner and exemplar balance
 
 Planner:
-`cyclic-14x3-diff-1-4-slot-role-v0.2`
+`tools/priolens/research/p3_open14_planner_v02.mjs`.
 
-Validated per session:
+Per session:
 - 14 triads;
-- every family exactly 3 appearances;
-- every family exactly 1/1/1 across slots;
-- 3 distinct macro domains per trial;
+- every family appears exactly 3 times;
+- every family exactly 1/1/1 across screen slots;
+- 3 distinct macro domains per triad;
 - no repeated family pair;
 - 42 unique pair co-occurrences;
 - 6 unique opponents per family.
 
-The FAMILY_SET order is structural. Do not alphabetize it without revalidation.
+Exemplar assigner:
+`tools/priolens/research/p3_open14_exemplar_assigner_v01.mjs`.
 
-## Active stimulus rule
+Because each family has 2 exemplars but 3 appearances:
+- both exemplars are always shown;
+- one appears twice and one once;
+- 7 families repeat A / 7 repeat B;
+- overall A/B exposure = 21/21;
+- each screen slot = 7 A / 7 B.
 
-Use:
-> **image → first spontaneous pull / meaning → candidate family → KEEP / HOLD / DROP / REASSIGN / NEW-FAMILY**
+Primary family-level repetition requires:
+`chosen_A > 0 && chosen_B > 0`.
 
-Do not sterilize vivid images merely because secondary readings are possible.
+2/3 choices concentrated on the same repeated exemplar are exemplar-specific, not primary family-level evidence.
 
-Main question:
-> **What does a reasonable viewer see happening within about one second?**
+## Runtime
 
-Emotion itself is not a confound. Systematic salience asymmetry across families is the practical risk.
+Separate Open14 source scaffold exists in `olemoz1977/omesg360/priolens/open14-v02/`:
+- `index.html`;
+- `bank.json`;
+- `p3_open14_planner_v02.mjs`;
+- `p3_open14_exemplar_assigner_v01.mjs`.
 
-## Current theoretical boundary
+It is intentionally fail-closed while runtime paths are missing.
 
-Do not claim:
-- fast = true;
-- fast = subconscious / instinctive;
-- strong response = unmet need;
-- one or several choices reveal a Karpman role;
-- direct neural-system activation from image choice;
-- current families are a complete taxonomy;
-- a selected CARE scene means the person is a Rescuer.
+Historical live `omesg360.eu/priolens/` v0.4 has not been replaced.
 
-Working framing remains:
-> **low-deliberation comparative visual choice under reduced self-presentation opportunity.**
+## Pilot preparation
 
-## Runtime / hosting
+Prepared:
+- `OPEN14_EXTERNAL_PILOT_PROTOCOL_v0.1.md`;
+- `OPEN14_FAMILY_DECISION_RULES_v0.1.md`;
+- `OPEN14_DATA_INGESTION_CONTRACT_v0.1.md`.
 
-Research runtime:
-`omesg360.eu/priolens/`
+First external pilot is formative, target roughly 24–36 valid completions (~30 practical target), not validation.
 
-Hostinger deployment channel:
-`olemoz1977/omesg360`
+Do not start external recruitment until:
+- missing accepted images exist and pass pragmatic first-read review;
+- Open14 runtime is complete and technically smoked;
+- anonymous data ingestion is selected, deployed and privacy/retention behavior is explicit.
 
-Persistent Gallery/research assets stay outside the deploy-owned PrioLens runtime target.
+## Active guardrails
+
+- **For Fun with Wisdom** remains canonical phrase.
+- no sterile-image optimization for its own sake;
+- no forced family count;
+- no theory-first rationalization of images;
+- no direct neural-system inference;
+- no Karpman role diagnosis;
+- no strict 1–14 rank;
+- no RT-as-psychological-strength claim;
+- preserve exact exemplar identity;
+- expose uncertainty rather than manufacture completeness.
 
 ## Immediate next action
 
-1. keep the 24 existing Open14 v0.2 assets frozen as the working shortlist;
-2. define two materially different CARE and two materially different RECOGNITION scene mechanisms in words;
-3. do not generate images yet;
-4. prepare runtime/data wiring against planner v0.2 without inventing fake assets for the four gaps;
-5. stop at the human decision gate before any new stimulus creation;
-6. once the missing mechanisms/assets are accepted, build the complete Open14 v0.2 runtime and run a technical/design smoke test only.
+Read `PROJECT_STATE.md`.
 
-## Final guardrail
-
-Recover in this order:
-`RESUME_HERE.md → PROJECT_STATE.md → current architecture/decision/spec → File Library only if needed → conversation history last`.
+Two external-action gates remain:
+1. image creation, only after explicit user request;
+2. pilot backend deployment, only after explicit approval if it creates a new service/project or changes data-retention behavior.
