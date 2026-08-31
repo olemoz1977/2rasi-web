@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / FULL GALLERY IMPULSE AUDIT COMPLETE / P3 OWNER DIAGNOSTIC COMPLETE / CER CONSTRUCT HOLD
+Status: ACTIVE RESEARCH / FULL GALLERY IMPULSE AUDIT COMPLETE / BALANCED P3 OWNER RERUN COMPLETE / CER CONSTRUCT HOLD
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -18,13 +18,14 @@ Draft PR: #9
 8. `docs/CANDIDATE_BANK_MATRIX_v0.3.md`
 9. `docs/CER_VISUAL_VIABILITY_CHECK_v0.1.md`
 10. `docs/P3_SINGLE_SESSION_DIAGNOSTIC_v0.1.md`
-11. `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
-12. `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
-13. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
-14. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
-15. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
-16. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
-17. this file
+11. `docs/P3_BALANCED_OWNER_RERUN_DIAGNOSTIC_v0.1.md`
+12. `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
+13. `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
+14. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
+15. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
+16. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
+17. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
+18. this file
 
 ## Product boundary
 
@@ -112,13 +113,15 @@ Current broad directions are design hypotheses for bank construction, not valida
 
 ## P3 owner-run checkpoint
 
-One P3 owner session was completed with CER inactive.
+Two owner P3 sessions have now been completed with CER inactive.
 
-Design:
+Shared design:
 - 7 active directions;
 - 14 three-image trials;
 - every direction shown 6 times;
 - every one of the 21 direction pairs co-occurred exactly twice.
+
+### First owner run, before exact slot balancing
 
 Raw result:
 - Mastery 5/6;
@@ -129,27 +132,57 @@ Raw result:
 - Exploration 0/6;
 - Influence 0/6.
 
-Critical findings:
-1. **Mastery and Protection are tied.** Current P3 result UI incorrectly names Mastery as the unique most-selected direction despite a 0 p.p. gap.
-2. Both Mastery exemplars contributed wins (3/3 + 2/3), and both Protection exemplars contributed wins (3/3 + 2/3). This is stronger internal stimulus consistency than the other active directions in this run.
-3. Connection and Opportunity are exemplar-dependent: one exemplar produced 2/3 wins while the other produced 0/3.
-4. Influence is cross-format unstable: earlier pairwise owner runs gave 4/7 and 6/7 wins, while P3 gave 0/6 selections.
-5. Slot placement is not balanced in the current P3 plan. The participant selected top/middle/bottom slots 3/3/8 times; Protection appeared bottom 4/6, Influence middle 4/6, Autonomy top 4/6.
-6. Exact slot balancing is guaranteed for the current design: the trial↔stimulus incidence graph is 3-regular bipartite and can be decomposed into three perfect matchings. Assigning those matchings to top/middle/bottom makes every exemplar appear once in each slot.
-7. Plackett–Luce output is research-only. Near-separation makes its normalized values look more precise than 14 trials justify.
+This run exposed two technical faults:
+1. exact ties were broken incorrectly by result sorting;
+2. stimulus/direction positions were not balanced.
 
 Canonical diagnostic: `docs/P3_SINGLE_SESSION_DIAGNOSTIC_v0.1.md`.
+
+### Balanced owner rerun
+
+Source schema: `2rasi.priolens.p3.research-v0.3`
+Seed: `mthh8pds-ucwagn`
+
+The corrected planner achieved exact balance:
+- every exemplar appears once in each of the 3 slots across its three presentations;
+- every direction appears 2/2/2 across the 3 slots.
+
+Raw result:
+- Mastery 6/6;
+- Connection 3/6;
+- Protection 3/6;
+- Exploration 1/6;
+- Opportunity 1/6;
+- Autonomy 0/6;
+- Influence 0/6.
+
+Critical findings:
+1. **Tie-safe rendering and exact slot balancing now work.**
+2. Mastery is the only direction with perfect two-exemplar support in the balanced run: `mastery-01` 3/3 and `mastery-02` 3/3.
+3. Mastery is also perfectly stable across internal rounds (3/3 + 3/3) and its six wins are distributed 2/2/2 across the three slots.
+4. Influence remains 0/6 after exact position balancing. The earlier P3 collapse therefore cannot be explained only by aggregate slot imbalance.
+5. Autonomy also remains 0/6 across both P3 owner runs.
+6. Protection falls from 5/6 to 3/6 after seed/context change; Connection rises from 2/6 to 3/6. Middle directions are context-sensitive in these owner runs.
+7. Overall median RT is ~2.06 s; excluding the first orientation trial it is ~1.97 s. P3 is therefore feasible as a low-deliberation owner UX, but this is not participant validation.
+8. Plackett–Luce output becomes extreme (`Mastery ~0.978`) under near-separation and 14 trials. It remains research/debug only and must not be interpreted as psychological strength.
+9. Chosen slots were 4/7/3 despite exactly balanced exposure. The mobile 2+1 layout remains geometrically asymmetric even though aggregate slot exposure is balanced.
+10. Repeating the same 14 historical images with the same owner now adds little and increases familiarity contamination.
+
+Canonical balanced rerun diagnostic: `docs/P3_BALANCED_OWNER_RERUN_DIAGNOSTIC_v0.1.md`.
 Technical specs:
 - `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
 - `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
 
 ## Historical source artifacts recovered
 
-The following historical artifacts are now explicitly part of the source-of-truth recovery path:
+The following historical/current artifacts are now explicitly part of the source-of-truth recovery path:
 
 - `priolens_working_beta_v03.html` — File Library; internal schema `working-v0.3`; 28-pair core plus explicit blind `2×28` research mode;
 - `priolens_working_beta-4.html` — File Library; internal schema `working-v0.2`; same eight directions and 16 standalone stimuli, with optional calibration after the core result;
-- current uploaded `decision_drivers_8x8_prototype_v0.4.html` — readable and verified as a ConflictLab-lineage **12-duel pairwise 8-driver prototype**, not the P3 three-image runtime.
+- `decision_drivers_8x8_prototype_v0.4.html` — ConflictLab-lineage 12-duel pairwise 8-driver prototype, not P3;
+- `priolens_p3_standalone_v03.html` — recovered/current P3 three-image standalone runtime with embedded historical stimuli, schema `2rasi.priolens.p3.research-v0.3`, tie-safe result and exact slot balancing.
+
+The previous blocker “actual P3 runtime/source not identified” is closed.
 
 Do not infer version order from filenames alone. Canonical recovery rules: `docs/NEW_CHAT_SOURCE_OF_TRUTH_v0.1.md`.
 
@@ -172,21 +205,22 @@ Current workflow:
 
 ## Immediate next action
 
-The P3 correction is now specified, not conceptually blocked.
+The P3 tie and slot-correction cycle is complete.
 
-Implementation requirements:
-1. implement `P3_TIE_SAFE_RESULT_SPEC_v0.1.md`;
-2. implement `P3_SLOT_BALANCING_SPEC_v0.1.md`;
-3. rerun the same 7-direction P3 owner check with a new seed;
-4. inspect whether the Influence collapse persists after position balancing;
-5. keep CER inactive until its construct decision is resolved.
+Do **not** run a third owner session on the same 14 historical stimuli for validation claims.
 
-Current implementation blocker:
-- the actual **P3 three-image runtime/source** is still not identified in the PrioLens branch or recovered uploads;
-- `decision_drivers_8x8_prototype_v0.4.html` is readable, but it is a 12-duel pairwise predecessor and therefore cannot be patched as the P3 runtime;
-- `priolens_working_beta_v03.html` and `priolens_working_beta-4.html` are also pairwise runtimes and must not be substituted for P3.
+Next research move:
+1. keep P3 as a viable research presentation variant, not yet the public architecture;
+2. build the next materially different **non-CER** research bank from the impulse-curated KEEP/HOLD candidates, prioritizing semantic diversity over equal historical quotas;
+3. preserve exemplar identity so direction-level aggregation can be challenged rather than assumed;
+4. use the new bank to test whether repeated choice patterns survive materially different exemplars;
+5. separately decide whether the mobile P3 2+1 geometry is acceptable or needs a different spatial solution before external testing;
+6. keep CER inactive until the construct decision is resolved.
 
-Code changes require recovery of the actual P3 HTML/source artifact.
+Current methodological blocker:
+- the historical two-exemplar bank is now more limiting than the P3 counting algorithm;
+- several historical AUT/INF/EXP/OPP exemplars are already known to be weak or cross-loaded;
+- repeated owner exposure to the same old bank creates familiarity contamination.
 
 ## Guardrails
 
@@ -199,6 +233,7 @@ Code changes require recovery of the actual P3 HTML/source artifact.
 - do not treat P3 triple wins as literal observations between the two unchosen items;
 - do not break exact result ties by array/sort order;
 - do not treat Plackett–Luce weights as psychological strength;
+- do not treat repeated owner runs on the same historical bank as validation;
 - do not treat ConflictLab v0.4 lineage as the current PrioLens scoring model;
 - keep the public experience aligned with **For Fun with Wisdom**.
 
