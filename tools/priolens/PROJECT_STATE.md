@@ -10,20 +10,21 @@ Draft PR: #9
 
 1. `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/STIMULUS_IMPULSE_AUDIT_v0.1.md`
-4. `docs/GALLERY_IMPULSE_AUDIT_v0.1.csv`
-5. `docs/GALLERY_IMPULSE_CURATION_v0.1.md`
-6. `docs/RECENT_GENERATED_IMPULSE_AUDIT_v0.1.md`
-7. `docs/CANDIDATE_BANK_MATRIX_v0.3.md`
-8. `docs/CER_VISUAL_VIABILITY_CHECK_v0.1.md`
-9. `docs/P3_SINGLE_SESSION_DIAGNOSTIC_v0.1.md`
-10. `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
-11. `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
-12. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
-13. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
-14. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
-15. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
-16. this file
+3. `docs/NEW_CHAT_SOURCE_OF_TRUTH_v0.1.md`
+4. `docs/STIMULUS_IMPULSE_AUDIT_v0.1.md`
+5. `docs/GALLERY_IMPULSE_AUDIT_v0.1.csv`
+6. `docs/GALLERY_IMPULSE_CURATION_v0.1.md`
+7. `docs/RECENT_GENERATED_IMPULSE_AUDIT_v0.1.md`
+8. `docs/CANDIDATE_BANK_MATRIX_v0.3.md`
+9. `docs/CER_VISUAL_VIABILITY_CHECK_v0.1.md`
+10. `docs/P3_SINGLE_SESSION_DIAGNOSTIC_v0.1.md`
+11. `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
+12. `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
+13. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
+14. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
+15. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
+16. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
+17. this file
 
 ## Product boundary
 
@@ -142,9 +143,21 @@ Technical specs:
 - `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
 - `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
 
+## Historical source artifacts recovered
+
+The following historical artifacts are now explicitly part of the source-of-truth recovery path:
+
+- `priolens_working_beta_v03.html` — File Library; internal schema `working-v0.3`; 28-pair core plus explicit blind `2×28` research mode;
+- `priolens_working_beta-4.html` — File Library; internal schema `working-v0.2`; same eight directions and 16 standalone stimuli, with optional calibration after the core result;
+- current uploaded `decision_drivers_8x8_prototype_v0.4.html` — readable and verified as a ConflictLab-lineage **12-duel pairwise 8-driver prototype**, not the P3 three-image runtime.
+
+Do not infer version order from filenames alone. Canonical recovery rules: `docs/NEW_CHAT_SOURCE_OF_TRUTH_v0.1.md`.
+
 ## Gallery provenance
 
-Part of Gallery was influenced by ConflictLab v0.4 axes (`aw`, `cs`, `cr`) and visible-cue rules. This explains image ancestry but is not the PrioLens scoring model. Do not use old ConflictLab labels to rescue current mappings.
+Part of Gallery was influenced by ConflictLab v0.4-era work and visible-cue rules. The recovered `decision_drivers_8x8_prototype_v0.4.html` also shows that AUT/CER/EXP/MAS/CON/INF/PRO/OPP were already being explored in the ConflictLab repository lineage before the later PrioLens working betas. This explains ancestry but is not current scoring validation.
+
+Do not use historical labels to rescue current mappings.
 
 ## Solo workflow
 
@@ -169,11 +182,11 @@ Implementation requirements:
 5. keep CER inactive until its construct decision is resolved.
 
 Current implementation blocker:
-- no identifiable P3 runtime/source exists in the PrioLens branch;
-- two newly uploaded files named `decision_drivers_8x8_prototype_v0.3.html` and `decision_drivers_8x8_prototype_v0.4.html` are not currently retrievable through the active file mount/search layer, so their relevance cannot be verified;
-- code changes require a readable P3 HTML/source artifact.
+- the actual **P3 three-image runtime/source** is still not identified in the PrioLens branch or recovered uploads;
+- `decision_drivers_8x8_prototype_v0.4.html` is readable, but it is a 12-duel pairwise predecessor and therefore cannot be patched as the P3 runtime;
+- `priolens_working_beta_v03.html` and `priolens_working_beta-4.html` are also pairwise runtimes and must not be substituted for P3.
 
-Do not substitute the old pairwise `priolens_working_beta` runtime for the missing P3 source.
+Code changes require recovery of the actual P3 HTML/source artifact.
 
 ## Guardrails
 
@@ -186,7 +199,7 @@ Do not substitute the old pairwise `priolens_working_beta` runtime for the missi
 - do not treat P3 triple wins as literal observations between the two unchosen items;
 - do not break exact result ties by array/sort order;
 - do not treat Plackett–Luce weights as psychological strength;
-- do not treat ConflictLab v0.4 axes as the current PrioLens scoring model;
+- do not treat ConflictLab v0.4 lineage as the current PrioLens scoring model;
 - keep the public experience aligned with **For Fun with Wisdom**.
 
 ## AI Review Harness
