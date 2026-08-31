@@ -172,7 +172,7 @@ export function smokeTestOpen14Planner(iterations=1000){
   return {iterations, passed:true, familySetVersion:'open-spectrum-14-v0.2'};
 }
 
-if(import.meta.url===`file://${process.argv[1]}`){
+if(typeof process!=='undefined' && process?.argv?.[1] && import.meta.url===`file://${process.argv[1]}`){
   if(process.argv[2]==='--smoke-1000'){
     console.log(JSON.stringify(smokeTestOpen14Planner(1000),null,2));
   } else {
