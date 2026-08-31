@@ -76,6 +76,8 @@ Keep the roles asymmetric: one person has the problem; the other initiates help.
 
 > **Have my contribution or standing seen and acknowledged.**
 
+A neighboring AgileBrain description is useful here only as a coverage check: its Recognition language centers on important efforts / contributions being acknowledged and on esteem for one's contributions. PrioLens does not inherit AgileBrain's scoring or unmet-need claims.
+
 RECOGNITION must not collapse into:
 - BELONGING — simply being included;
 - CONNECTION — interpersonal contact;
@@ -84,9 +86,9 @@ RECOGNITION must not collapse into:
 - SUCCESS — reaching an endpoint;
 - prestige symbolism with no visible acknowledgement event.
 
-Recognition is the less settled family. These two mechanisms are intentionally different and should be rejected if acknowledgement is not the first read.
+Recognition remains the less settled family. These two mechanisms are intentionally different and should be rejected if acknowledgement is not the first read.
 
-### RECOGNITION-A — peer acknowledgement
+### RECOGNITION-A — modest peer acknowledgement
 
 **Mechanism**
 
@@ -108,33 +110,35 @@ A small neutral peer group visibly directs a brief round of applause / appreciat
 **Design guardrail**
 Keep the context ordinary and the acknowledgement modest.
 
-### RECOGNITION-B — contribution-specific appreciation
+### RECOGNITION-B — visible credit / being singled out
 
 **Mechanism**
 
-Two peers stand beside a visible ordinary completed contribution / useful result. One peer clearly points to or touches the contribution while giving the contributor a simple appreciative handshake / shoulder-pat gesture. The contributor is the recipient of acknowledgement, not merely greeting someone.
+Inside a small ordinary peer group, one person clearly uses an open-hand presenting / crediting gesture toward another person. The rest of the group visibly redirects attention toward the acknowledged person. No stage, prize, certificate, handshake or completed technical object is needed.
 
 **First-read target**
-> `mano indėlis pastebėtas`
+> `mano indėlis / vaidmuo pastebėtas ir pripažintas`
 
 **Why this mechanism is useful**
-- acknowledgement is tied to a visible contribution rather than generic popularity;
-- materially different from group applause;
-- can test whether recognition of contribution behaves differently from general social attention.
+- removes the old handshake/deal ambiguity;
+- does not require a trophy or material reward;
+- isolates the social event of giving one person visible credit;
+- materially different from applause while still testing acknowledgement.
 
 **Main confounds to watch**
-- handshake = greeting/deal;
-- completed object = SUCCESS;
-- visible workmanship = MASTERY.
+- introduction / presentation rather than recognition;
+- BELONGING if all people receive equal attention;
+- status if the acknowledged person is visually elevated or dressed differently.
 
 **Design guardrail**
-The completed contribution should be simple and visually secondary. The social acknowledgement event must dominate.
+All people should remain visually equal except for the momentary direction of group attention. The acknowledgement gesture, not hierarchy, should create the asymmetry.
 
 ## Rejected mechanism classes for now
 
 Do not use as first prototypes:
 - trophies / medals / podiums — too close to winning/status/sport;
 - expensive rewards / gifts — RESOURCE dominates;
+- handshake beside completed work — greeting/deal/success/mastery ambiguity is too high;
 - child/rescue/emergency CARE — duty, vulnerability and danger dominate;
 - romantic couple CARE — relationship valence dominates;
 - text-based praise boards or certificates — reading/text becomes the mechanism;
@@ -147,7 +151,7 @@ Before creating any missing stimulus, review only these questions:
 1. Does CARE-A capture the intended **small self-sacrifice / altruism** rather than merely protection?
 2. Does CARE-B capture **help without request** strongly enough in one still frame?
 3. Is RECOGNITION-A worth testing despite applause/celebration leakage?
-4. Is RECOGNITION-B readable enough, or does it collapse into handshake/success/mastery?
+4. Does RECOGNITION-B read as **giving visible credit**, or merely introducing someone?
 
 If a mechanism fails, replace the mechanism. Do not compensate with increasingly artificial visual staging.
 
@@ -156,6 +160,6 @@ If a mechanism fails, replace the mechanism. Do not compensate with increasingly
 - CARE-A: **TRY**
 - CARE-B: **TRY**
 - RECOGNITION-A: **TRY**
-- RECOGNITION-B: **HOLD / weakest of the four**
+- RECOGNITION-B: **TRY, but boundary-sensitive**
 
 Do not generate images yet.
