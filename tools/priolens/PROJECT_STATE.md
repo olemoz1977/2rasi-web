@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / DIRECTION-FIRST AGGREGATION NOT SUPPORTED / OT REPLICATION PACKAGE READY
+Status: ACTIVE RESEARCH / OBSERVABLE REPLICATION TEXT GATE PASSED NARROWLY / HUMAN SEMANTIC PILOT NEXT
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -8,29 +8,17 @@ Draft PR: #9
 
 ## Product boundary
 
-PrioLens remains a short visual-choice experience:
-
-```text
-START
-→ visual pair
-→ choose
-→ ...
-→ short result / mirror
-```
+PrioLens remains a short visual-choice experience.
 
 Working principle:
-
 > **For Fun, but with Wisdom.**
 
 Public constraints:
-- no mandatory free text;
-- no per-choice explanations;
-- no diagnosis/personality/hidden-self claims;
+- visual pair → quick choice → short session mirror;
+- no mandatory free text or per-choice explanation;
+- no personality/diagnosis/hidden-self claims;
 - `no_clear_choice` allowed;
-- target duration about 2–4 minutes;
-- working interaction budget about 12–18 meaningful choices, 20 soft ceiling.
-
-Methodological complexity belongs behind the product.
+- target about 2–4 minutes / roughly 12–18 meaningful choices.
 
 ## Safe inference boundary
 
@@ -40,199 +28,137 @@ SCENE PROPERTY / CONTROLLED CONTRAST
 → EMPIRICAL INTERPRETATION
 ```
 
-Higher-order psychological labels are allowed only if cross-context human evidence earns them.
+Higher-order psychological labels are not approved scoring units.
 
-## Broad directions status
+## Broad-direction gates
 
-AUT, CER, EXP, MAS, CON, INF, PRO, OPP remain research hypotheses only.
+### INF Gate D1
+Result: **NOT PASSED / PARTIAL_IDENTITY / HOLD**.
 
-They are **not approved scoring units**.
+Useful local external-steering patterns survived, but broad Influence identity did not generalize across opponents without routing/control/fairness/observe-vs-act confounds.
 
-Exactly eight scores are not a product requirement.
+### MAS Gate D2
+Claude: **PARTIAL_IDENTITY**.
+Grok: **LOCAL_ONLY**.
 
-## Gate D1 · INF
+Decision: **MAS NOT PASSED at direction level**.
 
-Result:
-> **NOT PASSED / PARTIAL_IDENTITY / HOLD**
-
-Useful local pattern survived around external steering/redirection, but third-opponent tests collapsed into routing/control, fairness, observe-vs-act or hidden shared consequence.
-
-Do not search another INF opponent and do not relabel routing/control as Influence.
-
-## Gate D2 · MAS
-
-MAS was the strongest static-image falsification target.
-
-Claude:
-- Stage 1 found a recurring correctness/quality family;
-- Stage 2 final: **PARTIAL_IDENTITY**.
-
-Grok:
-- Stage 1 found **no recurring broader idea** across the intended MAS variants;
-- Stage 2 final: **LOCAL_ONLY**.
-
-Decision:
-> **MAS Gate D2 NOT PASSED at direction level.**
-
-Do not render the D2 set as Mastery validation.
-
-## Architecture conclusion after D1 + D2
-
-Current evidence supports local visible contrasts more strongly than this assumption:
-
-```text
-broad direction
-→ several different scene mechanisms
-→ aggregate choices into one direction score
-```
-
-This does not prove broad directions are psychologically invalid. It means the current static-image architecture has not earned direction-first aggregation.
-
-Source: `docs/ARCHITECTURE_REASSESSMENT_AFTER_D1_D2_v0.1.md`.
+Consequence:
+> direction-first aggregation is not supported enough to freeze.
 
 ## Active architecture
 
-### A. Direction-first aggregation
-Status: **NOT SUPPORTED ENOUGH TO FREEZE**.
-
-### B. Observable-tradeoff-first
-
 ```text
-controlled local contrast
+observable local tradeoff
 → multiple scene realizations
 → rapid participant choices
 → repeated observable session pattern
 → descriptive mirror
 ```
 
-Status: **ACTIVE SAFE BASELINE**.
+Broad labels may return only if later human evidence earns them.
 
-### C. Empirical-cluster discovery
+## Observable tradeoff taxonomy
 
-```text
-validated local contrasts
-→ human semantic + choice data
-→ empirical clusters
-→ provisional higher-order labels if earned
-```
+First-wave candidates:
+- OT-01 · OBSERVE STATE ↔ CHANGE STATE
+- OT-02 · LOCAL CONFIGURATION ↔ SHARED-PROCESS STEERING
+- OT-03 · PRESERVE FORM/STATE ↔ REFINE FORM/QUALITY
+- OT-05 · PRECISION POSITIONING ↔ ROUTE STEERING
 
-Status: **RECOMMENDED DISCOVERY PATH**.
-
-## Observable tradeoff taxonomy v0.1
+Held:
+- OT-04 · reciprocal exchange ↔ independent quality execution
+- OT-06 · reciprocal relation ↔ shared-system steering
 
 Source: `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md`.
 
-First-wave candidates:
-1. OT-01 · OBSERVE STATE ↔ CHANGE STATE
-2. OT-02 · LOCAL CONFIGURATION ↔ SHARED-PROCESS STEERING
-3. OT-03 · PRESERVE FORM/STATE ↔ REFINE FORM/QUALITY
-4. OT-05 · PRECISION POSITIONING ↔ ROUTE STEERING
-
-Held due higher social-modality risk:
-- OT-04 · RECIPROCAL EXCHANGE ↔ INDEPENDENT QUALITY EXECUTION
-- OT-06 · RECIPROCAL RELATION ↔ SHARED-SYSTEM STEERING
-
-These are observable tradeoffs, not psychological traits.
-
 ## OT replication gate v0.1
 
-Prepared text-level replication set:
-- `docs/OT_REPLICATION_CONCEPT_SET_v0.1.md`
-- `docs/OT_REPLICATION_BLIND_STAGE1_v0.1.md`
-- `docs/OT_REPLICATION_STAGE2_REVEAL_v0.1.md`
-
-Design:
+12 text concepts were built:
 - 4 OT families;
-- 3 materially different scene realizations per family;
-- 12 blind IDs total;
-- family order interleaved;
-- A/B polarity reversed across realizations;
-- no psychological labels in Stage 1.
+- 3 realizations per family;
+- interleaved order;
+- reversed A/B polarity;
+- blind family recovery before reveal.
 
-Hidden assignment:
-- OT-01: X02, X05, X09
-- OT-02: X04, X07, X11
-- OT-03: X01, X06, X12
-- OT-05: X03, X08, X10
+Claude locked Stage 1 recovered **all four intended families with exact membership and polarity**.
 
-Stage 1 task:
-- describe each local A/B contrast;
-- flag nuisance asymmetry;
-- independently group pairs that instantiate the same recurring relation;
-- track polarity;
-- judge whether grouping survives scene/domain changes.
+Claude Stage 2 final:
+> **OBSERVABLE_REPLICATION_SUPPORTED**
 
-Stage 2 task:
-- reveal intended OT families only after Stage 1 is locked;
-- compare recovered blind groups with intended families;
-- classify each OT as STRONG_REPLICATION / PARTIAL_REPLICATION / LOCAL_ONLY / NO_REPLICATION;
-- classify architecture as OBSERVABLE_REPLICATION_SUPPORTED / PARTIAL / WEAK / FAIL.
+Formal reason: 4/4 intended families were recovered before reveal.
 
-Architecture-level SUPPORTED requires at least 3 of 4 intended OT families to show clear cross-scene identity in the locked blind review, not merely after reveal.
+Critical qualification:
+- OT-01 repeats reveal-device mechanics;
+- OT-02 repeats local-station → downstream-branch structure;
+- OT-05 overlaps structurally with OT-02 and shares a recurring routing pole;
+- therefore current evidence may partly reflect **template replication**, not fully independent semantic replication.
 
-AI review is concept screening only. Human semantic replication remains required before public interpretation.
+Strongest family: **OT-03 Preserve ↔ Refine**.
+Weakest family: **OT-05 Precision positioning ↔ Route steering**.
+Possible merge/restructure issue: **OT-02 + OT-05** around routing vs non-routing.
 
-## Immediate next action
+Source: `docs/CLAUDE_OT_REPLICATION_STAGE2_RESULT_v0.1.md`.
 
-Run `docs/OT_REPLICATION_BLIND_STAGE1_v0.1.md` in a fresh independent reviewer session.
+## Decision after Claude OT gate
 
-Do not reveal family names or assignments.
+Do not spend another long cycle seeking AI consensus before seeing human data.
 
-Lock the verbatim Stage 1 response before sending `docs/OT_REPLICATION_STAGE2_REVEAL_v0.1.md` in the same reviewer session.
+AI reviewers are now treated as concept/confound filters, not validators.
 
-Preferred sequence:
-1. Claude Stage 1 → lock → Stage 2;
-2. Grok Stage 1 → lock → Stage 2 with the exact same package;
-3. compare recovery of the four OT families;
-4. render only families that survive text-level replication.
+Next evidence source must be real participants.
 
-Do not generate images yet.
+## Human semantic pilot v0.1
 
-## Product interpretation direction
+Defined in `docs/HUMAN_SEMANTIC_PILOT_v0.1.md`.
 
-A result does not need eight percentages.
+Target first pass:
+- 10–15 adults;
+- 6 rendered pairs;
+- 3 OT-03 pairs: X01, X06, X12;
+- 3 OT-01 pairs: X02, X05, X09.
 
-Safer session mirror structure:
-- which observable tradeoffs repeatedly won;
-- which were stable across scenes;
-- which changed with context;
-- where no clear pattern emerged.
+Choice phase:
+- neutral `Kurį renkiesi?`;
+- A / B / `Nė vienas aiškiai`;
+- random order and side;
+- mechanical response time may be recorded but is not psychological evidence.
 
-Example form only:
-> `Kai rinkaisi greitai, šioje sesijoje dažniau rinkaisi pakeisti būseną nei tik ją pamatyti.`
+Research semantic phase after choices:
+> `Kuo šie du vaizdai tau labiausiai skiriasi?`
 
-This is descriptive and session-bound, not a hidden-self claim.
+Primary question:
+> Do participants independently describe the same observable relation across all three scenes in a family?
 
-## Distinction from 2Pair
+No psychological score is produced from this pilot.
 
-2Pair can remain pair-local and reflective.
+## Immediate execution
 
-PrioLens remains distinct if it tests whether the **same observable tradeoff** recurs across multiple scene families and produces a short repeated-pattern mirror.
+Start rendering **OT-03 X12 wooden frame**.
+
+Reason:
+- OT-03 had strongest text-level cross-scene identity;
+- X12 avoids X06 cradle-complexity issue;
+- Preserve and Refine can be matched closely in one scene.
+
+Render rule:
+1. generate X12 Refine standalone base first;
+2. inspect/accept/reject;
+3. only then create Preserve as matched controlled variant;
+4. one image task at a time;
+5. no collage, labels or multi-state image.
+
+After X12: X01 → X06 → OT-01.
 
 ## AI Review Harness
 
-Vercel harness is deployed and reaches AI Gateway.
-
-Paid model execution is deferred because Vercel requires a minimum paid credit top-up plus fees/tax. Do not spend more time on billing now.
-
-Preserve harness for later. Temporary fallback: fresh manual Claude/Grok sessions with Stage 1 locked before reveal.
-
-## Render rule
-
-When rendering becomes justified:
-1. one image task at a time;
-2. new scene = new generation context;
-3. controlled edit of accepted base where appropriate;
-4. match context/legitimacy/valence/salience;
-5. reject labels, collages, multi-state images and unrelated scene changes.
-
-No current OT family is cleared for rendering until text-level replication survives.
+Vercel harness is deployed and reaches AI Gateway. Paid model execution is deferred because of paid-credit cost. Do not spend more time on billing now.
 
 ## Source-of-truth order
 
 1. `PROJECT_STATE.md`
-2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/OT_REPLICATION_CONCEPT_SET_v0.1.md`
+2. `docs/HUMAN_SEMANTIC_PILOT_v0.1.md`
+3. `docs/CLAUDE_OT_REPLICATION_STAGE2_RESULT_v0.1.md`
 4. `docs/OT_REPLICATION_BLIND_STAGE1_v0.1.md`
 5. `docs/OT_REPLICATION_STAGE2_REVEAL_v0.1.md`
 6. `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md`
@@ -240,14 +166,9 @@ No current OT family is cleared for rendering until text-level replication survi
 8. `docs/GROK_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
 9. `docs/CLAUDE_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
 10. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
-11. `docs/AI_REVIEW_HARNESS_v0.1.md`
-12. `docs/PRIOLENS_VS_2PAIR_BOUNDARY_v0.1.md`
-13. `docs/DIRECTION_OPERATIONALIZABILITY_AUDIT_v0.1.md`
-14. `docs/DIRECTION_SET_STRUCTURE_AUDIT_v0.1.md`
-15. older matched-edge/global-stimulus material as historical context only.
 
 ## Recovery instruction
 
-If context is lost, start from this file.
+If context is lost, start here.
 
-Do not restart INF edge-searching, do not start another broad-direction Gate D3, do not assume the eight directions are score units, do not return to Vercel billing now, do not generate images before OT replication survives, and do not turn the public product into a long reflection questionnaire.
+Do not restart INF edge-searching, do not return to broad-direction scoring, do not reopen Vercel billing, and do not continue AI-review loops before the first human semantic pilot.
