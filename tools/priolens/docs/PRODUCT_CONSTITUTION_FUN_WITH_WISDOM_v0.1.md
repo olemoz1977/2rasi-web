@@ -15,7 +15,9 @@ The user experience should feel closer to a short visual game than to a psycholo
 
 Working product phrase:
 
-> **For Fun, but with Wisdom.**
+> **For Fun with Wisdom**
+
+This wording is canonical. Do not rewrite it as `For Fun, but with Wisdom` or add punctuation that changes the phrase.
 
 ## 2. Fundamental stimulus unit
 
