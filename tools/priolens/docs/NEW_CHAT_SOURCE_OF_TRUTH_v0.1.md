@@ -1,139 +1,102 @@
 # PrioLens new-chat source of truth v0.1
 
 Status: ACTIVE HANDOFF / CONTEXT-LOSS GUARD
-Updated: 2026-08-31 20:52 Europe/Vilnius
+Updated: 2026-08-31 22:45 Europe/Vilnius
 
 ## Why this file exists
 
-PrioLens work spans multiple chats and uploaded HTML artifacts. Chat history can be truncated, archived or fail to surface older attachments. Therefore **conversation history is not the project source of truth**.
+PrioLens work spans multiple chats, repos and uploaded artifacts. Conversation history is not the project source of truth.
 
-Two past failure modes must not recur:
-1. an attachment that still existed in File Library was treated as unavailable;
-2. an older chat summary was followed after the repo had already advanced beyond it.
+Past failure modes that must not recur:
+1. treating a File Library artifact as missing because it was not attached to the current chat;
+2. following an older chat summary after the repo had advanced;
+3. forgetting that `olemoz1977/omesg360` already provides the working Hostinger deployment channel.
 
 ## Startup order for every new PrioLens chat
 
 1. Read `tools/priolens/RESUME_HERE.md`.
 2. Read `tools/priolens/PROJECT_STATE.md`.
-3. Continue only from `PROJECT_STATE.md > Immediate next action`.
-4. Search File Library only if an actual runtime/source artifact is needed.
-5. Open the artifact before making claims about its version, schema, images or behavior.
+3. Read `tools/priolens/docs/NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`.
+4. Continue only from `PROJECT_STATE.md > Immediate next action`.
+5. Search File Library only if an actual historical/runtime artifact is needed.
+6. Open artifacts before making claims about version/schema/content.
 
 If chat memory conflicts with repo state, **repo state wins**.
 
-Do not ask the user to reconstruct already-recorded work unless the required artifact genuinely cannot be recovered from repo or File Library.
+## Current checkpoint
 
-## Current project checkpoint
+The project has moved beyond the old seven-direction bank-building question.
 
-The current checkpoint is no longer the earlier unbalanced P3 run.
+Current facts:
+- Gallery: 223 files / 222 byte-unique images;
+- old-direction curation: 40 KEEP/HOLD, 183 DROP;
+- P3 v0.4 runtime is live on `omesg360.eu/priolens/`;
+- persistent research assets are separated from the deploy-owned runtime;
+- P3 exact slot balance and tie-safe rendering work;
+- latest v0.4 owner run: MAS 5/6, EXP 3/6, PRO 3/6, OPP 2/6, CON 1/6, AUT 0/6, INF 0/6, median RT ~1.51 s;
+- repeated owner runs on the same historical 14 images are familiarity-contaminated and not validation.
 
-Completed:
-- full Gallery impulse audit;
-- 40 Gallery images KEEP/HOLD and 183 DROP for the current direction question;
-- CER is `CONSTRUCT HOLD`;
-- actual P3 three-image runtime has been recovered;
-- tie-safe P3 result rendering has been implemented;
-- exact P3 slot balancing has been implemented;
-- a balanced 7-direction P3 owner rerun has been completed.
+## New active architecture
 
-Balanced P3 rerun result:
-- Mastery 6/6;
-- Connection 3/6;
-- Protection 3/6;
-- Exploration 1/6;
-- Opportunity 1/6;
-- Autonomy 0/6;
-- Influence 0/6;
-- median RT about 2.06 s;
-- no-clear-choice 0/14.
+Do not assume the historical seven/eight directions are exhaustive.
 
-This is a technical/design owner run, not participant validation.
+PrioLens now tests a two-layer idea:
+1. **revealed visual priority** from low-deliberation image choice;
+2. **perceived sufficiency** of broader need domains from a short self-assessment shown after the visual task.
 
-Canonical detail:
-- `docs/P3_BALANCED_OWNER_RERUN_DIAGNOSTIC_v0.1.md`
-- `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
-- `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
+The two are compared, not collapsed into one score.
 
-## Active methodological rule
+Maslow-style levels are only a broad coverage map, not a strict hierarchy and not one global participant stage.
 
-For every image, regardless of historical PASS/HOLD/DROP status:
+Candidate impulse space is deliberately open. Examples include safety/protection, care, belonging, autonomy, control/assertion, recognition/status, mastery, success, exploration, opportunity/reward, certainty/order, authenticity, justice, purpose, immersion and contribution/service.
 
-> **image → what it evokes → possible direction → KEEP / HOLD / DROP / REASSIGN**
+Canonical architecture:
+`NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`.
 
-Do not begin from the old intended label and rationalize backward.
+## Active Gallery rule
 
-Broad directions remain design hypotheses, not validated psychological dimensions.
+Do not restart the whole 223-image audit from zero.
+
+Re-use the existing first-impulse audit and open-code promising images under the broader spectrum:
+
+> **image → first spontaneous pull / meaning → candidate impulse family → KEEP / HOLD / DROP / REASSIGN / NEW-FAMILY**
+
+Do not force images into the historical seven directions.
+Do not sterilize images merely to remove every possible secondary interpretation.
 
 ## Current theoretical boundary
 
 Do not claim:
 - fast = true;
-- fast = instinctive or subconscious;
-- latency = psychological strength;
-- AUT/CER/EXP/MAS/CON/INF/PRO/OPP are established natural human dimensions.
+- fast = subconscious / instinctive;
+- strong response = unmet need;
+- one selected image reveals a Karpman role;
+- direct neural-system activation from an image choice;
+- the current impulse families form a complete validated taxonomy.
 
-Current research framing:
-- low-deliberation visual forced choice may reduce opportunity for deliberate self-presentation;
-- repeated choices across materially different stimuli may reveal session-level choice tendencies;
-- cross-exemplar coherence must be demonstrated rather than assumed.
+Working framing remains:
+> low-deliberation comparative visual choice under reduced self-presentation opportunity.
 
-## Known runtime/source artifacts
+## Runtime / hosting
 
-### `priolens_working_beta_v03.html`
-File Library artifact.
-Verified internal schema: `2rasi.priolens.session.working-v0.3`.
-Contains eight directions, 16 embedded standalone stimuli, 28-pair core and blind `2×28` research mode with intermission.
+Research runtime:
+`omesg360.eu/priolens/`
 
-### `priolens_working_beta-4.html`
-File Library artifact.
-Verified internal schema: `2rasi.priolens.session.working-v0.2`.
-Contains the same eight directions and 16 embedded standalone stimuli, 28-pair core and optional calibration flow.
+Hostinger deployment is managed through:
+`olemoz1977/omesg360`
 
-Do not infer chronology from the filename `-4`; inspect the internal schema.
-
-### `decision_drivers_8x8_prototype_v0.4.html`
-ConflictLab-lineage historical artifact.
-Pairwise 12-duel prototype with AUT/CER/EXP/MAS/CON/INF/PRO/OPP already present. It is genealogy evidence, not the current P3 runtime or current scoring validation.
-
-### `priolens_p3_standalone_v03.html`
-Current/recovered standalone P3 research runtime.
-Verified schema: `2rasi.priolens.p3.research-v0.3`.
-Contains embedded historical stimuli, tie-safe result logic and exact slot balancing. It no longer requires loading the old beta before a run.
-
-## Gallery
-
-`Gallery.zip` contains 223 files / 222 byte-unique images.
-The full impulse audit is already complete. Do not repeat it from scratch.
-
-Canonical outputs:
-- `docs/GALLERY_IMPULSE_AUDIT_v0.1.csv`
-- `docs/GALLERY_IMPULSE_CURATION_v0.1.md`
-- `docs/CANDIDATE_BANK_MATRIX_v0.3.md`
-
-## CER
-
-CER remains `CONSTRUCT HOLD`, not an image-production gap.
-Existing candidates mostly collapse into confirmation, order, permission, completion, precision or other proxies.
-
-Do not generate more CER images until the construct is explicitly retained, narrowed, replaced or dropped.
+Persistent Gallery/research assets must remain outside the deploy-owned PrioLens runtime target.
 
 ## Immediate next action
 
-Do not restart Gallery audit.
-Do not restart P3 tie/slot debugging.
-Do not run a third owner session on the same 14 historical images as validation.
-
-The active next research move is:
-1. build the next materially different **non-CER** research bank from impulse-curated KEEP/HOLD candidates;
-2. prioritize semantic/mechanism diversity over historical direction quotas;
-3. preserve exemplar identity in all data;
-4. use the new bank to test whether repeated choice patterns survive materially different exemplars;
-5. keep P3 as a viable research presentation variant while separately deciding whether the mobile 2+1 geometry is acceptable;
-6. keep CER inactive until its construct decision is resolved.
+1. Re-open the 40 KEEP/HOLD set first, plus selected high-potential historical DROPs.
+2. Open-code them against the wider candidate impulse space.
+3. Allow `NEW-FAMILY`.
+4. Produce a compact candidate impulse spectrum with representative engaging images.
+5. Only then decide the next visual-priority bank and comparison design.
+6. Separately draft the perceived-sufficiency macro-domain layer, shown after the visual task.
 
 ## Final guardrail
 
-A missing message or missing current-chat attachment is never evidence that completed project work disappeared.
-
 Recover in this order:
-`RESUME_HERE.md → PROJECT_STATE.md → File Library artifact if needed → only then conversation history`.
+`RESUME_HERE.md → PROJECT_STATE.md → current architecture note → File Library artifact if needed → only then conversation history`.
