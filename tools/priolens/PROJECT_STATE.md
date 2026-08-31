@@ -12,9 +12,10 @@ Draft PR: #9
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
 3. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
 4. `docs/CANDIDATE_BANK_MATRIX_v0.2.md`
-5. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
-6. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
-7. this file
+5. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
+6. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
+7. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
+8. this file
 
 ## Product boundary
 
@@ -111,13 +112,24 @@ Current working matrix: `docs/CANDIDATE_BANK_MATRIX_v0.2.md`.
 - PRO: S08 umbrella is still the clearest provisional anchor; more diverse safeguarding scenes are needed.
 - OPP: prepared useful materials + ripe harvest/basket are current useful candidates.
 
-## Gallery status
+## Gallery provenance and status
 
 `Gallery.zip` contains 223 files / 222 byte-unique images and has already been reviewed twice.
 
-Do not repeatedly re-review the full archive without a new question.
+Important new provenance fact: at least part of Gallery generation was influenced by **ConflictLab v0.4** stimulus logic.
 
-Use Gallery candidates where useful, then generate only genuinely missing semantic exemplars.
+Archived v0.4-era generator used three signal axes:
+- `aw`: withdrawal ↔ approach;
+- `cs`: uncertainty tolerance ↔ clarity seeking;
+- `cr`: release ↔ control.
+
+It also used F1–F7 visible-cue rules, including understandability without explanation and allowing the same cue to be chosen for different reasons.
+
+Therefore Gallery is a **hybrid-provenance corpus**, not a bank originally optimized only for AUT/CER/EXP/MAS/CON/INF/PRO/OPP.
+
+Do not repeatedly re-review the full archive. But a new targeted review is justified when a current PrioLens gap plausibly overlaps a v0.4 signal ancestry.
+
+Canonical provenance note: `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`.
 
 ## Solo research constraint
 
@@ -132,15 +144,17 @@ Current workflow:
 
 ## Immediate next action
 
-The practical v0.2 bank matrix now exists.
+Do **not** continue generating CER scenes yet.
 
-Next: fill the thinnest bank **CER** one scene at a time.
+First perform a targeted provenance-aware CER recovery pass through Gallery using legacy `cs+` (clarity-seeking) ancestry as a search hypothesis.
 
-CER design hypothesis: certainty / clarity / settled or known state.
+Goal:
+- find existing images that naturally evoke clarity / knownness / predictability / reduced ambiguity;
+- reject images that mainly read as precision, completion or technical correctness;
+- do not assume `CER = cs+` as a validated identity;
+- generate new CER scenes only after this targeted legacy recovery is exhausted.
 
-Do not make cosmetic checklist variants. Seek materially different everyday scenes where the relevant idea is understandable almost instantly. Do not reject a useful scene merely because it also carries a secondary cue; reject it when the intended reading needs explanation or an obvious nuisance is likely to dominate preference.
-
-After CER has 3–4 credible candidates, move to PRO, then other gaps from the matrix.
+After CER, use the same provenance-aware method for other thin banks where relevant.
 
 ## Guardrails
 
@@ -150,6 +164,7 @@ After CER has 3–4 credible candidates, move to PRO, then other gaps from the m
 - do not fill quotas with weak or duplicate renders;
 - do not restart long AI consensus loops;
 - do not over-sterilize images until they become artificial;
+- do not treat ConflictLab v0.4 axes as the current PrioLens scoring model;
 - keep the public experience aligned with **For Fun with Wisdom**.
 
 ## AI Review Harness
