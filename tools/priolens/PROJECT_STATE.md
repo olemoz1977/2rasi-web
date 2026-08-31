@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / OPEN14 v0.2 / TEXT MECHANISMS ACCEPTED / RUNTIME FAIL-CLOSED
+Status: ACTIVE RESEARCH / OPEN14 v0.2 / DESIGN PREP COMPLETE / EXTERNAL-ACTION GATES
 Updated: 2026-09-01
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -9,27 +9,18 @@ Branch: `feature/priolens-architecture`
 
 1. `RESUME_HERE.md`
 2. `docs/NEW_CHAT_SOURCE_OF_TRUTH_v0.1.md`
-3. `docs/NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`
-4. `docs/OPEN14_SOCIAL_SPLIT_AND_SUCCESS_DECISION_v0.1.md`
-5. `docs/P3_OPEN_SPECTRUM_14_SPEC_v0.2.md`
-6. `docs/OPEN14_ASSET_MATRIX_v0.2.md`
-7. `docs/OPEN14_MISSING_SCENE_MECHANISMS_v0.2.md`
-8. `docs/OPEN14_MISSING_STIMULUS_PRODUCTION_SPECS_v0.1.md`
-9. `docs/PERCEIVED_SUFFICIENCY_LAYER_v0.2.md`
-10. `docs/TWO_CHANNEL_RESULT_SYNTHESIS_SPEC_v0.1.md`
-11. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-12. `docs/STIMULUS_SELECTION_PRAGMATIC_RULE_v0.1.md`
-13. `docs/HOSTING_DEPLOYMENT_BOUNDARY_v0.1.md`
-14. this file
+3. this file
 
-Older Open14 v0.1 docs and `PERCEIVED_SUFFICIENCY_LAYER_v0.1.md` are historical checkpoints, not the active design.
+Then open only the canonical doc needed for the task.
+
+Older Open14 v0.1 docs and `PERCEIVED_SUFFICIENCY_LAYER_v0.1.md` are historical checkpoints.
 
 ## Product boundary
 
-PrioLens remains a short visual-choice experience.
-
 Canonical phrase:
 > **For Fun with Wisdom**
+
+PrioLens remains a short visual-choice experience.
 
 Do not claim:
 - personality diagnosis;
@@ -38,16 +29,16 @@ Do not claim:
 - fast = true;
 - latency = psychological strength;
 - strong visual response = unmet need;
-- one complete validated taxonomy of human priorities;
+- complete validated human-priority taxonomy;
 - Karpman roles from image choices.
 
 Target public duration remains roughly 2–4 minutes. `no_clear_choice` stays valid.
 
-## Active two-channel architecture
+## Active architecture
 
 ### Channel A — revealed visual priority
 
-Low-deliberation visual choice with no need labels.
+Low-deliberation comparative visual choice with no need labels.
 
 Working framing:
 > **Low-deliberation comparative visual choice under reduced self-presentation opportunity.**
@@ -59,12 +50,13 @@ After the visual task, 12 short self-ratings across 6 broad domains.
 Preferred term:
 > **current perceived sufficiency landscape**
 
-Do not assign one global Maslow stage. Maslow-style levels are coarse coverage buckets only.
+Do not assign one global Maslow stage.
+Do not collapse the two channels into one score.
 
-The two channels are compared descriptively. Do not collapse them into one unmet-need score.
-
-Canonical synthesis:
-`docs/TWO_CHANNEL_RESULT_SYNTHESIS_SPEC_v0.1.md`.
+Canonical docs:
+- `docs/NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`;
+- `docs/PERCEIVED_SUFFICIENCY_LAYER_v0.2.md`;
+- `docs/TWO_CHANNEL_RESULT_SYNTHESIS_SPEC_v0.1.md`.
 
 ## Active Open14 v0.2 family set
 
@@ -92,46 +84,35 @@ Canonical synthesis:
 
 This is a discovery shortlist, not a fundamental-needs taxonomy.
 
-`SUCCESS / ACHIEVEMENT` is not an active atomic family.
+`SUCCESS / ACHIEVEMENT` is not an active atomic visual family.
 Status: `DERIVED / THEORY-HOLD`.
 
-## CARE / RECOGNITION human gate
+Canonical family decision:
+`docs/OPEN14_SOCIAL_SPLIT_AND_SUCCESS_DECISION_v0.1.md`.
 
-All four missing text-level mechanisms are accepted for prototyping.
+## Four accepted missing-stimulus mechanisms
+
+All four text mechanisms passed the human gate.
 
 ### CARE-A
-Small visible self-sacrifice:
-- one person shifts the only umbrella toward another;
-- helper accepts modest exposure to rain.
+`pasirūpinti kitu savo komforto sąskaita`
 
-Target:
-`pasirūpinti kitu savo komforto sąskaita`.
+One person shifts the only umbrella toward another and accepts modest exposure to rain.
 
 ### CARE-B
-Proactive help before visible request:
-- one person has dropped simple everyday items while occupied;
-- another person has already started helping.
+`pastebėti ir padėti neprašytam`
 
-Target:
-`pastebėti ir padėti neprašytam`.
+One person starts helping gather another person's dropped everyday items before any visible request.
 
 ### RECOGNITION-A
-Restrained peer acknowledgement:
-- small peer group directs modest applause toward one person;
-- natural smiles;
-- one or more clear thumbs-up gestures;
-- no award/winner framing.
+`būti pastebėtam ir įvertintam kitų`
 
-Target:
-`būti pastebėtam ir įvertintam kitų`.
+Small peer group gives restrained applause, natural smiles and one or more thumbs-up gestures toward one ordinary focal person.
 
-### RECOGNITION-B
-Accepted as `BOUNDARY_PROBE`:
-- visually equal peers actively seek one person's judgement on neutral shared material;
-- no leader, teaching or specialist-status cues.
+### RECOGNITION-B — boundary probe
+`mano nuomonė / kompetencija čia vertinama`
 
-Target:
-`mano nuomonė / kompetencija čia vertinama`.
+Visually equal peers actively seek one person's judgement on neutral shared material. No leader, teacher or specialist-status staging.
 
 Main risk:
 - may collapse into MASTERY, CONTROL/leadership, CONNECTION or BELONGING.
@@ -148,25 +129,21 @@ Canonical matrix:
 
 Current:
 - 24 existing/recovered assets cover 12 of 14 families;
-- 4 accepted text-level prototypes still have no actual image asset: CARE-A, CARE-B, RECOGNITION-A, RECOGNITION-B;
-- preferred AUT-B backpack image is preserved in `olemoz1977/omesg360/priolens/recovered-assets/priolens_aut_backpack_v01.webp`;
-- its intended Hostinger path remains unverified from the current automation path, so runtime manifest keeps AUT-B `runtimePath = null` until real smoke evidence exists.
+- missing real image assets: CARE-A, CARE-B, RECOGNITION-A, RECOGNITION-B;
+- AUT-B backpack asset is preserved in `olemoz1977/omesg360/priolens/recovered-assets/priolens_aut_backpack_v01.webp`;
+- its intended Hostinger runtime path remains unverified from the current automation path;
+- do not claim that recovered Hostinger URL is live until actual smoke evidence exists.
 
-Do not claim the recovered Hostinger URL is live without verification.
-
-## Open14 planner
+## Planner
 
 Canonical source:
 `research/p3_open14_planner_v02.mjs`.
 
-Planner:
-`cyclic-14x3-diff-1-4-slot-role-v0.2`.
-
-Validated design invariants:
+Design invariants:
 - 14 triads;
 - each family exactly 3 appearances;
 - each family exactly 1/1/1 across screen slots;
-- 3 distinct macro domains per triad;
+- 3 distinct macro domains per trial;
 - no repeated family pair;
 - 42 unique pair co-occurrences;
 - 6 unique opponents per family.
@@ -176,42 +153,38 @@ Planner is browser-safe for ES-module import.
 ## Two-exemplar / three-appearance correction
 
 Problem:
-- each family has 2 exemplars;
-- each family appears 3 times;
-- naive A-B-A would let one repeated picture masquerade as family-level evidence.
+- each family has 2 exemplars but 3 appearances.
 
 Canonical assigner:
 `research/p3_open14_exemplar_assigner_v01.mjs`.
 
 Per session:
-- both exemplars are always shown;
-- one exemplar appears twice, the other once;
+- both exemplars shown;
+- one appears twice, one once;
 - exactly 7 families repeat A and 7 repeat B;
-- total A/B appearances = 21/21;
-- each screen slot receives exactly 7 A and 7 B appearances.
+- A/B total = 21/21;
+- every screen slot = 7 A / 7 B.
 
-The balancing logic was checked across 1000 simulated assignments.
+Balancing logic checked across 1000 simulated assignments.
 
-### Exemplar-aware result rule
+### Family-level repetition rule
 
-Do not call a family `repeated` merely because it was chosen 2/3 times.
-
-Primary family-level repetition requires:
+Primary family repetition requires:
 `chosen_A > 0 && chosen_B > 0`.
 
 Therefore:
-- 2/3 across A and B = cross-exemplar repeated;
-- 2/3 concentrated on the same repeated exemplar = exemplar-specific, not family-level repetition;
+- 2/3 across both exemplars = cross-exemplar repeated;
+- 2/3 concentrated on the same repeated exemplar = exemplar-specific, not family-level evidence;
 - 3/3 necessarily crosses exemplars.
 
-Preserve exemplar identity in all exports.
+Preserve exact exemplar identity in exports.
 
 ## Perceived sufficiency v0.2
 
 Canonical:
 `docs/PERCEIVED_SUFFICIENCY_LAYER_v0.2.md`.
 
-6 domains / 12 items:
+Six domains / twelve items:
 1. Restoration & resources;
 2. Safety & stability;
 3. Connection, belonging & support;
@@ -220,9 +193,10 @@ Canonical:
 6. Meaning & contribution.
 
 Important asymmetries:
-- visual CARE = giving/proactive care; self-report care/support item = care/support present in one's life; do not equate them;
-- Meaning/Contribution currently has no active Open14 visual counterpart;
-- no forced one-to-one mapping exists merely for a tidy chart.
+- visual CARE = giving/proactive care;
+- self-report CARE_SUPPORT_PRESENT = perceived care/support present in one's life;
+- do not equate them;
+- Meaning/Contribution currently has no active visual counterpart.
 
 ## Result synthesis
 
@@ -241,31 +215,82 @@ No `low sufficiency + visual pull = unmet need` claim.
 
 ## Runtime scaffold
 
-`olemoz1977/omesg360` contains a separate, non-live Open14 v0.2 source package:
-- `priolens/open14-v02/index.html`;
-- `priolens/open14-v02/bank.json`;
-- `priolens/open14-v02/p3_open14_planner_v02.mjs`;
-- `priolens/open14-v02/p3_open14_exemplar_assigner_v01.mjs`.
+Separate non-live package in `olemoz1977/omesg360/priolens/open14-v02/`:
+- `index.html`;
+- `bank.json`;
+- `p3_open14_planner_v02.mjs`;
+- `p3_open14_exemplar_assigner_v01.mjs`.
 
 Runtime behavior:
-- fail-closed if any required `runtimePath` is null;
+- fail-closed if any required runtime path is null;
 - 14 visual triads;
 - `no_clear_choice`;
-- RT retained as separate telemetry;
+- RT separate telemetry;
 - exact exemplar identity retained;
 - 12 post-visual sufficiency taps;
 - cross-exemplar result logic;
 - JSON export;
 - no latent psychological model.
 
-The historical live `/priolens/` P3 v0.4 runtime has **not** been replaced.
+Historical live `omesg360.eu/priolens/` P3 v0.4 has **not** been replaced.
 
-## Historical P3 v0.4 checkpoint
+## External pilot preparation
 
-Live old-bank research runtime:
-`omesg360.eu/priolens/`.
+Prepared:
+- `docs/OPEN14_EXTERNAL_PILOT_PROTOCOL_v0.1.md`;
+- `docs/OPEN14_FAMILY_DECISION_RULES_v0.1.md`;
+- `docs/OPEN14_DATA_INGESTION_CONTRACT_v0.1.md`.
 
-Latest old-bank owner run remains technical/design evidence only. Do not repeat it as validation.
+First external pilot:
+- formative, not validation;
+- target 24–36 valid completions, ~30 practical target;
+- primary evidence includes UX, no-clear, exemplar asymmetry, cross-exemplar repetition and descriptive sufficiency relationships.
+
+Family decisions after data use:
+- KEEP;
+- HOLD;
+- REASSIGN;
+- MERGE;
+- SPLIT;
+- DROP from visual channel.
+
+Do not preserve 14 merely because the planner is elegant.
+
+## Backend finding
+
+Existing `olemoz1977/omesg360/wave1/api.php` proves the current Hostinger environment already supports a usable PHP + MySQL research-collection pattern:
+- POST JSON validation;
+- UUID validation;
+- allow-lists;
+- PDO prepared statements;
+- DB error handling;
+- simple rate limiting.
+
+Current recommendation for the first ~30-person pilot:
+> **reuse Hostinger PHP + MySQL rather than create a new Vercel/Supabase project.**
+
+Canonical note:
+`docs/OPEN14_BACKEND_REUSE_DECISION_NOTE_v0.1.md`.
+
+Prepared but **not deployed** in `olemoz1977/omesg360/priolens/open14-v02/server/`:
+- `api.example.php`;
+- `schema.sql`;
+- `config.example.php`.
+
+No DB table has been created.
+No real credentials are committed.
+No endpoint has been deployed.
+No retention behavior has changed.
+
+Existing general Hostinger deploy is frontend-only by construction, so these drafts do not auto-deploy as a production backend.
+
+## Research question
+
+Do not ask:
+> `Does PrioLens correctly identify unmet needs?`
+
+Current testable question:
+> **Do cross-exemplar repeated visual pulls show interpretable, non-trivial relationships with independently reported current sufficiency, beyond stimulus-specific salience and chance?**
 
 ## Active stimulus rule
 
@@ -277,45 +302,54 @@ Use:
 Main pragmatic question:
 > **What does a reasonable viewer see happening within about one second?**
 
-Emotion is not a confound by itself. Systematic salience imbalance across families is the larger risk.
+## Immediate next action — USER GATE
 
-## Immediate next action
+All reversible theory/runtime/pilot preparation that can be done safely without external deployment or image generation is complete.
 
-No additional user decision is needed for theory/runtime wiring.
+Two real action gates remain:
 
-Without generating images:
-1. freeze the four accepted missing-stimulus text specs;
-2. keep Open14 runtime fail-closed;
-3. prepare the first external-human pilot protocol and analysis plan around cross-exemplar repetition + perceived sufficiency;
-4. define what evidence would KEEP / MERGE / SPLIT / DROP a family after pilot data;
-5. do not deploy Open14 over the historical live v0.4 runtime yet.
+### Gate A — missing image prototypes
 
-When the user explicitly requests image creation:
-1. create only CARE-A, CARE-B, RECOGNITION-A and RECOGNITION-B;
-2. audit each with the one-second pragmatic rule;
-3. reject/reassign rather than endlessly rescue a failed scene;
+Requires explicit user request to create images.
+
+If approved:
+1. create only CARE-A, CARE-B, RECOGNITION-A, RECOGNITION-B;
+2. pragmatic first-read audit;
+3. reject/reassign failed prototypes rather than endlessly rescue them;
 4. wire accepted runtime paths;
-5. then run an owner technical/design smoke test only;
-6. move quickly to external human data.
+5. verify AUT-B Hostinger runtime path;
+6. run one technical/design smoke session.
 
-## Research question
+### Gate B — pilot data backend
 
-Do not ask:
-> `Does PrioLens correctly identify unmet needs?`
+Recommended path: existing Hostinger PHP + MySQL.
 
-Current testable question:
-> **Do cross-exemplar repeated visual pulls show interpretable, non-trivial relationships with independently reported current sufficiency, beyond stimulus-specific salience and chance?**
+Requires explicit approval before:
+- creating the DB table;
+- deploying the API endpoint;
+- setting real retention/access behavior.
+
+If approved:
+1. choose retention period and raw-data access method;
+2. review API/schema drafts;
+3. execute DB schema;
+4. deploy API to dedicated research path;
+5. add anonymous session UUID + POST/retry/fallback export to runtime;
+6. negative validation + HTTP smoke;
+7. only then recruit external participants.
+
+Do not deploy Open14 over historical live v0.4 yet.
 
 ## Guardrails
 
 - no sterile-image optimization for its own sake;
-- no forced seven/eight/fourteen theoretical completeness;
-- no theory-first rationalization of images;
+- no forced seven/eight/fourteen completeness;
+- no theory-first rationalization;
 - no `strong visual response = unmet need` claim;
-- no direct neural-system inference from image choice;
-- no Karpman role diagnosis from visual choices;
-- no Plackett–Luce weight as psychological strength;
+- no direct neural-system inference;
+- no Karpman diagnosis;
+- no RT-as-psychological-strength;
 - no strict 1–14 rank from sparse pair coverage;
-- no repeated-owner old-bank run as validation;
 - preserve exemplar identity;
-- keep public experience aligned with **For Fun with Wisdom**.
+- expose uncertainty;
+- keep **For Fun with Wisdom**.
