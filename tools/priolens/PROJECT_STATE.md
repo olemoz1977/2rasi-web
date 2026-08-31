@@ -11,9 +11,10 @@ Draft PR: #9
 1. `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
 3. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
-4. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
-5. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
-6. this file
+4. `docs/CANDIDATE_BANK_MATRIX_v0.2.md`
+5. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
+6. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
+7. this file
 
 ## Product boundary
 
@@ -44,15 +45,7 @@ Core constraints:
 
 ## Original baseline recovered
 
-Original v0.1 used 8 working directions:
-- AUT
-- CER
-- EXP
-- MAS
-- CON
-- INF
-- PRO
-- OPP
+Original v0.1 used 8 working directions: AUT, CER, EXP, MAS, CON, INF, PRO, OPP.
 
 It used 2 standalone exemplars per direction, 16 active stimuli and 28 direction-v-direction edges.
 
@@ -92,9 +85,9 @@ An image may contain several cues. It may show an adjustment and its visible con
 
 Canonical rules: `docs/STIMULUS_SELECTION_RULES_v0.2.md`.
 
-## Candidate directions are back as design hypotheses
+## Candidate directions are design hypotheses
 
-AUT/CER/EXP/MAS/CON/INF/PRO/OPP are again useful for **bank construction**, but not as validated scores.
+AUT/CER/EXP/MAS/CON/INF/PRO/OPP are useful for bank construction, but not validated scores.
 
 Practical target:
 - roughly 4–6 materially different standalone images per promising direction;
@@ -105,25 +98,18 @@ Practical target:
 - blind AI used only as a cheap description/confound filter;
 - external humans later determine which images and directions actually survive.
 
-## Current image-bank lessons
+Current working matrix: `docs/CANDIDATE_BANK_MATRIX_v0.2.md`.
 
-Historical strongest anchors/candidates still include:
-- MAS: S12 caliper precision; S16 pottery skill;
-- INF: irrigation gate feeding several channels; room light switch changing wider room state;
-- CON: S03 dyadic connection; two people jointly handling/exchanging one object;
-- EXP: footprints/trail; route through windshield;
-- PRO: S08 umbrella shielding;
-- OPP: prepared useful materials; ripe harvest + basket;
-- CER: S06 checklist, with completion/symbol warning.
+## Current bank summary
 
-Recent regulation/control experiments:
-- S11 workstation image failed blind screening because it read primarily as computer work;
-- backpack-strap adjustment passed as a clear adjustment scene;
-- bicycle saddle adjustment was ambiguous with repair;
-- car headrest adjustment was understandable but context-specific;
-- physical audio volume-control scene is retained as a strong clear adjustment/control candidate.
-
-Do not over-interpret these as proof of AUT or any other broad direction.
+- AUT: backpack adjustment + physical audio volume control are current clear candidates; S11 dropped; bicycle saddle and car headrest remain HOLD.
+- CER: only S06 checklist/completion is a provisional anchor; this is currently the thinnest bank.
+- EXP: footprints/trail + route-through-windshield are useful, but route/travel trope is overrepresented.
+- MAS: S12 caliper + S16 pottery remain strongest anchors.
+- CON: S03 dyad + joint object handling/exchange survive provisionally; face/social salience still matters.
+- INF: irrigation gate + wider-room light switch are useful clear candidates.
+- PRO: S08 umbrella is still the clearest provisional anchor; more diverse safeguarding scenes are needed.
+- OPP: prepared useful materials + ripe harvest/basket are current useful candidates.
 
 ## Gallery status
 
@@ -146,19 +132,15 @@ Current workflow:
 
 ## Immediate next action
 
-Stop further theory splitting.
+The practical v0.2 bank matrix now exists.
 
-Build a **practical v0.2 candidate matrix** for the eight working directions using:
-- recovered S01–S16;
-- strongest Gallery candidates;
-- recent clear generated scenes such as irrigation, prepared materials and audio volume adjustment.
+Next: fill the thinnest bank **CER** one scene at a time.
 
-For each direction, mark:
-- current usable candidates;
-- obvious weak/rejected items;
-- how many genuinely different scenes are still missing to reach a provisional 4–6 image bank.
+CER design hypothesis: certainty / clarity / settled or known state.
 
-Then generate only the missing scenes, one at a time.
+Do not make cosmetic checklist variants. Seek materially different everyday scenes where the relevant idea is understandable almost instantly. Do not reject a useful scene merely because it also carries a secondary cue; reject it when the intended reading needs explanation or an obvious nuisance is likely to dominate preference.
+
+After CER has 3–4 credible candidates, move to PRO, then other gaps from the matrix.
 
 ## Guardrails
 
