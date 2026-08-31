@@ -1,18 +1,18 @@
 export const FAMILY_SET = [
   {id:'REST', macro:'BASIC'},
   {id:'MASTERY', macro:'GROWTH'},
-  {id:'RESOURCE', macro:'BASIC'},
-  {id:'EXPLORATION', macro:'GROWTH'},
   {id:'CONNECTION', macro:'SOCIAL'},
-  {id:'AUTONOMY', macro:'AGENCY'},
+  {id:'EXPLORATION', macro:'GROWTH'},
   {id:'BELONGING', macro:'SOCIAL'},
+  {id:'RESOURCE', macro:'BASIC'},
+  {id:'AUTONOMY', macro:'AGENCY'},
   {id:'SAFETY', macro:'BASIC'},
   {id:'KNOWLEDGE', macro:'GROWTH'},
-  {id:'ORDER', macro:'BASIC'},
-  {id:'OPPORTUNITY', macro:'GROWTH'},
   {id:'CARE', macro:'SOCIAL'},
+  {id:'OPPORTUNITY', macro:'GROWTH'},
   {id:'CONTROL', macro:'AGENCY'},
-  {id:'RECOGNITION', macro:'SOCIAL'},
+  {id:'ORDER', macro:'BASIC'},
+  {id:'RECOGNITION', macro:'AGENCY'},
 ];
 
 const FAMILY_BY_ID = Object.fromEntries(FAMILY_SET.map(x => [x.id, x]));
