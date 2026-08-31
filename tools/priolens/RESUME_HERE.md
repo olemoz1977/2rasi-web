@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
 Status: ACTIVE / CHAT-LOSS-SAFE CHECKPOINT
-Updated: 2026-08-31 20:52 Europe/Vilnius
+Updated: 2026-08-31 22:45 Europe/Vilnius
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -12,85 +12,67 @@ Branch: `feature/priolens-architecture`
 When a PrioLens chat is missing messages, truncated, archived or restarted:
 1. read this file;
 2. read `PROJECT_STATE.md`;
-3. continue from `PROJECT_STATE.md > Immediate next action`;
-4. use File Library only when the actual historical/runtime artifact is needed;
-5. do not ask the user to reconstruct already-recorded work from memory.
+3. read `docs/NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`;
+4. continue from `PROJECT_STATE.md > Immediate next action`;
+5. use File Library only when the actual runtime/source artifact is needed;
+6. do not ask the user to reconstruct already-recorded work from memory.
 
 If chat memory conflicts with repo state, repo state wins.
 
-## Current hard checkpoint
+## Latest hard checkpoint
 
 Completed:
 - full Gallery impulse audit: 223 files / 222 byte-unique images;
-- second-stage curation: 40 KEEP/HOLD, 183 DROP for the current direction question;
-- impulse-first rule is active: `image → what it evokes → possible direction → KEEP / HOLD / DROP / REASSIGN`;
-- CER is `CONSTRUCT HOLD`; do not generate more CER images;
-- P3 three-image runtime has been recovered;
-- current standalone runtime artifact: `priolens_p3_standalone_v03.html`;
-- P3 tie-safe rendering is implemented;
-- exact P3 slot balancing is implemented;
-- two owner P3 runs have been completed with CER inactive.
+- historical curation: 40 KEEP/HOLD, 183 DROP for the old direction question;
+- P3 v0.4 runtime live on `omesg360.eu/priolens/`;
+- runtime and persistent research assets are separated in Hostinger;
+- exact slot balancing and tie-safe results work;
+- v0.4 equal-row owner run completed: MAS 5/6, EXP 3/6, PRO 3/6, OPP 2/6, CON 1/6, AUT 0/6, INF 0/6, median RT ~1.51 s;
+- repeated old-bank owner runs are no longer useful as validation.
 
-Balanced P3 owner rerun, schema `2rasi.priolens.p3.research-v0.3`:
-- MAS 6/6;
-- CON 3/6;
-- PRO 3/6;
-- EXP 1/6;
-- OPP 1/6;
-- AUT 0/6;
-- INF 0/6;
-- median RT about 2.06 s;
-- `no clear choice` 0/14.
+## New active architecture hypothesis
 
-Interpretation limits:
-- this is an owner technical/design run, not participant validation;
-- MAS is the only direction with perfect two-exemplar support in the balanced run;
-- INF and AUT remain 0/6 after exact slot balancing, so their collapse cannot be blamed only on aggregate slot position;
-- Protection and Connection changed substantially between owner runs, showing context sensitivity;
-- Plackett–Luce output is debug/research only;
-- repeated owner exposure to the same 14 historical images now creates familiarity contamination.
+The old seven/eight directions are **not assumed exhaustive**.
 
-## Current methodological position
+PrioLens now separates:
+1. **revealed visual priority**;
+2. **perceived sufficiency** of broader need domains.
 
-Do not claim:
-- fast = true;
-- fast = instinctive/subconscious;
-- the seven/eight directions are validated human dimensions;
-- latency is psychological strength.
+Preferred order:
+- visual task first;
+- perceived-sufficiency self-assessment second;
+- compare the two layers afterward.
 
-Working research hypothesis:
-- low-deliberation visual forced choice may reduce the opportunity to consciously construct a socially desirable self-description;
-- repeated choices across materially different stimuli may reveal session-level choice tendencies;
-- whether broad direction labels actually cohere must be tested, not assumed.
+Do not ask for one global Maslow stage. Maslow-style levels are only a macro coverage map.
 
-P3 is a **research presentation variant**, not yet the frozen public architecture.
+Candidate impulse space is open and may include safety, care, belonging, autonomy, control/assertion, recognition/status, mastery, success, exploration, opportunity/reward, certainty/order, authenticity, justice, purpose, immersion and contribution/service.
+
+Canonical note:
+`docs/NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`.
+
+## Active stimulus rule
+
+Do not sterilize images in pursuit of theoretical purity.
+
+Use:
+> **image → first spontaneous pull / meaning → candidate impulse family → KEEP / HOLD / DROP / REASSIGN / NEW-FAMILY**
+
+A competing interpretation is not fatal unless it is genuinely stronger. Emotion is allowed. Systematic salience imbalance across families is the bigger risk.
 
 ## Immediate next action
 
-Do **not** run a third owner session on the same 14 historical images as validation.
+Do **not** freeze or rebuild a 7-direction bank yet.
 
 Next:
-1. build a materially different **non-CER** research bank from the impulse-curated KEEP/HOLD candidates;
-2. preserve exemplar identity in the data;
-3. test whether repeated patterns survive materially different exemplars;
-4. keep P3 as a viable research variant while separately deciding whether the mobile 2+1 geometry is acceptable;
-5. keep CER inactive until the construct itself is resolved.
-
-## Artifact recovery
-
-Historical/runtime files may exist in File Library even if they are not attached to the current chat.
-
-Known artifacts:
-- `priolens_working_beta_v03.html` — schema `working-v0.3`, 28 + blind 2×28;
-- `priolens_working_beta-4.html` — schema `working-v0.2`, 28 + optional calibration;
-- `decision_drivers_8x8_prototype_v0.4.html` — earlier pairwise 8-driver lineage, not P3;
-- `priolens_p3_standalone_v03.html` — current standalone 3-image research runtime with embedded historical stimuli.
-
-Never infer chronology from filenames alone. Open the artifact and inspect its internal schema.
+1. reuse the completed Gallery audit;
+2. re-open the 40 KEEP/HOLD set first and selected promising old DROPs;
+3. open-code them against the wider impulse universe;
+4. allow `NEW-FAMILY`;
+5. derive a compact candidate impulse spectrum with representative live images;
+6. only then design the next visual-priority bank;
+7. separately draft the short perceived-sufficiency layer to appear after the visual task.
 
 ## Canonical full state
 
-For detail and citations, read:
+For detail read:
 `tools/priolens/PROJECT_STATE.md`
-
-This file is intentionally short. It exists so a new chat can recover the exact working edge in under a minute.
