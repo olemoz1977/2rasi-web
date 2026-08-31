@@ -1,7 +1,7 @@
 # PrioLens Open14 asset matrix v0.1
 
 Status: ACTIVE ASSET SHORTLIST / THREE FAMILIES INTENTIONALLY OPEN
-Date: 2026-08-31
+Updated: 2026-09-01
 
 ## Rule
 
@@ -15,7 +15,8 @@ Source priority:
 1. completed Gallery first-impulse audit;
 2. impulse-first curation / candidate matrix;
 3. pragmatic `clear enough + alive` rule;
-4. explicitly recovered user-supplied assets when their provenance is recorded.
+4. explicitly recovered user-supplied assets when their provenance is recorded;
+5. set-level balance audit when it identifies a real systematic nuisance difference.
 
 No new images are generated in this step.
 
@@ -30,13 +31,13 @@ No new images are generated in this step.
 | **CONNECTION** | `S03.webp` | užmegzti ryšį su kitu žmogumi | `20260829_235204397.png` | veikti kartu / perduoti objektą | READY-CANDIDATE; belonging/reciprocity breadth remains open |
 | **CARE** | **OPEN** | no existing first-read CARE exemplar | **OPEN** | no existing first-read CARE exemplar | GAP |
 | **RECOGNITION** | **OPEN** | no existing first-read recognition exemplar | **OPEN** | no existing first-read recognition exemplar | GAP |
-| **AUTONOMY** | `S05.webp` | rinktis tinkamą įrankį | `4810.png` (user-recovered; SHA-256 in recovery note) | prisitaikyti / susireguliuoti daiktą sau | READY-CANDIDATE; recovered B is stronger than seat-choice |
-| **CONTROL** | `S04.webp` | nukreipti / valdyti srautą | `file_0000000092148210be3631f7c20ec0da.png` | reguliuoti nustatymus | READY-CANDIDATE |
+| **AUTONOMY** | `S05.webp` | rinktis tinkamą įrankį | recovered backpack asset, canonical hash/provenance note | prisitaikyti / susireguliuoti daiktą sau | READY-CANDIDATE; exact Gallery path lookup pending/completing |
+| **CONTROL** | `S04.webp` | nukreipti / valdyti srautą | `file_000000006b148210abe3c22f8ce50764.png` | įjungti / pakeisti visos patalpos būseną | READY-CANDIDATE; B replaced after set-level balance audit |
 | **SUCCESS** | **OPEN** | current completion scenes do not yet read as success/goal attainment | **OPEN** | current completion scenes do not yet read as success/goal attainment | GAP / PARTIAL SOURCE MATERIAL |
 | **MASTERY** | `S12.webp` | tiksliai išmatuoti / patikrinti | `S16.webp` | meistriškai formuoti | READY-CANDIDATE |
 | **EXPLORATION** | `S09.webp` | atidaryti ir atrasti, kas viduje | `20260809_235839567.png` | pažiūrėti už kliūties / atrasti | READY-CANDIDATE |
-| **KNOWLEDGE** | `20260730_230227381.png` | mokytis / būti klasėje | `20260730_233054250.png` | ieškoti žinių / prieiga prie informacijos | READY-CANDIDATE |
-| **OPPORTUNITY** | `file_0000000024fc8210a5fb3823b3d86a9f.png` | pradėti kurti iš paruoštų medžiagų | `file_00000000c7f0821081be7676884bb00f.png` | pradėti kurti nuo tuščios drobės | READY-CANDIDATE; creative possibility is strong in B |
+| **KNOWLEDGE** | `20260730_230227381.png` | mokytis / būti klasėje | `20260730_233054250.png` | ieškoti žinių / prieiga prie informacijos | PROVISIONAL; both portrait in square runtime, conceptual boundary with UNDERSTANDING remains open |
+| **OPPORTUNITY** | `file_0000000024fc8210a5fb3823b3d86a9f.png` | pradėti kurti iš paruoštų medžiagų | `file_00000000c7f0821081be7676884bb00f.png` | pradėti kurti nuo tuščios drobės | READY-CANDIDATE; B is bright but retained |
 
 ## What is genuinely missing
 
@@ -45,16 +46,34 @@ The only intentionally open prototype slots remain:
 - RECOGNITION A/B;
 - SUCCESS A/B.
 
-AUT no longer has a weak placeholder after recovery of the backpack-adjustment stimulus.
+AUT no longer has a weak semantic placeholder after recovery of the backpack-adjustment stimulus.
+
+## Set-level balance audit
+
+Canonical note:
+`OPEN14_SET_LEVEL_VISUAL_BALANCE_AUDIT_v0.1.md`.
+
+The audit deliberately does **not** normalize images toward visual sterility.
+
+Main action taken:
+- old CONTROL-B (`file_0000000092148210be3631f7c20ec0da.png`) was a severe dark/flat outlier;
+- it is replaced by `file_000000006b148210abe3c22f8ce50764.png`, whose first read is still concrete control/action and whose visual metrics sit much closer to the rest of the set.
+
+Main unresolved nuisance:
+- both current KNOWLEDGE exemplars are portrait sources;
+- P3 renders images in square `object-fit: contain` slots, so a family represented only by portrait images may receive a size/salience disadvantage;
+- square alternatives exist, but their first read broadens toward `pamatyti aiškiau / daugiau` rather than explicit knowledge/learning.
+
+Do not solve that by semantic relabeling just for geometry. Resolve whether the useful family is narrower KNOWLEDGE or broader UNDERSTANDING / LEARNING before runtime freeze.
 
 ## Recovered AUT material
 
 Canonical recovery note:
-`docs/RECOVERED_USER_ASSETS_2026-08-31.md`.
+`RECOVERED_USER_ASSETS_2026-08-31.md`.
 
 ### Preferred AUT-B
 
-`4810.png` — backpack strap adjustment.
+Recovered backpack strap adjustment.
 
 First read:
 > **prisitaikyti / susireguliuoti daiktą sau**
@@ -62,11 +81,12 @@ First read:
 Why it replaces the old seat-choice placeholder:
 - self-directed configuration is visible immediately;
 - less dependent on interpreting a generic choice scene;
-- complements `S05` rather than duplicating it.
+- complements `S05` rather than duplicating it;
+- square geometry and mid-range visual metrics do not create a new obvious salience outlier.
 
 ### Boundary reserve, not default AUT anchor
 
-`4814.png` — physical audio control with a hand turning a knob.
+Recovered physical audio control with a hand turning a knob.
 
 First read:
 > **reguliuoti garsą / nusistatyti kaip noriu**
@@ -78,7 +98,7 @@ Keep it as:
 - possible CONTROL alternative;
 - later boundary-probe exemplar.
 
-Do not use both backpack adjustment and audio adjustment as the two main AUT exemplars by default because that would narrow AUT to one repeated `personal adjustment` mechanism.
+Do not use backpack adjustment and audio adjustment as the two main AUT exemplars by default because that would narrow AUT to one repeated `personal adjustment` mechanism.
 
 ## Family-specific notes
 
@@ -88,11 +108,11 @@ The two exemplars represent different restoration mechanisms:
 - stopping/resting;
 - replenishing/refreshing.
 
-This is useful diversity, but drink imagery has basic reward salience.
+Drink imagery has basic reward salience; track rather than sterilize.
 
 ### RESOURCE
 
-Harvest and gift are intentionally vivid. Their salience is not automatically a reason to reject them. The later question is whether RESOURCE is systematically more visually rewarding than other families.
+Harvest and gift are intentionally vivid. Harvest is a saturation / edge-density outlier, but the first read is strong. Existing prepared-food alternatives replace one nuisance cue with another appetitive cue, so no automatic swap is justified.
 
 ### SAFETY
 
@@ -108,11 +128,11 @@ Dyadic social contact vs reciprocal action. Do not interpret either as CARE.
 
 ### AUTONOMY
 
-Tool choice vs personal fit/configuration now gives materially different mechanisms. The recovered audio control remains useful but cross-loads naturally with CONTROL.
+Tool choice vs personal fit/configuration gives materially different mechanisms. The recovered audio control remains useful but cross-loads naturally with CONTROL.
 
 ### CONTROL
 
-Flow routing vs physical setting control. This is one of the clearest newly recovered families that was previously spread across INF/PRO/CER.
+Flow routing vs changing a broader environment state is now both semantically diverse and visually less imbalanced than the previous pair.
 
 ### MASTERY
 
@@ -120,11 +140,11 @@ Still craft/precision heavy, but the semantic first read is strong enough for th
 
 ### KNOWLEDGE
 
-Classroom and information-access scenes are materially different, but both may carry education/reading familiarity. Keep as research candidates.
+Current explicit learning / knowledge-access semantics are good, but both sources are portrait. Existing square `see more clearly / see more` candidates are retained as KNOWLEDGE/UNDERSTANDING boundary material rather than silently promoted.
 
 ### OPPORTUNITY
 
-Prepared materials vs blank canvas separate `ready resource` from `open possibility`, but RESOURCE remains a close neighbor. Their later separation is empirical, not assumed.
+Prepared materials vs blank canvas separate `ready resource` from `open possibility`. B is bright but not enough to justify a semantic downgrade to a darker greenhouse scene merely for balance.
 
 ## Six open prototype mechanisms
 
@@ -150,7 +170,7 @@ Objective task/result visibly reaches completion/target, with the actor present 
 
 ## Next action
 
-1. Keep the recovered backpack image as AUT-B and the audio-control image as AUT/CONTROL boundary reserve.
-2. Inspect the current Open14 set for obvious visual imbalance and duplicate scene families.
-3. Keep the six missing CARE / RECOGNITION / SUCCESS slots blank until their mechanisms are worth prototyping.
+1. Resolve recovered backpack exact source/path by hash if possible.
+2. Treat KNOWLEDGE vs UNDERSTANDING as the only remaining filled-family conceptual/balance question before runtime freeze.
+3. Then stop at the human decision gate and review the six CARE / RECOGNITION / SUCCESS mechanisms with the user.
 4. Do not generate images automatically.
