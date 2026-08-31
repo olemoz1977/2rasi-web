@@ -1,11 +1,11 @@
 # PrioLens P3 open-spectrum 14-family scan v0.1
 
 Status: RESEARCH VARIANT SPEC / NOT PUBLIC ARCHITECTURE
-Date: 2026-08-31
+Updated: 2026-09-01
 
 ## Why this variant
 
-The old 7-direction P3 is now too narrow for the current research question, while a 20+ family taxonomy would make the product heavy and encourage premature construct inflation.
+The old 7-direction P3 is too narrow for the current research question, while a 20+ family taxonomy would make the product heavy and encourage premature construct inflation.
 
 A useful middle point emerges from the current visual-footing map:
 
@@ -15,7 +15,7 @@ Arithmetic:
 - 14 families × 3 appearances = 42 family appearances;
 - 14 triads × 3 slots = 42 slots.
 
-Therefore the current 14-trial session length can be preserved while the candidate spectrum doubles from 7 to 14 families.
+Therefore the 14-trial session length can be preserved while the candidate spectrum doubles from 7 to 14 families.
 
 This is a **broad scan**, not a complete tournament and not a 1–14 ranking.
 
@@ -66,8 +66,9 @@ This is a **broad scan**, not a complete tournament and not a 1–14 ranking.
 12. **EXPLORATION** — exploration / discovery
     - pull: `see what is there / go into the unknown`
 
-13. **KNOWLEDGE** — knowledge / learning / understanding
-    - pull: `know, understand or learn`
+13. **KNOWLEDGE** — stable technical ID; working display concept **learning / understanding**
+    - pull: `learn, know or understand more clearly`
+    - note: this wording is deliberately broader than book/classroom knowledge. The first scan tests whether explicit learning and a direct `see/understand more clearly` scene behave coherently. If not, split or rename later rather than forcing coherence.
 
 14. **OPPORTUNITY** — opportunity / possibility
     - pull: `use or develop an available possibility`
@@ -103,34 +104,39 @@ They are selected because together they satisfy two practical conditions:
 **Justice / Fairness** and **Purpose / Meaning**
 - remain `REFLECTION_HOLD` because current one-frame visual representation would require too much inferred story.
 
-## Asset implication
+## Asset state
 
-The 14-family scan does **not** require rebuilding the whole image library.
+The Open14 matrix now reuses existing Gallery material for all filled families and leaves only six intentional gaps:
+- CARE A/B;
+- RECOGNITION A/B;
+- SUCCESS A/B.
 
-Current Gallery already provides usable or testable material for approximately 11 of the 14 families.
+Canonical matrix:
+`OPEN14_ASSET_MATRIX_v0.1.md`
 
-Main true visual gaps:
-- CARE;
-- RECOGNITION;
-- SUCCESS needs stronger goal-attainment exemplars than current completion imagery.
+Canonical set-level nuisance audit:
+`OPEN14_SET_LEVEL_VISUAL_BALANCE_AUDIT_v0.1.md`
 
-Therefore the minimal missing-asset task is approximately:
-- 2 CARE mechanisms;
-- 2 RECOGNITION mechanisms;
-- 2 SUCCESS mechanisms;
-
-= **about 6 new prototypes**, not 42 new images.
-
-Existing families should reuse vivid Gallery candidates first.
+Important asset decisions already made:
+- AUT uses S05 + recovered backpack adjustment rather than the weak seat-choice placeholder;
+- recovered physical audio control is kept as an AUT/CONTROL boundary reserve;
+- old CONTROL-B dark/flat settings image was replaced by a square scene whose first read is `įjungti / pakeisti visos patalpos būseną`;
+- RESOURCE and OPPORTUNITY vivid outliers are retained and tracked rather than sterilized;
+- KNOWLEDGE technical ID is now tested as a broader Learning/Understanding concept so a square `pamatyti aiškiau / daugiau` exemplar can be used as a boundary test without pretending it is literal knowledge acquisition.
 
 ## Presentation plan
 
-Keep the current P3 v0.4 presentation geometry as the research shell unless a new technical problem is found:
+Keep the P3 v0.4 presentation geometry as the research shell unless a new technical problem is found:
 - 3 equal stacked image rows;
 - right-side `Nė vienas aiškiai` rail;
 - 14 trials;
 - no labels during choice;
 - latency remains UX/process telemetry only.
+
+Runtime note:
+- current square slots use `object-fit: contain`;
+- portrait assets remain uncropped but appear narrower;
+- do not let one family be represented only by portrait sources when an equally meaningful square/near-square alternative exists.
 
 ## Balancing target
 
@@ -150,7 +156,7 @@ The planner objective is therefore not complete pair balance. It is:
 2. exact slot balance;
 3. broad opponent diversity;
 4. macro-domain mixing;
-5. minimize repeated family-pair encounters within a session.
+5. no repeated family-pair encounters within a session.
 
 ## Macro-domain mixing rule
 
@@ -195,19 +201,33 @@ Do not report:
 
 After the visual scan, the person completes the broader perceived-sufficiency layer.
 
+Canonical draft:
+`PERCEIVED_SUFFICIENCY_LAYER_v0.1.md`
+
 The two layers do **not** need one-to-one category equivalence.
 
 Comparison should initially happen at:
 - a broad macro-domain level;
 - or only on families with a defensible mapping.
 
-This prevents abstract areas such as Purpose from being forced into weak pictures merely to match the questionnaire.
+This prevents abstract areas such as Purpose from being forced into weak pictures merely to match the self-report layer.
 
-## Immediate build order
+## Current build order
 
-1. select 2 existing Gallery candidates for each of the 11 visually-footed families;
-2. define the 6 minimal missing prototypes for CARE / RECOGNITION / SUCCESS in words;
-3. do **not** generate them yet;
-4. build the 14-family planner/data contract independently of final image files;
-5. only after candidate review, generate the minimum missing assets;
-6. run owner technical/design smoke test, not validation.
+Completed:
+1. Open14 planner/data contract concept;
+2. existing Gallery asset matrix;
+3. set-level visual nuisance audit;
+4. targeted replacement of the obvious CONTROL-B visual outlier;
+5. short perceived-sufficiency research draft.
+
+Current gate:
+1. finish recovered backpack asset provenance/path housekeeping;
+2. use one square Learning/Understanding boundary exemplar so KNOWLEDGE is not systematically portrait-only in the first scan;
+3. then review the six missing text-level mechanisms with the user:
+   - CARE A/B;
+   - RECOGNITION A/B;
+   - SUCCESS A/B;
+4. **do not generate images before that mechanism decision**;
+5. after accepted missing assets exist, integrate the Open14 runtime;
+6. run an owner technical/design smoke test, not validation.
