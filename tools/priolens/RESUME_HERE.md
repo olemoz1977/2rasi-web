@@ -24,40 +24,43 @@ If chat memory conflicts with repo state, repo state wins.
 Completed:
 - Gallery first-impulse audit: 223 files / 222 byte-unique images;
 - historical P3 v0.4 old-bank runtime remains live and is not the new Open14 runtime;
-- old seven/eight directions are no longer assumed exhaustive;
 - active architecture = visual priority first + perceived sufficiency second;
 - Open14 v0.2 family set established;
 - SUCCESS moved to `DERIVED / THEORY-HOLD`;
 - BELONGING split from CONNECTION;
 - CARE narrowed to altruistic/proactive helping;
 - all four missing text mechanisms human-accepted: CARE-A, CARE-B, RECOGNITION-A, RECOGNITION-B;
-- RECOGNITION-B is explicitly a boundary probe: `mano nuomonė / kompetencija čia vertinama`;
+- RECOGNITION-B is a boundary probe: `mano nuomonė / kompetencija čia vertinama`;
 - four production-ready text specs exist, but **no image generation is authorized unless the user explicitly asks**;
 - Open14 planner v0.2 browser-safe;
 - 2-exemplar / 3-appearance imbalance solved with balanced exemplar assigner;
 - exemplar assigner yields 21/21 A/B globally and 7/7 A/B per screen slot;
-- family-level repetition now requires wins across both A and B exemplars;
+- family-level repetition requires wins across both A and B exemplars;
 - perceived-sufficiency layer advanced to v0.2;
 - two-channel result synthesis specified;
 - separate Open14 v0.2 runtime scaffold exists in `olemoz1977/omesg360/priolens/open14-v02/` and stays fail-closed;
 - first external formative pilot protocol and KEEP/MERGE/SPLIT/DROP rules prepared;
-- minimal anonymous data-ingestion contract prepared, but no backend chosen/deployed.
+- anonymous data-ingestion contract prepared;
+- existing `omesg360` Wave1 PHP+MySQL API was inspected and provides a viable backend pattern for PrioLens;
+- recommended pilot backend = reuse existing Hostinger PHP+MySQL infrastructure, not a new Vercel/Supabase project;
+- undeployed drafts exist in `olemoz1977/omesg360/priolens/open14-v02/server/`: `api.example.php`, `schema.sql`, `config.example.php`;
+- no DB table, endpoint, real credentials or retention change has been deployed.
 
 ## Active Open14 v0.2 families
 
-### Basic / stability
+Basic / stability:
 REST, RESOURCE, SAFETY, ORDER
 
-### Social
+Social:
 CONNECTION, BELONGING, CARE
 
-### Agency / esteem
+Agency / esteem:
 AUTONOMY, CONTROL, RECOGNITION
 
-### Growth / cognitive / possibility
+Growth / cognitive / possibility:
 MASTERY, EXPLORATION, KNOWLEDGE / Learning-Understanding, OPPORTUNITY
 
-This is a discovery shortlist, not a fundamental-needs taxonomy.
+This is a discovery shortlist, not a validated taxonomy.
 
 ## Four accepted missing-stimulus mechanisms
 
@@ -140,31 +143,40 @@ Missing real runtime assets:
 
 Historical live `/priolens/` v0.4 has not been replaced.
 
-## Pilot state
+## Pilot/backend state
 
 Canonical:
 - `docs/OPEN14_EXTERNAL_PILOT_PROTOCOL_v0.1.md`;
 - `docs/OPEN14_FAMILY_DECISION_RULES_v0.1.md`;
-- `docs/OPEN14_DATA_INGESTION_CONTRACT_v0.1.md`.
+- `docs/OPEN14_DATA_INGESTION_CONTRACT_v0.1.md`;
+- `docs/OPEN14_BACKEND_REUSE_DECISION_NOTE_v0.1.md`.
 
 First external pilot target:
 - 24–36 valid completions, ~30 practical target;
 - formative stimulus/UX research, not validation.
 
-Do not launch external recruitment until a privacy-appropriate anonymous data-ingestion method is selected and operational.
+Recommended backend:
+> reuse existing Hostinger PHP + MySQL research infrastructure.
+
+Prepared but not deployed:
+- `priolens/open14-v02/server/api.example.php`;
+- `priolens/open14-v02/server/schema.sql`;
+- `priolens/open14-v02/server/config.example.php`.
+
+Do not launch external recruitment until storage/retention/access are explicitly approved and operational.
 
 ## Immediate next action
 
-No further theory decision is required now.
+No further theory/runtime preparation is needed.
 
-Two external-action gates remain:
+Two real user-approval gates remain:
 1. **image creation** — only if the user explicitly asks to create the four accepted prototypes;
-2. **pilot backend** — requires explicit approval before creating a new external service/project or changing data-retention behavior.
+2. **pilot backend deployment** — recommended Hostinger PHP+MySQL, but requires approval before DB/schema/API deployment and before setting retention/access behavior.
 
 Until one of those is approved:
 - keep historical live v0.4 untouched;
 - keep Open14 fail-closed;
-- do not invent more families or stimuli for completeness;
+- do not invent more families/stimuli merely for completeness;
 - do not start external recruitment.
 
 ## Canonical full state
