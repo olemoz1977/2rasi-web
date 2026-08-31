@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / STANDALONE IMAGE BANK / SIMPLE SEMANTIC SCREENING ACTIVE
+Status: ACTIVE RESEARCH / STANDALONE IMAGE BANK / IMPULSE-FIRST AUDIT ACTIVE
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -10,12 +10,13 @@ Draft PR: #9
 
 1. `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
-4. `docs/CANDIDATE_BANK_MATRIX_v0.2.md`
-5. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
-6. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
-7. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
-8. this file
+3. `docs/STIMULUS_IMPULSE_AUDIT_v0.1.md`
+4. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
+5. `docs/CANDIDATE_BANK_MATRIX_v0.2.md`
+6. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
+7. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
+8. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
+9. this file
 
 ## Product boundary
 
@@ -76,15 +77,23 @@ Interpretation:
 
 The previous lower-level F1–F8 work remains useful as diagnostic vocabulary but is **not the active product taxonomy**.
 
-Active rule:
+The active review order is now impulse-first:
 
-> A useful PrioLens image should be quickly understandable, naturally express the intended candidate idea, and avoid gross visual distortions that would obviously swamp the semantic choice.
+> **First ask what the image actually pulls the viewer toward. Only after that map it to a candidate PrioLens direction.**
 
-Do **not** require laboratory-style semantic sterility.
+This applies equally to historical PASS, HOLD, CANDIDATE and DROP images.
 
-An image may contain several cues. It may show an adjustment and its visible consequence. It may have alternative readings. The question is whether the intended reading is natural and dominant enough to justify carrying the image into a larger candidate bank.
+A DROP may be useful if it failed only because it was assigned to the wrong direction. A PASS may still be rejected if its actual impulse does not match the intended construct.
 
-Canonical rules: `docs/STIMULUS_SELECTION_RULES_v0.2.md`.
+Canonical audit rule: `docs/STIMULUS_IMPULSE_AUDIT_v0.1.md`.
+
+General visual screening remains simple:
+- fast readability;
+- intended/observed impulse stronger than alternatives;
+- no gross preference distortion;
+- no laboratory-style semantic sterility requirement.
+
+Canonical selection rules: `docs/STIMULUS_SELECTION_RULES_v0.2.md`.
 
 ## Candidate directions are design hypotheses
 
@@ -112,11 +121,13 @@ Current working matrix: `docs/CANDIDATE_BANK_MATRIX_v0.2.md`.
 - PRO: S08 umbrella is still the clearest provisional anchor; more diverse safeguarding scenes are needed.
 - OPP: prepared useful materials + ripe harvest/basket are current useful candidates.
 
+These statuses are provisional and must be re-read through the impulse-first audit before freezing.
+
 ## Gallery provenance and status
 
 `Gallery.zip` contains 223 files / 222 byte-unique images and has already been reviewed twice.
 
-Important new provenance fact: at least part of Gallery generation was influenced by **ConflictLab v0.4** stimulus logic.
+Important provenance fact: at least part of Gallery generation was influenced by **ConflictLab v0.4** stimulus logic.
 
 Archived v0.4-era generator used three signal axes:
 - `aw`: withdrawal ↔ approach;
@@ -127,7 +138,7 @@ It also used F1–F7 visible-cue rules, including understandability without expl
 
 Therefore Gallery is a **hybrid-provenance corpus**, not a bank originally optimized only for AUT/CER/EXP/MAS/CON/INF/PRO/OPP.
 
-Do not repeatedly re-review the full archive. But a new targeted review is justified when a current PrioLens gap plausibly overlaps a v0.4 signal ancestry.
+The provenance is context only. During impulse audit, do not start from old ConflictLab labels either.
 
 Canonical provenance note: `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`.
 
@@ -136,31 +147,40 @@ Canonical provenance note: `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md
 The user is working alone.
 
 Current workflow:
-1. build and curate the candidate bank;
-2. use blind AI sparingly for obvious semantic/confound checks;
-3. treat user self-reading as design sanity check, not independent validation;
+1. audit what each image actually evokes;
+2. only then map/reassign to a candidate PrioLens direction;
+3. use blind AI sparingly for obvious semantic/confound checks;
 4. postpone external human validation until a compact bank is worth showing;
 5. do not make recruiting participants an immediate blocker.
 
 ## Immediate next action
 
-Do **not** continue generating CER scenes yet.
+Do not generate more scenes yet.
 
-First perform a targeted provenance-aware CER recovery pass through Gallery using legacy `cs+` (clarity-seeking) ancestry as a search hypothesis.
+Perform the same impulse-first audit on:
+1. recovered S01–S16;
+2. current KEEP/PASS candidates;
+3. HOLD candidates;
+4. historical DROP images that remain interpretable;
+5. remaining useful Gallery candidates.
 
-Goal:
-- find existing images that naturally evoke clarity / knownness / predictability / reduced ambiguity;
-- reject images that mainly read as precision, completion or technical correctness;
-- do not assume `CER = cs+` as a validated identity;
-- generate new CER scenes only after this targeted legacy recovery is exhausted.
+For every image record only:
+- first impulse;
+- up to three secondary impulses;
+- dominant visible cue;
+- old status;
+- possible PrioLens fit only after impulse description;
+- new decision: KEEP / HOLD / DROP / REASSIGN.
 
-After CER, use the same provenance-aware method for other thin banks where relevant.
+This audit replaces direction-first review as the immediate task.
 
 ## Guardrails
 
 - do not return to matched Preserve↔Refine architecture;
 - do not erase D1/D2 negative evidence;
 - do not equate a clear image with validated direction scoring;
+- do not preserve old PASS/DROP labels by inertia;
+- do not assign direction before writing the image impulse;
 - do not fill quotas with weak or duplicate renders;
 - do not restart long AI consensus loops;
 - do not over-sterilize images until they become artificial;
