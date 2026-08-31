@@ -1,6 +1,6 @@
 # PrioLens human semantic pilot v0.1
 
-Status: READY FOR FIRST RENDERED PILOT
+Status: READY FOR FIRST RENDERED PILOT / X12 RETIRED FOR PHYSICAL-PLAUSIBILITY FAILURE
 Date: 2026-08-31
 
 ## Purpose
@@ -32,16 +32,49 @@ Use 6 pairs only.
 Use:
 - X01 · wax panel
 - X06 · clay vessel
-- X12 · wooden frame
+- X13 · neutral flexible-cord coil
+
+X12 wooden frame is retired from the rendered pilot.
+
+Why X12 was retired:
+- Refine could be rendered plausibly as geometry correction with a simple try square;
+- Preserve repeatedly required an implausible woodworking action or a materially more complex clamping system;
+- a try square is used to check/align geometry, not to stabilize a glued wooden corner;
+- therefore a matched Preserve image would either be physically false or introduce a tool/process complexity confound.
+
+The accepted X12 Refine image may remain as historical render evidence, but X12 must not be used as an OT-03 matched pair.
+
+### X13 replacement concept · flexible cord coil
+
+Shared scene:
+- one plain neutral flexible cord/rope arranged as a medium circular coil on a neutral bench;
+- same hands, camera, lighting, coil size, material and visual density;
+- one plain reusable fabric retaining strap is present in both variants;
+- no branding, electrical device, valuable equipment, damage or safety context.
+
+Refine:
+- strap remains loose beside the coil;
+- the hand adjusts one or two loops so the coil becomes more even, concentric and controlled in shape;
+- no dramatic before/after and no perfect finished result.
+
+Preserve:
+- coil is already acceptably even;
+- the hand fastens the same plain fabric strap around the existing coil so the loops remain in their current arrangement during ordinary handling;
+- no reshaping, tightening for compression, repair or safety cue.
 
 Reason for inclusion:
-- strongest text-level cross-scene identity in locked Claude review;
-- three different object/material structures;
-- directly visible present-tense actions.
+- both actions are physically natural;
+- same object and scene can support both poles;
+- Preserve is active but does not require specialist hardware;
+- Refine changes the form while Preserve holds the existing form;
+- scene is structurally different from wax-panel and clay-vessel craft mechanisms.
 
-Known risks:
-- X06 Preserve side has extra cradle complexity;
-- Refine can look more skilled/purposeful than Preserve.
+Known X13 risks:
+- Refine can read as tidying/neatness;
+- Preserve can read as bundling/packing;
+- strap fastening may look more final/complete than loop adjustment.
+
+These risks must be tested with humans rather than hidden by prompt wording.
 
 ### Family OT-01 · Observe ↔ Change
 
@@ -95,7 +128,7 @@ Do not ask why the participant chose A/B until after the semantic difference is 
 Code semantic descriptions blind to participant choice.
 
 For OT-03 count a semantic hit when the response distinguishes approximately:
-- holding/stabilizing/protecting current form/state
+- holding/stabilizing/preserving current form/state
 versus
 - changing/refining/correcting form/fit/quality.
 
@@ -113,6 +146,7 @@ Also code common alternative explanations, especially:
 - fixing a problem vs merely holding/checking;
 - opening/cover manipulation;
 - craft/manual work;
+- tidying/packing;
 - motion magnitude.
 
 ## First-pass decision rules
@@ -163,15 +197,15 @@ One surviving family is enough to justify the next iteration. There is no requir
 
 Render one pair at a time.
 
-Start with OT-03 X12 wooden frame because:
-- OT-03 had the strongest text-level identity;
-- X12 avoids the X06 cradle-complexity problem;
-- both poles can be represented in closely matched geometry.
+Current order:
+1. X13 flexible-cord coil replacement;
+2. X01 wax panel;
+3. X06 clay vessel;
+4. OT-01 pairs.
 
-For X12:
-1. generate the Refine base scene first;
-2. accept/reject visually;
-3. create Preserve as a controlled matched variant;
-4. do not create a collage or both states in one image.
-
-After X12 is acceptable, continue X01, then X06, then OT-01.
+For X13:
+1. generate Refine standalone first;
+2. accept/reject visually and physically;
+3. only then create Preserve as a matched variant;
+4. use English prompts for technical/spatial constraints;
+5. do not create a collage or both states in one image.
