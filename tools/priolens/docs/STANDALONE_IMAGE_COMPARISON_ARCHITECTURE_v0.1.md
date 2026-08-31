@@ -24,6 +24,27 @@ The two images do not need to be variants of one scene, use the same object, sha
 
 Calling the screen a "pair" must not imply a matched-pair stimulus architecture.
 
+## Historical gallery evidence
+
+User-provided screenshots from the earlier PrioLens image library confirm the original working pattern:
+- many independent visual motifs were generated: rooms, doors, paths, tools, clocks, plants, stones, abstract forms, people, objects, work scenes and other standalone contexts;
+- several visually similar images often represent **iteration around one candidate stimulus concept**, not two images intended to be shown together;
+- repeated variants such as several forest paths, stones, plants, gates, abstract arrangements or object compositions are best understood as candidate-selection history;
+- the eventual comparison layer should choose two accepted standalone stimuli, potentially from very different scene families.
+
+Important distinction:
+
+```text
+several variants of one concept
+= generation / stimulus-selection iterations
+
+not
+
+A/B trial pair
+```
+
+This historical gallery pattern is consistent with an image-library architecture and inconsistent with treating every visual contrast as a 2Pair-style matched pair.
+
 ## Distinction from 2Pair
 
 2Pair research is pair-local: meaning is investigated through a controlled A/B relation inside a deliberately matched pair.
