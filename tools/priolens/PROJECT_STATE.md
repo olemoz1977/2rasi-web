@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / OBSERVABLE REPLICATION TEXT GATE PASSED NARROWLY / HUMAN SEMANTIC PILOT RENDERING
+Status: ACTIVE RESEARCH / CORE ARCHITECTURE CORRECTED TO STANDALONE-IMAGE COMPARISON
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -8,189 +8,178 @@ Draft PR: #9
 
 ## Product boundary
 
-PrioLens remains a short visual-choice experience.
+PrioLens is a short visual-choice experience.
 
 Working principle:
 > **For Fun, but with Wisdom.**
 
+Public flow:
+
+```text
+START
+→ two standalone images
+→ choose
+→ two standalone images
+→ choose
+→ ...
+→ short session mirror
+```
+
 Public constraints:
-- visual pair → quick choice → short session mirror;
 - no mandatory free text or per-choice explanation;
 - no personality/diagnosis/hidden-self claims;
 - `no_clear_choice` allowed;
 - target about 2–4 minutes / roughly 12–18 meaningful choices.
 
-## Safe inference boundary
+## Critical architecture correction · 2026-08-31
+
+The fundamental PrioLens stimulus unit is **one standalone image**.
+
+A trial displays two standalone images, but this does **not** make the trial a 2Pair-style matched A/B stimulus pair.
+
+The two images do not need to:
+- show the same object;
+- use the same scene;
+- differ by one manipulated property;
+- form a before/after or preserve/refine mate;
+- invite the viewer to detect "what changed".
+
+They may be visually and contextually different scenes, provided each stimulus is interpretable on its own and gross nuisance cues are screened/balanced.
+
+Source: `docs/STANDALONE_IMAGE_COMPARISON_ARCHITECTURE_v0.1.md`.
+
+## Why the correction was necessary
+
+Recent OT-03 rendering drifted into the same design logic used in 2Pair:
 
 ```text
-SCENE PROPERTY / CONTROLLED CONTRAST
-→ PARTICIPANT RESPONSE
-→ EMPIRICAL INTERPRETATION
+one scene
+→ A action
+vs
+→ B action
 ```
 
-Higher-order psychological labels are not approved scoring units.
+This produced increasingly artificial same-scene mates, especially X12 wooden-frame Preserve. User explicitly clarified that PrioLens is intended to **show two images**, not require a matched scene pair.
 
-## Broad-direction gates
+Therefore the recent Preserve↔Refine same-scene construction is stopped as a product-architecture path.
 
-### INF Gate D1
-Result: **NOT PASSED / PARTIAL_IDENTITY / HOLD**.
+## Research unit after correction
 
-### MAS Gate D2
-Claude: **PARTIAL_IDENTITY**.
-Grok: **LOCAL_ONLY**.
-
-Decision: **MAS NOT PASSED at direction level**.
-
-Consequence:
-> direction-first aggregation is not supported enough to freeze.
-
-## Active architecture
+Safe research pipeline:
 
 ```text
-observable local tradeoff
-→ multiple scene realizations
-→ rapid participant choices
-→ repeated observable session pattern
-→ descriptive mirror
+candidate semantic family / hypothesis
+→ several standalone image exemplars
+→ blind semantic screening of each image independently
+→ retain semantically convergent stimuli
+→ assemble two-image comparison trials
+→ vary opponents across trials
+→ inspect repeated choice patterns
+→ descriptive session mirror
 ```
 
-Broad labels may return only if later human evidence earns them.
+Designer intent still does not validate an image.
 
-## Observable tradeoff taxonomy
+## Broad-direction hypotheses
 
-First-wave candidates:
-- OT-01 · OBSERVE STATE ↔ CHANGE STATE
-- OT-02 · LOCAL CONFIGURATION ↔ SHARED-PROCESS STEERING
-- OT-03 · PRESERVE FORM/STATE ↔ REFINE FORM/QUALITY
-- OT-05 · PRECISION POSITIONING ↔ ROUTE STEERING
+AUT, CER, EXP, MAS, CON, INF, PRO, OPP remain research hypotheses only.
 
-Held:
-- OT-04 · reciprocal exchange ↔ independent quality execution
-- OT-06 · reciprocal relation ↔ shared-system steering
+They are not approved scoring units and exactly eight final outputs are not required.
 
-Source: `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md`.
+Important reinterpretation of earlier D1/D2 work:
+- INF D1 and MAS D2 showed problems when broad directions were forced to survive as poles across tightly controlled matched opponents;
+- those failures do not by themselves prove that standalone image families for INF or MAS cannot work;
+- the corrected question is whether several **independent standalone images** intended for the same candidate family are recognized as sharing a useful semantic core without pair context.
 
-## OT replication gate v0.1
+## Previous observable-tradeoff work
 
-Claude locked Stage 1 recovered **all four intended families with exact membership and polarity**.
+The OT taxonomy and Claude blind recovery remain useful historical evidence about visible semantics and confounds.
 
-Claude Stage 2 final:
-> **OBSERVABLE_REPLICATION_SUPPORTED**
+However:
 
-Critical qualification:
-- OT-01 repeats reveal-device mechanics;
-- OT-02 repeats local-station → downstream-branch structure;
-- OT-05 overlaps structurally with OT-02 and shares a routing pole;
-- evidence may partly reflect template replication rather than fully independent semantic replication.
+> **observable-tradeoff-first matched-pair architecture is no longer the active product architecture.**
 
-Strongest family: **OT-03 Preserve ↔ Refine**.
-Weakest family: **OT-05 Precision positioning ↔ Route steering**.
-Possible merge/restructure issue: **OT-02 + OT-05** around routing vs non-routing.
+Do not keep producing same-scene OT mates merely because a public trial contains two images.
 
-AI reviewers are now concept/confound filters, not validators. Next evidence source is real participants.
+## Current rendered-image status
 
-## Human semantic pilot v0.1
+### X12 wooden frame
+- Refine image became physically plausible.
+- Preserve mate repeatedly required implausible or more complex woodworking behavior.
+- X12 remains useful evidence showing why forced same-scene pairing is the wrong PrioLens constraint.
+- Do not continue X12 as a matched pair.
 
-Source: `docs/HUMAN_SEMANTIC_PILOT_v0.1.md`.
+### X13 cord coil
+- Refine render is a plausible standalone stimulus candidate: one outer loop is visibly repositioned to make the coil more even.
+- Preserve render is also physically plausible as a standalone image: a strap secures an already neat coil.
+- They do **not** need to remain a controlled matched pair.
+- Both may later be screened independently if their semantic families remain relevant.
 
-Target:
-- 10–15 adults;
-- 6 rendered pairs;
-- 3 OT-03 pairs;
-- 3 OT-01 pairs.
+Gemini watermark cleanup is cosmetic and can be handled after a stimulus is selected.
 
-Choice phase:
-- neutral `Kurį renkiesi?`;
-- A / B / `Nė vienas aiškiai`;
-- random order and side;
-- mechanical response time may be recorded but is not psychological evidence.
+## Immediate next research task
 
-Research semantic phase after choices:
-> `Kuo šie du vaizdai tau labiausiai skiriasi?`
+Stop rendering matched Preserve↔Refine pairs.
 
-Primary question:
-> Do participants independently describe the same observable relation across all three scenes in a family?
+Build a small **standalone image stimulus library** instead.
 
-No psychological score is produced from this pilot.
+For the first pass:
+1. choose 3–4 candidate semantic families;
+2. create 3–5 genuinely different standalone scene concepts for each family;
+3. ensure no family is represented by one repeated visual trope;
+4. blind-screen each image individually with humans using a short semantic question;
+5. only then assemble two-image choice trials across families.
 
-## X12 wooden-frame render outcome
+The standalone screen should ask what the image represents or what is happening in it, not "how do these two images differ?"
 
-X12 is **RETIRED FROM THE HUMAN PILOT**.
+## Nuisance controls for independent images
 
-What happened:
-- Refine could be rendered plausibly using a simple unmarked wooden try square to correct a frame corner toward 90°;
-- repeated Preserve attempts became either angle-checking/alignment again, an implausible stabilizing use of a square, or a materially more complex clamping operation;
-- user correctly flagged the physical problem: glued wooden corners are not stabilized with squares;
-- therefore X12 cannot provide a physically natural matched Preserve ↔ Refine pair without introducing a process/tool confound.
+Do not require pixel-level or same-scene matching.
 
-Decision:
-> Do not keep prompting around an impossible woodworking action. Preserve physical plausibility over pair similarity.
+Screen/balance major nuisance cues instead:
+- valence;
+- attractiveness/aesthetic reward;
+- threat/loss;
+- people count/social salience;
+- prestige/status;
+- visual complexity;
+- brightness/saturation;
+- obvious difficulty/expertise;
+- completion/success;
+- magnitude/scale;
+- novelty.
 
-The accepted X12 Refine render may remain historical evidence only. It is not part of the pilot set.
+## Human pilot status
 
-## X13 replacement · flexible-cord coil
+`docs/HUMAN_SEMANTIC_PILOT_v0.1.md` was written for matched OT pairs and is now **historical / not the next protocol**.
 
-X13 replaces X12 in OT-03.
+Do not run it as written.
 
-Shared scene:
-- one plain neutral flexible cord/rope in a medium circular coil on a neutral bench;
-- same hands, camera, lighting, coil size and material;
-- same plain reusable fabric retaining strap visible in both variants;
-- no branding, electrical device, safety, damage or high-value cues.
+A replacement protocol must screen standalone images first.
 
-Refine:
-- strap loose beside the coil;
-- hand adjusts one or two loops so the coil becomes more even/concentric;
-- no dramatic before/after.
+## AI reviewers
 
-Preserve:
-- coil already acceptably even;
-- hand fastens the same plain strap around it so the existing loop arrangement stays in place during ordinary handling;
-- no reshaping, compression, repair or safety cue.
+AI remains a concept/confound filter only, not a validator.
 
-Why this replacement:
-- both actions are physically natural;
-- same object supports both poles without specialist hardware;
-- Preserve is active, not passive;
-- scene differs structurally from wax-panel and clay-vessel craft mechanisms.
-
-Known risks to test with humans:
-- Refine may read as tidying/neatness;
-- Preserve may read as bundling/packing;
-- fastening may look more final/complete.
-
-## Immediate execution
-
-Render **X13 Refine first**.
-
-Rules:
-1. one image task at a time;
-2. use English prompts for technical/spatial constraints;
-3. accept/reject Refine before generating Preserve;
-4. preserve physical plausibility over forced visual matching;
-5. no collage, labels, text or multi-state images.
-
-After X13: X01 → X06 → OT-01.
+Do not reopen long Claude/Grok voting loops before human semantic evidence.
 
 ## AI Review Harness
 
-Vercel harness is deployed and reaches AI Gateway. Paid model execution remains deferred. Do not spend more time on billing now.
+Vercel harness is deployed and reaches AI Gateway. Paid execution remains deferred. Do not spend more time on billing now.
 
 ## Source-of-truth order
 
 1. `PROJECT_STATE.md`
-2. `docs/HUMAN_SEMANTIC_PILOT_v0.1.md`
-3. `docs/CLAUDE_OT_REPLICATION_STAGE2_RESULT_v0.1.md`
-4. `docs/OT_REPLICATION_BLIND_STAGE1_v0.1.md`
-5. `docs/OT_REPLICATION_STAGE2_REVEAL_v0.1.md`
-6. `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md`
+2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
+3. `docs/STANDALONE_IMAGE_COMPARISON_ARCHITECTURE_v0.1.md`
+4. later standalone-image semantic-screen protocol when created
+5. `docs/CLAUDE_OT_REPLICATION_STAGE2_RESULT_v0.1.md` as historical evidence
+6. `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md` as historical evidence
 7. `docs/ARCHITECTURE_REASSESSMENT_AFTER_D1_D2_v0.1.md`
-8. `docs/GROK_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-9. `docs/CLAUDE_MAS_CROSS_EDGE_STAGE2_RESULT_v0.1.md`
-10. `docs/INF_REPRESENTATION_REASSESSMENT_v0.1.md`
+8. earlier INF/MAS gate files as historical evidence
 
 ## Recovery instruction
 
 If context is lost, start here.
 
-Do not restart INF edge-searching, do not return to broad-direction scoring, do not reopen Vercel billing, do not resume long AI-review loops before the first human semantic pilot, and do not restore X12 as a matched OT-03 pair unless a physically plausible Preserve mechanism is demonstrated.
+Do not restart same-scene Preserve↔Refine mate construction, do not treat two images on one screen as a 2Pair matched pair, do not restore automatic eight-direction scoring, and do not return to long AI-review loops before standalone human semantic screening.
