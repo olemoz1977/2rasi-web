@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / ORIGINAL BASELINE RECOVERED / GALLERY TRIAGE COMPLETE
+Status: ACTIVE RESEARCH / STANDALONE BASELINE RECOVERED / BROAD DIRECTIONS UNPROVEN
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -11,24 +11,16 @@ Draft PR: #9
 1. `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
 2. `docs/ORIGINAL_PRIOLENS_BASELINE_RECOVERY_v0.1.md`
 3. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
-4. `docs/GALLERY_CANDIDATE_BANK_PASS_v0.1.md`
-5. this file
-
-Local stimulus failures must not silently redefine product architecture.
+4. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
+5. `docs/GALLERY_SEMANTIC_BANK_v0.2.md`
+6. this file
 
 ## Product boundary
 
-PrioLens is a short visual-choice experience.
-
-Working principle:
-> **For Fun, but with Wisdom.**
-
-Public flow:
+PrioLens remains a short visual-choice experience:
 
 ```text
 START
-→ two standalone images
-→ choose
 → two standalone images
 → choose
 → ...
@@ -43,159 +35,114 @@ Public constraints:
 - `no_clear_choice` allowed;
 - eventual target roughly 2–4 minutes / 12–18 meaningful choices.
 
-## Original architecture recovered
+## Original baseline recovered
 
-Original PrioLens v0.1 used:
-- 8 working directions: AUT, CER, EXP, MAS, CON, INF, PRO, OPP;
-- 2 independent standalone visual exemplars per direction;
-- 16 active stimuli;
-- 28 direction-v-direction edges in the old full research session;
-- planner-assembled comparisons from independently registered image assets.
+Original v0.1 used 8 working directions (AUT, CER, EXP, MAS, CON, INF, PRO, OPP), 2 standalone exemplars per direction, 16 active stimuli and 28 direction-v-direction edges.
 
-The old red-team stopped the 16-image freeze and recommended a larger independently designed candidate bank. Exactly eight final public scores are not guaranteed. The directions remain working hypotheses.
+The exact S01–S16 ↔ beta asset mapping has been recovered byte-for-byte from `Gallery.zip` and `priolens_working_beta-4.html`. Canonical mapping: `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`.
 
-## Recovery completed · 2026-08-31
+Recovery is complete enough to stop archaeology.
 
-User-provided artifacts:
-- `priolens_working_beta-4.html`;
-- `Gallery.zip`.
+## Critical combined interpretation of the last 10h
 
-`Gallery.zip` contains all `S01.webp` ... `S16.webp` blind-review stimuli.
+The standalone correction and the D1/D2 negative results both survive.
 
-All sixteen Sxx files were compared byte-for-byte against all sixteen beta assets using SHA-256. Every Sxx had exactly one exact match.
+### Standalone correction says
+- one image = one stimulus;
+- trials are assembled later from independent images;
+- do not force same-scene matched mates.
 
-Exact mapping:
+### D1/D2 says
+The broad inference
 
-| Sxx | Stable beta asset |
-| --- | --- |
-| S01 | `exploration-01` |
-| S02 | `influence-02` |
-| S03 | `connection-01` |
-| S04 | `influence-01` |
-| S05 | `autonomy-01` |
-| S06 | `certainty-02` |
-| S07 | `opportunity-02` |
-| S08 | `protection-01` |
-| S09 | `exploration-02` |
-| S10 | `certainty-01` |
-| S11 | `autonomy-02` |
-| S12 | `mastery-01` |
-| S13 | `protection-02` |
-| S14 | `connection-02` |
-| S15 | `opportunity-01` |
-| S16 | `mastery-02` |
+`different visible mechanisms -> one stable broad direction -> safe direction score`
 
-Canonical evidence: `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`.
+is **not supported enough to freeze**.
 
-The recovery blocker is CLOSED. Do not ask the user to re-upload the old project or rediscover these mappings.
+INF repeatedly collapsed toward steering/routing/causality/control.
+MAS repeatedly collapsed toward precision/fit/refinement/skilled execution.
 
-## Historical red-team status of the 16
+These were AI concept-review results, not human construct validation, but they are meaningful negative evidence and must not be erased merely because the product architecture was corrected.
 
-Strongest anchors:
-- S12 / `mastery-01` — precision measurement / craftsmanship.
-- S16 / `mastery-02` — pottery / craftsmanship.
+Canonical interpretation: `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`.
 
-Candidate / rework:
-- S01 EXP;
-- S02 INF;
-- S03 CON;
-- S06 CER;
-- S08 PRO;
-- S14 CON;
-- S15 OPP.
+## Active semantic model
 
-Replace / redesign preferred:
-- S04 INF;
-- S05 AUT;
-- S07 OPP;
-- S09 EXP;
-- S10 CER;
-- S11 AUT;
-- S13 PRO.
+Do **not** organize new work primarily by the old eight labels.
 
-## Gallery triage completed · 2026-08-31
+Name each candidate first by what is concretely visible. Old directions are only legacy hypothesis tags.
 
-`Gallery.zip` contains 223 image files / 222 byte-unique files. It is a historical generation archive, not a clean stimulus registry.
+Current lower-level families from the Gallery pass:
+- F1 Controlled execution
+- F2 External state steering
+- F3 Reciprocal coordination
+- F4 Route continuation / discovery
+- F5 Shielding
+- F6 Available resource
+- F7 Explicit settled state
 
-A full visual pass separated:
-- old dark office/WorkStyle atmosphere assets;
-- abstract sculpture/geometric experiments;
-- repeated path/door/journey families;
-- repeated craft/precision families;
-- repeated literal-connection families;
-- late 2026-08-29/30 action/resource scenes.
+Canonical active bank: `docs/GALLERY_SEMANTIC_BANK_v0.2.md`.
 
-Canonical triage: `docs/GALLERY_CANDIDATE_BANK_PASS_v0.1.md`.
+Examples:
+- irrigation gate → external system steering/distribution; legacy tag INF;
+- room light switch → wider environmental state change; legacy tag INF;
+- S12 caliper → precision measurement/controlled execution; legacy tag MAS;
+- S16 pottery → skilled shaping/controlled execution; legacy tag MAS.
 
-### Strongest current small standalone bank
+Do not call those images validated INF or MAS stimuli.
 
-- MAS: S12 caliper precision — KEEP anchor.
-- MAS: S16 pottery skill — KEEP anchor.
-- INF: irrigation gate feeding several channels — KEEP; strongest new broader-impact candidate.
-- INF: local light switch changing wider room state — KEEP candidate.
-- CON: S03 dyadic connection — KEEP candidate with face-salience warning.
-- CON: two people jointly holding/exchanging a box — KEEP candidate.
-- EXP: footprints/trail — KEEP candidate.
-- EXP: road/journey through windshield — KEEP candidate.
-- PRO: S08 umbrella shielding — KEEP candidate.
-- OPP: prepared useful materials on workbench — KEEP; strongest new low-valence opportunity candidate.
-- OPP: ripe harvest + empty basket — KEEP candidate with nature/reward warning.
-- CER: S06 checklist — KEEP historical semantic anchor with completion-symbol warning.
+## Consequence for AUT and other gaps
 
-### Explicit gaps
+There is currently **no obligation to fill AUT, CER, PRO, etc. quotas** merely because the original model had eight directions.
 
-Do not fill these by quota:
-- AUT: no clean KEEP yet.
-- CER: no diverse text/symbol-free second KEEP.
-- PRO: no diverse second KEEP.
-- MAS: domain-diverse third exemplar missing; do not add another handcraft image.
-- CON: low-face-salience reciprocal-relation exemplar missing.
+The previous plan to immediately generate `AUT-01` is cancelled.
 
-### What survives from the recent 10h
+A new image should be generated only when:
+1. a useful lower-level semantic family is missing a materially different exemplar;
+2. the Gallery has been exhausted for that purpose;
+3. the image can be defined by a visible action/state without relying on designer story.
 
-The matched Preserve↔Refine architecture is discarded, but some standalone image work survives:
-- irrigation/shared-system action → useful INF candidate;
-- prepared useful materials → useful OPP candidate;
-- ripe harvest + basket → useful OPP candidate;
-- local switch affecting a larger room → useful INF candidate;
-- X13 cord-coil renders may remain lower-level standalone candidates but are not forced into any old direction.
+If no coherent family relevant to an old direction emerges, the old direction may remain unsupported or be dropped later.
+
+## Gallery status
+
+`Gallery.zip` contains 223 files / 222 byte-unique images. The first direction-labelled triage (`GALLERY_CANDIDATE_BANK_PASS_v0.1.md`) is retained as historical work but is **superseded for interpretation** by `GALLERY_SEMANTIC_BANK_v0.2.md` because v0.1 over-promoted some images into broad directions.
 
 ## Solo research constraint
 
-The user is currently working alone.
-
-Therefore **human semantic validation is not the immediate execution step** and must not become a blocker.
+The user is working alone.
 
 Current solo workflow:
 1. ChatGPT + user curate and red-team the candidate bank;
-2. AI may be used only as a confound/alternative-reading filter, not as construct validator;
-3. user self-checks are sanity checks only because designer intent contaminates them;
-4. external human screening is deferred until a compact bank is worth showing, rather than requested image-by-image.
+2. independent AI can be used blind as an adversarial semantic/confound check;
+3. AI agreement is not called validation;
+4. user self-reading is only a sanity check because of author-intent contamination;
+5. external human screening is deferred until a compact bank is worth testing.
 
-Do not repeatedly tell the user to recruit 10–15 participants during stimulus construction.
+Do not make recruiting 10–15 people an immediate blocker.
 
 ## Immediate next action
 
-Do not generate broadly.
+Do **not** generate AUT-01 yet.
 
-Design only against the explicit gaps:
-1. AUT — 2–3 standalone concepts showing self-directed control/choice without path/door tropes;
-2. CER — 2–3 text-free explicit-state concepts without completion/achievement cues;
-3. PRO — 2–3 distinct protection mechanisms not umbrella/case;
-4. MAS — 1–2 domain-diverse competence scenes not handcraft;
-5. CON — 1–2 low-face-salience reciprocal-relation scenes.
+Next:
+1. re-read the existing Gallery through the lower-level semantic families F1–F7;
+2. identify materially different existing exemplars that strengthen or falsify those families;
+3. flag families that still depend on one visual trope;
+4. only then generate narrowly for a missing lower-level family exemplar;
+5. use D1/D2 as a guardrail against silently promoting lower-level mechanisms into broad direction scores.
 
-INF and OPP get **no new images yet**; existing late candidates should be screened first.
+## Guardrails
 
-Do not return to same-scene Preserve↔Refine construction. Do not regenerate historical S01–S16. Do not restart long Claude/Grok consensus loops.
+- Do not return to matched Preserve↔Refine product architecture.
+- Do not erase D1/D2 negative evidence.
+- Do not equate `KEEP` with direction validation or scoring permission.
+- Do not fill an eight-direction quota by force.
+- Do not restart long AI consensus loops as if AI were construct validation.
 
-## Research boundary
+The current combined position is:
 
-The main question remains:
-
-> Can materially different standalone exemplars of the same working direction produce a reproducible direction-level choice signal after semantic fit and nuisance cues are controlled?
-
-`KEEP` means only worth carrying forward. It does not authorize scoring and does not validate the old direction.
+> **PrioLens is standalone-image-first. The old eight broad directions remain hypotheses. Current work proceeds from visible lower-level semantics upward, not from broad labels downward.**
 
 ## AI Review Harness
 
