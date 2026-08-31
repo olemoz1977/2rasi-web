@@ -1,6 +1,6 @@
 # PrioLens Open14 missing scene mechanisms v0.2
 
-Status: HUMAN REVIEW IN PROGRESS / 3 OF 4 MECHANISMS ACCEPTED
+Status: HUMAN REVIEW COMPLETE / 4 OF 4 TEXT MECHANISMS ACCEPTED
 Date: 2026-09-01
 
 ## Human decision checkpoint
@@ -8,12 +8,10 @@ Date: 2026-09-01
 Accepted for prototyping:
 - CARE-A;
 - CARE-B;
-- RECOGNITION-A.
+- RECOGNITION-A;
+- RECOGNITION-B.
 
-Still unresolved:
-- RECOGNITION-B — HOLD / rethink before any image is created.
-
-No image generation is authorized by this document.
+No image generation is authorized by this document. Acceptance means only that the text-level mechanism is worth prototyping when image creation is explicitly requested.
 
 ## CARE working pull
 
@@ -58,13 +56,13 @@ One ordinary adult has dropped several neutral everyday items while already carr
 
 ## RECOGNITION working pull
 
-> **Have my contribution or standing seen and acknowledged.**
+> **Have my contribution, judgement or standing seen and acknowledged by others.**
 
 Recognition must not collapse into:
 - BELONGING — simply being included;
 - CONNECTION — interpersonal contact;
 - RESOURCE — receiving a gift/reward;
-- MASTERY — doing skilled work;
+- MASTERY — merely displaying skill;
 - SUCCESS — reaching an endpoint;
 - prestige symbolism with no visible acknowledgement event.
 
@@ -92,26 +90,36 @@ No stage, medal, trophy, luxury setting or winner symbolism.
 - several approval cues may be present, but avoid exaggerated cheering;
 - no text, certificates or awards.
 
-### RECOGNITION-B — HOLD / RETHINK
+### RECOGNITION-B — ACCEPTED AS A BOUNDARY PROBE
 
-The previous `visible credit / being singled out` mechanism is **not accepted**.
+**Mechanism**
 
-Reason:
-- an open-hand presenting gesture can read as merely introducing someone;
-- forcing a second concept now risks widening RECOGNITION into leadership, status, success or mastery;
-- a second exemplar does not automatically require a second psychological subtype.
+A small group of visually equal peers is discussing a neutral plan, object or situation. Several people clearly turn toward one person for their view; one peer presents the neutral material toward that person and pauses for their judgement, while the others attend to the same person. The focal person is not shown commanding, teaching or demonstrating a skill.
 
-Before replacing B, test this design question:
+**First-read target**
+> `mano nuomonė / kompetencija čia vertinama`
 
-> **Can RECOGNITION-B be a materially different visual realization of the same acknowledgement pull, rather than a different recognition mechanism?**
+**Why this is materially different from A**
+- A tests overt positive acknowledgement after/around contribution;
+- B tests being actively sought out because one's judgement is valued;
+- both share the broader recognition/esteem pull without requiring prizes or formal status.
 
-Possible future direction to examine, not yet accepted:
-- being visibly sought out / consulted because one's judgement or competence is valued.
+**Main confounds to watch**
+- MASTERY / expertise if technical competence dominates the scene;
+- CONTROL / leadership if the focal person appears to command the group;
+- CONNECTION if it reads as ordinary conversation;
+- BELONGING if equal group presence dominates over directional attention.
 
-Main risk of that direction:
-- it may collapse into MASTERY, INFLUENCE or leadership.
+**Guardrails**
+- no podium, head-of-table position, formal leader cues or teaching posture;
+- neutral everyday material, not a highly technical artefact;
+- group attention must visibly converge on the focal person;
+- the scene should read as `they want this person's view`, not `this person is in charge`.
 
-Therefore no RECOGNITION-B scene should be produced until the mechanism is explicitly accepted.
+**Research status**
+`ACCEPTED_BOUNDARY_PROBE`.
+
+If the image later reads primarily as expertise, leadership or generic discussion, drop/reassign it rather than forcing RECOGNITION.
 
 ## Rejected mechanism classes for now
 
@@ -130,6 +138,12 @@ Do not use as first prototypes:
 - CARE-A: **ACCEPTED FOR PROTOTYPING**
 - CARE-B: **ACCEPTED FOR PROTOTYPING**
 - RECOGNITION-A: **ACCEPTED FOR PROTOTYPING**
-- RECOGNITION-B: **HOLD / RETHINK**
+- RECOGNITION-B: **ACCEPTED BOUNDARY PROBE**
 
-Next human decision is only RECOGNITION-B. Do not reopen the three accepted mechanisms unless a later visual prototype clearly fails the pragmatic first-read check.
+All four text mechanisms have now passed the human gate.
+
+Next:
+1. prepare production-ready text specifications for these four scenes;
+2. do not generate images unless explicitly requested;
+3. once actual prototypes exist, apply the same one-second pragmatic first-read audit used for the rest of the bank;
+4. reject/reassign any prototype whose competing read dominates.
