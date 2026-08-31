@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RECOVERY / ORIGINAL STANDALONE STIMULUS BASELINE PARTIALLY RECONSTRUCTED
+Status: ACTIVE RECOVERY / ORIGINAL STANDALONE STIMULUS BASELINE PARTIALLY RECONSTRUCTED / BETA FILE NEEDED FOR BYTE-LEVEL RECOVERY
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -45,10 +45,10 @@ The original PrioLens v0.1 materials have been recovered and now take precedence
 
 Source material recovered:
 - `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`;
-- `priolens_working_beta_v03.html` with all 16 active images embedded as base64;
+- `priolens_working_beta_v03.html` indexed in File Library with all 16 active images embedded as base64;
 - `RED_TEAM_SYNTHESIS_v0.1.md`;
 - original core/calibration session JSON exports;
-- two historical stimulus-matrix artifacts showing earlier candidate provenance.
+- historical stimulus-matrix and generation artifacts showing earlier candidate provenance.
 
 Original model:
 - 8 working directions;
@@ -106,19 +106,61 @@ Recovered blind direction mapping:
 
 Historical stimulus matrices are **precursor evidence, not final ground truth**. Their labels changed before the final blind set, so they cannot be used as a direct registry.
 
-However, five final blind scenes are now strongly triangulated to earlier numbered candidate scenes:
+Strong scene-continuity links:
 - S12 MAS ↔ historical `MAS-A 4635` — calipers / precise measurement;
 - S16 MAS ↔ historical `MAS-B 4636` — pottery wheel / skilled shaping;
 - S15 OPP ↔ historical `OPP-A 4637` — open greenhouse / growth;
 - S07 OPP ↔ historical `OPP-B 4638` — prepared food/resources;
-- S06 CER ↔ historical `CER-B 4659` — checklist/completion.
+- S06 CER ↔ historical checklist candidate — checklist/completion.
 
 Possible but not yet proven:
 - S08 PRO ↔ historical `PRO-A 2723` — umbrella/rain.
 
-These are **scene-continuity links only**. They do not establish `direction-01` vs `direction-02` stable beta IDs.
+Additional File Library archaeology recovered:
+- multiple individual domino-chain renders strongly matching the S02 causality design family;
+- several irrigation / button / shared-system action renders relevant to late INF iterations;
+- multiple gate/window/open-path renders relevant to AUT/OPP/EXP exploration, but not uniquely mappable;
+- individual original-looking MAS caliper and pottery files;
+- greenhouse and food-resource OPP files;
+- multiple CER measurement/organization precursors.
 
-Searches for standalone files by historical numeric codes did not recover source assets. The exact one-to-one relation `Sxx -> direction-01/direction-02` remains unresolved and must not be guessed.
+These are provenance clues only. They do not establish `direction-01` vs `direction-02` stable beta IDs.
+
+## Exact mapping remains unresolved
+
+Searches for:
+- the original blind 16-stimulus package;
+- a stimulus registry containing S01–S16 plus stable beta IDs;
+- `S01/S16` together with `direction-01/-02`;
+- stable beta IDs in the GitHub repository
+
+did not recover a direct one-to-one mapping.
+
+The session JSON files prove actual runtime use of `direction-01/-02`, but do not contain the image semantics needed to identify which Sxx was which exemplar.
+
+Do **not** infer `Sxx -> direction-01/direction-02` from numbering, upload time, historical A/B labels or convenience.
+
+## Current technical extraction boundary
+
+`priolens_working_beta_v03.html` is searchable in File Library and exposes snippets of the embedded base64 registry, but the full file cannot currently be opened through the available File Library reader (`mclick` fails) and it is not mounted in the active sandbox or present in GitHub.
+
+Therefore the 16 embedded image byte streams cannot yet be extracted deterministically from the indexed reference alone.
+
+### Single file needed to close recovery
+
+If continuing recovery in this chat, the only artifact that needs to be uploaded directly is:
+
+> `priolens_working_beta_v03.html`
+
+Not the whole project.
+
+Once that one file is available as a current-conversation attachment/local file:
+1. extract all 16 embedded WebP assets without changing pixels;
+2. save them under their stable beta IDs;
+3. generate a contact sheet / inventory;
+4. compare them against recovered individual File Library images and historical boards;
+5. close as much of `Sxx -> direction-01/direction-02` as evidence permits;
+6. classify each old beta asset as historical KEEP / REWORK / DROP candidate using the existing red-team record.
 
 ## Recent drift retained only as historical evidence
 
@@ -145,13 +187,9 @@ The eight working directions remain hypotheses, not validated traits or guarante
 
 Do **not** generate more new stimuli yet.
 
-Recovery first:
-1. extract the original 16 beta images from the embedded HTML without changing pixels;
-2. save/reconstruct a historical asset inventory under stable beta IDs;
-3. use deterministic visual/source comparison to recover as much of S01–S16 ↔ `direction-01/-02` as possible without guessing;
-4. produce one contact sheet with stable asset ID, recovered Sxx where proven, red-team verdict and major confounds;
-5. classify old assets as historical KEEP / REWORK / DROP candidates;
-6. only then design missing standalone exemplars to expand promising directions toward a 4+ candidate bank.
+Recovery first.
+
+Current blocker is byte-level access to `priolens_working_beta_v03.html`; one direct upload of that file is sufficient. Do not request a bulk re-upload of prior materials.
 
 No external preference pilot should use the old 16 as if they were validated/final.
 
