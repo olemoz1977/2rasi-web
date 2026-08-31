@@ -1,31 +1,24 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / FULL GALLERY IMPULSE AUDIT COMPLETE / BALANCED P3 OWNER RERUN COMPLETE / CER CONSTRUCT HOLD
+Status: ACTIVE RESEARCH / OPEN IMPULSE-SPACE REVIEW / TWO-LAYER ARCHITECTURE HYPOTHESIS ACTIVE
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
-Draft PR: #9
 
 ## Read first
 
-1. `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
-2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/NEW_CHAT_SOURCE_OF_TRUTH_v0.1.md`
-4. `docs/STIMULUS_IMPULSE_AUDIT_v0.1.md`
-5. `docs/GALLERY_IMPULSE_AUDIT_v0.1.csv`
-6. `docs/GALLERY_IMPULSE_CURATION_v0.1.md`
-7. `docs/RECENT_GENERATED_IMPULSE_AUDIT_v0.1.md`
-8. `docs/CANDIDATE_BANK_MATRIX_v0.3.md`
-9. `docs/CER_VISUAL_VIABILITY_CHECK_v0.1.md`
-10. `docs/P3_SINGLE_SESSION_DIAGNOSTIC_v0.1.md`
-11. `docs/P3_BALANCED_OWNER_RERUN_DIAGNOSTIC_v0.1.md`
-12. `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
-13. `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
-14. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
-15. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
-16. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
-17. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
-18. this file
+1. `RESUME_HERE.md`
+2. `docs/NEW_CHAT_SOURCE_OF_TRUTH_v0.1.md`
+3. `docs/NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`
+4. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
+5. `docs/STIMULUS_SELECTION_PRAGMATIC_RULE_v0.1.md`
+6. `docs/GALLERY_IMPULSE_AUDIT_v0.1.csv`
+7. `docs/GALLERY_IMPULSE_CURATION_v0.1.md`
+8. `docs/P3_BALANCED_OWNER_RERUN_DIAGNOSTIC_v0.1.md`
+9. `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
+10. `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
+11. `docs/HOSTING_DEPLOYMENT_BOUNDARY_v0.1.md`
+12. this file
 
 ## Product boundary
 
@@ -34,209 +27,213 @@ PrioLens is a short visual-choice experience.
 Canonical phrase:
 > **For Fun with Wisdom**
 
-Target public flow remains simple and non-diagnostic. The current research may use 2-image or 3-image presentation variants, but stimulus identity remains standalone and results describe only the current session/stimuli.
+Do not claim:
+- personality diagnosis;
+- hidden / true self;
+- subconscious truth;
+- fast = true;
+- latency = psychological strength;
+- one complete validated taxonomy of human needs or priorities.
 
-Core constraints:
-- one image = one standalone stimulus;
-- no mandatory writing or per-choice explanation;
-- no personality/diagnosis/hidden-self claim;
-- `no_clear_choice` allowed;
-- latency is mechanical/UX data, not psychological strength;
-- target public duration roughly 2–4 minutes.
+Target public duration remains roughly 2–4 minutes. `no_clear_choice` stays valid.
 
-## Active review rule
+## New active architecture hypothesis
 
-The active order is impulse-first:
+The project no longer assumes that AUT / EXP / MAS / CON / INF / PRO / OPP are the only relevant priority families.
 
-> **image → what it evokes → possible direction → KEEP / HOLD / DROP / REASSIGN**
+Current architecture separates two observations:
 
-Do not start from the intended historical label.
+1. **revealed visual priority** — what repeatedly wins in low-deliberation visual choice;
+2. **perceived sufficiency** — how sufficiently the participant feels broader need domains are currently met.
 
-This applies equally to historical PASS, HOLD, CANDIDATE and DROP images. A DROP may return if it failed only because it was assigned to the wrong direction. A PASS may be removed if its first impulse does not support the intended construct.
+Preferred measurement order is:
+1. visual choice first, without need labels or prior deficiency ratings;
+2. perceived-sufficiency self-assessment second;
+3. compare the two layers without collapsing them into one psychological score.
 
-Canonical rule: `docs/STIMULUS_IMPULSE_AUDIT_v0.1.md`.
+Reason: asking first what is missing would prime the subsequent visual task.
 
-## Full Gallery audit complete
+Do not ask for one global "Maslow stage". A participant can be secure in one domain and deprived in another.
 
-`Gallery.zip` contains 223 files / 222 byte-unique images.
+Canonical architecture note:
+`docs/NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`.
 
-Every Gallery image has a plain-language first-impulse description in:
-`docs/GALLERY_IMPULSE_AUDIT_v0.1.csv`.
+## Macro coverage map
 
-After second-stage curation:
-- 40 Gallery images remain KEEP/HOLD for the current eight-direction question;
-- 183 are DROP from the compact candidate bank.
+Maslow-style levels are used only as a broad omission/coverage map, not as a strict hierarchy.
 
-Do not perform another full Gallery pass unless a genuinely new question requires it.
+Candidate macro coverage:
+- basic resources / physical comfort;
+- safety / stability / predictability;
+- connection / belonging / care;
+- agency / esteem / recognition;
+- growth / mastery / exploration / authenticity;
+- meaning / contribution / justice / purpose.
 
-## Current candidate bank after impulse audit
+Theory may inform coverage, but does not define the final PrioLens scoring taxonomy.
 
-Active matrix: `docs/CANDIDATE_BANK_MATRIX_v0.3.md`.
+Useful comparison sources may include SDT, Schwartz, McClelland, approach/avoidance and promotion/prevention models, caregiving/attachment/exploration/threat-defense/dominance literature, and AgileBrain. None is imported wholesale.
 
-### AUT
-Strongest: `S05` tool choice; backpack strap adjustment; physical audio volume adjustment.
-Working impulse: **I choose / I set this for myself.**
-Bicycle saddle and car headrest remain HOLD. Workstation is DROP because computer work dominates.
+## Open candidate impulse universe
 
-### CER
-CER is **CONSTRUCT HOLD**, not an image-production gap.
-Working intended impulse:
-> **Trauka į būseną, kurioje aišku, kas vyksta ar ko tikėtis.**
+Current broad candidates include, without claiming exhaustiveness:
+- safety / protection;
+- care / caregiving;
+- connection / belonging / inclusion;
+- autonomy / self-direction;
+- control / assertion;
+- recognition / status;
+- mastery / competence;
+- achievement / success;
+- exploration / novelty;
+- opportunity / reward;
+- certainty / order;
+- authenticity;
+- justice / fairness;
+- purpose / meaning;
+- immersion / engagement;
+- contribution / service.
 
-Existing candidates mostly resolve into proxies such as confirmation, order, permission, completion or precision. There is no strong standalone CER image yet. Do not generate more CER scenes until the construct itself is narrowed, replaced or explicitly retained despite this representational problem.
+Families may merge, split, disappear or be renamed after evidence.
 
-### EXP
-Strongest: `S09` reveal/discovery; peek/curiosity; uncertain fork/path; `S01` forward into unseen route. Enough diversity for now.
+Important distinction:
+- caring is not automatically the same as connection;
+- protection is not automatically the same as care;
+- persecutor/rescuer/victim-like behavior is not treated as a primitive impulse category by default; such patterns may emerge from combinations of more elementary priorities.
 
-### MAS
-Strongest: `S12` precision measurement; `S16` skilled shaping; precise frame adjustment. Water-to-mark is a MAS/control HOLD, not CER.
+## Active stimulus rule
 
-### CON
-Strongest: `S03` dyadic connection; reciprocal joint handling/exchange. Faces/warmth remain a recurring confound.
+Do not optimize stimuli toward laboratory sterility.
 
-### INF
-Strongest: irrigation gate distributing water across a wider system; local switch changing wider room state. `S02` domino and `S04` routing remain HOLD.
+Active pragmatic rule:
+- what does a normal viewer get in about one second?
+- is the image alive / engaging enough to create a real choice?
+- is the intended or discovered impulse the first plausible reading?
+- reject only when a competing reading is genuinely stronger, not merely possible.
 
-### PRO
-Strongest: umbrella shielding; gate latch/access security; fitted protective case; robust enclosure. Keep shielding/securing/safeguarding together as candidate expressions until evidence says whether they cohere.
+Emotion is not a confound by itself. Systematic salience imbalance across families is the larger risk.
 
-### OPP
-Strongest: prepared useful materials; ripe harvest + basket; blank canvas + tools. Scenario diversity is good, though reward/nature confounds remain.
+Open-coding rule is now:
 
-## D1/D2 evidence still active
+> **image → first spontaneous pull / meaning → candidate impulse family → KEEP / HOLD / DROP / REASSIGN / NEW-FAMILY**
 
-The inference
-`different visible mechanisms → one stable broad direction → safe direction score`
-is not established enough to freeze.
+Do not force an image into the historical seven-direction set.
 
-Current broad directions are design hypotheses for bank construction, not validated scores. Later human evidence must decide whether materially different exemplars actually cohere.
+## Gallery state
 
-## P3 owner-run checkpoint
+Gallery contains 223 files / 222 byte-unique images.
 
-Two owner P3 sessions have now been completed with CER inactive.
+A full first-impulse audit already exists. Do not restart all 223 images from zero.
 
-Shared design:
-- 7 active directions;
-- 14 three-image trials;
+Historical curation for the previous eight-direction question produced:
+- 40 KEEP/HOLD;
+- 183 DROP.
+
+Those labels are not final under the broader impulse-space question. A previous DROP may return if it evokes a useful family that was outside the old taxonomy.
+
+The Hostinger copy is available under:
+`omesg360.eu/public_html/priolens-research-assets/Gallery`
+
+A file inventory has also been recovered through the `olemoz1977/omesg360` deployment channel.
+
+## P3 runtime state
+
+P3 remains a research presentation variant, not the frozen public architecture.
+
+Current runtime successor is v0.4:
+- schema `2rasi.priolens.p3.research-v0.4`;
+- layout `three-equal-image-rows-plus-right-optout-rail-v0.1`;
+- 7 active historical directions;
+- 14 triads;
 - every direction shown 6 times;
-- every one of the 21 direction pairs co-occurred exactly twice.
+- every pair co-occurs exactly twice;
+- every stimulus appears exactly once in each slot across its three presentations;
+- every direction is exactly 2/2/2 across the three slots;
+- tie-safe result logic active.
 
-### First owner run, before exact slot balancing
+Current research hosting/runtime route:
+`omesg360.eu/priolens/`
+
+Deployment invariant:
+- runtime deploy target is separate from persistent research assets;
+- `priolens-research-assets` must never be inside a deploy-owned PrioLens runtime directory.
+
+## Owner-run checkpoints
+
+### Balanced v0.3 rerun
+- MAS 6/6;
+- CON 3/6;
+- PRO 3/6;
+- EXP 1/6;
+- OPP 1/6;
+- AUT 0/6;
+- INF 0/6;
+- median RT about 2.06 s.
+
+### v0.4 equal-row layout run
+Schema: `2rasi.priolens.p3.research-v0.4`.
 
 Raw result:
-- Mastery 5/6;
-- Protection 5/6;
-- Connection 2/6;
-- Opportunity 2/6;
-- Autonomy 0/6;
-- Exploration 0/6;
-- Influence 0/6.
+- MAS 5/6;
+- EXP 3/6;
+- PRO 3/6;
+- OPP 2/6;
+- CON 1/6;
+- AUT 0/6;
+- INF 0/6;
+- `no_clear_choice` 0/14;
+- median RT about 1.51 s.
 
-This run exposed two technical faults:
-1. exact ties were broken incorrectly by result sorting;
-2. stimulus/direction positions were not balanced.
+Interpretation limits:
+- owner runs are technical/design falsification, not validation;
+- repeated use of the same historical 14 images creates familiarity contamination;
+- AUT and INF remaining 0/6 after exact slot balancing and after the v0.4 geometry change weakens a pure position-confound explanation, but does not establish low AUT/INF as a participant trait;
+- old exemplar quality remains a major alternative explanation.
 
-Canonical diagnostic: `docs/P3_SINGLE_SESSION_DIAGNOSTIC_v0.1.md`.
+Do not run another owner session on the same 14 images as validation.
 
-### Balanced owner rerun
+## CER
 
-Source schema: `2rasi.priolens.p3.research-v0.3`
-Seed: `mthh8pds-ucwagn`
+CER remains `CONSTRUCT HOLD` under the old direction model.
 
-The corrected planner achieved exact balance:
-- every exemplar appears once in each of the 3 slots across its three presentations;
-- every direction appears 2/2/2 across the 3 slots.
+Do not generate CER merely to preserve an old quota. Under the new open impulse-space architecture, certainty/order may re-enter only if it emerges as a coherent useful candidate family.
 
-Raw result:
-- Mastery 6/6;
-- Connection 3/6;
-- Protection 3/6;
-- Exploration 1/6;
-- Opportunity 1/6;
-- Autonomy 0/6;
-- Influence 0/6.
+## Current methodological stance
 
-Critical findings:
-1. **Tie-safe rendering and exact slot balancing now work.**
-2. Mastery is the only direction with perfect two-exemplar support in the balanced run: `mastery-01` 3/3 and `mastery-02` 3/3.
-3. Mastery is also perfectly stable across internal rounds (3/3 + 3/3) and its six wins are distributed 2/2/2 across the three slots.
-4. Influence remains 0/6 after exact position balancing. The earlier P3 collapse therefore cannot be explained only by aggregate slot imbalance.
-5. Autonomy also remains 0/6 across both P3 owner runs.
-6. Protection falls from 5/6 to 3/6 after seed/context change; Connection rises from 2/6 to 3/6. Middle directions are context-sensitive in these owner runs.
-7. Overall median RT is ~2.06 s; excluding the first orientation trial it is ~1.97 s. P3 is therefore feasible as a low-deliberation owner UX, but this is not participant validation.
-8. Plackett–Luce output becomes extreme (`Mastery ~0.978`) under near-separation and 14 trials. It remains research/debug only and must not be interpreted as psychological strength.
-9. Chosen slots were 4/7/3 despite exactly balanced exposure. The mobile 2+1 layout remains geometrically asymmetric even though aggregate slot exposure is balanced.
-10. Repeating the same 14 historical images with the same owner now adds little and increases familiarity contamination.
+Working hypothesis:
+> **Low-deliberation comparative visual choice under reduced self-presentation opportunity.**
 
-Canonical balanced rerun diagnostic: `docs/P3_BALANCED_OWNER_RERUN_DIAGNOSTIC_v0.1.md`.
-Technical specs:
-- `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
-- `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
+Lithuanian working phrasing:
+> **Mažos deliberacijos vizualinis pasirinkimas, kuriame sumažinta galimybė sąmoningai konstruoti atsakymą apie save.**
 
-## Historical source artifacts recovered
+Latency remains process/UX telemetry only.
 
-The following historical/current artifacts are now explicitly part of the source-of-truth recovery path:
-
-- `priolens_working_beta_v03.html` — File Library; internal schema `working-v0.3`; 28-pair core plus explicit blind `2×28` research mode;
-- `priolens_working_beta-4.html` — File Library; internal schema `working-v0.2`; same eight directions and 16 standalone stimuli, with optional calibration after the core result;
-- `decision_drivers_8x8_prototype_v0.4.html` — ConflictLab-lineage 12-duel pairwise 8-driver prototype, not P3;
-- `priolens_p3_standalone_v03.html` — recovered/current P3 three-image standalone runtime with embedded historical stimuli, schema `2rasi.priolens.p3.research-v0.3`, tie-safe result and exact slot balancing.
-
-The previous blocker “actual P3 runtime/source not identified” is closed.
-
-Do not infer version order from filenames alone. Canonical recovery rules: `docs/NEW_CHAT_SOURCE_OF_TRUTH_v0.1.md`.
-
-## Gallery provenance
-
-Part of Gallery was influenced by ConflictLab v0.4-era work and visible-cue rules. The recovered `decision_drivers_8x8_prototype_v0.4.html` also shows that AUT/CER/EXP/MAS/CON/INF/PRO/OPP were already being explored in the ConflictLab repository lineage before the later PrioLens working betas. This explains ancestry but is not current scoring validation.
-
-Do not use historical labels to rescue current mappings.
-
-## Solo workflow
-
-The user is working alone.
-
-Current workflow:
-1. use owner runs for technical/design falsification, not validation;
-2. keep exemplar identity and position visible;
-3. use blind AI only for obvious ambiguity/confound checks;
-4. do not recruit externally yet;
-5. do not generate broadly.
+The project is increasingly treated as potentially **state-sensitive** rather than a stable personality typing system: current context and sufficiency may influence what wins in the visual competition.
 
 ## Immediate next action
 
-The P3 tie and slot-correction cycle is complete.
-
-Do **not** run a third owner session on the same 14 historical stimuli for validation claims.
+Do not build the next P3 bank from the old seven-direction quotas yet.
 
 Next research move:
-1. keep P3 as a viable research presentation variant, not yet the public architecture;
-2. build the next materially different **non-CER** research bank from the impulse-curated KEEP/HOLD candidates, prioritizing semantic diversity over equal historical quotas;
-3. preserve exemplar identity so direction-level aggregation can be challenged rather than assumed;
-4. use the new bank to test whether repeated choice patterns survive materially different exemplars;
-5. separately decide whether the mobile P3 2+1 geometry is acceptable or needs a different spatial solution before external testing;
-6. keep CER inactive until the construct decision is resolved.
+1. reuse the completed 223-image impulse audit;
+2. re-open the 40 KEEP/HOLD set first, plus selected high-potential historical DROPs;
+3. open-code them against the broader impulse universe rather than the old seven directions;
+4. allow `NEW-FAMILY` when a vivid image repeatedly suggests a meaningful missing impulse;
+5. produce a compact candidate impulse spectrum with representative live images;
+6. only then decide which families deserve a next visual-priority bank and what comparison design fits them;
+7. separately draft a short perceived-sufficiency layer for the macro domains, to be shown **after** the visual task.
 
-Current methodological blocker:
-- the historical two-exemplar bank is now more limiting than the P3 counting algorithm;
-- several historical AUT/INF/EXP/OPP exemplars are already known to be weak or cross-loaded;
-- repeated owner exposure to the same old bank creates familiarity contamination.
+The immediate objective is therefore **candidate-spectrum discovery**, not validation of the old seven directions.
 
 ## Guardrails
 
-- do not return to matched Preserve↔Refine architecture;
-- do not erase D1/D2 negative evidence;
-- do not equate a clear image with validated direction scoring;
-- do not preserve old PASS/DROP labels by inertia;
-- do not assign direction before writing the image impulse;
-- do not fill quotas with weak or duplicate renders;
-- do not treat P3 triple wins as literal observations between the two unchosen items;
-- do not break exact result ties by array/sort order;
-- do not treat Plackett–Luce weights as psychological strength;
-- do not treat repeated owner runs on the same historical bank as validation;
-- do not treat ConflictLab v0.4 lineage as the current PrioLens scoring model;
-- keep the public experience aligned with **For Fun with Wisdom**.
-
-## AI Review Harness
-
-Vercel harness exists and reaches AI Gateway. Paid execution remains deferred.
+- no sterile-image optimization for its own sake;
+- no forced seven/eight-direction completeness;
+- no theory-first rationalization of images;
+- no `strong visual response = unmet need` claim;
+- no direct neural-system inference from image choice;
+- no Karpman role diagnosis from one impulse;
+- no Plackett–Luce weight as psychological strength;
+- no repeated-owner old-bank run as validation;
+- preserve exemplar identity;
+- keep public experience aligned with **For Fun with Wisdom**.
