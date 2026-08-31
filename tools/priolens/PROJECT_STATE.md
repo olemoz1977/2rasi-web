@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / OBSERVABLE REPLICATION TEXT GATE PASSED NARROWLY / HUMAN SEMANTIC PILOT NEXT
+Status: ACTIVE RESEARCH / OBSERVABLE REPLICATION TEXT GATE PASSED NARROWLY / HUMAN SEMANTIC PILOT RENDERING
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -34,8 +34,6 @@ Higher-order psychological labels are not approved scoring units.
 
 ### INF Gate D1
 Result: **NOT PASSED / PARTIAL_IDENTITY / HOLD**.
-
-Useful local external-steering patterns survived, but broad Influence identity did not generalize across opponents without routing/control/fairness/observe-vs-act confounds.
 
 ### MAS Gate D2
 Claude: **PARTIAL_IDENTITY**.
@@ -74,49 +72,32 @@ Source: `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md`.
 
 ## OT replication gate v0.1
 
-12 text concepts were built:
-- 4 OT families;
-- 3 realizations per family;
-- interleaved order;
-- reversed A/B polarity;
-- blind family recovery before reveal.
-
 Claude locked Stage 1 recovered **all four intended families with exact membership and polarity**.
 
 Claude Stage 2 final:
 > **OBSERVABLE_REPLICATION_SUPPORTED**
 
-Formal reason: 4/4 intended families were recovered before reveal.
-
 Critical qualification:
 - OT-01 repeats reveal-device mechanics;
 - OT-02 repeats local-station → downstream-branch structure;
-- OT-05 overlaps structurally with OT-02 and shares a recurring routing pole;
-- therefore current evidence may partly reflect **template replication**, not fully independent semantic replication.
+- OT-05 overlaps structurally with OT-02 and shares a routing pole;
+- evidence may partly reflect template replication rather than fully independent semantic replication.
 
 Strongest family: **OT-03 Preserve ↔ Refine**.
 Weakest family: **OT-05 Precision positioning ↔ Route steering**.
 Possible merge/restructure issue: **OT-02 + OT-05** around routing vs non-routing.
 
-Source: `docs/CLAUDE_OT_REPLICATION_STAGE2_RESULT_v0.1.md`.
-
-## Decision after Claude OT gate
-
-Do not spend another long cycle seeking AI consensus before seeing human data.
-
-AI reviewers are now treated as concept/confound filters, not validators.
-
-Next evidence source must be real participants.
+AI reviewers are now concept/confound filters, not validators. Next evidence source is real participants.
 
 ## Human semantic pilot v0.1
 
-Defined in `docs/HUMAN_SEMANTIC_PILOT_v0.1.md`.
+Source: `docs/HUMAN_SEMANTIC_PILOT_v0.1.md`.
 
-Target first pass:
+Target:
 - 10–15 adults;
 - 6 rendered pairs;
-- 3 OT-03 pairs: X01, X06, X12;
-- 3 OT-01 pairs: X02, X05, X09.
+- 3 OT-03 pairs;
+- 3 OT-01 pairs.
 
 Choice phase:
 - neutral `Kurį renkiesi?`;
@@ -132,27 +113,68 @@ Primary question:
 
 No psychological score is produced from this pilot.
 
+## X12 wooden-frame render outcome
+
+X12 is **RETIRED FROM THE HUMAN PILOT**.
+
+What happened:
+- Refine could be rendered plausibly using a simple unmarked wooden try square to correct a frame corner toward 90°;
+- repeated Preserve attempts became either angle-checking/alignment again, an implausible stabilizing use of a square, or a materially more complex clamping operation;
+- user correctly flagged the physical problem: glued wooden corners are not stabilized with squares;
+- therefore X12 cannot provide a physically natural matched Preserve ↔ Refine pair without introducing a process/tool confound.
+
+Decision:
+> Do not keep prompting around an impossible woodworking action. Preserve physical plausibility over pair similarity.
+
+The accepted X12 Refine render may remain historical evidence only. It is not part of the pilot set.
+
+## X13 replacement · flexible-cord coil
+
+X13 replaces X12 in OT-03.
+
+Shared scene:
+- one plain neutral flexible cord/rope in a medium circular coil on a neutral bench;
+- same hands, camera, lighting, coil size and material;
+- same plain reusable fabric retaining strap visible in both variants;
+- no branding, electrical device, safety, damage or high-value cues.
+
+Refine:
+- strap loose beside the coil;
+- hand adjusts one or two loops so the coil becomes more even/concentric;
+- no dramatic before/after.
+
+Preserve:
+- coil already acceptably even;
+- hand fastens the same plain strap around it so the existing loop arrangement stays in place during ordinary handling;
+- no reshaping, compression, repair or safety cue.
+
+Why this replacement:
+- both actions are physically natural;
+- same object supports both poles without specialist hardware;
+- Preserve is active, not passive;
+- scene differs structurally from wax-panel and clay-vessel craft mechanisms.
+
+Known risks to test with humans:
+- Refine may read as tidying/neatness;
+- Preserve may read as bundling/packing;
+- fastening may look more final/complete.
+
 ## Immediate execution
 
-Start rendering **OT-03 X12 wooden frame**.
+Render **X13 Refine first**.
 
-Reason:
-- OT-03 had strongest text-level cross-scene identity;
-- X12 avoids X06 cradle-complexity issue;
-- Preserve and Refine can be matched closely in one scene.
+Rules:
+1. one image task at a time;
+2. use English prompts for technical/spatial constraints;
+3. accept/reject Refine before generating Preserve;
+4. preserve physical plausibility over forced visual matching;
+5. no collage, labels, text or multi-state images.
 
-Render rule:
-1. generate X12 Refine standalone base first;
-2. inspect/accept/reject;
-3. only then create Preserve as matched controlled variant;
-4. one image task at a time;
-5. no collage, labels or multi-state image.
-
-After X12: X01 → X06 → OT-01.
+After X13: X01 → X06 → OT-01.
 
 ## AI Review Harness
 
-Vercel harness is deployed and reaches AI Gateway. Paid model execution is deferred because of paid-credit cost. Do not spend more time on billing now.
+Vercel harness is deployed and reaches AI Gateway. Paid model execution remains deferred. Do not spend more time on billing now.
 
 ## Source-of-truth order
 
@@ -171,4 +193,4 @@ Vercel harness is deployed and reaches AI Gateway. Paid model execution is defer
 
 If context is lost, start here.
 
-Do not restart INF edge-searching, do not return to broad-direction scoring, do not reopen Vercel billing, and do not continue AI-review loops before the first human semantic pilot.
+Do not restart INF edge-searching, do not return to broad-direction scoring, do not reopen Vercel billing, do not resume long AI-review loops before the first human semantic pilot, and do not restore X12 as a matched OT-03 pair unless a physically plausible Preserve mechanism is demonstrated.
