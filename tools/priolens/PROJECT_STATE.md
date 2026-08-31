@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / FULL GALLERY IMPULSE AUDIT COMPLETE / COMPACT BANK CURATION ACTIVE
+Status: ACTIVE RESEARCH / FULL GALLERY IMPULSE AUDIT COMPLETE / CER CONSTRUCT HOLD
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -15,11 +15,12 @@ Draft PR: #9
 5. `docs/GALLERY_IMPULSE_CURATION_v0.1.md`
 6. `docs/RECENT_GENERATED_IMPULSE_AUDIT_v0.1.md`
 7. `docs/CANDIDATE_BANK_MATRIX_v0.3.md`
-8. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
-9. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
-10. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
-11. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
-12. this file
+8. `docs/CER_VISUAL_VIABILITY_CHECK_v0.1.md`
+9. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
+10. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
+11. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
+12. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
+13. this file
 
 ## Product boundary
 
@@ -107,18 +108,24 @@ First common working impulse:
 Bicycle saddle and car headrest remain HOLD. Workstation scene is DROP because computer work dominates.
 
 ### CER
-Current candidates:
-- signed/confirmed document — strongest current Gallery candidate;
-- transparent/organized contents — HOLD;
-- green traffic light / clear permission — HOLD;
-- assigned places / clear structure — HOLD.
-
-`S06` checklist is no longer the CER anchor: it mainly evokes completion.
+CER is now **CONSTRUCT HOLD**, not an image-production gap.
 
 Working intended impulse:
 > **Trauka į būseną, kurioje aišku, kas vyksta ar ko tikėtis.**
 
-CER remains the thinnest and least convincing bank.
+Existing candidates fail this first-impulse test:
+- signed/confirmed document → commitment/confirmation;
+- assigned places → order/structure;
+- green traffic light → permission/go; remains only a weak HOLD;
+- `S10` → visible order/containment;
+- `S06` → completion;
+- water-to-mark → precision/control.
+
+Current conclusion: there is no strong standalone CER image yet. The problem may be structural because certainty/predictability is partly temporal and inferential, while a single static image tends to encode proxies such as order, completion, precision, safety or permission.
+
+Canonical checkpoint: `docs/CER_VISUAL_VIABILITY_CHECK_v0.1.md`.
+
+Do not generate more CER scenes until the construct itself is narrowed, replaced or explicitly retained despite this representational problem.
 
 ### EXP
 Current strong candidates:
@@ -201,19 +208,15 @@ Current workflow:
 
 ## Immediate next action
 
-Focus only on CER.
+A product-level decision is now required on CER before further image generation:
 
-Test the surviving CER candidates against one sentence:
+1. retain the current certainty / clarity / predictability hypothesis despite weak direct visual representability;
+2. narrow it to a more visually direct impulse such as stability / knownness / clear permission / structure;
+3. replace/drop CER and allow the final PrioLens model to contain fewer than eight directions.
 
-> **Trauka į būseną, kurioje aišku, kas vyksta ar ko tikėtis.**
+Do not resolve this by semantic rescue or by generating more proxy images.
 
-Reject candidates whose first impulse is instead:
-- precision;
-- completion;
-- generic tidiness/order;
-- protection/security.
-
-If fewer than three materially different scenes survive, generate one new CER scene at a time. Do not return to the water-level idea.
+After that decision, resume compact-bank construction using the same impulse-first rule.
 
 ## Guardrails
 
