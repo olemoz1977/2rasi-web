@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / OPEN14 v0.2 / TWO-LAYER ARCHITECTURE ACTIVE
+Status: ACTIVE RESEARCH / OPEN14 v0.2 / HUMAN STIMULUS GATE REACHED
 Updated: 2026-09-01
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -13,11 +13,12 @@ Branch: `feature/priolens-architecture`
 4. `docs/OPEN14_SOCIAL_SPLIT_AND_SUCCESS_DECISION_v0.1.md`
 5. `docs/P3_OPEN_SPECTRUM_14_SPEC_v0.2.md`
 6. `docs/OPEN14_ASSET_MATRIX_v0.2.md`
-7. `docs/PERCEIVED_SUFFICIENCY_LAYER_v0.1.md`
-8. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-9. `docs/STIMULUS_SELECTION_PRAGMATIC_RULE_v0.1.md`
-10. `docs/HOSTING_DEPLOYMENT_BOUNDARY_v0.1.md`
-11. this file
+7. `docs/OPEN14_MISSING_SCENE_MECHANISMS_v0.2.md`
+8. `docs/PERCEIVED_SUFFICIENCY_LAYER_v0.1.md`
+9. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
+10. `docs/STIMULUS_SELECTION_PRAGMATIC_RULE_v0.1.md`
+11. `docs/HOSTING_DEPLOYMENT_BOUNDARY_v0.1.md`
+12. this file
 
 Older v0.1 Open14 spec/matrix files are historical checkpoints, not the active design.
 
@@ -52,9 +53,7 @@ Preferred order:
 2. perceived-sufficiency self-assessment second;
 3. compare the layers without collapsing them into one psychological score.
 
-Reason: asking what is missing first would prime the visual task.
-
-Do not assign one global Maslow stage. Maslow-style levels are coarse coverage buckets because a person may be secure in one area and deprived in another.
+Do not assign one global Maslow stage. Maslow-style levels are coarse coverage buckets.
 
 ## Theory stance
 
@@ -97,15 +96,12 @@ Historical KEEP/HOLD/DROP labels applied to older direction questions and are no
 Hostinger source copy:
 `omesg360.eu/public_html/priolens-research-assets/Gallery`
 
-`olemoz1977/omesg360` provides the GitHub Actions + Hostinger FTP channel. Routine Hostinger inspection/deployment should be handled through that repo rather than delegated to the user.
+`olemoz1977/omesg360` provides the GitHub Actions + Hostinger FTP channel. Routine hosting work should not be delegated to the user when it can be done through the repo.
 
 ## Historical P3 checkpoint
 
 P3 v0.4 old seven-family runtime remains live on:
 `omesg360.eu/priolens/`
-
-Schema:
-`2rasi.priolens.p3.research-v0.4`
 
 Latest old-bank owner run:
 - MAS 5/6;
@@ -121,10 +117,6 @@ Latest old-bank owner run:
 This is technical/design evidence only. Do not run another owner validation session on the same historical images.
 
 ## Active research variant: Open14 v0.2
-
-The old seven/eight directions are not assumed exhaustive.
-
-Active candidate families:
 
 ### Basic / stability
 1. REST
@@ -158,16 +150,14 @@ Canonical spec:
 
 ## SUCCESS decision
 
-`SUCCESS / ACHIEVEMENT` is removed from the active Open14 visual family set.
+`SUCCESS / ACHIEVEMENT` is not an active Open14 atomic family.
 
-Reason:
-- success is an outcome that can be attractive because of mastery, recognition, reward/resource, control, autonomy or opportunity;
-- current static imagery does not isolate a useful atomic success pull without heavy overlap.
+It remains:
+`DERIVED / THEORY-HOLD`.
 
-Status:
-- `SUCCESS / ACHIEVEMENT = DERIVED / THEORY-HOLD`.
+Reason: a visible success endpoint can be attractive because of mastery, recognition, reward/resource, control, autonomy or opportunity.
 
-Do not regenerate success images merely to preserve the old count.
+Do not regenerate success images merely to preserve the old list.
 
 ## Social split
 
@@ -178,10 +168,6 @@ Do not collapse:
 
 CARE working boundary:
 > **act for another person's welfare, including with a small personal cost or before being asked.**
-
-Accepted CARE mechanism classes:
-- visible modest self-sacrifice;
-- proactive practical help without a visible request.
 
 Do not use heroic emergency scenes where danger/bravery dominates.
 
@@ -204,14 +190,14 @@ Macro family counts:
 
 Validated invariants:
 - exactly 14 triads;
-- every family appears exactly 3 times;
-- every family appears exactly once in each slot: 1/1/1;
-- every trial contains 3 distinct macro domains;
-- no family pair repeats;
+- every family exactly 3 appearances;
+- every family exactly 1/1/1 across slots;
+- 3 distinct macro domains per trial;
+- no repeated family pair;
 - 42 unique family-pair co-occurrences;
-- every family meets 6 unique opponents.
+- 6 unique opponents per family.
 
-The v0.2 implementation was smoke-tested across 1000 deterministic seeds with all validation invariants passing.
+The implementation was smoke-tested across 1000 deterministic seeds with all invariants passing.
 
 The FAMILY_SET order is structural. Do not alphabetize/reorder it without revalidation.
 
@@ -220,44 +206,88 @@ The FAMILY_SET order is structural. Do not alphabetize/reorder it without revali
 Canonical:
 `docs/OPEN14_ASSET_MATRIX_v0.2.md`.
 
-Current state:
+Current research-bank state:
 - 24 existing/recovered assets cover 12 of 14 families;
-- BELONGING uses existing Gallery assets;
-- SUCCESS requires no slots because it is no longer in Open14;
-- only CARE A/B and RECOGNITION A/B remain intentionally blank.
+- BELONGING uses existing Gallery material;
+- SUCCESS requires no slots;
+- CARE A/B and RECOGNITION A/B remain the only conceptual visual gaps.
 
 ### BELONGING candidates
 
 - `S14.webp` — `bendrauti / veikti socialiniame rate`;
 - `20260731_043300801.png` — `dalintis šiluma / būti kartu`.
 
-These remain broad-scan candidates with expected overlap, not validated constructs.
-
 ### KNOWLEDGE / Learning-Understanding
 
-A = `20260730_230227381.png` — explicit classroom/learning.
+- A: `20260730_230227381.png` — explicit learning/classroom;
+- B: `20260811_180451129.png` — `pamatyti aiškiau / daugiau`.
 
-B = `20260811_180451129.png` — `pamatyti aiškiau / daugiau`.
-
-B is an intentional boundary probe that also fixes the earlier family-level portrait-geometry disadvantage. Do not hide exemplar identity in analysis.
+B is an intentional boundary probe and removes the earlier family-level portrait-geometry disadvantage.
 
 ### AUT recovered material
 
 Preferred AUT-B is preserved in `olemoz1977/omesg360`:
 `priolens/recovered-assets/priolens_aut_backpack_v01.webp`.
 
-Physical audio control remains an AUT / CONTROL boundary reserve, not a default AUT anchor.
+A dedicated recovered-assets deployment workflow has been added, but its Hostinger HTTP deployment has **not yet been verified** from the current automation path. Therefore Open14 runtime manifest keeps AUT-B `runtimePath = null` until a real smoke check passes.
 
-## Current true visual gaps
+Do not claim the Hostinger recovered URL is live yet.
 
-Only four Open14 v0.2 slots remain intentionally unresolved:
-- CARE-A;
-- CARE-B;
-- RECOGNITION-A;
-- RECOGNITION-B.
+## Missing scene mechanisms prepared
 
-Do not fill these by reinterpretation of unrelated Gallery scenes.
-Do not generate images automatically.
+Canonical:
+`docs/OPEN14_MISSING_SCENE_MECHANISMS_v0.2.md`.
+
+### CARE-A — TRY
+
+Visible modest self-cost:
+- one person gives another protection/comfort while accepting a small visible cost themselves;
+- current concrete mechanism: shifting the only umbrella toward the other person while becoming partly exposed.
+
+Target first read:
+`pasirūpinti kitu savo komforto sąskaita`.
+
+### CARE-B — TRY
+
+Proactive help without request:
+- one person notices another struggling with dropped everyday items and starts helping before a visible request.
+
+Target first read:
+`pastebėti ir padėti neprašytam`.
+
+### RECOGNITION-A — TRY
+
+Modest peer acknowledgement:
+- small ordinary peer group directs restrained applause/appreciative gestures toward one person;
+- no stage, trophy, medal or winner framing.
+
+Target first read:
+`būti pastebėtam ir įvertintam kitų`.
+
+### RECOGNITION-B — TRY / boundary-sensitive
+
+Visible credit / being singled out:
+- one peer uses a presenting/crediting gesture toward another person;
+- the rest of the group redirects attention toward the acknowledged person;
+- no prize, handshake or completed technical object.
+
+Target first read:
+`mano indėlis / vaidmuo pastebėtas ir pripažintas`.
+
+AgileBrain is used only as a coverage check here: its Recognition wording also centers on important efforts/contributions being acknowledged. PrioLens does not inherit its scoring or unmet-need claims.
+
+## Runtime/data scaffold
+
+`olemoz1977/omesg360` now contains:
+- `priolens/open14-v02/bank.json`;
+- `priolens/open14-v02/p3_open14_planner_v02.mjs`.
+
+Bank status:
+`INCOMPLETE_FAIL_CLOSED`.
+
+It contains no fake image placeholders. CARE/RECOGNITION paths remain null. AUT-B runtime path also remains null until recovered-asset Hostinger smoke is verified.
+
+The historical live `/priolens/` v0.4 runtime has not been replaced by Open14.
 
 ## Perceived-sufficiency layer
 
@@ -282,19 +312,25 @@ Lithuanian working phrasing:
 
 The project is treated as potentially state-sensitive, not as stable personality typing.
 
-## Immediate next action
+## Immediate next action — HUMAN GATE
 
-Do **not** return to the old seven-direction Bank B.
-Do **not** restore SUCCESS to Open14.
-Do **not** generate images without a human gate.
+Do **not** generate images automatically.
 
-Next:
-1. freeze the 24 existing Open14 v0.2 assets as the working shortlist;
-2. define two materially different CARE and two materially different RECOGNITION scene mechanisms in words;
-3. prepare runtime/data wiring around planner v0.2 without fake image placeholders for the four unresolved slots;
-4. stop for human review before creating any missing stimulus;
-5. after accepted missing assets exist, build the complete Open14 v0.2 runtime;
-6. run an owner technical/design smoke test only, then move toward external human data rather than repeated owner validation.
+The next decision requires human judgement on the four text-only mechanisms:
+1. CARE-A — modest self-sacrifice via shared protection / own comfort cost;
+2. CARE-B — proactive help before request;
+3. RECOGNITION-A — restrained peer acknowledgement;
+4. RECOGNITION-B — visible credit / group attention redirection.
+
+Ask the user whether these four mechanisms are worth prototyping or which one should change.
+
+Only after approval:
+1. create the minimum accepted missing prototypes;
+2. run the same pragmatic first-read check used elsewhere;
+3. complete runtime asset paths;
+4. build the complete Open14 v0.2 runtime;
+5. run an owner technical/design smoke test only;
+6. move toward external human data rather than repeated owner validation.
 
 Current objective:
 > **finish Open14 v0.2 with the minimum missing assets while keeping the experience fast, vivid and non-test-like.**
