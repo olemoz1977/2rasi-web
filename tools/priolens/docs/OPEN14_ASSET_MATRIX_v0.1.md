@@ -14,7 +14,8 @@ A blank is better than relabeling an image whose first impulse says something el
 Source priority:
 1. completed Gallery first-impulse audit;
 2. impulse-first curation / candidate matrix;
-3. pragmatic `clear enough + alive` rule.
+3. pragmatic `clear enough + alive` rule;
+4. explicitly recovered user-supplied assets when their provenance is recorded.
 
 No new images are generated in this step.
 
@@ -29,7 +30,7 @@ No new images are generated in this step.
 | **CONNECTION** | `S03.webp` | užmegzti ryšį su kitu žmogumi | `20260829_235204397.png` | veikti kartu / perduoti objektą | READY-CANDIDATE; belonging/reciprocity breadth remains open |
 | **CARE** | **OPEN** | no existing first-read CARE exemplar | **OPEN** | no existing first-read CARE exemplar | GAP |
 | **RECOGNITION** | **OPEN** | no existing first-read recognition exemplar | **OPEN** | no existing first-read recognition exemplar | GAP |
-| **AUTONOMY** | `S05.webp` | rinktis tinkamą įrankį | `20260730_230640978.png` | atsisėsti / pasirinkti vietą | PROVISIONAL; B is weaker than recent personal-adjustment concepts |
+| **AUTONOMY** | `S05.webp` | rinktis tinkamą įrankį | `4810.png` (user-recovered; SHA-256 in recovery note) | prisitaikyti / susireguliuoti daiktą sau | READY-CANDIDATE; recovered B is stronger than seat-choice |
 | **CONTROL** | `S04.webp` | nukreipti / valdyti srautą | `file_0000000092148210be3631f7c20ec0da.png` | reguliuoti nustatymus | READY-CANDIDATE |
 | **SUCCESS** | **OPEN** | current completion scenes do not yet read as success/goal attainment | **OPEN** | current completion scenes do not yet read as success/goal attainment | GAP / PARTIAL SOURCE MATERIAL |
 | **MASTERY** | `S12.webp` | tiksliai išmatuoti / patikrinti | `S16.webp` | meistriškai formuoti | READY-CANDIDATE |
@@ -39,33 +40,45 @@ No new images are generated in this step.
 
 ## What is genuinely missing
 
-The matrix is already **22 existing assets + 6 open slots**.
-
-The six open slots are exactly where expected:
+The only intentionally open prototype slots remain:
 - CARE A/B;
 - RECOGNITION A/B;
 - SUCCESS A/B.
 
-This confirms that the broader Open14 scan does not require a wholesale stimulus rebuild.
+AUT no longer has a weak placeholder after recovery of the backpack-adjustment stimulus.
 
-## Weakest filled slot
+## Recovered AUT material
 
-The weakest currently filled slot is:
+Canonical recovery note:
+`docs/RECOVERED_USER_ASSETS_2026-08-31.md`.
 
-`AUTONOMY-B = 20260730_230640978.png` — `atsisėsti / pasirinkti vietą`.
+### Preferred AUT-B
 
-Reason:
-- direct choice is visible;
-- but the scene may be read as seating/comfort rather than self-direction.
+`4810.png` — backpack strap adjustment.
 
-The recent `backpack strap adjustment` and `physical audio volume control` concepts are stronger AUT candidates according to the recent-generated impulse audit, but their exact Gallery filenames are not yet mapped in the canonical audit.
+First read:
+> **prisitaikyti / susireguliuoti daiktą sau**
 
-Therefore:
-- keep `S05` as AUT-A;
-- keep seat-choice only as temporary AUT-B;
-- replace AUT-B if the exact stronger personal-adjustment asset is recovered.
+Why it replaces the old seat-choice placeholder:
+- self-directed configuration is visible immediately;
+- less dependent on interpreting a generic choice scene;
+- complements `S05` rather than duplicating it.
 
-Do not block the whole Open14 architecture on this housekeeping issue.
+### Boundary reserve, not default AUT anchor
+
+`4814.png` — physical audio control with a hand turning a knob.
+
+First read:
+> **reguliuoti garsą / nusistatyti kaip noriu**
+
+Under the old seven-direction model this was a strong AUT candidate. Under Open14, however, `CONTROL` is now an explicit family. The visible mechanism is therefore useful precisely because it may sit on the AUT/CONTROL boundary.
+
+Keep it as:
+- reserve AUT material;
+- possible CONTROL alternative;
+- later boundary-probe exemplar.
+
+Do not use both backpack adjustment and audio adjustment as the two main AUT exemplars by default because that would narrow AUT to one repeated `personal adjustment` mechanism.
 
 ## Family-specific notes
 
@@ -93,9 +106,13 @@ Both assets involve arrangement/visibility. A future third mechanism could use s
 
 Dyadic social contact vs reciprocal action. Do not interpret either as CARE.
 
+### AUTONOMY
+
+Tool choice vs personal fit/configuration now gives materially different mechanisms. The recovered audio control remains useful but cross-loads naturally with CONTROL.
+
 ### CONTROL
 
-Flow routing vs personal/physical setting control. This is one of the clearest newly recovered families that was previously spread across INF/PRO/CER.
+Flow routing vs physical setting control. This is one of the clearest newly recovered families that was previously spread across INF/PRO/CER.
 
 ### MASTERY
 
@@ -133,8 +150,7 @@ Objective task/result visibly reaches completion/target, with the actor present 
 
 ## Next action
 
-1. Mirror these 22 existing assets into one versioned Open14 review folder in `olemoz1977/omesg360` without altering Hostinger Gallery.
-2. Inspect the 22 as one set for obvious visual imbalance and duplicate scene families.
-3. Recover a stronger exact AUT-B if available.
-4. Keep the six missing slots blank until the user and assistant agree the mechanisms are worth prototyping.
-5. Do not generate images automatically.
+1. Keep the recovered backpack image as AUT-B and the audio-control image as AUT/CONTROL boundary reserve.
+2. Inspect the current Open14 set for obvious visual imbalance and duplicate scene families.
+3. Keep the six missing CARE / RECOGNITION / SUCCESS slots blank until their mechanisms are worth prototyping.
+4. Do not generate images automatically.
