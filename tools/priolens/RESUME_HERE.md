@@ -9,18 +9,13 @@ Branch: `feature/priolens-architecture`
 
 **Chat history is not the project memory.**
 
-When a PrioLens chat is missing messages, truncated, archived or restarted:
+Recovery order:
 1. read this file;
 2. read `PROJECT_STATE.md`;
 3. read `docs/NEW_CHAT_SOURCE_OF_TRUTH_v0.1.md`;
-4. read `docs/NEED_STATE_AND_IMPULSE_PRIORITY_ARCHITECTURE_v0.1.md`;
-5. read `docs/OPEN14_SOCIAL_SPLIT_AND_SUCCESS_DECISION_v0.1.md`;
-6. read `docs/P3_OPEN_SPECTRUM_14_SPEC_v0.2.md`;
-7. read `docs/OPEN14_ASSET_MATRIX_v0.2.md`;
-8. read `docs/OPEN14_MISSING_SCENE_MECHANISMS_v0.2.md`;
-9. continue from `PROJECT_STATE.md > Immediate next action`;
-10. use File Library only when an actual runtime/source artifact is needed;
-11. do not ask the user to reconstruct already-recorded work from memory.
+4. continue from `PROJECT_STATE.md > Immediate next action`;
+5. use File Library only when an actual artifact is needed;
+6. do not ask the user to reconstruct recorded work from memory.
 
 If chat memory conflicts with repo state, repo state wins.
 
@@ -28,112 +23,149 @@ If chat memory conflicts with repo state, repo state wins.
 
 Completed:
 - Gallery first-impulse audit: 223 files / 222 byte-unique images;
-- historical P3 v0.4 old-bank runtime remains live on `omesg360.eu/priolens/`;
+- historical P3 v0.4 old-bank runtime remains live and is not the new Open14 runtime;
 - old seven/eight directions are no longer assumed exhaustive;
-- two-layer architecture active: visual priority first, perceived sufficiency second;
-- Open14 v0.2 family set frozen for current research;
-- `SUCCESS` removed as an atomic Open14 family and moved to `DERIVED / THEORY-HOLD`;
-- `BELONGING` split from direct `CONNECTION`;
-- CARE narrowed to altruistic/proactive action for another's welfare;
-- Open14 v0.2 planner implemented and smoke-tested across 1000 deterministic seeds;
-- Open14 v0.2 asset matrix has 24 existing/recovered assets;
-- CARE-A mechanism human-accepted;
-- CARE-B mechanism human-accepted;
-- RECOGNITION-A mechanism human-accepted;
-- RECOGNITION-B remains the only unresolved conceptual scene mechanism.
+- active architecture = visual priority first + perceived sufficiency second;
+- Open14 v0.2 family set established;
+- SUCCESS moved to `DERIVED / THEORY-HOLD`;
+- BELONGING split from CONNECTION;
+- CARE narrowed to altruistic/proactive helping;
+- all four missing text mechanisms human-accepted: CARE-A, CARE-B, RECOGNITION-A, RECOGNITION-B;
+- RECOGNITION-B is explicitly a boundary probe: `mano nuomonė / kompetencija čia vertinama`;
+- four production-ready text specs exist, but **no image generation is authorized unless the user explicitly asks**;
+- Open14 planner v0.2 browser-safe;
+- 2-exemplar / 3-appearance imbalance solved with balanced exemplar assigner;
+- exemplar assigner yields 21/21 A/B globally and 7/7 A/B per screen slot;
+- family-level repetition now requires wins across both A and B exemplars;
+- perceived-sufficiency layer advanced to v0.2;
+- two-channel result synthesis specified;
+- separate Open14 v0.2 runtime scaffold exists in `olemoz1977/omesg360/priolens/open14-v02/` and stays fail-closed;
+- first external formative pilot protocol and KEEP/MERGE/SPLIT/DROP rules prepared;
+- minimal anonymous data-ingestion contract prepared, but no backend chosen/deployed.
 
-## Active Open14 v0.2 shortlist
+## Active Open14 v0.2 families
 
 ### Basic / stability
-1. REST
-2. RESOURCE
-3. SAFETY
-4. ORDER
+REST, RESOURCE, SAFETY, ORDER
 
 ### Social
-5. CONNECTION
-6. BELONGING
-7. CARE
+CONNECTION, BELONGING, CARE
 
 ### Agency / esteem
-8. AUTONOMY
-9. CONTROL
-10. RECOGNITION
+AUTONOMY, CONTROL, RECOGNITION
 
 ### Growth / cognitive / possibility
-11. MASTERY
-12. EXPLORATION
-13. KNOWLEDGE / Learning-Understanding
-14. OPPORTUNITY
+MASTERY, EXPLORATION, KNOWLEDGE / Learning-Understanding, OPPORTUNITY
 
 This is a discovery shortlist, not a fundamental-needs taxonomy.
 
-## Accepted missing-scene mechanisms
+## Four accepted missing-stimulus mechanisms
 
 ### CARE-A
 `pasirūpinti kitu savo komforto sąskaita`
 
-Mechanism: one person shifts the only umbrella toward another and accepts modest exposure to rain.
+One person shifts the only umbrella toward another and accepts modest exposure to rain.
 
 ### CARE-B
 `pastebėti ir padėti neprašytam`
 
-Mechanism: a nearby person starts helping gather dropped everyday items before any visible request.
+One person starts helping gather another person's dropped everyday items before any visible request.
 
 ### RECOGNITION-A
 `būti pastebėtam ir įvertintam kitų`
 
-Mechanism: a small peer group gives restrained acknowledgement toward one focal person using modest applause, natural smiles and one or more clear thumbs-up gestures. No stage, prize, trophy or winner framing.
+Small peer group gives restrained applause, natural smiles and one or more thumbs-up gestures toward one ordinary focal person.
 
-## Only unresolved mechanism
+### RECOGNITION-B — boundary probe
+`mano nuomonė / kompetencija čia vertinama`
 
-### RECOGNITION-B — HOLD / RETHINK
+Visually equal peers actively seek one person's judgement on neutral shared material. No leader, teacher or specialist-status staging.
 
-Previous presenting/crediting gesture is rejected because it can read as simple introduction.
+Main risk: may collapse into MASTERY, CONTROL/leadership, CONNECTION or BELONGING.
 
-Do not create RECOGNITION-B yet.
+Canonical text specs:
+`docs/OPEN14_MISSING_STIMULUS_PRODUCTION_SPECS_v0.1.md`.
 
-Key design question:
-> **Should B be a different visual realization of the same acknowledgement pull instead of a different recognition subtype?**
+## Exemplar rule
 
-Possible avenue only, not accepted:
-- others visibly seek/consult the focal person because their judgement or competence is valued.
+Each family appears 3 times but has 2 exemplars.
 
-Risk: this may collapse into MASTERY, INFLUENCE or leadership.
+Canonical assigner:
+`research/p3_open14_exemplar_assigner_v01.mjs`.
 
-## Asset / runtime state
+Per session:
+- both exemplars shown;
+- one shown twice, one once;
+- 7 families repeat A, 7 repeat B;
+- A/B total = 21/21;
+- each slot = 7 A / 7 B.
 
-Canonical matrix:
-`docs/OPEN14_ASSET_MATRIX_v0.2.md`.
+Primary family repetition requires:
+`chosen_A > 0 && chosen_B > 0`.
 
-Runtime/data scaffold exists in `olemoz1977/omesg360`:
+2/3 concentrated on the same repeated exemplar is **not** primary family-level evidence.
+
+## Two-channel result
+
+Channel A:
+- cross-exemplar repeated visual pulls.
+
+Channel B:
+- current perceived sufficiency across 6 domains / 12 items.
+
+No combined score.
+No strict 1–14 rank.
+No `visual pull = unmet need` claim.
+
+Canonical docs:
+- `docs/PERCEIVED_SUFFICIENCY_LAYER_v0.2.md`;
+- `docs/TWO_CHANNEL_RESULT_SYNTHESIS_SPEC_v0.1.md`.
+
+## Runtime state
+
+Separate Open14 scaffold in `olemoz1977/omesg360`:
+- `priolens/open14-v02/index.html`;
 - `priolens/open14-v02/bank.json`;
-- `priolens/open14-v02/p3_open14_planner_v02.mjs`.
+- `priolens/open14-v02/p3_open14_planner_v02.mjs`;
+- `priolens/open14-v02/p3_open14_exemplar_assigner_v01.mjs`.
 
-Bank remains `INCOMPLETE_FAIL_CLOSED`.
+It is intentionally `INCOMPLETE_FAIL_CLOSED`.
 
-No fake image placeholders are allowed.
+Missing real runtime assets:
+- CARE-A;
+- CARE-B;
+- RECOGNITION-A;
+- RECOGNITION-B;
+- AUTONOMY-B Hostinger runtime path still requires real verification.
 
-AUT-B recovered asset exists in the repo, but do not claim its Hostinger runtime URL is live until an actual HTTP smoke check passes.
+Historical live `/priolens/` v0.4 has not been replaced.
 
-## Asset rule
+## Pilot state
 
-Do not sterilize images.
+Canonical:
+- `docs/OPEN14_EXTERNAL_PILOT_PROTOCOL_v0.1.md`;
+- `docs/OPEN14_FAMILY_DECISION_RULES_v0.1.md`;
+- `docs/OPEN14_DATA_INGESTION_CONTRACT_v0.1.md`.
 
-Use:
-> **image → first spontaneous pull / meaning → candidate impulse family → KEEP / HOLD / DROP / REASSIGN / NEW-FAMILY**
+First external pilot target:
+- 24–36 valid completions, ~30 practical target;
+- formative stimulus/UX research, not validation.
 
-Main pragmatic question:
-> **What does a reasonable viewer see happening within about one second?**
+Do not launch external recruitment until a privacy-appropriate anonymous data-ingestion method is selected and operational.
 
 ## Immediate next action
 
-1. rethink RECOGNITION-B only;
-2. do not reopen the three human-accepted mechanisms unless an actual prototype later fails first-read;
-3. prefer a second visual realization of acknowledgement over inventing a broader recognition subtype without evidence;
-4. once B is accepted, create only the minimum four missing prototypes;
-5. apply pragmatic first-read screening;
-6. complete runtime and run one technical/design smoke test before external human data.
+No further theory decision is required now.
+
+Two external-action gates remain:
+1. **image creation** — only if the user explicitly asks to create the four accepted prototypes;
+2. **pilot backend** — requires explicit approval before creating a new external service/project or changing data-retention behavior.
+
+Until one of those is approved:
+- keep historical live v0.4 untouched;
+- keep Open14 fail-closed;
+- do not invent more families or stimuli for completeness;
+- do not start external recruitment.
 
 ## Canonical full state
 
