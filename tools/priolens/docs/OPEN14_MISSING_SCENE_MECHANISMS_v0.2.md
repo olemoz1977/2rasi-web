@@ -1,19 +1,19 @@
 # PrioLens Open14 missing scene mechanisms v0.2
 
-Status: HUMAN-REVIEW GATE / TEXT ONLY
+Status: HUMAN REVIEW IN PROGRESS / 3 OF 4 MECHANISMS ACCEPTED
 Date: 2026-09-01
 
-## Purpose
+## Human decision checkpoint
 
-Define the four remaining Open14 v0.2 visual mechanisms **before any image is created**.
-
-Open slots:
+Accepted for prototyping:
 - CARE-A;
 - CARE-B;
-- RECOGNITION-A;
-- RECOGNITION-B.
+- RECOGNITION-A.
 
-These are mechanism descriptions, not generation prompts.
+Still unresolved:
+- RECOGNITION-B — HOLD / rethink before any image is created.
+
+No image generation is authorized by this document.
 
 ## CARE working pull
 
@@ -26,30 +26,22 @@ CARE must not collapse into:
 - bravery / emergency response;
 - generic warmth.
 
-### CARE-A — give up some of my comfort for another
+### CARE-A — ACCEPTED
 
 **Mechanism**
 
-Two ordinary adults are caught in rain. One person deliberately shifts the only umbrella far enough over the other person that their own shoulder / side is visibly left in the rain.
+Two ordinary adults are caught in mild rain. One person deliberately shifts the only umbrella far enough over the other person that their own shoulder / side is visibly left in the rain.
 
 **First-read target**
 > `pasirūpinti kitu savo komforto sąskaita`
 
-**Why this mechanism is useful**
-- welfare is directed toward another person;
-- a small self-cost is visible in one frame;
-- no verbal request is needed;
-- the action is ordinary, not heroic.
+**Guardrails**
+- ordinary, not heroic;
+- neutral relationship cues, not romantic staging;
+- modest visible self-cost;
+- weather must not dominate the scene.
 
-**Main confounds to watch**
-- SAFETY / protection because umbrella imagery is already used there;
-- romantic/relationship interpretation if the pair is staged too intimately;
-- dramatic weather can overpower the caregiving action.
-
-**Design guardrail**
-Use mild ordinary rain and neutral adult relationship cues. The self-cost should be visible but modest.
-
-### CARE-B — help before being asked
+### CARE-B — ACCEPTED
 
 **Mechanism**
 
@@ -58,27 +50,17 @@ One ordinary adult has dropped several neutral everyday items while already carr
 **First-read target**
 > `pastebėti ir padėti neprašytam`
 
-**Why this mechanism is useful**
-- proactive helping is the visible action;
-- does not require danger or vulnerability;
-- materially different from CARE-A because there is no resource transfer or protection;
-- modest effort rather than heroic sacrifice.
-
-**Main confounds to watch**
-- cooperation / CONNECTION if both people are shown doing the same task symmetrically;
-- politeness/social norm;
-- clutter if too many dropped objects make the scene visually noisy.
-
-**Design guardrail**
-Keep the roles asymmetric: one person has the problem; the other initiates help.
+**Guardrails**
+- roles remain asymmetric;
+- helper initiates action before a visible request;
+- avoid a symmetric teamwork reading;
+- keep dropped items visually simple.
 
 ## RECOGNITION working pull
 
 > **Have my contribution or standing seen and acknowledged.**
 
-A neighboring AgileBrain description is useful here only as a coverage check: its Recognition language centers on important efforts / contributions being acknowledged and on esteem for one's contributions. PrioLens does not inherit AgileBrain's scoring or unmet-need claims.
-
-RECOGNITION must not collapse into:
+Recognition must not collapse into:
 - BELONGING — simply being included;
 - CONNECTION — interpersonal contact;
 - RESOURCE — receiving a gift/reward;
@@ -86,80 +68,68 @@ RECOGNITION must not collapse into:
 - SUCCESS — reaching an endpoint;
 - prestige symbolism with no visible acknowledgement event.
 
-Recognition remains the less settled family. These two mechanisms are intentionally different and should be rejected if acknowledgement is not the first read.
+AgileBrain remains only a coverage reference here; PrioLens does not inherit its scoring or unmet-need claims.
 
-### RECOGNITION-A — modest peer acknowledgement
+### RECOGNITION-A — ACCEPTED
 
 **Mechanism**
 
-A small neutral peer group visibly directs a brief round of applause / appreciative gestures toward one ordinary person. No stage, medal, trophy, luxury context or winner symbolism.
+A small neutral peer group directs restrained positive acknowledgement toward one ordinary person. Several people clap modestly, smile naturally and one or more peers show a clear thumbs-up gesture toward the acknowledged person.
+
+No stage, medal, trophy, luxury setting or winner symbolism.
 
 **First-read target**
 > `būti pastebėtam ir įvertintam kitų`
 
-**Why this mechanism is useful**
-- acknowledgement itself is visually explicit;
-- group inclusion alone is not enough because attention is clearly directed at one person;
-- no material reward is needed.
+**Why this version is accepted**
+- acknowledgement is explicit in one still frame;
+- applause plus restrained smiles plus thumbs-up makes appreciation clearer than applause alone;
+- the focal person receives attention without requiring a prize or formal hierarchy.
 
-**Main confounds to watch**
-- SUCCESS / winning if the setting looks like a ceremony;
-- status if the focal person is dressed or positioned as a leader;
-- generic celebration if the group is too excited.
+**Guardrails**
+- keep the mood warm but restrained, not a celebration party;
+- focal person must not be visually elevated as a leader/winner;
+- several approval cues may be present, but avoid exaggerated cheering;
+- no text, certificates or awards.
 
-**Design guardrail**
-Keep the context ordinary and the acknowledgement modest.
+### RECOGNITION-B — HOLD / RETHINK
 
-### RECOGNITION-B — visible credit / being singled out
+The previous `visible credit / being singled out` mechanism is **not accepted**.
 
-**Mechanism**
+Reason:
+- an open-hand presenting gesture can read as merely introducing someone;
+- forcing a second concept now risks widening RECOGNITION into leadership, status, success or mastery;
+- a second exemplar does not automatically require a second psychological subtype.
 
-Inside a small ordinary peer group, one person clearly uses an open-hand presenting / crediting gesture toward another person. The rest of the group visibly redirects attention toward the acknowledged person. No stage, prize, certificate, handshake or completed technical object is needed.
+Before replacing B, test this design question:
 
-**First-read target**
-> `mano indėlis / vaidmuo pastebėtas ir pripažintas`
+> **Can RECOGNITION-B be a materially different visual realization of the same acknowledgement pull, rather than a different recognition mechanism?**
 
-**Why this mechanism is useful**
-- removes the old handshake/deal ambiguity;
-- does not require a trophy or material reward;
-- isolates the social event of giving one person visible credit;
-- materially different from applause while still testing acknowledgement.
+Possible future direction to examine, not yet accepted:
+- being visibly sought out / consulted because one's judgement or competence is valued.
 
-**Main confounds to watch**
-- introduction / presentation rather than recognition;
-- BELONGING if all people receive equal attention;
-- status if the acknowledged person is visually elevated or dressed differently.
+Main risk of that direction:
+- it may collapse into MASTERY, INFLUENCE or leadership.
 
-**Design guardrail**
-All people should remain visually equal except for the momentary direction of group attention. The acknowledgement gesture, not hierarchy, should create the asymmetry.
+Therefore no RECOGNITION-B scene should be produced until the mechanism is explicitly accepted.
 
 ## Rejected mechanism classes for now
 
 Do not use as first prototypes:
-- trophies / medals / podiums — too close to winning/status/sport;
-- expensive rewards / gifts — RESOURCE dominates;
-- handshake beside completed work — greeting/deal/success/mastery ambiguity is too high;
-- child/rescue/emergency CARE — duty, vulnerability and danger dominate;
-- romantic couple CARE — relationship valence dominates;
-- text-based praise boards or certificates — reading/text becomes the mechanism;
-- generic smiles or hugs — CONNECTION/BELONGING dominates.
-
-## Human-review questions
-
-Before creating any missing stimulus, review only these questions:
-
-1. Does CARE-A capture the intended **small self-sacrifice / altruism** rather than merely protection?
-2. Does CARE-B capture **help without request** strongly enough in one still frame?
-3. Is RECOGNITION-A worth testing despite applause/celebration leakage?
-4. Does RECOGNITION-B read as **giving visible credit**, or merely introducing someone?
-
-If a mechanism fails, replace the mechanism. Do not compensate with increasingly artificial visual staging.
+- trophies / medals / podiums;
+- expensive rewards / gifts;
+- handshake beside completed work;
+- text-based praise boards or certificates;
+- generic introduction gesture;
+- child/rescue/emergency CARE;
+- romantic couple CARE;
+- generic hugs/smiles with no directional acknowledgement.
 
 ## Current recommendation
 
-- CARE-A: **TRY**
-- CARE-B: **TRY**
-- RECOGNITION-A: **TRY**
-- RECOGNITION-B: **TRY, but boundary-sensitive**
+- CARE-A: **ACCEPTED FOR PROTOTYPING**
+- CARE-B: **ACCEPTED FOR PROTOTYPING**
+- RECOGNITION-A: **ACCEPTED FOR PROTOTYPING**
+- RECOGNITION-B: **HOLD / RETHINK**
 
-Do not generate images yet.
+Next human decision is only RECOGNITION-B. Do not reopen the three accepted mechanisms unless a later visual prototype clearly fails the pragmatic first-read check.
