@@ -36,7 +36,7 @@ No new images are generated in this step.
 | **SUCCESS** | **OPEN** | current completion scenes do not yet read as success/goal attainment | **OPEN** | current completion scenes do not yet read as success/goal attainment | GAP / PARTIAL SOURCE MATERIAL |
 | **MASTERY** | `S12.webp` | tiksliai išmatuoti / patikrinti | `S16.webp` | meistriškai formuoti | READY-CANDIDATE |
 | **EXPLORATION** | `S09.webp` | atidaryti ir atrasti, kas viduje | `20260809_235839567.png` | pažiūrėti už kliūties / atrasti | READY-CANDIDATE |
-| **KNOWLEDGE** | `20260730_230227381.png` | mokytis / būti klasėje | `20260730_233054250.png` | ieškoti žinių / prieiga prie informacijos | PROVISIONAL; both portrait in square runtime, conceptual boundary with UNDERSTANDING remains open |
+| **KNOWLEDGE** *(working display: Learning / Understanding)* | `20260730_230227381.png` | mokytis / būti klasėje | `20260811_180451129.png` | pamatyti aiškiau / daugiau | PROVISIONAL BOUNDARY TEST; one explicit learning + one square understanding exemplar |
 | **OPPORTUNITY** | `file_0000000024fc8210a5fb3823b3d86a9f.png` | pradėti kurti iš paruoštų medžiagų | `file_00000000c7f0821081be7676884bb00f.png` | pradėti kurti nuo tuščios drobės | READY-CANDIDATE; B is bright but retained |
 
 ## What is genuinely missing
@@ -55,16 +55,15 @@ Canonical note:
 
 The audit deliberately does **not** normalize images toward visual sterility.
 
-Main action taken:
-- old CONTROL-B (`file_0000000092148210be3631f7c20ec0da.png`) was a severe dark/flat outlier;
-- it is replaced by `file_000000006b148210abe3c22f8ce50764.png`, whose first read is still concrete control/action and whose visual metrics sit much closer to the rest of the set.
+Actions taken:
+- old CONTROL-B (`file_0000000092148210be3631f7c20ec0da.png`) was a severe dark/flat outlier and is replaced by `file_000000006b148210abe3c22f8ce50764.png`;
+- KNOWLEDGE was represented by two portrait sources in square `contain` slots; instead of forcing a crop, the first scan now uses one explicit learning scene plus one square `pamatyti aiškiau / daugiau` boundary exemplar.
 
-Main unresolved nuisance:
-- both current KNOWLEDGE exemplars are portrait sources;
-- P3 renders images in square `object-fit: contain` slots, so a family represented only by portrait images may receive a size/salience disadvantage;
-- square alternatives exist, but their first read broadens toward `pamatyti aiškiau / daugiau` rather than explicit knowledge/learning.
+The KNOWLEDGE technical ID remains stable for now, but the research question is deliberately broader:
 
-Do not solve that by semantic relabeling just for geometry. Resolve whether the useful family is narrower KNOWLEDGE or broader UNDERSTANDING / LEARNING before runtime freeze.
+> **Do explicit learning and a direct pull toward understanding/seeing more clearly behave coherently enough to remain one useful family?**
+
+If not, rename, split or drop after evidence. Do not claim coherence in advance.
 
 ## Recovered AUT material
 
@@ -138,9 +137,9 @@ Flow routing vs changing a broader environment state is now both semantically di
 
 Still craft/precision heavy, but the semantic first read is strong enough for the first broad scan.
 
-### KNOWLEDGE
+### KNOWLEDGE / LEARNING / UNDERSTANDING
 
-Current explicit learning / knowledge-access semantics are good, but both sources are portrait. Existing square `see more clearly / see more` candidates are retained as KNOWLEDGE/UNDERSTANDING boundary material rather than silently promoted.
+A is explicit learning. B is deliberately a broader understanding/seeing-more boundary test and fixes the previous family-level portrait-only presentation issue. Preserve exemplar identity and do not merge their meanings post hoc if participant behavior diverges.
 
 ### OPPORTUNITY
 
@@ -171,6 +170,5 @@ Objective task/result visibly reaches completion/target, with the actor present 
 ## Next action
 
 1. Resolve recovered backpack exact source/path by hash if possible.
-2. Treat KNOWLEDGE vs UNDERSTANDING as the only remaining filled-family conceptual/balance question before runtime freeze.
-3. Then stop at the human decision gate and review the six CARE / RECOGNITION / SUCCESS mechanisms with the user.
-4. Do not generate images automatically.
+2. Then stop at the human decision gate and review the six CARE / RECOGNITION / SUCCESS mechanisms with the user.
+3. Do not generate images automatically.
