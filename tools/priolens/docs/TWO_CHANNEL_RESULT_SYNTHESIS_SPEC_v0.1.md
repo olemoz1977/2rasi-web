@@ -35,11 +35,47 @@ visual_rate_f = chosen_f / shown_f
 
 Because there are only three exposures, `visual_rate_f` is coarse research telemetry, not a psychometric score.
 
-Suggested descriptive language:
-- 3/3 — `kartojosi kiekvieną kartą, kai pasirodė`;
-- 2/3 — `kartojosi`;
-- 1/3 — `pasirodė vieną kartą`;
-- 0/3 — `šiame rinkinyje nelaimėjo`.
+### Two-exemplar imbalance problem and fix
+
+Each family currently has two exemplars but three family appearances.
+
+Canonical assigner:
+`research/p3_open14_exemplar_assigner_v01.mjs`.
+
+Per participant:
+- both exemplars are always shown;
+- one is shown twice and the other once;
+- exactly 7 families repeat A and 7 repeat B;
+- total A/B appearances are exactly 21/21;
+- each screen slot receives exactly 7 A and 7 B appearances.
+
+Across participants, seed-based assignment changes which exemplar receives the extra exposure.
+
+### Exemplar-aware repetition rule
+
+Do **not** call a family `repeated` merely because it was selected 2/3 times.
+
+For each family retain:
+- `chosen_total`;
+- `chosen_A`;
+- `chosen_B`;
+- `cross_exemplar_win = chosen_A > 0 && chosen_B > 0`.
+
+Participant-facing categories:
+
+- **3/3** — both exemplars necessarily won at least once; `repeated across exemplars`.
+- **2/3 + cross_exemplar_win=true** — `repeated across two different images`.
+- **2/3 + cross_exemplar_win=false** — `exemplar-concentrated`; do not describe as a family-level repeated pull.
+- **1/3** — one isolated win.
+- **0/3** — did not win in this set.
+
+This prevents one strong repeated picture from masquerading as family-level evidence.
+
+Suggested public wording for cross-exemplar repetition:
+> Ši tema kartojosi per du skirtingus jos vaizdus.
+
+Suggested research wording for exemplar concentration:
+> Du pasirinkimai susitelkė ties tuo pačiu pakartotu vaizdu, todėl šeimos lygio interpretacija lieka silpna.
 
 Do not translate 3/3 into `strong need` or 0/3 into `unimportant`.
 
@@ -52,7 +88,7 @@ Open14 is a sparse broad scan:
 
 Therefore do not publish a false complete 1–14 ranking.
 
-Show repeated families and ties directly.
+Show cross-exemplar repeated families and ties directly.
 
 ## Channel A macro normalization
 
@@ -114,10 +150,10 @@ CARE may be shown as an additional social/prosocial visual observation beside, n
 
 ## Comparison language
 
-### Lower perceived sufficiency + repeated related visual pull
+### Lower perceived sufficiency + cross-exemplar repeated related visual pull
 
 Allowed:
-> Ši sritis tavo greituose pasirinkimuose kartojosi, o pats vertini, kad šiuo metu jos gyvenime nėra daug.
+> Ši sritis kartojosi per skirtingus tavo pasirinktus vaizdus, o pats vertini, kad šiuo metu jos gyvenime nėra daug.
 
 Research hypothesis:
 - currently salient candidate.
@@ -126,10 +162,10 @@ Not allowed:
 - `tai nepatenkintas poreikis`;
 - `todėl tavo pasąmonė jo ieško`.
 
-### Higher perceived sufficiency + repeated related visual pull
+### Higher perceived sufficiency + cross-exemplar repeated related visual pull
 
 Allowed:
-> Ši sritis tavo pasirinkimuose kartojosi ir kartu atrodo pakankamai esanti tavo gyvenime.
+> Ši sritis tavo pasirinkimuose kartojosi per skirtingus vaizdus ir kartu atrodo pakankamai esanti tavo gyvenime.
 
 Possible research explanations remain open:
 - stable value/preference;
@@ -155,11 +191,18 @@ Do not label automatically as a `settled need`.
 
 ### Block 1 — `Kas kartojosi`
 
-Show all families with 2/3 or 3/3 first.
-If none reach 2/3, say that the session was more distributed rather than inventing a dominant lens.
+Primary participant-facing evidence requires cross-exemplar repetition.
+
+Show first:
+- 3/3 families;
+- 2/3 families where both A and B won at least once.
+
+Do not elevate 2/3 from the same repeated exemplar into this block.
+
+If no family has cross-exemplar repetition, say the session was distributed / exemplar-specific rather than inventing a dominant lens.
 
 Potential copy:
-> Tavo pasirinkimai neišsidėstė vienodai. Šios temos kartojosi dažniau už kitas šiame konkrečiame rinkinyje.
+> Šioje sesijoje kelios temos pasirodė, bet nė viena nepasikartojo per du skirtingus savo vaizdus.
 
 ### Block 2 — `Kaip pats vertini dabartinę situaciją`
 
@@ -170,8 +213,8 @@ Avoid traffic-light diagnosis colors in research v0.1 unless later usability evi
 ### Block 3 — `Kur verta pažvelgti dar kartą`
 
 Show at most 2–3 comparisons where the two channels are informative:
-- repeated visual family + lower related sufficiency;
-- repeated visual family + higher related sufficiency;
+- cross-exemplar repeated visual family + lower related sufficiency;
+- cross-exemplar repeated visual family + higher related sufficiency;
 - explicit mismatch if it is notable.
 
 Do not mechanically generate six comparison paragraphs.
@@ -180,6 +223,7 @@ Do not mechanically generate six comparison paragraphs.
 
 Examples:
 - ties between visual families;
+- exemplar-concentrated 2/3 patterns;
 - `no_clear_choice` frequency;
 - CARE without direct sufficiency counterpart;
 - meaning/contribution self-report without a visual counterpart.
@@ -193,10 +237,13 @@ Store:
 - seed;
 - exact trial composition/order;
 - exact exemplar IDs and paths;
+- exemplar assigner config, repeated side and singleton slot per family;
 - choice per trial;
 - `no_clear_choice`;
 - RT telemetry separately;
 - family shown/chosen counts;
+- chosen counts by exemplar A/B;
+- `cross_exemplar_win` per family;
 - macro normalized rates;
 - 12 raw sufficiency items;
 - optional six domain summaries;
@@ -209,6 +256,6 @@ The first external-data question is not:
 > `Does PrioLens correctly identify unmet needs?`
 
 It is:
-> `Do repeated visual pulls show interpretable, non-trivial relationships with independently reported current sufficiency, beyond stimulus-specific salience and chance?`
+> `Do cross-exemplar repeated visual pulls show interpretable, non-trivial relationships with independently reported current sufficiency, beyond stimulus-specific salience and chance?`
 
 That is a testable research question without overclaiming the mechanism.
