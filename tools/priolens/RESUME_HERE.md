@@ -17,9 +17,10 @@ When a PrioLens chat is missing messages, truncated, archived or restarted:
 5. read `docs/OPEN14_SOCIAL_SPLIT_AND_SUCCESS_DECISION_v0.1.md`;
 6. read `docs/P3_OPEN_SPECTRUM_14_SPEC_v0.2.md`;
 7. read `docs/OPEN14_ASSET_MATRIX_v0.2.md`;
-8. continue from `PROJECT_STATE.md > Immediate next action`;
-9. use File Library only when an actual runtime/source artifact is needed;
-10. do not ask the user to reconstruct already-recorded work from memory.
+8. read `docs/OPEN14_MISSING_SCENE_MECHANISMS_v0.2.md`;
+9. continue from `PROJECT_STATE.md > Immediate next action`;
+10. use File Library only when an actual runtime/source artifact is needed;
+11. do not ask the user to reconstruct already-recorded work from memory.
 
 If chat memory conflicts with repo state, repo state wins.
 
@@ -33,23 +34,13 @@ Completed:
 - Open14 v0.2 family set frozen for current research;
 - `SUCCESS` removed as an atomic Open14 family and moved to `DERIVED / THEORY-HOLD`;
 - `BELONGING` split from direct `CONNECTION`;
-- CARE narrowed to altruistic/proactive action for another's welfare, including modest self-cost or help without request;
+- CARE narrowed to altruistic/proactive action for another's welfare;
 - Open14 v0.2 planner implemented and smoke-tested across 1000 deterministic seeds;
-- Open14 v0.2 asset matrix has 24 existing/recovered assets and 4 intentional gaps.
-
-## Active architecture
-
-### Channel A — revealed visual priority
-
-Low-deliberation visual choice with no need labels.
-
-### Channel B — perceived sufficiency
-
-After the visual task, self-assessment of broader need domains.
-
-Compare the channels afterward. Do not collapse them into one unmet-need score.
-
-Maslow-style levels are coverage buckets, not one stage the person occupies.
+- Open14 v0.2 asset matrix has 24 existing/recovered assets;
+- CARE-A mechanism human-accepted;
+- CARE-B mechanism human-accepted;
+- RECOGNITION-A mechanism human-accepted;
+- RECOGNITION-B remains the only unresolved conceptual scene mechanism.
 
 ## Active Open14 v0.2 shortlist
 
@@ -77,73 +68,53 @@ Maslow-style levels are coverage buckets, not one stage the person occupies.
 
 This is a discovery shortlist, not a fundamental-needs taxonomy.
 
-## Critical family boundaries
+## Accepted missing-scene mechanisms
 
-### CONNECTION
-Direct contact / reciprocity.
+### CARE-A
+`pasirūpinti kitu savo komforto sąskaita`
 
-### BELONGING
-Being with / part of others.
+Mechanism: one person shifts the only umbrella toward another and accepts modest exposure to rain.
 
-### CARE
-Acting for another person's welfare.
+### CARE-B
+`pastebėti ir padėti neprašytam`
 
-Accepted CARE mechanism space:
-- modest visible self-sacrifice;
-- proactive practical help before a visible request.
+Mechanism: a nearby person starts helping gather dropped everyday items before any visible request.
 
-Do not treat warm togetherness alone as CARE.
+### RECOGNITION-A
+`būti pastebėtam ir įvertintam kitų`
 
-### SUCCESS
-Not active in Open14 v0.2.
+Mechanism: a small peer group gives restrained acknowledgement toward one focal person using modest applause, natural smiles and one or more clear thumbs-up gestures. No stage, prize, trophy or winner framing.
 
-Status:
-`DERIVED / THEORY-HOLD`.
+## Only unresolved mechanism
 
-Do not restore it merely to preserve the v0.1 list.
+### RECOGNITION-B — HOLD / RETHINK
 
-## Open14 v0.2 planner
+Previous presenting/crediting gesture is rejected because it can read as simple introduction.
 
-Source:
-`tools/priolens/research/p3_open14_planner_v02.mjs`
+Do not create RECOGNITION-B yet.
 
-Per session:
-- 14 triads;
-- each family shown exactly 3 times;
-- each family exactly 1/1/1 across slots;
-- 3 distinct macro domains per triad;
-- no repeated family pair;
-- 42 unique pair co-occurrences;
-- 6 unique opponents per family.
+Key design question:
+> **Should B be a different visual realization of the same acknowledgement pull instead of a different recognition subtype?**
 
-Macro family counts:
-- BASIC 4;
-- GROWTH 4;
-- SOCIAL 3;
-- AGENCY / ESTEEM 3.
+Possible avenue only, not accepted:
+- others visibly seek/consult the focal person because their judgement or competence is valued.
 
-The FAMILY_SET order is structural. Do not reorder without revalidation.
+Risk: this may collapse into MASTERY, INFLUENCE or leadership.
 
-## Asset state
+## Asset / runtime state
 
 Canonical matrix:
 `docs/OPEN14_ASSET_MATRIX_v0.2.md`.
 
-BELONGING reuses existing Gallery assets:
-- `S14.webp`;
-- `20260731_043300801.png`.
+Runtime/data scaffold exists in `olemoz1977/omesg360`:
+- `priolens/open14-v02/bank.json`;
+- `priolens/open14-v02/p3_open14_planner_v02.mjs`.
 
-True remaining gaps:
-- CARE-A;
-- CARE-B;
-- RECOGNITION-A;
-- RECOGNITION-B.
+Bank remains `INCOMPLETE_FAIL_CLOSED`.
 
-About **4 missing prototypes at most**.
+No fake image placeholders are allowed.
 
-Do not generate them before human review of the scene mechanisms.
-
-KNOWLEDGE uses a deliberate Learning/Understanding boundary probe for B to avoid the earlier family-level portrait geometry disadvantage.
+AUT-B recovered asset exists in the repo, but do not claim its Hostinger runtime URL is live until an actual HTTP smoke check passes.
 
 ## Asset rule
 
@@ -157,11 +128,12 @@ Main pragmatic question:
 
 ## Immediate next action
 
-1. keep the 24 existing Open14 v0.2 assets frozen;
-2. write 2 materially different CARE and 2 materially different RECOGNITION scene mechanisms;
-3. prepare planner-v0.2 runtime/data wiring without fake placeholders;
-4. stop at the human decision gate before creating any image;
-5. after accepted missing assets exist, build the full Open14 v0.2 runtime and run a technical/design smoke test only.
+1. rethink RECOGNITION-B only;
+2. do not reopen the three human-accepted mechanisms unless an actual prototype later fails first-read;
+3. prefer a second visual realization of acknowledgement over inventing a broader recognition subtype without evidence;
+4. once B is accepted, create only the minimum four missing prototypes;
+5. apply pragmatic first-read screening;
+6. complete runtime and run one technical/design smoke test before external human data.
 
 ## Canonical full state
 
