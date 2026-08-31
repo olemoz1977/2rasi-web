@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / CORE ARCHITECTURE CORRECTED TO STANDALONE-IMAGE COMPARISON
+Status: ACTIVE RECOVERY / ORIGINAL STANDALONE STIMULUS BASELINE BEING RECONSTRUCTED
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -37,9 +37,36 @@ Public constraints:
 - no mandatory free text or per-choice explanation;
 - no personality/diagnosis/hidden-self claims;
 - `no_clear_choice` allowed;
-- target about 2–4 minutes / roughly 12–18 meaningful choices.
+- target about 2–4 minutes / roughly 12–18 meaningful choices for the eventual public flow.
 
-## Critical architecture correction · 2026-08-31
+## Original architecture recovered from File Library
+
+The original PrioLens v0.1 materials have been recovered and now take precedence over the recent matched-pair drift.
+
+Source material recovered:
+- `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`;
+- `priolens_working_beta_v03.html` with all 16 active images embedded as base64;
+- `RED_TEAM_SYNTHESIS_v0.1.md`;
+- original core/calibration session JSON exports.
+
+Original model:
+- 8 working directions;
+- 2 **independent standalone visual exemplars** per direction;
+- 16 active stimuli;
+- 28 direction-v-direction edges in the old research core session;
+- image identity and direction identity stored separately;
+- the two images shown on a trial were assembled by the planner from independently registered stimuli.
+
+The old red-team explicitly stopped freezing the 16-image set and recommended a larger independently designed candidate bank, provisionally at least 4 exemplars per direction, followed by human semantic validation before preference testing.
+
+Important:
+> this recommendation expands the standalone-image bank; it does not convert PrioLens into matched same-scene A/B stimulus design.
+
+Recovery sources now documented in:
+- `docs/ORIGINAL_PRIOLENS_BASELINE_RECOVERY_v0.1.md`
+- `docs/ORIGINAL_STIMULUS_INVENTORY_RECOVERY_v0.1.md`
+
+## Standalone-image architecture
 
 The fundamental PrioLens stimulus unit is **one standalone image**.
 
@@ -54,122 +81,75 @@ The two images do not need to:
 
 They may be visually and contextually different scenes, provided each stimulus is interpretable on its own and gross nuisance cues are screened/balanced.
 
-Sources:
-- `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
-- `docs/STANDALONE_IMAGE_COMPARISON_ARCHITECTURE_v0.1.md`
+## Original 16-stimulus red-team status
 
-## Why the correction was necessary
+Recovered blind direction mapping:
+- S01 EXP — REWORK / retest
+- S02 INF — REWORK / retest; chain reaction/causality
+- S03 CON — candidate only; face/social salience confound
+- S04 INF — REPLACE preferred; mechanical/system/causality cross-load
+- S05 AUT — REPLACE/redesign
+- S06 CER — REWORK / retest; checklist/completion
+- S07 OPP — REPLACE preferred; food/reward dominated
+- S08 PRO — REWORK / retest
+- S09 EXP — REPLACE/redesign
+- S10 CER — REPLACE preferred; ambiguous container
+- S11 AUT — REPLACE/redesign
+- S12 MAS — strongest candidate; precision measurement/craftsmanship
+- S13 PRO — REPLACE preferred; weak protected-object meaning
+- S14 CON — REWORK / retest
+- S15 OPP — provisional only; greenhouse/nature/positive-valence confound
+- S16 MAS — strongest candidate; pottery/craftsmanship
 
-Recent OT-03 rendering drifted into the same design logic used in 2Pair:
+The exact one-to-one relation `Sxx -> direction-01/direction-02` has not yet been recovered and must not be guessed.
 
-```text
-one scene
-→ A action
-vs
-→ B action
-```
+## Recent drift retained only as historical evidence
 
-This produced increasingly artificial same-scene mates, especially X12 wooden-frame Preserve. The product architecture was being rewritten to solve a local stimulus-design problem.
-
-Therefore the recent Preserve↔Refine same-scene construction is stopped as a product-architecture path.
-
-## Research unit after correction
-
-Safe research pipeline:
-
-```text
-candidate semantic family / hypothesis
-→ several standalone image exemplars
-→ blind semantic screening of each image independently
-→ retain semantically convergent stimuli
-→ assemble two-image comparison trials
-→ vary opponents across trials
-→ inspect repeated choice patterns
-→ descriptive session mirror
-```
-
-Designer intent still does not validate an image.
-
-## Broad-direction hypotheses
-
-AUT, CER, EXP, MAS, CON, INF, PRO, OPP remain research hypotheses only.
-
-They are not approved scoring units and exactly eight final outputs are not required.
-
-Important reinterpretation of earlier D1/D2 work:
-- INF D1 and MAS D2 showed problems when broad directions were forced to survive as poles across tightly controlled matched opponents;
-- those failures do not by themselves prove that standalone image families for INF or MAS cannot work;
-- the corrected question is whether several **independent standalone images** intended for the same candidate family are recognized as sharing a useful semantic core without pair context.
-
-## Previous observable-tradeoff work
-
-The OT taxonomy and Claude blind recovery remain useful historical evidence about visible semantics and confounds.
-
-However:
-
-> **observable-tradeoff-first matched-pair architecture is no longer the active product architecture.**
-
-Do not keep producing same-scene OT mates merely because a public trial contains two images.
-
-## Current rendered-image status
+Recent OT-03 matched rendering work is not the active product architecture.
 
 ### X12 wooden frame
 - Refine image became physically plausible.
-- Preserve mate repeatedly required implausible or more complex woodworking behavior.
-- X12 remains useful evidence showing why forced same-scene pairing is the wrong PrioLens constraint.
-- Do not continue X12 as a matched pair.
+- Preserve mate forced implausible or much more complex woodworking behavior.
+- Keep only as evidence of why forced matched-scene design is wrong for PrioLens.
 
 ### X13 cord coil
-- Refine render is a plausible standalone stimulus candidate: one outer loop is visibly repositioned to make the coil more even.
-- Preserve render is also physically plausible as a standalone image: a strap secures an already neat coil.
-- They do **not** need to remain a controlled matched pair.
-- Both may later be screened independently if their semantic families remain relevant.
+- Refine and Preserve renders are plausible standalone image candidates.
+- They are not a required pair and should not be evaluated as a matched unit.
 
-Gemini watermark cleanup is cosmetic and can be handled after a stimulus is selected.
+## Current research question
 
-## Immediate next research task
+The strongest source-grounded question from the old red-team remains:
 
-Stop rendering matched Preserve↔Refine pairs.
+> Can materially different standalone exemplars of the same working direction produce a reproducible direction-level choice signal after semantic fit and low-level visual confounds are controlled?
 
-Build a small **standalone image stimulus library** instead.
+The eight working directions remain hypotheses, not validated traits or guaranteed final scores.
 
-For the first pass:
-1. choose 3–4 candidate semantic families;
-2. create 3–5 genuinely different standalone scene concepts for each family;
-3. ensure no family is represented by one repeated visual trope;
-4. blind-screen each image individually with humans using a short semantic question;
-5. only then assemble two-image choice trials across families.
+## Immediate next action
 
-The standalone screen should ask what the image represents or what is happening in it, not "how do these two images differ?"
+Do **not** generate more new stimuli yet.
 
-## Nuisance controls for independent images
+Recovery first:
+1. recover/extract the original 16 beta images without changing pixels;
+2. reconstruct the S01–S16 ↔ stable asset-ID mapping without guessing;
+3. produce one inventory/contact sheet with intended direction, red-team verdict and main confounds;
+4. classify the old assets as historical KEEP / REWORK / DROP candidates;
+5. only then design missing standalone exemplars to expand promising directions toward a 4+ candidate bank.
 
-Do not require pixel-level or same-scene matching.
+No external preference pilot should use the old 16 as if they were validated/final.
 
-Screen/balance major nuisance cues instead:
-- valence;
-- attractiveness/aesthetic reward;
-- threat/loss;
-- people count/social salience;
-- prestige/status;
-- visual complexity;
-- brightness/saturation;
-- obvious difficulty/expertise;
-- completion/success;
-- magnitude/scale;
-- novelty.
+## Human semantic validation boundary
 
-## Human pilot status
+Before pairwise preference testing, standalone images must be screened independently.
 
-`docs/HUMAN_SEMANTIC_PILOT_v0.1.md` was written for matched OT pairs and is now **historical / not the next protocol**.
-
-Do not run it as written.
-
-A replacement protocol must screen standalone images first.
+Research questions should capture:
+- blind open-ended meaning;
+- optional mapping to working direction definitions only after open coding;
+- intended-direction hit / neighbour confusion;
+- major confounds such as valence, aesthetics, faces, food, nature, complexity, completion and expertise.
 
 ## AI reviewers
 
-AI remains a concept/confound filter only, not a validator.
+AI is a concept/confound filter only, not a validator.
 
 Do not reopen long Claude/Grok voting loops before human semantic evidence.
 
@@ -179,18 +159,19 @@ Vercel harness is deployed and reaches AI Gateway. Paid execution remains deferr
 
 ## Source-of-truth order
 
-1. `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md` — rare-changing constitutional architecture
-2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `PROJECT_STATE.md` — mutable current execution state
-4. `docs/STANDALONE_IMAGE_COMPARISON_ARCHITECTURE_v0.1.md`
-5. later standalone-image semantic-screen protocol when created
-6. `docs/CLAUDE_OT_REPLICATION_STAGE2_RESULT_v0.1.md` as historical evidence
-7. `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md` as historical evidence
-8. `docs/ARCHITECTURE_REASSESSMENT_AFTER_D1_D2_v0.1.md` as historical evidence
-9. earlier INF/MAS gate files as historical evidence
+1. `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
+2. `docs/ORIGINAL_PRIOLENS_BASELINE_RECOVERY_v0.1.md`
+3. `docs/ORIGINAL_STIMULUS_INVENTORY_RECOVERY_v0.1.md`
+4. original `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md` source material recovered from File Library
+5. original `RED_TEAM_SYNTHESIS_v0.1.md` source material recovered from File Library
+6. `PROJECT_STATE.md`
+7. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
+8. `docs/STANDALONE_IMAGE_COMPARISON_ARCHITECTURE_v0.1.md`
+9. later standalone-image semantic-screen protocol when created
+10. recent OT/matched-edge work as historical methodological evidence only
 
 ## Recovery instruction
 
-If context is lost, read `PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md` first, then this file.
+If context is lost, start with the invariant file and the two recovery files above.
 
-Do not restart same-scene Preserve↔Refine mate construction, do not treat two images on one screen as a 2Pair matched pair, do not restore automatic eight-direction scoring, and do not let a local stimulus/rendering failure silently redefine PrioLens architecture.
+Do not restart same-scene Preserve↔Refine mate construction, do not treat two images on one screen as a 2Pair matched pair, do not silently regenerate assets that still exist in the old beta, and do not let a local stimulus/rendering failure redefine PrioLens architecture.
