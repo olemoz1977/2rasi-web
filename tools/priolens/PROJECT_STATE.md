@@ -6,6 +6,14 @@ Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 Draft PR: #9
 
+## Drift-control rule
+
+Before interpreting any local research result, read:
+
+> `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
+
+Local failures may change a stimulus, semantic family, rendering method or comparison schedule. They must **not silently redefine the product architecture**.
+
 ## Product boundary
 
 PrioLens is a short visual-choice experience.
@@ -46,7 +54,9 @@ The two images do not need to:
 
 They may be visually and contextually different scenes, provided each stimulus is interpretable on its own and gross nuisance cues are screened/balanced.
 
-Source: `docs/STANDALONE_IMAGE_COMPARISON_ARCHITECTURE_v0.1.md`.
+Sources:
+- `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
+- `docs/STANDALONE_IMAGE_COMPARISON_ARCHITECTURE_v0.1.md`
 
 ## Why the correction was necessary
 
@@ -59,7 +69,7 @@ vs
 → B action
 ```
 
-This produced increasingly artificial same-scene mates, especially X12 wooden-frame Preserve. User explicitly clarified that PrioLens is intended to **show two images**, not require a matched scene pair.
+This produced increasingly artificial same-scene mates, especially X12 wooden-frame Preserve. The product architecture was being rewritten to solve a local stimulus-design problem.
 
 Therefore the recent Preserve↔Refine same-scene construction is stopped as a product-architecture path.
 
@@ -169,17 +179,18 @@ Vercel harness is deployed and reaches AI Gateway. Paid execution remains deferr
 
 ## Source-of-truth order
 
-1. `PROJECT_STATE.md`
+1. `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md` — rare-changing constitutional architecture
 2. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-3. `docs/STANDALONE_IMAGE_COMPARISON_ARCHITECTURE_v0.1.md`
-4. later standalone-image semantic-screen protocol when created
-5. `docs/CLAUDE_OT_REPLICATION_STAGE2_RESULT_v0.1.md` as historical evidence
-6. `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md` as historical evidence
-7. `docs/ARCHITECTURE_REASSESSMENT_AFTER_D1_D2_v0.1.md`
-8. earlier INF/MAS gate files as historical evidence
+3. `PROJECT_STATE.md` — mutable current execution state
+4. `docs/STANDALONE_IMAGE_COMPARISON_ARCHITECTURE_v0.1.md`
+5. later standalone-image semantic-screen protocol when created
+6. `docs/CLAUDE_OT_REPLICATION_STAGE2_RESULT_v0.1.md` as historical evidence
+7. `docs/OBSERVABLE_TRADEOFF_TAXONOMY_v0.1.md` as historical evidence
+8. `docs/ARCHITECTURE_REASSESSMENT_AFTER_D1_D2_v0.1.md` as historical evidence
+9. earlier INF/MAS gate files as historical evidence
 
 ## Recovery instruction
 
-If context is lost, start here.
+If context is lost, read `PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md` first, then this file.
 
-Do not restart same-scene Preserve↔Refine mate construction, do not treat two images on one screen as a 2Pair matched pair, do not restore automatic eight-direction scoring, and do not return to long AI-review loops before standalone human semantic screening.
+Do not restart same-scene Preserve↔Refine mate construction, do not treat two images on one screen as a 2Pair matched pair, do not restore automatic eight-direction scoring, and do not let a local stimulus/rendering failure silently redefine PrioLens architecture.
