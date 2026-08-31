@@ -1,18 +1,19 @@
 # PrioLens project state
 
-Status: ACTIVE RECOVERY / ORIGINAL STANDALONE STIMULUS BASELINE PARTIALLY RECONSTRUCTED / BETA FILE NEEDED FOR BYTE-LEVEL RECOVERY
+Status: ACTIVE RESEARCH / ORIGINAL STANDALONE BASELINE RECOVERED
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 Draft PR: #9
 
-## Drift-control rule
+## Read first
 
-Before interpreting any local research result, read:
+1. `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
+2. `docs/ORIGINAL_PRIOLENS_BASELINE_RECOVERY_v0.1.md`
+3. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
+4. this file
 
-> `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
-
-Local failures may change a stimulus, semantic family, rendering method or comparison schedule. They must **not silently redefine the product architecture**.
+Local stimulus failures must not silently redefine product architecture.
 
 ## Product boundary
 
@@ -33,201 +34,130 @@ START
 → short session mirror
 ```
 
+The fundamental stimulus unit is **one standalone image**. A trial juxtaposes two independently registered stimuli. It is not a 2Pair-style same-scene matched A/B construction.
+
 Public constraints:
-- no mandatory free text or per-choice explanation;
-- no personality/diagnosis/hidden-self claims;
+- no mandatory writing or per-choice explanation;
+- no personality/diagnosis/hidden-self claim;
 - `no_clear_choice` allowed;
-- target about 2–4 minutes / roughly 12–18 meaningful choices for the eventual public flow.
+- eventual target roughly 2–4 minutes / 12–18 meaningful choices.
 
-## Original architecture recovered from File Library
+## Original architecture recovered
 
-The original PrioLens v0.1 materials have been recovered and now take precedence over the recent matched-pair drift.
-
-Source material recovered:
-- `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`;
-- `priolens_working_beta_v03.html` indexed in File Library with all 16 active images embedded as base64;
-- `RED_TEAM_SYNTHESIS_v0.1.md`;
-- original core/calibration session JSON exports;
-- historical stimulus-matrix and generation artifacts showing earlier candidate provenance.
-
-Original model:
-- 8 working directions;
-- 2 **independent standalone visual exemplars** per direction;
+Original PrioLens v0.1 used:
+- 8 working directions: AUT, CER, EXP, MAS, CON, INF, PRO, OPP;
+- 2 independent standalone visual exemplars per direction;
 - 16 active stimuli;
-- 28 direction-v-direction edges in the old research core session;
-- image identity and direction identity stored separately;
-- the two images shown on a trial were assembled by the planner from independently registered stimuli.
+- 28 direction-v-direction edges in the old full research session;
+- planner-assembled comparisons from independently registered image assets.
 
-The old red-team explicitly stopped freezing the 16-image set and recommended a larger independently designed candidate bank, provisionally at least 4 exemplars per direction, followed by human semantic validation before preference testing.
+The old red-team stopped the 16-image freeze and recommended a larger independently designed candidate bank, provisionally at least 4 exemplars per direction, followed by human semantic validation before preference testing.
 
-Important:
-> this recommendation expands the standalone-image bank; it does not convert PrioLens into matched same-scene A/B stimulus design.
+Exactly eight final public scores are not guaranteed. The directions remain working hypotheses.
 
-Recovery sources now documented in:
-- `docs/ORIGINAL_PRIOLENS_BASELINE_RECOVERY_v0.1.md`
-- `docs/ORIGINAL_STIMULUS_INVENTORY_RECOVERY_v0.1.md`
+## Recovery completed · 2026-08-31
 
-## Standalone-image architecture
+User-provided artifacts:
+- `priolens_working_beta-4.html`;
+- `Gallery.zip`.
 
-The fundamental PrioLens stimulus unit is **one standalone image**.
+`Gallery.zip` contains all `S01.webp` ... `S16.webp` blind-review stimuli.
 
-A trial displays two standalone images, but this does **not** make the trial a 2Pair-style matched A/B stimulus pair.
+The beta HTML contains all 16 stable `direction-01/-02` WebP assets embedded as base64.
 
-The two images do not need to:
-- show the same object;
-- use the same scene;
-- differ by one manipulated property;
-- form a before/after or preserve/refine mate;
-- invite the viewer to detect "what changed".
+All sixteen Sxx files were compared byte-for-byte against all sixteen beta assets using SHA-256. Every Sxx had exactly one exact match.
 
-They may be visually and contextually different scenes, provided each stimulus is interpretable on its own and gross nuisance cues are screened/balanced.
+Exact mapping:
 
-## Original 16-stimulus red-team status
+| Sxx | Stable beta asset |
+| --- | --- |
+| S01 | `exploration-01` |
+| S02 | `influence-02` |
+| S03 | `connection-01` |
+| S04 | `influence-01` |
+| S05 | `autonomy-01` |
+| S06 | `certainty-02` |
+| S07 | `opportunity-02` |
+| S08 | `protection-01` |
+| S09 | `exploration-02` |
+| S10 | `certainty-01` |
+| S11 | `autonomy-02` |
+| S12 | `mastery-01` |
+| S13 | `protection-02` |
+| S14 | `connection-02` |
+| S15 | `opportunity-01` |
+| S16 | `mastery-02` |
 
-Recovered blind direction mapping:
-- S01 EXP — REWORK / retest
-- S02 INF — REWORK / retest; chain reaction/causality
-- S03 CON — candidate only; face/social salience confound
-- S04 INF — REPLACE preferred; mechanical/system/causality cross-load
-- S05 AUT — REPLACE/redesign
-- S06 CER — REWORK / retest; checklist/completion
-- S07 OPP — REPLACE preferred; food/reward dominated
-- S08 PRO — REWORK / retest
-- S09 EXP — REPLACE/redesign
-- S10 CER — REPLACE preferred; ambiguous container
-- S11 AUT — REPLACE/redesign
-- S12 MAS — strongest candidate; precision measurement/craftsmanship
-- S13 PRO — REPLACE preferred; weak protected-object meaning
-- S14 CON — REWORK / retest
-- S15 OPP — provisional only; greenhouse/nature/positive-valence confound
-- S16 MAS — strongest candidate; pottery/craftsmanship
+Canonical evidence: `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`.
 
-## Recovery progress · historical scene provenance
+The former recovery blocker is CLOSED. Do not ask the user to re-upload the old project or rediscover these mappings.
 
-Historical stimulus matrices are **precursor evidence, not final ground truth**. Their labels changed before the final blind set, so they cannot be used as a direct registry.
+## Historical red-team status of the 16
 
-Strong scene-continuity links:
-- S12 MAS ↔ historical `MAS-A 4635` — calipers / precise measurement;
-- S16 MAS ↔ historical `MAS-B 4636` — pottery wheel / skilled shaping;
-- S15 OPP ↔ historical `OPP-A 4637` — open greenhouse / growth;
-- S07 OPP ↔ historical `OPP-B 4638` — prepared food/resources;
-- S06 CER ↔ historical checklist candidate — checklist/completion.
+### Strongest anchors
+- S12 / `mastery-01` — precision measurement / craftsmanship.
+- S16 / `mastery-02` — pottery / craftsmanship.
 
-Possible but not yet proven:
-- S08 PRO ↔ historical `PRO-A 2723` — umbrella/rain.
+### Candidate / rework
+- S01 / `exploration-01` — REWORK / retest.
+- S02 / `influence-02` — REWORK / retest; domino causality.
+- S03 / `connection-01` — candidate only; faces/social salience.
+- S06 / `certainty-02` — REWORK / retest; checklist/completion leakage.
+- S08 / `protection-01` — REWORK / retest; staging/mood risk.
+- S14 / `connection-02` — REWORK / retest; CON/INF ambiguity.
+- S15 / `opportunity-01` — provisional only; nature/positive-valence confound.
 
-Additional File Library archaeology recovered:
-- multiple individual domino-chain renders strongly matching the S02 causality design family;
-- several irrigation / button / shared-system action renders relevant to late INF iterations;
-- multiple gate/window/open-path renders relevant to AUT/OPP/EXP exploration, but not uniquely mappable;
-- individual original-looking MAS caliper and pottery files;
-- greenhouse and food-resource OPP files;
-- multiple CER measurement/organization precursors.
+### Replace / redesign preferred
+- S04 / `influence-01` — mechanical/system cross-load.
+- S05 / `autonomy-01` — autonomy not robustly foregrounded.
+- S07 / `opportunity-02` — food/reward dominated.
+- S09 / `exploration-02` — sharp semantic disagreement.
+- S10 / `certainty-01` — ambiguous container scene.
+- S11 / `autonomy-02` — autonomy depends on inferred context.
+- S13 / `protection-02` — protected object value/fragility unclear.
 
-These are provenance clues only. They do not establish `direction-01` vs `direction-02` stable beta IDs.
+## Important methodological boundary
 
-## Exact mapping remains unresolved
+AI review is only a concept/confound filter. It does not validate a construct.
 
-Searches for:
-- the original blind 16-stimulus package;
-- a stimulus registry containing S01–S16 plus stable beta IDs;
-- `S01/S16` together with `direction-01/-02`;
-- stable beta IDs in the GitHub repository
+Before pairwise preference testing, standalone images must be screened independently with humans for:
+- blind open-ended meaning;
+- intended-direction hit / neighbour confusion;
+- valence/aesthetic pull;
+- faces/social salience;
+- food/nature/reward cues;
+- complexity/completion/expertise confounds.
 
-did not recover a direct one-to-one mapping.
+The main research question remains:
 
-The session JSON files prove actual runtime use of `direction-01/-02`, but do not contain the image semantics needed to identify which Sxx was which exemplar.
+> Can materially different standalone exemplars of the same working direction produce a reproducible direction-level choice signal after semantic fit and nuisance cues are controlled?
 
-Do **not** infer `Sxx -> direction-01/direction-02` from numbering, upload time, historical A/B labels or convenience.
+## Gallery ZIP
 
-## Current technical extraction boundary
+`Gallery.zip` is a large historical generation archive (~223 files), not a clean PrioLens registry. It contains:
+- the exact S01–S16 blind set;
+- many earlier/later generated iterations;
+- likely unrelated 2rasi visual work.
 
-`priolens_working_beta_v03.html` is searchable in File Library and exposes snippets of the embedded base64 registry, but the full file cannot currently be opened through the available File Library reader (`mclick` fails) and it is not mounted in the active sandbox or present in GitHub.
-
-Therefore the 16 embedded image byte streams cannot yet be extracted deterministically from the indexed reference alone.
-
-### Single file needed to close recovery
-
-If continuing recovery in this chat, the only artifact that needs to be uploaded directly is:
-
-> `priolens_working_beta_v03.html`
-
-Not the whole project.
-
-Once that one file is available as a current-conversation attachment/local file:
-1. extract all 16 embedded WebP assets without changing pixels;
-2. save them under their stable beta IDs;
-3. generate a contact sheet / inventory;
-4. compare them against recovered individual File Library images and historical boards;
-5. close as much of `Sxx -> direction-01/direction-02` as evidence permits;
-6. classify each old beta asset as historical KEEP / REWORK / DROP candidate using the existing red-team record.
-
-## Recent drift retained only as historical evidence
-
-Recent OT-03 matched rendering work is not the active product architecture.
-
-### X12 wooden frame
-- Refine image became physically plausible.
-- Preserve mate forced implausible or much more complex woodworking behavior.
-- Keep only as evidence of why forced matched-scene design is wrong for PrioLens.
-
-### X13 cord coil
-- Refine and Preserve renders are plausible standalone image candidates.
-- They are not a required pair and should not be evaluated as a matched unit.
-
-## Current research question
-
-The strongest source-grounded question from the old red-team remains:
-
-> Can materially different standalone exemplars of the same working direction produce a reproducible direction-level choice signal after semantic fit and low-level visual confounds are controlled?
-
-The eight working directions remain hypotheses, not validated traits or guaranteed final scores.
+Do not assume every Gallery image belongs to PrioLens. Use S01–S16 as the verified bridge, then classify other Gallery images by visual/content provenance before reusing them.
 
 ## Immediate next action
 
-Do **not** generate more new stimuli yet.
+Recovery is complete enough to stop archaeology.
 
-Recovery first.
+Next:
+1. treat S12 and S16 as historical MAS anchors, not final validated items;
+2. review the Gallery archive for additional **standalone** candidate exemplars that may diversify the eight working directions;
+3. separate genuinely different exemplars from mere render iterations/duplicates;
+4. build a candidate bank with approximately 4 materially different scenes per promising direction;
+5. then run a small human standalone semantic screen before any new preference session.
 
-Current blocker is byte-level access to `priolens_working_beta_v03.html`; one direct upload of that file is sufficient. Do not request a bulk re-upload of prior materials.
+Do not return to same-scene Preserve↔Refine pair construction. Do not regenerate historical S01–S16. Do not restart long Claude/Grok consensus loops.
 
-No external preference pilot should use the old 16 as if they were validated/final.
+## Historical drift evidence only
 
-## Human semantic validation boundary
-
-Before pairwise preference testing, standalone images must be screened independently.
-
-Research questions should capture:
-- blind open-ended meaning;
-- optional mapping to working direction definitions only after open coding;
-- intended-direction hit / neighbour confusion;
-- major confounds such as valence, aesthetics, faces, food, nature, complexity, completion and expertise.
-
-## AI reviewers
-
-AI is a concept/confound filter only, not a validator.
-
-Do not reopen long Claude/Grok voting loops before human semantic evidence.
+Recent X12/X13 Preserve↔Refine work remains useful only as evidence that matched-scene pressure can force artificial scenes. It is not the active PrioLens architecture.
 
 ## AI Review Harness
 
-Vercel harness is deployed and reaches AI Gateway. Paid execution remains deferred. Do not spend more time on billing now.
-
-## Source-of-truth order
-
-1. `docs/PRODUCT_ARCHITECTURE_INVARIANTS_v0.1.md`
-2. `docs/ORIGINAL_PRIOLENS_BASELINE_RECOVERY_v0.1.md`
-3. `docs/ORIGINAL_STIMULUS_INVENTORY_RECOVERY_v0.1.md`
-4. original `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md` source material recovered from File Library
-5. original `RED_TEAM_SYNTHESIS_v0.1.md` source material recovered from File Library
-6. `PROJECT_STATE.md`
-7. `docs/PRODUCT_CONSTITUTION_FUN_WITH_WISDOM_v0.1.md`
-8. `docs/STANDALONE_IMAGE_COMPARISON_ARCHITECTURE_v0.1.md`
-9. later standalone-image semantic-screen protocol when created
-10. recent OT/matched-edge work as historical methodological evidence only
-
-## Recovery instruction
-
-If context is lost, start with the invariant file and the two recovery files above.
-
-Do not restart same-scene Preserve↔Refine mate construction, do not treat two images on one screen as a 2Pair matched pair, do not silently regenerate assets that still exist in the old beta, do not infer `Sxx -> direction-01/-02` from numbering, and do not let a local stimulus/rendering failure redefine PrioLens architecture.
+Vercel harness exists and reaches AI Gateway. Paid execution remains deferred.
