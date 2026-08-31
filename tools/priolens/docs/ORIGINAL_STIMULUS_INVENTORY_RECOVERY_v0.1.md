@@ -110,23 +110,67 @@ Highest old confound risk.
 - S07 is reward/food dominated.
 - S15 is nature/growth/positive-valence dominated.
 
+## Historical precursor matrices and continuity evidence
+
+Two older PrioLens stimulus-matrix artifacts were recovered from File Library. They are useful provenance, but they are **not the final blind-set registry**.
+
+### Earlier Stage A matrix
+
+The Stage A matrix used some earlier semantic labels that later changed, including `PRO = Pažanga` and `EXP = Patirtis`. It therefore cannot be treated as the final eight-direction stimulus map.
+
+### Later 16/16 matrix
+
+A later matrix showed 16 candidates and marked them `16 / 16 PASS`, but it still used an older `INF = Information` framing. The subsequent blind red-team changed/rejected multiple scenes and explicitly stopped the freeze. Therefore this matrix is also a precursor, not final ground truth.
+
+### Strong scene-continuity triangulation
+
+The following links are supported by unusually specific agreement between the historical matrix scene and the later blind red-team semantic description:
+
+| Final blind ID | Final intended direction | Historical candidate | Historical scene | Recovery confidence |
+| --- | --- | --- | --- | --- |
+| S12 | MAS | MAS-A 4635 | hands using calipers to measure a metal part / precise measurement | HIGH |
+| S16 | MAS | MAS-B 4636 | hands shaping clay on a pottery wheel | HIGH |
+| S15 | OPP | OPP-A 4637 | open greenhouse / plants / growth opportunity | HIGH |
+| S07 | OPP | OPP-B 4638 | prepared food/resources laid out and available | HIGH |
+| S06 | CER | CER-B 4659 | checklist with completed/check-marked items | HIGH |
+
+One additional continuity hypothesis is plausible but not yet strong enough to promote:
+
+| Final blind ID | Final intended direction | Historical candidate | Historical scene | Recovery confidence |
+| --- | --- | --- | --- | --- |
+| S08 | PRO | PRO-A 2723 | umbrella in rain / protection from external impact | MEDIUM / NOT PROVEN |
+
+`HIGH` here means **scene-identity continuity across independent historical artifacts**. It does **not** prove which stable beta key (`direction-01` or `direction-02`) contained that image.
+
+Searches for the numeric historical codes themselves did not recover separate source files, so no byte-level comparison with the beta-embedded WebP assets has yet been completed.
+
+### Clear replacement evidence
+
+Several precursor scenes were clearly superseded before the final blind set:
+- old `INF = Information` book/bookshelf scenes do not match final S02/S04 Influence scenes, which are chain-reaction / mechanical-system causality;
+- at least one old CER scene was replaced because final S10 is an ambiguous container scene;
+- final CON includes a positive dyadic human scene, unlike the earlier mugs/glasses-only connection candidates;
+- final PRO includes a protective-case scene, not only umbrella/padlock candidates;
+- AUT and EXP exact final scene provenance remains unresolved.
+
 ## Critical unresolved mapping
 
 The source material currently proves:
 - which blind Sxx stimulus belonged to which intended direction;
 - which two stable asset IDs existed for each direction in the beta;
-- the semantic/red-team diagnosis for each Sxx.
+- the semantic/red-team diagnosis for each Sxx;
+- strong historical scene continuity for S06, S07, S12, S15 and S16.
 
 It does **not yet prove the exact one-to-one link**:
 
 `Sxx -> direction-01 or direction-02`
 
-Do not infer that link from numbering order.
+Do not infer that link from numbering order, historical A/B labels or semantic convenience.
 
 Recover it only from:
 - the original blind-review packet if found;
 - an original stimulus registry/export;
-- or deterministic comparison of extracted beta assets with the blind-review images/descriptions.
+- or deterministic comparison of extracted beta assets with known source/generated files.
 
 ## Historical architecture decision that still matters
 
