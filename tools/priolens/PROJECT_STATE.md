@@ -17,11 +17,13 @@ Draft PR: #9
 7. `docs/CANDIDATE_BANK_MATRIX_v0.3.md`
 8. `docs/CER_VISUAL_VIABILITY_CHECK_v0.1.md`
 9. `docs/P3_SINGLE_SESSION_DIAGNOSTIC_v0.1.md`
-10. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
-11. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
-12. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
-13. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
-14. this file
+10. `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
+11. `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
+12. `docs/STIMULUS_SELECTION_RULES_v0.2.md`
+13. `docs/GALLERY_CONFLICTLAB_V04_PROVENANCE_NOTE_v0.1.md`
+14. `docs/D1_D2_EVIDENCE_RECLASSIFICATION_v0.1.md`
+15. `docs/ORIGINAL_STIMULUS_EXACT_MAPPING_v0.1.md`
+16. this file
 
 ## Product boundary
 
@@ -132,10 +134,13 @@ Critical findings:
 3. Connection and Opportunity are exemplar-dependent: one exemplar produced 2/3 wins while the other produced 0/3.
 4. Influence is cross-format unstable: earlier pairwise owner runs gave 4/7 and 6/7 wins, while P3 gave 0/6 selections.
 5. Slot placement is not balanced in the current P3 plan. The participant selected top/middle/bottom slots 3/3/8 times; Protection appeared bottom 4/6, Influence middle 4/6, Autonomy top 4/6.
-6. The same 14 triple set can be assigned positions so that **every exemplar appears once top, once middle and once bottom** over its three presentations. Position confounding is therefore removable without changing the triple design.
+6. Exact slot balancing is guaranteed for the current design: the trial↔stimulus incidence graph is 3-regular bipartite and can be decomposed into three perfect matchings. Assigning those matchings to top/middle/bottom makes every exemplar appear once in each slot.
 7. Plackett–Luce output is research-only. Near-separation makes its normalized values look more precise than 14 trials justify.
 
 Canonical diagnostic: `docs/P3_SINGLE_SESSION_DIAGNOSTIC_v0.1.md`.
+Technical specs:
+- `docs/P3_SLOT_BALANCING_SPEC_v0.1.md`
+- `docs/P3_TIE_SAFE_RESULT_SPEC_v0.1.md`
 
 ## Gallery provenance
 
@@ -154,14 +159,21 @@ Current workflow:
 
 ## Immediate next action
 
-Before another P3 run:
-1. fix tie-safe result rendering: exact top ties must be shown as ties;
-2. change P3 planner so each exemplar appears exactly once in each slot across its three presentations;
+The P3 correction is now specified, not conceptually blocked.
+
+Implementation requirements:
+1. implement `P3_TIE_SAFE_RESULT_SPEC_v0.1.md`;
+2. implement `P3_SLOT_BALANCING_SPEC_v0.1.md`;
 3. rerun the same 7-direction P3 owner check with a new seed;
-4. then inspect whether the Influence collapse persists after position balancing;
+4. inspect whether the Influence collapse persists after position balancing;
 5. keep CER inactive until its construct decision is resolved.
 
-The current P3 implementation source is not present in the PrioLens branch or File Library under an identifiable P3 HTML/source file. The exported JSON is available, but code changes require the actual P3 source artifact.
+Current implementation blocker:
+- no identifiable P3 runtime/source exists in the PrioLens branch;
+- two newly uploaded files named `decision_drivers_8x8_prototype_v0.3.html` and `decision_drivers_8x8_prototype_v0.4.html` are not currently retrievable through the active file mount/search layer, so their relevance cannot be verified;
+- code changes require a readable P3 HTML/source artifact.
+
+Do not substitute the old pairwise `priolens_working_beta` runtime for the missing P3 source.
 
 ## Guardrails
 
