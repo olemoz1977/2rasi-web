@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RECOVERY / ORIGINAL STANDALONE STIMULUS BASELINE BEING RECONSTRUCTED
+Status: ACTIVE RECOVERY / ORIGINAL STANDALONE STIMULUS BASELINE PARTIALLY RECONSTRUCTED
 Updated: 2026-08-31
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -47,7 +47,8 @@ Source material recovered:
 - `PRIOLENS_PRODUCT_ARCHITECTURE_v0.1.md`;
 - `priolens_working_beta_v03.html` with all 16 active images embedded as base64;
 - `RED_TEAM_SYNTHESIS_v0.1.md`;
-- original core/calibration session JSON exports.
+- original core/calibration session JSON exports;
+- two historical stimulus-matrix artifacts showing earlier candidate provenance.
 
 Original model:
 - 8 working directions;
@@ -101,7 +102,23 @@ Recovered blind direction mapping:
 - S15 OPP — provisional only; greenhouse/nature/positive-valence confound
 - S16 MAS — strongest candidate; pottery/craftsmanship
 
-The exact one-to-one relation `Sxx -> direction-01/direction-02` has not yet been recovered and must not be guessed.
+## Recovery progress · historical scene provenance
+
+Historical stimulus matrices are **precursor evidence, not final ground truth**. Their labels changed before the final blind set, so they cannot be used as a direct registry.
+
+However, five final blind scenes are now strongly triangulated to earlier numbered candidate scenes:
+- S12 MAS ↔ historical `MAS-A 4635` — calipers / precise measurement;
+- S16 MAS ↔ historical `MAS-B 4636` — pottery wheel / skilled shaping;
+- S15 OPP ↔ historical `OPP-A 4637` — open greenhouse / growth;
+- S07 OPP ↔ historical `OPP-B 4638` — prepared food/resources;
+- S06 CER ↔ historical `CER-B 4659` — checklist/completion.
+
+Possible but not yet proven:
+- S08 PRO ↔ historical `PRO-A 2723` — umbrella/rain.
+
+These are **scene-continuity links only**. They do not establish `direction-01` vs `direction-02` stable beta IDs.
+
+Searches for standalone files by historical numeric codes did not recover source assets. The exact one-to-one relation `Sxx -> direction-01/direction-02` remains unresolved and must not be guessed.
 
 ## Recent drift retained only as historical evidence
 
@@ -129,11 +146,12 @@ The eight working directions remain hypotheses, not validated traits or guarante
 Do **not** generate more new stimuli yet.
 
 Recovery first:
-1. recover/extract the original 16 beta images without changing pixels;
-2. reconstruct the S01–S16 ↔ stable asset-ID mapping without guessing;
-3. produce one inventory/contact sheet with intended direction, red-team verdict and main confounds;
-4. classify the old assets as historical KEEP / REWORK / DROP candidates;
-5. only then design missing standalone exemplars to expand promising directions toward a 4+ candidate bank.
+1. extract the original 16 beta images from the embedded HTML without changing pixels;
+2. save/reconstruct a historical asset inventory under stable beta IDs;
+3. use deterministic visual/source comparison to recover as much of S01–S16 ↔ `direction-01/-02` as possible without guessing;
+4. produce one contact sheet with stable asset ID, recovered Sxx where proven, red-team verdict and major confounds;
+5. classify old assets as historical KEEP / REWORK / DROP candidates;
+6. only then design missing standalone exemplars to expand promising directions toward a 4+ candidate bank.
 
 No external preference pilot should use the old 16 as if they were validated/final.
 
@@ -174,4 +192,4 @@ Vercel harness is deployed and reaches AI Gateway. Paid execution remains deferr
 
 If context is lost, start with the invariant file and the two recovery files above.
 
-Do not restart same-scene Preserve↔Refine mate construction, do not treat two images on one screen as a 2Pair matched pair, do not silently regenerate assets that still exist in the old beta, and do not let a local stimulus/rendering failure redefine PrioLens architecture.
+Do not restart same-scene Preserve↔Refine mate construction, do not treat two images on one screen as a 2Pair matched pair, do not silently regenerate assets that still exist in the old beta, do not infer `Sxx -> direction-01/-02` from numbering, and do not let a local stimulus/rendering failure redefine PrioLens architecture.
