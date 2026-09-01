@@ -1,0 +1,220 @@
+# PrioLens — RESUME HERE
+
+Status: ACTIVE / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PARTICIPANT COMPLETION LIVE / BILINGUAL LT+EN LIVE / PRE-PILOT HARDENING
+Updated: 2026-09-01
+Repository: `olemoz1977/2rasi-web`
+Branch: `feature/priolens-architecture`
+
+## Rule
+
+**Chat history is not the project memory.**
+
+Recovery order:
+1. read this file;
+2. read `PROJECT_STATE.md` for architecture / runtime background;
+3. read `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md` as the latest active checkpoint;
+4. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
+5. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
+6. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
+7. read older docs / File Library only when needed.
+
+If an older runtime / UX / language section conflicts with the bilingual-runtime checkpoint, the bilingual checkpoint wins.
+
+## Current architecture
+
+Channel A = low-deliberation comparative visual priority.
+Channel B = current perceived sufficiency collected only after the visual task.
+
+No combined psychological score.
+No global Maslow stage.
+No `visual pull = unmet need` claim.
+
+Active Open14 v0.2 families:
+- BASIC: REST, RESOURCE, SAFETY, ORDER;
+- SOCIAL: CONNECTION, BELONGING, CARE;
+- AGENCY / ESTEEM: AUTONOMY, CONTROL, RECOGNITION;
+- GROWTH / COGNITIVE / POSSIBILITY: MASTERY, EXPLORATION, KNOWLEDGE / Learning-Understanding, OPPORTUNITY.
+
+`SUCCESS / ACHIEVEMENT` remains `DERIVED / THEORY-HOLD`.
+
+## Runtime state
+
+Current participant runtime includes:
+- 14 visual triads;
+- 12 post-visual sufficiency items;
+- hidden-number 5-step slider UI;
+- `Sunku pasakyti / Hard to say = null`;
+- local autosave / resume;
+- server-side incomplete checkpoints;
+- final API upsert using the same `sessionUuid`;
+- stale partial protection;
+- mobile readability / unanswered-state hardening;
+- participant-facing short synthesis (`Trumpai / In short`);
+- coverage-aware sufficiency result rendering;
+- clear repeat and 2rasi return actions;
+- raw JSON export and diagnostics hidden from normal participants;
+- one bilingual LT/EN runtime selected by `lang=lt|en`;
+- `language` stored in new session payloads;
+- language-separated local drafts.
+
+Production lifecycle smoke passed:
+`partial -> final -> stale partial cannot overwrite final`.
+
+Do not use owner or household smoke runs as construct evidence.
+
+### Mobile UX hardening live
+
+Runtime commit:
+`6ed9fd59cf8b715cf99d03427084a9cd38ff722d`
+
+Workflow run:
+`33540650020` — SUCCESS.
+
+Changes:
+- `Nė vienas aiškiai` moved from a narrow vertical strip to a horizontal 48 px button below the three images;
+- trial prompt / counter enlarged;
+- sufficiency statements enlarged to 18 px;
+- support labels / helper text increased in size and contrast;
+- unanswered sliders explicitly show `Neatsakyta`;
+- missing answers receive inline high-contrast validation instead of relying on browser `alert()`.
+
+Messenger JSON export hardening commit:
+`5e0f8881e93d53e3fac5c22c6f5587e30bc18053`.
+
+### Participant completion live
+
+Runtime commit:
+`98d4204ebc178288931af0ec3ef1a42693fc8fd2`
+
+Workflow run:
+`33542878842` — SUCCESS.
+
+Changes:
+- result starts with a short participant-facing synthesis;
+- `Nauja sesija` became `Atlikti dar kartą`;
+- added `Grįžti į 2rasi`;
+- sufficiency coverage is explicit: 0/2, 1/2 partial, 2/2 complete;
+- only complete 2/2 domains enter Channel A vs Channel B comparison / summary logic;
+- raw JSON export and diagnostics are debug-only.
+
+### Bilingual LT/EN runtime live
+
+Runtime commit:
+`b97c06e876cf2df0b0f3af3d043465d66b2ff845`
+
+Workflow run:
+`33544864679` — SUCCESS.
+
+Routing:
+- `?lang=lt&from=lt` -> LT participant UI and return to `2rasi.lt`;
+- `?lang=en&from=com` -> EN participant UI and return to `2rasi.com`;
+- legacy `from=com` without `lang` infers EN;
+- default remains LT.
+
+New session payloads include `language: "lt" | "en"`.
+Historical Open14 v0.2 rows without `language` remain accepted.
+LT and EN unfinished drafts use separate localStorage keys; legacy LT drafts remain resumable.
+
+Channel B uses the same 12 item IDs in both languages. EN wording is a semantic translation, not a new construct version. Keep language during analysis until LT/EN comparability is inspected.
+
+Participant retention wording is now explicitly provisional (`numatyta / intended up to 90 days`) because cleanup cron is not yet operational.
+
+Latest active checkpoint:
+`docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`
+
+## Stimulus bank state
+
+**Owner stimulus remediation is complete.**
+
+Final asset audit:
+- 14 families;
+- 28 active exemplars;
+- 28/28 active binaries reachable;
+- 28/28 square;
+- no OCR hits for known KlingAI / Gemini / OpenAI watermark text;
+- no remaining active REPLACE / SEARCH_REQUIRED / old HOLD blockers.
+
+Final package workflow:
+`33518074758` — SUCCESS.
+
+Final bank status:
+- `status: PREPILOT_HARDENING`;
+- `assetReviewStatus: OWNER_FINALIZED_FINAL_AUDIT_PASS`.
+
+Current technical bank commit:
+`2652f3db043f99436dc88afc1188aeb546f0313b`
+
+Latest final replacements:
+- CONTROL-A -> industrial joystick;
+- BELONGING-B -> three-person shared coffee ritual;
+- EXPLORATION-B -> magnifier / unknown forest object;
+- OPPORTUNITY-A -> one prepared empty market stall inside an active market.
+
+Final derivatives are under:
+`/priolens-research-assets/Open14-final-v01/`
+
+Owner-readable bank:
+`https://omesg360.eu/priolens-open14-v02/stimulus-bank.html`
+
+Do not reopen asset generation / replacement work unless a concrete smoke failure or formative data gives a reason.
+
+## 2rasi entry state
+
+The 10th PrioLens homepage card exists in `feature/priolens-architecture` and points to `/tools/priolens/`.
+
+Homepage hook:
+- EN: `When several things matter, what pulls you first?`
+- LT: `Kai svarbūs keli dalykai, kas patraukia pirmiausia?`
+
+The PrioLens landing page is aligned with Open14 and bilingual routing.
+Latest landing commit:
+`11517309d064332142d8ad9cd89ab8b263ae2149`.
+
+Prepared routing:
+- `2rasi.lt` -> `https://omesg360.eu/priolens-open14-v02/?from=lt&lang=lt`;
+- `2rasi.com` -> `https://omesg360.eu/priolens-open14-v02/?from=com&lang=en`.
+
+The feature-branch entry route is PREPARED, not considered publicly live until intentionally merged / deployed.
+
+## Live routes
+
+Open14 runtime:
+`https://omesg360.eu/priolens-open14-v02/`
+
+Historical P3 v0.4:
+`https://omesg360.eu/priolens/`
+
+Final API:
+`https://omesg360.eu/priolens-open14-api/api.php`
+
+Progress API:
+`https://omesg360.eu/priolens-open14-api/progress.php`
+
+Health:
+`https://omesg360.eu/priolens-open14-api/health.php`
+
+## Remaining pre-pilot hardening
+
+1. run one fresh full mobile participant smoke in LT and one focused EN smoke, including summary, coverage states, restart and 2rasi return;
+2. freeze CARE visual-giving vs received-support asymmetry explicitly as an analysis rule;
+3. configure and smoke the 90-day cleanup cron;
+4. clean or explicitly exclude owner / household / system test rows before pilot analysis;
+5. intentionally merge / deploy the prepared 10th-card PrioLens entry route only when recruitment opens.
+
+Target retention remains 90 days, but physical automatic deletion is not guaranteed until cron is configured and smoked.
+
+External recruitment remains CLOSED.
+
+## Research guardrail
+
+Current research question:
+> **Do cross-exemplar repeated visual pulls show interpretable, non-trivial relationships with independently reported current sufficiency, beyond stimulus-specific salience and chance?**
+
+Do not claim:
+- personality diagnosis;
+- subconscious / true-self access;
+- fast = true;
+- RT = psychological strength;
+- visual pull = unmet need.
+
+Keep **For Fun with Wisdom**.

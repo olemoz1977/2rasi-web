@@ -1,0 +1,60 @@
+{
+  "schema": "2rasi.priolens.protocol.v0.1",
+  "status": "DRAFT_FREEZE_REQUIRED_BEFORE_EXTERNAL_COLLECTION",
+  "direction_count": 8,
+  "exemplars_per_direction": 2,
+  "core_trials": 28,
+  "direction_edges_per_session": "ALL_UNORDERED_PAIRS_EXACTLY_ONCE",
+  "exemplar_sampling": {
+    "combinations_per_direction_edge": 4,
+    "participant_exhausts_all_combinations": false,
+    "rotation_across_sessions_required": true,
+    "reproducible_session_plan_required": true
+  },
+  "reliability_block": {
+    "enabled": false,
+    "candidate_trial_count_min": 8,
+    "candidate_trial_count_max": 12,
+    "requires_separate_protocol_flag": true
+  },
+  "presentation": {
+    "layout": "VERTICAL_TOP_BOTTOM_ALL_SUPPORTED_VIEWPORTS",
+    "both_stimuli_visible_simultaneously": true,
+    "frame_aspect_ratio": "1:1",
+    "equal_frame_dimensions": true,
+    "object_fit": "contain",
+    "crop_for_fit": false,
+    "scroll_during_measured_trial": false,
+    "position_identity": "RANDOMIZED_COUNTERBALANCED_SEPARATELY_FROM_DIRECTION",
+    "unsupported_viewport_policy": "FAIL_PREFLIGHT_NO_SILENT_REFLOW"
+  },
+  "render_timing": {
+    "clock": "performance.now",
+    "asset_fetch_inside_measured_interval": false,
+    "asset_decode_inside_measured_interval": false,
+    "required_sequence": [
+      "preload_assets",
+      "decode_assets",
+      "reserve_final_layout",
+      "render_both_stimuli",
+      "verify_visible_and_interactive",
+      "wait_for_stable_paint_layout_boundary",
+      "start_trial_clock",
+      "capture_choice_commit",
+      "timestamp_before_next_trial_render"
+    ],
+    "choice_commit_input_event": "TBD_FREEZE_BEFORE_EXTERNAL_COLLECTION",
+    "orientation_change_policy": "LOG_DIAGNOSTIC_AND_MARK_FOR_VALIDITY_REVIEW"
+  },
+  "result": {
+    "type": "DESCRIPTIVE_RELATIVE_PRIORITY_TRACE",
+    "strict_rank_1_to_8_required": false,
+    "ties_must_remain_visible": true,
+    "raw_direction_selections_allowed": true,
+    "pairwise_matrix_allowed": true,
+    "tier_grouping_allowed": true,
+    "latency_as_psychological_strength": false,
+    "choice_latency_combined_score": false,
+    "diagnostic_claims": false
+  }
+}

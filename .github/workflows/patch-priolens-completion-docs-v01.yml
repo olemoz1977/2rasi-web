@@ -1,0 +1,142 @@
+name: Patch PrioLens completion docs v01
+
+on:
+  push:
+    branches: [feature/priolens-architecture]
+    paths:
+      - .github/workflows/patch-priolens-completion-docs-v01.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/priolens-architecture
+      - name: Patch source-of-truth docs
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def one(text, old, new, label):
+              if old not in text:
+                  raise SystemExit(f'missing anchor: {label}')
+              return text.replace(old,new,1)
+
+          p=Path('tools/priolens/RESUME_HERE.md')
+          s=p.read_text()
+          s=one(s,
+            'Status: ACTIVE / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PRE-PILOT HARDENING',
+            'Status: ACTIVE / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PARTICIPANT COMPLETION LIVE / PRE-PILOT HARDENING',
+            'resume status')
+          s=one(s,
+            '3. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md` as the latest active checkpoint;\n4. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;\n5. read older docs / File Library only when needed.',
+            '3. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md` as the latest active checkpoint;\n4. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;\n5. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;\n6. read older docs / File Library only when needed.',
+            'resume read order')
+          s=one(s,
+            '- mobile readability / unanswered-state hardening.',
+            '- mobile readability / unanswered-state hardening;\n- participant-facing `Trumpai` synthesis;\n- coverage-aware sufficiency result rendering;\n- clear `Atlikti dar kartą` and `Grįžti į 2rasi` completion actions;\n- raw JSON export and diagnostics hidden from normal participants.',
+            'resume runtime list')
+          s=one(s,
+            'Latest runtime / UX checkpoint:\n`docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`',
+            'Latest active checkpoint:\n`docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`\n\nLatest mobile-accessibility checkpoint:\n`docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`',
+            'resume checkpoint pointer')
+          old='''## Remaining pre-pilot hardening
+
+1. rerun one short mobile smoke specifically checking the new `Nė vienas aiškiai`, text readability and unanswered-slider validation;
+2. fix sufficiency `null` / coverage display so 1/2 answered does not look fully observed;
+3. preserve CARE visual-giving vs received-support asymmetry explicitly in result wording / logic;
+4. configure and smoke 90-day cleanup cron;
+5. only then decide first small external formative pilot.'''
+          new='''## Remaining pre-pilot hardening
+
+1. run one fresh full mobile participant smoke including `Trumpai`, coverage states, restart and 2rasi return;
+2. preserve CARE visual-giving vs received-support asymmetry explicitly in final wording / logic documentation;
+3. configure and smoke 90-day cleanup cron;
+4. decide whether first external formative release is LT-only or requires EN runtime first;
+5. intentionally merge / deploy the prepared 10th-card PrioLens entry route only when recruitment opens.'''
+          s=one(s,old,new,'resume remaining')
+          p.write_text(s)
+
+          p=Path('tools/priolens/PROJECT_STATE.md')
+          s=p.read_text()
+          s=one(s,
+            'Status: ACTIVE RESEARCH / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PRE-PILOT HARDENING',
+            'Status: ACTIVE RESEARCH / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PARTICIPANT COMPLETION LIVE / PRE-PILOT HARDENING',
+            'state status')
+          s=one(s,
+            '1. `RESUME_HERE.md`\n2. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`\n3. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`\n4. this file',
+            '1. `RESUME_HERE.md`\n2. `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`\n3. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`\n4. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`\n5. this file',
+            'state read order')
+          s=one(s,
+            '- server-side incomplete checkpoints.',
+            '- server-side incomplete checkpoints;\n- participant-facing `Trumpai` synthesis;\n- coverage-aware sufficiency result rendering;\n- clear restart / 2rasi return actions;\n- raw JSON export and diagnostics hidden from normal participant mode.',
+            'state runtime list')
+          old='''Open issues:
+1. participant-facing results must expose coverage; 1/2 answered must not look like a complete domain score;
+2. visual CARE = proactive / giving care, while `CARE_SUPPORT_PRESENT` measures care/support present or received; do not treat them as construct-equivalent;
+3. Meaning / Contribution has no active visual counterpart.'''
+          new='''Coverage issue CLOSED in runtime commit `98d4204ebc178288931af0ec3ef1a42693fc8fd2`:
+- 0/2 numeric answers -> `Sunku pasakyti`;
+- 1/2 -> explicit partial-information state, no full domain bar;
+- only 2/2 complete domains enter Channel A vs Channel B comparison / summary logic.
+
+Open conceptual issues:
+1. visual CARE = proactive / giving care, while `CARE_SUPPORT_PRESENT` measures care/support present or received; do not treat them as construct-equivalent;
+2. Meaning / Contribution has no active visual counterpart.'''
+          s=one(s,old,new,'state coverage block')
+          marker='''## Remaining pre-pilot hardening
+'''
+          insert='''## Participant completion and 2rasi entry
+
+Participant completion runtime is live:
+- runtime commit `98d4204ebc178288931af0ec3ef1a42693fc8fd2`;
+- workflow run `33542878842` — SUCCESS;
+- result includes `Trumpai` synthesis;
+- `Nauja sesija` renamed to `Atlikti dar kartą`;
+- `Grįžti į 2rasi` routes by constrained `from=lt|com`;
+- raw JSON export and diagnostics are debug-only.
+
+The feature branch already contains homepage card 10 for PrioLens.
+Its landing page was updated from obsolete 8-direction / 28-pair copy to the current Open14 flow in commit `9af3081f88cb0172afc61413bdeda25e717ec138`.
+The card hook was also aligned from a two-choice phrase to a several-choice / triad-compatible phrase.
+
+The feature-branch entry route is PREPARED, not yet considered publicly live.
+Current Open14 participant runtime is LT-only; `.com` landing states that limitation explicitly.
+
+Latest checkpoint:
+`docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
+
+'''
+          if marker not in s:
+              raise SystemExit('missing state remaining marker')
+          s=s.replace(marker,insert+marker,1)
+          old='''## Remaining pre-pilot hardening
+
+1. rerun one short mobile smoke focused on the new no-clear control, readability and unanswered-slider validation;
+2. fix sufficiency `null` / coverage display;
+3. preserve CARE giving-vs-received-support asymmetry explicitly in result wording / logic;
+4. configure and smoke 90-day cleanup cron;
+5. then decide the first small external formative release.'''
+          new='''## Remaining pre-pilot hardening
+
+1. run one fresh full mobile participant smoke including the new summary, coverage states, restart and 2rasi return;
+2. preserve CARE giving-vs-received-support asymmetry explicitly in final wording / logic documentation;
+3. configure and smoke 90-day cleanup cron;
+4. decide whether first external formative release is LT-only or requires EN runtime first;
+5. intentionally merge / deploy the prepared PrioLens 10th-card route only when recruitment opens.'''
+          s=one(s,old,new,'state remaining')
+          p.write_text(s)
+          PY
+      - name: Commit docs
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/priolens/RESUME_HERE.md tools/priolens/PROJECT_STATE.md
+          git commit -m 'docs(priolens): make participant completion latest source of truth'
+          git push origin HEAD:feature/priolens-architecture

@@ -1,0 +1,79 @@
+{
+  "schema": "2rasi.priolens.p3.expanded-bank-v0.1",
+  "status": "research-candidate-bank",
+  "directions": [
+    {
+      "id": "autonomy",
+      "stimuli": [
+        {"id": "AUT-01", "source_ref": "S05.webp", "status": "KEEP"},
+        {"id": "AUT-02", "source_ref": "backpack strap adjustment", "status": "KEEP"},
+        {"id": "AUT-03", "source_ref": "physical audio volume adjustment", "status": "KEEP"},
+        {"id": "AUT-04", "source_ref": "car headrest adjustment", "status": "HOLD"}
+      ]
+    },
+    {
+      "id": "exploration",
+      "stimuli": [
+        {"id": "EXP-01", "source_ref": "S09.webp", "status": "KEEP"},
+        {"id": "EXP-02", "source_ref": "20260809_235839567.png", "status": "KEEP"},
+        {"id": "EXP-03", "source_ref": "20260731_051026107.png", "status": "KEEP"},
+        {"id": "EXP-04", "source_ref": "S01.webp", "status": "KEEP"}
+      ]
+    },
+    {
+      "id": "mastery",
+      "stimuli": [
+        {"id": "MAS-01", "source_ref": "S12.webp", "status": "KEEP"},
+        {"id": "MAS-02", "source_ref": "S16.webp", "status": "KEEP"},
+        {"id": "MAS-03", "source_ref": "1788135386167.png", "status": "KEEP"},
+        {"id": "MAS-04", "source_ref": "20260808_233759579.png", "status": "HOLD"}
+      ]
+    },
+    {
+      "id": "connection",
+      "stimuli": [
+        {"id": "CON-01", "source_ref": "S03.webp", "status": "KEEP"},
+        {"id": "CON-02", "source_ref": "20260829_235204397.png", "status": "KEEP"},
+        {"id": "CON-03", "source_ref": "S14.webp", "status": "HOLD"},
+        {"id": "CON-04", "source_ref": "20260731_043300801.png", "status": "HOLD"}
+      ]
+    },
+    {
+      "id": "influence",
+      "stimuli": [
+        {"id": "INF-01", "source_ref": "file_0000000064308246af3fd5a5884c9e8c.png", "status": "KEEP"},
+        {"id": "INF-02", "source_ref": "file_000000006b148210abe3c22f8ce50764.png", "status": "KEEP"},
+        {"id": "INF-03", "source_ref": "S02.webp", "status": "HOLD"},
+        {"id": "INF-04", "source_ref": "S04.webp", "status": "HOLD"}
+      ]
+    },
+    {
+      "id": "protection",
+      "stimuli": [
+        {"id": "PRO-01", "source_ref": "S08.webp", "status": "KEEP"},
+        {"id": "PRO-02", "source_ref": "20260731_042940286.png", "status": "KEEP"},
+        {"id": "PRO-03", "source_ref": "20260829_233727670.png", "status": "KEEP"},
+        {"id": "PRO-04", "source_ref": "file_000000000db881f4ae8d011930c0e30a.png", "status": "KEEP"}
+      ]
+    },
+    {
+      "id": "opportunity",
+      "stimuli": [
+        {"id": "OPP-01", "source_ref": "file_0000000024fc8210a5fb3823b3d86a9f.png", "status": "KEEP"},
+        {"id": "OPP-02", "source_ref": "file_00000000673881f4bc390c5618110a68.png", "status": "KEEP"},
+        {"id": "OPP-03", "source_ref": "file_00000000c7f0821081be7676884bb00f.png", "status": "KEEP"},
+        {"id": "OPP-04", "source_ref": "1785954922572.png", "status": "HOLD"}
+      ]
+    }
+  ],
+  "inactive": [
+    {"id": "certainty", "reason": "construct hold"}
+  ],
+  "trial_design": {
+    "triads": 28,
+    "stimulus_exposures_each": 3,
+    "direction_exposures_each": 12,
+    "direction_pair_cooccurrences_each": 4,
+    "slot_exposure_each_stimulus": [1, 1, 1]
+  }
+}

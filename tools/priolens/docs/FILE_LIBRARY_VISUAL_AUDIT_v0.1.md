@@ -1,0 +1,140 @@
+# PrioLens File Library visual audit v0.1
+
+Status: WORKING AUDIT / NOT A STIMULUS FREEZE
+Date: 2026-08-29
+
+## Purpose
+
+Record direct visual-review evidence recovered from the user's File Library. This supplements, but does not replace, the repository candidate inventory.
+
+Important:
+
+- File Library numeric filenames are retrieval handles, not semantic labels.
+- Legacy ConflictLab/2Pair mappings are not authoritative for PrioLens.
+- A visually plausible candidate is not a validated construct.
+- Final selection still requires two conceptually independent exemplars per working direction and cross-set confound review.
+
+## Access correction
+
+The previous project-state blocker said direct binary/pixel inspection was unavailable through the GitHub connector. That is true for the GitHub connector itself, but incomplete for the overall workflow: the user's File Library contains the historical image set and exposes the images for direct multimodal review.
+
+Therefore direct visual review is available through File Library and should be used before any new generation decision.
+
+Exact `2465.png` was not surfaced by filename search, but the same historical numeric image series is recoverable by content and adjacent numeric filenames. Literal searches around `2455-2504` also failed to surface those exact handles, so absence from filename search must not be interpreted as absence from the library.
+
+## Directly reviewed / surfaced numeric-series candidates
+
+| File Library title | Visible content | Provisional PrioLens relevance | Main confound / concern | Disposition |
+|---|---|---|---|---|
+| `2766.png` | Open laptop on wooden table | MAS candidate only in a very weak sense | Generic work/device imagery does not establish mastery | REJECT for MAS unless paired with stronger independent evidence |
+| `2767.png` | Blank envelope on table | CER/OPP/CON ambiguous | Meaning depends on imagined message/social story | RESERVE / AMBIGUOUS |
+| `2781.png` | Key inserted in door lock | PRO stronger than CER | Very literal security/control cue; object familiarity may dominate | PRO CANDIDATE, high literalness flag |
+| `2782.png` | Dim corridor, door slightly ajar with light | OPP/AUT/EXP | Transition/opening metaphor is shared by three directions | RESERVE / AMBIGUOUS |
+| `2783.png` | Revolving glass entrance door | OPP/AUT | Functional architectural object; weak personal priority meaning | RESERVE |
+| `2784.png` | Open elevator | OPP/AUT/EXP | Transition cue is generic and highly literal | RESERVE / AMBIGUOUS |
+| `2785.png` | Parked silver car | AUT possible | Mobility, ownership, status and product preference confounds | REJECT unless no better AUT candidate exists |
+| `2787.png` | Cracked road lane marking | PRO possible | Damage/negative-valence cue may dominate choice | REJECT for base set |
+| `2790.png` | Two mugs on table, one steaming | CON plausible | Connection is implied through absent second person; warmth/aesthetic cue | CON CANDIDATE |
+| `2791.png` | Fabric, blank tag, scissors | MAS/AUT/EXP ambiguous | Product/craft narrative not uniquely tied to one direction | RESERVE / AMBIGUOUS |
+| `2792.png` | Chess pieces and altered central square/block | MAS or INF possible | Chess strongly imports strategy/competition/intelligence schemas; no visible influencing actor/outcome | RESERVE, high semantic-confound flag |
+| `2793.png` | Open blank book with folded pages | MAS/EXP | Visual novelty/complexity may drive preference; no visible competence process | RESERVE / AMBIGUOUS |
+| `2794.png` | Capsule and opened foil on bedside table | PRO possible | Medical/safety/health salience and negative affect dominate | REJECT for base set |
+| `2795.png` | Overcoat on coat rack | no clear direction | Lifestyle/product aesthetics dominate | REJECT |
+| `2796.png` | Wrapped gifts | CON/OPP possible | Positive valence, gifting culture, celebration cue | RESERVE, high valence flag |
+| `2798.png` | Forest trail splitting into two paths | AUT/EXP/OPP all plausible | Choice metaphor is too generic; nearest-neighbour ambiguity is structural | REJECT as single-direction exemplar |
+| `2681(1).png` | Two hooded faceless figures in dark studio | CON/INF possible only weakly | Threat/ominous mood and anonymity dominate | REJECT |
+| `3119(1).png` | Two similar men side by side on road | CON possible | Gender/age/social similarity and portrait preference confounds | REJECT for base set |
+| `3120(1).png` | Two similar men from behind on road | CON/AUT ambiguous | Same demographic and social-scene confounds | REJECT for base set |
+| `3361.png` / `3362.png` | Minimal monochrome geometric architectural forms | potentially useful as low-social abstract controls | Semantics not yet tied defensibly to a direction; geometry may become its own preference axis | KEEP FOR ABSTRACT REVIEW |
+
+## Second-pass targeted retrieval
+
+Searches were run for visual content that would satisfy the operational definitions rather than legacy labels, including:
+
+- a visible actor changing a shared/external outcome for INF;
+- hands-on precision, refinement or competence for MAS;
+- an opening with visible future value/potential for OPP.
+
+The targeted retrieval mainly returned the same weak candidates (`2792` chess, `2791` fabric/scissors, `2782-2784` transition imagery) rather than new clean exemplars.
+
+This is evidence that the currently recoverable numeric-series subset is becoming exhausted for the three weakest directions. It is not proof that the entire File Library has been exhaustively searched, because numeric filename indexing is incomplete.
+
+## Reserve-family exhaustion checkpoint
+
+The 23 unassigned repository reserves were also checked at the **source-family / historical-cue level**, without pretending that every exact reserve binary received a direct pixel pass.
+
+### Wave 1 reserve family
+
+The eight Wave 1 reserve assets are members of legacy reveal/evidence/reference and spatial-structure/capacity manipulations. Their old source design is about perceptual information or structure, and previous review already flags strong low-level confound risk. There is no natural INF or MAS realization in this family; using it for OPP would require semantic re-interpretation rather than visible future value.
+
+### Pair P0 N0-004 through N0-008 reserve family
+
+Recovered participant cue history characterizes these scenes around:
+
+- moving forward / curiosity about what comes next (N0-004);
+- progress, remaining time or approaching an end (N0-005);
+- surface texture / touching / unevenness (N0-006);
+- separation, crowding or rearrangement of pieces (N0-007);
+- deliberate vs more interesting side/composition (N0-008).
+
+These historical cues are not validation evidence for any PrioLens direction, but they are useful provenance evidence that this reserve family does not hide an obvious INF or MAS scene. OPP would still be indirect and nearest-neighbour ambiguous.
+
+### Historical media reserve family
+
+The remaining reserve labels (`ax_approach`, `ax_release`, `ax_uncertainty`, window silhouette, empty room, person alone) are historically centered on approach/release/uncertainty or social isolation. They do not supply a natural visible INF or MAS scene. `ax_approach` could superficially overlap OPP but risks collapsing into EXP/AUT unless future value is visibly present.
+
+### Decision
+
+For **INF and MAS**, the recoverable historical library is now considered semantically exhausted enough to authorize controlled new candidate generation.
+
+For **OPP**, historical material remains only borderline: openings/transitions/approach are available, but future value is not sufficiently distinct from AUT/EXP. Controlled candidate generation is therefore also authorized for OPP.
+
+This is **not** the same as declaring all 23 reserve files pixel-audited. If an exact reserve later surfaces visually, it can still be reviewed and admitted if it beats the generated candidates. What changes is that exact reserve retrieval is no longer a blocker to generating candidates for INF/MAS/OPP.
+
+Generation rules are frozen separately in `STIMULUS_GENERATION_BRIEFS_v0.1.md`.
+
+## Immediate implications by weak direction
+
+### INF
+
+No reviewed File Library item yet provides a defensible Influence exemplar. Chess may invoke strategy/competition but not influence itself. Social-figure images add interpersonal and threat confounds rather than clean influence.
+
+A valid INF exemplar needs visible content where changing a shared/external direction, decision or outcome is the central cue without relying on status clothing, dominance, facial authority or a hidden story.
+
+**Current state: controlled new candidate generation authorized.**
+
+### MAS
+
+Laptop remains weak. Chess and crafted/folded-book imagery are stronger than laptop as skill/competence cues, but each adds strong domain-specific schemas. Fabric/scissors adds a craft cue but still does not visibly show refinement, practiced competence or quality improvement.
+
+A valid MAS exemplar needs the act/result of skill, precision, refinement or competence to be visible rather than inferred from a generic work object.
+
+**Current state: controlled new candidate generation authorized.**
+
+### OPP
+
+Door, elevator and forked-path imagery all express opening/transition, but they also map naturally to Autonomy and Exploration. The blank envelope and gifts add possible future value but depend on hidden narrative and positive-valence schemas.
+
+A valid OPP exemplar needs visible potential gain/opening without collapsing into freedom-of-choice or curiosity/discovery.
+
+**Current state: controlled new candidate generation authorized, with highest semantic-risk flag.**
+
+### CON
+
+Two mugs is the cleanest currently surfaced numeric-series candidate. It implies a relationship without faces or text, but still needs an independent second exemplar with a different scene realization.
+
+### PRO
+
+Key-in-lock is a plausible candidate. Pill and damaged-road imagery are too affectively loaded. `p0-002-a` and other repository candidates still need direct comparison.
+
+## Audit policy going forward
+
+1. Continue File Library retrieval opportunistically by visual content, not numeric filename alone.
+2. Do not delay INF/MAS/OPP candidate generation merely because some exact historical reserve handles remain difficult to surface.
+3. For every historical or generated candidate, record nearest-neighbour alternatives before assigning a direction.
+4. Separate semantic ambiguity from low-level visual confounds.
+5. Use the controlled generation contract for INF/MAS/OPP; do not weaken the semantic definitions to fit legacy assets.
+6. Keep exact historical reserve candidates eligible if later direct review shows they outperform generated candidates.
+7. Do not copy File Library or generated items into PrioLens runtime assets until final selection and provenance/hash capture are possible.
+
+No 16-stimulus freeze is authorized by this checkpoint.

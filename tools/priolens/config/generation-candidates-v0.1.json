@@ -1,0 +1,123 @@
+{
+  "schema": "2rasi.priolens.generation-candidates.v0.1",
+  "status": "STAGE_A_BRIEFS_FROZEN_NOT_RENDERED",
+  "date": "2026-08-29",
+  "contract": "../docs/STIMULUS_GENERATION_BRIEFS_v0.1.md",
+  "rules": {
+    "candidate_count": 9,
+    "candidates_per_direction": 3,
+    "target_passing_exemplars_per_direction": 2,
+    "style_variants_do_not_count_as_independent": true,
+    "blind_review_uses_neutral_ids": true,
+    "direct_visual_review_required": true,
+    "semantic_pass_required": true,
+    "visual_confound_pass_required": true,
+    "no_runtime_promotion_before_freeze": true
+  },
+  "shared_visual_grammar": {
+    "aspect_ratio": "1:1",
+    "style": "photorealistic neutral documentary still",
+    "text": "none",
+    "logos_or_brands": "none",
+    "ui": "none",
+    "faces": "avoid where possible",
+    "lighting": "moderate neutral",
+    "valence": "avoid extreme positive or negative",
+    "status_or_luxury_cues": "avoid",
+    "dramatic_danger_or_medical_cues": "avoid",
+    "mobile_legibility": "central action or consequence must remain legible",
+    "direction_color_coding": "none"
+  },
+  "candidates": [
+    {
+      "id": "G01",
+      "internal_target": "INF",
+      "concept_family": "shared_flow_diverter",
+      "scene": "A neutral tabletop physical system has several identical tokens or channels moving toward destinations. One human hand moves a simple central diverter and several downstream tokens or channels are visibly redirected together.",
+      "must_show": "One action changes a multi-element external outcome rather than the actor's own route.",
+      "avoid": ["fine technical tools", "control-room aesthetics", "authority clothing", "warning colors", "text labels"],
+      "nearest_neighbours": ["MAS", "AUT"]
+    },
+    {
+      "id": "G02",
+      "internal_target": "INF",
+      "concept_family": "shared_plan_reconfiguration",
+      "scene": "A simple physical tabletop model contains several neutral paths or markers converging on a shared destination. A hand moves one central route or priority piece and the visible geometry changes the route for several markers at once.",
+      "must_show": "External or shared direction changes because of one consequential intervention.",
+      "avoid": ["meeting-room hierarchy", "pointing at people", "faces", "leadership poses", "chess pieces", "written plans"],
+      "nearest_neighbours": ["CON", "MAS", "AUT"]
+    },
+    {
+      "id": "G03",
+      "internal_target": "INF",
+      "concept_family": "consequential_contribution",
+      "scene": "A partially assembled neutral system has several branches currently inactive. One hand places a single plain connector or component and several branches visibly become connected or operational as one system.",
+      "must_show": "The contribution changes what the larger system can do beyond the person's private task.",
+      "avoid": ["electronics branding", "glowing sci-fi effects", "complicated engineering detail", "achievement symbolism"],
+      "nearest_neighbours": ["MAS"]
+    },
+    {
+      "id": "G04",
+      "internal_target": "MAS",
+      "concept_family": "precision_fit",
+      "scene": "Two hands measure a plain mechanical or wooden component with a simple caliper and align it precisely with a matching part. The fit or tolerance is visually clear.",
+      "must_show": "Deliberate measurement and refinement toward accurate fit.",
+      "avoid": ["factory branding", "performance dashboards", "complex machinery", "luxury craft object"],
+      "nearest_neighbours": ["INF", "CER"]
+    },
+    {
+      "id": "G05",
+      "internal_target": "MAS",
+      "concept_family": "craft_refinement",
+      "scene": "Hands carefully refine a plain wooden joint or simple material edge using a hand tool. One area visibly shows rough-to-finished improvement within the same object.",
+      "must_show": "Skilled refinement and quality improvement.",
+      "avoid": ["decorative art", "expensive artisan lifestyle", "dramatic action", "finished-product desirability"],
+      "nearest_neighbours": ["OPP", "EXP"]
+    },
+    {
+      "id": "G06",
+      "internal_target": "MAS",
+      "concept_family": "practice_calibration",
+      "scene": "A hand adjusts a simple neutral physical mechanism against a visible non-textual alignment reference, with an earlier imperfect alignment and the current precise alignment physically legible in the scene.",
+      "must_show": "Controlled improvement through adjustment or practice rather than generic tool use.",
+      "avoid": ["numerical scales", "text", "laboratory prestige", "medical equipment", "competition or trophy cues"],
+      "nearest_neighbours": ["CER"]
+    },
+    {
+      "id": "G07",
+      "internal_target": "OPP",
+      "concept_family": "accessible_useful_resource",
+      "scene": "A neutral storage or work area has one newly accessible open section containing a clearly usable ordinary resource, tool or material that was previously inaccessible. A hand is positioned to take or use it and only one meaningful route is presented.",
+      "must_show": "The opening provides usable future value rather than freedom or mystery.",
+      "avoid": ["money", "prizes", "gifts", "branded products", "multiple alternatives", "dramatic light from an open door"],
+      "nearest_neighbours": ["AUT", "EXP"]
+    },
+    {
+      "id": "G08",
+      "internal_target": "OPP",
+      "concept_family": "available_capacity",
+      "scene": "A simple neutral system or workspace shows a previously full or unavailable capacity with one clearly open usable slot now available, alongside a plain item ready to occupy or use that slot.",
+      "must_show": "An actionable capacity or opening that can improve the next state.",
+      "avoid": ["calendar or UI", "parking or real-estate associations", "scarcity marketing", "queues", "status cues"],
+      "nearest_neighbours": ["CER", "AUT"]
+    },
+    {
+      "id": "G09",
+      "internal_target": "OPP",
+      "concept_family": "enabled_next_stage_access",
+      "scene": "A neutral physical process has one now-open gateway revealing a clearly visible next-stage capability or resource beyond it. The route is already enabled, there are no alternative paths, and the benefit beyond the gateway is concrete and ordinary rather than mysterious.",
+      "must_show": "Access to a useful next stage rather than exploration of an unknown space.",
+      "avoid": ["corridor-only or door-only composition", "adventure scenery", "treasure", "sunrise symbolism", "celebratory lighting"],
+      "nearest_neighbours": ["EXP", "AUT"]
+    }
+  ],
+  "review_fields_required_after_render": [
+    "direct_visual_description",
+    "mapping_rationale",
+    "strongest_alternative_direction",
+    "nearest_neighbour_result",
+    "semantic_status",
+    "visual_confound_status",
+    "independence_status"
+  ]
+}

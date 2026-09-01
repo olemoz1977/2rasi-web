@@ -1,0 +1,28 @@
+{
+  "schema": "2rasi.priolens.product.v0.1",
+  "status": "ARCHITECTURE_DRAFT",
+  "working_name": "PrioLens",
+  "family": "2rasi",
+  "homepage_card_index": 10,
+  "homepage_group": "HELP_TO_BUILD",
+  "routes": {
+    "en": "https://2rasi.com/tools/priolens/",
+    "lt": "https://2rasi.lt/tools/priolens/"
+  },
+  "runtime_policy": {
+    "same_product_domain": true,
+    "external_runtime_dependency": false,
+    "omesg360_dependency": false,
+    "reserved_api_namespace": "/api/priolens/v1/"
+  },
+  "product_boundary": {
+    "conflictlab_continuation": false,
+    "two_pair_replacement": false,
+    "two_pair_dependency": false,
+    "historical_data_pooling_with_two_pair": false
+  },
+  "promise": {
+    "en": "Bring competing priorities into clearer focus.",
+    "lt": "Padėti aiškiau pamatyti, kam teiki pirmenybę, kai svarbūs dalykai konkuruoja."
+  }
+}
