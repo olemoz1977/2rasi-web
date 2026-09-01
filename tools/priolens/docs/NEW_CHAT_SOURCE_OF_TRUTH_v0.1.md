@@ -1,6 +1,6 @@
 # PrioLens new-chat source of truth v0.1
 
-Status: ACTIVE HANDOFF / CONTEXT-LOSS GUARD
+Status: ACTIVE HANDOFF / LIVE OWNER-SMOKE READY
 Updated: 2026-09-01
 
 ## Why this file exists
@@ -13,7 +13,9 @@ Past failure modes that must not recur:
 3. forgetting that `olemoz1977/omesg360` already provides the Hostinger/research-runtime repo;
 4. restoring the old seven-direction or Open14-v0.1 model after later architecture decisions;
 5. treating one repeated exemplar as family-level evidence;
-6. generating new stimuli without an explicit user request.
+6. generating new stimuli without an explicit user request;
+7. confusing historical live `/priolens/` v0.4 with the separate Open14 runtime;
+8. claiming 90-day deletion is operational before cleanup cron exists.
 
 ## Startup order for every new PrioLens chat
 
@@ -70,54 +72,32 @@ Growth / cognitive / possibility:
 
 This is a discovery shortlist, not a validated taxonomy.
 
-`SUCCESS / ACHIEVEMENT` is no longer an active atomic visual family.
-Status: `DERIVED / THEORY-HOLD`.
+`SUCCESS / ACHIEVEMENT` remains `DERIVED / THEORY-HOLD`.
 
-## Four accepted missing-stimulus mechanisms
+## Asset state
 
-All four text mechanisms have passed the human gate.
+Active bank is fully wired:
+- 14 families;
+- 2 exemplars per family;
+- 28 runtime paths;
+- 0 missing runtime assets.
 
-### CARE-A
-`pasirūpinti kitu savo komforto sąskaita`
-
-One person shifts the only umbrella toward another and accepts modest exposure to rain.
-
-### CARE-B
-`pastebėti ir padėti neprašytam`
-
-One person starts helping gather another person's dropped everyday items before any visible request.
-
-### RECOGNITION-A
-`būti pastebėtam ir įvertintam kitų`
-
-Small peer group gives restrained applause, natural smiles and one or more thumbs-up gestures toward one ordinary focal person.
-
-### RECOGNITION-B — boundary probe
-`mano nuomonė / kompetencija čia vertinama`
-
-Visually equal peers actively seek one person's judgement on neutral shared material. No leader, teacher or specialist-status cues.
-
-Main risk: RECOGNITION-B may collapse into MASTERY, CONTROL/leadership, CONNECTION or BELONGING.
-
-Canonical production constraints:
-`OPEN14_MISSING_STIMULUS_PRODUCTION_SPECS_v0.1.md`.
-
-**Do not generate any image unless the user explicitly asks.**
-
-## Active asset state
-
-Existing/recovered assets cover 12 of 14 families.
-
-Still missing as real image assets:
+New live pilot exemplars:
 - CARE-A;
 - CARE-B;
 - RECOGNITION-A;
 - RECOGNITION-B.
 
-AUT-B backpack exists in `olemoz1977/omesg360/priolens/recovered-assets/priolens_aut_backpack_v01.webp`, but its intended Hostinger URL must not be treated as live until a real smoke check verifies it.
+AUTONOMY-B backpack is also live and HTTP-smoked.
 
-Canonical matrix:
-`OPEN14_ASSET_MATRIX_v0.2.md`.
+RECOGNITION-B remains an explicit boundary probe.
+KNOWLEDGE-B remains a Learning / Understanding boundary probe.
+
+Canonical active matrix:
+`OPEN14_ASSET_MATRIX_v0.3.md`.
+
+Canonical live checkpoint:
+`OPEN14_LIVE_RUNTIME_CHECKPOINT_v0.1.md`.
 
 ## Planner and exemplar balance
 
@@ -130,8 +110,7 @@ Per session:
 - every family exactly 1/1/1 across screen slots;
 - 3 distinct macro domains per triad;
 - no repeated family pair;
-- 42 unique pair co-occurrences;
-- 6 unique opponents per family.
+- 42 unique pair co-occurrences.
 
 Exemplar assigner:
 `tools/priolens/research/p3_open14_exemplar_assigner_v01.mjs`.
@@ -148,17 +127,59 @@ Primary family-level repetition requires:
 
 2/3 choices concentrated on the same repeated exemplar are exemplar-specific, not primary family-level evidence.
 
-## Runtime
+## Live runtime
 
-Separate Open14 source scaffold exists in `olemoz1977/omesg360/priolens/open14-v02/`:
-- `index.html`;
-- `bank.json`;
-- `p3_open14_planner_v02.mjs`;
-- `p3_open14_exemplar_assigner_v01.mjs`.
+Open14 owner-smoke route:
+`https://omesg360.eu/priolens-open14-v02/`
 
-It is intentionally fail-closed while runtime paths are missing.
+Historical P3 v0.4 remains separate and untouched:
+`https://omesg360.eu/priolens/`
 
-Historical live `omesg360.eu/priolens/` v0.4 has not been replaced.
+Open14 source package:
+`olemoz1977/omesg360/priolens/open14-v02/`.
+
+Runtime is no longer fail-closed for missing assets.
+Current bank status:
+`READY_FOR_OWNER_SMOKE`.
+
+Runtime includes automatic API submission after completion, but API failure does not block result rendering or JSON export.
+
+## Backend
+
+Dedicated Hostinger MySQL is live:
+- database `u986950573_priolens`;
+- table `priolens_open14_sessions`.
+
+API:
+`https://omesg360.eu/priolens-open14-api/api.php`
+
+Health:
+`https://omesg360.eu/priolens-open14-api/health.php`
+
+Verified:
+- DB health;
+- production API validation;
+- production INSERT path;
+- idempotent fixed system-smoke row;
+- historical runtime boundary.
+
+Synthetic infrastructure row:
+- seed `SYSTEM_SMOKE_DO_NOT_ANALYZE`;
+- exclude from all pilot analysis.
+
+## Retention
+
+Approved target: 90 days.
+
+Operational:
+- `created_at` stored;
+- `expires_at = created_at + 90 DAY` generated/indexed;
+- CLI-only `cleanup.php` deployed.
+
+Not yet operational:
+- Hostinger cron is not configured.
+
+Therefore automatic physical deletion after 90 days is not yet guaranteed and external recruitment stays closed.
 
 ## Pilot preparation
 
@@ -167,12 +188,31 @@ Prepared:
 - `OPEN14_FAMILY_DECISION_RULES_v0.1.md`;
 - `OPEN14_DATA_INGESTION_CONTRACT_v0.1.md`.
 
-First external pilot is formative, target roughly 24–36 valid completions (~30 practical target), not validation.
+First external pilot remains formative:
+- target 24–36 valid completions;
+- ~30 practical target;
+- not validation.
 
-Do not start external recruitment until:
-- missing accepted images exist and pass pragmatic first-read review;
-- Open14 runtime is complete and technically smoked;
-- anonymous data ingestion is selected, deployed and privacy/retention behavior is explicit.
+## Immediate next action
+
+**Run exactly one owner smoke session at:**
+`https://omesg360.eu/priolens-open14-v02/`
+
+Use it to inspect only:
+- mobile layout;
+- image loading/cropping;
+- flow speed;
+- sufficiency burden;
+- result readability;
+- automatic-save state;
+- obvious stimulus anomalies.
+
+Do not repeatedly rerun the owner to tune the owner's personal pattern.
+
+After that:
+1. fix clear technical/UX failures only;
+2. configure and smoke the 90-day cleanup cron;
+3. then decide external formative pilot release.
 
 ## Active guardrails
 
@@ -186,11 +226,3 @@ Do not start external recruitment until:
 - no RT-as-psychological-strength claim;
 - preserve exact exemplar identity;
 - expose uncertainty rather than manufacture completeness.
-
-## Immediate next action
-
-Read `PROJECT_STATE.md`.
-
-Two external-action gates remain:
-1. image creation, only after explicit user request;
-2. pilot backend deployment, only after explicit approval if it creates a new service/project or changes data-retention behavior.
