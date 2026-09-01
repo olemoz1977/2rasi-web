@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / OPEN14 v0.2 / DESIGN PREP COMPLETE / EXTERNAL-ACTION GATES
+Status: ACTIVE RESEARCH / OPEN14 v0.2 / LIVE OWNER-SMOKE READY
 Updated: 2026-09-01
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -12,8 +12,6 @@ Branch: `feature/priolens-architecture`
 3. this file
 
 Then open only the canonical doc needed for the task.
-
-Older Open14 v0.1 docs and `PERCEIVED_SUFFICIENCY_LAYER_v0.1.md` are historical checkpoints.
 
 ## Product boundary
 
@@ -67,9 +65,9 @@ Canonical docs:
 4. ORDER
 
 ### Social
-5. CONNECTION — direct contact / reciprocity
-6. BELONGING — being with / part of others
-7. CARE — acting for another's welfare
+5. CONNECTION
+6. BELONGING
+7. CARE
 
 ### Agency / esteem
 8. AUTONOMY
@@ -82,57 +80,36 @@ Canonical docs:
 13. KNOWLEDGE — working display concept `Learning / Understanding`
 14. OPPORTUNITY
 
-This is a discovery shortlist, not a fundamental-needs taxonomy.
+This is a discovery shortlist, not a validated taxonomy.
 
-`SUCCESS / ACHIEVEMENT` is not an active atomic visual family.
-Status: `DERIVED / THEORY-HOLD`.
+`SUCCESS / ACHIEVEMENT` remains `DERIVED / THEORY-HOLD`.
 
 Canonical family decision:
 `docs/OPEN14_SOCIAL_SPLIT_AND_SUCCESS_DECISION_v0.1.md`.
 
-## Four accepted missing-stimulus mechanisms
+## Asset state
 
-All four text mechanisms passed the human gate.
-
-### CARE-A
-`pasirūpinti kitu savo komforto sąskaita`
-
-One person shifts the only umbrella toward another and accepts modest exposure to rain.
-
-### CARE-B
-`pastebėti ir padėti neprašytam`
-
-One person starts helping gather another person's dropped everyday items before any visible request.
-
-### RECOGNITION-A
-`būti pastebėtam ir įvertintam kitų`
-
-Small peer group gives restrained applause, natural smiles and one or more thumbs-up gestures toward one ordinary focal person.
-
-### RECOGNITION-B — boundary probe
-`mano nuomonė / kompetencija čia vertinama`
-
-Visually equal peers actively seek one person's judgement on neutral shared material. No leader, teacher or specialist-status staging.
-
-Main risk:
-- may collapse into MASTERY, CONTROL/leadership, CONNECTION or BELONGING.
-
-Canonical production constraints:
-`docs/OPEN14_MISSING_STIMULUS_PRODUCTION_SPECS_v0.1.md`.
-
-**Do not generate any image unless the user explicitly asks.**
-
-## Active asset state
-
-Canonical matrix:
-`docs/OPEN14_ASSET_MATRIX_v0.2.md`.
+Canonical active matrix:
+`docs/OPEN14_ASSET_MATRIX_v0.3.md`.
 
 Current:
-- 24 existing/recovered assets cover 12 of 14 families;
-- missing real image assets: CARE-A, CARE-B, RECOGNITION-A, RECOGNITION-B;
-- AUT-B backpack asset is preserved in `olemoz1977/omesg360/priolens/recovered-assets/priolens_aut_backpack_v01.webp`;
-- its intended Hostinger runtime path remains unverified from the current automation path;
-- do not claim that recovered Hostinger URL is live until actual smoke evidence exists.
+- 14 families;
+- 2 exemplars per family;
+- 28 required runtime assets;
+- 0 missing runtime paths;
+- all active runtime paths HTTP-smoked where newly introduced;
+- CARE-A, CARE-B, RECOGNITION-A and RECOGNITION-B are live pilot assets;
+- AUT-B backpack asset is live at `/priolens-research-assets/Recovered/priolens_aut_backpack_v01.webp`;
+- RECOGNITION-B remains a boundary probe;
+- KNOWLEDGE-B remains a Learning / Understanding boundary probe.
+
+Canonical host provenance for the four new CARE/RECOGNITION binaries:
+`olemoz1977/omesg360/priolens/open14-v02/HOST_ASSET_PROVENANCE_v0.2.json`.
+
+Important binary boundary:
+- the available GitHub connector truncated binary uploads;
+- corrupted repo binary copies were removed;
+- verified Hostinger research-assets copies plus SHA-256 provenance are canonical for the current pilot checkpoint.
 
 ## Planner
 
@@ -148,12 +125,7 @@ Design invariants:
 - 42 unique pair co-occurrences;
 - 6 unique opponents per family.
 
-Planner is browser-safe for ES-module import.
-
 ## Two-exemplar / three-appearance correction
-
-Problem:
-- each family has 2 exemplars but 3 appearances.
 
 Canonical assigner:
 `research/p3_open14_exemplar_assigner_v01.mjs`.
@@ -165,10 +137,6 @@ Per session:
 - A/B total = 21/21;
 - every screen slot = 7 A / 7 B.
 
-Balancing logic checked across 1000 simulated assignments.
-
-### Family-level repetition rule
-
 Primary family repetition requires:
 `chosen_A > 0 && chosen_B > 0`.
 
@@ -177,7 +145,7 @@ Therefore:
 - 2/3 concentrated on the same repeated exemplar = exemplar-specific, not family-level evidence;
 - 3/3 necessarily crosses exemplars.
 
-Preserve exact exemplar identity in exports.
+Preserve exact exemplar identity in exports and analysis.
 
 ## Perceived sufficiency v0.2
 
@@ -213,16 +181,28 @@ No strict 1–14 rank.
 No combined psychological score.
 No `low sufficiency + visual pull = unmet need` claim.
 
-## Runtime scaffold
+## Live Open14 runtime
 
-Separate non-live package in `olemoz1977/omesg360/priolens/open14-v02/`:
+Canonical checkpoint:
+`docs/OPEN14_LIVE_RUNTIME_CHECKPOINT_v0.1.md`.
+
+Live owner-smoke route:
+`https://omesg360.eu/priolens-open14-v02/`
+
+Historical P3 v0.4 remains separate and untouched:
+`https://omesg360.eu/priolens/`
+
+Open14 source lives in `olemoz1977/omesg360/priolens/open14-v02/`:
 - `index.html`;
 - `bank.json`;
 - `p3_open14_planner_v02.mjs`;
 - `p3_open14_exemplar_assigner_v01.mjs`.
 
+Live bank status:
+`READY_FOR_OWNER_SMOKE`.
+
 Runtime behavior:
-- fail-closed if any required runtime path is null;
+- fail-closed if a required runtime path becomes null;
 - 14 visual triads;
 - `no_clear_choice`;
 - RT separate telemetry;
@@ -230,16 +210,80 @@ Runtime behavior:
 - 12 post-visual sufficiency taps;
 - cross-exemplar result logic;
 - JSON export;
-- no latent psychological model.
+- automatic API POST after completion;
+- API failure does not block result rendering or manual JSON export.
 
-Historical live `omesg360.eu/priolens/` P3 v0.4 has **not** been replaced.
+## Backend state
+
+Dedicated Hostinger MySQL exists:
+- database `u986950573_priolens`;
+- table `priolens_open14_sessions`.
+
+Live endpoint:
+`https://omesg360.eu/priolens-open14-api/api.php`
+
+Health endpoint:
+`https://omesg360.eu/priolens-open14-api/health.php`
+
+Server-only `config.php` exists on Hostinger and is not committed.
+
+Verified operational behavior:
+- JSON POST validation;
+- session/schema validation;
+- UUID validation;
+- exact 14-choice requirement;
+- sufficiency-key validation;
+- prepared PDO insert;
+- idempotent retry by session UUID;
+- live DB connectivity;
+- real production INSERT path;
+- health remains green after INSERT.
+
+Synthetic infrastructure row:
+- seed `SYSTEM_SMOKE_DO_NOT_ANALYZE`;
+- fixed session UUID `00000000-0000-4000-8000-000000000001`;
+- exclude from all pilot analysis;
+- reruns are idempotent.
+
+## Retention
+
+Approved target retention: **90 days**.
+
+Operational now:
+- `created_at` stored;
+- generated/indexed `expires_at = created_at + 90 DAY`;
+- CLI-only `cleanup.php` deployed.
+
+Not yet operational:
+- no Hostinger cron is configured to execute cleanup;
+- automatic physical deletion after 90 days is therefore not yet guaranteed.
+
+Do not describe retention as fully operational until cron scheduling and cleanup smoke are complete.
+
+## Smoke evidence
+
+Host asset verification:
+- workflow `Verify PrioLens Open14 host assets`;
+- run `33452688466`;
+- success.
+
+Open14 runtime deploy:
+- workflow `Deploy PrioLens Open14 runtime`;
+- run `33452934088`;
+- success.
+
+Production API write smoke:
+- workflow `Verify PrioLens Open14 API write path`;
+- run `33453033200`;
+- success.
 
 ## External pilot preparation
 
-Prepared:
+Canonical:
 - `docs/OPEN14_EXTERNAL_PILOT_PROTOCOL_v0.1.md`;
 - `docs/OPEN14_FAMILY_DECISION_RULES_v0.1.md`;
-- `docs/OPEN14_DATA_INGESTION_CONTRACT_v0.1.md`.
+- `docs/OPEN14_DATA_INGESTION_CONTRACT_v0.1.md`;
+- `docs/OPEN14_BACKEND_REUSE_DECISION_NOTE_v0.1.md`.
 
 First external pilot:
 - formative, not validation;
@@ -256,33 +300,7 @@ Family decisions after data use:
 
 Do not preserve 14 merely because the planner is elegant.
 
-## Backend finding
-
-Existing `olemoz1977/omesg360/wave1/api.php` proves the current Hostinger environment already supports a usable PHP + MySQL research-collection pattern:
-- POST JSON validation;
-- UUID validation;
-- allow-lists;
-- PDO prepared statements;
-- DB error handling;
-- simple rate limiting.
-
-Current recommendation for the first ~30-person pilot:
-> **reuse Hostinger PHP + MySQL rather than create a new Vercel/Supabase project.**
-
-Canonical note:
-`docs/OPEN14_BACKEND_REUSE_DECISION_NOTE_v0.1.md`.
-
-Prepared but **not deployed** in `olemoz1977/omesg360/priolens/open14-v02/server/`:
-- `api.example.php`;
-- `schema.sql`;
-- `config.example.php`.
-
-No DB table has been created.
-No real credentials are committed.
-No endpoint has been deployed.
-No retention behavior has changed.
-
-Existing general Hostinger deploy is frontend-only by construction, so these drafts do not auto-deploy as a production backend.
+Do not recruit externally yet because retention cleanup is not fully operational and owner smoke has not been completed.
 
 ## Research question
 
@@ -302,43 +320,26 @@ Use:
 Main pragmatic question:
 > **What does a reasonable viewer see happening within about one second?**
 
-## Immediate next action — USER GATE
+## Immediate next action — OWNER SMOKE
 
-All reversible theory/runtime/pilot preparation that can be done safely without external deployment or image generation is complete.
+Run exactly one owner smoke session at:
+`https://omesg360.eu/priolens-open14-v02/`
 
-Two real action gates remain:
+Check only:
+- mobile geometry;
+- image loading/cropping;
+- whether 14 triads still feel fast/game-like;
+- sufficiency-flow burden;
+- result readability;
+- automatic-save success/failure state;
+- gross stimulus anomalies.
 
-### Gate A — missing image prototypes
+Do not use repeated owner runs as construct evidence or tune the bank to the owner's personal pattern.
 
-Requires explicit user request to create images.
-
-If approved:
-1. create only CARE-A, CARE-B, RECOGNITION-A, RECOGNITION-B;
-2. pragmatic first-read audit;
-3. reject/reassign failed prototypes rather than endlessly rescue them;
-4. wire accepted runtime paths;
-5. verify AUT-B Hostinger runtime path;
-6. run one technical/design smoke session.
-
-### Gate B — pilot data backend
-
-Recommended path: existing Hostinger PHP + MySQL.
-
-Requires explicit approval before:
-- creating the DB table;
-- deploying the API endpoint;
-- setting real retention/access behavior.
-
-If approved:
-1. choose retention period and raw-data access method;
-2. review API/schema drafts;
-3. execute DB schema;
-4. deploy API to dedicated research path;
-5. add anonymous session UUID + POST/retry/fallback export to runtime;
-6. negative validation + HTTP smoke;
-7. only then recruit external participants.
-
-Do not deploy Open14 over historical live v0.4 yet.
+After that one run:
+1. fix clear technical/UX failures only;
+2. configure and smoke the 90-day Hostinger cleanup cron;
+3. then decide first external formative pilot release.
 
 ## Guardrails
 
