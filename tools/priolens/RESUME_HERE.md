@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PRE-PILOT HARDENING
+Status: ACTIVE / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PARTICIPANT COMPLETION LIVE / PRE-PILOT HARDENING
 Updated: 2026-09-01
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -12,11 +12,12 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. read this file;
 2. read `PROJECT_STATE.md` for architecture / runtime background;
-3. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md` as the latest active checkpoint;
-4. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
-5. read older docs / File Library only when needed.
+3. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md` as the latest active checkpoint;
+4. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
+5. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
+6. read older docs / File Library only when needed.
 
-If an older runtime / UX section conflicts with the latest mobile-hardening checkpoint, the latest checkpoint wins.
+If an older runtime / UX section conflicts with the latest participant-completion checkpoint, the latest checkpoint wins.
 
 ## Current architecture
 
@@ -49,7 +50,11 @@ Current runtime includes:
 - final API upsert using the same `sessionUuid`;
 - stale partial protection;
 - in-app-browser JSON export hardening;
-- mobile readability / unanswered-state hardening.
+- mobile readability / unanswered-state hardening;
+- participant-facing `Trumpai` synthesis;
+- coverage-aware sufficiency result rendering;
+- clear `Atlikti dar kartą` and `Grįžti į 2rasi` completion actions;
+- raw JSON export and diagnostics hidden from normal participants.
 
 Production lifecycle smoke passed:
 `partial -> final -> stale partial cannot overwrite final`.
@@ -74,6 +79,25 @@ Changes:
 
 Related Messenger JSON export runtime commit:
 `5e0f8881e93d53e3fac5c22c6f5587e30bc18053`.
+
+### Participant completion now live
+
+Runtime commit:
+`98d4204ebc178288931af0ec3ef1a42693fc8fd2`
+
+Workflow run:
+`33542878842` — SUCCESS; live smoke passed.
+
+Changes:
+- result now starts with a short participant-facing `Trumpai` synthesis based only on existing descriptive evidence;
+- `Nauja sesija` renamed to `Atlikti dar kartą`;
+- added `Grįžti į 2rasi` with constrained `from=lt|com` routing;
+- sufficiency coverage is explicit: 0/2, 1/2 partial, 2/2 complete;
+- only complete 2/2 domains can enter Channel A vs Channel B comparison / summary logic;
+- raw JSON export and diagnostics are hidden in normal participant mode and remain available via `?debug=1`.
+
+Latest active checkpoint:
+`docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
 
 ## Stimulus bank state
 
@@ -116,8 +140,20 @@ Do not reopen asset generation / replacement work unless a concrete smoke failur
 Latest asset checkpoint:
 `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
 
-Latest runtime / UX checkpoint:
-`docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
+## 2rasi entry state
+
+The 10th PrioLens homepage card already exists in `feature/priolens-architecture` and points to `/tools/priolens/`.
+
+The PrioLens landing page was updated from obsolete 8-direction / 28-pair copy to the current Open14 flow in commit:
+`9af3081f88cb0172afc61413bdeda25e717ec138`.
+
+The homepage card hook is now triad-compatible:
+- EN: `When several things matter, what pulls you first?`
+- LT: `Kai svarbūs keli dalykai, kas patraukia pirmiausia?`
+
+The feature-branch entry route is PREPARED, not yet considered publicly live until intentionally merged / deployed.
+
+Current Open14 participant runtime itself is LT-only. The `.com` landing states this explicitly rather than implying an English runtime already exists.
 
 ## Live routes
 
@@ -138,11 +174,11 @@ Health:
 
 ## Remaining pre-pilot hardening
 
-1. rerun one short mobile smoke specifically checking the new `Nė vienas aiškiai`, text readability and unanswered-slider validation;
-2. fix sufficiency `null` / coverage display so 1/2 answered does not look fully observed;
-3. preserve CARE visual-giving vs received-support asymmetry explicitly in result wording / logic;
-4. configure and smoke 90-day cleanup cron;
-5. only then decide first small external formative pilot.
+1. run one fresh full mobile participant smoke including `Trumpai`, coverage states, restart and 2rasi return;
+2. preserve CARE visual-giving vs received-support asymmetry explicitly in final wording / logic documentation;
+3. configure and smoke 90-day cleanup cron;
+4. decide whether first external formative release is LT-only or requires EN runtime first;
+5. intentionally merge / deploy the prepared 10th-card PrioLens entry route only when recruitment opens.
 
 Target retention remains 90 days, but physical automatic deletion is not fully operational until cron is configured and smoked.
 
