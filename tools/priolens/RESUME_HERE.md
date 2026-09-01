@@ -12,8 +12,8 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. read this file;
 2. read `PROJECT_STATE.md` for architecture / runtime background;
-3. read `docs/OPEN14_SHORTLIST_OWNER_DECISIONS_V01_v0.1.md` as the latest active checkpoint;
-4. read `docs/OPEN14_CANDIDATE_SHORTLIST_V01_v0.1.md` for shortlist construction/history;
+3. read `docs/OPEN14_SHORTLIST_CROP_DECISIONS_V01_v0.1.md` as the latest active checkpoint;
+4. read `docs/OPEN14_SHORTLIST_OWNER_DECISIONS_V01_v0.1.md` for the preceding owner shortlist decisions;
 5. read older docs / File Library only when needed.
 
 If an older asset-state section conflicts with the latest remediation checkpoint, the latest checkpoint wins.
@@ -59,63 +59,36 @@ Do not use the one owner run as construct evidence.
 Dimensions audit is complete. Geometry normalization has moved into semantic / visual remediation.
 
 Resolved and live:
-- SAFETY-B -> clean `Gallery/S13.webp`; pHash 0 vs old file; no watermark keyword detected;
-- AUTONOMY-A -> forked-path candidate; 1254x1254; working read `pasirinkti savo kryptį`;
-- REST-A -> slippers candidate, owner-selected `bottom` 1:1 crop; working read `persijungti į poilsį / namų komfortą`;
-- KNOWLEDGE-A -> library candidate, owner-selected `top` 1:1 crop; working read `ieškoti žinių / mokytis`;
+- SAFETY-B -> clean `Gallery/S13.webp`; pHash 0 vs old file;
+- AUTONOMY-A -> forked-path candidate; working read `pasirinkti savo kryptį`;
+- REST-A -> slippers candidate, owner-selected `bottom` 1:1 crop;
+- REST-B -> owner shortlist B, owner-selected `center` crop, switched live;
+- KNOWLEDGE-A -> library candidate, owner-selected `top` 1:1 crop;
+- KNOWLEDGE-B -> owner shortlist B, owner-selected `bottom` crop, switched live;
 - CONNECTION-A -> owner-selected `small` watermark cleanup;
 - CONNECTION-B -> owner-selected `small` watermark cleanup;
 - ORDER-A -> owner shortlist B, normalized 640x640 WebP, switched live;
 - ORDER-B -> owner shortlist C, normalized 640x640 WebP, switched live.
 
-Latest shortlist decisions:
-- REST-B = B -> selected candidate `Gallery/20260730_232752414.png`, crop review pending;
-- ORDER-A = B -> applied live;
-- ORDER-B = C -> applied live;
-- CONTROL-A = reject -> new search required; old runtime remains non-pilot-safe placeholder;
-- KNOWLEDGE-B = B -> selected candidate `Gallery/20260730_022124068.png`, crop review pending.
+Latest crop switch verification:
+- workflow run `33474026622` — SUCCESS;
+- REST-B runtime: `/priolens-research-assets/Open14-remediation-v02/rest-b_owner-b_sq_center_v01.webp`;
+- KNOWLEDGE-B runtime: `/priolens-research-assets/Open14-remediation-v02/knowledge-b_owner-b_sq_bottom_v01.webp`;
+- both assets GET-smoked successfully;
+- live `bank.json` contains both paths.
 
-OCR watermark keyword screen on the four selected shortlist sources found no Kling/Gemini/OpenAI hits.
+Still unresolved:
+- CONTROL-A: owner rejected all shortlist v01 candidates; `SEARCH_REQUIRED_AFTER_SHORTLIST_REJECT`; old runtime remains non-pilot-safe placeholder.
 
-Owner crop review route for REST-B and KNOWLEDGE-B:
-`https://omesg360.eu/priolens-shortlist-crop-review-v01/`
-
-Need:
-- REST-B = top / center / bottom;
-- KNOWLEDGE-B = top / center / bottom.
-
-Do not switch those two until crop review is complete.
-
-Hold / search after crop choices:
-- CONTROL-A: SEARCH_REQUIRED_AFTER_SHORTLIST_REJECT;
+Hold / comparison:
 - BELONGING-B: HOLD due asymmetric warmth cue;
 - OPPORTUNITY-A: HOLD / search clearer immediate-opportunity cue.
 
-### Verification
-
-Shortlist decision apply workflow:
-`33473407345`
-- selected files fetched;
-- OCR/dimension audit passed;
-- ORDER-A/B normalized and bank patch committed;
-- portrait crop derivatives uploaded;
-- final smoke step failed only because `curl -I` HEAD returned 403.
-
-Follow-up GET smoke:
-`33473495639` — SUCCESS.
-
-Verified by GET:
-- all selected remediation assets reachable;
-- crop review reachable;
-- live bank reachable;
-- ORDER-A/B switched paths present;
-- CONTROL-A reject status present.
-
-Therefore the earlier 403 was a smoke-method issue, not a deploy failure.
-
-Currently passing / retained apart from items explicitly pending above:
+Currently passing / retained apart from the unresolved/hold items above:
 - RESOURCE-A/B;
 - SAFETY-A/B;
+- REST-A/B;
+- ORDER-A/B;
 - CONNECTION-A/B;
 - BELONGING-A;
 - CARE-A/B;
@@ -125,7 +98,7 @@ Currently passing / retained apart from items explicitly pending above:
 - RECOGNITION-B as boundary probe;
 - MASTERY-A/B;
 - EXPLORATION-A/B;
-- KNOWLEDGE-A;
+- KNOWLEDGE-A/B;
 - OPPORTUNITY-B.
 
 Technical active bank:
@@ -135,7 +108,7 @@ Owner-readable bank:
 `https://omesg360.eu/priolens-open14-v02/stimulus-bank.html`
 
 Latest formal checkpoint:
-`docs/OPEN14_SHORTLIST_OWNER_DECISIONS_V01_v0.1.md`
+`docs/OPEN14_SHORTLIST_CROP_DECISIONS_V01_v0.1.md`
 
 ## Live routes
 
@@ -170,19 +143,12 @@ Do not claim fully operational automatic deletion yet.
 
 ## Immediate next action
 
-**Owner crop review for REST-B and KNOWLEDGE-B.**
+**Continue stimulus-bank remediation. Do not run another owner interpretation session yet.**
 
-Open:
-`https://omesg360.eu/priolens-shortlist-crop-review-v01/`
-
-Return:
-1. REST-B = top / center / bottom;
-2. KNOWLEDGE-B = top / center / bottom.
-
-Then:
-1. switch those two reviewed derivatives and smoke;
-2. search again for CONTROL-A with a new concept/candidate set; do not generate unless explicitly requested;
-3. review BELONGING-B and OPPORTUNITY-A;
+Order:
+1. search again for CONTROL-A using existing Gallery assets; do not generate unless explicitly requested;
+2. compare BELONGING-B and OPPORTUNITY-A against stronger existing candidates;
+3. if no credible CONTROL-A exists, define a new stimulus brief before any generation request;
 4. run final 28/28 geometry + watermark + semantic + runtime-reachability audit;
 5. run one final mobile visual smoke;
 6. fix sufficiency `null` / coverage display;
