@@ -5,149 +5,218 @@ Date: 2026-09-01
 
 ## What changed
 
-The first concrete stimulus-remediation batch is complete.
+The first concrete stimulus-remediation batch is complete and the owner review decisions from the remediation page have now been applied.
 
-### SAFETY-B resolved
+## Resolved and live
 
-Current runtime path was:
+### SAFETY-B
+
+Previous runtime:
 `/priolens-research-assets/Gallery/20260829_233727670.png`
 
-Clean Gallery equivalent checked:
+Current runtime:
 `/priolens-research-assets/Gallery/S13.webp`
 
 Verification:
 - 520x520 square;
-- perceptual hash distance to the previous SAFETY-B = 0;
+- perceptual hash distance to previous SAFETY-B = 0;
 - no watermark keyword detected in OCR pass.
 
-Decision:
-- switch SAFETY-B to `S13.webp`.
+Status:
+`CLEAN_EQUIVALENT_PHASH0`
 
-This switch is now present in `olemoz1977/omesg360/priolens/open14-v02/bank.json` and was deployed to the live runtime.
+### AUTONOMY-A
 
-### AUTONOMY-A resolved
+Previous runtime:
+`/priolens-research-assets/Gallery/S05.webp`
 
-Accepted forked-path candidate:
+Current runtime:
 `/priolens-research-assets/Gallery/file_00000000cc8c81f4a927534c8316290c.png`
 
 Verification:
 - 1254x1254 square;
-- no watermark keyword detected in OCR pass;
-- owner review had already identified it as a strong self-direction candidate.
+- no watermark keyword detected in OCR pass.
 
 Working first-glance target:
 `pasirinkti savo kryptį`
 
-Decision:
-- replace old AUTONOMY-A tool-selection image with the forked-path candidate.
+Status:
+`OWNER_ACCEPTED_CANDIDATE_SWITCHED`
 
-This switch is now present in `bank.json` and deployed live.
-
-## Human review package now live
-
-Review route:
-`https://omesg360.eu/priolens-remediation-review-v01/`
-
-The review page contains four unresolved human-judgement tasks.
-
-### REST-A crop review
+### REST-A
 
 Accepted source candidate:
-`Gallery/20260730_233524155.png`
+`/priolens-research-assets/Gallery/20260730_233524155.png`
 
 Source geometry:
-- 768x1360 portrait.
+768x1360 portrait.
 
-Three 640x640 WebP derivatives are available:
-- top;
-- center;
-- bottom.
+Owner reviewed top / center / bottom 1:1 derivatives and selected:
+`bottom`
 
-Do not switch runtime until the owner selects the crop that best preserves:
-`persijungti į poilsį / namų komfortą`.
+Current runtime:
+`/priolens-research-assets/Open14-remediation-v01/rest-a_sq_bottom_v01.webp`
 
-### KNOWLEDGE-A crop review
+Working first-glance target:
+`persijungti į poilsį / namų komfortą`
+
+Status:
+`OWNER_ACCEPTED_REPLACEMENT_SWITCHED`
+
+Important history:
+- old REST-A image had been created for classic-shoes vs sneakers choice;
+- that old semantic assignment to REST is superseded and must not be used in interpretation.
+
+### KNOWLEDGE-A
 
 Accepted source candidate:
-`Gallery/20260730_233054250.png`
+`/priolens-research-assets/Gallery/20260730_233054250.png`
 
 Source geometry:
-- 768x1360 portrait.
+768x1360 portrait.
 
-Three 640x640 WebP derivatives are available:
-- top;
-- center;
-- bottom.
+Owner reviewed top / center / bottom 1:1 derivatives and selected:
+`top`
 
-Do not switch runtime until the owner selects the crop that best preserves:
-`ieškoti žinių / mokytis`.
+Current runtime:
+`/priolens-research-assets/Open14-remediation-v01/knowledge-a_sq_top_v01.webp`
 
-### CONNECTION-A watermark cleanup review
+Working first-glance target:
+`ieškoti žinių / mokytis`
 
-Current semantic stimulus remains accepted.
-Original OCR detected a KlingAI watermark.
+Status:
+`OWNER_ACCEPTED_REPLACEMENT_SWITCHED`
 
-Two cleanup derivatives are available:
-- small-mask inpaint;
-- medium-mask inpaint.
+### CONNECTION-A
 
-OCR on both cleanup derivatives no longer detects the KlingAI string.
+Original runtime:
+`/priolens-research-assets/Gallery/S03.webp`
 
-Human visual review is still required before bank switch because cleanup must not create a visible artificial patch.
+Original issue:
+KlingAI watermark detected.
 
-### CONNECTION-B watermark cleanup review
+Owner reviewed small-mask and medium-mask inpaint variants and selected:
+`small`
 
-Current semantic stimulus remains accepted.
-Owner visually confirmed a watermark during smoke.
+Current runtime:
+`/priolens-research-assets/Open14-remediation-v01/connection-a_clean_small_v01.webp`
 
-Two cleanup derivatives are available:
-- small-mask inpaint;
-- medium-mask inpaint.
+Status:
+`HUMAN_ACCEPTED_WATERMARK_CLEANUP_SMALL`
 
-OCR did not reliably identify the original watermark, so automated text disappearance is not sufficient evidence. Human visual review is required.
+### CONNECTION-B
+
+Original runtime:
+`/priolens-research-assets/Gallery/20260829_235204397.png`
+
+Original issue:
+watermark visually confirmed during owner smoke.
+
+Owner reviewed small-mask and medium-mask inpaint variants and selected:
+`small`
+
+Current runtime:
+`/priolens-research-assets/Open14-remediation-v01/connection-b_clean_small_v01.webp`
+
+Status:
+`HUMAN_ACCEPTED_WATERMARK_CLEANUP_SMALL`
 
 ## Technical deployment facts
 
-Remediation workflow run:
+Initial remediation workflow run:
 `33469791120`
 
+That run:
+- downloaded the candidate assets from Hostinger;
+- verified SAFETY-B and AUTONOMY-A;
+- created REST-A and KNOWLEDGE-A crop derivatives;
+- created CONNECTION-A/B cleanup derivatives;
+- deployed the human review page.
+
+Initial verified bank switch commit:
+`edee4957651b7d82c15b6206af83fe5060c2865f`
+
+Owner selection application run:
+`33470516649`
+
 Result:
-- source assets downloaded from Hostinger;
-- candidate audit succeeded;
-- derivatives created;
-- review page deployed;
-- SAFETY-B and AUTONOMY-A bank switches committed as `edee4957651b7d82c15b6206af83fe5060c2865f`.
+- REST-A bottom applied;
+- KNOWLEDGE-A top applied;
+- CONNECTION-A small applied;
+- CONNECTION-B small applied;
+- `bank.json` deployed to the live Open14 runtime;
+- all four accepted asset URLs returned HTTP 200;
+- live `bank.json` smoke verified all four new paths.
 
-Because a GitHub Actions token push does not trigger the normal downstream runtime workflow, the current bank was then explicitly deployed to the live Open14 runtime.
+Technical active bank:
+`olemoz1977/omesg360/priolens/open14-v02/bank.json`
 
-Live bank deployment run:
-`33469946684`
+Owner-readable bank:
+`https://omesg360.eu/priolens-open14-v02/stimulus-bank.html`
 
-Smoke verified both live paths:
-- SAFETY-B -> `S13.webp`;
-- AUTONOMY-A -> forked-path candidate.
+## Remaining unresolved stimulus work
 
-## Immediate next owner action
+### Replace / search
 
-Open:
-`https://omesg360.eu/priolens-remediation-review-v01/`
+- REST-B
+  - current image has two watermarks;
+  - replacement should use a different restoration mechanism from REST-A rather than duplicating home-comfort.
 
-Return four decisions only:
-1. REST-A = top / center / bottom;
-2. KNOWLEDGE-A = top / center / bottom;
-3. CONNECTION-A = small / medium / reject cleanup;
-4. CONNECTION-B = small / medium / reject cleanup.
+- ORDER-A
+  - preferred direction: tool shadow board / outlined assigned tool positions;
+  - first-glance principle: `kiekvienas daiktas turi savo vietą`.
 
-After those decisions:
-1. switch accepted REST-A and KNOWLEDGE-A derivatives into `bank.json`;
-2. switch accepted CONNECTION cleanup derivatives;
-3. continue search for REST-B, ORDER-A, ORDER-B, CONTROL-A and KNOWLEDGE-B;
-4. separately review BELONGING-B and OPPORTUNITY-A;
-5. run final 28/28 geometry + watermark + semantic + reachability audit;
+- ORDER-B
+  - preferred direction: clearly marked parking spaces / assigned zones;
+  - first-glance principle: `erdvė suskirstyta į aiškiai paskirtas vietas`.
+
+- CONTROL-A
+  - current central instrument looks artificial;
+  - search for a familiar, credible real control where one action visibly regulates state / flow / outcome.
+
+- KNOWLEDGE-B
+  - current `pamatyti aiškiau / daugiau` probe is too broad;
+  - search for active digital learning / understanding rather than generic computer use.
+
+### Hold / compare
+
+- BELONGING-B
+  - HOLD because warmth / steam is visually asymmetric and may weaken togetherness reading.
+
+- OPPORTUNITY-A
+  - HOLD / search for a clearer immediate valuable possibility that can be acted on now.
+
+## Current family-level working summary
+
+- REST: A resolved; B replace.
+- RESOURCE: A/B pass.
+- SAFETY: A/B pass; B now clean equivalent.
+- ORDER: A/B replace.
+- CONNECTION: A/B retained and cleaned.
+- BELONGING: A pass; B HOLD.
+- CARE: A/B pass.
+- AUTONOMY: A/B pass; A replaced with forked-path candidate.
+- CONTROL: A replace; B pass.
+- RECOGNITION: A pass; B retained as boundary probe.
+- MASTERY: A/B pass.
+- EXPLORATION: A/B pass.
+- KNOWLEDGE: A resolved; B replace/search.
+- OPPORTUNITY: A HOLD/search; B pass.
+
+## Immediate next action
+
+Do not run another owner interpretation session yet.
+
+Continue stimulus remediation in this order:
+1. search Gallery / existing assets for REST-B, ORDER-A, ORDER-B, CONTROL-A and KNOWLEDGE-B;
+2. compare BELONGING-B and OPPORTUNITY-A against any stronger existing candidates;
+3. only if strong existing candidates do not exist, define new stimulus briefs before generating anything;
+4. normalize every newly accepted non-square asset to reviewed 1:1 derivative;
+5. run final 28/28 audit: geometry + watermark + semantic status + runtime reachability;
 6. run one final mobile visual smoke;
-7. then fix sufficiency `null` / coverage display;
-8. preserve CARE visual-vs-received-support asymmetry explicitly;
+7. fix sufficiency `null` / coverage display;
+8. keep CARE visual-vs-received-support self-report asymmetry explicit;
 9. configure and smoke 90-day cleanup cron;
-10. only then decide the first small external formative pilot.
+10. only then decide first external formative mini-pilot.
 
 External recruitment remains CLOSED.
