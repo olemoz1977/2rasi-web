@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / PRE-PILOT HARDENING
+Status: ACTIVE / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PRE-PILOT HARDENING
 Updated: 2026-09-01
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -12,10 +12,11 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. read this file;
 2. read `PROJECT_STATE.md` for architecture / runtime background;
-3. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` as the latest active checkpoint;
-4. read older docs / File Library only when needed.
+3. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md` as the latest active checkpoint;
+4. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
+5. read older docs / File Library only when needed.
 
-If an older asset-state section conflicts with the final asset-bank checkpoint, the final checkpoint wins.
+If an older runtime / UX section conflicts with the latest mobile-hardening checkpoint, the latest checkpoint wins.
 
 ## Current architecture
 
@@ -36,7 +37,7 @@ Active Open14 v0.2 families:
 
 ## Runtime state
 
-One full mobile owner smoke completed successfully.
+One full mobile owner smoke completed successfully. A later informal lower-vision mobile smoke exposed real discoverability/readability problems; those are now patched and live.
 
 Current runtime includes:
 - 14 visual triads;
@@ -46,12 +47,33 @@ Current runtime includes:
 - local autosave / resume;
 - server-side incomplete checkpoints;
 - final API upsert using the same `sessionUuid`;
-- stale partial protection.
+- stale partial protection;
+- in-app-browser JSON export hardening;
+- mobile readability / unanswered-state hardening.
 
 Production lifecycle smoke passed:
 `partial -> final -> stale partial cannot overwrite final`.
 
-Do not use the owner run as construct evidence.
+Do not use owner or household smoke runs as construct evidence.
+
+### Mobile UX hardening now live
+
+Runtime commit:
+`6ed9fd59cf8b715cf99d03427084a9cd38ff722d`
+
+Workflow run:
+`33540650020` — SUCCESS.
+
+Changes:
+- `Nė vienas aiškiai` moved from a narrow vertical strip to a horizontal 48 px button below the three images;
+- trial prompt / counter enlarged;
+- sufficiency statements enlarged to 18 px;
+- support labels / helper text increased in size and contrast;
+- unanswered sliders explicitly show `Neatsakyta`;
+- missing answers now receive inline high-contrast validation instead of relying on browser `alert()`.
+
+Related Messenger JSON export runtime commit:
+`5e0f8881e93d53e3fac5c22c6f5587e30bc18053`.
 
 ## Stimulus bank state
 
@@ -89,10 +111,13 @@ Owner-readable bank:
 
 It reads live `bank.json`; stale hardcoded REST-B / CONNECTION-B watermark flags were removed.
 
-Do not reopen asset generation / replacement work unless final mobile smoke or external formative data gives a concrete reason.
+Do not reopen asset generation / replacement work unless a concrete smoke failure or formative data gives a reason.
 
-Latest formal checkpoint:
+Latest asset checkpoint:
 `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
+
+Latest runtime / UX checkpoint:
+`docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
 
 ## Live routes
 
@@ -113,7 +138,7 @@ Health:
 
 ## Remaining pre-pilot hardening
 
-1. run one final mobile visual smoke on finalized 28/28 bank;
+1. rerun one short mobile smoke specifically checking the new `Nė vienas aiškiai`, text readability and unanswered-slider validation;
 2. fix sufficiency `null` / coverage display so 1/2 answered does not look fully observed;
 3. preserve CARE visual-giving vs received-support asymmetry explicitly in result wording / logic;
 4. configure and smoke 90-day cleanup cron;
