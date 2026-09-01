@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 / OWNER SMOKE COMPLETE / STIMULUS BANK REMEDIATION
+Status: ACTIVE / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / PRE-PILOT HARDENING
 Updated: 2026-09-01
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -12,11 +12,10 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. read this file;
 2. read `PROJECT_STATE.md` for architecture / runtime background;
-3. read `docs/OPEN14_SHORTLIST_CROP_DECISIONS_V01_v0.1.md` as the latest active checkpoint;
-4. read `docs/OPEN14_SHORTLIST_OWNER_DECISIONS_V01_v0.1.md` for the preceding owner shortlist decisions;
-5. read older docs / File Library only when needed.
+3. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` as the latest active checkpoint;
+4. read older docs / File Library only when needed.
 
-If an older asset-state section conflicts with the latest remediation checkpoint, the latest checkpoint wins.
+If an older asset-state section conflicts with the final asset-bank checkpoint, the final checkpoint wins.
 
 ## Current architecture
 
@@ -52,63 +51,48 @@ Current runtime includes:
 Production lifecycle smoke passed:
 `partial -> final -> stale partial cannot overwrite final`.
 
-Do not use the one owner run as construct evidence.
+Do not use the owner run as construct evidence.
 
 ## Stimulus bank state
 
-Dimensions audit is complete. Geometry normalization has moved into semantic / visual remediation.
+**Owner stimulus remediation is complete.**
 
-Resolved and live:
-- SAFETY-B -> clean `Gallery/S13.webp`; pHash 0 vs old file;
-- AUTONOMY-A -> forked-path candidate; working read `pasirinkti savo kryptį`;
-- REST-A -> slippers candidate, owner-selected `bottom` 1:1 crop;
-- REST-B -> owner shortlist B, owner-selected `center` crop, switched live;
-- KNOWLEDGE-A -> library candidate, owner-selected `top` 1:1 crop;
-- KNOWLEDGE-B -> owner shortlist B, owner-selected `bottom` crop, switched live;
-- CONNECTION-A -> owner-selected `small` watermark cleanup;
-- CONNECTION-B -> owner-selected `small` watermark cleanup;
-- ORDER-A -> owner shortlist B, normalized 640x640 WebP, switched live;
-- ORDER-B -> owner shortlist C, normalized 640x640 WebP, switched live.
+Final asset audit:
+- 14 families;
+- 28 active exemplars;
+- 28/28 active binaries reachable;
+- 28/28 square;
+- no OCR hits for known KlingAI / Gemini / OpenAI watermark text;
+- no remaining active REPLACE / SEARCH_REQUIRED / old HOLD blockers.
 
-Latest crop switch verification:
-- workflow run `33474026622` — SUCCESS;
-- REST-B runtime: `/priolens-research-assets/Open14-remediation-v02/rest-b_owner-b_sq_center_v01.webp`;
-- KNOWLEDGE-B runtime: `/priolens-research-assets/Open14-remediation-v02/knowledge-b_owner-b_sq_bottom_v01.webp`;
-- both assets GET-smoked successfully;
-- live `bank.json` contains both paths.
+Final package workflow:
+`33518074758` — SUCCESS.
 
-Still unresolved:
-- CONTROL-A: owner rejected all shortlist v01 candidates; `SEARCH_REQUIRED_AFTER_SHORTLIST_REJECT`; old runtime remains non-pilot-safe placeholder.
+Final bank status:
+- `status: PREPILOT_HARDENING`;
+- `assetReviewStatus: OWNER_FINALIZED_FINAL_AUDIT_PASS`.
 
-Hold / comparison:
-- BELONGING-B: HOLD due asymmetric warmth cue;
-- OPPORTUNITY-A: HOLD / search clearer immediate-opportunity cue.
+Current technical bank commit:
+`2652f3db043f99436dc88afc1188aeb546f0313b`
 
-Currently passing / retained apart from the unresolved/hold items above:
-- RESOURCE-A/B;
-- SAFETY-A/B;
-- REST-A/B;
-- ORDER-A/B;
-- CONNECTION-A/B;
-- BELONGING-A;
-- CARE-A/B;
-- AUTONOMY-A/B;
-- CONTROL-B;
-- RECOGNITION-A;
-- RECOGNITION-B as boundary probe;
-- MASTERY-A/B;
-- EXPLORATION-A/B;
-- KNOWLEDGE-A/B;
-- OPPORTUNITY-B.
+Latest final replacements:
+- CONTROL-A -> industrial joystick;
+- BELONGING-B -> three-person shared coffee ritual;
+- EXPLORATION-B -> magnifier / unknown forest object;
+- OPPORTUNITY-A -> one prepared empty market stall inside an active market.
 
-Technical active bank:
-`olemoz1977/omesg360/priolens/open14-v02/bank.json`
+All four runtime derivatives are 640x640 WebP under:
+`/priolens-research-assets/Open14-final-v01/`
 
 Owner-readable bank:
 `https://omesg360.eu/priolens-open14-v02/stimulus-bank.html`
 
+It reads live `bank.json`; stale hardcoded REST-B / CONNECTION-B watermark flags were removed.
+
+Do not reopen asset generation / replacement work unless final mobile smoke or external formative data gives a concrete reason.
+
 Latest formal checkpoint:
-`docs/OPEN14_SHORTLIST_CROP_DECISIONS_V01_v0.1.md`
+`docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
 
 ## Live routes
 
@@ -127,34 +111,28 @@ Progress API:
 Health:
 `https://omesg360.eu/priolens-open14-api/health.php`
 
-## Retention
+## Remaining pre-pilot hardening
 
-Target: 90 days.
+1. run one final mobile visual smoke on finalized 28/28 bank;
+2. fix sufficiency `null` / coverage display so 1/2 answered does not look fully observed;
+3. preserve CARE visual-giving vs received-support asymmetry explicitly in result wording / logic;
+4. configure and smoke 90-day cleanup cron;
+5. only then decide first small external formative pilot.
 
-Already present:
-- `created_at`;
-- generated/indexed `expires_at = created_at + 90 DAY`;
-- CLI-only cleanup script.
+Target retention remains 90 days, but physical automatic deletion is not fully operational until cron is configured and smoked.
 
-Still missing:
-- Hostinger cron has not yet been configured / smoked.
+External recruitment remains CLOSED.
 
-Do not claim fully operational automatic deletion yet.
+## Research guardrail
 
-## Immediate next action
+Current research question:
+> **Do cross-exemplar repeated visual pulls show interpretable, non-trivial relationships with independently reported current sufficiency, beyond stimulus-specific salience and chance?**
 
-**Continue stimulus-bank remediation. Do not run another owner interpretation session yet.**
+Do not claim:
+- personality diagnosis;
+- subconscious / true-self access;
+- fast = true;
+- RT = psychological strength;
+- visual pull = unmet need.
 
-Order:
-1. search again for CONTROL-A using existing Gallery assets; do not generate unless explicitly requested;
-2. compare BELONGING-B and OPPORTUNITY-A against stronger existing candidates;
-3. if no credible CONTROL-A exists, define a new stimulus brief before any generation request;
-4. run final 28/28 geometry + watermark + semantic + runtime-reachability audit;
-5. run one final mobile visual smoke;
-6. fix sufficiency `null` / coverage display;
-7. preserve CARE visual-vs-received-support asymmetry explicitly;
-8. configure and smoke 90-day cleanup cron;
-9. only then decide first external formative mini-pilot.
-
-Do not repeatedly rerun the owner to tune a personal result.
-Do not recruit externally yet.
+Keep **For Fun with Wisdom**.
