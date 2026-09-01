@@ -13,7 +13,7 @@ Recovery order:
 1. read this file;
 2. read `PROJECT_STATE.md` for architecture / runtime background;
 3. read `docs/OPEN14_REMEDIATION_BATCH_V01_v0.1.md` as the latest active checkpoint;
-4. read `docs/OPEN14_STIMULUS_BANK_OWNER_REVIEW_v0.1.md` only for the preceding candidate-review history;
+4. read `docs/OPEN14_STIMULUS_BANK_OWNER_REVIEW_v0.1.md` only for preceding candidate-review history;
 5. open older docs / File Library only when needed.
 
 If an older asset-state section conflicts with the latest remediation checkpoint, the latest remediation checkpoint wins.
@@ -56,34 +56,41 @@ Do not use the one owner run as construct evidence.
 
 ## Stimulus bank state
 
-Dimensions audit is complete. Geometry normalization moved into semantic / visual remediation.
+Dimensions audit is complete. Geometry normalization has moved into semantic / visual remediation.
 
-Resolved and live in the current bank:
-- SAFETY-B -> clean `Gallery/S13.webp`; 520x520; pHash distance 0 from old file; no watermark keyword detected;
-- AUTONOMY-A -> `Gallery/file_00000000cc8c81f4a927534c8316290c.png`; 1254x1254; working read `pasirinkti savo kryptį`.
+Resolved and live:
+- SAFETY-B -> clean `Gallery/S13.webp`; pHash 0 vs old file; no watermark keyword detected;
+- AUTONOMY-A -> forked-path candidate; 1254x1254; working read `pasirinkti savo kryptį`;
+- REST-A -> slippers candidate, owner-selected `bottom` 1:1 crop; working read `persijungti į poilsį / namų komfortą`;
+- KNOWLEDGE-A -> library candidate, owner-selected `top` 1:1 crop; working read `ieškoti žinių / mokytis`;
+- CONNECTION-A -> owner-selected `small` watermark cleanup;
+- CONNECTION-B -> owner-selected `small` watermark cleanup.
 
-Human-review package is live:
-`https://omesg360.eu/priolens-remediation-review-v01/`
+All six above are present in the technical `bank.json`; the four latest owner selections were deployed and live-smoked successfully in workflow run `33470516649`.
 
-It contains:
-- REST-A slippers candidate: top / center / bottom 1:1 crops;
-- KNOWLEDGE-A library candidate: top / center / bottom 1:1 crops;
-- CONNECTION-A watermark cleanup: small / medium mask variants;
-- CONNECTION-B watermark cleanup: small / medium mask variants.
-
-Still unresolved after that review:
-- REST-B: replacement search;
-- ORDER-A: replacement search, preferred tool shadow-board direction;
-- ORDER-B: replacement search, preferred marked-space / assigned-zone direction;
-- CONTROL-A: direct credible control mechanism still search;
-- KNOWLEDGE-B: clearer active learning / understanding scene still search;
+Still unresolved:
+- REST-B: replace;
+- ORDER-A: replace, preferred tool shadow-board direction;
+- ORDER-B: replace, preferred marked-space / assigned-zone direction;
+- CONTROL-A: replace with credible direct-control mechanism;
+- KNOWLEDGE-B: replace/search for active learning / understanding;
 - BELONGING-B: HOLD due asymmetric warmth cue;
 - OPPORTUNITY-A: HOLD / search clearer immediate-opportunity cue.
 
-CARE-A/B remain accepted.
-RECOGNITION-A remains accepted.
-RECOGNITION-B remains accepted as boundary probe.
-RESOURCE-A/B, MASTERY-A/B and EXPLORATION-A/B currently pass.
+Currently passing / retained:
+- RESOURCE-A/B;
+- SAFETY-A/B;
+- CONNECTION-A/B;
+- CARE-A/B;
+- AUTONOMY-A/B;
+- CONTROL-B;
+- RECOGNITION-A;
+- RECOGNITION-B as boundary probe;
+- MASTERY-A/B;
+- EXPLORATION-A/B;
+- KNOWLEDGE-A;
+- OPPORTUNITY-B;
+- BELONGING-A.
 
 Technical active bank:
 `olemoz1977/omesg360/priolens/open14-v02/bank.json`
@@ -127,24 +134,19 @@ Do not claim fully operational automatic deletion yet.
 
 ## Immediate next action
 
-**Get the four human decisions from the remediation review page before changing those four runtime paths.**
+**Continue stimulus-bank remediation. Do not run another owner interpretation session yet.**
 
-Owner should return:
-1. REST-A = top / center / bottom;
-2. KNOWLEDGE-A = top / center / bottom;
-3. CONNECTION-A = small / medium / reject cleanup;
-4. CONNECTION-B = small / medium / reject cleanup.
-
-Then:
-1. switch accepted REST-A / KNOWLEDGE-A / CONNECTION derivatives into `bank.json`;
-2. continue replacement search for REST-B, ORDER-A, ORDER-B, CONTROL-A and KNOWLEDGE-B;
-3. review BELONGING-B and OPPORTUNITY-A;
-4. run final 28/28 geometry + watermark + semantic + reachability audit;
-5. run one final mobile visual smoke;
-6. fix sufficiency `null` / coverage display;
-7. preserve CARE visual-vs-received-support asymmetry explicitly;
-8. configure and smoke 90-day cleanup cron;
-9. only then decide first external formative mini-pilot.
+Order:
+1. search Gallery / existing assets for REST-B, ORDER-A, ORDER-B, CONTROL-A and KNOWLEDGE-B;
+2. compare BELONGING-B and OPPORTUNITY-A against stronger existing candidates;
+3. if strong existing candidates do not exist, define new stimulus briefs before generating anything;
+4. normalize every newly accepted non-square asset to reviewed 1:1 derivative;
+5. run final 28/28 geometry + watermark + semantic + runtime-reachability audit;
+6. run one final mobile visual smoke;
+7. fix sufficiency `null` / coverage display;
+8. preserve CARE visual-vs-received-support asymmetry explicitly;
+9. configure and smoke 90-day cleanup cron;
+10. only then decide first external formative mini-pilot.
 
 Do not repeatedly rerun the owner to tune a personal result.
 Do not recruit externally yet.
