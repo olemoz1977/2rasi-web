@@ -11,13 +11,12 @@ Branch: `feature/priolens-architecture`
 
 Recovery order:
 1. read this file;
-2. read `PROJECT_STATE.md`;
-3. read `docs/OPEN14_STIMULUS_BANK_OWNER_REVIEW_v0.1.md`;
-4. read `docs/OPEN14_OWNER_SMOKE_AND_RUNTIME_HARDENING_v0.1.md` for runtime background;
-5. open older architecture docs only as needed;
-6. open File Library only when an actual historical/runtime artifact is needed.
+2. read `PROJECT_STATE.md` for architecture / runtime background;
+3. read `docs/OPEN14_REMEDIATION_BATCH_V01_v0.1.md` as the latest active checkpoint;
+4. read `docs/OPEN14_STIMULUS_BANK_OWNER_REVIEW_v0.1.md` only for the preceding candidate-review history;
+5. open older docs / File Library only when needed.
 
-If chat memory conflicts with repo state, repo state wins.
+If an older asset-state section conflicts with the latest remediation checkpoint, the latest remediation checkpoint wins.
 
 ## Current architecture
 
@@ -36,7 +35,7 @@ Active Open14 v0.2 families:
 
 `SUCCESS / ACHIEVEMENT` remains `DERIVED / THEORY-HOLD`.
 
-## Runtime / owner smoke
+## Runtime state
 
 One full mobile owner smoke completed successfully.
 
@@ -57,50 +56,43 @@ Do not use the one owner run as construct evidence.
 
 ## Stimulus bank state
 
-The older statement `finish 28-asset dimensions audit` is obsolete.
+Dimensions audit is complete. Geometry normalization moved into semantic / visual remediation.
 
-Dimensions audit is complete:
-- 23 / 28 active assets were square;
-- 5 / 28 were portrait 768x1360.
+Resolved and live in the current bank:
+- SAFETY-B -> clean `Gallery/S13.webp`; 520x520; pHash distance 0 from old file; no watermark keyword detected;
+- AUTONOMY-A -> `Gallery/file_00000000cc8c81f4a927534c8316290c.png`; 1254x1254; working read `pasirinkti savo kryptį`.
 
-Reviewed center 1:1 derivatives accepted for:
-- REST-A;
-- RESOURCE-B;
-- BELONGING-B;
-- KNOWLEDGE-A.
+Human-review package is live:
+`https://omesg360.eu/priolens-remediation-review-v01/`
 
-ORDER-A crop was rejected and remains replacement-required.
+It contains:
+- REST-A slippers candidate: top / center / bottom 1:1 crops;
+- KNOWLEDGE-A library candidate: top / center / bottom 1:1 crops;
+- CONNECTION-A watermark cleanup: small / medium mask variants;
+- CONNECTION-B watermark cleanup: small / medium mask variants.
 
-Owner semantic / visual review then found additional pre-pilot issues.
+Still unresolved after that review:
+- REST-B: replacement search;
+- ORDER-A: replacement search, preferred tool shadow-board direction;
+- ORDER-B: replacement search, preferred marked-space / assigned-zone direction;
+- CONTROL-A: direct credible control mechanism still search;
+- KNOWLEDGE-B: clearer active learning / understanding scene still search;
+- BELONGING-B: HOLD due asymmetric warmth cue;
+- OPPORTUNITY-A: HOLD / search clearer immediate-opportunity cue.
 
-Replace / reassign:
-- REST-A: semantic mismatch; original intent was classic shoes vs sneakers;
-- REST-B: two watermarks;
-- ORDER-A: replacement required;
-- ORDER-B: does not read clearly as order / structure;
-- AUTONOMY-A: does not clearly read as autonomy;
-- CONTROL-A: implausible / artificial central instrument;
-- KNOWLEDGE-A: search clearer learning / understanding candidate;
-- KNOWLEDGE-B: current boundary probe too broad; search clearer candidate.
-
-Hold / search:
-- BELONGING-B: togetherness reading weakened by asymmetric visible warmth / steam;
-- OPPORTUNITY-A: search clearer immediate-opportunity candidate.
-
-Keep but clean:
-- CONNECTION-A: KlingAI watermark;
-- CONNECTION-B: visually confirmed watermark.
-
-Gallery near-duplicate search found `S13.webp` at perceptual-hash distance 0 from current SAFETY-B. It is the first candidate to verify as a clean equivalent.
-
-Canonical latest stimulus checkpoint:
-`docs/OPEN14_STIMULUS_BANK_OWNER_REVIEW_v0.1.md`.
+CARE-A/B remain accepted.
+RECOGNITION-A remains accepted.
+RECOGNITION-B remains accepted as boundary probe.
+RESOURCE-A/B, MASTERY-A/B and EXPLORATION-A/B currently pass.
 
 Technical active bank:
-`olemoz1977/omesg360/priolens/open14-v02/bank.json`.
+`olemoz1977/omesg360/priolens/open14-v02/bank.json`
 
 Owner-readable bank:
-`https://omesg360.eu/priolens-open14-v02/stimulus-bank.html`.
+`https://omesg360.eu/priolens-open14-v02/stimulus-bank.html`
+
+Latest formal checkpoint:
+`docs/OPEN14_REMEDIATION_BATCH_V01_v0.1.md`
 
 ## Live routes
 
@@ -135,19 +127,24 @@ Do not claim fully operational automatic deletion yet.
 
 ## Immediate next action
 
-**Finish active stimulus-bank remediation before another mobile smoke or external recruitment.**
+**Get the four human decisions from the remediation review page before changing those four runtime paths.**
 
-Order:
-1. verify / switch SAFETY-B to clean `S13.webp` if visually equivalent and watermark-free;
-2. clean or replace CONNECTION-A and CONNECTION-B watermarked PASS assets;
-3. replace REST-A, REST-B, ORDER-A, ORDER-B, AUTONOMY-A, CONTROL-A, KNOWLEDGE-A and KNOWLEDGE-B;
-4. review BELONGING-B and OPPORTUNITY-A against better Gallery candidates;
-5. run final 28/28 bank audit: geometry + watermark + semantic status + runtime reachability;
-6. smoke mobile visual flow once;
-7. fix sufficiency `null` / coverage display;
-8. preserve CARE visual-vs-received-support asymmetry explicitly;
-9. configure and smoke 90-day cleanup cron;
-10. only then decide first external formative mini-pilot.
+Owner should return:
+1. REST-A = top / center / bottom;
+2. KNOWLEDGE-A = top / center / bottom;
+3. CONNECTION-A = small / medium / reject cleanup;
+4. CONNECTION-B = small / medium / reject cleanup.
+
+Then:
+1. switch accepted REST-A / KNOWLEDGE-A / CONNECTION derivatives into `bank.json`;
+2. continue replacement search for REST-B, ORDER-A, ORDER-B, CONTROL-A and KNOWLEDGE-B;
+3. review BELONGING-B and OPPORTUNITY-A;
+4. run final 28/28 geometry + watermark + semantic + reachability audit;
+5. run one final mobile visual smoke;
+6. fix sufficiency `null` / coverage display;
+7. preserve CARE visual-vs-received-support asymmetry explicitly;
+8. configure and smoke 90-day cleanup cron;
+9. only then decide first external formative mini-pilot.
 
 Do not repeatedly rerun the owner to tune a personal result.
 Do not recruit externally yet.
