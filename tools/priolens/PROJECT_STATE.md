@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PARTICIPANT COMPLETION LIVE / PRE-PILOT HARDENING
+Status: ACTIVE RESEARCH / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PARTICIPANT COMPLETION LIVE / BILINGUAL LT+EN LIVE / PRE-PILOT HARDENING
 Updated: 2026-09-01
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -8,11 +8,12 @@ Branch: `feature/priolens-architecture`
 ## Read first
 
 1. `RESUME_HERE.md`
-2. `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
-3. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
-4. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
-5. this file
-6. older architecture docs only as needed
+2. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`
+3. `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
+4. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
+5. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
+6. this file
+7. older architecture docs only as needed
 
 ## Product boundary
 
@@ -145,8 +146,6 @@ Therefore same-exemplar repetition is not family-level evidence.
 
 ## Runtime state
 
-One full mobile owner smoke completed on 2026-09-01.
-
 Current runtime includes:
 - 14 visual triads;
 - `no_clear_choice`;
@@ -157,10 +156,13 @@ Current runtime includes:
 - final automatic API submission;
 - local autosave / resume;
 - server-side incomplete checkpoints;
-- participant-facing `Trumpai` synthesis;
+- participant-facing short synthesis;
 - coverage-aware sufficiency result rendering;
-- clear restart / 2rasi return actions;
-- raw JSON export and diagnostics hidden from normal participant mode.
+- clear repeat / 2rasi return actions;
+- raw JSON export and diagnostics hidden from normal participant mode;
+- one bilingual LT/EN participant runtime;
+- `language: lt|en` stored in new payloads;
+- language-separated local drafts.
 
 Production lifecycle smoke passed:
 `partial -> final -> stale partial cannot overwrite final`.
@@ -180,7 +182,7 @@ Accessibility runtime commit:
 `6ed9fd59cf8b715cf99d03427084a9cd38ff722d`
 
 Workflow run:
-`33540650020` — SUCCESS; live smoke passed.
+`33540650020` — SUCCESS.
 
 Now:
 - `Nė vienas aiškiai` is a horizontal 48 px minimum-height button below the triad;
@@ -190,26 +192,44 @@ Now:
 - unanswered items explicitly show `Neatsakyta`;
 - incomplete domains use inline high-contrast validation and mark missing items instead of relying on `alert()`.
 
-Messenger JSON export was separately hardened after Blob-download failure in the in-app browser:
-- runtime commit `5e0f8881e93d53e3fac5c22c6f5587e30bc18053`;
-- native file share first where supported, then download, then clipboard fallback;
-- automatic server submission remains independent of manual export.
+Messenger JSON export was separately hardened after Blob-download failure in the in-app browser. Automatic server submission remains independent of manual export.
 
 ### Participant completion flow
 
-Informal household testing then exposed a product completion failure: after reading the result, the participant asked what happens next.
+Informal household testing exposed a product completion failure: after reading the result, the participant asked what happens next.
 
 Runtime commit:
 `98d4204ebc178288931af0ec3ef1a42693fc8fd2`
 
 Workflow run:
-`33542878842` — SUCCESS; live smoke passed.
+`33542878842` — SUCCESS.
 
 Now:
-- result begins with a short `Trumpai` synthesis based only on existing descriptive evidence;
+- result begins with a short synthesis based only on existing descriptive evidence;
 - `Nauja sesija` is now `Atlikti dar kartą`;
-- `Grįžti į 2rasi` returns through a constrained `from=lt|com` parameter;
-- raw JSON and diagnostics are debug-only (`?debug=1`).
+- `Grįžti į 2rasi` returns through constrained origin routing;
+- raw JSON and diagnostics are debug-only.
+
+### Bilingual LT/EN runtime
+
+Runtime commit:
+`b97c06e876cf2df0b0f3af3d043465d66b2ff845`
+
+Workflow run:
+`33544864679` — SUCCESS.
+
+One runtime serves both languages:
+- LT: `?lang=lt&from=lt`;
+- EN: `?lang=en&from=com`;
+- legacy `from=com` without `lang` infers EN;
+- default is LT.
+
+The visual bank, planner, exemplar logic, autosave and backend are shared.
+Channel B uses the same 12 item IDs and semantically matched LT/EN wording.
+New payloads store `language: lt|en`; historical Open14 v0.2 rows without language remain valid.
+Language must be retained during analysis before deciding whether LT and EN observations can be pooled.
+
+The bilingual migration was syntax-checked before deployment. An earlier v01 migration attempt failed validation and did not touch live; v02 passed and deployed.
 
 ## Perceived sufficiency
 
@@ -223,19 +243,22 @@ Six domains / twelve items remain conceptually active:
 
 UI:
 - one discrete 5-step slider per item;
-- anchors `Labai trūksta` / `Pakanka`;
-- separate `Sunku pasakyti`;
+- LT anchors `Labai trūksta` / `Pakanka`;
+- EN anchors `Far too little` / `Enough`;
+- separate `Sunku pasakyti / Hard to say`;
 - storage remains 1–5 and `null`;
-- an unset slider is explicitly labeled `Neatsakyta` and is not treated as midpoint data.
+- an unset slider is explicitly labeled as unanswered and is not treated as midpoint data.
 
 Coverage issue CLOSED in runtime commit `98d4204ebc178288931af0ec3ef1a42693fc8fd2`:
-- 0/2 numeric answers -> `Sunku pasakyti`;
+- 0/2 numeric answers -> hard-to-say state;
 - 1/2 -> explicit partial-information state, no full domain bar;
 - only 2/2 complete domains enter Channel A vs Channel B comparison / summary logic.
 
 Open conceptual issues:
 1. visual CARE = proactive / giving care, while `CARE_SUPPORT_PRESENT` measures care/support present or received; do not treat them as construct-equivalent;
 2. Meaning / Contribution has no active visual counterpart.
+
+Current comparison logic does not directly map CARE into CONNECTION_SUPPORT; that asymmetry must be frozen as an analysis rule before external pilot.
 
 ## Backend and retention
 
@@ -252,38 +275,44 @@ Target retention: 90 days.
 Operational:
 - `created_at`;
 - generated/indexed `expires_at = created_at + 90 DAY`;
-- CLI-only cleanup script.
+- CLI-only cleanup script;
+- final / progress APIs accept optional `language` only when `lt` or `en`.
 
 Still missing:
 - Hostinger cron is not configured / smoked;
-- therefore automatic physical deletion after 90 days is not yet guaranteed.
+- automatic physical deletion after 90 days is therefore not guaranteed.
+
+Participant wording now says retention is **intended / numatyta** up to 90 days, not guaranteed.
+
+Existing DB contains owner / household / system testing rows. They must be cleaned or explicitly excluded before pilot analysis; do not treat them as construct evidence.
 
 ## 2rasi entry / exit architecture
 
 The 10th PrioLens homepage card already exists in `feature/priolens-architecture` and points to `/tools/priolens/`.
 
-The PrioLens landing page was updated from the obsolete 8-direction / 28-pair architecture to the current Open14 flow in commit:
-`9af3081f88cb0172afc61413bdeda25e717ec138`.
-
-The homepage card hook is triad-compatible:
+Homepage hook:
 - EN: `When several things matter, what pulls you first?`
 - LT: `Kai svarbūs keli dalykai, kas patraukia pirmiausia?`
 
-Landing CTA points to the omesg360 runtime with `from=lt|com`, allowing the result screen to return to the correct 2rasi domain.
+The PrioLens landing is aligned with current Open14 and bilingual routing.
+Latest landing commit:
+`11517309d064332142d8ad9cd89ab8b263ae2149`.
 
-The feature-branch entry route is PREPARED, not yet considered publicly live.
+Prepared routing:
+- `2rasi.lt` -> `from=lt&lang=lt`;
+- `2rasi.com` -> `from=com&lang=en`.
 
-Current Open14 participant runtime is LT-only; the `.com` landing states this limitation explicitly.
+The feature-branch entry route is PREPARED, not considered publicly live until intentionally merged / deployed.
 
 Latest checkpoint:
-`docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
+`docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`
 
 ## Remaining pre-pilot hardening
 
-1. run one fresh full mobile participant smoke including the new summary, coverage states, restart and 2rasi return;
-2. preserve CARE giving-vs-received-support asymmetry explicitly in final wording / logic documentation;
-3. configure and smoke 90-day cleanup cron;
-4. decide whether first external formative release is LT-only or requires EN runtime first;
+1. run one fresh full mobile participant smoke in LT and one focused EN smoke, including summary, coverage states, restart and return;
+2. freeze CARE giving-vs-received-support asymmetry explicitly as an analysis rule;
+3. configure and smoke the 90-day cleanup cron;
+4. clean or explicitly exclude owner / household / system test rows before pilot analysis;
 5. intentionally merge / deploy the prepared PrioLens 10th-card route only when recruitment opens.
 
 External recruitment remains CLOSED until these are complete.
@@ -296,6 +325,7 @@ When opened:
 - stimulus / UX / family-boundary research, not validation.
 
 Synthetic rows with `SYSTEM_SMOKE_DO_NOT_ANALYZE` must be excluded.
+Language must remain available as an analysis factor; do not pool LT/EN blindly.
 
 ## Research question
 
