@@ -34,7 +34,7 @@
       <span data-en="~3 minutes" data-lt="~3 minutės">~3 minutes</span>
       <span data-en="Reflection, not diagnosis" data-lt="Refleksija, ne diagnozė">Reflection, not diagnosis</span>
     </div>
-    <div class="tool-actions"><a id="start-pilot" class="button primary" href="https://omesg360.eu/priolens-open14-v02/?from=com" data-en="Start formative pilot →" data-lt="Pradėti formuojamąjį pilotą →">Start formative pilot →</a></div>
+    <div class="tool-actions"><a id="start-pilot" class="button primary" href="https://omesg360.eu/priolens-open14-v02/?from=com&lang=en" data-en="Start formative pilot →" data-lt="Pradėti formuojamąjį pilotą →">Start formative pilot →</a></div>
   </section>
 
   <div class="tool-grid">
@@ -59,8 +59,8 @@
 
     <aside class="side-card">
       <h3 data-en="Look once. Then look again." data-lt="Pažvelk vieną kartą. Tada dar kartą.">Look once. Then look again.</h3>
-      <p data-en="The current Open14 formative pilot is available in Lithuanian. You can still enter from 2rasi.com; the experiment itself will open in Lithuanian." data-lt="Dabartinis Open14 formuojamasis pilotas vyksta lietuviškai. Užbaigęs galėsi grįžti į 2rasi arba atlikti sesiją dar kartą.">The current Open14 formative pilot is available in Lithuanian. You can still enter from 2rasi.com; the experiment itself will open in Lithuanian.</p>
-      <a id="start-pilot-side" class="button primary" href="https://omesg360.eu/priolens-open14-v02/?from=com" data-en="Start formative pilot →" data-lt="Pradėti formuojamąjį pilotą →">Start formative pilot →</a>
+      <p data-en="Open14 follows the site language: English on 2rasi.com and Lithuanian on 2rasi.lt. After finishing, you can return to 2rasi or repeat the session." data-lt="Open14 seka svetainės kalbą: lietuviškai 2rasi.lt ir angliškai 2rasi.com. Užbaigęs galėsi grįžti į 2rasi arba atlikti sesiją dar kartą.">The current Open14 formative pilot is available in Lithuanian. You can still enter from 2rasi.com; the experiment itself will open in Lithuanian.</p>
+      <a id="start-pilot-side" class="button primary" href="https://omesg360.eu/priolens-open14-v02/?from=com&lang=en" data-en="Start formative pilot →" data-lt="Pradėti formuojamąjį pilotą →">Start formative pilot →</a>
     </aside>
   </div>
 </main>
@@ -70,7 +70,8 @@
 (()=>{
   const h=location.hostname.toLowerCase();
   const from=(h==='2rasi.lt'||h.endsWith('.2rasi.lt'))?'lt':'com';
-  const url=`https://omesg360.eu/priolens-open14-v02/?from=${from}`;
+  const lang=from==='lt'?'lt':'en';
+  const url=`https://omesg360.eu/priolens-open14-v02/?from=${from}&lang=${lang}`;
   document.querySelectorAll('#start-pilot,#start-pilot-side').forEach(a=>a.href=url);
 })();
 </script>
