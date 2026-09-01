@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / PRE-PILOT HARDENING
+Status: ACTIVE RESEARCH / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PRE-PILOT HARDENING
 Updated: 2026-09-01
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -8,9 +8,10 @@ Branch: `feature/priolens-architecture`
 ## Read first
 
 1. `RESUME_HERE.md`
-2. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
-3. this file
-4. older architecture docs only as needed
+2. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
+3. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
+4. this file
+5. older architecture docs only as needed
 
 ## Product boundary
 
@@ -162,6 +163,34 @@ Production lifecycle smoke passed:
 
 Do not tune the bank to the owner's personal choice pattern.
 
+### Mobile / in-app browser hardening
+
+Informal household mobile smoke exposed three measurement-relevant UX failures:
+- `Nė vienas aiškiai` was easy to miss as a 50 px vertical strip;
+- sufficiency text / helper labels were too small for lower-vision reading;
+- the unanswered slider looked like a valid midpoint because its thumb sat at 3 while only greyed.
+
+These are UX findings only, not construct evidence or pilot data.
+
+Accessibility runtime commit:
+`6ed9fd59cf8b715cf99d03427084a9cd38ff722d`
+
+Workflow run:
+`33540650020` — SUCCESS; live smoke passed.
+
+Now:
+- `Nė vienas aiškiai` is a horizontal 48 px minimum-height button below the triad;
+- trial prompt / counter are larger;
+- sufficiency statements are 18 px with larger line-height;
+- domain titles, range anchors, helper text and `Sunku pasakyti` are larger / higher contrast;
+- unanswered items explicitly show `Neatsakyta`;
+- incomplete domains use inline high-contrast validation and mark missing items instead of relying on `alert()`.
+
+Messenger JSON export was separately hardened after Blob-download failure in the in-app browser:
+- runtime commit `5e0f8881e93d53e3fac5c22c6f5587e30bc18053`;
+- native file share first where supported, then download, then clipboard fallback;
+- automatic server submission remains independent of manual export.
+
 ## Perceived sufficiency
 
 Six domains / twelve items remain conceptually active:
@@ -176,7 +205,8 @@ UI:
 - one discrete 5-step slider per item;
 - anchors `Labai trūksta` / `Pakanka`;
 - separate `Sunku pasakyti`;
-- storage remains 1–5 and `null`.
+- storage remains 1–5 and `null`;
+- an unset slider is now explicitly labeled `Neatsakyta` and is not treated as midpoint data.
 
 Open issues:
 1. participant-facing results must expose coverage; 1/2 answered must not look like a complete domain score;
@@ -206,7 +236,7 @@ Still missing:
 
 ## Remaining pre-pilot hardening
 
-1. one final mobile visual smoke on the finalized 28/28 bank;
+1. rerun one short mobile smoke focused on the new no-clear control, readability and unanswered-slider validation;
 2. fix sufficiency `null` / coverage display;
 3. preserve CARE giving-vs-received-support asymmetry explicitly in result wording / logic;
 4. configure and smoke 90-day cleanup cron;
