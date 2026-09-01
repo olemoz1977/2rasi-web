@@ -1,6 +1,6 @@
 # PrioLens project state
 
-Status: ACTIVE RESEARCH / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PRE-PILOT HARDENING
+Status: ACTIVE RESEARCH / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PARTICIPANT COMPLETION LIVE / PRE-PILOT HARDENING
 Updated: 2026-09-01
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -8,10 +8,11 @@ Branch: `feature/priolens-architecture`
 ## Read first
 
 1. `RESUME_HERE.md`
-2. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
-3. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
-4. this file
-5. older architecture docs only as needed
+2. `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
+3. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
+4. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
+5. this file
+6. older architecture docs only as needed
 
 ## Product boundary
 
@@ -153,10 +154,13 @@ Current runtime includes:
 - exact exemplar identity;
 - 12 post-visual sufficiency items;
 - discrete hidden-number slider UI;
-- JSON export;
 - final automatic API submission;
 - local autosave / resume;
-- server-side incomplete checkpoints.
+- server-side incomplete checkpoints;
+- participant-facing `Trumpai` synthesis;
+- coverage-aware sufficiency result rendering;
+- clear restart / 2rasi return actions;
+- raw JSON export and diagnostics hidden from normal participant mode.
 
 Production lifecycle smoke passed:
 `partial -> final -> stale partial cannot overwrite final`.
@@ -191,6 +195,22 @@ Messenger JSON export was separately hardened after Blob-download failure in the
 - native file share first where supported, then download, then clipboard fallback;
 - automatic server submission remains independent of manual export.
 
+### Participant completion flow
+
+Informal household testing then exposed a product completion failure: after reading the result, the participant asked what happens next.
+
+Runtime commit:
+`98d4204ebc178288931af0ec3ef1a42693fc8fd2`
+
+Workflow run:
+`33542878842` — SUCCESS; live smoke passed.
+
+Now:
+- result begins with a short `Trumpai` synthesis based only on existing descriptive evidence;
+- `Nauja sesija` is now `Atlikti dar kartą`;
+- `Grįžti į 2rasi` returns through a constrained `from=lt|com` parameter;
+- raw JSON and diagnostics are debug-only (`?debug=1`).
+
 ## Perceived sufficiency
 
 Six domains / twelve items remain conceptually active:
@@ -206,12 +226,16 @@ UI:
 - anchors `Labai trūksta` / `Pakanka`;
 - separate `Sunku pasakyti`;
 - storage remains 1–5 and `null`;
-- an unset slider is now explicitly labeled `Neatsakyta` and is not treated as midpoint data.
+- an unset slider is explicitly labeled `Neatsakyta` and is not treated as midpoint data.
 
-Open issues:
-1. participant-facing results must expose coverage; 1/2 answered must not look like a complete domain score;
-2. visual CARE = proactive / giving care, while `CARE_SUPPORT_PRESENT` measures care/support present or received; do not treat them as construct-equivalent;
-3. Meaning / Contribution has no active visual counterpart.
+Coverage issue CLOSED in runtime commit `98d4204ebc178288931af0ec3ef1a42693fc8fd2`:
+- 0/2 numeric answers -> `Sunku pasakyti`;
+- 1/2 -> explicit partial-information state, no full domain bar;
+- only 2/2 complete domains enter Channel A vs Channel B comparison / summary logic.
+
+Open conceptual issues:
+1. visual CARE = proactive / giving care, while `CARE_SUPPORT_PRESENT` measures care/support present or received; do not treat them as construct-equivalent;
+2. Meaning / Contribution has no active visual counterpart.
 
 ## Backend and retention
 
@@ -234,13 +258,33 @@ Still missing:
 - Hostinger cron is not configured / smoked;
 - therefore automatic physical deletion after 90 days is not yet guaranteed.
 
+## 2rasi entry / exit architecture
+
+The 10th PrioLens homepage card already exists in `feature/priolens-architecture` and points to `/tools/priolens/`.
+
+The PrioLens landing page was updated from the obsolete 8-direction / 28-pair architecture to the current Open14 flow in commit:
+`9af3081f88cb0172afc61413bdeda25e717ec138`.
+
+The homepage card hook is triad-compatible:
+- EN: `When several things matter, what pulls you first?`
+- LT: `Kai svarbūs keli dalykai, kas patraukia pirmiausia?`
+
+Landing CTA points to the omesg360 runtime with `from=lt|com`, allowing the result screen to return to the correct 2rasi domain.
+
+The feature-branch entry route is PREPARED, not yet considered publicly live.
+
+Current Open14 participant runtime is LT-only; the `.com` landing states this limitation explicitly.
+
+Latest checkpoint:
+`docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
+
 ## Remaining pre-pilot hardening
 
-1. rerun one short mobile smoke focused on the new no-clear control, readability and unanswered-slider validation;
-2. fix sufficiency `null` / coverage display;
-3. preserve CARE giving-vs-received-support asymmetry explicitly in result wording / logic;
-4. configure and smoke 90-day cleanup cron;
-5. then decide the first small external formative release.
+1. run one fresh full mobile participant smoke including the new summary, coverage states, restart and 2rasi return;
+2. preserve CARE giving-vs-received-support asymmetry explicitly in final wording / logic documentation;
+3. configure and smoke 90-day cleanup cron;
+4. decide whether first external formative release is LT-only or requires EN runtime first;
+5. intentionally merge / deploy the prepared PrioLens 10th-card route only when recruitment opens.
 
 External recruitment remains CLOSED until these are complete.
 
