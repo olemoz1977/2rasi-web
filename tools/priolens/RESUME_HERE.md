@@ -12,11 +12,11 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. read this file;
 2. read `PROJECT_STATE.md` for architecture / runtime background;
-3. read `docs/OPEN14_REMEDIATION_BATCH_V01_v0.1.md` as the latest active checkpoint;
-4. read `docs/OPEN14_STIMULUS_BANK_OWNER_REVIEW_v0.1.md` only for preceding candidate-review history;
-5. open older docs / File Library only when needed.
+3. read `docs/OPEN14_CANDIDATE_SHORTLIST_V01_v0.1.md` as the latest active checkpoint;
+4. read `docs/OPEN14_REMEDIATION_BATCH_V01_v0.1.md` for the preceding remediation batch;
+5. read older docs / File Library only when needed.
 
-If an older asset-state section conflicts with the latest remediation checkpoint, the latest remediation checkpoint wins.
+If an older asset-state section conflicts with the latest remediation checkpoint, the latest checkpoint wins.
 
 ## Current architecture
 
@@ -68,14 +68,34 @@ Resolved and live:
 
 All six above are present in the technical `bank.json`; the four latest owner selections were deployed and live-smoked successfully in workflow run `33470516649`.
 
-Still unresolved:
-- REST-B: replace;
-- ORDER-A: replace, preferred tool shadow-board direction;
-- ORDER-B: replace, preferred marked-space / assigned-zone direction;
-- CONTROL-A: replace with credible direct-control mechanism;
-- KNOWLEDGE-B: replace/search for active learning / understanding;
+Still requiring replacement:
+- REST-B;
+- ORDER-A;
+- ORDER-B;
+- CONTROL-A;
+- KNOWLEDGE-B.
+
+Hold / search after those five:
 - BELONGING-B: HOLD due asymmetric warmth cue;
 - OPPORTUNITY-A: HOLD / search clearer immediate-opportunity cue.
+
+### Candidate search state
+
+Whole-Gallery semantic retrieval completed successfully:
+- workflow run `33471115239`;
+- 184 valid Gallery candidates after 25 current/source/previous/bad-known files were excluded;
+- CLIP ranking + OCR watermark screening;
+- full review route: `https://omesg360.eu/priolens-candidate-review-v02/`.
+
+**CLIP is retrieval support only. It is not construct evidence and must never auto-switch a bank asset.**
+
+A curated four-candidate-per-family mobile shortlist for the five required replacements is live:
+`https://omesg360.eu/priolens-candidate-shortlist-v01/`
+
+Deploy/smoke workflow run:
+`33471574796` — SUCCESS.
+
+Known cross-loaded legacy assets such as `S06.webp` and `S11.webp` were deliberately excluded from the curated shortlist even where CLIP ranked them highly.
 
 Currently passing / retained:
 - RESOURCE-A/B;
@@ -99,7 +119,7 @@ Owner-readable bank:
 `https://omesg360.eu/priolens-open14-v02/stimulus-bank.html`
 
 Latest formal checkpoint:
-`docs/OPEN14_REMEDIATION_BATCH_V01_v0.1.md`
+`docs/OPEN14_CANDIDATE_SHORTLIST_V01_v0.1.md`
 
 ## Live routes
 
@@ -134,19 +154,30 @@ Do not claim fully operational automatic deletion yet.
 
 ## Immediate next action
 
-**Continue stimulus-bank remediation. Do not run another owner interpretation session yet.**
+**Owner visual review of the five-family curated shortlist. Do not switch any candidate from CLIP score alone.**
 
-Order:
-1. search Gallery / existing assets for REST-B, ORDER-A, ORDER-B, CONTROL-A and KNOWLEDGE-B;
-2. compare BELONGING-B and OPPORTUNITY-A against stronger existing candidates;
-3. if strong existing candidates do not exist, define new stimulus briefs before generating anything;
-4. normalize every newly accepted non-square asset to reviewed 1:1 derivative;
-5. run final 28/28 geometry + watermark + semantic + runtime-reachability audit;
-6. run one final mobile visual smoke;
-7. fix sufficiency `null` / coverage display;
-8. preserve CARE visual-vs-received-support asymmetry explicitly;
-9. configure and smoke 90-day cleanup cron;
-10. only then decide first external formative mini-pilot.
+Open:
+`https://omesg360.eu/priolens-candidate-shortlist-v01/`
+
+Return `A / B / C / D / reject` for:
+1. REST-B;
+2. ORDER-A;
+3. ORDER-B;
+4. CONTROL-A;
+5. KNOWLEDGE-B.
+
+Then:
+1. create reviewed 1:1 derivatives for any accepted portrait candidates;
+2. verify watermark / logos / text and visual credibility;
+3. switch accepted reviewed assets into `bank.json`;
+4. smoke changed runtime paths;
+5. review BELONGING-B and OPPORTUNITY-A;
+6. run final 28/28 geometry + watermark + semantic + runtime-reachability audit;
+7. run one final mobile visual smoke;
+8. fix sufficiency `null` / coverage display;
+9. preserve CARE visual-vs-received-support asymmetry explicitly;
+10. configure and smoke 90-day cleanup cron;
+11. only then decide first external formative mini-pilot.
 
 Do not repeatedly rerun the owner to tune a personal result.
 Do not recruit externally yet.
