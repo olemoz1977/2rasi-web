@@ -1,6 +1,6 @@
 # PrioLens participant surface v0.1
 
-Status: ACTIVE CHECKPOINT / PRE-PILOT PARTICIPANT SURFACE / FOCUSED RESULT EXPERIENCE LIVE
+Status: ACTIVE CHECKPOINT / PRE-PILOT PARTICIPANT SURFACE / HUMAN VISUAL RESULT LIVE
 Updated: 2026-09-02
 
 ## Scope
@@ -47,70 +47,84 @@ Retention wording remains conservative until the cleanup cron is operational.
 
 The result is not a diagnostic report and not a list of all collected values.
 
-Its job is to give the participant three useful steps:
+Its participant-facing job is now:
 
-1. **Kas patraukė tavo dėmesį / What pulled your attention**
-2. **Kur šiuo metu mažiau pakanka / Where less feels sufficient right now**
-3. **Pažvelk dar kartą / Look again** as a reflection question
+1. **Ką rinkaisi dažniausiai / What you chose most often**
+2. **Kur dabar ne visai pakanka / Where things do not feel quite enough**
+3. **Svarbiausia / Most important -> Kas čia verta antro žvilgsnio? / What deserves a second look?**
+
+The third section is the main product payoff. The first two sections are evidence that supports it.
 
 The public promise remains:
 > `Pirmas žvilgsnis ir antras atsakymas ne visada rodo tą patį.`
 
-### 1. What pulled your attention
+### 1. Repeated visual choices
 
 Participant evidence remains the frozen cross-exemplar repetition rule:
-- a family is shown as repeated only when both distinct exemplars were chosen at least once;
-- same-exemplar repetition alone is not promoted to family-level evidence;
-- no technical rates, bars or RT interpretation are shown.
+- show a family only when both distinct exemplars were chosen at least once;
+- therefore a displayed family is normally `2/3` or `3/3`;
+- `3/3` is visually stronger repetition but is **not** a separate construct threshold;
+- same-exemplar repetition alone is not promoted to family-level evidence.
 
-When a repeated theme exists, the result now explicitly explains the interpretation boundary:
+For each displayed family:
+- show the actual distinct images the participant selected;
+- show a simple `2/3` or `3/3` badge;
+- show one short human-language description of what the theme **may** relate to;
+- never present that description as the reason the participant chose the image.
 
-> The choices show what repeatedly pulled attention in this session. They do not tell us what the participant lacks.
+The interpretation boundary is concise and human:
+> `Tai nereiškia, kad tau šito trūksta. Tik tiek, kad prie šių temų tavo dėmesys grįžo daugiau nei kartą.`
 
-Participant copy may mention plausible attention influences such as current relevance, learned value, prior experience or properties of the image itself, but must state that the choice alone does not identify **why** attention was pulled.
-
-Therefore never turn visual repetition into:
+Family descriptions may use language such as `Gali būti susiję su...`, but never:
 - `you need this`;
 - `you lack this`;
 - `your subconscious wants this`;
 - `this is your true priority`.
 
-### 2. Where less feels sufficient right now
+### 2. Current sufficiency
 
 Channel B still stores all twelve item responses and full domain coverage exactly as before.
 
-Normal participant output is now intentionally selective:
-- only **complete** 2/2 domains may be interpreted;
+Normal participant output is intentionally selective:
+- only complete 2/2 domains may be interpreted;
 - among complete domains, only domains with the current aggregate value `<= 3` are listed individually;
-- values on the 4–5 side are not listed as six separate reassuring cards;
-- if no complete domain is `<= 3`, show one concise statement that no area stood out as less sufficient;
+- values on the 4–5 side are not listed as separate reassuring cards;
+- if no complete domain is `<= 3`, show one concise statement that nothing clearly stood out;
 - incomplete domains remain omitted from interpretation and one concise coverage note is allowed;
 - if no domain is complete, do not interpret this perspective.
 
 This `<= 3` threshold is a **participant-display filter only**. It is not a new research variable, clinical cutoff, Maslow stage or pilot-analysis threshold. Raw values remain stored.
 
-Participant states remain broad and non-precise:
-- lower current sufficiency;
-- in between.
+No decimals, bars or technical coverage counts are shown in normal participant mode.
 
-No decimals, bars or `0/2`, `1/2`, `2/2` counts are shown in normal mode.
+### 3. Final reflection is the main payoff
 
-### 3. Look again / reflection
+The final section must feel clearly more important than the two evidence sections.
 
-The third section no longer tries to manufacture a generalized conclusion.
+Current presentation:
+- label: `Svarbiausia / Most important`;
+- heading: `Kas čia verta antro žvilgsnio? / What deserves a second look?`;
+- visually dominant dark reflection card;
+- relevant selected images repeated inside the final card when a visual family is in focus;
+- one short synthesis in ordinary language;
+- one large reflection question.
 
-It gives one focused synthesis and one question.
+Avoid research-language phrases such as:
+- `two signals`;
+- `broader area`;
+- `valid pairing`;
+- repeated references to `this session` unless technically necessary.
 
-Priority order:
+Current priority logic:
 
-1. If a repeated visual family has a valid mapped complete sufficiency domain, use that valid pairing.
-   - When the mapped domain is `<=3`, ask whether the participant sees a connection between the two signals or whether they feel unrelated.
-   - When the mapped domain is on the more-sufficient side, explicitly preserve the contrast and ask what about the repeated-theme images still pulled attention.
-2. If a repeated visual theme has no valid equivalent Channel B comparison, reflect on the visual repetition alone rather than inventing symmetry.
-3. If there is no repeated visual theme but one or more complete domains are `<=3`, ask which of those areas feels most worth attention now.
-4. If neither side produces a salient participant-facing signal, ask whether anything in the result still surprised the participant.
+1. If repeated visual families have valid complete mapped sufficiency domains, prefer a mapping whose domain is `<=3`; within the same priority, prefer the family chosen more often.
+2. If the mapped domain is `<=3`, ask whether the repetition has anything to do with how the participant currently feels in that area, explicitly allowing `not related`.
+3. If the mapped domain is on the more-sufficient side, preserve the contrast and ask, in ordinary language, what about the images still caught the participant.
+4. If a repeated theme has no valid Channel B counterpart, reflect on the image choice alone.
+5. If there is no repeated visual family but one or more complete domains are `<=3`, reflect on the lower-sufficiency area.
+6. If neither side produces a salient participant-facing point, ask whether anything still stayed with the participant.
 
-The question must not imply that a relationship exists. A valid participant answer is explicitly allowed to be: **these two things feel unrelated**.
+The final question must not imply that a relationship exists.
 
 ## CARE and asymmetry guardrail
 
@@ -119,7 +133,7 @@ The frozen CARE rule remains unchanged:
 - `CARE_SUPPORT_PRESENT` = care/support present or received;
 - no direct CARE <-> CARE_SUPPORT_PRESENT comparison in Open14 v0.2.
 
-A repeated CARE theme may therefore appear in section 1 and may receive a visual-only reflection question, but must not be falsely paired with received support.
+A repeated CARE theme may appear with its selected images and a visual-only reflection question, but must not be falsely paired with received support.
 
 Meaning / Contribution remains contextual-only because it has no active visual counterpart.
 
@@ -137,18 +151,21 @@ Runtime repository:
 Runtime file:
 `priolens/open14-v02/index.html`
 
-Focused result experience runtime commit:
-`3ff1c11a7bce581ada174a917d1732efcc5b53de`
+Human visual result runtime commit:
+`a079295e8054160973f7fccb7282319a751fdad8`
 
 Deployment / live HTTP smoke:
-`33628198344` — SUCCESS.
+`33629814257` — SUCCESS.
 
 Verified by that deployment:
 - current bilingual participant surface present in source;
-- focused `<=3` result filter present;
-- LT and EN reflection copy present;
+- selected repeated images are rendered back to the participant;
+- `2/3` and `3/3` participant badges use the existing cross-exemplar evidence rule;
+- family `may relate to` descriptions are present in LT and EN;
+- focused `<=3` result filter remains present;
+- final reflection uses the visually dominant reflection hero;
 - managed runtime uploaded to Hostinger;
-- live HTTP source contains the new result experience;
+- live HTTP source contains the new human-result implementation;
 - planner / assigner / bank / API health remain reachable;
 - historical `/priolens/` boundary remains reachable.
 
