@@ -100,6 +100,19 @@ Meaning / Contribution remains contextual-only because it has no active visual c
 
 If there is no valid comparison, say so without implying failure or forcing a profile.
 
+### Combined no-comparison edge
+
+The exact pre-pilot edge case used during owner smoke is now handled explicitly:
+- no cross-exemplar repeated visual family;
+- no complete sufficiency domain because the participant used `Sunku pasakyti / Hard to say` throughout.
+
+The participant result must explain **both** reasons instead of presenting only one of them.
+
+Current LT wording:
+> `Ši sesija nesukūrė aiškaus dviejų perspektyvų sugretinimo: pirmame žvilgsnyje nebuvo pasikartojimo, o antram atsakymui nepakako aiškių įverčių.`
+
+EN is semantically matched.
+
 ## Technical detail boundary
 
 Raw JSON and research diagnostics remain debug-only (`?debug=1`).
@@ -114,11 +127,17 @@ Runtime repository:
 Runtime file:
 `priolens/open14-v02/index.html`
 
-Runtime commit:
+Main participant-surface runtime commit:
 `caa49b0dcb372fc085e79ec15fbd3fce66dd6d12`
 
-Deployment workflow run:
+Main deployment workflow run:
 `33622563632` — SUCCESS, including live-source smoke.
+
+Latest edge-case runtime commit:
+`542f55627cee2f1039dc15c3c91de7eb0770054d`
+
+Latest edge-case deployment workflow run:
+`33622980671` — SUCCESS, including live-source smoke.
 
 ## Recruitment consequence
 
