@@ -1,0 +1,190 @@
+name: Patch PrioLens self-explanation docs v01
+
+on:
+  push:
+    branches: [feature/priolens-architecture]
+    paths:
+      - .github/workflows/patch-priolens-self-explanation-docs-v01.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/priolens-architecture
+          fetch-depth: 0
+
+      - name: Patch canonical docs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          base=Path('tools/priolens')
+          docs=base/'docs'
+
+          newdoc=docs/'OPEN14_SELF_EXPLANATION_RULE_v0.1.md'
+          newdoc.write_text('''# PrioLens Open14 self-explanation rule v0.1
+
+Status: CANONICAL PRE-PILOT PARTICIPANT REFLECTION RULE
+Date: 2026-09-02
+
+## Purpose
+
+PrioLens now separates three observations:
+
+- **A — visual pull:** what repeatedly attracted the participant across distinct visual exemplars;
+- **B — current self-report:** what the participant says feels less or more sufficient right now;
+- **C — self-explanation:** what the participant themselves thinks may explain why the visual theme attracted them.
+
+C does not reveal the true or subconscious cause of A. It is a post-choice self-explanation and must be analysed as such.
+
+## Participant flow
+
+When a repeated visual family is the final focus, ask:
+
+> **Kaip tau atrodo, kodėl būtent šie vaizdai tave traukė?**
+
+EN:
+
+> **Why do you think these particular images pulled you?**
+
+Offer exactly these current options:
+
+1. `WANT_MORE` — Norėčiau daugiau to savo gyvenime / I would like more of this in my life
+2. `IMPORTANT_NOW` — Man tai dabar svarbu / This matters to me right now
+3. `REMINDS_ME` — Primena žmogų ar situaciją / It reminds me of a person or situation
+4. `LIKE_SCENE` — Patinka tai, ką matau / I like what I see
+5. `JUST_IMAGE` — Tiesiog patraukė pats vaizdas / The image itself just caught my eye
+6. `DONT_KNOW` — Nežinau / I do not know
+
+The answer is optional in meaning: `DONT_KNOW` is a valid response and PrioLens must not pressure the participant to manufacture an explanation.
+
+## Interpretation boundary
+
+Channel B is not treated as the explanation of Channel A. It only tests one plausible account: whether the mapped area is something the participant currently reports wanting more of.
+
+Examples:
+
+- A repeats and mapped B is low: lack/sufficiency is a plausible participant-level explanation, not a proven cause.
+- A repeats and mapped B is high: the simple `I chose it because I lack it` account is not supported by that self-report; C can surface other explanations.
+- A and the clearest low B item differ: PrioLens shows the mismatch and asks the participant to explain the visual pull rather than deciding which signal is more true.
+
+Do not claim:
+- C is an objective cause;
+- A is subconscious truth;
+- A reveals an unmet need;
+- disagreement between A, B and C means poor self-awareness or deception.
+
+## Storage
+
+C is stored inside the existing Open14 v0.2 JSON payload as optional:
+
+```json
+"selfExplanation": {
+  "schema": "2rasi.priolens.self-explanation-v0.1",
+  "familyId": "RECOGNITION",
+  "scenario": "MATCH_LOW | MATCH_HIGH | DIFFERENT | VISUAL_ONLY",
+  "reasonCode": "WANT_MORE | IMPORTANT_NOW | REMINDS_ME | LIKE_SCENE | JUST_IMAGE | DONT_KNOW",
+  "answeredAt": "ISO-8601"
+}
+```
+
+No DB-column change and no Open14 session-schema bump are introduced. The existing final endpoint upserts by `sessionUuid`, so the completed session can be updated after C is chosen.
+
+## Research consequence
+
+C is a new formative research variable. For the first pilot, analyse it descriptively and do not treat the reason categories as validated latent constructs.
+
+Potential formative questions include:
+- how often repeated visual pulls are explained by `WANT_MORE` versus `IMPORTANT_NOW`;
+- whether high-sufficiency visual repetitions are more often explained by association, current importance or image salience;
+- how often participants choose `DONT_KNOW`;
+- whether self-explanations differ between LT and EN.
+
+Keep language stratified and preserve the frozen CARE boundary.
+
+## Runtime
+
+Runtime commit:
+`0a41dd15c5182c45d791343984c9ecbd5f3b3309`
+
+Deployment / live HTTP smoke:
+`33636219024` — SUCCESS.
+
+External recruitment remains CLOSED.
+''')
+
+          surface=docs/'OPEN14_PARTICIPANT_SURFACE_v0.1.md'
+          s=surface.read_text()
+          s=s.replace('Status: ACTIVE CHECKPOINT / PRE-PILOT PARTICIPANT SURFACE / ITEM-LEVEL RESULT MATRIX LIVE','Status: ACTIVE CHECKPOINT / PRE-PILOT PARTICIPANT SURFACE / A-B-C SELF-EXPLANATION LIVE')
+          marker='The detailed participant comparison matrix is canonical in:\n`OPEN14_RESULT_LINK_MATRIX_v0.1.md`.\n'
+          add=marker+'\nThe post-choice participant self-explanation rule is canonical in:\n`OPEN14_SELF_EXPLANATION_RULE_v0.1.md`.\n'
+          if 'OPEN14_SELF_EXPLANATION_RULE_v0.1.md' not in s:
+              assert marker in s
+              s=s.replace(marker,add,1)
+          marker2='The final question must not imply that a relationship exists.\n'
+          add2='''The final question must not imply that a relationship exists.
+
+### 4. C — participant self-explanation
+
+When a repeated visual family is in focus, the final dark card now asks the participant why they think those particular images attracted them.
+
+This is not an interpretation generated by PrioLens. It is a separate participant response with six simple options: wanting more, current importance, personal association, liking the scene, image-only pull, or not knowing.
+
+Channel B is used as context for that reflection, not as the assumed cause of Channel A.
+
+If the participant chooses a reason, PrioLens gives one short non-diagnostic reflection and updates the same completed session payload with `selfExplanation`.
+'''
+          if '### 4. C — participant self-explanation' not in s:
+              assert marker2 in s
+              s=s.replace(marker2,add2,1)
+          s=s.replace('Latest item-level result runtime commit:\n`dd987aef62ea75d8d7a91b83318ed908f3fc54a3`','Latest A-B-C self-explanation runtime commit:\n`0a41dd15c5182c45d791343984c9ecbd5f3b3309`')
+          s=s.replace('Deployment / live HTTP smoke:\n`33632458582` — SUCCESS.','Deployment / live HTTP smoke:\n`33636219024` — SUCCESS.')
+          surface.write_text(s)
+
+          resume=base/'RESUME_HERE.md'
+          r=resume.read_text()
+          order='7. read `docs/OPEN14_PARTICIPANT_SURFACE_v0.1.md` for the latest participant intro / result presentation rule;\n'
+          if 'OPEN14_SELF_EXPLANATION_RULE_v0.1.md' not in r:
+              assert order in r
+              r=r.replace(order,order+'8. read `docs/OPEN14_SELF_EXPLANATION_RULE_v0.1.md` for the A -> B -> C participant self-explanation rule;\n',1)
+              for n in range(12,8,-1):
+                  r=r.replace(f'{n}. read ',f'{n+1}. read ',1)
+              r=r.replace('8. read `docs/OPEN14_RETENTION_CRON_v0.1.md`','9. read `docs/OPEN14_RETENTION_CRON_v0.1.md`',1)
+          anchor='### Retention code + live DB ready — scheduler still open\n'
+          section='''### A -> B -> C participant self-explanation live — 2026-09-02
+
+Canonical rule:
+`docs/OPEN14_SELF_EXPLANATION_RULE_v0.1.md`
+
+Runtime commit:
+`0a41dd15c5182c45d791343984c9ecbd5f3b3309`
+
+Deployment / live HTTP smoke:
+`33636219024` — SUCCESS.
+
+Current participant logic:
+- A = cross-exemplar repeated visual pull;
+- B = independent current sufficiency self-report;
+- B is context and one possible explanation, not the assumed cause of A;
+- C asks the participant why they think the focused images attracted them;
+- C choices are stored as optional `selfExplanation` inside the same session payload;
+- C is a post-choice self-explanation, not objective or subconscious ground truth.
+
+'''
+          if '### A -> B -> C participant self-explanation live' not in r:
+              assert anchor in r
+              r=r.replace(anchor,section+anchor,1)
+          resume.write_text(r)
+          PY
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/priolens/RESUME_HERE.md tools/priolens/docs/OPEN14_PARTICIPANT_SURFACE_v0.1.md tools/priolens/docs/OPEN14_SELF_EXPLANATION_RULE_v0.1.md
+          git commit -m 'docs(priolens): freeze A-B-C self-explanation rule'
+          git push origin HEAD:feature/priolens-architecture
