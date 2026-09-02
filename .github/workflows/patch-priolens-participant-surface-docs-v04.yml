@@ -1,0 +1,54 @@
+name: Patch PrioLens participant surface docs v04
+
+on:
+  push:
+    branches: [feature/priolens-architecture]
+    paths:
+      - .github/workflows/patch-priolens-participant-surface-docs-v04.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/priolens-architecture
+          fetch-depth: 0
+
+      - name: Update latest participant surface runtime refs
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('tools/priolens/RESUME_HERE.md')
+          s=p.read_text()
+          old='''Runtime commit:\n`caa49b0dcb372fc085e79ec15fbd3fce66dd6d12`\n\nDeployment / live-source smoke workflow:\n`33622563632` — SUCCESS.'''
+          new='''Main participant-surface runtime commit:\n`caa49b0dcb372fc085e79ec15fbd3fce66dd6d12`\n\nMain deployment / live-source smoke workflow:\n`33622563632` — SUCCESS.\n\nLatest combined no-comparison edge commit:\n`542f55627cee2f1039dc15c3c91de7eb0770054d`\n\nLatest edge deployment / live-source smoke workflow:\n`33622980671` — SUCCESS.'''
+          if old not in s: raise SystemExit('participant surface runtime anchor missing')
+          s=s.replace(old,new,1)
+          old='''- raw diagnostics remain debug-only.\n\nResearch model, schema, CARE boundary and cohort rule are unchanged.'''
+          new='''- raw diagnostics remain debug-only;\n- the exact `no repeated theme + all Hard to say` edge now states both reasons for the absence of a valid comparison.\n\nResearch model, schema, CARE boundary and cohort rule are unchanged.'''
+          if old not in s: raise SystemExit('participant surface bullet anchor missing')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+
+      - name: Validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '542f55627cee2f1039dc15c3c91de7eb0770054d' tools/priolens/RESUME_HERE.md
+          grep -q '33622980671' tools/priolens/RESUME_HERE.md
+          grep -q 'no repeated theme + all Hard to say' tools/priolens/RESUME_HERE.md
+
+      - name: Commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/priolens/RESUME_HERE.md
+          git commit -m 'docs(priolens): index latest participant edge fix'
+          git push origin HEAD:feature/priolens-architecture
