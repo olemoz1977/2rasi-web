@@ -1,0 +1,47 @@
+name: Cleanup obsolete PrioLens one-shot workflows
+
+on:
+  push:
+    branches: [feature/priolens-architecture]
+    paths:
+      - .github/workflows/cleanup-priolens-ci-noise-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/priolens-architecture
+          fetch-depth: 0
+      - name: Remove completed one-shot workflows
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(
+            .github/workflows/patch-priolens-*.yml
+            .github/workflows/restore-priolens-card-copy-v01.yml
+            .github/workflows/smoke-priolens-public-entry-once-v0*.yml
+            .github/workflows/cleanup-priolens-ci-noise-once.yml
+          )
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "Nothing to remove"
+            exit 0
+          fi
+          printf 'Removing %s\n' "${files[@]}"
+          git rm -f -- "${files[@]}"
+      - name: Commit cleanup
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git diff --cached --quiet; then
+            echo 'No cleanup changes to commit'
+            exit 0
+          fi
+          git commit -m 'ci(priolens): retire completed one-shot workflows'
+          git push origin HEAD:feature/priolens-architecture
