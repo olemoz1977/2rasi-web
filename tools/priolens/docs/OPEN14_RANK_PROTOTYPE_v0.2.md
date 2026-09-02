@@ -44,8 +44,11 @@ Session storage:
 Deploy workflow:
 `.github/workflows/deploy-priolens-open14-rank-v02.yml`
 
-Successful deployment / live smoke:
+Initial successful deployment / live smoke:
 `33677798846` — SUCCESS.
+
+Latest conditional-Channel-B result deployment / live smoke:
+`33681484938` — SUCCESS.
 
 An immediately preceding deploy run `33677194302` failed only because Hostinger FTP connectivity hit `max-retries`; source validation had passed. A fresh runner then uploaded and live-smoked successfully.
 
@@ -70,17 +73,22 @@ For each triad:
 3. `Abu likę panašiai` remains valid for the least-choice step;
 4. `Nė vienas aiškiai` remains valid for the first-pull step.
 
-A strong positive or negative participant-facing repetition requires:
+A positive or negative participant-facing repetition currently requires:
 - at least 2 of 3 appearances in that direction;
 - both family exemplars represented.
 
+The owner is separately evaluating whether 3/3 should carry stronger participant-facing weight than 2/3. Do not silently change the repetition threshold without a new checkpoint.
+
 ## Result hierarchy
 
-Participant-like result:
+Participant-like result now has three visible layers:
 1. `Kas tave traukė?`
 2. `Kas liko antrame plane?`
-3. `Kaip pats vertini dabar?`
-4. `Ką verta pastebėti`
+3. `Ką verta pastebėti`
+
+There is no standalone `Kaip pats vertini dabar?` recap section.
+
+Channel B answers are not repeated merely because the participant just entered them. They appear only inside the final reflection when they add interpretive value under the frozen matrix rule.
 
 The owner balance table is hidden inside an optional diagnostic disclosure. `balance = most - least` remains session telemetry only, not a psychological score.
 
@@ -88,13 +96,18 @@ The owner balance table is hidden inside an optional diagnostic disclosure. `bal
 
 The 1-5 scale is not collapsed into a binary deficit label.
 
-For result presentation:
+For result logic:
 - 1-2 = lower sufficiency;
-- 3 = `Per vidurį` and must not be rewritten as `norėtųsi daugiau`;
+- 3 = middle / neutral context and must not be rewritten as `norėtųsi daugiau`;
 - 4-5 = higher sufficiency;
 - null / `Sunku pasakyti` = no comparison.
 
-The result surface shows 1-3 responses as context, preserving the distinction between 1-2 and 3.
+Participant-facing rule:
+- do not show 3 merely as a recap;
+- do not show 4-5 merely as a recap;
+- use 1-2 or 4-5 only when a valid DIRECT / RELATED visual pair creates an alignment or contrast worth reflecting on;
+- if an unmatched Channel B item is 1-2, it may appear as a short contextual note, explicitly stating that no direct visual pair exists;
+- unmatched 3, 4-5 and null stay out of the normal result.
 
 ## Result link matrix
 
@@ -117,7 +130,8 @@ Use the same family-to-item discipline as `OPEN14_RESULT_LINK_MATRIX_v0.1.md`, n
 | KNOWLEDGE | LEARNING_GROWTH | DIRECT |
 | OPPORTUNITY | LEARNING_GROWTH | RELATED |
 
-Unmatched Channel B areas remain:
+Unmatched Channel B items include:
+- `CARE_SUPPORT_PRESENT` for direct visual comparison purposes;
 - `MEANING_PURPOSE`;
 - `CONTRIBUTION`.
 
@@ -132,14 +146,14 @@ Only valid DIRECT / RELATED pairs may create a visual-vs-self-report reflection.
 | Self-report state | Repeated MOST | Repeated LEAST |
 | --- | --- | --- |
 | 1-2 lower sufficiency | possible alignment | potentially interesting contrast |
-| 3 middle | context only | context only |
+| 3 middle | no participant comparison by default | no participant comparison by default |
 | 4-5 higher sufficiency | pull despite sufficiency | sufficient + visually backgrounded |
 | null | no comparison | no comparison |
 | NONE mapping | no comparison | no comparison |
 
 RELATED pairs must explicitly use softer language and must never be presented as identical constructs.
 
-If no useful mapped pair exists, the final reflection falls back to the visual `most vs least` pattern without manufacturing a Channel B relationship.
+If no useful mapped pair exists, the final reflection falls back to the visual `most vs least` pattern without manufacturing a Channel B relationship. A clearly low unmatched Channel B item may be mentioned only as separate context with an explicit `no direct visual pair` statement.
 
 ## Product language rule
 
@@ -148,7 +162,6 @@ Keep language simple enough to understand without research terminology.
 Preferred result headings:
 - `Kas tave traukė?`
 - `Kas liko antrame plane?`
-- `Kaip pats vertini dabar?`
 - `Ką verta pastebėti`
 
 Do not use participant-facing language such as:
