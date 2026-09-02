@@ -158,8 +158,8 @@ Current runtime includes:
 - final automatic API submission;
 - local autosave / resume;
 - server-side incomplete checkpoints;
-- participant-facing short synthesis;
-- coverage-aware sufficiency result rendering;
+- participant-facing three-part result hierarchy (`First glance -> Second answer -> Look again`);
+- coverage-aware sufficiency logic with incomplete domains excluded from complete participant interpretation;
 - clear repeat / 2rasi return actions;
 - raw JSON export and diagnostics hidden from normal participant mode;
 - one bilingual LT/EN participant runtime;
@@ -197,6 +197,8 @@ Now:
 Messenger JSON export was separately hardened after Blob-download failure in the in-app browser. Automatic server submission remains independent of manual export.
 
 ### Participant completion flow
+
+Historical note: the later checkpoint `docs/OPEN14_PARTICIPANT_SURFACE_v0.1.md` supersedes the old `Trumpai / In short` result presentation. The completion actions and 0/2–1/2–2/2 coverage validity rule remain active, but technical coverage counts are no longer shown in normal participant results.
 
 Informal household testing exposed a product completion failure: after reading the result, the participant asked what happens next.
 

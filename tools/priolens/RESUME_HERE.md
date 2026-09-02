@@ -22,7 +22,7 @@ Recovery order:
 10. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
 11. read older docs / File Library only when needed.
 
-If an older runtime / UX section conflicts with the pre-pilot smoke checkpoint, the smoke checkpoint wins. The bilingual-runtime checkpoint remains canonical for language architecture.
+If an older runtime / UX section conflicts with the pre-pilot smoke checkpoint, the smoke checkpoint wins. For participant intro / result presentation, `OPEN14_PARTICIPANT_SURFACE_v0.1.md` wins over the older participant-completion presentation. The bilingual-runtime checkpoint remains canonical for language architecture.
 
 ## Current architecture
 
@@ -55,8 +55,8 @@ Current participant runtime includes:
 - final API upsert using the same `sessionUuid`;
 - stale partial protection;
 - mobile readability / unanswered-state hardening;
-- participant-facing short synthesis (`Trumpai / In short`);
-- coverage-aware sufficiency result rendering;
+- participant-facing three-part result hierarchy (`Pirmas žvilgsnis / First glance` -> `Antras atsakymas / Second answer` -> `Pažvelk dar kartą / Look again`);
+- coverage-aware sufficiency logic with incomplete domains omitted from complete participant interpretation;
 - clear repeat and 2rasi return actions;
 - raw JSON export and diagnostics hidden from normal participants;
 - one bilingual LT/EN runtime selected by `lang=lt|en`;
@@ -95,8 +95,8 @@ Runtime commit:
 Workflow run:
 `33542878842` — SUCCESS.
 
-Changes:
-- result starts with a short participant-facing synthesis;
+Changes at that checkpoint:
+- result originally gained a short participant-facing synthesis; this presentation is now superseded by `OPEN14_PARTICIPANT_SURFACE_v0.1.md`, while the underlying coverage rule remains active;
 - `Nauja sesija` became `Atlikti dar kartą`;
 - added `Grįžti į 2rasi`;
 - sufficiency coverage is explicit: 0/2, 1/2 partial, 2/2 complete;
