@@ -12,12 +12,13 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. read this file;
 2. read `PROJECT_STATE.md` for architecture / runtime background;
-3. read `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md` for the frozen CARE boundary;
-4. read `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md` as the latest runtime checkpoint;
-5. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
-6. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
-7. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
-8. read older docs / File Library only when needed.
+3. read `docs/OPEN14_PILOT_COHORT_RULE_v0.1.md` for analysis inclusion/exclusion;
+4. read `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md` for the frozen CARE boundary;
+5. read `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md` as the latest runtime checkpoint;
+6. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
+7. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
+8. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
+9. read older docs / File Library only when needed.
 
 If an older runtime / UX / language section conflicts with the bilingual-runtime checkpoint, the bilingual checkpoint wins.
 
@@ -192,6 +193,13 @@ Public entry state is mixed and must be described precisely:
 - GitHub-hosted CI could not independently reach `2rasi.lt` on 2026-09-02 because TCP/443 timed out;
 - therefore `.com` and the public landing/return route still require a manual browser smoke before recruitment.
 
+## Pilot cohort boundary
+
+Canonical inclusion/exclusion rule:
+`docs/OPEN14_PILOT_COHORT_RULE_v0.1.md`
+
+Existing owner, household and technical rows do not need destructive deletion to preserve analysis validity. The first external cohort requires an explicit `PILOT_OPENED_AT_UTC`; only completed rows at/after that cutoff can enter the cohort, and `SYSTEM_SMOKE_DO_NOT_ANALYZE` is always excluded. Keep `language` as an analysis factor.
+
 ## Live routes
 
 Open14 runtime:
@@ -213,7 +221,6 @@ Health:
 
 1. run one fresh full mobile participant smoke in LT and one focused EN smoke, including summary, coverage states, restart and 2rasi return;
 2. configure and smoke the 90-day cleanup cron;
-4. clean or explicitly exclude owner / household / system test rows before pilot analysis;
 5. manually smoke the public `.lt` and `.com` entry -> landing -> Open14 -> return journey before recruitment.
 
 Target retention remains 90 days, but physical automatic deletion is not guaranteed until cron is configured and smoked.

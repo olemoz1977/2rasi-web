@@ -8,13 +8,14 @@ Branch: `feature/priolens-architecture`
 ## Read first
 
 1. `RESUME_HERE.md`
-2. `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`
-3. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`
-4. `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
-5. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
-6. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
-7. this file
-8. older architecture docs only as needed
+2. `docs/OPEN14_PILOT_COHORT_RULE_v0.1.md`
+3. `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`
+4. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`
+5. `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
+6. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
+7. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
+8. this file
+9. older architecture docs only as needed
 
 ## Product boundary
 
@@ -321,10 +322,16 @@ Latest checkpoint:
 
 1. run one fresh full mobile participant smoke in LT and one focused EN smoke, including summary, coverage states, restart and return;
 2. configure and smoke the 90-day cleanup cron;
-4. clean or explicitly exclude owner / household / system test rows before pilot analysis;
 5. manually smoke the public `.lt` and `.com` card -> landing -> Open14 -> return path before recruitment.
 
 External recruitment remains CLOSED until these are complete.
+
+## Pilot cohort inclusion
+
+Canonical rule:
+`docs/OPEN14_PILOT_COHORT_RULE_v0.1.md`
+
+Before recruitment, record one explicit UTC cutoff as `PILOT_OPENED_AT_UTC`. External analysis includes only complete rows at/after that cutoff with the frozen schema set. `SYSTEM_SMOKE_DO_NOT_ANALYZE` is excluded at all times. Pre-cutoff owner/household/technical rows remain UX/infrastructure evidence only. Physical deletion is optional and not required for methodological separation.
 
 ## Formative pilot target
 
