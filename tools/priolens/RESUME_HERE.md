@@ -105,6 +105,9 @@ Runtime commit:
 Workflow run:
 `33544864679` — SUCCESS.
 
+EN persistence lifecycle smoke:
+`33613108832` — SUCCESS (`partial -> final -> stale partial blocked`) using `language: "en"` and `SYSTEM_SMOKE_DO_NOT_ANALYZE`.
+
 Routing:
 - `?lang=lt&from=lt` -> LT participant UI and return to `2rasi.lt`;
 - `?lang=en&from=com` -> EN participant UI and return to `2rasi.com`;
@@ -162,9 +165,11 @@ Do not reopen asset generation / replacement work unless a concrete smoke failur
 
 The 10th PrioLens homepage card exists in `feature/priolens-architecture` and points to `/tools/priolens/`.
 
-Homepage hook:
-- EN: `When several things matter, what pulls you first?`
-- LT: `Kai svarbūs keli dalykai, kas patraukia pirmiausia?`
+Homepage hook (owner-approved):
+- EN: `A first glance and a second answer do not always show the same thing.`
+- LT: `Pirmas žvilgsnis ir antras atsakymas ne visada rodo tą patį.`
+
+Feature-branch restoration commit: `383ef9bf6c20a7f45a15bd4ee86147a02540efa4`.
 
 The PrioLens landing page is aligned with Open14 and bilingual routing.
 Latest landing commit:
@@ -174,7 +179,10 @@ Prepared routing:
 - `2rasi.lt` -> `https://omesg360.eu/priolens-open14-v02/?from=lt&lang=lt`;
 - `2rasi.com` -> `https://omesg360.eu/priolens-open14-v02/?from=com&lang=en`.
 
-The feature-branch entry route is PREPARED, not considered publicly live until intentionally merged / deployed.
+Public entry state is mixed and must be described precisely:
+- owner mobile browser confirms the PrioLens card is already visible on public `2rasi.lt`;
+- GitHub-hosted CI could not independently reach `2rasi.lt` on 2026-09-02 because TCP/443 timed out;
+- therefore `.com` and the public landing/return route still require a manual browser smoke before recruitment.
 
 ## Live routes
 
@@ -199,7 +207,7 @@ Health:
 2. freeze CARE visual-giving vs received-support asymmetry explicitly as an analysis rule;
 3. configure and smoke the 90-day cleanup cron;
 4. clean or explicitly exclude owner / household / system test rows before pilot analysis;
-5. intentionally merge / deploy the prepared 10th-card PrioLens entry route only when recruitment opens.
+5. manually smoke the public `.lt` and `.com` entry -> landing -> Open14 -> return journey before recruitment.
 
 Target retention remains 90 days, but physical automatic deletion is not guaranteed until cron is configured and smoked.
 

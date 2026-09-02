@@ -1,7 +1,7 @@
 # PrioLens Open14 bilingual runtime v0.1
 
 Status: ACTIVE CHECKPOINT / LT+EN RUNTIME LIVE / PRE-PILOT HARDENING
-Date: 2026-09-01
+Updated: 2026-09-02
 
 ## Decision
 
@@ -33,7 +33,10 @@ Validation passed:
 - inline module JavaScript syntax;
 - PHP syntax for final and progress APIs;
 - live source smoke;
-- API health smoke.
+- API health smoke;
+- EN persistence lifecycle smoke run `33613108832`: partial checkpoint -> final submission -> stale partial blocked.
+
+The EN synthetic persistence row uses `language: "en"`, seed `SYSTEM_SMOKE_DO_NOT_ANALYZE`, and must never enter pilot analysis.
 
 A first migration attempt was stopped before commit/deploy by syntax validation. Live runtime was not touched by the failed attempt.
 
@@ -90,7 +93,13 @@ The landing now routes:
 - `2rasi.lt` -> Open14 `lang=lt&from=lt`;
 - `2rasi.com` -> Open14 `lang=en&from=com`.
 
-The 10th homepage card and landing are still prepared on `feature/priolens-architecture`; they are not considered publicly released until intentionally merged / deployed.
+The owner mobile browser confirms the 10th PrioLens card is already visible on public `2rasi.lt`. Its approved copy is:
+- LT: `Pirmas žvilgsnis ir antras atsakymas ne visada rodo tą patį.`
+- EN: `A first glance and a second answer do not always show the same thing.`
+
+The feature branch was restored to this copy in commit `383ef9bf6c20a7f45a15bd4ee86147a02540efa4`.
+
+Automated GitHub-runner smoke could not connect to `2rasi.lt` (TCP/443 timeout), so `.com` and public landing/return reachability remain a manual-browser verification item rather than a claimed CI pass.
 
 ## Research guardrails unchanged
 
@@ -115,7 +124,7 @@ Current comparison logic therefore does not directly map visual CARE into the CO
 2. explicitly freeze/document CARE giving-vs-received asymmetry as an analysis rule;
 3. configure and smoke the 90-day cleanup cron;
 4. clean or explicitly exclude current owner/household/system test rows before pilot analysis begins;
-5. intentionally merge/deploy the prepared 10th-card PrioLens entry route;
+5. manually smoke public `.lt` and `.com` card -> landing -> Open14 -> return routing;
 6. only then open the first small external formative recruitment.
 
 External recruitment remains CLOSED.

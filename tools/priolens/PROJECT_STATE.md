@@ -218,6 +218,9 @@ Runtime commit:
 Workflow run:
 `33544864679` — SUCCESS.
 
+EN persistence lifecycle smoke run:
+`33613108832` — SUCCESS. It verified `language: en` through partial checkpoint, final API submission, and stale-partial protection. The synthetic row uses `SYSTEM_SMOKE_DO_NOT_ANALYZE`.
+
 One runtime serves both languages:
 - LT: `?lang=lt&from=lt`;
 - EN: `?lang=en&from=com`;
@@ -290,9 +293,11 @@ Existing DB contains owner / household / system testing rows. They must be clean
 
 The 10th PrioLens homepage card already exists in `feature/priolens-architecture` and points to `/tools/priolens/`.
 
-Homepage hook:
-- EN: `When several things matter, what pulls you first?`
-- LT: `Kai svarbūs keli dalykai, kas patraukia pirmiausia?`
+Homepage hook (owner-approved):
+- EN: `A first glance and a second answer do not always show the same thing.`
+- LT: `Pirmas žvilgsnis ir antras atsakymas ne visada rodo tą patį.`
+
+Feature-branch restoration commit: `383ef9bf6c20a7f45a15bd4ee86147a02540efa4`.
 
 The PrioLens landing is aligned with current Open14 and bilingual routing.
 Latest landing commit:
@@ -302,7 +307,8 @@ Prepared routing:
 - `2rasi.lt` -> `from=lt&lang=lt`;
 - `2rasi.com` -> `from=com&lang=en`.
 
-The feature-branch entry route is PREPARED, not considered publicly live until intentionally merged / deployed.
+Owner mobile-browser evidence confirms the PrioLens card is already public on `2rasi.lt`.
+GitHub-hosted HTTP smoke could not connect to `2rasi.lt` (TCP/443 timeout), so `.com` and the public landing/return path are not independently CI-verified and still need manual browser smoke.
 
 Latest checkpoint:
 `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`
@@ -313,7 +319,7 @@ Latest checkpoint:
 2. freeze CARE giving-vs-received-support asymmetry explicitly as an analysis rule;
 3. configure and smoke the 90-day cleanup cron;
 4. clean or explicitly exclude owner / household / system test rows before pilot analysis;
-5. intentionally merge / deploy the prepared PrioLens 10th-card route only when recruitment opens.
+5. manually smoke the public `.lt` and `.com` card -> landing -> Open14 -> return path before recruitment.
 
 External recruitment remains CLOSED until these are complete.
 
