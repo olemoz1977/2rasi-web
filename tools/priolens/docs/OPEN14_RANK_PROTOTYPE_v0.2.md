@@ -47,8 +47,11 @@ Deploy workflow:
 Initial successful deployment / live smoke:
 `33677798846` — SUCCESS.
 
-Latest conditional-Channel-B result deployment / live smoke:
+Conditional-Channel-B result deployment / live smoke:
 `33681484938` — SUCCESS.
+
+Direction-aware self-reflection deployment / live smoke:
+`33684823997` — SUCCESS.
 
 An immediately preceding deploy run `33677194302` failed only because Hostinger FTP connectivity hit `max-retries`; source validation had passed. A fresh runner then uploaded and live-smoked successfully.
 
@@ -155,6 +158,49 @@ RELATED pairs must explicitly use softer language and must never be presented as
 
 If no useful mapped pair exists, the final reflection falls back to the visual `most vs least` pattern without manufacturing a Channel B relationship. A clearly low unmatched Channel B item may be mentioned only as separate context with an explicit `no direct visual pair` statement.
 
+## Channel C: participant self-explanation
+
+The final reflection is not complete when the interface only asks an open question. The prototype now lets the participant answer the reflection, following the original Open14 self-explanation pattern but adapting it to the direction of the visual result.
+
+C is participant self-explanation, not a new measurement channel and not proof of why the visual choice occurred.
+
+For a repeated MOST focus, keep the original positive-direction options:
+- `Norėčiau daugiau to savo gyvenime`;
+- `Man tai dabar svarbu`;
+- `Primena žmogų ar situaciją`;
+- `Patinka tai, ką matau`;
+- `Tiesiog patraukė pats vaizdas`;
+- `Nežinau`.
+
+For a repeated LEAST focus, use a distinct neutral mirrored set rather than asking why the images attracted the participant:
+- `Man tai dabar mažiau aktualu`;
+- `Jaučiu, kad šito man pakanka`;
+- `Primena žmogų ar situaciją`;
+- `Nepatinka tai, ką matau`;
+- `Tiesiog pats vaizdas traukė mažiau`;
+- `Nežinau`.
+
+For a mixed visual result without one defensible focus family, use only a lightweight recognition response:
+- `Taip, atpažįstu`;
+- `Nelabai`;
+- `Nežinau`.
+
+When one focus family exists, show the relevant selected family exemplars again above the self-explanation question.
+
+Owner-prototype storage:
+- `state.selfExplanation` inside the rank session;
+- schema `2rasi.priolens.rank-self-explanation-v0.1`;
+- localStorage only;
+- no backend submission.
+
+C must not:
+- retroactively change MOST / LEAST counts;
+- alter Channel B sufficiency values;
+- validate a DIRECT or RELATED mapping;
+- be described as revealing a subconscious cause, true need or hidden priority.
+
+C exists to let the participant say what the result means, if anything, rather than having PrioLens answer that question for them.
+
 ## Product language rule
 
 Keep language simple enough to understand without research terminology.
@@ -177,7 +223,8 @@ Do not change public routing unless owner / small household UX probes support al
 1. the least-choice step feels natural enough and not artificially forced;
 2. the result is understandable without researcher explanation;
 3. the final question clearly follows from the participant's own choices;
-4. bidirectional `most / least` adds useful information beyond positive pull alone.
+4. bidirectional `most / least` adds useful information beyond positive pull alone;
+5. the participant self-explanation step feels like a natural completion of the reflection rather than a forced rationalization.
 
 If this gate passes, the protocol must be formally versioned for backend/pilot use before replacing the public Open14 v0.2 route.
 
