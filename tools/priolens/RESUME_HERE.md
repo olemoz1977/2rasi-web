@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
 Status: ACTIVE / OPEN14 v0.2 / OWNER ASSET REVIEW COMPLETE / MOBILE UX HARDENED / PARTICIPANT COMPLETION LIVE / BILINGUAL LT+EN LIVE / PRE-PILOT HARDENING
-Updated: 2026-09-01
+Updated: 2026-09-02
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -14,13 +14,14 @@ Recovery order:
 2. read `PROJECT_STATE.md` for architecture / runtime background;
 3. read `docs/OPEN14_PILOT_COHORT_RULE_v0.1.md` for analysis inclusion/exclusion;
 4. read `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md` for the frozen CARE boundary;
-5. read `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md` as the latest runtime checkpoint;
-6. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
-7. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
-8. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
-9. read older docs / File Library only when needed.
+5. read `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md` for the bilingual architecture;
+6. read `docs/OPEN14_PREPILOT_SMOKE_FINDINGS_2026-09-02.md` for the latest UX / public-routing checkpoint;
+7. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
+8. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
+9. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
+10. read older docs / File Library only when needed.
 
-If an older runtime / UX / language section conflicts with the bilingual-runtime checkpoint, the bilingual checkpoint wins.
+If an older runtime / UX section conflicts with the pre-pilot smoke checkpoint, the smoke checkpoint wins. The bilingual-runtime checkpoint remains canonical for language architecture.
 
 ## Current architecture
 
@@ -46,6 +47,8 @@ Current participant runtime includes:
 - 12 post-visual sufficiency items;
 - hidden-number 5-step slider UI;
 - `Sunku pasakyti / Hard to say = null`;
+- no visible slider thumb until a numeric 1–5 response is actually chosen;
+- persistent secondary `Išeiti / Exit` action on all screens;
 - local autosave / resume;
 - server-side incomplete checkpoints;
 - final API upsert using the same `sessionUuid`;
@@ -124,8 +127,25 @@ Channel B uses the same 12 item IDs in both languages. EN wording is a semantic 
 
 Participant retention wording is now explicitly provisional (`numatyta / intended up to 90 days`) because cleanup cron is not yet operational.
 
-Latest active checkpoint:
-`docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`
+### Pre-pilot smoke fixes live — 2026-09-02
+
+Owner PC smoke exposed a measurement-relevant Channel B ambiguity: after selecting `Sunku pasakyti`, the native midpoint slider thumb became dark although the stored value was `null`.
+
+Runtime fix commit:
+`05c6d95a6eccdff102a9244c6aab2e8ea455512d`
+
+Deployment / live-source smoke workflow:
+`33620120366` — SUCCESS.
+
+Now:
+- no numeric response -> slider thumb hidden;
+- `Sunku pasakyti / Hard to say` -> slider thumb remains hidden and the explicit button carries the state;
+- numeric interaction -> thumb appears and 1–5 is stored;
+- persistent `Išeiti / Exit` is available on all screens and routes back to the correct 2rasi domain;
+- autosave / resume remains active.
+
+Canonical detailed checkpoint:
+`docs/OPEN14_PREPILOT_SMOKE_FINDINGS_2026-09-02.md`
 
 ### CARE boundary frozen
 
@@ -172,7 +192,7 @@ Do not reopen asset generation / replacement work unless a concrete smoke failur
 
 ## 2rasi entry state
 
-The 10th PrioLens homepage card exists in `feature/priolens-architecture` and points to `/tools/priolens/`.
+The canonical PrioLens card points to `/tools/priolens/`.
 
 Homepage hook (owner-approved):
 - EN: `A first glance and a second answer do not always show the same thing.`
@@ -181,17 +201,33 @@ Homepage hook (owner-approved):
 Feature-branch restoration commit: `383ef9bf6c20a7f45a15bd4ee86147a02540efa4`.
 
 The PrioLens landing page is aligned with Open14 and bilingual routing.
-Latest landing commit:
+Latest feature-branch landing commit:
 `11517309d064332142d8ad9cd89ab8b263ae2149`.
 
 Prepared routing:
 - `2rasi.lt` -> `https://omesg360.eu/priolens-open14-v02/?from=lt&lang=lt`;
 - `2rasi.com` -> `https://omesg360.eu/priolens-open14-v02/?from=com&lang=en`.
 
-Public entry state is mixed and must be described precisely:
-- owner mobile browser confirms the PrioLens card is already visible on public `2rasi.lt`;
-- GitHub-hosted CI could not independently reach `2rasi.lt` on 2026-09-02 because TCP/443 timed out;
-- therefore `.com` and the public landing/return route still require a manual browser smoke before recruitment.
+### Public deploy drift found by manual smoke
+
+Owner manual smoke on 2026-09-02 found that public `2rasi.com` card 10 opened LT Open14.
+
+Root cause:
+- the public-looking `hero-webgl` branch still linked card 10 directly to the Open14 root without `from` / `lang`;
+- Open14 therefore correctly used its LT default;
+- EN runtime itself was already present and operational.
+
+Repository correction on `hero-webgl`:
+`3162fc17699fb4cd5bb8b7102bbfd36cb1680cd2`.
+
+Patch workflow:
+`33620294591` — SUCCESS.
+
+The correction adds the bilingual landing and routes card 10 through `/tools/priolens/`.
+
+**Do not mark public `.com` PASS yet.** That workflow verified the branch correction, not an independent live public deployment. Manual `.com` re-smoke is still required. If public `.com` still opens LT after a fresh reload, investigate deployment plumbing / stale deployment rather than Open14 language logic.
+
+Owner mobile browser continues to confirm that PrioLens card 10 is visible on public `2rasi.lt`.
 
 ## Pilot cohort boundary
 
@@ -219,9 +255,14 @@ Health:
 
 ## Remaining pre-pilot hardening
 
-1. run one fresh full mobile participant smoke in LT and one focused EN smoke, including summary, coverage states, restart and 2rasi return;
-2. configure and smoke the 90-day cleanup cron;
-5. manually smoke the public `.lt` and `.com` entry -> landing -> Open14 -> return journey before recruitment.
+1. re-smoke the live no-value slider and persistent exit, preferably on mobile;
+2. run one fresh full mobile participant smoke in LT, including summary, coverage states, repeat and return;
+3. run one focused EN smoke;
+4. manually re-smoke public `.lt` and `.com` card -> landing -> Open14 -> return, with `.com` specifically proving EN;
+5. configure and smoke the 90-day cleanup cron;
+6. only when recruitment intentionally opens, record `PILOT_OPENED_AT_UTC` before distributing the recruitment link.
+
+The supplied PC completion does **not** close the required full LT mobile smoke.
 
 Target retention remains 90 days, but physical automatic deletion is not guaranteed until cron is configured and smoked.
 
