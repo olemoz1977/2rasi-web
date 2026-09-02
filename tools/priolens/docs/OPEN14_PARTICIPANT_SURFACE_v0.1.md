@@ -1,6 +1,6 @@
 # PrioLens participant surface v0.1
 
-Status: ACTIVE CHECKPOINT / PRE-PILOT PARTICIPANT SURFACE / HUMAN VISUAL RESULT LIVE
+Status: ACTIVE CHECKPOINT / PRE-PILOT PARTICIPANT SURFACE / ITEM-LEVEL RESULT MATRIX LIVE
 Updated: 2026-09-02
 
 ## Scope
@@ -11,10 +11,15 @@ It does **not** change:
 - the frozen Open14 v0.2 family set;
 - visual-choice evidence rules;
 - 1–5 / null Channel B storage;
-- domain aggregation stored in the research payload;
+- six-domain aggregation stored in the research payload;
 - CARE analysis boundary;
 - cohort inclusion rule;
 - backend schema or API lifecycle.
+
+The detailed participant comparison matrix is canonical in:
+`OPEN14_RESULT_LINK_MATRIX_v0.1.md`.
+
+If an older section in this file conflicts with that matrix, the matrix wins for result comparison logic.
 
 ## Naming boundary
 
@@ -32,12 +37,12 @@ Browser title:
 
 The 2rasi landing explains what PrioLens is. The runtime intro prepares the participant to act.
 
-Current LT framing:
-- `Kuris pirmas patraukia?`
+Current framing:
 - three images at a time;
 - do not decide which is better;
 - choose where attention goes first;
-- 14 quick choices, followed by a second perspective.
+- 14 quick visual choices;
+- then a separate current-sufficiency perspective.
 
 The readiness card disappears after a successful bank check and remains visible only when useful, such as loading, failure, missing assets or resume state.
 
@@ -47,23 +52,26 @@ Retention wording remains conservative until the cleanup cron is operational.
 
 The result is not a diagnostic report and not a list of all collected values.
 
-Its participant-facing job is now:
+Its participant-facing hierarchy is now:
 
-1. **Ką rinkaisi dažniausiai / What you chose most often**
-2. **Kur dabar ne visai pakanka / Where things do not feel quite enough**
-3. **Svarbiausia / Most important -> Kas čia verta antro žvilgsnio? / What deserves a second look?**
+1. **Tavo pasirinkimai / Your choices**
+   - heading: `Kas tave traukė? / What pulled you?`
+2. **Tavo atsakymai / Your answers**
+   - heading: `Ko dabar norėtųsi daugiau? / What would you like more of right now?`
+3. **Svarbiausia / Most important**
+   - heading: `Ką matai, kai palygini abu? / What do you notice when you compare the two?`
 
-The third section is the main product payoff. The first two sections are evidence that supports it.
+The third section is the main product payoff. The first two sections provide the evidence needed to understand it.
 
 The public promise remains:
 > `Pirmas žvilgsnis ir antras atsakymas ne visada rodo tą patį.`
 
-### 1. Repeated visual choices
+### 1. Visual choices
 
 Participant evidence remains the frozen cross-exemplar repetition rule:
 - show a family only when both distinct exemplars were chosen at least once;
 - therefore a displayed family is normally `2/3` or `3/3`;
-- `3/3` is visually stronger repetition but is **not** a separate construct threshold;
+- `3/3` is stronger repetition but is not a separate construct threshold;
 - same-exemplar repetition alone is not promoted to family-level evidence.
 
 For each displayed family:
@@ -72,57 +80,58 @@ For each displayed family:
 - show one short human-language description of what the theme **may** relate to;
 - never present that description as the reason the participant chose the image.
 
-The interpretation boundary is concise and human:
+Current boundary copy:
 > `Tai nereiškia, kad tau šito trūksta. Tik tiek, kad prie šių temų tavo dėmesys grįžo daugiau nei kartą.`
 
-Family descriptions may use language such as `Gali būti susiję su...`, but never:
+Never turn visual repetition into:
 - `you need this`;
 - `you lack this`;
 - `your subconscious wants this`;
 - `this is your true priority`.
 
-### 2. Current sufficiency
+### 2. Self-reported areas where more may be wanted
 
-Channel B still stores all twelve item responses and full domain coverage exactly as before.
+Channel B still stores all twelve item responses and still computes the six broader domains for research use.
 
-Normal participant output is intentionally selective:
-- only complete 2/2 domains may be interpreted;
-- among complete domains, only domains with the current aggregate value `<= 3` are listed individually;
-- values on the 4–5 side are not listed as separate reassuring cards;
-- if no complete domain is `<= 3`, show one concise statement that nothing clearly stood out;
-- incomplete domains remain omitted from interpretation and one concise coverage note is allowed;
-- if no domain is complete, do not interpret this perspective.
+Normal participant output is now **item-level**, not six-domain-level:
+- evaluate the 12 individual Channel B responses independently for display;
+- show numeric item responses `<=3` only;
+- omit numeric item responses `4–5` from the main result;
+- omit `null / Sunku pasakyti / Hard to say` items rather than guessing;
+- if no numeric item is `<=3`, show one concise statement that nothing clearly stood out;
+- if there are no numeric responses, say that PrioLens does not guess for the participant.
 
-This `<= 3` threshold is a **participant-display filter only**. It is not a new research variable, clinical cutoff, Maslow stage or pilot-analysis threshold. Raw values remain stored.
+This `<=3` threshold is a **participant-display filter only**. It is not a new research variable, clinical cutoff, Maslow stage or pilot-analysis threshold. Raw item values and six-domain aggregation remain stored exactly as before.
 
 No decimals, bars or technical coverage counts are shown in normal participant mode.
 
-### 3. Final reflection is the main payoff
+### 3. Final comparison is the main payoff
 
 The final section must feel clearly more important than the two evidence sections.
 
 Current presentation:
 - label: `Svarbiausia / Most important`;
-- heading: `Kas čia verta antro žvilgsnio? / What deserves a second look?`;
+- heading: `Ką matai, kai palygini abu? / What do you notice when you compare the two?`;
 - visually dominant dark reflection card;
 - relevant selected images repeated inside the final card when a visual family is in focus;
 - one short synthesis in ordinary language;
 - one large reflection question.
+
+The comparison now uses the item-level `DIRECT / RELATED / NONE` matrix in `OPEN14_RESULT_LINK_MATRIX_v0.1.md`.
+
+Core participant scenarios:
+1. **same area + wants more** -> ask whether the two things feel connected;
+2. **same area + already feels sufficient** -> preserve the contrast and ask what still attracted attention;
+3. **different things stand out** -> state that they did not point to the same place and ask which feels more important right now;
+4. **visual-only** -> ask about the repeated images without inventing a Channel B match;
+5. **self-report-only** -> reflect on the clearest lower-sufficiency item when no visual family repeats;
+6. **quiet result** -> do not manufacture a focal point.
 
 Avoid research-language phrases such as:
 - `two signals`;
 - `broader area`;
 - `valid pairing`;
 - repeated references to `this session` unless technically necessary.
-
-Current priority logic:
-
-1. If repeated visual families have valid complete mapped sufficiency domains, prefer a mapping whose domain is `<=3`; within the same priority, prefer the family chosen more often.
-2. If the mapped domain is `<=3`, ask whether the repetition has anything to do with how the participant currently feels in that area, explicitly allowing `not related`.
-3. If the mapped domain is on the more-sufficient side, preserve the contrast and ask, in ordinary language, what about the images still caught the participant.
-4. If a repeated theme has no valid Channel B counterpart, reflect on the image choice alone.
-5. If there is no repeated visual family but one or more complete domains are `<=3`, reflect on the lower-sufficiency area.
-6. If neither side produces a salient participant-facing point, ask whether anything still stayed with the participant.
 
 The final question must not imply that a relationship exists.
 
@@ -133,9 +142,9 @@ The frozen CARE rule remains unchanged:
 - `CARE_SUPPORT_PRESENT` = care/support present or received;
 - no direct CARE <-> CARE_SUPPORT_PRESENT comparison in Open14 v0.2.
 
-A repeated CARE theme may appear with its selected images and a visual-only reflection question, but must not be falsely paired with received support.
+A repeated CARE theme may appear with its selected images, but it has no direct Channel B pair in the item-level result matrix.
 
-Meaning / Contribution remains contextual-only because it has no active visual counterpart.
+Meaning / Contribution items remain self-report-only because they have no active visual counterpart.
 
 ## Technical detail boundary
 
@@ -151,21 +160,21 @@ Runtime repository:
 Runtime file:
 `priolens/open14-v02/index.html`
 
-Human visual result runtime commit:
-`a079295e8054160973f7fccb7282319a751fdad8`
+Latest item-level result runtime commit:
+`dd987aef62ea75d8d7a91b83318ed908f3fc54a3`
 
 Deployment / live HTTP smoke:
-`33629814257` — SUCCESS.
+`33632458582` — SUCCESS.
 
 Verified by that deployment:
-- current bilingual participant surface present in source;
-- selected repeated images are rendered back to the participant;
-- `2/3` and `3/3` participant badges use the existing cross-exemplar evidence rule;
-- family `may relate to` descriptions are present in LT and EN;
-- focused `<=3` result filter remains present;
-- final reflection uses the visually dominant reflection hero;
+- bilingual participant source present;
+- selected repeated images and `2/3` / `3/3` badges remain present;
+- 12-item participant display filter is present;
+- `DIRECT / RELATED` family-item links are present;
+- CARE remains intentionally unmatched;
+- all three main final-result scenarios are present;
 - managed runtime uploaded to Hostinger;
-- live HTTP source contains the new human-result implementation;
+- live HTTP source contains the item-level result model;
 - planner / assigner / bank / API health remain reachable;
 - historical `/priolens/` boundary remains reachable.
 
