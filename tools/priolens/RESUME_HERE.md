@@ -153,11 +153,17 @@ Canonical detailed checkpoint:
 Canonical participant-surface checkpoint:
 `docs/OPEN14_PARTICIPANT_SURFACE_v0.1.md`
 
-Runtime commit:
+Main participant-surface runtime commit:
 `caa49b0dcb372fc085e79ec15fbd3fce66dd6d12`
 
-Deployment / live-source smoke workflow:
+Main deployment / live-source smoke workflow:
 `33622563632` — SUCCESS.
+
+Latest combined no-comparison edge commit:
+`542f55627cee2f1039dc15c3c91de7eb0770054d`
+
+Latest edge deployment / live-source smoke workflow:
+`33622980671` — SUCCESS.
 
 Participant-facing changes:
 - `Open14` is now internal-only terminology; normal UI shows `PrioLens` and `Tyrimo prototipas / Research prototype`;
@@ -166,7 +172,8 @@ Participant-facing changes:
 - result hierarchy is `Pirmas žvilgsnis / First glance` -> `Antras atsakymas / Second answer` -> `Pažvelk dar kartą / Look again`;
 - normal participant results no longer show `0/2`, `1/2`, `2/2`, decimal domain averages or score bars;
 - incomplete sufficiency domains remain in research data but are not presented as complete participant interpretations;
-- raw diagnostics remain debug-only.
+- raw diagnostics remain debug-only;
+- the exact `no repeated theme + all Hard to say` edge now states both reasons for the absence of a valid comparison.
 
 Research model, schema, CARE boundary and cohort rule are unchanged.
 
