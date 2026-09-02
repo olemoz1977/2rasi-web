@@ -8,12 +8,13 @@ Branch: `feature/priolens-architecture`
 ## Read first
 
 1. `RESUME_HERE.md`
-2. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`
-3. `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
-4. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
-5. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
-6. this file
-7. older architecture docs only as needed
+2. `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`
+3. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`
+4. `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`
+5. `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`
+6. `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md`
+7. this file
+8. older architecture docs only as needed
 
 ## Product boundary
 
@@ -257,11 +258,14 @@ Coverage issue CLOSED in runtime commit `98d4204ebc178288931af0ec3ef1a42693fc8fd
 - 1/2 -> explicit partial-information state, no full domain bar;
 - only 2/2 complete domains enter Channel A vs Channel B comparison / summary logic.
 
-Open conceptual issues:
-1. visual CARE = proactive / giving care, while `CARE_SUPPORT_PRESENT` measures care/support present or received; do not treat them as construct-equivalent;
-2. Meaning / Contribution has no active visual counterpart.
+CARE asymmetry is CLOSED as a pre-pilot ambiguity by `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`:
+- visual CARE = proactive / giving care;
+- `CARE_SUPPORT_PRESENT` = care/support present or received;
+- no direct CARE <-> CARE_SUPPORT_PRESENT comparison in v0.2;
+- current result logic correctly excludes CARE from CONNECTION_SUPPORT comparison.
 
-Current comparison logic does not directly map CARE into CONNECTION_SUPPORT; that asymmetry must be frozen as an analysis rule before external pilot.
+Remaining conceptual asymmetry:
+- Meaning / Contribution has no active visual counterpart; keep it contextual-only rather than inventing symmetry.
 
 ## Backend and retention
 
@@ -316,8 +320,7 @@ Latest checkpoint:
 ## Remaining pre-pilot hardening
 
 1. run one fresh full mobile participant smoke in LT and one focused EN smoke, including summary, coverage states, restart and return;
-2. freeze CARE giving-vs-received-support asymmetry explicitly as an analysis rule;
-3. configure and smoke the 90-day cleanup cron;
+2. configure and smoke the 90-day cleanup cron;
 4. clean or explicitly exclude owner / household / system test rows before pilot analysis;
 5. manually smoke the public `.lt` and `.com` card -> landing -> Open14 -> return path before recruitment.
 

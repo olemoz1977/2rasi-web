@@ -12,11 +12,12 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. read this file;
 2. read `PROJECT_STATE.md` for architecture / runtime background;
-3. read `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md` as the latest active checkpoint;
-4. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
-5. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
-6. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
-7. read older docs / File Library only when needed.
+3. read `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md` for the frozen CARE boundary;
+4. read `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md` as the latest runtime checkpoint;
+5. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
+6. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
+7. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
+8. read older docs / File Library only when needed.
 
 If an older runtime / UX / language section conflicts with the bilingual-runtime checkpoint, the bilingual checkpoint wins.
 
@@ -125,6 +126,13 @@ Participant retention wording is now explicitly provisional (`numatyta / intende
 Latest active checkpoint:
 `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`
 
+### CARE boundary frozen
+
+Canonical analysis rule:
+`docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`
+
+Open14 v0.2 intentionally does **not** compare visual CARE directly with `CARE_SUPPORT_PRESENT`. Visual CARE = proactive care-giving; Channel B item = care/support present or received. Keep both, but do not treat them as equivalent constructs.
+
 ## Stimulus bank state
 
 **Owner stimulus remediation is complete.**
@@ -204,8 +212,7 @@ Health:
 ## Remaining pre-pilot hardening
 
 1. run one fresh full mobile participant smoke in LT and one focused EN smoke, including summary, coverage states, restart and 2rasi return;
-2. freeze CARE visual-giving vs received-support asymmetry explicitly as an analysis rule;
-3. configure and smoke the 90-day cleanup cron;
+2. configure and smoke the 90-day cleanup cron;
 4. clean or explicitly exclude owner / household / system test rows before pilot analysis;
 5. manually smoke the public `.lt` and `.com` entry -> landing -> Open14 -> return journey before recruitment.
 
