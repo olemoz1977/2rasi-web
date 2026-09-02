@@ -17,10 +17,11 @@ Recovery order:
 5. read `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md` for the bilingual architecture;
 6. read `docs/OPEN14_PREPILOT_SMOKE_FINDINGS_2026-09-02.md` for the latest UX / public-routing checkpoint;
 7. read `docs/OPEN14_PARTICIPANT_SURFACE_v0.1.md` for the latest participant intro / result presentation rule;
-8. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
-9. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
-10. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
-11. read older docs / File Library only when needed.
+8. read `docs/OPEN14_RETENTION_CRON_v0.1.md` for the verified retention code/DB boundary and remaining hPanel step;
+9. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
+10. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
+11. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
+12. read older docs / File Library only when needed.
 
 If an older runtime / UX section conflicts with the pre-pilot smoke checkpoint, the smoke checkpoint wins. For participant intro / result presentation, `OPEN14_PARTICIPANT_SURFACE_v0.1.md` wins over the older participant-completion presentation. The bilingual-runtime checkpoint remains canonical for language architecture.
 
@@ -177,6 +178,28 @@ Participant-facing changes:
 
 Research model, schema, CARE boundary and cohort rule are unchanged.
 
+### Retention code + live DB ready — scheduler still open
+
+Canonical retention checkpoint:
+`docs/OPEN14_RETENTION_CRON_v0.1.md`
+
+Readiness workflow run:
+`33623739323` — SUCCESS.
+
+Verified against production:
+- deployed `cleanup.php` exactly matches repo source;
+- direct HTTP execution is denied (`403 Forbidden`);
+- live DB has generated `expires_at = created_at + 90 DAY`;
+- `idx_expires_at` exists;
+- `expiryMismatchRows = 0`;
+- verification snapshot: `totalRows = 13`, `expiredRowsNow = 0`.
+
+Still OPEN:
+- create the Hostinger hPanel PHP cron entry;
+- smoke its first real scheduled/manual execution and inspect output.
+
+Until that is done, automatic physical deletion is not guaranteed and participant wording remains `numatyta / intended up to 90 days`.
+
 ### CARE boundary frozen
 
 Canonical analysis rule:
@@ -289,7 +312,7 @@ Health:
 2. run one fresh full mobile participant smoke in LT, including result presentation, repeat and return;
 3. run one focused EN smoke through the new result presentation;
 4. manually complete the public `.lt` and `.com` card -> landing -> PrioLens -> return journey;
-5. configure and smoke the 90-day cleanup cron;
+5. create the Hostinger hPanel PHP cron for the already-verified production cleanup script and smoke the first real cron output;
 6. only when recruitment intentionally opens, record `PILOT_OPENED_AT_UTC` before distributing the recruitment link.
 
 The supplied PC completion does **not** close the required full LT mobile smoke.

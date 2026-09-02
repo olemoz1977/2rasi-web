@@ -286,10 +286,17 @@ Operational:
 - `created_at`;
 - generated/indexed `expires_at = created_at + 90 DAY`;
 - CLI-only cleanup script;
-- final / progress APIs accept optional `language` only when `lt` or `en`.
+- final / progress APIs accept optional `language` only when `lt` or `en`;
+- production cleanup source parity verified;
+- web execution denied with HTTP 403;
+- live DB expiry column/index/invariant verified by workflow `33623739323` with `expiryMismatchRows = 0`.
+
+Canonical retention checkpoint:
+`docs/OPEN14_RETENTION_CRON_v0.1.md`
 
 Still missing:
-- Hostinger cron is not configured / smoked;
+- Hostinger hPanel cron entry is not configured / smoked;
+- first real cron output has not been observed;
 - automatic physical deletion after 90 days is therefore not guaranteed.
 
 Participant wording now says retention is **intended / numatyta** up to 90 days, not guaranteed.
@@ -323,8 +330,8 @@ Latest checkpoint:
 ## Remaining pre-pilot hardening
 
 1. run one fresh full mobile participant smoke in LT and one focused EN smoke, including summary, coverage states, restart and return;
-2. configure and smoke the 90-day cleanup cron;
-5. manually smoke the public `.lt` and `.com` card -> landing -> Open14 -> return path before recruitment.
+2. create the Hostinger hPanel PHP cron for the verified cleanup script and smoke its first output;
+5. manually smoke the public `.lt` and `.com` card -> landing -> PrioLens -> return path before recruitment.
 
 External recruitment remains CLOSED until these are complete.
 
