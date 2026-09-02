@@ -1,5 +1,6 @@
 {
   "cleanUrls": true,
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./",
   "functions": {
     "api/review.js": {
       "maxDuration": 60
