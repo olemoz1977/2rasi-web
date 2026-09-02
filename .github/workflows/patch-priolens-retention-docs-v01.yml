@@ -74,3 +74,5 @@ jobs:
           git add tools/priolens/RESUME_HERE.md tools/priolens/PROJECT_STATE.md
           git commit -m 'docs(priolens): index retention readiness checkpoint'
           git push origin HEAD:feature/priolens-architecture
+
+# Triggered after the workflow file existed on the branch so its path-filtered push runs reliably.
