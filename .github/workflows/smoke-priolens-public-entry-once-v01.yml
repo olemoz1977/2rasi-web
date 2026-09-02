@@ -1,0 +1,34 @@
+name: Smoke PrioLens public entry once v01
+
+on:
+  push:
+    branches: [feature/priolens-architecture]
+    paths:
+      - .github/workflows/smoke-priolens-public-entry-once-v01.yml
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Check public homepages and landings
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 4 --retry-delay 1 https://2rasi.lt/ -o /tmp/lt-home.html
+          curl -fsSL --retry 4 --retry-delay 1 https://2rasi.com/ -o /tmp/en-home.html
+          curl -fsSL --retry 4 --retry-delay 1 https://2rasi.lt/tools/priolens/ -o /tmp/lt-land.html
+          curl -fsSL --retry 4 --retry-delay 1 https://2rasi.com/tools/priolens/ -o /tmp/en-land.html
+          grep -q 'id="priolens"' /tmp/lt-home.html
+          grep -q 'id="priolens"' /tmp/en-home.html
+          grep -q 'Pirmas žvilgsnis ir antras atsakymas ne visada rodo tą patį' /tmp/lt-home.html
+          grep -q 'PrioLens' /tmp/lt-land.html
+          grep -q 'PrioLens' /tmp/en-land.html
+          grep -q '14 visual choices' /tmp/en-land.html
+          grep -q '14 vizualinių pasirinkimų' /tmp/lt-land.html
+          grep -q 'from=lt' /tmp/lt-land.html
+          grep -q 'from=com' /tmp/en-land.html
+          echo PUBLIC_PRIOLENS_ENTRY_OK
