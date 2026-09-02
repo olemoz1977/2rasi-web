@@ -16,10 +16,11 @@ Recovery order:
 4. read `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md` for the frozen CARE boundary;
 5. read `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md` for the bilingual architecture;
 6. read `docs/OPEN14_PREPILOT_SMOKE_FINDINGS_2026-09-02.md` for the latest UX / public-routing checkpoint;
-7. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
-8. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
-9. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
-10. read older docs / File Library only when needed.
+7. read `docs/OPEN14_PARTICIPANT_SURFACE_v0.1.md` for the latest participant intro / result presentation rule;
+8. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;
+9. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;
+10. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;
+11. read older docs / File Library only when needed.
 
 If an older runtime / UX section conflicts with the pre-pilot smoke checkpoint, the smoke checkpoint wins. The bilingual-runtime checkpoint remains canonical for language architecture.
 
@@ -147,6 +148,28 @@ Now:
 Canonical detailed checkpoint:
 `docs/OPEN14_PREPILOT_SMOKE_FINDINGS_2026-09-02.md`
 
+### Participant surface hardened — 2026-09-02
+
+Canonical participant-surface checkpoint:
+`docs/OPEN14_PARTICIPANT_SURFACE_v0.1.md`
+
+Runtime commit:
+`caa49b0dcb372fc085e79ec15fbd3fce66dd6d12`
+
+Deployment / live-source smoke workflow:
+`33622563632` — SUCCESS.
+
+Participant-facing changes:
+- `Open14` is now internal-only terminology; normal UI shows `PrioLens` and `Tyrimo prototipas / Research prototype`;
+- successful image-bank readiness checks disappear instead of occupying the intro;
+- the intro is action-oriented and no longer reads like a technical runtime screen;
+- result hierarchy is `Pirmas žvilgsnis / First glance` -> `Antras atsakymas / Second answer` -> `Pažvelk dar kartą / Look again`;
+- normal participant results no longer show `0/2`, `1/2`, `2/2`, decimal domain averages or score bars;
+- incomplete sufficiency domains remain in research data but are not presented as complete participant interpretations;
+- raw diagnostics remain debug-only.
+
+Research model, schema, CARE boundary and cohort rule are unchanged.
+
 ### CARE boundary frozen
 
 Canonical analysis rule:
@@ -255,10 +278,10 @@ Health:
 
 ## Remaining pre-pilot hardening
 
-1. re-smoke the live no-value slider and persistent exit, preferably on mobile;
-2. run one fresh full mobile participant smoke in LT, including summary, coverage states, repeat and return;
-3. run one focused EN smoke;
-4. manually re-smoke public `.lt` and `.com` card -> landing -> Open14 -> return, with `.com` specifically proving EN;
+1. smoke the new participant intro and result hierarchy on mobile, including the all-`Sunku pasakyti / Hard to say` edge case;
+2. run one fresh full mobile participant smoke in LT, including result presentation, repeat and return;
+3. run one focused EN smoke through the new result presentation;
+4. manually complete the public `.lt` and `.com` card -> landing -> PrioLens -> return journey;
 5. configure and smoke the 90-day cleanup cron;
 6. only when recruitment intentionally opens, record `PILOT_OPENED_AT_UTC` before distributing the recruitment link.
 
