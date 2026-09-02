@@ -1,0 +1,76 @@
+name: Patch PrioLens retention docs v01
+
+on:
+  push:
+    branches: [feature/priolens-architecture]
+    paths:
+      - .github/workflows/patch-priolens-retention-docs-v01.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/priolens-architecture
+          fetch-depth: 0
+
+      - name: Patch RESUME_HERE and PROJECT_STATE
+        shell: python
+        run: |
+          from pathlib import Path
+
+          p=Path('tools/priolens/RESUME_HERE.md')
+          s=p.read_text()
+          old='''7. read `docs/OPEN14_PARTICIPANT_SURFACE_v0.1.md` for the latest participant intro / result presentation rule;\n8. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;\n9. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;\n10. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;\n11. read older docs / File Library only when needed.'''
+          new='''7. read `docs/OPEN14_PARTICIPANT_SURFACE_v0.1.md` for the latest participant intro / result presentation rule;\n8. read `docs/OPEN14_RETENTION_CRON_v0.1.md` for the verified retention code/DB boundary and remaining hPanel step;\n9. read `docs/OPEN14_PARTICIPANT_COMPLETION_v0.1.md`;\n10. read `docs/OPEN14_MOBILE_ACCESSIBILITY_HARDENING_v0.1.md`;\n11. read `docs/OPEN14_FINAL_ASSET_BANK_v0.1.md` for the finalized active stimulus bank;\n12. read older docs / File Library only when needed.'''
+          if old not in s: raise SystemExit('RESUME recovery anchor missing')
+          s=s.replace(old,new,1)
+
+          anchor='''Research model, schema, CARE boundary and cohort rule are unchanged.\n\n### CARE boundary frozen'''
+          block='''Research model, schema, CARE boundary and cohort rule are unchanged.\n\n### Retention code + live DB ready — scheduler still open\n\nCanonical retention checkpoint:\n`docs/OPEN14_RETENTION_CRON_v0.1.md`\n\nReadiness workflow run:\n`33623739323` — SUCCESS.\n\nVerified against production:\n- deployed `cleanup.php` exactly matches repo source;\n- direct HTTP execution is denied (`403 Forbidden`);\n- live DB has generated `expires_at = created_at + 90 DAY`;\n- `idx_expires_at` exists;\n- `expiryMismatchRows = 0`;\n- verification snapshot: `totalRows = 13`, `expiredRowsNow = 0`.\n\nStill OPEN:\n- create the Hostinger hPanel PHP cron entry;\n- smoke its first real scheduled/manual execution and inspect output.\n\nUntil that is done, automatic physical deletion is not guaranteed and participant wording remains `numatyta / intended up to 90 days`.\n\n### CARE boundary frozen'''
+          if anchor not in s: raise SystemExit('RESUME retention section anchor missing')
+          s=s.replace(anchor,block,1)
+
+          old='''5. configure and smoke the 90-day cleanup cron;\n6. only when recruitment intentionally opens, record `PILOT_OPENED_AT_UTC` before distributing the recruitment link.'''
+          new='''5. create the Hostinger hPanel PHP cron for the already-verified production cleanup script and smoke the first real cron output;\n6. only when recruitment intentionally opens, record `PILOT_OPENED_AT_UTC` before distributing the recruitment link.'''
+          if old not in s: raise SystemExit('RESUME remaining anchor missing')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+
+          p=Path('tools/priolens/PROJECT_STATE.md')
+          s=p.read_text()
+          old='''Operational:\n- `created_at`;\n- generated/indexed `expires_at = created_at + 90 DAY`;\n- CLI-only cleanup script;\n- final / progress APIs accept optional `language` only when `lt` or `en`.\n\nStill missing:\n- Hostinger cron is not configured / smoked;\n- automatic physical deletion after 90 days is therefore not guaranteed.'''
+          new='''Operational:\n- `created_at`;\n- generated/indexed `expires_at = created_at + 90 DAY`;\n- CLI-only cleanup script;\n- final / progress APIs accept optional `language` only when `lt` or `en`;\n- production cleanup source parity verified;\n- web execution denied with HTTP 403;\n- live DB expiry column/index/invariant verified by workflow `33623739323` with `expiryMismatchRows = 0`.\n\nCanonical retention checkpoint:\n`docs/OPEN14_RETENTION_CRON_v0.1.md`\n\nStill missing:\n- Hostinger hPanel cron entry is not configured / smoked;\n- first real cron output has not been observed;\n- automatic physical deletion after 90 days is therefore not guaranteed.'''
+          if old not in s: raise SystemExit('PROJECT_STATE retention anchor missing')
+          s=s.replace(old,new,1)
+
+          old='''2. configure and smoke the 90-day cleanup cron;\n5. manually smoke the public `.lt` and `.com` card -> landing -> Open14 -> return path before recruitment.'''
+          new='''2. create the Hostinger hPanel PHP cron for the verified cleanup script and smoke its first output;\n5. manually smoke the public `.lt` and `.com` card -> landing -> PrioLens -> return path before recruitment.'''
+          if old not in s: raise SystemExit('PROJECT_STATE remaining anchor missing')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+
+      - name: Validate docs
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'OPEN14_RETENTION_CRON_v0.1.md' tools/priolens/RESUME_HERE.md
+          grep -q '33623739323' tools/priolens/RESUME_HERE.md
+          grep -q 'expiredRowsNow = 0' tools/priolens/RESUME_HERE.md
+          grep -q 'OPEN14_RETENTION_CRON_v0.1.md' tools/priolens/PROJECT_STATE.md
+          grep -q 'first real cron output' tools/priolens/PROJECT_STATE.md
+
+      - name: Commit docs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/priolens/RESUME_HERE.md tools/priolens/PROJECT_STATE.md
+          git commit -m 'docs(priolens): index retention readiness checkpoint'
+          git push origin HEAD:feature/priolens-architecture
