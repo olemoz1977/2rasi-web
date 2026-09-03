@@ -1,0 +1,26 @@
+{
+  "schema": "2rasi.priolens.open14.next-bank-source-assets-v0.3",
+  "status": "SOURCE_MATERIALIZED_15_OF_15_GEOMETRY_PENDING",
+  "sourceAssetCount": 15,
+  "sourceAssetPresentCount": 15,
+  "naturallySquareCount": 1,
+  "geometryReviewPendingCount": 14,
+  "note": "No non-square source is cropped/edited by this inventory step. Source hashes are immutable provenance.",
+  "assets": [
+    {"id":"REST-03","localFile":"4971.jpg","sourceRef":"Pexels/Pixabay 269141","decodedFormat":"JPEG","mode":"RGB","width":1536,"height":1097,"square":false,"bytes":474297,"sha256":"9996dbab58b7963b044f0a1129c228e94cfd28809772e1b17ebbaf131f6e131c","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"RESOURCE-03","localFile":"4957.jpg","sourceRef":"Pexels 5974010","decodedFormat":"JPEG","mode":"RGB","width":1536,"height":1024,"square":false,"bytes":200134,"sha256":"736f0d26c0b89ddf04bac65346658284761711e68bca49e55f9c8b92133a815e","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"SAFETY-03","localFile":"4945.jpg","sourceRef":"Pexels 8153605","decodedFormat":"JPEG","mode":"RGB","width":1024,"height":1536,"square":false,"bytes":198908,"sha256":"59b0753375bc09c24fd0f41f33aa3fa69d0d8b78e2d48a2164fd965d9693754e","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"ORDER-03","localFile":"4958.jpg","sourceRef":"Pexels 6264420","decodedFormat":"JPEG","mode":"RGB","width":864,"height":1536,"square":false,"bytes":124061,"sha256":"ed7f12a8f5522f81c3914ee3e3e16ab26154d0318f94c18a693c2bccc6d4d672","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"CONNECTION-03","localFile":"4932.jpg","sourceRef":"Pexels 35999767","decodedFormat":"JPEG","mode":"RGB","width":1024,"height":1536,"square":false,"bytes":198006,"sha256":"10e049ce299c2ed7cac1a0e573aba04f64cf994d6e3a3dd28d1f05e8b348ac12","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"BELONGING-03","localFile":"4947.jpg","sourceRef":"Pexels 9071468","decodedFormat":"JPEG","mode":"RGB","width":1536,"height":864,"square":false,"bytes":234781,"sha256":"4aab6177861be8ef82932efd0af2e21a4235981d49f468c151c457e79e582286","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"CARE-03","localFile":"4964.jpg","sourceRef":"Pexels 7339487","decodedFormat":"JPEG","mode":"RGB","width":1024,"height":1536,"square":false,"bytes":260196,"sha256":"125cd21b4b4502ab388328a864b5715a1283bedcd05dd4dbf786326f872e97a9","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"AUTONOMY-03","localFile":"4966.jpg","sourceRef":"Pexels 6069074","decodedFormat":"JPEG","mode":"RGB","width":1536,"height":1024,"square":false,"bytes":201458,"sha256":"0ac038bf442275e31dd0d980de184395501939791f9c5974629545d2a14aa802","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"CONTROL-03","localFile":"4936.jpg","sourceRef":"owner-reviewed local binary; external page unresolved","decodedFormat":"JPEG","mode":"RGB","width":1536,"height":1024,"square":false,"bytes":125962,"sha256":"519312832a1a2050109136419a6fe6db0a8e5c36232404bbe45025be8fbf07e9","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"RECOGNITION-02","localFile":"4967.jpg","sourceRef":"Pexels 8520508","decodedFormat":"JPEG","mode":"RGB","width":1536,"height":1024,"square":false,"bytes":268693,"sha256":"6da3accd8573bfaedf461a19d3c96d2b67533df3053cf3a96193cbd761bb7da7","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"RECOGNITION-03","localFile":"4973.png","sourceRef":"owner-approved in-chat edit from Pexels 7648310 scene","decodedFormat":"JPEG","mode":"RGB","width":1536,"height":1536,"square":true,"bytes":294123,"sha256":"be0b9af42c648fba4d63643babc935d90247b48f6a5afe609664fe21c1672334","geometryStatus":"READY_AS_IS_1TO1"},
+    {"id":"MASTERY-03","localFile":"4952.jpg","sourceRef":"Pexels 8030168","decodedFormat":"JPEG","mode":"RGB","width":1024,"height":1536,"square":false,"bytes":188926,"sha256":"242fe30c2a3b09c4c3face1bc91c91888586060a48cb418c29998c3ed0868dea","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"EXPLORATION-03","localFile":"4953.jpg","sourceRef":"Pexels 15692450","decodedFormat":"JPEG","mode":"RGB","width":1536,"height":1024,"square":false,"bytes":325519,"sha256":"fe82c4db8a37340e9ec490d5ee5fb3a7c796b0ff8da708cc0aaa9cbf23a8c245","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"KNOWLEDGE-03","localFile":"4954.jpg","sourceRef":"Pexels 6929197","decodedFormat":"JPEG","mode":"RGB","width":1536,"height":1024,"square":false,"bytes":283786,"sha256":"921321adf08e4c9e636f0b49eb4cb061b6ec42b0d6cc01aa4396cfddab126b21","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"},
+    {"id":"OPPORTUNITY-03","localFile":"4955.jpg","sourceRef":"Pexels 21854305","decodedFormat":"JPEG","mode":"RGB","width":863,"height":1536,"square":false,"bytes":325976,"sha256":"2bdb71f8624de10a5eada2a8b25d8a97ac43dfeea5906ceb85d6d5c677f68b4b","geometryStatus":"SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING"}
+  ]
+}
