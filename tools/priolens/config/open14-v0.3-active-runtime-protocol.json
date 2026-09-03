@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.3",
-  "updatedAtUtc": "2026-09-03T15:09:00Z",
-  "status": "MOST_LEAST_ALL3_FIX_DEPLOYED_TECHNICAL_PASS_OWNER_RETEST_PENDING",
+  "updatedAtUtc": "2026-09-03T18:40:00Z",
+  "status": "V031_REMEDIATED_OWNER_PREVIEW_DEPLOYED_TECHNICAL_PASS_OWNER_REAL_PHONE_RETEST_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v03",
   "previewPath": "/priolens-open14-v03/",
@@ -11,22 +11,39 @@
   "deploymentCapability": {
     "hostingerViaGitHubActionsFtp": true,
     "ftpSecrets": ["HOSTINGER_FTP_USER", "HOSTINGER_FTP_PASSWORD"],
-    "note": "Use the existing isolated GitHub Actions FTP path for reversible Hostinger preview deploys. Lack of a direct Hostinger File Manager connector does not mean deployment is unavailable."
+    "note": "Use the isolated GitHub Actions FTP path for reversible Hostinger preview/API deploys. Current preview deploy keeps index.html, bank.json and stimulus-bank.html synchronized."
   },
   "bank": {
-    "schema": "2rasi.priolens.open14.bank-v0.3",
+    "schema": "2rasi.priolens.open14.bank-v0.3.1",
+    "previousSchema": "2rasi.priolens.open14.bank-v0.3",
+    "revisionReason": "Owner real-phone review required five concrete stimulus remediations. Pixel changes are versioned rather than silently reusing bank-v0.3 identity.",
     "familyCount": 14,
     "exemplarCount": 42,
     "runtimeReady": true,
     "familyPlanner": "cyclic-14x3-diff-1-4-slot-role-v0.2",
     "exemplarAssigner": "balanced-3x1-no-repeat-slot-v0.3",
-    "assetGatePassed": true,
-    "full42AuditRun": 33756186905
+    "stableExemplarIds": true,
+    "ownerRemediatedExemplars": ["REST-01", "RESOURCE-03", "KNOWLEDGE-02", "OPPORTUNITY-01", "RECOGNITION-02"],
+    "ownerRemediationAssetRun": 33785859324,
+    "promotionRun": 33790490418,
+    "full42AuditPassed": true,
+    "full42AuditRun": 33790603165,
+    "full42Audit": {
+      "httpDecodeSquarePass": 42,
+      "uniqueExemplarIds": 42,
+      "uniqueRuntimePaths": 42,
+      "uniqueExactSha256": 42,
+      "shaPinnedPass": "18/18",
+      "phashWatchLe12": 0,
+      "stockWatermarkOcrHits": 0
+    }
   },
   "interaction": {
     "protocol": "most+least-v0.3",
     "sessionSchema": "2rasi.priolens.open14.rank-session-v0.3",
-    "draftKeyBase": "priolens.open14.v03.rank.draft",
+    "draftKeyBase": "priolens.open14.v031.rank.draft",
+    "previousDraftKeyBase": "priolens.open14.v03.rank.draft",
+    "draftIsolationReason": "Do not resume a draft created with bank-v0.3 pixels under bank-v0.3.1 pixels.",
     "mostPrompt": "first visual pull",
     "leastPrompt": "least pull among the two remaining images",
     "leastTieAllowed": true,
@@ -34,36 +51,52 @@
     "pendingMostCheckpointed": true,
     "visibleBalanceScore": false
   },
+  "apiCompatibility": {
+    "acceptedBankSchemas": ["2rasi.priolens.open14.bank-v0.3", "2rasi.priolens.open14.bank-v0.3.1"],
+    "reason": "Preserve old owner-session compatibility while stored bank_schema continues to identify the exact pixel bank.",
+    "sourceMigrationRun": 33790995808,
+    "deployRun": 33791065786,
+    "smokePassed": true,
+    "smokeRun": 33791193830,
+    "legacyBankV03CompatibilityPassed": true
+  },
   "resultImagePolicy": {
     "rule": "show every distinct exemplar that produced the displayed repeated-family count",
     "twoOfThreeShows": 2,
     "threeOfThreeShows": 3,
     "appliesTo": ["MOST result cards", "LEAST result cards", "reflection hero"],
-    "ownerFinding": "Mobile review found 3/3 text paired with only two images because three v0.2 slice(0,2) caps remained in the v0.3 result layer.",
-    "fixSourceCommit": "5468e9c1033751262c05115280015c685c70529c",
-    "fixBuildRun": 33770222635,
-    "fixSourceContractRun": 33770222682,
-    "fixPackageRun": 33770331724,
-    "fixPackagePrepared": true,
-    "fixDeployed": true,
-    "ftpDeployWorkflowRun": 33770746538,
-    "deployedChromiumSmokeRun": 33770814846
+    "legacyTwoImageCapForbidden": true,
+    "originalFixSourceCommit": "5468e9c1033751262c05115280015c685c70529c"
   },
   "sourceGates": {
+    "bankApiGateRun": 33791262545,
     "rankBuildPassed": true,
-    "rankBuildRun": 33770222635,
-    "rankSourceContractPassed": true,
-    "rankSourceContractRun": 33770222682
+    "rankBuildRun": 33791323772,
+    "rankBuildNoRepeatSeeds": 1000,
+    "v031DraftNamespacePassed": true
   },
   "deploymentGates": {
     "rankApiDeployed": true,
+    "rankApiDeployRun": 33791065786,
     "rankApiSmokePassed": true,
-    "rankApiSmokeRun": 33766017673,
+    "rankApiSmokeRun": 33791193830,
     "rankParticipantDeployed": true,
+    "rankParticipantDeployRun": 33791409529,
     "rankParticipantMatchesCurrentSource": true,
     "rankParticipantCurrentSourceSmokePassed": true,
-    "rankParticipantCurrentSourceSmokeRun": 33770814846,
+    "rankParticipantCurrentSourceSmokeRun": 33791582358,
+    "finalBankMetadataSyncRun": 33791761554,
     "ownerMobileVisualSmokePassed": false
   },
-  "nextAction": "Owner retests the current live v0.3 preview result screen: 3/3 must show three images, 2/3 must show two, no awkward mobile wrapping/overflow, and BELONGING-03 group-read remains acceptable. External recruitment remains closed."
+  "ownerMobileRetestFocus": [
+    "REST-01 reads immediately as rest/recovery without rocking-horse distraction",
+    "RESOURCE-03 reads as an available usable/rewarding resource without an overpowering food cue",
+    "KNOWLEDGE-02 reads as active learning rather than generic computer work",
+    "OPPORTUNITY-01 reads as an available possibility/use opportunity rather than merely materials or a blank desk",
+    "RECOGNITION-02 keeps both people and the high-five legible with reduced dead-wall imbalance",
+    "BELONGING-03 still reads as shared-group/togetherness rather than a dyad",
+    "3/3 result shows 3 distinct images and 2/3 shows 2 without awkward mobile overflow",
+    "MOST to LEAST interaction still feels natural on the real device"
+  ],
+  "nextAction": "Owner performs the real-phone visual/UX retest of the current v0.3.1 preview. Record concrete failures before further bank changes. If all focus items pass, record owner PASS. Live v0.2 replacement and external recruitment opening remain separate explicit decisions."
 }
