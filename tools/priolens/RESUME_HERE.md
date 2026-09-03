@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE / NEXT-BANK 42 DESIGN FROZEN / RUNTIME PACKAGE BUILD NEXT / PRE-PILOT HARDENING
+Status: ACTIVE / OPEN14 v0.2 LIVE / NEXT-BANK 42 DESIGN FROZEN / 15 NEW SOURCES LOCKED / NO-REPEAT ASSIGNER SMOKE PASS / GEOMETRY PACKAGE NEXT / PRE-PILOT HARDENING
 Updated: 2026-09-03
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -13,14 +13,16 @@ Recovery order:
 1. this file;
 2. `PROJECT_STATE.md` for runtime/background;
 3. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md` — current next-bank canonical set;
-4. `docs/OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md` — exact reviewed new binaries/hashes;
-5. `docs/OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`;
-6. `docs/OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`;
-7. `docs/OPEN14_NO_REPEAT_42_TRANSITION_2026-09-03.md`;
-8. `docs/OPEN14_ABC_FULL_AUDIT_2026-09-03.md`;
-9. `docs/OPEN14_PILOT_COHORT_RULE_v0.1.md`;
-10. `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`;
-11. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`.
+4. `config/open14-next-bank-v0.3-design.json` — machine-readable 42-ID design manifest;
+5. `config/open14-next-bank-v0.3-source-assets.json` — exact 15 new source binaries/hashes/dimensions;
+6. `docs/OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md`;
+7. `docs/OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`;
+8. `docs/OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`;
+9. `docs/OPEN14_NO_REPEAT_42_TRANSITION_2026-09-03.md`;
+10. `docs/OPEN14_ABC_FULL_AUDIT_2026-09-03.md`;
+11. `docs/OPEN14_PILOT_COHORT_RULE_v0.1.md`;
+12. `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`;
+13. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`.
 
 Later family-specific freeze checkpoints supersede older open-review notes for that family.
 
@@ -63,9 +65,31 @@ Frozen design:
 - every family appears exactly 3 times;
 - each final exemplar once per family/session;
 - exact-image repeats = 0;
-- runtime IDs should use stable family-local `01/02/03`, not assume legacy A/B/C semantics;
+- runtime IDs use stable family-local `01/02/03`, not legacy A/B/C semantics;
 - new bank/planner/session identity required;
 - live v0.2 stays untouched until runtime asset package + planner/versioning + smoke pass.
+
+Important delta from live:
+- **27 live exemplars are retained**;
+- **15 new runtime assets are required**;
+- the count is 15, not 14, because live `RECOGNITION-B` is retired and Recognition contributes two non-live assets (`4967` + owner `4973`).
+
+## New source package — MATERIALIZED
+
+Machine-readable inventory:
+`config/open14-next-bank-v0.3-source-assets.json`
+
+Verified in the working environment:
+- 15 / 15 required new source binaries present;
+- dimensions and source SHA-256 locked;
+- 1 / 15 naturally square: `RECOGNITION-03` / owner `4973`;
+- 14 / 15 are non-square and remain `SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING`;
+- no non-square source was silently cropped by the source-lock step.
+
+Design manifest:
+`config/open14-next-bank-v0.3-design.json`
+
+It intentionally keeps `runtimePath: null` for the 15 new assets and fails closed until a real versioned runtime package exists.
 
 ## Final family deltas
 
@@ -102,16 +126,37 @@ Recognition-D exact owner binary:
 PASS or PASS-WATCH in the full A/B/C audit and frozen in `OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`.
 Do not reopen them without concrete side-by-side/mobile or later formative evidence.
 
-## Planner target for next bank
+## Planner / assigner implementation — PROTOTYPE PASS
 
-Keep the valid 14-triad family schedule if family-level constraints remain valid.
-Assign exactly one final `01/02/03` exemplar per family occurrence:
-- 42 total image exposures;
-- exact-image repeat = 0;
-- exemplar×screen-slot assignment balanced/rotated by planner, not DOM order;
-- no stable family/exemplar-slot association across seed classes.
+Family schedule remains:
+`research/p3_open14_planner_v02.mjs`
 
-Recognition demonstrates why runtime IDs must not assume legacy letters: its final set is old A + new C + new D.
+It already guarantees:
+- 14 triads;
+- each family shown 3×;
+- each family in screen slots 1/1/1;
+- 3 macro domains per triad;
+- 42 unique family pair co-occurrences;
+- 6 unique opponents per family.
+
+New no-repeat exemplar assigner:
+`research/open14_no_repeat_assigner_v03.mjs`
+
+Assigner identity:
+`balanced-3x1-no-repeat-slot-v0.3`
+
+Smoke:
+`research/open14_no_repeat_assigner_v03_smoke.mjs`
+
+1000-seed local smoke PASS:
+- 42 exposures/session;
+- 42 unique exemplar IDs/session;
+- each family uses its three exemplar IDs exactly 1/1/1;
+- exact-image repeats = 0;
+- per slot exemplar-class counts are a 4/5/5 permutation;
+- across smoke seeds every family/exemplar reaches all three screen slots.
+
+This is not yet deployed runtime behavior.
 
 ## CARE boundary
 
@@ -146,10 +191,10 @@ Always exclude `SYSTEM_SMOKE_DO_NOT_ANALYZE`; keep language as an analysis facto
 
 ## Active next-bank execution queue
 
-1. Locate/materialize the live 28 bank + asset sources as the immutable baseline.
-2. Build a separate versioned 42-bank asset package from the design freeze.
-3. Normalize filenames/geometry and preserve original + normalized hashes.
-4. Patch planner to one-use three-exemplar assignment with no exact repeat.
+1. Resolve deterministic 1:1 runtime geometry for the 14 non-square new sources. **Do not edit/crop without explicit owner image-edit instruction.**
+2. Build the separate versioned 42-bank runtime asset package: 27 retained live binaries + 15 new normalized binaries.
+3. Preserve original and normalized hashes; populate runtime paths in the v0.3 bank manifest.
+4. Integrate the already-smoked `balanced-3x1-no-repeat-slot-v0.3` assigner into a separate next runtime, not live v0.2.
 5. Bump bank/planner/session metadata so v0.2 observations remain separable.
 6. Run geometry/reachability/text-watermark/hash/pHash audit.
 7. Owner mobile visual smoke across all 42.
