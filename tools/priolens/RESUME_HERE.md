@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3 42-BANK PASS / v0.3 MOST+LEAST API PASS / OWNER MOBILE FOUND 3/3 RESULT IMAGE CAP / FIX SOURCE+CI PASS / FIX DEPLOY PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3 42-BANK PASS / MOST+LEAST API PASS / 3/3 RESULT IMAGE FIX DEPLOYED + TECHNICAL PASS / OWNER MOBILE RETEST PENDING / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-03
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -12,13 +12,33 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. this file;
 2. `config/open14-v0.3-active-runtime-protocol.json`;
-3. `docs/OPEN14_V03_MOST_LEAST_DEPLOYED_PASS_2026-09-03.md` for the pre-fix deployed technical smoke;
+3. `docs/OPEN14_V03_MOST_LEAST_DEPLOYED_PASS_2026-09-03.md` for pre-3/3-fix technical evidence;
 4. `docs/OPEN14_V03_MOST_LEAST_MIGRATION_SOURCE_PASS_2026-09-03.md`;
 5. `docs/OPEN14_V03_GEOMETRY_PASS_AND_ASSET_UPLOAD_PACKAGE_2026-09-03.md`;
 6. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`;
 7. bank/design/source/geometry configs and no-repeat assigner smoke as needed.
 
 Later checkpoints supersede older same-day notes when they conflict.
+
+## Deployment capability
+
+Hostinger preview deployment **is available** through existing GitHub Actions FTP credentials:
+- `HOSTINGER_FTP_USER`;
+- `HOSTINGER_FTP_PASSWORD`.
+
+Existing FTP pattern is proven by earlier PrioLens deploy workflows. For reversible preview changes, prefer isolated GitHub Actions FTP deploys rather than asking the owner to upload files manually.
+
+Important distinction:
+- there is no direct Hostinger File Manager connector in chat;
+- but this does **not** mean Hostinger deployment is unavailable, because the repo already has the FTP deploy path through GitHub Actions secrets.
+
+Current isolated v0.3 preview FTP workflow:
+`.github/workflows/deploy-priolens-open14-v03-preview.yml`
+
+It deploys only the separate v0.3 preview `index.html` to:
+`/domains/omesg360.eu/public_html/priolens-open14-v03/`
+
+It does not touch v0.2, API, assets, or public routing.
 
 ## Non-negotiable research boundary
 
@@ -53,8 +73,8 @@ External recruitment remains CLOSED.
 ## Frozen v0.3 bank — PASS
 
 14 families × 3 unique exemplars = 42.
-Family planner remains `cyclic-14x3-diff-1-4-slot-role-v0.2`.
-No-repeat assigner remains `balanced-3x1-no-repeat-slot-v0.3`.
+Family planner: `cyclic-14x3-diff-1-4-slot-role-v0.2`.
+No-repeat assigner: `balanced-3x1-no-repeat-slot-v0.3`.
 
 1000-seed invariant:
 - 42 exposures;
@@ -71,7 +91,7 @@ Hosted asset gates remain PASS:
 - pHash watch <=12 = 0;
 - stock-watermark OCR hits = 0.
 
-`BELONGING-03` geometry PASS; owner phone group-read WATCH remains.
+`BELONGING-03` geometry PASS; owner phone group-read WATCH remains until final owner retest closes it.
 
 ## Active v0.3 protocol — MOST+LEAST
 
@@ -91,62 +111,70 @@ Interaction:
 5. `pendingMost` makes reload/resume between MOST and LEAST safe.
 
 API deployed rank smoke `33766017673` = SUCCESS.
-Pre-fix deployed participant smoke `33766486747` = SUCCESS for the runtime bytes that existed before the owner result-image finding.
 
-## Owner mobile finding — 3/3 displayed with only 2 images
+## Owner mobile finding and fix — 3/3 displayed with only 2 images
 
 Owner real-phone review found a concrete inconsistency:
 - result text said e.g. `Priklausymas 3/3`;
-- the result card / reflection showed only 2 exemplar images.
+- result card / reflection showed only 2 exemplar images.
 
-Root cause confirmed in source: three v0.2 two-image caps survived the v0.3 migration:
+Root cause: three v0.2 two-image caps survived migration:
 1. MOST result card used `chosenImagePaths(id).slice(0,2)`;
 2. LEAST result card used `leastImagePaths(id).slice(0,2)`;
 3. reflection hero used `images.slice(0,2)`.
 
-This is a presentation defect, not a bank/counting defect.
+This was a presentation defect, not a bank/counting defect.
 
-### Fix policy
-
-Display every distinct exemplar that produced the displayed repeated-family count:
-- 2/3 -> show 2 images;
-- 3/3 -> show 3 images.
-
-Applies to:
-- MOST result cards;
-- LEAST result cards;
-- reflection hero.
-
-Responsive result grids now use auto-fit so 2-image cases remain 2-wide and 3-image cases fit three images without an empty third cell.
+Current policy:
+- 2/3 -> show 2 distinct exemplar images;
+- 3/3 -> show 3 distinct exemplar images;
+- applies to MOST cards, LEAST cards and reflection hero;
+- responsive result grids use auto-fit so 2 and 3 image cases both fit naturally.
 
 Fix source commit: `5468e9c1033751262c05115280015c685c70529c`.
-Build + 1000-seed invariants: run `33770222635` = SUCCESS.
-Source-contract smoke: run `33770222682` = SUCCESS.
-Updated participant package: run `33770331724`, with explicit guards preventing the three `slice(0,2)` caps from returning.
+Build + 1000-seed invariants: `33770222635` = SUCCESS.
+Source-contract smoke: `33770222682` = SUCCESS.
+Package run: `33770331724` = SUCCESS.
+
+### Current deployed fix evidence
+
+FTP deploy workflow run `33770746538` = SUCCESS:
+- FTP secrets present;
+- isolated v0.3 preview source validation PASS;
+- FTP upload PASS;
+- live `index.html` matched source byte-for-byte;
+- no legacy `slice(0,2)` result cap remained live.
+
+Post-deploy participant smoke `33770814846` = SUCCESS:
+- deployed runtime bytes/bank/42 paths PASS;
+- Chromium LT MOST+LEAST full flow PASS;
+- reload between MOST and LEAST + Resume PASS;
+- explicit LEAST and tie paths PASS;
+- 14 triads / 42 unique exemplars / no exact repeat PASS;
+- 6 Channel-B screens / final rank payload PASS;
+- focused EN flow PASS.
 
 ## Current gate state
 
 - 42-bank asset gate: PASS.
 - MOST+LEAST API: DEPLOYED + PASS.
 - MOST+LEAST source after 3/3 fix: PASS.
-- Deployed participant currently serves the pre-fix bytes until owner uploads the new participant package.
-- Therefore current-source deployed participant smoke: PENDING.
-- Owner mobile visual/UX smoke: OPEN, issue found, retest pending after deploy.
+- Current v0.3 participant preview matches current source: PASS.
+- Current-source deployed Chromium smoke: PASS (`33770814846`).
+- Owner mobile visual/UX gate: RETEST PENDING.
 - External recruitment: CLOSED.
 
 ## Immediate next execution queue
 
-1. Upload the updated participant ZIP into existing `public_html/priolens-open14-v03/`, overwriting preview files only.
-2. Run deployed byte/static/Chromium MOST+LEAST smoke against the new bytes.
-3. Owner retests the result screen specifically:
+1. Owner retests the current live preview result screen on phone:
    - 3/3 must show 3 images;
    - 2/3 must show 2 images;
    - no awkward mobile wrapping/overflow;
    - MOST → LEAST remains natural;
    - `BELONGING-03` still reads as shared-group/togetherness.
-4. Capture owner PASS/issues in repo.
-5. Only after owner gate closes consider replacing live v0.2.
-6. External recruitment remains CLOSED until a later explicit `PILOT_OPENED_AT_UTC` freeze.
+2. Capture owner PASS/issues in repo.
+3. Only after owner gate closes consider replacing live v0.2.
+4. External recruitment remains CLOSED until a later explicit `PILOT_OPENED_AT_UTC` freeze.
 
 Main stimulus rule:
 > **What does a reasonable viewer see happening within about one second?**
