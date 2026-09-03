@@ -1,0 +1,87 @@
+{
+  "schema": "2rasi.priolens.open14.bank-v0.3-runtime-plan",
+  "status": "RUNTIME_PATHS_PLANNED_NEW15_UPLOAD_PENDING",
+  "runtimeReady": false,
+  "familySetVersion": "open-spectrum-14-v0.3-no-repeat",
+  "familyPlanner": "cyclic-14x3-diff-1-4-slot-role-v0.2",
+  "exemplarAssigner": "balanced-3x1-no-repeat-slot-v0.3",
+  "sessionSchema": "2rasi.priolens.open14.session-v0.3",
+  "draftKeyBase": "priolens.open14.v03.draft",
+  "labelsHiddenDuringChoice": true,
+  "newAssetDirectory": "/priolens-research-assets/Open14-v03/",
+  "startPolicy": "FAIL_CLOSED_UNTIL_NEW15_HTTP_HASH_PASS_AND_RUNTIME_READY_TRUE",
+  "families": {
+    "REST": {"macro":"BASIC","display":"Rest / restoration","exemplars":[
+      {"id":"REST-01","sourceType":"live-v0.2","legacyId":"REST-A","runtimePath":"/priolens-research-assets/Open14-remediation-v01/rest-a_sq_bottom_v01.webp"},
+      {"id":"REST-02","sourceType":"live-v0.2","legacyId":"REST-B","runtimePath":"/priolens-research-assets/Open14-remediation-v02/rest-b_owner-b_sq_center_v01.webp"},
+      {"id":"REST-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/rest_03_640.webp","runtimeSha256Expected":"47365b81492e9328a854da21400cc3755608826e2685f7b2fb4a247ea13f0e54","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "RESOURCE": {"macro":"BASIC","display":"Resource / reward","exemplars":[
+      {"id":"RESOURCE-01","sourceType":"live-v0.2","legacyId":"RESOURCE-A","runtimePath":"/priolens-research-assets/Gallery/file_00000000673881f4bc390c5618110a68.png"},
+      {"id":"RESOURCE-02","sourceType":"live-v0.2","legacyId":"RESOURCE-B","runtimePath":"/priolens-research-assets/Open14-geometry-v01/resource-b_sq_center_v01.webp"},
+      {"id":"RESOURCE-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/resource_03_640.webp","runtimeSha256Expected":"463070f164600e9dd1c2952469f4d0fc4377c053f29eb96da9ca8fe81dcd98c5","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "SAFETY": {"macro":"BASIC","display":"Safety / protection","exemplars":[
+      {"id":"SAFETY-01","sourceType":"live-v0.2","legacyId":"SAFETY-A","runtimePath":"/priolens-research-assets/Gallery/S08.webp"},
+      {"id":"SAFETY-02","sourceType":"live-v0.2","legacyId":"SAFETY-B","runtimePath":"/priolens-research-assets/Gallery/S13.webp"},
+      {"id":"SAFETY-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/safety_03_640.webp","runtimeSha256Expected":"023e965b221d10327f90ad3876ecc2b1fba315b27349dd136c3fa190c4e7ec39","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "ORDER": {"macro":"BASIC","display":"Order / clarity","exemplars":[
+      {"id":"ORDER-01","sourceType":"live-v0.2","legacyId":"ORDER-A","runtimePath":"/priolens-research-assets/Open14-remediation-v02/order-a_owner-b_v01.webp"},
+      {"id":"ORDER-02","sourceType":"live-v0.2","legacyId":"ORDER-B","runtimePath":"/priolens-research-assets/Open14-remediation-v02/order-b_owner-c_v01.webp"},
+      {"id":"ORDER-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/order_03_640.webp","runtimeSha256Expected":"ad7384e7f7b2468ca358c069cbb2290c2e73422237c0650cb46481823fc2de7b","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "CONNECTION": {"macro":"SOCIAL","display":"Connection / reciprocity","exemplars":[
+      {"id":"CONNECTION-01","sourceType":"live-v0.2","legacyId":"CONNECTION-A","runtimePath":"/priolens-research-assets/Open14-remediation-v01/connection-a_clean_small_v01.webp"},
+      {"id":"CONNECTION-02","sourceType":"live-v0.2","legacyId":"CONNECTION-B","runtimePath":"/priolens-research-assets/Open14-remediation-v01/connection-b_clean_small_v01.webp"},
+      {"id":"CONNECTION-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/connection_03_640.webp","runtimeSha256Expected":"0cd63a71fa23625fd0ae054cad8195c6628c0dc37824b035fa88c5b2578d42a1","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "BELONGING": {"macro":"SOCIAL","display":"Belonging / togetherness","exemplars":[
+      {"id":"BELONGING-01","sourceType":"live-v0.2","legacyId":"BELONGING-A","runtimePath":"/priolens-research-assets/Gallery/S14.webp"},
+      {"id":"BELONGING-02","sourceType":"live-v0.2","legacyId":"BELONGING-B","runtimePath":"/priolens-research-assets/Open14-final-v01/belonging-b_coffee-ritual_v01.webp"},
+      {"id":"BELONGING-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/belonging_03_640.webp","runtimeSha256Expected":"5506a4a3a754683b077fc2f853a22d4d7189df7d727e1cfa14441c6786a606f6","geometryMethod":"SQUARE_CROP_CENTERING_0.45_0.50"}
+    ]},
+    "CARE": {"macro":"SOCIAL","display":"Care / altruistic helping","exemplars":[
+      {"id":"CARE-01","sourceType":"live-v0.2","legacyId":"CARE-A","runtimePath":"/priolens-research-assets/Open14-v02/priolens_care-a_v01.webp"},
+      {"id":"CARE-02","sourceType":"live-v0.2","legacyId":"CARE-B","runtimePath":"/priolens-research-assets/Open14-v02/priolens_care-b_v01.webp"},
+      {"id":"CARE-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/care_03_640.webp","runtimeSha256Expected":"fa69899211f3ae297d8d18302105c7d8716e169a424d8ad888dd3b83103ea673","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "AUTONOMY": {"macro":"AGENCY","display":"Autonomy / self-direction","exemplars":[
+      {"id":"AUTONOMY-01","sourceType":"live-v0.2","legacyId":"AUTONOMY-A","runtimePath":"/priolens-research-assets/Gallery/file_00000000cc8c81f4a927534c8316290c.png"},
+      {"id":"AUTONOMY-02","sourceType":"live-v0.2","legacyId":"AUTONOMY-B","runtimePath":"/priolens-research-assets/Recovered/priolens_aut_backpack_v01.webp"},
+      {"id":"AUTONOMY-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/autonomy_03_640.webp","runtimeSha256Expected":"2511883b2b4e458f5f0451d68258bb3ad021b7c89072ea4aa257798241ffe54a","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "CONTROL": {"macro":"AGENCY","display":"Control / assertion / boundary","exemplars":[
+      {"id":"CONTROL-01","sourceType":"live-v0.2","legacyId":"CONTROL-A","runtimePath":"/priolens-research-assets/Open14-final-v01/control-a_joystick_v01.webp"},
+      {"id":"CONTROL-02","sourceType":"live-v0.2","legacyId":"CONTROL-B","runtimePath":"/priolens-research-assets/Gallery/file_000000006b148210abe3c22f8ce50764.png"},
+      {"id":"CONTROL-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/control_03_640.webp","runtimeSha256Expected":"65f9844186a144616b26004c4276ad00fa4c244d0bb725afb1d353ffdb664b4c","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "RECOGNITION": {"macro":"AGENCY","display":"Recognition / esteem","exemplars":[
+      {"id":"RECOGNITION-01","sourceType":"live-v0.2","legacyId":"RECOGNITION-A","runtimePath":"/priolens-research-assets/Open14-v02/priolens_recognition-a_v01.webp"},
+      {"id":"RECOGNITION-02","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/recognition_02_640.webp","runtimeSha256Expected":"99e34a92ea838015c93b76bcc9c4321795750290349d4532c0f019dee4309831","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"},
+      {"id":"RECOGNITION-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/recognition_03_640.webp","runtimeSha256Expected":"7aaef13579f2bced74e66e139146d5be1df417f26d420c74714d5a4fcde3e08e","geometryMethod":"AS_IS_SQUARE_RESIZE"}
+    ],"retiredFromNextBank":["RECOGNITION-B"]},
+    "MASTERY": {"macro":"GROWTH","display":"Mastery / competence","exemplars":[
+      {"id":"MASTERY-01","sourceType":"live-v0.2","legacyId":"MASTERY-A","runtimePath":"/priolens-research-assets/Gallery/S12.webp"},
+      {"id":"MASTERY-02","sourceType":"live-v0.2","legacyId":"MASTERY-B","runtimePath":"/priolens-research-assets/Gallery/S16.webp"},
+      {"id":"MASTERY-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/mastery_03_640.webp","runtimeSha256Expected":"d3ff407d59274aaa5bad7376ccdaf764107bdb7aff203d9c04bfae38718f3c73","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "EXPLORATION": {"macro":"GROWTH","display":"Exploration / discovery","exemplars":[
+      {"id":"EXPLORATION-01","sourceType":"live-v0.2","legacyId":"EXPLORATION-A","runtimePath":"/priolens-research-assets/Gallery/S09.webp"},
+      {"id":"EXPLORATION-02","sourceType":"live-v0.2","legacyId":"EXPLORATION-B","runtimePath":"/priolens-research-assets/Open14-final-v01/exploration-b_magnifier-forest_v01.webp"},
+      {"id":"EXPLORATION-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/exploration_03_640.webp","runtimeSha256Expected":"924890821cddab00165cc2d26f43788bad1fb3f3f252d3dc4776bdad6f683a93","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "KNOWLEDGE": {"macro":"GROWTH","display":"Learning / Understanding","exemplars":[
+      {"id":"KNOWLEDGE-01","sourceType":"live-v0.2","legacyId":"KNOWLEDGE-A","runtimePath":"/priolens-research-assets/Open14-remediation-v01/knowledge-a_sq_top_v01.webp"},
+      {"id":"KNOWLEDGE-02","sourceType":"live-v0.2","legacyId":"KNOWLEDGE-B","runtimePath":"/priolens-research-assets/Open14-remediation-v02/knowledge-b_owner-b_sq_bottom_v01.webp"},
+      {"id":"KNOWLEDGE-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/knowledge_03_640.webp","runtimeSha256Expected":"e8acaeedc9fe8e3a4844e020bda01716cd85aa6effeea1385deb2284cce8a0d5","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]},
+    "OPPORTUNITY": {"macro":"GROWTH","display":"Opportunity / possibility","exemplars":[
+      {"id":"OPPORTUNITY-01","sourceType":"live-v0.2","legacyId":"OPPORTUNITY-A","runtimePath":"/priolens-research-assets/Open14-final-v01/opportunity-a_open-market-stall_v01.webp"},
+      {"id":"OPPORTUNITY-02","sourceType":"live-v0.2","legacyId":"OPPORTUNITY-B","runtimePath":"/priolens-research-assets/Gallery/file_00000000c7f0821081be7676884bb00f.png"},
+      {"id":"OPPORTUNITY-03","sourceType":"new-v0.3","runtimePath":"/priolens-research-assets/Open14-v03/opportunity_03_640.webp","runtimeSha256Expected":"ee85b4cde98717259052fb941fa7bb3e788c44f40c3c47fdb5450cb061d42326","geometryMethod":"SQUARE_CROP_CENTERING_0.50_0.50"}
+    ]}
+  },
+  "audit": {"familyCount":14,"exemplarCount":42,"uniqueExemplarIds":42,"uniqueRuntimePaths":42,"newAssetCount":15,"retainedLiveCount":27},
+  "deploymentGate": {"new15Uploaded":false,"new15ReachabilityPassed":false,"new15HashPassed":false,"full42AuditPassed":false}
+}
