@@ -13,13 +13,14 @@ Recovery order:
 1. this file;
 2. `PROJECT_STATE.md` for architecture/runtime background;
 3. `docs/OPEN14_NO_REPEAT_42_TRANSITION_2026-09-03.md` for current next-bank decision;
-4. `docs/OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md` for exact current C assets and Recognition correction;
-5. `docs/OPEN14_PILOT_COHORT_RULE_v0.1.md`;
-6. `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`;
-7. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`;
-8. participant/UX/retention checkpoints only as needed.
+4. `docs/OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md` for reviewed C binary identities;
+5. `docs/OPEN14_ABC_P0_AUDIT_2026-09-03.md` for the latest A/B/C challenge and D-search decisions;
+6. `docs/OPEN14_PILOT_COHORT_RULE_v0.1.md`;
+7. `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`;
+8. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`;
+9. participant/UX/retention checkpoints only as needed.
 
-If older docs/chat conflict on next-bank design, the 2026-09-03 transition + C-package provenance docs win.
+If parent transition/C-package notes conflict with the later P0 audit on a specific family, the later P0 audit wins.
 
 ## Product / research boundary
 
@@ -46,14 +47,12 @@ REST, RESOURCE, SAFETY, ORDER, CONNECTION, BELONGING, CARE, AUTONOMY, CONTROL, R
 
 ### Live Open14 v0.2
 
-Still unchanged:
+Unchanged:
 - 14 families × 2 exemplars = 28 active images;
 - 14 triads;
 - each family appears 3 times;
 - with only A/B one exact image necessarily repeats;
-- current family-level repetition requires cross-exemplar evidence, not same-image repetition.
-
-Live bank remains frozen while the next bank is incomplete.
+- family-level repetition requires cross-exemplar evidence, not same-image repetition.
 
 Open14:
 `https://omesg360.eu/priolens-open14-v02/`
@@ -63,38 +62,45 @@ Owner-readable bank:
 
 ### Owner-approved next bank
 
-Canonical decision:
-`docs/OPEN14_NO_REPEAT_42_TRANSITION_2026-09-03.md`
-
 Target:
 - 14 families × 3 unique exemplars = 42 unique stimuli;
 - each family appears exactly 3 times;
 - A/B/C each exactly once for that family;
 - 0 exact-image repeat within a session;
-- live v0.2 stays untouched until asset, planner, versioning and smoke pass.
+- live v0.2 stays untouched until final asset, planner, versioning and smoke pass.
 
-Current C asset truth:
+Canonical parent:
+`docs/OPEN14_NO_REPEAT_42_TRANSITION_2026-09-03.md`
+
+## Current C / A-B-C truth
+
+Reviewed binary provenance:
 `docs/OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md`
 
-Current working C set has exact reviewed local binary identities for all 14 comparison slots.
+Latest P0 audit:
+`docs/OPEN14_ABC_P0_AUDIT_2026-09-03.md`
 
-Important Recognition correction:
-- transparent loyalty-award image `4965.jpg` is **HOLD / not final C** because the award is too difficult to notice at small/mobile size;
-- current preferred comparison C is `4967.jpg`, teacher/student high-five / directed positive acknowledgement;
-- `4967` is a **BOUNDARY** candidate because learning/mastery/teacher-student context may cross-load.
-
-AUTONOMY-C remains the clothing-choice/self-direction boundary candidate.
+Important current deltas:
+- transparent loyalty-award `4965.jpg` = HOLD / not final Recognition C because the award is too difficult to notice at small/mobile size;
+- Recognition comparison C = `4967.jpg` teacher/student high-five / directed positive acknowledgement, explicitly BOUNDARY because of learning/mastery context;
+- Recognition-B is the first active A/B slot with a current D trigger;
+- preferred Recognition-D review candidate = Pexels `7648310`, adult professional holding a large framed certificate; solves transparent-object visibility but carries achievement/certificate/event cross-load;
+- REST `4928.jpg` furry-slippers candidate has been **reopened / downgraded to HOLD** because it is too close to the existing home-comfort/footwear mechanism;
+- preferred REST-C search direction is an actual restoration/rest action rather than another footwear image; first review candidate = Pexels/Pixabay `269141` person napping under a blanket on a sofa (CC0 on Pexels), with sleep/illness/laziness risk;
+- AUTONOMY A/B/C remains intact for now: B is a boundary WATCH, but another generic selection image would reduce mechanism diversity, so D is not triggered yet;
+- RESOURCE A/B/C passes the first P0 challenge;
+- OPPORTUNITY A/B/C passes the first P0 challenge. Earlier working note that described Opportunity-B as a workbench/tools scene was wrong; canonical live bank says Opportunity-B = blank canvas / `pradėti kurti nuo tuščios drobės`.
 
 ## Active A/B challenge queue
 
-### P0
-1. `AUTONOMY-B`
-2. `RECOGNITION-B`
-3. `REST-A`
-4. `RESOURCE-B`
-5. `OPPORTUNITY-B`
+P0 first-pass result:
+- AUTONOMY-B: boundary WATCH, no D yet;
+- RECOGNITION-B: provisional loser, D search active;
+- REST-A: not proven loser; REST-C itself reopened for mechanism diversity;
+- RESOURCE-B: pass/watch, no D;
+- OPPORTUNITY-B: pass, no D.
 
-### P1 watch
+P1 still to audit:
 - `CONNECTION-B`
 - `CARE-A`
 - `KNOWLEDGE-A`
@@ -102,7 +108,7 @@ AUTONOMY-C remains the clothing-choice/self-direction boundary candidate.
 
 Critical replacement rule:
 **do not move C into a weak A/B slot and stop.**
-If an old A/B clearly loses in A/B/C review, find D specifically for that family, compare A/B/C/D and keep three strong unique exemplars.
+If an old A/B clearly loses, find D specifically for that family, compare A/B/C/D and keep three strong unique exemplars.
 
 ## Planner target for next bank
 
@@ -151,17 +157,18 @@ Only completed rows at/after that cutoff with the frozen bank/planner/schema com
 
 ## Active next-bank execution queue
 
-1. C package exact reviewed binaries/provenance — substantially locked; CONTROL external source page still open, Recognition remains boundary.
-2. Run 14-family A/B/C audit, P0 first.
-3. Search/select D only where a current A/B clearly loses.
-4. Freeze exactly three reviewed unique exemplars per family.
-5. Normalize/upload versioned next-bank assets.
-6. Patch planner to one-use A/B/C assignment.
-7. Bump bank/planner/session metadata so v0.2 observations remain separable.
-8. Geometry/reachability/text-watermark/hash/pHash audit.
-9. Owner mobile visual smoke.
-10. Runtime no-repeat smoke.
-11. Only then reconsider external recruitment.
+1. Owner small-size review of Recognition-D `7648310`.
+2. Resolve a non-footwear REST-C; review `269141` first.
+3. Continue A/B/C audit through P1 and stable families.
+4. Search/select D only where a current A/B clearly loses.
+5. Freeze exactly three reviewed unique exemplars per family.
+6. Normalize/upload versioned next-bank assets.
+7. Patch planner to one-use A/B/C assignment.
+8. Bump bank/planner/session metadata so v0.2 observations remain separable.
+9. Geometry/reachability/text-watermark/hash/pHash audit.
+10. Owner mobile visual smoke.
+11. Runtime no-repeat smoke.
+12. Only then reconsider external recruitment.
 
 Main pragmatic stimulus question:
 > **What does a reasonable viewer see happening within about one second?**
