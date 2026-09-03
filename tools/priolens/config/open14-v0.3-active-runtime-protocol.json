@@ -1,13 +1,18 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.3",
-  "updatedAtUtc": "2026-09-03T15:03:00Z",
-  "status": "MOST_LEAST_OWNER_MOBILE_FOUND_RESULT_IMAGE_CAP_FIX_PREPARED",
+  "updatedAtUtc": "2026-09-03T15:09:00Z",
+  "status": "MOST_LEAST_ALL3_FIX_DEPLOYED_TECHNICAL_PASS_OWNER_RETEST_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v03",
   "previewPath": "/priolens-open14-v03/",
   "apiPath": "/priolens-open14-v03-api/",
   "liveV02Untouched": true,
   "externalRecruitmentOpen": false,
+  "deploymentCapability": {
+    "hostingerViaGitHubActionsFtp": true,
+    "ftpSecrets": ["HOSTINGER_FTP_USER", "HOSTINGER_FTP_PASSWORD"],
+    "note": "Use the existing isolated GitHub Actions FTP path for reversible Hostinger preview deploys. Lack of a direct Hostinger File Manager connector does not mean deployment is unavailable."
+  },
   "bank": {
     "schema": "2rasi.priolens.open14.bank-v0.3",
     "familyCount": 14,
@@ -40,7 +45,9 @@
     "fixSourceContractRun": 33770222682,
     "fixPackageRun": 33770331724,
     "fixPackagePrepared": true,
-    "fixDeployed": false
+    "fixDeployed": true,
+    "ftpDeployWorkflowRun": 33770746538,
+    "deployedChromiumSmokeRun": 33770814846
   },
   "sourceGates": {
     "rankBuildPassed": true,
@@ -52,11 +59,11 @@
     "rankApiDeployed": true,
     "rankApiSmokePassed": true,
     "rankApiSmokeRun": 33766017673,
-    "rankParticipantPreviouslyDeployed": true,
-    "previousRankParticipantSmokeRun": 33766486747,
-    "rankParticipantMatchesCurrentSource": false,
-    "rankParticipantCurrentSourceSmokePassed": false,
+    "rankParticipantDeployed": true,
+    "rankParticipantMatchesCurrentSource": true,
+    "rankParticipantCurrentSourceSmokePassed": true,
+    "rankParticipantCurrentSourceSmokeRun": 33770814846,
     "ownerMobileVisualSmokePassed": false
   },
-  "nextAction": "Upload the prepared participant package containing the all-repeated-exemplar result fix into the existing v0.3 preview directory, rerun deployed Chromium smoke, then resume owner mobile review. External recruitment remains closed."
+  "nextAction": "Owner retests the current live v0.3 preview result screen: 3/3 must show three images, 2/3 must show two, no awkward mobile wrapping/overflow, and BELONGING-03 group-read remains acceptable. External recruitment remains closed."
 }
