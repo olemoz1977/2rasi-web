@@ -1,16 +1,17 @@
 # PrioLens Open14 C-package provenance / readiness
 
-Status: ACTIVE ASSET-PACKAGE BUILD / 13 FAMILIES RESOLVED / REST C OPEN / NOT RUNTIME BANK
+Status: DESIGN-LEVEL 14/14 RESOLVED / FINAL 3×14 SET CAN BE FROZEN / NOT RUNTIME BANK
 Date: 2026-09-03
 Parent decision: `OPEN14_NO_REPEAT_42_TRANSITION_2026-09-03.md`
 Latest family audit: `OPEN14_ABC_FULL_AUDIT_2026-09-03.md`
-Latest Recognition freeze: `OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`
+Recognition freeze: `OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`
+REST freeze: `OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`
 
 ## Purpose
 
 Turn the owner-reviewed third-exemplar shortlist into an auditable next-bank asset package without silently mutating live Open14 v0.2.
 
-A semantic scene choice is not a runtime-ready stimulus. Before freeze require:
+A semantic scene choice is not a runtime-ready stimulus. Before runtime freeze require:
 - exact reviewed binary identity;
 - source/provenance where recoverable;
 - geometry/crop decision;
@@ -19,66 +20,62 @@ A semantic scene choice is not a runtime-ready stimulus. Before freeze require:
 - first-impulse/mechanism note;
 - known cross-loading risk.
 
-## Superseding audit corrections
+## Final family corrections
 
-### REST — OPEN
+### REST — CLOSED FOR NEXT-BANK DESIGN
 
-`4928.jpg` furry slippers remains a useful REST candidate but is **HOLD, not final C**.
+Canonical freeze:
+`OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`
 
-Reason: the full A/B/C audit found that it is too close to an existing home-comfort/footwear mechanism. The problem is C diversity; REST-A has not been proven to be the loser.
+`4928.jpg` furry slippers remains HOLD only because it is too close to the existing home-comfort/footwear mechanism.
 
-Current preferred replacement-C review candidate:
-- Pexels/Pixabay `269141` — person napping under a blue blanket on a sofa;
-- Pexels page marks it `Free to use (CC0)`;
-- strength: actual restoration/rest behavior rather than another footwear cue;
-- risk: sleep-specific and may read as illness/laziness.
+Final REST-C:
+- owner `4971.jpg`;
+- source Pexels/Pixabay `269141`;
+- dimensions `1536×1097`;
+- bytes `474297`;
+- SHA-256 `9996dbab58b7963b044f0a1129c228e94cfd28809772e1b17ebbaf131f6e131c`;
+- small-size 192×192 review still reads as a person lying/resting under a blanket;
+- normalized local 640×640 WebP review derivative SHA-256 `f84f46f7376c105765012ab614efc81e1a4a9bee137550ab6da90eae9d5f3465`;
+- decision: **KEEP / FINAL REST-C**.
 
-Backup: Pexels `8069673`, man sleeping on a sofa.
+Residual risk: sleep-specific / illness-laziness interpretation, accepted as preferable to footwear semantic duplication.
+
+Next-bank REST = **A + B + C(4971)**.
 
 ### RECOGNITION — CLOSED FOR NEXT-BANK DESIGN
 
 Canonical freeze:
 `OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`
 
-The old loyalty-award image `4965.jpg` remains **HOLD / not final** because its transparent award was too difficult to notice at small/mobile size.
+Historical candidates:
+- `4965.jpg` transparent loyalty award = HOLD / not final because the award is too difficult to notice at small/mobile size;
+- `4967.jpg` teacher/student high-five = BOUNDARY KEEP; directed positive acknowledgement, with learning/mastery/teacher-student cross-load.
 
-Owner then explicitly approved an edited certificate image as the final D mechanism.
+Owner-approved final D:
+- owner file label `4973.png`;
+- decoded format JPEG/RGB despite upload label;
+- dimensions `1536×1536`;
+- bytes `294123`;
+- SHA-256 `be0b9af42c648fba4d63643babc935d90247b48f6a5afe609664fe21c1672334`;
+- normalized 640×640 WebP SHA-256 `3965c63ee28f7052ce0fb160b9308b8f3154aff5d7967da687a1ca09ad266b13`;
+- owner-approved edited derivative from Pexels `7648310` certificate scene;
+- at 192×192 the person + certificate remain obvious while certificate wording is not practically readable;
+- residual risk: achievement/certificate/professional-status cross-load.
 
-Exact owner-approved Recognition-D binary:
-- owner file label: `4973.png`;
-- decoded format: JPEG/RGB despite the upload name;
-- dimensions: 1536×1536;
-- bytes: 294123;
-- SHA-256: `be0b9af42c648fba4d63643babc935d90247b48f6a5afe609664fe21c1672334`.
+Next-bank Recognition = **A + C + D**:
+- A KEEP;
+- live B RETIRE FROM NEXT BANK only;
+- C KEEP `4967.jpg`;
+- D KEEP / FINAL owner `4973` certificate edit.
 
-Normalized 640×640 WebP technical derivative prepared for packaging:
-- SHA-256: `3965c63ee28f7052ce0fb160b9308b8f3154aff5d7967da687a1ca09ad266b13`.
+Live Open14 v0.2 remains unchanged until runtime bank/version/planner smoke passes.
 
-Small-size inspection:
-- at 192×192 the person and framed certificate remain obvious;
-- certificate wording is no longer practically readable;
-- therefore the Recognition read does not depend on readable text.
-
-Provenance:
-- exact binary is an owner-approved in-chat edited derivative created after explicit edit instruction from the Pexels `7648310` certificate scene;
-- do not substitute the original full-body Pexels file and call it the same stimulus.
-
-Next-bank Recognition family = **A + C + D**:
-- A KEEP = restrained peer applause / positive acknowledgement;
-- live B RETIRE FROM NEXT BANK = peers seek focal person's judgement; too ambiguous for one-second Recognition;
-- C KEEP = `4967.jpg`, teacher/student high-five / directed positive acknowledgement, boundary due learning/mastery context;
-- D KEEP / FINAL = owner-approved `4973` certificate edit.
-
-Residual D risk:
-- achievement / certificate / professional-status cross-load;
-- positive facial expression adds valence;
-- accepted because Recognition object clarity and mechanism diversity beat the current B ambiguity.
-
-## Exact reviewed / working binaries
+## Exact reviewed / working third-or-replacement binaries
 
 | Family | Local reviewed file | Dimensions | SHA-256 | Current scene decision | Known source | Main residual risk |
 | --- | --- | ---: | --- | --- | --- | --- |
-| REST | `4928.jpg` | 1025×1536 | `452a9c5d1b5494c5574e4855c6fa6a75f7db01b90bce36eb3f687afae69c2d7c` | **HOLD / superseded C candidate** | Pexels `7937987` | duplicate home-comfort/footwear mechanism |
+| REST | `4971.jpg` | 1536×1097 | `9996dbab58b7963b044f0a1129c228e94cfd28809772e1b17ebbaf131f6e131c` | **KEEP / FINAL C** | Pexels/Pixabay `269141` | sleep-specific / illness-laziness interpretation |
 | RESOURCE | `4957.jpg` | 1536×1024 | `736f0d26c0b89ddf04bac65346658284761711e68bca49e55f9c8b92133a815e` | KEEP provisional | Pexels `5974010` | MASTERY/workshop cross-load |
 | SAFETY | `4945.jpg` | 1024×1536 | `59b0753375bc09c24fd0f41f33aa3fa69d0d8b78e2d48a2164fd965d9693754e` | KEEP | Pexels `8153605` | familiar learned safety cue |
 | ORDER | `4958.jpg` | 864×1536 | `ed7f12a8f5522f81c3914ee3e3e16ab26154d0318f94c18a693c2bccc6d4d672` | KEEP | Pexels `6264420` | everyday kitchen context |
@@ -94,26 +91,28 @@ Residual D risk:
 | KNOWLEDGE | `4954.jpg` | 1536×1024 | `921321adf08e4c9e636f0b49eb4cb061b6ec42b0d6cc01aa4396cfddab126b21` | KEEP | Pexels `6929197` | academic-context cue |
 | OPPORTUNITY | `4955.jpg` | 863×1536 | `2bdb71f8624de10a5eada2a8b25d8a97ac43dfeea5906ceb85d6d5c677f68b4b` | KEEP | Pexels `21854305` | nature/resource/growth valence |
 
-Historical Recognition award candidate:
-- `4965.jpg`, 1536×1080;
-- SHA-256 `6d579f836969ebdebe6a870b6642f40cdc13a1879daf6492175b6fe80dac8288`;
-- Pexels `15155577` series;
-- HOLD / not final — transparent award insufficiently visible at small size.
+Historical HOLD files:
+- REST `4928.jpg`, 1025×1536, SHA-256 `452a9c5d1b5494c5574e4855c6fa6a75f7db01b90bce36eb3f687afae69c2d7c`;
+- Recognition transparent award `4965.jpg`, 1536×1080, SHA-256 `6d579f836969ebdebe6a870b6642f40cdc13a1879daf6492175b6fe80dac8288`.
 
 ## Current readiness
 
 Design audit:
-- **13 / 14 families resolved** for next-bank design;
-- REST C remains the only open family;
-- Recognition is resolved as A+C+D for the next bank.
+- **14 / 14 families resolved** for next-bank design;
+- REST is frozen as A+B+C(4971);
+- Recognition is frozen as A+C+D, with live/current B retired from next-bank design only;
+- the exact final 3×14 family design can now be frozen explicitly.
 
-Runtime readiness remains incomplete because REST is not frozen and the final exact 3×14 binaries have not yet been normalized into a versioned next-bank runtime package.
+Runtime readiness remains incomplete because final binaries still need versioned runtime asset placement, normalized naming/geometry, planner patch, metadata versioning and smoke.
 
 ## Next executable step
 
-1. Resolve / owner-review REST candidate `269141` or another non-footwear restoration mechanism.
-2. Freeze REST and thereby freeze the exact final 3×14 family sets.
-3. Normalize/package/version final assets.
-4. Patch planner/version identity and run technical/mobile/runtime no-repeat smoke.
+1. Create explicit final 3×14 design-freeze manifest.
+2. Normalize/package/version final assets.
+3. Patch planner to one-use three-exemplar assignment per family.
+4. Add new bank/planner/session identity so v0.2 observations remain separable.
+5. Run hash/pHash/reachability/text-watermark/geometry audit.
+6. Owner mobile 42-bank first-glance smoke.
+7. Runtime no-repeat smoke.
 
 Live Open14 v0.2 remains unchanged.
