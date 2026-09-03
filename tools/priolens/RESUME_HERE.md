@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE / v0.3 42-BANK ASSET GATE PASS / v0.3 RUNTIME DRAFT FAIL-CLOSED / API DEPLOYMENT PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE / v0.3 42-BANK ASSET GATE PASS / v0.3 API GATE PASS / PARTICIPANT PREVIEW PACKAGE PREPARED / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-03
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -11,169 +11,171 @@ Branch: `feature/priolens-architecture`
 
 Recovery order:
 1. this file;
-2. `NEW_CHAT_HANDOFF_2026-09-03.md`;
-3. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`;
-4. `config/open14-next-bank-v0.3-design.json`;
-5. `config/open14-next-bank-v0.3-source-assets.json`;
-6. `config/open14-next-bank-v0.3-geometry.json`;
-7. `docs/OPEN14_V03_GEOMETRY_PASS_AND_ASSET_UPLOAD_PACKAGE_2026-09-03.md`;
-8. `config/open14-next-bank-v0.3-runtime-plan.json`;
-9. `docs/OPEN14_V03_RUNTIME_DRAFT_CHECKPOINT_2026-09-03.md`;
-10. `docs/OPEN14_V03_FULL42_HOST_AUDIT_PASS_2026-09-03.md`;
-11. `research/open14_no_repeat_assigner_v03.mjs` + smoke;
-12. family-specific freezes / pilot / CARE / bilingual checkpoints as needed.
+2. `docs/OPEN14_V03_API_PASS_AND_PARTICIPANT_PREVIEW_PACKAGE_2026-09-03.md`;
+3. `docs/OPEN14_V03_RUNTIME_DRAFT_CHECKPOINT_2026-09-03.md`;
+4. `docs/OPEN14_V03_GEOMETRY_PASS_AND_ASSET_UPLOAD_PACKAGE_2026-09-03.md`;
+5. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`;
+6. `config/open14-next-bank-v0.3-runtime-plan.json`;
+7. `config/open14-next-bank-v0.3-design.json`;
+8. `config/open14-next-bank-v0.3-source-assets.json`;
+9. `config/open14-next-bank-v0.3-geometry.json`;
+10. `research/open14_no_repeat_assigner_v03.mjs` + smoke;
+11. `NEW_CHAT_HANDOFF_2026-09-03.md` for older same-day context;
+12. `PROJECT_STATE.md` for older background only.
 
-Later design, geometry, runtime and host-audit checkpoints supersede older open-review notes.
+Later checkpoints supersede older same-day notes when they conflict.
 
-## Method boundary
+## Non-negotiable research boundary
 
 Channel A = low-deliberation comparative visual choice.
 Channel B = current perceived sufficiency collected only after Channel A.
 
 Do not claim:
-- subconscious / true-self access;
+- subconscious/true-self access;
 - visual pull = unmet need;
 - RT = psychological strength;
-- one global Maslow/need score;
+- one global/Maslow need score;
 - validated complete taxonomy.
 
-CARE visual = proactive care-giving. `CARE_SUPPORT_PRESENT` = care/support present or received. Do not treat them as construct-equivalent.
+CARE visual giving is not equivalent to `CARE_SUPPORT_PRESENT` received/present support.
 
-## Live v0.2 — DO NOT MODIFY
+## Live v0.2
 
-Runtime:
+Still unchanged and live:
 `https://omesg360.eu/priolens-open14-v02/`
 
-State:
 - 14 families × 2 exemplars = 28 active images;
-- external recruitment CLOSED;
-- live runtime/API remain unchanged.
+- exact A/B image repetition still exists by design;
+- external recruitment CLOSED.
 
-## Next Open14 v0.3 — frozen 42 bank
+Do not overwrite or mutate live v0.2 while preview validation is incomplete.
 
-Design:
-- 14 families × 3 unique exemplars = 42;
+## Frozen v0.3 bank
+
+14 families × 3 unique exemplars = 42.
+
+Delta from live:
 - 27 live exemplars retained;
 - 15 new runtime assets;
-- Recognition keeps live A, adds 4967 + owner 4973; live Recognition-B retires from next bank only;
-- runtime IDs are `FAMILY-01/02/03`;
-- exact image repeats per session = 0.
+- Recognition live B retired from next bank;
+- Recognition contributes two non-live assets.
 
-Family planner intentionally remains:
-- schema `2rasi.priolens.p3.open14.plan-v0.2`;
-- planner `cyclic-14x3-diff-1-4-slot-role-v0.2`.
+Runtime IDs are canonical family-local `01/02/03`.
 
-Changed exemplar layer:
-- schema `2rasi.priolens.open14.exemplars-v0.3`;
-- assigner `balanced-3x1-no-repeat-slot-v0.3`;
-- 1000-seed source/runtime smoke PASS.
+No-repeat assigner identity:
+`balanced-3x1-no-repeat-slot-v0.3`
 
-Session schema:
-`2rasi.priolens.open14.session-v0.3`
+Family planner remains intentionally v0.2 because its family-triad algorithm did not change:
+`cyclic-14x3-diff-1-4-slot-role-v0.2`
 
-Bank schema:
-`2rasi.priolens.open14.bank-v0.3`
+1000-seed logic smoke PASS:
+- 42 exposures;
+- 42 unique exemplar IDs;
+- each family uses 01/02/03 once;
+- exact-image repeats = 0;
+- balanced screen slots.
 
-## Geometry + asset gate — PASS
+## Asset gate — PASS
 
-Owner geometry package:
-- 15/15 canonical derivatives = 640×640;
-- all 15 exact SHA-256 matched `config/open14-next-bank-v0.3-geometry.json`;
-- BELONGING-03 crop remains x=0.45 and is geometry PASS / mobile WATCH only.
-
-Owner uploaded the approved 15 binaries to:
+New 15 are deployed under:
 `/priolens-research-assets/Open14-v03/`
 
-Public new-15 verification:
-- GitHub Actions run `33755869671` = SUCCESS;
-- 15/15 HTTP 200;
-- 15/15 exact SHA-256 matched canonical geometry hashes.
+Hosted verification:
+- new15 run `33755869671` = SUCCESS;
+- full42 run `33756186905` = SUCCESS.
 
-Full 42 host audit:
-- successful run `33756186905`;
-- 42/42 URLs reachable and decodable;
-- 42/42 square;
-- 42 unique exemplar IDs;
-- 42 unique runtime paths;
-- 42 unique exact SHA-256 values;
-- 15/15 new canonical SHA checks PASS;
-- pHash closest distance = 16;
-- pHash WATCH `<=12` = 0;
-- stock-watermark OCR keyword hits = 0.
+Full42 facts:
+- 42/42 HTTP/decode PASS;
+- all square;
+- 42 unique paths;
+- 42 unique exact SHA-256;
+- 15/15 new exact canonical SHA PASS;
+- closest pHash distance 16;
+- pHash watches <=12 = 0;
+- stock-watermark OCR hits = 0.
 
-Canonical checkpoint:
-`docs/OPEN14_V03_FULL42_HOST_AUDIT_PASS_2026-09-03.md`
+`BELONGING-03` geometry is PASS and remains only a later mobile visual WATCH.
 
-**Asset gate is closed. Do not reopen geometry or bank selection without concrete evidence.**
+## Separate v0.3 API — DEPLOYED + PASS
 
-## Separate v0.3 runtime draft
+Hostinger:
+`/priolens-open14-v03-api/`
+
+Live v0.2 API remains separate and unchanged.
+
+API smoke run `33757546461` = SUCCESS.
+
+Verified:
+- GET `api.php` -> 405;
+- GET `progress.php` -> 405;
+- `config.php` -> 403;
+- legacy session-v0.2 POST rejected 400;
+- forbidden Origin rejected 403;
+- valid v0.3 progress saved 200;
+- valid v0.3 final saved 200;
+- progress after completion returns `completedAlready:true` and does not overwrite completed data.
+
+Smoke row uses seed prefix `SYSTEM_SMOKE_DO_NOT_ANALYZE` and must be excluded from research analysis.
+
+## v0.3 participant runtime state
 
 Runtime repo:
-`olemoz1977/omesg360`
+- `olemoz1977/omesg360`;
+- branch `feature/priolens-open14-v03`;
+- path `priolens/open14-v03/`.
 
-Isolated branch:
-`feature/priolens-open14-v03`
+Feature `bank.json` now:
+- status `API_GATE_PASS_READY_FOR_SEPARATE_PREVIEW_DEPLOY`;
+- `runtimeReady:true`;
+- start policy `READY_FOR_SEPARATE_V03_PARTICIPANT_PREVIEW_DEPLOY`;
+- asset gate PASS;
+- API gate PASS.
 
-Path:
-`priolens/open14-v03/`
+This does **not** authorize live replacement. It only allows a separate preview runtime to start after deployment.
 
-State:
-- guarded v0.3 index built from live v0.2 participant surface;
-- actual 42-bank + no-repeat assigner 1000-seed logic smoke PASS (`33754111649`);
-- repetition logic uses distinct canonical exemplar IDs, not legacy A/B suffixes;
-- v0.3 draft/local/session/API identities separated from v0.2;
-- live `omesg360/main` untouched.
+Prepared participant upload package:
+`priolens_open14_v03_participant_upload.zip`
 
-Current runtime gate:
-- asset metadata should read `ASSET_GATE_PASS_API_PENDING_FAIL_CLOSED`;
-- asset gate booleans = true;
-- **`runtimeReady` must remain `false` until API gate passes**.
+SHA-256:
+`f419805f917223018ea099a56d5b191aa9c9d343c0c7c49ad195f31685d3ed2f`
 
-## Current blocker — v0.3 API deployment
-
-Separate source already exists in runtime branch:
-- `priolens/open14-v03/server/api.php`;
-- `priolens/open14-v03/server/progress.php`.
+Packaging run `33757758737` = SUCCESS.
 
 Target Hostinger directory:
-`public_html/priolens-open14-v03-api/`
+`public_html/priolens-open14-v03/`
 
-Prepared upload payload:
-`priolens_open14_v03_api_upload.zip`
-
-Payload SHA-256:
-`ee7ce235183d428923c33423d9a378cc166bdfc4b59891f3752d112e9ee4cf49`
-
-Package contains:
-- `api.php`;
-- `progress.php`;
+Package contents:
+- `index.html`;
+- `bank.json`;
+- `p3_open14_planner_v02.mjs`;
+- `open14_no_repeat_assigner_v03.mjs`;
 - `.htaccess`;
 - upload README.
 
-It intentionally excludes `config.php` because that contains DB credentials.
+No API credentials or image binaries are inside.
 
-After extracting the package into the new v0.3 API directory, copy the existing secure `config.php` server-side from the live v0.2 API directory into the new v0.3 directory. Do not download/share the credential file and do not overwrite `/priolens-open14-api/`.
+Expected private preview URL after upload:
+`https://omesg360.eu/priolens-open14-v03/?lang=lt&from=lt`
 
-Expected routes after setup:
-- `https://omesg360.eu/priolens-open14-v03-api/api.php`
-- `https://omesg360.eu/priolens-open14-v03-api/progress.php`
+## Immediate next execution queue
 
-GET should return HTTP 405 / `Method not allowed`. Then run valid + invalid POST smoke for progress and final endpoint.
+1. Upload/extract `priolens_open14_v03_participant_upload.zip` into NEW `public_html/priolens-open14-v03/`.
+2. Do not touch `public_html/priolens-open14-v02/`.
+3. Automated deployed-runtime smoke:
+   - root/index reachability;
+   - `bank.json` identity + `runtimeReady:true`;
+   - `.mjs` MIME/load;
+   - 42 image preflight;
+   - LT complete participant flow;
+   - autosave/resume;
+   - final POST to separate v0.3 API;
+   - focused EN result smoke.
+4. Owner mobile visual smoke all 42, with BELONGING-03 explicit WATCH.
+5. Runtime no-repeat smoke against deployed surface.
+6. Only after those pass consider merging/replacing live v0.2.
+7. External recruitment remains CLOSED until later explicit `PILOT_OPENED_AT_UTC` freeze.
 
-## Next execution queue
-
-1. Upload/extract v0.3 API ZIP to `public_html/priolens-open14-v03-api/`.
-2. Copy live v0.2 secure `config.php` server-side into that new directory.
-3. Verify both v0.3 API routes and run valid/invalid POST smoke.
-4. Only after API PASS set v0.3 `bank.json` `runtimeReady:true`.
-5. Deploy/smoke separate v0.3 participant surface: LT + EN, 14 choices, 6 sufficiency screens, autosave/resume, final POST.
-6. Owner mobile visual smoke across all 42; keep BELONGING-03 as explicit WATCH.
-7. Runtime no-repeat smoke against deployed participant surface.
-8. Only then consider replacing live v0.2 and later record explicit `PILOT_OPENED_AT_UTC` before external recruitment.
-
-External recruitment remains **CLOSED**.
-
-Main pragmatic stimulus question:
+Main stimulus rule:
 > **What does a reasonable viewer see happening within about one second?**
 
 Guardrail:
