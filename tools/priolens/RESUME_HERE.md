@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE / NEXT-BANK 42 DESIGN FROZEN / 15 NEW SOURCES LOCKED / NO-REPEAT ASSIGNER SMOKE PASS / GEOMETRY PASS / NEW-15 HOSTINGER UPLOAD PACKAGE PREPARED / NOT DEPLOYED / PRE-PILOT HARDENING
+Status: ACTIVE / OPEN14 v0.2 LIVE / NEXT-BANK 42 DESIGN FROZEN / 15 NEW SOURCES LOCKED / GEOMETRY PASS / NEW-15 HOSTINGER UPLOAD PACKAGE PREPARED / V0.3 RUNTIME DRAFT BUILT + 1000-SEED LOGIC SMOKE PASS / FAIL-CLOSED / NOT DEPLOYED / PRE-PILOT HARDENING
 Updated: 2026-09-03
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -18,13 +18,15 @@ Recovery order:
 6. `config/open14-next-bank-v0.3-geometry.json`;
 7. `docs/OPEN14_V03_GEOMETRY_REVIEW_PACKAGE_2026-09-03.md`;
 8. `docs/OPEN14_V03_GEOMETRY_PASS_AND_ASSET_UPLOAD_PACKAGE_2026-09-03.md`;
-9. `docs/OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`;
-10. `docs/OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`;
-11. `research/open14_no_repeat_assigner_v03.mjs` + smoke;
-12. `PROJECT_STATE.md` for older runtime/background;
-13. pilot/CARE/bilingual checkpoints as needed.
+9. `config/open14-next-bank-v0.3-runtime-plan.json`;
+10. `docs/OPEN14_V03_RUNTIME_DRAFT_CHECKPOINT_2026-09-03.md`;
+11. `docs/OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`;
+12. `docs/OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`;
+13. `research/open14_no_repeat_assigner_v03.mjs` + smoke;
+14. `PROJECT_STATE.md` for older runtime/background;
+15. pilot/CARE/bilingual checkpoints as needed.
 
-Later family-specific/design/geometry freezes supersede older open-review notes.
+Later family-specific/design/geometry/runtime checkpoints supersede older open-review notes.
 
 ## Product / research boundary
 
@@ -64,7 +66,6 @@ Frozen design:
 - each final exemplar once per family/session;
 - exact-image repeats = 0;
 - runtime IDs use family-local `01/02/03`, not legacy A/B/C semantics;
-- new bank/planner/session identity required;
 - live v0.2 stays untouched until runtime asset package + integration + smoke pass.
 
 Delta from live:
@@ -162,18 +163,20 @@ Current infrastructure boundary still applies:
 
 Therefore actual Hostinger upload + HTTP reachability verification is the current external-filesystem blocker.
 
-## Planner / assigner — PROTOTYPE PASS
+## Planner / assigner — SOURCE + RUNTIME LOGIC PASS
 
-Family schedule:
+Canonical family schedule source:
 `research/p3_open14_planner_v02.mjs`
 
-No-repeat exemplar assigner:
+Canonical no-repeat exemplar assigner:
 `research/open14_no_repeat_assigner_v03.mjs`
 
-Identity:
-`balanced-3x1-no-repeat-slot-v0.3`
+Important identity rule:
+- family plan remains `2rasi.priolens.p3.open14.plan-v0.2` / `cyclic-14x3-diff-1-4-slot-role-v0.2` because the family-triad algorithm did not change;
+- changed exemplar assignment is separately versioned as `2rasi.priolens.open14.exemplars-v0.3` / `balanced-3x1-no-repeat-slot-v0.3`;
+- do not invent a family-planner v0.3 identity solely to align version numbers.
 
-1000-seed smoke PASS:
+Prototype/source 1000-seed smoke PASS:
 - 42 exposures/session;
 - 42 unique exemplar IDs/session;
 - each family uses all three IDs exactly once;
@@ -181,16 +184,54 @@ Identity:
 - slot distribution balanced;
 - every family/exemplar reaches all three screen slots across seeds.
 
-This is not deployed runtime behavior yet.
+## Separate v0.3 runtime draft — BUILT / FAIL-CLOSED / NOT DEPLOYED
 
-Important v0.3 runtime integration issue already confirmed:
-- live v0.2 result logic still detects cross-exemplar repetition using legacy `-A` / `-B` suffixes;
-- v0.3 must replace that with a set of distinct selected canonical exemplar IDs (`01/02/03`), otherwise repetition involving exemplar 03 would be misclassified.
+Canonical checkpoint:
+`docs/OPEN14_V03_RUNTIME_DRAFT_CHECKPOINT_2026-09-03.md`
 
-Backend issue already confirmed:
-- current live final/progress validators accept only session schema `v0.2` and exemplar IDs `FAMILY-A|B`;
-- v0.3 must use version-aware validation or a separate next endpoint before any end-to-end smoke;
-- do not silently send v0.3 sessions into a validator that rejects or aliases them as v0.2.
+Runtime repo:
+- `olemoz1977/omesg360`;
+- isolated branch `feature/priolens-open14-v03`;
+- path `priolens/open14-v03/`;
+- live `main` / `open14-v02` untouched.
+
+Feature branch now contains:
+- `bank.json` with 42 canonical IDs/paths and `runtimeReady:false`;
+- exact planner source, blob SHA `2dbf0dc7b5ce6bf17c1f7ee858d889a0c92d2be5`;
+- exact smoked assigner source, blob SHA `851c42e2e2e815c4a707df8c0e21c1d947e2fcdd`;
+- guarded `build_from_v02.mjs`;
+- generated v0.3 `index.html`;
+- separate v0.3 `server/api.php` + `server/progress.php` source;
+- runtime README / deployment gates.
+
+Generated runtime fixes the two confirmed v0.2 assumptions:
+1. family repetition is based on a set of distinct selected canonical exemplar IDs, not `-A/-B` suffixes;
+2. session/local-draft/API identities are v0.3 and use separate `/priolens-open14-v03-api/` endpoint paths.
+
+GitHub Actions runtime build run `33754111649` = SUCCESS:
+- guarded index build from live v0.2 source passed;
+- actual v0.3 42-bank + assigner 1000-seed smoke passed;
+- 42 unique IDs and 42 unique runtime paths in manifest;
+- generated-index identity guard checks passed;
+- generated index was committed to the feature branch.
+
+This is a logic/manifest smoke only. It does not prove Hostinger asset reachability, deployed API health or mobile participant behavior.
+
+## v0.3 backend boundary
+
+Separate v0.3 validator source requires:
+- `session-v0.3`;
+- `bank-v0.3`;
+- unchanged family-plan `plan-v0.2`;
+- `exemplars-v0.3`;
+- 14 completed trials;
+- 42 unique presented `FAMILY-01/02/03` IDs;
+- each family exactly `01/02/03` once;
+- no exact exemplar repeats;
+- existing `sufficiency-v0.2` item contract.
+
+It is intended for `/priolens-open14-v03-api/` and has not been deployed.
+The live `/priolens-open14-api/` remains unchanged.
 
 ## CARE boundary
 
@@ -208,6 +249,7 @@ One live runtime serves LT+EN:
 - EN: `?lang=en&from=com` -> `2rasi.com`.
 
 `language: lt|en` remains persisted and retained for analysis.
+The v0.3 draft is derived from that bilingual participant surface but has not yet had deployed LT/EN smoke.
 
 ## Pilot boundary
 
@@ -219,15 +261,14 @@ Always exclude `SYSTEM_SMOKE_DO_NOT_ANALYZE`; retain language as an analysis fac
 
 1. Upload the 15 approved WebPs to persistent Hostinger `/priolens-research-assets/Open14-v03/` without touching live v0.2 assets.
 2. Verify HTTP reachability and exact SHA-256 of all 15 deployed files.
-3. Combine those 15 runtime paths with the 27 retained live exemplars into the full 42-bank manifest.
-4. Integrate `balanced-3x1-no-repeat-slot-v0.3` into a separate `open14-v03` runtime, not live v0.2.
-5. Replace legacy A/B repetition detection with canonical distinct-exemplar-ID-set logic.
-6. Bump bank/session/local-draft/assigner identities so v0.2 observations remain separable.
-7. Make backend validation explicitly v0.3-aware while preserving v0.2 compatibility, or use a separate next endpoint.
-8. Run full 42 reachability/hash/pHash/text-watermark audit.
-9. Owner mobile visual smoke across all 42.
-10. Runtime no-repeat + autosave/resume + final POST smoke.
-11. Only then reconsider replacing live v0.2 and later opening external formative recruitment.
+3. Verify all 27 retained live paths in the same full-42 HTTP pass.
+4. Run full 42 pHash/text/watermark audit.
+5. Deploy the separate v0.3 API source to `/priolens-open14-v03-api/` using the existing secure DB-config pattern; do not replace live v0.2 endpoint.
+6. Only after asset + API gates pass, flip feature-branch `bank.json` to `runtimeReady:true`.
+7. Run deployed LT + EN participant smoke: 14 visual choices, 6 sufficiency screens, autosave/resume and final POST.
+8. Owner mobile visual smoke across all 42, with BELONGING-03 as explicit geometry WATCH.
+9. Re-run runtime no-repeat smoke against the deployed participant surface.
+10. Only then reconsider merging/replacing live v0.2 and later opening external formative recruitment.
 
 Existing unrelated pre-pilot ops still open:
 - fresh full LT mobile participant smoke;
