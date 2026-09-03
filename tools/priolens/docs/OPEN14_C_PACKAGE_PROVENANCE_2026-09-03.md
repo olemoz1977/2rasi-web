@@ -52,9 +52,11 @@ Semantic C choice:
 - 12 / 14 are ordinary KEEP/provisional KEEP;
 - AUTONOMY and RECOGNITION remain explicit boundary probes.
 
-Exact binary/provenance package:
-- **9 / 14 have a canonical external source candidate already documented**;
-- **5 / 14 require exact uploaded-image identity recovery before they can be frozen as the reviewed image**: REST, ORDER, CONNECTION, CARE, CONTROL, RECOGNITION is also uploaded-identity-open, so the practical unresolved set is **6 / 14** if the owner-reviewed loyalty-award file is retained rather than replaced by a fallback.
+Exact reviewed-image provenance:
+- **8 / 14 are currently source-locked at concept/source-page level**: RESOURCE, SAFETY, BELONGING, AUTONOMY, MASTERY, EXPLORATION, KNOWLEDGE, OPPORTUNITY;
+- **6 / 14 remain uploaded-image-identity open**: REST, ORDER, CONNECTION, CARE, CONTROL, RECOGNITION.
+
+Some of those six have plausible external fallbacks or earlier source candidates, but those are **not** counted as provenance for the owner-reviewed upload until exact identity is matched.
 
 Therefore the bank is **not 42-runtime-ready yet**.
 
