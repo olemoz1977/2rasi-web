@@ -1,0 +1,174 @@
+{
+  "schema": "2rasi.priolens.open14.adaptive-clarifiers-protocol-v0.4",
+  "status": "DESIGN_FREEZE_NOT_DEPLOYED",
+  "updatedAtUtc": "2026-09-03T21:25:00Z",
+  "runtimeBoundary": {
+    "currentRuntimeRemains": "v0.3.1 owner preview",
+    "currentSessionSchemaRemains": "2rasi.priolens.open14.rank-session-v0.3",
+    "currentBankRemains": "2rasi.priolens.open14.bank-v0.3.1",
+    "liveV02Untouched": true,
+    "externalRecruitmentOpen": false,
+    "note": "This file freezes v0.4 design only. It must not be interpreted as deployed behavior."
+  },
+  "researchBoundaries": {
+    "channelA": "low-deliberation comparative visual choice",
+    "channelAPlus": "adaptive clarification/focus selection among repeated Channel-A candidates; analytically separate from raw MOST counts",
+    "channelB": "current perceived sufficiency self-report",
+    "channelBPlus": "adaptive clarification among equally lowest eligible sufficiency items; analytically separate from Channel-B numeric ratings",
+    "forbiddenClaims": [
+      "visual pull equals unmet need",
+      "A+ selection creates a 3/3 MOST result",
+      "B+ selection is a diagnosis of the person's deepest or true need",
+      "LEAST means dislike or low importance",
+      "RT means psychological strength",
+      "MOST minus LEAST is a psychological score",
+      "Channel A and Channel B are one-to-one constructs"
+    ]
+  },
+  "flow": [
+    "Channel A: 14 triads with MOST then LEAST when MOST is clear",
+    "A+ only when Channel A does not leave one direct focus under the rules below",
+    "Channel B: existing 12 sufficiency items",
+    "B+ only when eligible Channel-B minima are tied under the rules below",
+    "final save",
+    "fixed non-diagnostic transition video",
+    "result world: ship for Channel-A focus plus separate needs map for Channel-B/B+ route"
+  ],
+  "channelAPlus": {
+    "placement": "after Channel A and before Channel B",
+    "reasonForPlacement": "Channel-B need wording must not prime the visual A+ runoff",
+    "mostCountBasis": "count only raw Channel-A MOST selections; no-clear trials add no MOST count",
+    "candidateRules": [
+      {
+        "when": "exactly one family has MOST count 3/3",
+        "action": "skip A+",
+        "focusSource": "A_DIRECT_UNIQUE_3_OF_3"
+      },
+      {
+        "when": "two or more families have MOST count 3/3",
+        "action": "run A+ among all 3/3 families",
+        "focusSource": "A_PLUS_RUNOFF_3_OF_3"
+      },
+      {
+        "when": "no family has 3/3 and exactly one family has 2/3",
+        "action": "skip A+ and use that family as the Channel-A focus",
+        "focusSource": "A_DIRECT_UNIQUE_2_OF_3"
+      },
+      {
+        "when": "no family has 3/3 and two or more families have 2/3",
+        "action": "run A+ among all 2/3 families",
+        "focusSource": "A_PLUS_RUNOFF_2_OF_3"
+      },
+      {
+        "when": "no family reaches 2/3",
+        "action": "do not manufacture a focus; skip A+",
+        "focusSource": "A_NO_REPEATED_FOCUS"
+      }
+    ],
+    "stimulusRules": {
+      "labelsHidden": true,
+      "useOnlyPreviouslyMostSelectedExemplars": true,
+      "newExemplarsForbidden": true,
+      "candidateCardImageCountMatchesRawRepeatCount": true,
+      "candidateOrderRandomized": true,
+      "imageOrderWithinCandidateRandomized": true,
+      "mixDifferentRepeatCountsInOneRunoff": false,
+      "leastQuestionInAPlus": false,
+      "aPlusChoiceChangesRawMostCounts": false
+    },
+    "participantPromptLt": "Pažiūrėk į tas vaizdų grupes, kurios tavo pasirinkimuose kartojosi. Kuri grupė dabar pirmiausia patraukia dėmesį?",
+    "participantNoClearLt": "Nė viena aiškiai",
+    "outcomes": {
+      "selectedOneCandidate": "one Channel-A focus family",
+      "noClear": "no single Channel-A focus; preserve candidates for detail view but do not force a ship label"
+    },
+    "resultSemantics": {
+      "heroShipLabel": "Channel-A focus, not necessarily a raw 3/3",
+      "numbersHiddenOnHero": true,
+      "detailMustDiscloseRawCount": true,
+      "detailMustDiscloseAPlusIfUsed": true,
+      "aPlusMustNeverBeReportedAsFourthExposureOr3Of3Upgrade": true
+    }
+  },
+  "channelB": {
+    "keepExistingItems": true,
+    "itemCount": 12,
+    "hardToSayExcludedFromNumericMinimum": true,
+    "mapIsIndependentFromChannelAFamilies": true,
+    "mapGrouping": "six need continents containing the existing twelve Channel-B sufficiency items",
+    "noOneToOneMappingToFourteenChannelAFamilies": true
+  },
+  "channelBPlus": {
+    "placement": "after all Channel-B items and before final save/result",
+    "eligibility": {
+      "numericMinimum": "minimum answered numeric Channel-B value",
+      "routeEligibleMaximum": 3,
+      "ifNoNumericAnswers": "skip B+ and produce no need route",
+      "ifAllNumericValuesAre4Or5": "skip B+ and produce no deficit-style route",
+      "ifOneEligibleMinimum": "skip B+; route may point to that one item directly",
+      "ifTwoOrMoreExactEligibleMinima": "run B+ among all exact-minimum items"
+    },
+    "participantPromptLt": "Šias sritis įvertinai vienodai žemai. Jei viena dabar vis dėlto atrodo mažiausiai pakankama, kuri?",
+    "options": {
+      "needItems": "all exact tied eligible minima",
+      "similar": "Jos dabar panašiai",
+      "hardToSay": "Sunku pasakyti"
+    },
+    "outcomes": {
+      "selectedOne": "route endpoint is the selected need item",
+      "similar": "all tied-minimum need items remain route endpoints",
+      "hardToSay": "no single route endpoint is forced; tied candidates may be shown without a directional route"
+    },
+    "resultSemantics": {
+      "routeMeans": "where the participant's own sufficiency ratings, plus B+ when needed, place the lowest current sufficiency",
+      "routeDoesNotMean": "deepest need, true need, diagnosis, or Channel-A interpretation",
+      "routeConnectsToShip": false
+    }
+  },
+  "resultWorld": {
+    "transitionVideo": {
+      "sameForEveryone": true,
+      "resultDependentStormIntensityForbidden": true,
+      "durationTargetSeconds": [4, 6],
+      "muted": true,
+      "playsInline": true,
+      "skipControl": true,
+      "reducedMotionSkipsVideo": true,
+      "loadFailureFallsThroughToResult": true
+    },
+    "ship": {
+      "represents": "Channel-A focus only",
+      "heroShowsOnlyFocusName": true,
+      "heroShowsRawCounts": false,
+      "clickOpensDetailedChannelAResult": true
+    },
+    "needsMap": {
+      "represents": "Channel-B sufficiency and B+ clarification only",
+      "channelAFamilyNamesOnMap": false,
+      "routeOnlyToResolvedNeedEndpoints": true,
+      "clickEndpointOpensDetailedChannelBResult": true
+    },
+    "automaticShipToMapLine": false
+  },
+  "neutralChoiceBaseline": {
+    "assumption": "each of the three images is equally likely to receive MOST; no no-clear choices",
+    "totalMostSequences": 4782969,
+    "exactlyZero3Of3Probability": 0.5465761956642412,
+    "exactlyOne3Of3Probability": 0.3904365677469371,
+    "twoOrMore3Of3Probability": 0.06300020658982174,
+    "aPlusTriggerProbabilityUnderFrozenRules": 0.6061845686225439,
+    "directUnique2Of3Probability": 0.003330985419307547,
+    "noFamilyAtLeast2Of3Probability": 0.0000478782114814881,
+    "warning": "This is a combinatorial neutral baseline, not an empirical prediction of participant behavior. Real participants and no-clear responses can shift these rates."
+  },
+  "nextImplementationRequirements": [
+    "introduce a new v0.4 session schema; do not silently add A+/B+ semantics to rank-session-v0.3",
+    "introduce a new v0.4 draft namespace",
+    "keep bank-v0.3.1 if pixels do not change",
+    "persist A+ and B+ checkpoints separately",
+    "validate that A+ candidates are derivable from raw MOST counts",
+    "validate that B+ candidates are exact eligible minima derivable from Channel-B values",
+    "add owner-only synthetic edge-case harness before participant result-world implementation",
+    "do not replace live v0.2 or open external recruitment as part of this work"
+  ]
+}
