@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE / NEXT-BANK NO-REPEAT 42 TRANSITION ACTIVE / PRE-PILOT HARDENING
+Status: ACTIVE / OPEN14 v0.2 LIVE / NEXT-BANK 42 DESIGN FROZEN / RUNTIME PACKAGE BUILD NEXT / PRE-PILOT HARDENING
 Updated: 2026-09-03
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -12,13 +12,15 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. this file;
 2. `PROJECT_STATE.md` for runtime/background;
-3. `docs/OPEN14_NO_REPEAT_42_TRANSITION_2026-09-03.md`;
-4. `docs/OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md`;
-5. `docs/OPEN14_ABC_FULL_AUDIT_2026-09-03.md`;
-6. `docs/OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md` — latest Recognition decision;
-7. `docs/OPEN14_PILOT_COHORT_RULE_v0.1.md`;
-8. `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`;
-9. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`.
+3. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md` — current next-bank canonical set;
+4. `docs/OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md` — exact reviewed new binaries/hashes;
+5. `docs/OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`;
+6. `docs/OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`;
+7. `docs/OPEN14_NO_REPEAT_42_TRANSITION_2026-09-03.md`;
+8. `docs/OPEN14_ABC_FULL_AUDIT_2026-09-03.md`;
+9. `docs/OPEN14_PILOT_COHORT_RULE_v0.1.md`;
+10. `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`;
+11. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`.
 
 Later family-specific freeze checkpoints supersede older open-review notes for that family.
 
@@ -52,74 +54,64 @@ Live runtime:
 Owner bank:
 `https://omesg360.eu/priolens-open14-v02/stimulus-bank.html`
 
-### Owner-approved next bank
-Target:
-- 14 families × 3 unique exemplars = 42 unique stimuli;
-- each family appears exactly 3 times;
-- each selected exemplar once per family/session;
+### Next bank — DESIGN FROZEN
+Canonical:
+`docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`
+
+Frozen design:
+- 14 families × 3 reviewed unique exemplars = 42 stimuli;
+- every family appears exactly 3 times;
+- each final exemplar once per family/session;
 - exact-image repeats = 0;
-- new bank/planner/session identity;
-- live v0.2 stays untouched until final assets, planner/versioning and smoke pass.
+- runtime IDs should use stable family-local `01/02/03`, not assume legacy A/B/C semantics;
+- new bank/planner/session identity required;
+- live v0.2 stays untouched until runtime asset package + planner/versioning + smoke pass.
 
-## Current 42-bank design truth
+## Final family deltas
 
-Full design audit:
-`docs/OPEN14_ABC_FULL_AUDIT_2026-09-03.md`
+### REST
+Canonical:
+`docs/OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`
 
-Current result:
-- **13 / 14 families resolved for next-bank design**;
-- **REST is the only open family**;
-- RECOGNITION is now resolved by owner freeze.
+Next-bank REST = current A + current B + owner `4971.jpg`.
 
-### Recognition — CLOSED for design
-Canonical latest decision:
+REST-C exact owner binary:
+- 1536×1097;
+- SHA-256 `9996dbab58b7963b044f0a1129c228e94cfd28809772e1b17ebbaf131f6e131c`;
+- source Pexels/Pixabay `269141`;
+- 192×192 review still reads as actual resting/napping under blanket;
+- furry-slippers `4928.jpg` = HOLD / excluded from final 42 design.
+
+### RECOGNITION
+Canonical:
 `docs/OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`
 
-Next-bank Recognition set = **A + C + D**:
-- A KEEP = restrained peer applause / positive acknowledgement;
-- live B RETIRE FROM NEXT BANK = peers seek focal person's judgement; too ambiguous at one-second Recognition read;
-- C KEEP = `4967.jpg` teacher/student high-five, boundary due learning/mastery context;
-- D KEEP / FINAL = owner-approved edited certificate image `4973`.
+Next-bank Recognition = **current A + `4967` C + owner-approved edited certificate D**.
 
-Exact D binary:
+Current live Recognition-B is retired from next-bank design only.
+
+Recognition-D exact owner binary:
+- owner label `4973.png`;
 - 1536×1536;
 - SHA-256 `be0b9af42c648fba4d63643babc935d90247b48f6a5afe609664fe21c1672334`;
-- normalized 640×640 WebP SHA-256 `3965c63ee28f7052ce0fb160b9308b8f3154aff5d7967da687a1ca09ad266b13`.
-
-Owner small-size review accepted the edit. At 192×192 the person + certificate remain obvious while certificate text is not practically readable.
-
-Historical transparent loyalty-award `4965.jpg` stays HOLD / not final.
-
-### REST — ONLY OPEN FAMILY
-Existing proposed C `4928.jpg` furry slippers is HOLD, not final, because it duplicates the existing home-comfort/footwear mechanism.
-
-Preferred alternative mechanism currently under review:
-- Pexels/Pixabay `269141` person resting/napping under a blue blanket on a sofa;
-- strength: direct restoration/rest action;
-- risk: sleep/illness/laziness interpretation.
-
-Do not retire REST-A merely to preserve `4928`.
+- normalized 640×640 WebP SHA-256 `3965c63ee28f7052ce0fb160b9308b8f3154aff5d7967da687a1ca09ad266b13`;
+- edited derivative of Pexels `7648310` certificate scene;
+- transparent loyalty-award `4965.jpg` = HOLD / excluded.
 
 ### Other 12 families
-PASS or PASS-WATCH in the full A/B/C audit. Do not reopen them without concrete side-by-side/mobile or later formative evidence.
-
-## Replacement rule
-
-Do not simply move a C candidate into a weak A/B slot and stop.
-If an old A/B clearly loses, compare A/B/C/D and freeze three strong unique mechanisms.
-
-Recognition is the first completed example: A+C+D retained; B retired for the next bank only.
+PASS or PASS-WATCH in the full A/B/C audit and frozen in `OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`.
+Do not reopen them without concrete side-by-side/mobile or later formative evidence.
 
 ## Planner target for next bank
 
 Keep the valid 14-triad family schedule if family-level constraints remain valid.
-Assign exactly one A/B/C-selected exemplar per family occurrence:
-- three unique exemplars per family;
-- 42 total exposures;
+Assign exactly one final `01/02/03` exemplar per family occurrence:
+- 42 total image exposures;
 - exact-image repeat = 0;
-- exemplar×slot assignment balanced/rotated by planner, not DOM order.
+- exemplar×screen-slot assignment balanced/rotated by planner, not DOM order;
+- no stable family/exemplar-slot association across seed classes.
 
-For families whose final set is not literally A/B/C (e.g. Recognition A+C+D), runtime IDs must use explicit final exemplar IDs rather than assuming letters encode legacy position.
+Recognition demonstrates why runtime IDs must not assume legacy letters: its final set is old A + new C + new D.
 
 ## CARE boundary
 
@@ -154,13 +146,13 @@ Always exclude `SYSTEM_SMOKE_DO_NOT_ANALYZE`; keep language as an analysis facto
 
 ## Active next-bank execution queue
 
-1. Resolve and freeze a non-footwear REST-C.
-2. Freeze explicit final three exemplar IDs for all 14 families.
-3. Normalize/package/version the final next-bank assets.
+1. Locate/materialize the live 28 bank + asset sources as the immutable baseline.
+2. Build a separate versioned 42-bank asset package from the design freeze.
+3. Normalize filenames/geometry and preserve original + normalized hashes.
 4. Patch planner to one-use three-exemplar assignment with no exact repeat.
 5. Bump bank/planner/session metadata so v0.2 observations remain separable.
 6. Run geometry/reachability/text-watermark/hash/pHash audit.
-7. Owner mobile visual smoke.
+7. Owner mobile visual smoke across all 42.
 8. Runtime no-repeat smoke.
 9. Only then reconsider external recruitment.
 
