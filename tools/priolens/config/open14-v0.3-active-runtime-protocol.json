@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.3",
-  "updatedAtUtc": "2026-09-03T14:24:00Z",
-  "status": "MOST_LEAST_DEPLOYED_TECHNICAL_PASS_OWNER_MOBILE_PENDING",
+  "updatedAtUtc": "2026-09-03T15:03:00Z",
+  "status": "MOST_LEAST_OWNER_MOBILE_FOUND_RESULT_IMAGE_CAP_FIX_PREPARED",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v03",
   "previewPath": "/priolens-open14-v03/",
@@ -29,28 +29,34 @@
     "pendingMostCheckpointed": true,
     "visibleBalanceScore": false
   },
+  "resultImagePolicy": {
+    "rule": "show every distinct exemplar that produced the displayed repeated-family count",
+    "twoOfThreeShows": 2,
+    "threeOfThreeShows": 3,
+    "appliesTo": ["MOST result cards", "LEAST result cards", "reflection hero"],
+    "ownerFinding": "Mobile review found 3/3 text paired with only two images because three v0.2 slice(0,2) caps remained in the v0.3 result layer.",
+    "fixSourceCommit": "5468e9c1033751262c05115280015c685c70529c",
+    "fixBuildRun": 33770222635,
+    "fixSourceContractRun": 33770222682,
+    "fixPackageRun": 33770331724,
+    "fixPackagePrepared": true,
+    "fixDeployed": false
+  },
   "sourceGates": {
     "rankBuildPassed": true,
-    "rankBuildRun": 33763964338,
+    "rankBuildRun": 33770222635,
     "rankSourceContractPassed": true,
-    "rankSourceContractRun": 33763878138
+    "rankSourceContractRun": 33770222682
   },
   "deploymentGates": {
-    "rankApiPackagePrepared": true,
     "rankApiDeployed": true,
     "rankApiSmokePassed": true,
     "rankApiSmokeRun": 33766017673,
-    "rankParticipantPackagePrepared": true,
-    "rankParticipantDeployed": true,
-    "rankParticipantStaticSmokePassed": true,
-    "rankParticipantSmokePassed": true,
-    "rankParticipantSmokeRun": 33766486747,
+    "rankParticipantPreviouslyDeployed": true,
+    "previousRankParticipantSmokeRun": 33766486747,
+    "rankParticipantMatchesCurrentSource": false,
+    "rankParticipantCurrentSourceSmokePassed": false,
     "ownerMobileVisualSmokePassed": false
   },
-  "supersedesForActiveProtocol": {
-    "positiveOnlySessionSchema": "2rasi.priolens.open14.session-v0.3",
-    "positiveOnlyDraftKeyBase": "priolens.open14.v03.draft",
-    "note": "Earlier positive-only v0.3 API and participant deployment smokes remain historical evidence only. Active preview evidence is the deployed MOST+LEAST API run 33766017673 and participant run 33766486747."
-  },
-  "nextAction": "Owner real-phone MOST+LEAST UX and visual smoke on the separate v0.3 preview, including BELONGING-03 group-read WATCH. External recruitment remains closed."
+  "nextAction": "Upload the prepared participant package containing the all-repeated-exemplar result fix into the existing v0.3 preview directory, rerun deployed Chromium smoke, then resume owner mobile review. External recruitment remains closed."
 }
