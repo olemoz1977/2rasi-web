@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3 42-BANK PASS / v0.3 MOST+LEAST DEPLOYED TECHNICAL PASS / OWNER MOBILE UX+VISUAL SMOKE PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3 42-BANK PASS / v0.3 MOST+LEAST API PASS / OWNER MOBILE FOUND 3/3 RESULT IMAGE CAP / FIX SOURCE+CI PASS / FIX DEPLOY PENDING / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-03
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -12,15 +12,11 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. this file;
 2. `config/open14-v0.3-active-runtime-protocol.json`;
-3. `docs/OPEN14_V03_MOST_LEAST_DEPLOYED_PASS_2026-09-03.md`;
+3. `docs/OPEN14_V03_MOST_LEAST_DEPLOYED_PASS_2026-09-03.md` for the pre-fix deployed technical smoke;
 4. `docs/OPEN14_V03_MOST_LEAST_MIGRATION_SOURCE_PASS_2026-09-03.md`;
 5. `docs/OPEN14_V03_GEOMETRY_PASS_AND_ASSET_UPLOAD_PACKAGE_2026-09-03.md`;
 6. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`;
-7. `config/open14-next-bank-v0.3-design.json`;
-8. `config/open14-next-bank-v0.3-source-assets.json`;
-9. `config/open14-next-bank-v0.3-geometry.json`;
-10. `research/open14_no_repeat_assigner_v03.mjs` + smoke;
-11. older positive-only v0.3 deployment docs only as historical evidence.
+7. bank/design/source/geometry configs and no-repeat assigner smoke as needed.
 
 Later checkpoints supersede older same-day notes when they conflict.
 
@@ -44,7 +40,6 @@ Do not claim:
 - validated complete taxonomy.
 
 MOST and LEAST stay analytically separate. No participant-facing balance score.
-
 CARE visual giving is not equivalent to `CARE_SUPPORT_PRESENT` received/present support.
 
 ## Live v0.2
@@ -58,12 +53,8 @@ External recruitment remains CLOSED.
 ## Frozen v0.3 bank — PASS
 
 14 families × 3 unique exemplars = 42.
-
-Family planner:
-`cyclic-14x3-diff-1-4-slot-role-v0.2`
-
-No-repeat assigner:
-`balanced-3x1-no-repeat-slot-v0.3`
+Family planner remains `cyclic-14x3-diff-1-4-slot-role-v0.2`.
+No-repeat assigner remains `balanced-3x1-no-repeat-slot-v0.3`.
 
 1000-seed invariant:
 - 42 exposures;
@@ -72,97 +63,90 @@ No-repeat assigner:
 - exact-image repeats = 0;
 - balanced screen slots.
 
-Hosted asset gate:
-- new15 run `33755869671` = SUCCESS;
-- full42 audit run `33756186905` = SUCCESS;
+Hosted asset gates remain PASS:
+- new15 run `33755869671`;
+- full42 audit `33756186905`;
 - 42/42 HTTP/decode PASS;
-- 42 unique runtime paths and exact SHA;
-- new15 canonical SHA 15/15 PASS;
-- closest pHash distance 16;
-- pHash watches <=12 = 0;
+- 42 unique paths and exact SHA;
+- pHash watch <=12 = 0;
 - stock-watermark OCR hits = 0.
 
-`BELONGING-03` geometry PASS; owner real-phone group-read WATCH remains.
+`BELONGING-03` geometry PASS; owner phone group-read WATCH remains.
 
 ## Active v0.3 protocol — MOST+LEAST
 
-Runtime repo:
-- `olemoz1977/omesg360`;
-- branch `feature/priolens-open14-v03`.
+Runtime repo: `olemoz1977/omesg360`, branch `feature/priolens-open14-v03`.
+Preview: `https://omesg360.eu/priolens-open14-v03/?lang=lt&from=lt`.
 
-Preview:
-- LT: `https://omesg360.eu/priolens-open14-v03/?lang=lt&from=lt`;
-- EN: `https://omesg360.eu/priolens-open14-v03/?lang=en&from=com`.
-
-Protocol identity:
+Identity:
 - protocol `most+least-v0.3`;
 - session schema `2rasi.priolens.open14.rank-session-v0.3`;
 - draft key `priolens.open14.v03.rank.draft`.
-
-The earlier positive-only v0.3 schema `2rasi.priolens.open14.session-v0.3` is superseded for the active preview and must not be pooled with rank sessions.
 
 Interaction:
 1. choose MOST;
 2. MOST locks;
 3. choose LEAST from the remaining two or `Abu likę panašiai`;
 4. no-clear MOST skips LEAST;
-5. `pendingMost` checkpoints the between-step state so reload resumes directly in LEAST phase.
+5. `pendingMost` makes reload/resume between MOST and LEAST safe.
 
-Results:
-- MOST repetitions separate;
-- LEAST repetitions separate as `Kas liko antrame plane?`;
-- LEAST participates in reflection via `LOW_LEAST` / `HIGH_LEAST` cases;
-- no participant-facing MOST−LEAST score.
+API deployed rank smoke `33766017673` = SUCCESS.
+Pre-fix deployed participant smoke `33766486747` = SUCCESS for the runtime bytes that existed before the owner result-image finding.
 
-## MOST+LEAST gates — TECHNICAL PASS
+## Owner mobile finding — 3/3 displayed with only 2 images
 
-Source/build:
-- guarded build + 1000-seed bank/no-repeat run `33763964338` = SUCCESS;
-- source/API contract run `33763878138` = SUCCESS.
+Owner real-phone review found a concrete inconsistency:
+- result text said e.g. `Priklausymas 3/3`;
+- the result card / reflection showed only 2 exemplar images.
 
-Deployed API:
-- run `33766017673` = SUCCESS;
-- GET routes and `config.php` protection PASS;
-- old positive-only v0.3 schema rejected;
-- MOST=LEAST rejected;
-- forbidden Origin rejected;
-- valid rank progress with `pendingMost` saved;
-- valid rank final saved;
-- progress after completed final returns `completedAlready:true`.
+Root cause confirmed in source: three v0.2 two-image caps survived the v0.3 migration:
+1. MOST result card used `chosenImagePaths(id).slice(0,2)`;
+2. LEAST result card used `leastImagePaths(id).slice(0,2)`;
+3. reflection hero used `images.slice(0,2)`.
 
-Deployed participant:
-- run `33766486747` = SUCCESS;
-- deployed runtime files matched feature source byte-for-byte at smoke time;
-- all 42 runtime image paths reachable;
-- Chromium 390×844 LT full-flow PASS;
-- MOST does not advance counter before LEAST;
-- MOST locks;
-- reload between MOST and LEAST + Resume restores trial `1 / 14` in LEAST phase;
-- explicit LEAST and tie paths PASS;
-- 14 triads / 42 unique exemplars / no exact repeat PASS;
-- 6 Channel-B screens / 12 sufficiency values PASS;
-- LEAST result section PASS;
-- final rank payload 14 choices + 42 unique exemplars + 12 sufficiency values + `pendingMost:null` PASS;
-- focused EN MOST+LEAST / FIRST lock / LEAST phase PASS.
+This is a presentation defect, not a bank/counting defect.
 
-Canonical deployed checkpoint:
-`docs/OPEN14_V03_MOST_LEAST_DEPLOYED_PASS_2026-09-03.md`
+### Fix policy
 
-Canonical active protocol state:
-`config/open14-v0.3-active-runtime-protocol.json`
+Display every distinct exemplar that produced the displayed repeated-family count:
+- 2/3 -> show 2 images;
+- 3/3 -> show 3 images.
+
+Applies to:
+- MOST result cards;
+- LEAST result cards;
+- reflection hero.
+
+Responsive result grids now use auto-fit so 2-image cases remain 2-wide and 3-image cases fit three images without an empty third cell.
+
+Fix source commit: `5468e9c1033751262c05115280015c685c70529c`.
+Build + 1000-seed invariants: run `33770222635` = SUCCESS.
+Source-contract smoke: run `33770222682` = SUCCESS.
+Updated participant package: run `33770331724`, with explicit guards preventing the three `slice(0,2)` caps from returning.
+
+## Current gate state
+
+- 42-bank asset gate: PASS.
+- MOST+LEAST API: DEPLOYED + PASS.
+- MOST+LEAST source after 3/3 fix: PASS.
+- Deployed participant currently serves the pre-fix bytes until owner uploads the new participant package.
+- Therefore current-source deployed participant smoke: PENDING.
+- Owner mobile visual/UX smoke: OPEN, issue found, retest pending after deploy.
+- External recruitment: CLOSED.
 
 ## Immediate next execution queue
 
-1. Owner real-phone MOST+LEAST UX/visual smoke on the separate v0.3 preview.
-2. Judge specifically:
-   - does MOST → LEAST feel natural rather than tiring;
-   - is the locked MOST state visually obvious but not distracting;
-   - does the page stay spatially stable without awkward jumps;
-   - are all images/crops readable at normal phone size;
-   - does `BELONGING-03` still read as shared-group/togetherness rather than merely a dyad.
-3. Capture owner PASS/issues in repo.
-4. Only after owner gate closes decide whether any final polish is needed before replacing live v0.2.
-5. External recruitment remains CLOSED until a later explicit `PILOT_OPENED_AT_UTC` freeze.
+1. Upload the updated participant ZIP into existing `public_html/priolens-open14-v03/`, overwriting preview files only.
+2. Run deployed byte/static/Chromium MOST+LEAST smoke against the new bytes.
+3. Owner retests the result screen specifically:
+   - 3/3 must show 3 images;
+   - 2/3 must show 2 images;
+   - no awkward mobile wrapping/overflow;
+   - MOST → LEAST remains natural;
+   - `BELONGING-03` still reads as shared-group/togetherness.
+4. Capture owner PASS/issues in repo.
+5. Only after owner gate closes consider replacing live v0.2.
+6. External recruitment remains CLOSED until a later explicit `PILOT_OPENED_AT_UTC` freeze.
 
 Main stimulus rule:
 > **What does a reasonable viewer see happening within about one second?**
