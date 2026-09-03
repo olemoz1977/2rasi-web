@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.3",
-  "updatedAtUtc": "2026-09-03T14:02:00Z",
-  "status": "MOST_LEAST_SOURCE_PASS_DEPLOY_PENDING",
+  "updatedAtUtc": "2026-09-03T14:24:00Z",
+  "status": "MOST_LEAST_DEPLOYED_TECHNICAL_PASS_OWNER_MOBILE_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v03",
   "previewPath": "/priolens-open14-v03/",
@@ -37,17 +37,20 @@
   },
   "deploymentGates": {
     "rankApiPackagePrepared": true,
-    "rankApiDeployed": false,
-    "rankApiSmokePassed": false,
+    "rankApiDeployed": true,
+    "rankApiSmokePassed": true,
+    "rankApiSmokeRun": 33766017673,
     "rankParticipantPackagePrepared": true,
-    "rankParticipantDeployed": false,
-    "rankParticipantSmokePassed": false,
+    "rankParticipantDeployed": true,
+    "rankParticipantStaticSmokePassed": true,
+    "rankParticipantSmokePassed": true,
+    "rankParticipantSmokeRun": 33766486747,
     "ownerMobileVisualSmokePassed": false
   },
   "supersedesForActiveProtocol": {
     "positiveOnlySessionSchema": "2rasi.priolens.open14.session-v0.3",
     "positiveOnlyDraftKeyBase": "priolens.open14.v03.draft",
-    "note": "Earlier positive-only v0.3 API and participant deployment smokes remain historical evidence only. They do not close MOST+LEAST deployment gates."
+    "note": "Earlier positive-only v0.3 API and participant deployment smokes remain historical evidence only. Active preview evidence is the deployed MOST+LEAST API run 33766017673 and participant run 33766486747."
   },
-  "nextAction": "Deploy the prepared MOST+LEAST API package into the existing v0.3 API preview directory while preserving config.php, then run the dedicated deployed rank API smoke."
+  "nextAction": "Owner real-phone MOST+LEAST UX and visual smoke on the separate v0.3 preview, including BELONGING-03 group-read WATCH. External recruitment remains closed."
 }
