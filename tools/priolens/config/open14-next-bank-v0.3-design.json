@@ -1,0 +1,419 @@
+{
+  "schema": "2rasi.priolens.open14.bank-v0.3-design",
+  "status": "DESIGN_FROZEN_RUNTIME_ASSETS_PENDING",
+  "familySetVersion": "open-spectrum-14-v0.3-no-repeat",
+  "familyPlanner": "cyclic-14x3-diff-1-4-slot-role-v0.2",
+  "exemplarAssigner": "balanced-3x1-no-repeat-slot-v0.3",
+  "labelsHiddenDuringChoice": true,
+  "sourceLiveBank": {
+    "repository": "olemoz1977/omesg360",
+    "path": "priolens/open14-v02/bank.json",
+    "blobSha": "e2b836d2e637d6d35447c507b19b60d1d48167c6"
+  },
+  "designFreeze": "tools/priolens/docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md",
+  "families": {
+    "REST": {
+      "macro": "BASIC",
+      "display": "Rest / restoration",
+      "exemplars": [
+        {
+          "id": "REST-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "REST-A",
+          "runtimePath": "/priolens-research-assets/Open14-remediation-v01/rest-a_sq_bottom_v01.webp"
+        },
+        {
+          "id": "REST-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "REST-B",
+          "runtimePath": "/priolens-research-assets/Open14-remediation-v02/rest-b_owner-b_sq_center_v01.webp"
+        },
+        {
+          "id": "REST-03",
+          "sourceType": "new-review",
+          "reviewFile": "4971.jpg",
+          "sourceRef": "Pexels/Pixabay 269141",
+          "reviewSha256": "9996dbab58b7963b044f0a1129c228e94cfd28809772e1b17ebbaf131f6e131c",
+          "runtimePath": null,
+          "firstImpulse": "actual resting / napping on sofa under blanket"
+        }
+      ]
+    },
+    "RESOURCE": {
+      "macro": "BASIC",
+      "display": "Resource / reward",
+      "exemplars": [
+        {
+          "id": "RESOURCE-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "RESOURCE-A",
+          "runtimePath": "/priolens-research-assets/Gallery/file_00000000673881f4bc390c5618110a68.png"
+        },
+        {
+          "id": "RESOURCE-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "RESOURCE-B",
+          "runtimePath": "/priolens-research-assets/Open14-geometry-v01/resource-b_sq_center_v01.webp"
+        },
+        {
+          "id": "RESOURCE-03",
+          "sourceType": "new-review",
+          "reviewFile": "4957.jpg",
+          "sourceRef": "Pexels 5974010",
+          "reviewSha256": "736f0d26c0b89ddf04bac65346658284761711e68bca49e55f9c8b92133a815e",
+          "runtimePath": null,
+          "firstImpulse": "usable material resources prepared for use"
+        }
+      ]
+    },
+    "SAFETY": {
+      "macro": "BASIC",
+      "display": "Safety / protection",
+      "exemplars": [
+        {
+          "id": "SAFETY-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "SAFETY-A",
+          "runtimePath": "/priolens-research-assets/Gallery/S08.webp"
+        },
+        {
+          "id": "SAFETY-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "SAFETY-B",
+          "runtimePath": "/priolens-research-assets/Gallery/S13.webp"
+        },
+        {
+          "id": "SAFETY-03",
+          "sourceType": "new-review",
+          "reviewFile": "4945.jpg",
+          "sourceRef": "Pexels 8153605",
+          "reviewSha256": "59b0753375bc09c24fd0f41f33aa3fa69d0d8b78e2d48a2164fd965d9693754e",
+          "runtimePath": null,
+          "firstImpulse": "fasten a seat belt / protect oneself"
+        }
+      ]
+    },
+    "ORDER": {
+      "macro": "BASIC",
+      "display": "Order / clarity",
+      "exemplars": [
+        {
+          "id": "ORDER-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "ORDER-A",
+          "runtimePath": "/priolens-research-assets/Open14-remediation-v02/order-a_owner-b_v01.webp"
+        },
+        {
+          "id": "ORDER-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "ORDER-B",
+          "runtimePath": "/priolens-research-assets/Open14-remediation-v02/order-b_owner-c_v01.webp"
+        },
+        {
+          "id": "ORDER-03",
+          "sourceType": "new-review",
+          "reviewFile": "4958.jpg",
+          "sourceRef": "Pexels 6264420",
+          "reviewSha256": "ed7f12a8f5522f81c3914ee3e3e16ab26154d0318f94c18a693c2bccc6d4d672",
+          "runtimePath": null,
+          "firstImpulse": "organized objects in assigned compartments"
+        }
+      ]
+    },
+    "CONNECTION": {
+      "macro": "SOCIAL",
+      "display": "Connection / reciprocity",
+      "exemplars": [
+        {
+          "id": "CONNECTION-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "CONNECTION-A",
+          "runtimePath": "/priolens-research-assets/Open14-remediation-v01/connection-a_clean_small_v01.webp"
+        },
+        {
+          "id": "CONNECTION-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "CONNECTION-B",
+          "runtimePath": "/priolens-research-assets/Open14-remediation-v01/connection-b_clean_small_v01.webp"
+        },
+        {
+          "id": "CONNECTION-03",
+          "sourceType": "new-review",
+          "reviewFile": "4932.jpg",
+          "sourceRef": "Pexels 35999767",
+          "reviewSha256": "10e049ce299c2ed7cac1a0e573aba04f64cf994d6e3a3dd28d1f05e8b348ac12",
+          "runtimePath": null,
+          "firstImpulse": "direct reciprocal dyadic conversation"
+        }
+      ]
+    },
+    "BELONGING": {
+      "macro": "SOCIAL",
+      "display": "Belonging / togetherness",
+      "exemplars": [
+        {
+          "id": "BELONGING-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "BELONGING-A",
+          "runtimePath": "/priolens-research-assets/Gallery/S14.webp"
+        },
+        {
+          "id": "BELONGING-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "BELONGING-B",
+          "runtimePath": "/priolens-research-assets/Open14-final-v01/belonging-b_coffee-ritual_v01.webp"
+        },
+        {
+          "id": "BELONGING-03",
+          "sourceType": "new-review",
+          "reviewFile": "4947.jpg",
+          "sourceRef": "Pexels 9071468",
+          "reviewSha256": "4aab6177861be8ef82932efd0af2e21a4235981d49f468c151c457e79e582286",
+          "runtimePath": null,
+          "firstImpulse": "participate in a shared group activity"
+        }
+      ]
+    },
+    "CARE": {
+      "macro": "SOCIAL",
+      "display": "Care / altruistic helping",
+      "exemplars": [
+        {
+          "id": "CARE-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "CARE-A",
+          "runtimePath": "/priolens-research-assets/Open14-v02/priolens_care-a_v01.webp"
+        },
+        {
+          "id": "CARE-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "CARE-B",
+          "runtimePath": "/priolens-research-assets/Open14-v02/priolens_care-b_v01.webp"
+        },
+        {
+          "id": "CARE-03",
+          "sourceType": "new-review",
+          "reviewFile": "4964.jpg",
+          "sourceRef": "Pexels 7339487",
+          "reviewSha256": "125cd21b4b4502ab388328a864b5715a1283bedcd05dd4dbf786326f872e97a9",
+          "runtimePath": null,
+          "firstImpulse": "proactively help another person with a practical need"
+        }
+      ]
+    },
+    "AUTONOMY": {
+      "macro": "AGENCY",
+      "display": "Autonomy / self-direction",
+      "exemplars": [
+        {
+          "id": "AUTONOMY-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "AUTONOMY-A",
+          "runtimePath": "/priolens-research-assets/Gallery/file_00000000cc8c81f4a927534c8316290c.png"
+        },
+        {
+          "id": "AUTONOMY-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "AUTONOMY-B",
+          "runtimePath": "/priolens-research-assets/Recovered/priolens_aut_backpack_v01.webp"
+        },
+        {
+          "id": "AUTONOMY-03",
+          "sourceType": "new-review",
+          "reviewFile": "4966.jpg",
+          "sourceRef": "Pexels 6069074",
+          "reviewSha256": "0ac038bf442275e31dd0d980de184395501939791f9c5974629545d2a14aa802",
+          "runtimePath": null,
+          "firstImpulse": "make a personal choice among alternatives"
+        }
+      ]
+    },
+    "CONTROL": {
+      "macro": "AGENCY",
+      "display": "Control / assertion / boundary",
+      "exemplars": [
+        {
+          "id": "CONTROL-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "CONTROL-A",
+          "runtimePath": "/priolens-research-assets/Open14-final-v01/control-a_joystick_v01.webp"
+        },
+        {
+          "id": "CONTROL-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "CONTROL-B",
+          "runtimePath": "/priolens-research-assets/Gallery/file_000000006b148210abe3c22f8ce50764.png"
+        },
+        {
+          "id": "CONTROL-03",
+          "sourceType": "new-review",
+          "reviewFile": "4936.jpg",
+          "sourceRef": "owner-reviewed local binary; external page unresolved",
+          "reviewSha256": "519312832a1a2050109136419a6fe6db0a8e5c36232404bbe45025be8fbf07e9",
+          "runtimePath": null,
+          "firstImpulse": "directly adjust a system using controls"
+        }
+      ]
+    },
+    "RECOGNITION": {
+      "macro": "AGENCY",
+      "display": "Recognition / esteem",
+      "exemplars": [
+        {
+          "id": "RECOGNITION-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "RECOGNITION-A",
+          "runtimePath": "/priolens-research-assets/Open14-v02/priolens_recognition-a_v01.webp"
+        },
+        {
+          "id": "RECOGNITION-02",
+          "sourceType": "new-review",
+          "reviewFile": "4967.jpg",
+          "sourceRef": "Pexels 8520508",
+          "reviewSha256": "6da3accd8573bfaedf461a19d3c96d2b67533df3053cf3a96193cbd761bb7da7",
+          "runtimePath": null,
+          "firstImpulse": "directed positive acknowledgement / high-five"
+        },
+        {
+          "id": "RECOGNITION-03",
+          "sourceType": "owner-edited-review",
+          "reviewFile": "4973.png",
+          "sourceRef": "owner-approved in-chat edit derived from Pexels 7648310 scene",
+          "reviewSha256": "be0b9af42c648fba4d63643babc935d90247b48f6a5afe609664fe21c1672334",
+          "normalized640Sha256": "3965c63ee28f7052ce0fb160b9308b8f3154aff5d7967da687a1ca09ad266b13",
+          "runtimePath": null,
+          "firstImpulse": "be visibly acknowledged through a formal certificate"
+        }
+      ],
+      "retiredFromNextBank": ["RECOGNITION-B"]
+    },
+    "MASTERY": {
+      "macro": "GROWTH",
+      "display": "Mastery / competence",
+      "exemplars": [
+        {
+          "id": "MASTERY-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "MASTERY-A",
+          "runtimePath": "/priolens-research-assets/Gallery/S12.webp"
+        },
+        {
+          "id": "MASTERY-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "MASTERY-B",
+          "runtimePath": "/priolens-research-assets/Gallery/S16.webp"
+        },
+        {
+          "id": "MASTERY-03",
+          "sourceType": "new-review",
+          "reviewFile": "4952.jpg",
+          "sourceRef": "Pexels 8030168",
+          "reviewSha256": "242fe30c2a3b09c4c3face1bc91c91888586060a48cb418c29998c3ed0868dea",
+          "runtimePath": null,
+          "firstImpulse": "perform a precise learned manual skill"
+        }
+      ]
+    },
+    "EXPLORATION": {
+      "macro": "GROWTH",
+      "display": "Exploration / discovery",
+      "exemplars": [
+        {
+          "id": "EXPLORATION-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "EXPLORATION-A",
+          "runtimePath": "/priolens-research-assets/Gallery/S09.webp"
+        },
+        {
+          "id": "EXPLORATION-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "EXPLORATION-B",
+          "runtimePath": "/priolens-research-assets/Open14-final-v01/exploration-b_magnifier-forest_v01.webp"
+        },
+        {
+          "id": "EXPLORATION-03",
+          "sourceType": "new-review",
+          "reviewFile": "4953.jpg",
+          "sourceRef": "Pexels 15692450",
+          "reviewSha256": "fe82c4db8a37340e9ec490d5ee5fb3a7c796b0ff8da708cc0aaa9cbf23a8c245",
+          "runtimePath": null,
+          "firstImpulse": "actively search / discover using binoculars"
+        }
+      ]
+    },
+    "KNOWLEDGE": {
+      "macro": "GROWTH",
+      "display": "Learning / Understanding",
+      "exemplars": [
+        {
+          "id": "KNOWLEDGE-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "KNOWLEDGE-A",
+          "runtimePath": "/priolens-research-assets/Open14-remediation-v01/knowledge-a_sq_top_v01.webp"
+        },
+        {
+          "id": "KNOWLEDGE-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "KNOWLEDGE-B",
+          "runtimePath": "/priolens-research-assets/Open14-remediation-v02/knowledge-b_owner-b_sq_bottom_v01.webp"
+        },
+        {
+          "id": "KNOWLEDGE-03",
+          "sourceType": "new-review",
+          "reviewFile": "4954.jpg",
+          "sourceRef": "Pexels 6929197",
+          "reviewSha256": "921321adf08e4c9e636f0b49eb4cb061b6ec42b0d6cc01aa4396cfddab126b21",
+          "runtimePath": null,
+          "firstImpulse": "actively study / make notes to understand"
+        }
+      ]
+    },
+    "OPPORTUNITY": {
+      "macro": "GROWTH",
+      "display": "Opportunity / possibility",
+      "exemplars": [
+        {
+          "id": "OPPORTUNITY-01",
+          "sourceType": "live-v0.2",
+          "legacyId": "OPPORTUNITY-A",
+          "runtimePath": "/priolens-research-assets/Open14-final-v01/opportunity-a_open-market-stall_v01.webp"
+        },
+        {
+          "id": "OPPORTUNITY-02",
+          "sourceType": "live-v0.2",
+          "legacyId": "OPPORTUNITY-B",
+          "runtimePath": "/priolens-research-assets/Gallery/file_00000000c7f0821081be7676884bb00f.png"
+        },
+        {
+          "id": "OPPORTUNITY-03",
+          "sourceType": "new-review",
+          "reviewFile": "4955.jpg",
+          "sourceRef": "Pexels 21854305",
+          "reviewSha256": "2bdb71f8624de10a5eada2a8b25d8a97ac43dfeea5906ceb85d6d5c677f68b4b",
+          "runtimePath": null,
+          "firstImpulse": "notice and access a visible valuable possibility"
+        }
+      ]
+    }
+  },
+  "missingRuntimeAssets": [
+    "REST-03",
+    "RESOURCE-03",
+    "SAFETY-03",
+    "ORDER-03",
+    "CONNECTION-03",
+    "BELONGING-03",
+    "CARE-03",
+    "AUTONOMY-03",
+    "CONTROL-03",
+    "RECOGNITION-02",
+    "RECOGNITION-03",
+    "MASTERY-03",
+    "EXPLORATION-03",
+    "KNOWLEDGE-03",
+    "OPPORTUNITY-03"
+  ],
+  "startPolicy": "FAIL_CLOSED_IF_ANY_REQUIRED_RUNTIME_PATH_IS_NULL",
+  "designAssetCount": 42,
+  "runtimeReady": false
+}
