@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE / v0.3 42-BANK ASSET GATE PASS / v0.3 API GATE PASS / PARTICIPANT PREVIEW PACKAGE PREPARED / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE / v0.3 42-BANK ASSET GATE PASS / v0.3 API GATE PASS / v0.3 PARTICIPANT PREVIEW DEPLOYED + AUTOMATED SMOKE PASS / OWNER MOBILE VISUAL SMOKE PENDING / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-03
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -11,17 +11,18 @@ Branch: `feature/priolens-architecture`
 
 Recovery order:
 1. this file;
-2. `docs/OPEN14_V03_API_PASS_AND_PARTICIPANT_PREVIEW_PACKAGE_2026-09-03.md`;
-3. `docs/OPEN14_V03_RUNTIME_DRAFT_CHECKPOINT_2026-09-03.md`;
-4. `docs/OPEN14_V03_GEOMETRY_PASS_AND_ASSET_UPLOAD_PACKAGE_2026-09-03.md`;
-5. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`;
-6. `config/open14-next-bank-v0.3-runtime-plan.json`;
-7. `config/open14-next-bank-v0.3-design.json`;
-8. `config/open14-next-bank-v0.3-source-assets.json`;
-9. `config/open14-next-bank-v0.3-geometry.json`;
-10. `research/open14_no_repeat_assigner_v03.mjs` + smoke;
-11. `NEW_CHAT_HANDOFF_2026-09-03.md` for older same-day context;
-12. `PROJECT_STATE.md` for older background only.
+2. `docs/OPEN14_V03_DEPLOYED_PARTICIPANT_SMOKE_PASS_2026-09-03.md`;
+3. `docs/OPEN14_V03_API_PASS_AND_PARTICIPANT_PREVIEW_PACKAGE_2026-09-03.md`;
+4. `docs/OPEN14_V03_RUNTIME_DRAFT_CHECKPOINT_2026-09-03.md`;
+5. `docs/OPEN14_V03_GEOMETRY_PASS_AND_ASSET_UPLOAD_PACKAGE_2026-09-03.md`;
+6. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`;
+7. `config/open14-next-bank-v0.3-runtime-plan.json`;
+8. `config/open14-next-bank-v0.3-design.json`;
+9. `config/open14-next-bank-v0.3-source-assets.json`;
+10. `config/open14-next-bank-v0.3-geometry.json`;
+11. `research/open14_no_repeat_assigner_v03.mjs` + smoke;
+12. `NEW_CHAT_HANDOFF_2026-09-03.md` for older same-day context;
+13. `PROJECT_STATE.md` for older background only.
 
 Later checkpoints supersede older same-day notes when they conflict.
 
@@ -94,7 +95,7 @@ Full42 facts:
 - pHash watches <=12 = 0;
 - stock-watermark OCR hits = 0.
 
-`BELONGING-03` geometry is PASS and remains only a later mobile visual WATCH.
+`BELONGING-03` geometry is PASS and remains only a mobile visual WATCH.
 
 ## Separate v0.3 API — DEPLOYED + PASS
 
@@ -117,63 +118,72 @@ Verified:
 
 Smoke row uses seed prefix `SYSTEM_SMOKE_DO_NOT_ANALYZE` and must be excluded from research analysis.
 
-## v0.3 participant runtime state
+## v0.3 participant preview — DEPLOYED + AUTOMATED SMOKE PASS
+
+Preview URLs:
+- LT: `https://omesg360.eu/priolens-open14-v03/?lang=lt&from=lt`;
+- EN: `https://omesg360.eu/priolens-open14-v03/?lang=en&from=com`.
 
 Runtime repo:
 - `olemoz1977/omesg360`;
 - branch `feature/priolens-open14-v03`;
 - path `priolens/open14-v03/`.
 
-Feature `bank.json` now:
-- status `API_GATE_PASS_READY_FOR_SEPARATE_PREVIEW_DEPLOY`;
+Current feature `bank.json`:
+- status `PARTICIPANT_PREVIEW_DEPLOY_PASS_OWNER_MOBILE_PENDING`;
 - `runtimeReady:true`;
-- start policy `READY_FOR_SEPARATE_V03_PARTICIPANT_PREVIEW_DEPLOY`;
+- start policy `PREVIEW_OPEN_FOR_OWNER_MOBILE_SMOKE_EXTERNAL_RECRUITMENT_CLOSED`;
 - asset gate PASS;
-- API gate PASS.
+- API gate PASS;
+- participant preview deployed = true;
+- participant static smoke = PASS;
+- participant Chromium smoke = PASS;
+- owner mobile visual smoke = pending.
 
-This does **not** authorize live replacement. It only allows a separate preview runtime to start after deployment.
+### Deployed runtime smoke
 
-Prepared participant upload package:
-`priolens_open14_v03_participant_upload.zip`
+Run `33759033307` = SUCCESS.
 
-SHA-256:
-`f419805f917223018ea099a56d5b191aa9c9d343c0c7c49ad195f31685d3ed2f`
+Static/public checks:
+- deployed `index.html`, `bank.json`, planner and assigner matched feature source byte-for-byte at smoke time;
+- `.mjs` MIME = `application/javascript`;
+- all 42 runtime image paths HTTP 200;
+- v0.3 API/progress paths and session identity present.
 
-Packaging run `33757758737` = SUCCESS.
+Chromium `390×844` LT full-flow PASS:
+- Start enabled;
+- first choice saved locally;
+- reload detected draft;
+- Resume restored trial `2 / 14`;
+- all 14 visual trials completed;
+- 42 unique exemplar IDs observed on the actual deployed UI;
+- exact exemplar repeats = 0;
+- all 6 Channel-B screens / 12 values completed;
+- result opened;
+- final payload attempted the separate v0.3 API and carried 14 choices + 42 unique presented exemplars + 12 sufficiency values.
 
-Target Hostinger directory:
-`public_html/priolens-open14-v03/`
+Focused EN PASS:
+- EN copy;
+- `2rasi.com` return target;
+- bank ready;
+- Start works;
+- first triad has 3 distinct exemplars.
 
-Package contents:
-- `index.html`;
-- `bank.json`;
-- `p3_open14_planner_v02.mjs`;
-- `open14_no_repeat_assigner_v03.mjs`;
-- `.htaccess`;
-- upload README.
+Chromium progress/final POSTs were intercepted to avoid creating an unmarked pseudo-participant row. Real deployed API persistence was already tested separately with `SYSTEM_SMOKE_DO_NOT_ANALYZE`.
 
-No API credentials or image binaries are inside.
+Earlier run `33758727391` failed only because the Playwright smoke script was placed in `/tmp` and Node ESM could not resolve repo-local `playwright`; static runtime checks had passed. Corrected run `33759033307` passed fully. This was a CI harness defect, not a PrioLens runtime defect.
 
-Expected private preview URL after upload:
-`https://omesg360.eu/priolens-open14-v03/?lang=lt&from=lt`
+Canonical checkpoint:
+`docs/OPEN14_V03_DEPLOYED_PARTICIPANT_SMOKE_PASS_2026-09-03.md`
 
 ## Immediate next execution queue
 
-1. Upload/extract `priolens_open14_v03_participant_upload.zip` into NEW `public_html/priolens-open14-v03/`.
-2. Do not touch `public_html/priolens-open14-v02/`.
-3. Automated deployed-runtime smoke:
-   - root/index reachability;
-   - `bank.json` identity + `runtimeReady:true`;
-   - `.mjs` MIME/load;
-   - 42 image preflight;
-   - LT complete participant flow;
-   - autosave/resume;
-   - final POST to separate v0.3 API;
-   - focused EN result smoke.
-4. Owner mobile visual smoke all 42, with BELONGING-03 explicit WATCH.
-5. Runtime no-repeat smoke against deployed surface.
-6. Only after those pass consider merging/replacing live v0.2.
-7. External recruitment remains CLOSED until later explicit `PILOT_OPENED_AT_UTC` freeze.
+1. Owner mobile visual smoke on the separate v0.3 preview across the real 14-trial experience / 42 stimuli.
+2. Explicit WATCH: `BELONGING-03` must still read as shared-group/togetherness rather than merely a dyad on the owner's real phone.
+3. Check no blank/slow/broken stimulus and no problematic mobile crop/scale behavior.
+4. If owner mobile visual smoke PASS, record that gate in repo and decide whether any additional manual LT/EN result smoke is still needed beyond the successful automated Chromium run.
+5. Only after the preview gates are explicitly closed consider merging/replacing live v0.2.
+6. External recruitment remains CLOSED until later explicit `PILOT_OPENED_AT_UTC` freeze.
 
 Main stimulus rule:
 > **What does a reasonable viewer see happening within about one second?**
