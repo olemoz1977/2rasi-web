@@ -1,0 +1,53 @@
+{
+  "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.3",
+  "updatedAtUtc": "2026-09-03T14:02:00Z",
+  "status": "MOST_LEAST_SOURCE_PASS_DEPLOY_PENDING",
+  "runtimeRepo": "olemoz1977/omesg360",
+  "runtimeBranch": "feature/priolens-open14-v03",
+  "previewPath": "/priolens-open14-v03/",
+  "apiPath": "/priolens-open14-v03-api/",
+  "liveV02Untouched": true,
+  "externalRecruitmentOpen": false,
+  "bank": {
+    "schema": "2rasi.priolens.open14.bank-v0.3",
+    "familyCount": 14,
+    "exemplarCount": 42,
+    "runtimeReady": true,
+    "familyPlanner": "cyclic-14x3-diff-1-4-slot-role-v0.2",
+    "exemplarAssigner": "balanced-3x1-no-repeat-slot-v0.3",
+    "assetGatePassed": true,
+    "full42AuditRun": 33756186905
+  },
+  "interaction": {
+    "protocol": "most+least-v0.3",
+    "sessionSchema": "2rasi.priolens.open14.rank-session-v0.3",
+    "draftKeyBase": "priolens.open14.v03.rank.draft",
+    "mostPrompt": "first visual pull",
+    "leastPrompt": "least pull among the two remaining images",
+    "leastTieAllowed": true,
+    "noClearMostSkipsLeast": true,
+    "pendingMostCheckpointed": true,
+    "visibleBalanceScore": false
+  },
+  "sourceGates": {
+    "rankBuildPassed": true,
+    "rankBuildRun": 33763964338,
+    "rankSourceContractPassed": true,
+    "rankSourceContractRun": 33763878138
+  },
+  "deploymentGates": {
+    "rankApiPackagePrepared": true,
+    "rankApiDeployed": false,
+    "rankApiSmokePassed": false,
+    "rankParticipantPackagePrepared": true,
+    "rankParticipantDeployed": false,
+    "rankParticipantSmokePassed": false,
+    "ownerMobileVisualSmokePassed": false
+  },
+  "supersedesForActiveProtocol": {
+    "positiveOnlySessionSchema": "2rasi.priolens.open14.session-v0.3",
+    "positiveOnlyDraftKeyBase": "priolens.open14.v03.draft",
+    "note": "Earlier positive-only v0.3 API and participant deployment smokes remain historical evidence only. They do not close MOST+LEAST deployment gates."
+  },
+  "nextAction": "Deploy the prepared MOST+LEAST API package into the existing v0.3 API preview directory while preserving config.php, then run the dedicated deployed rank API smoke."
+}
