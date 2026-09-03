@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE / NEXT-BANK 42 DESIGN FROZEN / 15 NEW SOURCES LOCKED / NO-REPEAT ASSIGNER SMOKE PASS / GEOMETRY PACKAGE NEXT / PRE-PILOT HARDENING
+Status: ACTIVE / OPEN14 v0.2 LIVE / NEXT-BANK 42 DESIGN FROZEN / 15 NEW SOURCES LOCKED / NO-REPEAT ASSIGNER SMOKE PASS / GEOMETRY REVIEW PACKAGE MATERIALIZED / NOT DEPLOYED / PRE-PILOT HARDENING
 Updated: 2026-09-03
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -11,20 +11,19 @@ Branch: `feature/priolens-architecture`
 
 Recovery order:
 1. this file;
-2. `PROJECT_STATE.md` for runtime/background;
-3. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md` — current next-bank canonical set;
-4. `config/open14-next-bank-v0.3-design.json` — machine-readable 42-ID design manifest;
-5. `config/open14-next-bank-v0.3-source-assets.json` — exact 15 new source binaries/hashes/dimensions;
-6. `docs/OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md`;
-7. `docs/OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`;
-8. `docs/OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`;
-9. `docs/OPEN14_NO_REPEAT_42_TRANSITION_2026-09-03.md`;
-10. `docs/OPEN14_ABC_FULL_AUDIT_2026-09-03.md`;
-11. `docs/OPEN14_PILOT_COHORT_RULE_v0.1.md`;
-12. `docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`;
-13. `docs/OPEN14_BILINGUAL_RUNTIME_v0.1.md`.
+2. `NEW_CHAT_HANDOFF_2026-09-03.md` for the latest chat-limit handoff;
+3. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`;
+4. `config/open14-next-bank-v0.3-design.json`;
+5. `config/open14-next-bank-v0.3-source-assets.json`;
+6. `config/open14-next-bank-v0.3-geometry.json`;
+7. `docs/OPEN14_V03_GEOMETRY_REVIEW_PACKAGE_2026-09-03.md`;
+8. `docs/OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`;
+9. `docs/OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`;
+10. `research/open14_no_repeat_assigner_v03.mjs` + smoke;
+11. `PROJECT_STATE.md` for older runtime/background;
+12. pilot/CARE/bilingual checkpoints as needed.
 
-Later family-specific freeze checkpoints supersede older open-review notes for that family.
+Later family-specific/design/geometry freezes supersede older open-review notes.
 
 ## Product / research boundary
 
@@ -40,13 +39,12 @@ REST, RESOURCE, SAFETY, ORDER, CONNECTION, BELONGING, CARE, AUTONOMY, CONTROL, R
 
 `SUCCESS / ACHIEVEMENT` remains `DERIVED / THEORY-HOLD`.
 
-## Two bank states — do not mix
+## Live bank vs next bank — do not mix
 
 ### Live Open14 v0.2
 Unchanged:
 - 14 families × 2 exemplars = 28 active images;
 - 14 triads;
-- each family appears 3 times;
 - one exact A/B exemplar necessarily repeats for a family;
 - external recruitment remains CLOSED.
 
@@ -56,150 +54,148 @@ Live runtime:
 Owner bank:
 `https://omesg360.eu/priolens-open14-v02/stimulus-bank.html`
 
-### Next bank — DESIGN FROZEN
+### Next bank v0.3 design — FROZEN
 Canonical:
 `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`
 
 Frozen design:
 - 14 families × 3 reviewed unique exemplars = 42 stimuli;
-- every family appears exactly 3 times;
 - each final exemplar once per family/session;
 - exact-image repeats = 0;
-- runtime IDs use stable family-local `01/02/03`, not legacy A/B/C semantics;
+- runtime IDs use family-local `01/02/03`, not legacy A/B/C semantics;
 - new bank/planner/session identity required;
-- live v0.2 stays untouched until runtime asset package + planner/versioning + smoke pass.
+- live v0.2 stays untouched until runtime asset package + integration + smoke pass.
 
-Important delta from live:
-- **27 live exemplars are retained**;
-- **15 new runtime assets are required**;
-- the count is 15, not 14, because live `RECOGNITION-B` is retired and Recognition contributes two non-live assets (`4967` + owner `4973`).
-
-## New source package — MATERIALIZED
-
-Machine-readable inventory:
-`config/open14-next-bank-v0.3-source-assets.json`
-
-Verified in the working environment:
-- 15 / 15 required new source binaries present;
-- dimensions and source SHA-256 locked;
-- 1 / 15 naturally square: `RECOGNITION-03` / owner `4973`;
-- 14 / 15 are non-square and remain `SOURCE_LOCKED_GEOMETRY_REVIEW_PENDING`;
-- no non-square source was silently cropped by the source-lock step.
-
-Design manifest:
-`config/open14-next-bank-v0.3-design.json`
-
-It intentionally keeps `runtimePath: null` for the 15 new assets and fails closed until a real versioned runtime package exists.
+Delta from live:
+- 27 live exemplars retained;
+- 15 new runtime assets required;
+- count is 15, not 14, because live `RECOGNITION-B` is retired and Recognition contributes two non-live assets (`4967` + owner `4973`).
 
 ## Final family deltas
 
 ### REST
-Canonical:
-`docs/OPEN14_REST_C_OWNER_FREEZE_2026-09-03.md`
-
 Next-bank REST = current A + current B + owner `4971.jpg`.
 
-REST-C exact owner binary:
+REST-03 source:
 - 1536×1097;
 - SHA-256 `9996dbab58b7963b044f0a1129c228e94cfd28809772e1b17ebbaf131f6e131c`;
-- source Pexels/Pixabay `269141`;
-- 192×192 review still reads as actual resting/napping under blanket;
-- furry-slippers `4928.jpg` = HOLD / excluded from final 42 design.
+- Pexels/Pixabay `269141`;
+- actual resting/napping under blanket remains clear at small size;
+- furry slippers `4928.jpg` = HOLD / excluded.
 
 ### RECOGNITION
-Canonical:
-`docs/OPEN14_RECOGNITION_D_OWNER_FREEZE_2026-09-03.md`
+Next-bank Recognition = current A + `4967` + owner-approved edited certificate `4973`.
 
-Next-bank Recognition = **current A + `4967` C + owner-approved edited certificate D**.
+Live Recognition-B is retired from next-bank design only.
 
-Current live Recognition-B is retired from next-bank design only.
-
-Recognition-D exact owner binary:
+Recognition-03 source:
 - owner label `4973.png`;
 - 1536×1536;
-- SHA-256 `be0b9af42c648fba4d63643babc935d90247b48f6a5afe609664fe21c1672334`;
-- normalized 640×640 WebP SHA-256 `3965c63ee28f7052ce0fb160b9308b8f3154aff5d7967da687a1ca09ad266b13`;
-- edited derivative of Pexels `7648310` certificate scene;
-- transparent loyalty-award `4965.jpg` = HOLD / excluded.
+- source SHA-256 `be0b9af42c648fba4d63643babc935d90247b48f6a5afe609664fe21c1672334`;
+- transparent award `4965.jpg` = HOLD / excluded.
 
-### Other 12 families
-PASS or PASS-WATCH in the full A/B/C audit and frozen in `OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md`.
-Do not reopen them without concrete side-by-side/mobile or later formative evidence.
+Other 12 families are frozen PASS/PASS-WATCH from the full A/B/C audit. Do not reopen without concrete visual/formative evidence.
 
-## Planner / assigner implementation — PROTOTYPE PASS
+## Source package — LOCKED
 
-Family schedule remains:
+`config/open14-next-bank-v0.3-source-assets.json`
+
+Verified:
+- 15/15 new source binaries accounted for;
+- source dimensions and hashes locked;
+- only Recognition-03 is naturally square;
+- source locking never silently cropped originals.
+
+## Geometry review package — MATERIALIZED, NOT DEPLOYED
+
+Machine-readable:
+`config/open14-next-bank-v0.3-geometry.json`
+
+Checkpoint:
+`docs/OPEN14_V03_GEOMETRY_REVIEW_PACKAGE_2026-09-03.md`
+
+Completed:
+- 15 review derivatives generated as 640×640 WebP, quality 92, Lanczos;
+- 14 non-square sources have explicit deterministic crop boxes;
+- Recognition-03 resized as-is from square source;
+- runtime-review SHA-256 recorded for all 15;
+- all 15 outputs verified 640×640 and unique by exact hash;
+- no runtime deployment performed.
+
+Geometry policy:
+- centered square crop by default where one-second meaning survives;
+- `BELONGING-03` deliberately uses x-centering `0.45`, crop `[259,0,1123,864]`, to retain evidence of a third group member and reduce a pure dyad reading.
+
+Main owner-review watch:
+- `BELONGING-03` square crop. It still shows shared gaming plus a partial third member, but mobile review must confirm it reads as togetherness rather than merely two-person connection.
+
+Working-session review artifact:
+`priolens_nextbank_v03_geometry_review.zip`
+
+This ZIP is not deployed or canonical binary storage; geometry decisions/hashes are canonical in repo config.
+
+## Planner / assigner — PROTOTYPE PASS
+
+Family schedule:
 `research/p3_open14_planner_v02.mjs`
 
-It already guarantees:
-- 14 triads;
-- each family shown 3×;
-- each family in screen slots 1/1/1;
-- 3 macro domains per triad;
-- 42 unique family pair co-occurrences;
-- 6 unique opponents per family.
-
-New no-repeat exemplar assigner:
+No-repeat exemplar assigner:
 `research/open14_no_repeat_assigner_v03.mjs`
 
-Assigner identity:
+Identity:
 `balanced-3x1-no-repeat-slot-v0.3`
 
-Smoke:
-`research/open14_no_repeat_assigner_v03_smoke.mjs`
-
-1000-seed local smoke PASS:
+1000-seed smoke PASS:
 - 42 exposures/session;
 - 42 unique exemplar IDs/session;
-- each family uses its three exemplar IDs exactly 1/1/1;
+- each family uses all three IDs exactly once;
 - exact-image repeats = 0;
-- per slot exemplar-class counts are a 4/5/5 permutation;
-- across smoke seeds every family/exemplar reaches all three screen slots.
+- slot distribution balanced;
+- every family/exemplar reaches all three screen slots across seeds.
 
-This is not yet deployed runtime behavior.
+This is not deployed runtime behavior yet.
 
 ## CARE boundary
-
-Canonical:
-`docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`
 
 Visual CARE = proactive care-giving.
 `CARE_SUPPORT_PRESENT` = care/support present or received.
 Do not directly compare them as equivalent constructs in v0.2.
 
+Canonical:
+`docs/OPEN14_CARE_ANALYSIS_RULE_v0.1.md`
+
 ## Bilingual runtime
 
-One runtime serves LT+EN:
-- LT: `?lang=lt&from=lt` → return to `2rasi.lt`;
-- EN: `?lang=en&from=com` → return to `2rasi.com`.
+One live runtime serves LT+EN:
+- LT: `?lang=lt&from=lt` -> `2rasi.lt`;
+- EN: `?lang=en&from=com` -> `2rasi.com`.
 
 `language: lt|en` remains persisted and retained for analysis.
 
-## Pilot / recruitment boundary
+## Pilot boundary
 
 External recruitment remains **CLOSED**.
-Before recruitment, record explicit `PILOT_OPENED_AT_UTC` and freeze the active bank/planner/session version combination.
-Always exclude `SYSTEM_SMOKE_DO_NOT_ANALYZE`; keep language as an analysis factor.
-
-## Existing operational work still open
-
-- one fresh full LT mobile participant smoke;
-- focused EN result smoke;
-- public `.lt` and `.com` card → landing → PrioLens → return manual smoke;
-- Hostinger 90-day cleanup cron configuration + first output smoke;
-- recruitment only after intentional opening and `PILOT_OPENED_AT_UTC`.
+Before recruitment, record explicit `PILOT_OPENED_AT_UTC` and freeze active bank/planner/session versions.
+Always exclude `SYSTEM_SMOKE_DO_NOT_ANALYZE`; retain language as an analysis factor.
 
 ## Active next-bank execution queue
 
-1. Resolve deterministic 1:1 runtime geometry for the 14 non-square new sources. **Do not edit/crop without explicit owner image-edit instruction.**
-2. Build the separate versioned 42-bank runtime asset package: 27 retained live binaries + 15 new normalized binaries.
-3. Preserve original and normalized hashes; populate runtime paths in the v0.3 bank manifest.
-4. Integrate the already-smoked `balanced-3x1-no-repeat-slot-v0.3` assigner into a separate next runtime, not live v0.2.
-5. Bump bank/planner/session metadata so v0.2 observations remain separable.
-6. Run geometry/reachability/text-watermark/hash/pHash audit.
-7. Owner mobile visual smoke across all 42.
-8. Runtime no-repeat smoke.
-9. Only then reconsider external recruitment.
+1. Owner/mobile review of the 15 normalized geometry outputs, especially `BELONGING-03`.
+2. If geometry passes, upload/materialize the approved 15 WebP binaries into a separate versioned next-bank runtime asset directory.
+3. Combine those 15 with the 27 retained live binaries -> full 42 runtime package.
+4. Populate actual runtime paths in v0.3 bank manifest.
+5. Integrate `balanced-3x1-no-repeat-slot-v0.3` into a separate next runtime, not live v0.2.
+6. Bump bank/planner/session metadata so v0.2 observations remain separable.
+7. Run reachability/hash/pHash/text-watermark audit.
+8. Owner mobile visual smoke across all 42.
+9. Runtime no-repeat smoke.
+10. Only then reconsider replacing live v0.2 and later opening external formative recruitment.
+
+Existing unrelated pre-pilot ops still open:
+- fresh full LT mobile participant smoke;
+- focused EN result smoke;
+- public `.lt`/`.com` card -> landing -> PrioLens -> return manual smoke;
+- Hostinger 90-day cleanup cron + first output smoke.
 
 Main pragmatic stimulus question:
 > **What does a reasonable viewer see happening within about one second?**
