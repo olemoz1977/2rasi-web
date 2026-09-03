@@ -4,6 +4,7 @@ Status: ACTIVE OWNER DECISION / NEXT-BANK DESIGN / LIVE v0.2 UNCHANGED
 Date: 2026-09-03
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
+Active asset-package child: `OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md`
 
 ## Decision
 
@@ -67,6 +68,8 @@ The 2026-09-03 owner working shortlist is the basis for the first 42-bank candid
 | OPPORTUNITY | open greenhouse with visible productive plants | KEEP | nature/resource/growth valence |
 
 Twelve families are practically closed for a first C-package. AUTONOMY and RECOGNITION are usable boundary probes, not clean exemplars.
+
+Exact reviewed-image provenance/readiness is tracked separately in `OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md`; semantic shortlist readiness must not be mistaken for runtime asset readiness.
 
 ## Active 28-bank replacement audit
 
@@ -156,7 +159,7 @@ Exact next public version label is not frozen by this document; the implementati
 
 ## Execution sequence
 
-1. **C PACKAGE** — resolve exact source/provenance/runtime-ready asset for all 14 proposed C exemplars.
+1. **C PACKAGE** — resolve exact source/provenance/runtime-ready asset for all 14 proposed C exemplars. Active manifest: `OPEN14_C_PACKAGE_PROVENANCE_2026-09-03.md`.
 2. **42 SIDE-BY-SIDE AUDIT** — inspect each family as A/B/C, with P0 families explicitly challenged.
 3. **P0 D SEARCH ONLY WHERE NEEDED** — do not widen search for families that already pass.
 4. **FINAL 3×14 FREEZE** — retain exactly three unique reviewed exemplars per family.
