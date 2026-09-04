@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T14:08:00Z",
-  "status": "V04_INFORMATION_ARCHITECTURE_FROZEN_VISUAL_IMPLEMENTATION_READY",
+  "updatedAtUtc": "2026-09-04T14:22:00Z",
+  "status": "V04_VISUAL_GRAMMAR_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -50,7 +50,7 @@
     "rejectsForgedAdaptiveState": true
   },
   "resultWorld": {
-    "phase": "INFORMATION_ARCHITECTURE_FROZEN_VISUAL_IMPLEMENTATION_READY",
+    "phase": "VISUAL_GRAMMAR_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
     "shipRepresents": "Channel-A focus only",
     "shipHeroShowsOnlyFocusName": true,
     "shipHeroShowsRawCount": false,
@@ -61,8 +61,8 @@
     "automaticABComparisonRemovedFromMainResult": true,
     "automaticShipToMapLine": false,
     "attentionReflectionQuestionLt": "Kas, tavo manymu, galėjo traukti šiuose vaizduose?",
-    "finalShipGraphicImplemented": false,
-    "finalNeedsMapGraphicImplemented": false,
+    "finalShipGraphicImplemented": true,
+    "finalNeedsMapGraphicImplemented": true,
     "transitionVideoImplemented": false,
     "layout": "ship above waterline, needs map below, one continuous mobile scene",
     "needsMapGrouping": "render only route-relevant Channel-B need land(s); no-route renders compact empty state",
@@ -106,10 +106,22 @@
     "shipFocusImagesInSummary": false,
     "shipFocusImagesInReflectionOnly": true,
     "sufficiencyTerminology": "poreikio sritis / need area",
-    "sufficiencyProvenanceHeadingLt": "Kaip ši poreikio sritis buvo išskirta?"
+    "sufficiencyProvenanceHeadingLt": "Kaip ši poreikio sritis buvo išskirta?",
+    "finalShipGraphicForm": "minimalist inline SVG sailboat; solid neutral line grammar; no dashed prototype geometry",
+    "finalNeedsMapGraphicForm": "route-only organic land grammar with dynamic lower-map SVG dotted locator routes",
+    "dottedRouteImplemented": true,
+    "dottedRouteOrigin": "neutral origin inside lower Channel-B map only",
+    "dottedRouteCrossesWaterline": false,
+    "dottedRouteEncodesMagnitude": false,
+    "visualStateCoverage": {
+      "singleEndpoint": true,
+      "twoEndpointsSameNeedGroup": true,
+      "threeEndpointsAcrossNeedGroups": true,
+      "noRoute": true
+    }
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33881903219,
+    "ownerPreviewAndApiDeployRun": 33883041521,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
@@ -120,7 +132,7 @@
     "cacheControlGatePassed": true,
     "keyboardActivationSmokePassed": true,
     "renderErrorBoundarySmokePassed": true,
-    "local390x844UxSmokeRun": 33880335265,
+    "local390x844UxSmokeRun": 33882688598,
     "local390x844UxSmokePassed": true,
     "routeOnlyNeedsMapSmokePassed": true,
     "sufficiencyBottomSheetSmokePassed": true,
@@ -134,9 +146,14 @@
     "singleRouteDuplicateSummaryRemovedPassed": true,
     "resultShellRefactorPassed": true,
     "resultShellSeparatedFromBuild": true,
-    "informationArchitectureFrozen": true
+    "informationArchitectureFrozen": true,
+    "finalShipSvgSmokePassed": true,
+    "lowerMapDottedRouteSmokePassed": true,
+    "multiEndpointNoTruncationVisualSmokePassed": true,
+    "noRouteNoRouteGeometrySmokePassed": true,
+    "visualImplementationOwnerApproved": false
   },
-  "nextAction": "Implement final minimalist ship and route-only needs-map visual grammar without changing frozen IA. Start with ship vector/CSS/SVG, then organic land grammar, then lower-map-only dotted route, then real-phone visual smoke.",
+  "nextAction": "Owner reviews the newly deployed minimalist ship + organic route-only map on a real phone. Check focus-label fit, ship recognizability, one-land proportion, dotted-route clarity, and whether the lower map still reads as Channel-B only. If visual pass is accepted, polish spacing/geometry only and then add the fixed 4–6 second non-diagnostic transition video last.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v04.last-result",
