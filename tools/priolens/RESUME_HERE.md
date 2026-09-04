@@ -157,7 +157,8 @@ Result-world semantics:
 - one endpoint normally yields one land; multiple valid endpoints yield only their relevant lands;
 - B+ `similar` may legitimately preserve more than two endpoints, and the renderer must not silently truncate them;
 - sufficiency detail opens as a compact bottom sheet over the result rather than replacing it with a mostly empty page;
-- after the attention self-explanation is answered, the option list collapses to the selected answer.
+- after the attention self-explanation is answered, the option list collapses to the selected answer;
+- completed results are persisted separately from unfinished drafts and restored automatically after reload on the same device.
 
 A new v0.4 session schema and draft namespace are required before runtime implementation. Do not silently extend `rank-session-v0.3` with A+/B+ semantics.
 
@@ -260,6 +261,15 @@ Owner-feedback result-UX refinement:
 - no-route inactive-continent removal PASS;
 - Browser Back / keyboard / modal behavior PASS.
 
+Completed-result reload persistence:
+- owner real-phone test exposed that successful final save cleared the draft and reload returned to intro because no completed-result snapshot existed;
+- separate local key base `priolens.open14.v04.last-result` now stores the completed result for up to 90 days;
+- unfinished draft takes precedence over an older completed result;
+- reload restores the completed result without another final API POST;
+- `Atlikti dar kartą` clears the completed-result snapshot;
+- local 390×844 restore smoke `33870308506` SUCCESS;
+- deployed 390×844 final-save + reload-restore smoke `33870308413` SUCCESS.
+
 ## Result-image rule
 
 Current participant result rendering:
@@ -277,7 +287,8 @@ Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set
 - v0.4 A+/B+ protocol: IMPLEMENTED + DEPLOYED OWNER PREVIEW.
 - v0.4 server semantic validation: PASS.
 - v0.4 unified ship-water-needs-map result scene: DEPLOYED + TECHNICAL PASS.
-- v0.4 owner-feedback lightweight result UX: DEPLOYED + TECHNICAL PASS (`33868510484`).
+- v0.4 owner-feedback lightweight result UX: DEPLOYED + TECHNICAL PASS (`33870308413`).
+- completed-result reload persistence: DEPLOYED + TECHNICAL PASS; successful reload now restores the same result instead of returning to intro.
 - A+ phone runoff: one wide candidate group per row at <=620px.
 - participant needs-map hero: route-relevant land(s) only; inactive full-taxonomy map removed from normal result.
 - v0.4 final ship graphic: NOT IMPLEMENTED.
@@ -297,15 +308,16 @@ Use:
 The 2026-09-04 owner screenshots produced a concrete UX remediation pass. The revised preview is now deployed. Review the revised information architecture, not final artwork.
 
 Check:
-1. A+ “Dar vienas žvilgsnis” now shows one wide candidate image-group per row and the individual exemplars are large enough to judge on the phone;
-2. the upper ship still works with one Channel-A focus name;
-3. attention detail is materially lighter, 2/3 LEAST is gone from participant view, and exact 3/3 background evidence remains understandable without MOST/LEAST/A+ jargon;
-4. after answering “Kas, tavo manymu, galėjo traukti šiuose vaizduose?”, the six options collapse cleanly to the selected answer;
-5. the lower needs-map hero shows only route-relevant land(s), not all six groups / twelve locations;
-6. one-route, multi-route and no-route states remain understandable;
-7. the sufficiency “Detalės” bottom sheet contains enough meaning + provenance without looking like an empty report page;
-8. ship and map remain clearly separate perspectives without automatic causal interpretation;
-9. the whole result feels lighter than the previous version.
+1. complete one fresh session, reload the finished result once, and confirm the same focus/route result is restored rather than returning to the intro;
+2. A+ “Dar vienas žvilgsnis” now shows one wide candidate image-group per row and the individual exemplars are large enough to judge on the phone;
+3. the upper ship still works with one Channel-A focus name;
+4. attention detail is materially lighter, 2/3 LEAST is gone from participant view, and exact 3/3 background evidence remains understandable without MOST/LEAST/A+ jargon;
+5. after answering “Kas, tavo manymu, galėjo traukti šiuose vaizduose?”, the six options collapse cleanly to the selected answer;
+6. the lower needs-map hero shows only route-relevant land(s), not all six groups / twelve locations;
+7. one-route, multi-route and no-route states remain understandable;
+8. the sufficiency “Detalės” bottom sheet contains enough meaning + provenance without looking like an empty report page;
+9. ship and map remain clearly separate perspectives without automatic causal interpretation;
+10. the whole result feels lighter than the previous version.
 
 If this revised information architecture passes:
 1. freeze the information architecture;
