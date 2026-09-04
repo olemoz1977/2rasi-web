@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / MINIMALIST SHIP + CARTOGRAPHIC ROUTE-ONLY MAP DEPLOYED TECHNICAL PASS / OWNER VISUAL REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / MINIMALIST SHIP + ILLUSTRATED ISLAND MAP DEPLOYED TECHNICAL PASS / OWNER VISUAL REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-04
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -312,12 +312,17 @@ Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set
 - owner rejected the first oval/blob land visual as insufficiently map-like; IA stayed frozen;
 - revised cartographic coastline local smoke `33884239941` SUCCESS;
 - revised cartographic deployed/API/390×844 smoke `33884243972` SUCCESS;
+- owner then supplied a map reference and approved a generated neutral adaptation as the target direction;
+- illustrated-island local 390×844 smoke `33886180623` SUCCESS;
+- illustrated-island deployed owner-preview/API/390×844 smoke `33886186077` SUCCESS;
+- terrain cues are generic decoration only and do not encode need semantics;
+- neutral map pin replaces result-chip styling.
 - visible route-origin circle removed; curved dotted route now enters from the lower map edge.
 - completed-result reload persistence: DEPLOYED + TECHNICAL PASS; successful reload now restores the same result instead of returning to intro.
 - A+ phone runoff: one wide candidate group per row at <=620px.
 - participant needs-map hero: route-relevant land(s) only; inactive full-taxonomy map removed from normal result.
 - v0.4 minimalist ship graphic: IMPLEMENTED + DEPLOYED TECHNICAL PASS; owner visual approval pending.
-- v0.4 needs-map model: six groups + twelve Channel-B locations remain vocabulary; revised cartographic route-only SVG coastlines + curved lower-edge dotted route are IMPLEMENTED + DEPLOYED TECHNICAL PASS; owner visual approval pending.
+- v0.4 needs-map model: six groups + twelve Channel-B locations remain vocabulary; owner-targeted illustrated-island grammar (irregular coast, pale sea, restrained generic terrain, neutral map pin, curved lower-edge route) is IMPLEMENTED + DEPLOYED TECHNICAL PASS; owner visual approval pending.
 - v0.4 transition video: NOT IMPLEMENTED.
 - Owner real-phone v0.4 result-UX review: PASS for IA freeze.
 - Live v0.2: UNCHANGED.
@@ -330,34 +335,29 @@ Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set
 Use:
 `https://omesg360.eu/priolens-open14-v04/?lang=lt&from=lt`
 
-The IA is frozen. The previous oval/blob needs-map visual was rejected by the owner and has been replaced.
+Latest deployed target adaptation:
+- minimalist ship retained;
+- lower scene now follows the owner-approved illustrated-island direction;
+- pale sea + shoreline rings;
+- irregular geographic coastline and small islets;
+- very restrained generic terrain cues;
+- neutral location pin;
+- curved dotted route from the lower map edge.
 
-Check the revised lower scene:
-1. does the land now read immediately as **map geography**, not an oval, card or diagram node;
-2. is the irregular coastline cartographic enough without looking like a specific real country/continent;
-3. does the need-area marker read like a location on that land;
-4. does the curved dotted route entering from the lower edge feel like a map locator rather than a scale/score;
-5. is the removed origin circle an improvement;
-6. does the map remain visibly independent from the ship and waterline;
-7. are the land, label and route proportions balanced on 390px mobile width;
-8. does “Detalės” avoid collisions.
-
-Automated state coverage already passes:
-- one endpoint;
-- two endpoints in one need group;
-- three endpoints across groups;
-- no-route.
+Review only:
+1. does it now read immediately as a **map**, not a diagram;
+2. is the amount of terrain detail enough to create geography but not enough to become fantasy illustration;
+3. is the island-to-sea proportion close to the approved target;
+4. does the need marker feel like a location;
+5. is the route clear but subordinate;
+6. do the need label and group label sit naturally on the land;
+7. does the lower scene visually belong with the minimalist ship above.
 
 Latest technical evidence:
-- local cartographic/multi-state smoke `33884239941` SUCCESS;
-- deployed owner-preview + API + real 390×844 smoke `33884243972` SUCCESS.
+- local `33886180623` SUCCESS;
+- deployed/API/real-390×844 `33886186077` SUCCESS.
 
-If the revised map passes owner visual review:
-1. spacing/geometry polish only;
-2. rerun smoke;
-3. transition video last.
-
-Do not reopen IA merely for decorative preferences unless the visual reveals a comprehension problem.
+If this passes: spacing/geometry polish only, then transition video last. IA stays frozen.
 
 ### Independent stimulus-human gate
 
