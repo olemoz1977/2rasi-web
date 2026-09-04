@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T13:53:00Z",
-  "status": "V04_OWNER_FEEDBACK_UX_REFINEMENT_DEPLOYED_TECHNICAL_PASS_REVISED_REAL_PHONE_REVIEW_PENDING",
+  "updatedAtUtc": "2026-09-04T14:08:00Z",
+  "status": "V04_INFORMATION_ARCHITECTURE_FROZEN_VISUAL_IMPLEMENTATION_READY",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -50,7 +50,7 @@
     "rejectsForgedAdaptiveState": true
   },
   "resultWorld": {
-    "phase": "OWNER_FEEDBACK_LIGHTWEIGHT_ROUTE_ONLY_FUNCTIONAL_PREVIEW",
+    "phase": "INFORMATION_ARCHITECTURE_FROZEN_VISUAL_IMPLEMENTATION_READY",
     "shipRepresents": "Channel-A focus only",
     "shipHeroShowsOnlyFocusName": true,
     "shipHeroShowsRawCount": false,
@@ -96,16 +96,26 @@
       "oneEndpoint": "one route-relevant land; duplicate large endpoint summary above the land is hidden",
       "multipleEndpoints": "all valid route-relevant lands/endpoints are rendered; do not silently truncate protocol-valid B+ similar results",
       "noRoute": "no inactive lands; compact no-route state"
-    }
+    },
+    "informationArchitectureFrozen": true,
+    "informationArchitectureFreezeDoc": "tools/priolens/docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md",
+    "visualGrammarDoc": "tools/priolens/docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md",
+    "presentationModule": "priolens/open14-v04/result_shell_v04.mjs",
+    "semanticRendererModule": "priolens/open14-v04/result_renderer_v04.mjs",
+    "buildOrchestrator": "priolens/open14-v04/build_from_v031.mjs",
+    "shipFocusImagesInSummary": false,
+    "shipFocusImagesInReflectionOnly": true,
+    "sufficiencyTerminology": "poreikio sritis / need area",
+    "sufficiencyProvenanceHeadingLt": "Kaip ši poreikio sritis buvo išskirta?"
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33880355169,
+    "ownerPreviewAndApiDeployRun": 33881903219,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
     "deployed390x844OwnerFlowPassed": true,
     "shipMapDetailArchitectureSmokePassed": true,
-    "realPhoneOwnerReviewPassed": false,
+    "realPhoneOwnerReviewPassed": true,
     "unifiedSceneSmokePassed": true,
     "cacheControlGatePassed": true,
     "keyboardActivationSmokePassed": true,
@@ -121,9 +131,12 @@
     "reflectionQuestionSingleRenderPassed": true,
     "reflectionBeforeBackgroundHierarchyPassed": true,
     "selectedReflectionAnswerContrastPassed": true,
-    "singleRouteDuplicateSummaryRemovedPassed": true
+    "singleRouteDuplicateSummaryRemovedPassed": true,
+    "resultShellRefactorPassed": true,
+    "resultShellSeparatedFromBuild": true,
+    "informationArchitectureFrozen": true
   },
-  "nextAction": "Owner checks the revised real-phone result once more: selected reflection answer visibility, reflection-before-background hierarchy, single-route map without duplicate heading, and overall visual weight. If this passes, freeze information architecture before final ship/map artwork.",
+  "nextAction": "Implement final minimalist ship and route-only needs-map visual grammar without changing frozen IA. Start with ship vector/CSS/SVG, then organic land grammar, then lower-map-only dotted route, then real-phone visual smoke.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v04.last-result",
