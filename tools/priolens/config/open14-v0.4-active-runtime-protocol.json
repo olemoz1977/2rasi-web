@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T10:31:00Z",
-  "status": "V04_A_PLUS_B_PLUS_DEPLOYED_UNIFIED_RESULT_SCENE_HARDENED_TECHNICAL_PASS_OWNER_REAL_PHONE_REVIEW_PENDING",
+  "updatedAtUtc": "2026-09-04T11:02:00Z",
+  "status": "V04_A_PLUS_B_PLUS_DEPLOYED_COMPACT_RESULT_SCENE_WITH_ROUTED_DETAIL_VIEWS_TECHNICAL_PASS_OWNER_REVIEW_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -65,10 +65,18 @@
     "previewCachePolicy": "no-cache,max-age=0,must-revalidate for html/mjs/json",
     "shipAndMapNativeButtons": true,
     "keyboardActivationSmokePassed": true,
-    "needsMapLabelsUseSharedItemLabels": true
+    "needsMapLabelsUseSharedItemLabels": true,
+    "detailNavigation": {
+      "mode": "dedicated routed views within the result document",
+      "attentionDetailRoute": "?detail=attention",
+      "sufficiencyDetailRoute": "?detail=sufficiency",
+      "inlineExpansionRemoved": true,
+      "browserBackSupported": true,
+      "mainSceneHiddenInDetailMode": true
+    }
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33863361300,
+    "ownerPreviewAndApiDeployRun": 33865375345,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
@@ -78,7 +86,8 @@
     "unifiedSceneSmokePassed": true,
     "cacheControlGatePassed": true,
     "keyboardActivationSmokePassed": true,
-    "renderErrorBoundarySmokePassed": true
+    "renderErrorBoundarySmokePassed": true,
+    "routedDetailSmokePassed": true
   },
-  "nextAction": "Owner re-tests the hardened unified scene on a real phone. If the six-continent map renders and the information hierarchy is acceptable, refactor the result shell/styles out of build_from_v031.mjs before adding final SVG ship/map visuals. Add transition video last."
+  "nextAction": "Owner checks the compact main result plus dedicated attention/sufficiency detail views on a real phone. Do not evaluate placeholder artwork as final. If navigation feels right, refactor result shell/styles out of build_from_v031.mjs, then design final ship and needs-map visuals."
 }
