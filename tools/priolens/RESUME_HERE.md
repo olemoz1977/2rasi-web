@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / MINIMALIST SHIP + ILLUSTRATED ISLAND MAP DEPLOYED TECHNICAL PASS / OWNER VISUAL REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / APPROVED-TARGET PAGE ADAPTATION DEPLOYED TECHNICAL PASS / OWNER VISUAL REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-04
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -315,6 +315,12 @@ Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set
 - owner then supplied a map reference and approved a generated neutral adaptation as the target direction;
 - illustrated-island local 390×844 smoke `33886180623` SUCCESS;
 - illustrated-island deployed owner-preview/API/390×844 smoke `33886186077` SUCCESS;
+- approved-target page adaptation implemented after owner accepted the generated direction;
+- island reduced to ~82% mobile width with more visible sea and preserved SVG aspect ratio;
+- label chip removed in favor of direct map annotation;
+- lower “Detalės” moved right; route shortened and calmed;
+- latest local 390×844 smoke `33887982777` SUCCESS;
+- latest deployed/API/real-390×844 smoke `33887982768` SUCCESS;
 - terrain cues are generic decoration only and do not encode need semantics;
 - neutral map pin replaces result-chip styling.
 - visible route-origin circle removed; curved dotted route now enters from the lower map edge.
@@ -322,7 +328,7 @@ Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set
 - A+ phone runoff: one wide candidate group per row at <=620px.
 - participant needs-map hero: route-relevant land(s) only; inactive full-taxonomy map removed from normal result.
 - v0.4 minimalist ship graphic: IMPLEMENTED + DEPLOYED TECHNICAL PASS; owner visual approval pending.
-- v0.4 needs-map model: six groups + twelve Channel-B locations remain vocabulary; owner-targeted illustrated-island grammar (irregular coast, pale sea, restrained generic terrain, neutral map pin, curved lower-edge route) is IMPLEMENTED + DEPLOYED TECHNICAL PASS; owner visual approval pending.
+- v0.4 needs-map model: six groups + twelve Channel-B locations remain vocabulary; approved-target page adaptation (smaller asymmetric island, more sea, preserved aspect ratio, direct map annotation, neutral pin, shorter curved route) is IMPLEMENTED + DEPLOYED TECHNICAL PASS; owner visual approval pending.
 - v0.4 transition video: NOT IMPLEMENTED.
 - Owner real-phone v0.4 result-UX review: PASS for IA freeze.
 - Live v0.2: UNCHANGED.
@@ -354,8 +360,8 @@ Review only:
 7. does the lower scene visually belong with the minimalist ship above.
 
 Latest technical evidence:
-- local `33886180623` SUCCESS;
-- deployed/API/real-390×844 `33886186077` SUCCESS.
+- local `33887982777` SUCCESS;
+- deployed/API/real-390×844 `33887982768` SUCCESS.
 
 If this passes: spacing/geometry polish only, then transition video last. IA stays frozen.
 
