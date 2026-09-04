@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / APPROVED-TARGET PAGE ADAPTATION DEPLOYED TECHNICAL PASS / OWNER VISUAL REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / STRONGER GEOGRAPHIC MAP REVISION DEPLOYED TECHNICAL PASS / OWNER VISUAL REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-04
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -321,6 +321,13 @@ Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set
 - lower “Detalės” moved right; route shortened and calmed;
 - latest local 390×844 smoke `33887982777` SUCCESS;
 - latest deployed/API/real-390×844 smoke `33887982768` SUCCESS;
+- owner judged that adaptation only minimally different from the cloud/blob state;
+- coastline was then rebuilt with stronger bays, peninsulas, concavities and irregular islets rather than incremental decoration;
+- single-land width reduced further (~74vw / max 270px) to expose more sea;
+- route shortened and land annotation repositioned;
+- latest logic smoke `33889606429` SUCCESS;
+- latest local 390×844 smoke `33889606362` SUCCESS;
+- latest deployed/API/real-390×844 smoke `33889606233` SUCCESS;
 - terrain cues are generic decoration only and do not encode need semantics;
 - neutral map pin replaces result-chip styling.
 - visible route-origin circle removed; curved dotted route now enters from the lower map edge.
@@ -360,8 +367,9 @@ Review only:
 7. does the lower scene visually belong with the minimalist ship above.
 
 Latest technical evidence:
-- local `33887982777` SUCCESS;
-- deployed/API/real-390×844 `33887982768` SUCCESS.
+- logic `33889606429` SUCCESS;
+- local `33889606362` SUCCESS;
+- deployed/API/real-390×844 `33889606233` SUCCESS.
 
 If this passes: spacing/geometry polish only, then transition video last. IA stays frozen.
 
