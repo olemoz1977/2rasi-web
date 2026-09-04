@@ -1,7 +1,7 @@
 # PrioLens Open14 v0.4 — Result Visual Grammar
 
 Date: 2026-09-04  
-Status: IMPLEMENTATION SPEC AFTER IA FREEZE
+Status: IMPLEMENTED OWNER-PREVIEW CANDIDATE / TECHNICAL PASS / REAL-PHONE VISUAL REVIEW PENDING
 
 This document defines how to turn the frozen result architecture into a coherent visual world without adding new psychological meaning.
 
@@ -157,3 +157,31 @@ Visual implementation must not change:
 - completed-result persistence.
 
 If a visual idea requires changing one of those, stop and treat it as an IA change request.
+
+
+## Implementation checkpoint — 2026-09-04
+
+Implemented in `olemoz1977/omesg360` / `feature/priolens-open14-v04`:
+
+- dashed prototype ship removed;
+- minimalist inline SVG sailboat implemented;
+- focus label remains independent semantic text over the sail region;
+- organic route-only land shapes implemented;
+- dotted route geometry is generated dynamically from one neutral lower-map origin to every valid Channel-B endpoint;
+- route SVG exists only inside the lower map and never crosses the waterline;
+- no-route state renders no route SVG;
+- route stroke does not vary with score or magnitude;
+- same-group two-endpoint and cross-group three-endpoint states preserve every valid endpoint.
+
+Automated evidence:
+- local 390×844 multi-state UI smoke `33882688598` SUCCESS;
+- single endpoint -> 1 land / 1 target / 1 dotted path;
+- two endpoints in one need group -> 1 land / 2 targets / 2 equal paths;
+- three endpoints across three groups -> 3 lands / 3 targets / 3 equal paths;
+- no endpoint -> no inactive lands and no route geometry;
+- deployed owner-preview + API + real 390×844 smoke `33883041521` SUCCESS.
+
+Remaining gate:
+- owner real-phone visual judgement of actual proportions, focus-label fit and overall visual tone.
+
+No transition video should be added before that visual pass.
