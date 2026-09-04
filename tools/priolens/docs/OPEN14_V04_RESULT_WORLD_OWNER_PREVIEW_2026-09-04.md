@@ -9,8 +9,8 @@ Runtime:
 - LT: `https://omesg360.eu/priolens-open14-v04/?lang=lt&from=lt`
 - EN: `https://omesg360.eu/priolens-open14-v04/?lang=en&from=com`
 - API: `/priolens-open14-v04-api/`
-- latest owner-feedback + completed-result persistence deploy: `33870308413` SUCCESS
-- latest local 390×844 A+/result/reload smoke: `33870308506` SUCCESS
+- latest owner-feedback/result-hierarchy deploy + real 390×844 smoke: `33880355169` SUCCESS
+- latest local 390×844 result-hierarchy smoke: `33880335265` SUCCESS
 
 Live v0.2 remains untouched. v0.3.1 owner preview remains untouched. External recruitment remains CLOSED.
 
@@ -191,6 +191,22 @@ Deliberate exception to the visual “one or two lands” preference:
 - the renderer must not discard valid data merely to force a two-land cap.
 
 This refinement is deployed, but it still needs a new real-phone owner pass before the information architecture is frozen for final artwork.
+
+## Result-detail hierarchy refinement — 2026-09-04
+
+Follow-up real-phone review exposed four presentational issues. All four are now implemented:
+
+1. Selected self-explanation answer is visibly rendered after collapse. The previous white-on-white text bug is fixed with explicit dark text.
+2. The self-explanation question is rendered once, above the reflection card; the duplicate copy inside the dark card is removed.
+3. Exact 3/3 background evidence remains available but is moved below the main reflection and visually demoted as secondary evidence.
+4. For a single Channel-B route endpoint, the large route summary above the land is hidden; the land itself carries the endpoint label, removing the visible duplicate.
+
+Verification:
+- local 390×844 UI smoke `33880335265` SUCCESS;
+- deployed owner-preview + real 390×844 smoke `33880355169` SUCCESS;
+- smoke explicitly checks one rendered reflection question, reflection-before-background DOM order, visible selected-answer contrast, collapsed option list, and no duplicate single-route summary.
+
+Information architecture is still waiting for the owner's final real-phone visual pass before freeze.
 
 ## Completed-result reload persistence — 2026-09-04
 
