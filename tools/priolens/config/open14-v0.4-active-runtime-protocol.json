@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T14:22:00Z",
-  "status": "V04_VISUAL_GRAMMAR_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
+  "updatedAtUtc": "2026-09-04T14:34:00Z",
+  "status": "V04_CARTOGRAPHIC_MAP_REVISION_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -50,7 +50,7 @@
     "rejectsForgedAdaptiveState": true
   },
   "resultWorld": {
-    "phase": "VISUAL_GRAMMAR_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
+    "phase": "CARTOGRAPHIC_MAP_REVISION_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
     "shipRepresents": "Channel-A focus only",
     "shipHeroShowsOnlyFocusName": true,
     "shipHeroShowsRawCount": false,
@@ -108,9 +108,9 @@
     "sufficiencyTerminology": "poreikio sritis / need area",
     "sufficiencyProvenanceHeadingLt": "Kaip ši poreikio sritis buvo išskirta?",
     "finalShipGraphicForm": "minimalist inline SVG sailboat; solid neutral line grammar; no dashed prototype geometry",
-    "finalNeedsMapGraphicForm": "route-only organic land grammar with dynamic lower-map SVG dotted locator routes",
+    "finalNeedsMapGraphicForm": "route-only cartographic land grammar with irregular SVG coastlines, subtle coast detail, map-style target labels, and curved lower-edge dotted locator routes",
     "dottedRouteImplemented": true,
-    "dottedRouteOrigin": "neutral origin inside lower Channel-B map only",
+    "dottedRouteOrigin": "enters from lower edge of the Channel-B map; no visible origin-circle marker",
     "dottedRouteCrossesWaterline": false,
     "dottedRouteEncodesMagnitude": false,
     "visualStateCoverage": {
@@ -118,10 +118,12 @@
       "twoEndpointsSameNeedGroup": true,
       "threeEndpointsAcrossNeedGroups": true,
       "noRoute": true
-    }
+    },
+    "dottedRouteVisibleOriginMarker": false,
+    "mapRevisionReason": "Owner real-phone review rejected the prior oval/blob as insufficiently map-like; IA remained frozen and only visual grammar changed."
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33883041521,
+    "ownerPreviewAndApiDeployRun": 33884243972,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
@@ -132,7 +134,7 @@
     "cacheControlGatePassed": true,
     "keyboardActivationSmokePassed": true,
     "renderErrorBoundarySmokePassed": true,
-    "local390x844UxSmokeRun": 33882688598,
+    "local390x844UxSmokeRun": 33884239941,
     "local390x844UxSmokePassed": true,
     "routeOnlyNeedsMapSmokePassed": true,
     "sufficiencyBottomSheetSmokePassed": true,
@@ -151,9 +153,12 @@
     "lowerMapDottedRouteSmokePassed": true,
     "multiEndpointNoTruncationVisualSmokePassed": true,
     "noRouteNoRouteGeometrySmokePassed": true,
-    "visualImplementationOwnerApproved": false
+    "visualImplementationOwnerApproved": false,
+    "cartographicCoastlineSmokePassed": true,
+    "curvedLowerEdgeRouteSmokePassed": true,
+    "visibleRouteOriginMarkerRemovedPassed": true
   },
-  "nextAction": "Owner reviews the newly deployed minimalist ship + organic route-only map on a real phone. Check focus-label fit, ship recognizability, one-land proportion, dotted-route clarity, and whether the lower map still reads as Channel-B only. If visual pass is accepted, polish spacing/geometry only and then add the fixed 4–6 second non-diagnostic transition video last.",
+  "nextAction": "Owner reviews the revised cartographic needs map on a real phone. Confirm it reads as a map rather than a diagram/blob, the coastline feels geographic without implying real geography, the curved dotted route enters from the lower map edge without a score-like origin marker, and the need label remains legible. If accepted, do spacing/geometry polish only, then transition video last.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v04.last-result",
