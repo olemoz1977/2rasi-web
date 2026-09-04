@@ -208,3 +208,36 @@ Technical evidence:
 - deployed owner-preview + API + real 390×844 smoke `33884243972` SUCCESS.
 
 The next gate is again owner visual judgement on a real phone. No transition video yet.
+
+
+## Illustrated-island target adaptation — 2026-09-04
+
+The owner supplied a fantasy-style map reference to clarify the missing map grammar, then approved a generated neutral PrioLens adaptation as the visual target direction.
+
+What was transferred from the reference:
+- irregular, unmistakably geographic coastline;
+- visible land-versus-sea relationship;
+- restrained internal terrain cues so the shape reads as a territory;
+- a location marker rather than a UI result chip;
+- a curved navigational route.
+
+What was deliberately not transferred:
+- parchment/fantasy styling;
+- dense illustration;
+- real-world geography;
+- decorative mountain/forest symbolism as psychological meaning;
+- red/green deficit encoding.
+
+Runtime adaptation:
+- pale sea field and subtle shoreline halos;
+- irregular SVG island + small islets;
+- generic low-contrast mountain, river, lake and grove cues;
+- neutral ring-and-dot location pin;
+- route terminates at the pin and enters from the lower map edge;
+- one-endpoint layout positions group name and need label like map annotations rather than centered dashboard text.
+
+Technical evidence:
+- local 390×844 illustrated-target smoke `33886180623` SUCCESS;
+- deployed owner-preview + API + real 390×844 smoke `33886186077` SUCCESS.
+
+Remaining gate: owner real-phone visual judgement. IA remains frozen.
