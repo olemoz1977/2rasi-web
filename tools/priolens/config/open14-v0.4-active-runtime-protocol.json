@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T08:35:00Z",
-  "status": "V04_A_PLUS_B_PLUS_DEPLOYED_UNIFIED_RESULT_SCENE_TECHNICAL_PASS_OWNER_REAL_PHONE_REVIEW_PENDING",
+  "updatedAtUtc": "2026-09-04T10:31:00Z",
+  "status": "V04_A_PLUS_B_PLUS_DEPLOYED_UNIFIED_RESULT_SCENE_HARDENED_TECHNICAL_PASS_OWNER_REAL_PHONE_REVIEW_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -59,17 +59,26 @@
     "transitionVideoImplemented": false,
     "layout": "ship above waterline, needs map below, one continuous mobile scene",
     "needsMapGrouping": "six continents / twelve Channel-B need locations",
-    "routeTargetsHighlighted": true
+    "routeTargetsHighlighted": true,
+    "renderDomGuard": true,
+    "visibleRenderErrorBoundary": true,
+    "previewCachePolicy": "no-cache,max-age=0,must-revalidate for html/mjs/json",
+    "shipAndMapNativeButtons": true,
+    "keyboardActivationSmokePassed": true,
+    "needsMapLabelsUseSharedItemLabels": true
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33853607761,
+    "ownerPreviewAndApiDeployRun": 33863361300,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
     "deployed390x844OwnerFlowPassed": true,
     "shipMapDetailArchitectureSmokePassed": true,
     "realPhoneOwnerReviewPassed": false,
-    "unifiedSceneSmokePassed": true
+    "unifiedSceneSmokePassed": true,
+    "cacheControlGatePassed": true,
+    "keyboardActivationSmokePassed": true,
+    "renderErrorBoundarySmokePassed": true
   },
-  "nextAction": "Owner reviews the unified ship-water-needs-map scene on a real phone. If the information hierarchy passes, replace the CSS ghost ship and continent placeholders with final minimalist artwork, then implement the dotted route geometry. Add the fixed transition video last."
+  "nextAction": "Owner re-tests the hardened unified scene on a real phone. If the six-continent map renders and the information hierarchy is acceptable, refactor the result shell/styles out of build_from_v031.mjs before adding final SVG ship/map visuals. Add transition video last."
 }
