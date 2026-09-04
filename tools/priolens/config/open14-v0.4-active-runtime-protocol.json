@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T14:58:00Z",
-  "status": "V04_ILLUSTRATED_MAP_TARGET_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
+  "updatedAtUtc": "2026-09-04T15:20:00Z",
+  "status": "V04_APPROVED_TARGET_PAGE_ADAPTATION_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -50,7 +50,7 @@
     "rejectsForgedAdaptiveState": true
   },
   "resultWorld": {
-    "phase": "ILLUSTRATED_MAP_TARGET_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
+    "phase": "APPROVED_TARGET_PAGE_ADAPTATION_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
     "shipRepresents": "Channel-A focus only",
     "shipHeroShowsOnlyFocusName": true,
     "shipHeroShowsRawCount": false,
@@ -108,7 +108,7 @@
     "sufficiencyTerminology": "poreikio sritis / need area",
     "sufficiencyProvenanceHeadingLt": "Kaip ši poreikio sritis buvo išskirta?",
     "finalShipGraphicForm": "minimalist inline SVG sailboat; solid neutral line grammar; no dashed prototype geometry",
-    "finalNeedsMapGraphicForm": "illustrated minimalist island map: irregular coastline, pale sea/shore halos, restrained generic terrain cues, map-location pin, curved lower-edge route",
+    "finalNeedsMapGraphicForm": "approved-target adaptation: smaller asymmetric island, more sea, sharper coastline, restrained atlas terrain, direct map annotation, map pin, shorter curved lower-edge route",
     "dottedRouteImplemented": true,
     "dottedRouteOrigin": "enters from lower edge of the Channel-B map; no visible origin-circle marker",
     "dottedRouteCrossesWaterline": false,
@@ -121,12 +121,15 @@
     },
     "dottedRouteVisibleOriginMarker": false,
     "mapRevisionReason": "Owner real-phone review rejected the prior oval/blob as insufficiently map-like; IA remained frozen and only visual grammar changed.",
-    "mapTargetReference": "owner-approved direction derived from provided fantasy-map reference and adapted into neutral PrioLens visual grammar; not copied as fantasy styling",
+    "mapTargetReference": "owner-approved generated target derived from the supplied fantasy-map reference, adapted as neutral PrioLens page graphics rather than used as a static image",
     "mapTerrainCues": "generic and decorative only: subtle mountains, river, lake, grove, islets; no semantic mapping to need types",
-    "mapLocationMarker": "neutral ring-and-dot pin; no deficit/red encoding"
+    "mapLocationMarker": "neutral ring-and-dot pin; no deficit/red encoding",
+    "mapLabelPresentation": "need label is direct map annotation with subtle text halo; no white result-chip block",
+    "mapDetailButtonPlacement": "right side of lower scene",
+    "shipBackdrop": "subtle distant-land horizon + pale water cues; no semantic encoding"
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33886186077,
+    "ownerPreviewAndApiDeployRun": 33887982768,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
@@ -137,7 +140,7 @@
     "cacheControlGatePassed": true,
     "keyboardActivationSmokePassed": true,
     "renderErrorBoundarySmokePassed": true,
-    "local390x844UxSmokeRun": 33886180623,
+    "local390x844UxSmokeRun": 33887982777,
     "local390x844UxSmokePassed": true,
     "routeOnlyNeedsMapSmokePassed": true,
     "sufficiencyBottomSheetSmokePassed": true,
@@ -161,9 +164,11 @@
     "curvedLowerEdgeRouteSmokePassed": true,
     "visibleRouteOriginMarkerRemovedPassed": true,
     "illustratedIslandTargetSmokePassed": true,
-    "mapLocationPinSmokePassed": true
+    "mapLocationPinSmokePassed": true,
+    "approvedTargetPageAdaptationSmokePassed": true,
+    "islandAspectRatioPreserved": true
   },
-  "nextAction": "Owner reviews the deployed illustrated-island adaptation on a real phone. Compare it to the approved visual target: map readability first, then land/sea balance, terrain restraint, pin placement, route curve, and overall coherence with the ship. If accepted, do only final spacing/geometry polish and then add the fixed transition video last.",
+  "nextAction": "Owner reviews the latest live page adaptation against the approved generated target. Check: island reads as geography not a cloud/blob, enough sea surrounds it, direct annotation replaces the UI chip, pin/route feel cartographic, and the lower scene visually matches the target direction. If accepted, only minor spacing/geometry polish remains before the fixed transition video.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v04.last-result",
