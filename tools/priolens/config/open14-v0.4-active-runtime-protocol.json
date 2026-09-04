@@ -1,6 +1,6 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T11:59:00Z",
+  "updatedAtUtc": "2026-09-04T13:53:00Z",
   "status": "V04_OWNER_FEEDBACK_UX_REFINEMENT_DEPLOYED_TECHNICAL_PASS_REVISED_REAL_PHONE_REVIEW_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
@@ -87,17 +87,19 @@
       "attentionDetail": "dedicated routed view",
       "leastDisplay": "only exact 3/3 repeated LEAST directions are surfaced; 2/3 remains in raw research data but is not participant-facing",
       "technicalTermsHidden": "MOST/LEAST/A+/B+ labels removed from participant-facing detail copy where provenance can be stated plainly",
-      "selfExplanationAfterAnswer": "option list collapses to the selected answer plus the separation note",
-      "sufficiencyDetail": "compact bottom sheet over the main result scene"
+      "selfExplanationAfterAnswer": "option list collapses to the selected answer plus the separation note; selected answer uses explicit dark text on white",
+      "sufficiencyDetail": "compact bottom sheet over the main result scene",
+      "attentionDetailHierarchy": "primary focus -> self-explanation -> secondary 3/3 background evidence",
+      "reflectionQuestionRenderedOnce": true
     },
     "routeEndpointRendering": {
-      "oneEndpoint": "one route-relevant land",
+      "oneEndpoint": "one route-relevant land; duplicate large endpoint summary above the land is hidden",
       "multipleEndpoints": "all valid route-relevant lands/endpoints are rendered; do not silently truncate protocol-valid B+ similar results",
       "noRoute": "no inactive lands; compact no-route state"
     }
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33870308413,
+    "ownerPreviewAndApiDeployRun": 33880355169,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
@@ -108,16 +110,20 @@
     "cacheControlGatePassed": true,
     "keyboardActivationSmokePassed": true,
     "renderErrorBoundarySmokePassed": true,
-    "local390x844UxSmokeRun": 33870308506,
+    "local390x844UxSmokeRun": 33880335265,
     "local390x844UxSmokePassed": true,
     "routeOnlyNeedsMapSmokePassed": true,
     "sufficiencyBottomSheetSmokePassed": true,
     "participantTechnicalTermLeakSmokePassed": true,
     "completedResultReloadRestorePassed": true,
     "completedResultRestoreNoDuplicateFinalPostPassed": true,
-    "restartClearsCompletedResultPassed": true
+    "restartClearsCompletedResultPassed": true,
+    "reflectionQuestionSingleRenderPassed": true,
+    "reflectionBeforeBackgroundHierarchyPassed": true,
+    "selectedReflectionAnswerContrastPassed": true,
+    "singleRouteDuplicateSummaryRemovedPassed": true
   },
-  "nextAction": "Owner re-runs one fresh v0.4 session on the real phone, reloads the completed result once to verify it stays on the same result, then reviews A+ image-group legibility, route-only needs map, attention detail and sufficiency bottom sheet. If this passes, freeze the information architecture before final ship/map artwork.",
+  "nextAction": "Owner checks the revised real-phone result once more: selected reflection answer visibility, reflection-before-background hierarchy, single-route map without duplicate heading, and overall visual weight. If this passes, freeze information architecture before final ship/map artwork.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v04.last-result",
