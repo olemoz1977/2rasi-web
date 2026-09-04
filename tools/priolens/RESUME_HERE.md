@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 A+/B+ + LOW-FI RESULT WORLD DEPLOYED TECHNICAL PASS / OWNER REAL-PHONE RESULT-UX REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 A+/B+ + UNIFIED SHIP-WATER-MAP RESULT SCENE DEPLOYED TECHNICAL PASS / OWNER REAL-PHONE RESULT-UX REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-04
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -227,12 +227,18 @@ v0.4 server semantic validation:
 
 v0.4 isolated API + owner preview + low-fi result world:
 - `33852386491` SUCCESS;
-- v0.4 API/config boundary PASS;
-- live bytes and ES-module MIME PASS;
+- initial low-fi ship/map/detail architecture PASS.
+
+v0.4 unified scene follow-up:
+- `33853607761` SUCCESS after retrying a transient Hostinger FTP timeout;
+- source build + semantic gates PASS;
+- isolated API/config boundary PASS;
+- remote bytes + ES-module MIME PASS;
 - deployed 390×844 full flow + final save PASS;
-- ship and map hero cards PASS;
-- ship and map detail opening PASS;
-- legacy automatic main-result A/B comparison removed.
+- one continuous ship → waterline → needs-map scene PASS;
+- 6 continent groups / 12 Channel-B need locations PASS;
+- no-route state marks 0 route targets;
+- ship and map detail opening PASS.
 
 ## Result-image rule
 
@@ -249,9 +255,9 @@ Do not reintroduce a `slice(0,2)` cap.
 - v0.3.1 owner preview: PRESERVED.
 - v0.4 A+/B+ protocol: IMPLEMENTED + DEPLOYED OWNER PREVIEW.
 - v0.4 server semantic validation: PASS.
-- v0.4 low-fi ship/map/detail result architecture: DEPLOYED + TECHNICAL PASS.
+- v0.4 unified ship-water-needs-map result scene: DEPLOYED + TECHNICAL PASS.
 - v0.4 final ship graphic: NOT IMPLEMENTED.
-- v0.4 final needs-map graphic: NOT IMPLEMENTED.
+- v0.4 needs map: six continent groups + twelve need locations implemented as functional geometry; final artwork + dotted route geometry NOT IMPLEMENTED.
 - v0.4 transition video: NOT IMPLEMENTED.
 - Owner real-phone v0.4 result-UX review: PENDING.
 - Live v0.2: UNCHANGED.
