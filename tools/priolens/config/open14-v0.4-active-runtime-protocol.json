@@ -1,0 +1,71 @@
+{
+  "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
+  "updatedAtUtc": "2026-09-04T08:20:00Z",
+  "status": "V04_A_PLUS_B_PLUS_DEPLOYED_LOW_FI_RESULT_WORLD_TECHNICAL_PASS_OWNER_REAL_PHONE_REVIEW_PENDING",
+  "runtimeRepo": "olemoz1977/omesg360",
+  "runtimeBranch": "feature/priolens-open14-v04",
+  "previewPath": "/priolens-open14-v04/",
+  "apiPath": "/priolens-open14-v04-api/",
+  "ownerPreviewLt": "https://omesg360.eu/priolens-open14-v04/?lang=lt&from=lt",
+  "ownerPreviewEn": "https://omesg360.eu/priolens-open14-v04/?lang=en&from=com",
+  "liveV02Untouched": true,
+  "v031OwnerPreviewUntouched": true,
+  "externalRecruitmentOpen": false,
+  "bank": {
+    "schema": "2rasi.priolens.open14.bank-v0.3.1",
+    "familyCount": 14,
+    "exemplarCount": 42,
+    "pixelsChangedForV04": false
+  },
+  "interaction": {
+    "protocol": "most+least+a-plus+b-plus-v0.4",
+    "sessionSchema": "2rasi.priolens.open14.rank-session-v0.4",
+    "draftKeyBase": "priolens.open14.v04.rank.draft",
+    "channelAPlus": {
+      "implemented": true,
+      "placement": "after Channel A, before Channel B",
+      "changesRawMostCounts": false,
+      "labelsHiddenInRunoff": true,
+      "resumeCheckpointed": true
+    },
+    "channelBPlus": {
+      "implemented": true,
+      "placement": "after all 12 Channel-B items",
+      "onlyExactEligibleMinima": true,
+      "changesRawChannelBRatings": false,
+      "resumeCheckpointed": true
+    }
+  },
+  "serverValidation": {
+    "semanticValidationImplemented": true,
+    "recomputesAPlusCandidatesFromRawChoices": true,
+    "recomputesBPlusCandidatesFromChannelB": true,
+    "rejectsForgedAdaptiveState": true
+  },
+  "resultWorld": {
+    "phase": "LOW_FI_FUNCTIONAL_ARCHITECTURE",
+    "shipRepresents": "Channel-A focus only",
+    "shipHeroShowsOnlyFocusName": true,
+    "shipHeroShowsRawCount": false,
+    "shipDetailDisclosesRawCount": true,
+    "shipDetailDisclosesAPlusProvenance": true,
+    "needsMapRepresents": "Channel-B sufficiency route only",
+    "needsMapUsesChannelAFamilyNames": false,
+    "automaticABComparisonRemovedFromMainResult": true,
+    "automaticShipToMapLine": false,
+    "attentionReflectionQuestionLt": "Kas, tavo manymu, galėjo traukti šiuose vaizduose?",
+    "finalShipGraphicImplemented": false,
+    "finalNeedsMapGraphicImplemented": false,
+    "transitionVideoImplemented": false
+  },
+  "deploymentGates": {
+    "ownerPreviewAndApiDeployRun": 33852386491,
+    "buildAndSemanticTestsPassed": true,
+    "remoteBytesAndModuleMimePassed": true,
+    "isolatedV04ApiPassed": true,
+    "deployed390x844OwnerFlowPassed": true,
+    "shipMapDetailArchitectureSmokePassed": true,
+    "realPhoneOwnerReviewPassed": false
+  },
+  "nextAction": "Owner reviews the low-fi v0.4 result architecture on a real phone. If the information flow passes, replace placeholders with the final minimalist ship and needs-map graphics. Add the fixed 4–6 second transition video only after the static result world is approved."
+}
