@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 REMEDIATED OWNER PREVIEW TECHNICAL PASS / v0.4 A+/B+ DESIGN FREEZE NOT DEPLOYED / OWNER REAL-PHONE VISUAL-UX RETEST PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 A+/B+ + LOW-FI RESULT WORLD DEPLOYED TECHNICAL PASS / OWNER REAL-PHONE RESULT-UX REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-04
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -11,37 +11,36 @@ Branch: `feature/priolens-architecture`
 
 Recovery order:
 1. this file;
-2. `config/open14-v0.3-active-runtime-protocol.json` for what is actually deployed now;
-3. `config/open14-v0.4-adaptive-clarifiers-protocol.json` and `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md` for the next protocol design; these are DESIGN ONLY, NOT DEPLOYED;
-4. `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md`;
-5. `docs/OPEN14_V03_MOST_LEAST_DEPLOYED_PASS_2026-09-03.md` for pre-remediation protocol history;
-6. `docs/OPEN14_42_BANK_DESIGN_FREEZE_2026-09-03.md` and bank/source/geometry configs as historical design evidence.
+2. `config/open14-v0.4-active-runtime-protocol.json` for the current owner-preview runtime;
+3. `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` for the current result architecture and owner-review gate;
+4. `config/open14-v0.4-adaptive-clarifiers-protocol.json` and `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md` for the frozen A+/B+ rationale and rules;
+5. `config/open14-v0.3-active-runtime-protocol.json` and `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md` for the preserved v0.3.1 baseline;
+6. older v0.3 / bank docs as historical evidence.
 
 Later checkpoints supersede older same-day notes when they conflict.
-The v0.4 design freeze supersedes earlier result-presentation assumptions, but it does **not** supersede the v0.3.1 deployed-runtime boundary until v0.4 is explicitly implemented, tested and deployed.
+The v0.4 owner preview is now implemented and deployed. It does **not** replace live v0.2 or open external recruitment.
 
 ## Current deployment boundary
 
-Runtime repo: `olemoz1977/omesg360`.
-Branch: `feature/priolens-open14-v03`.
-Owner preview:
+Current runtime repo: `olemoz1977/omesg360`.  
+Current owner-preview branch: `feature/priolens-open14-v04`.
+
+v0.4 owner preview:
+- LT: `https://omesg360.eu/priolens-open14-v04/?lang=lt&from=lt`
+- EN: `https://omesg360.eu/priolens-open14-v04/?lang=en&from=com`
+- API: `https://omesg360.eu/priolens-open14-v04-api/`
+
+Preserved v0.3.1 owner preview:
 `https://omesg360.eu/priolens-open14-v03/?lang=lt&from=lt`
 
 Live v0.2 remains unchanged:
 `https://omesg360.eu/priolens-open14-v02/`
 
 External recruitment remains CLOSED.
-Do not replace v0.2 or open recruitment merely because the v0.3.1 owner preview passes technical smoke.
+Do not replace v0.2 or open recruitment merely because v0.4 passes owner-preview technical smoke.
 
-Hostinger preview/API deployment is available through isolated GitHub Actions FTP workflows using existing repository secrets.
-There is no need to ask the owner for manual Hostinger upload when the existing isolated FTP path can do the job.
-
-Current isolated preview deploy sends together:
-- `index.html`;
-- `bank.json`;
-- `stimulus-bank.html`.
-
-It does not touch v0.2, public routing, or research assets.
+Hostinger preview/API deployment uses isolated GitHub Actions FTP workflows and existing repository secrets.
+The v0.4 deployment is isolated from v0.3.1 and v0.2.
 
 ## Non-negotiable research boundary
 
@@ -100,11 +99,15 @@ Stable exemplar IDs were retained. Five runtime assets changed:
 Exact paths, hashes and rationale are frozen in:
 `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md`.
 
-## v0.4 adaptive protocol freeze — NOT DEPLOYED
+## v0.4 adaptive protocol + result world — DEPLOYED OWNER PREVIEW
 
-Frozen source:
+Frozen design source:
 - `config/open14-v0.4-adaptive-clarifiers-protocol.json`;
 - `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md`.
+
+Current implementation source-of-truth:
+- `config/open14-v0.4-active-runtime-protocol.json`;
+- `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md`.
 
 Planned flow:
 1. current Channel A MOST + LEAST;
@@ -212,6 +215,25 @@ Final bank metadata sync:
 - participant preview deploy/static/Chromium gates = PASS;
 - `ownerMobileVisualSmokePassed:false` remains intentionally open.
 
+v0.4 A+/B+ local mobile flow:
+- `33808756271` SUCCESS;
+- 390×844 A+ visual runoff + A+ reload/resume + 12-way B+ + B+ reload/resume + final payload PASS.
+
+v0.4 server semantic validation:
+- `33809181365` SUCCESS;
+- server recomputes A+ candidates from raw MOST choices;
+- server recomputes B+ candidates from Channel-B minima;
+- forged adaptive state rejected.
+
+v0.4 isolated API + owner preview + low-fi result world:
+- `33852386491` SUCCESS;
+- v0.4 API/config boundary PASS;
+- live bytes and ES-module MIME PASS;
+- deployed 390×844 full flow + final save PASS;
+- ship and map hero cards PASS;
+- ship and map detail opening PASS;
+- legacy automatic main-result A/B comparison removed.
+
 ## Result-image rule
 
 Current participant result rendering remains:
@@ -224,42 +246,49 @@ Do not reintroduce a `slice(0,2)` cap.
 ## Current gate state
 
 - v0.3.1 42-bank technical asset gate: PASS.
-- v0.3.1 API: DEPLOYED + PASS.
-- v0.3.1 participant preview: DEPLOYED + TECHNICAL PASS.
-- Owner real-phone visual/UX gate: RETEST PENDING.
-- v0.4 A+/B+ protocol: DESIGN FREEZE / NOT IMPLEMENTED / NOT DEPLOYED.
+- v0.3.1 owner preview: PRESERVED.
+- v0.4 A+/B+ protocol: IMPLEMENTED + DEPLOYED OWNER PREVIEW.
+- v0.4 server semantic validation: PASS.
+- v0.4 low-fi ship/map/detail result architecture: DEPLOYED + TECHNICAL PASS.
+- v0.4 final ship graphic: NOT IMPLEMENTED.
+- v0.4 final needs-map graphic: NOT IMPLEMENTED.
+- v0.4 transition video: NOT IMPLEMENTED.
+- Owner real-phone v0.4 result-UX review: PENDING.
 - Live v0.2: UNCHANGED.
 - External recruitment: CLOSED.
 
 ## Immediate next execution queue
 
-### v0.4 protocol implementation, owner-only
+### v0.4 owner real-phone result-UX gate
 
-Do not start with ship/map rendering. Implement the protocol first:
-1. define new v0.4 session schema and draft namespace;
-2. implement a pure deterministic A-focus resolver;
-3. implement A+ UI + persistence + resume;
-4. implement a pure deterministic B-route resolver;
-5. implement B+ UI + persistence + resume;
-6. extend API compatibility/validation for v0.4 while preserving v0.3 owner-session compatibility during migration;
-7. build an owner-only synthetic edge-case harness covering the frozen cases in the v0.4 protocol doc;
-8. only after those pass, implement the ship + needs-map result renderer;
-9. add the fixed transition video last.
+Use:
+`https://omesg360.eu/priolens-open14-v04/?lang=lt&from=lt`
 
-### Independent open v0.3.1 human gate
+The current result is intentionally low-fi. Review information architecture, not artwork.
 
-Owner real-phone visual/UX retest remains open. Focus on:
-1. `REST-01`: slippers immediately read as rest/recovery; no rocking-horse distraction.
-2. `RESOURCE-03`: prepared food works as an available usable/rewarding resource without becoming an obviously overpowering food cue.
-3. `KNOWLEDGE-02`: active learning is clear; not generic computer work.
-4. `OPPORTUNITY-01`: available possibility/use opportunity is clear; not merely materials or a blank desk.
-5. `RECOGNITION-02`: both people and the high-five are legible; dead-wall imbalance is reduced.
-6. `BELONGING-03`: still reads as shared-group/togetherness rather than a dyad.
-7. Current result screen: 3/3 shows 3 images, 2/3 shows 2, no awkward wrapping/overflow.
-8. MOST -> LEAST interaction still feels natural on the real device.
+Check:
+1. upper card is immediately understood as the first-glance / Channel-A result;
+2. one focus name on the future ship surface is enough;
+3. tapping the ship exposes raw MOST count and A+ provenance clearly;
+4. LEAST remains clearly separate;
+5. lower card is understood as the current-sufficiency / Channel-B result;
+6. one-route, multi-route and no-route states are understandable;
+7. the explicit statement that ship and map are separate perspectives is clear but not over-defensive;
+8. the result feels materially lighter than the old long black comparison block.
 
-If any item fails, record the exact stimulus/interaction problem before changing the bank again.
-If all pass, record owner PASS in repo. Replacing live v0.2 and opening external recruitment remain separate explicit decisions.
+If this information architecture passes:
+1. define final minimalist ship visual grammar;
+2. define six-continent / twelve-location needs-map grammar;
+3. implement dotted route only from `sufficiencyRoute`;
+4. real-phone visual test;
+5. add the fixed 4–6 second non-diagnostic transition video last.
+
+Do not add automatic A↔B causal interpretation while polishing visuals.
+Do not touch live v0.2 or open external recruitment without a separate explicit decision.
+
+### Independent stimulus-human gate
+
+The earlier v0.3.1 stimulus concerns remain useful as bank-quality checks, especially `OPPORTUNITY-01` and `BELONGING-03`, but they do not block evaluating the new v0.4 result architecture.
 
 Main stimulus rule:
 > **What does a reasonable viewer see happening within about one second?**
