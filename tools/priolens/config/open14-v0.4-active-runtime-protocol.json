@@ -1,6 +1,6 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T11:36:00Z",
+  "updatedAtUtc": "2026-09-04T11:59:00Z",
   "status": "V04_OWNER_FEEDBACK_UX_REFINEMENT_DEPLOYED_TECHNICAL_PASS_REVISED_REAL_PHONE_REVIEW_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
@@ -97,7 +97,7 @@
     }
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33868510484,
+    "ownerPreviewAndApiDeployRun": 33870308413,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
@@ -108,11 +108,25 @@
     "cacheControlGatePassed": true,
     "keyboardActivationSmokePassed": true,
     "renderErrorBoundarySmokePassed": true,
-    "local390x844UxSmokeRun": 33868490503,
+    "local390x844UxSmokeRun": 33870308506,
     "local390x844UxSmokePassed": true,
     "routeOnlyNeedsMapSmokePassed": true,
     "sufficiencyBottomSheetSmokePassed": true,
-    "participantTechnicalTermLeakSmokePassed": true
+    "participantTechnicalTermLeakSmokePassed": true,
+    "completedResultReloadRestorePassed": true,
+    "completedResultRestoreNoDuplicateFinalPostPassed": true,
+    "restartClearsCompletedResultPassed": true
   },
-  "nextAction": "Owner re-runs the revised v0.4 preview on a real phone and checks A+ image-group legibility, the route-only needs map, the simplified attention detail, and the sufficiency bottom sheet. If this passes, freeze the information architecture before final ship/map artwork. Do not touch live v0.2 or open external recruitment."
+  "nextAction": "Owner re-runs one fresh v0.4 session on the real phone, reloads the completed result once to verify it stays on the same result, then reviews A+ image-group legibility, route-only needs map, attention detail and sufficiency bottom sheet. If this passes, freeze the information architecture before final ship/map artwork.",
+  "resultPersistence": {
+    "completedResultLocalSnapshot": true,
+    "keyBase": "priolens.open14.v04.last-result",
+    "languageScoped": true,
+    "autoRestoreAfterReload": true,
+    "unfinishedDraftTakesPrecedence": true,
+    "localMaxAgeDays": 90,
+    "restoreTriggersFinalApiPost": false,
+    "restartClearsSnapshot": true,
+    "rationale": "Final API save clears the unfinished draft, so a separate completed-result snapshot is required to keep the participant on the result after reload."
+  }
 }
