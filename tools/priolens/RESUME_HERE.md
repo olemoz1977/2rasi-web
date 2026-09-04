@@ -261,6 +261,14 @@ Owner-feedback result-UX refinement:
 - no-route inactive-continent removal PASS;
 - Browser Back / keyboard / modal behavior PASS.
 
+Result-detail hierarchy refinement:
+- local 390×844 smoke `33880335265` SUCCESS;
+- deployed owner-preview + real 390×844 smoke `33880355169` SUCCESS;
+- selected self-explanation answer now remains visibly readable after collapse;
+- reflection question appears once, not twice;
+- exact 3/3 background evidence is moved below and visually demoted beneath the self-explanation;
+- one-endpoint needs map no longer repeats the same endpoint as a large heading above the land.
+
 Completed-result reload persistence:
 - owner real-phone test exposed that successful final save cleared the draft and reload returned to intro because no completed-result snapshot existed;
 - separate local key base `priolens.open14.v04.last-result` now stores the completed result for up to 90 days;
@@ -287,7 +295,7 @@ Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set
 - v0.4 A+/B+ protocol: IMPLEMENTED + DEPLOYED OWNER PREVIEW.
 - v0.4 server semantic validation: PASS.
 - v0.4 unified ship-water-needs-map result scene: DEPLOYED + TECHNICAL PASS.
-- v0.4 owner-feedback lightweight result UX: DEPLOYED + TECHNICAL PASS (`33870308413`).
+- v0.4 owner-feedback lightweight result UX: DEPLOYED + TECHNICAL PASS (`33880355169`).
 - completed-result reload persistence: DEPLOYED + TECHNICAL PASS; successful reload now restores the same result instead of returning to intro.
 - A+ phone runoff: one wide candidate group per row at <=620px.
 - participant needs-map hero: route-relevant land(s) only; inactive full-taxonomy map removed from normal result.
@@ -309,15 +317,18 @@ The 2026-09-04 owner screenshots produced a concrete UX remediation pass. The re
 
 Check:
 1. complete one fresh session, reload the finished result once, and confirm the same focus/route result is restored rather than returning to the intro;
-2. A+ “Dar vienas žvilgsnis” now shows one wide candidate image-group per row and the individual exemplars are large enough to judge on the phone;
-3. the upper ship still works with one Channel-A focus name;
-4. attention detail is materially lighter, 2/3 LEAST is gone from participant view, and exact 3/3 background evidence remains understandable without MOST/LEAST/A+ jargon;
-5. after answering “Kas, tavo manymu, galėjo traukti šiuose vaizduose?”, the six options collapse cleanly to the selected answer;
-6. the lower needs-map hero shows only route-relevant land(s), not all six groups / twelve locations;
-7. one-route, multi-route and no-route states remain understandable;
-8. the sufficiency “Detalės” bottom sheet contains enough meaning + provenance without looking like an empty report page;
-9. ship and map remain clearly separate perspectives without automatic causal interpretation;
-10. the whole result feels lighter than the previous version.
+2. open the first-glance detail, choose one self-explanation answer, and confirm the selected answer remains visibly readable after the options collapse;
+3. confirm the reflection question appears only once and the 3/3 background evidence now comes after the reflection rather than before it;
+4. confirm a single-route needs map shows the endpoint only on the land, without repeating the same large title above it;
+5. A+ “Dar vienas žvilgsnis” now shows one wide candidate image-group per row and the individual exemplars are large enough to judge on the phone;
+6. the upper ship still works with one Channel-A focus name;
+7. attention detail is materially lighter, 2/3 LEAST is gone from participant view, and exact 3/3 background evidence remains understandable without MOST/LEAST/A+ jargon;
+8. after answering “Kas, tavo manymu, galėjo traukti šiuose vaizduose?”, the six options collapse cleanly to the selected answer;
+9. the lower needs-map hero shows only route-relevant land(s), not all six groups / twelve locations;
+10. one-route, multi-route and no-route states remain understandable;
+11. the sufficiency “Detalės” bottom sheet contains enough meaning + provenance without looking like an empty report page;
+12. ship and map remain clearly separate perspectives without automatic causal interpretation;
+13. the whole result feels lighter than the previous version.
 
 If this revised information architecture passes:
 1. freeze the information architecture;
