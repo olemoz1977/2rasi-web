@@ -1,6 +1,6 @@
 # PrioLens OPEN14 v0.4 — low-fi result world owner preview
 
-Status: DEPLOYED OWNER PREVIEW / TECHNICAL PASS / REAL-PHONE REVIEW PENDING  
+Status: DEPLOYED OWNER PREVIEW / HARDENED TECHNICAL PASS / REAL-PHONE REVIEW PENDING  
 Date: 2026-09-04
 
 Runtime:
@@ -9,7 +9,7 @@ Runtime:
 - LT: `https://omesg360.eu/priolens-open14-v04/?lang=lt&from=lt`
 - EN: `https://omesg360.eu/priolens-open14-v04/?lang=en&from=com`
 - API: `/priolens-open14-v04-api/`
-- deploy + real 390×844 smoke: `33852386491` SUCCESS
+- latest hardened deploy + real 390×844 smoke: `33863361300` SUCCESS
 
 Live v0.2 remains untouched. v0.3.1 owner preview remains untouched. External recruitment remains CLOSED.
 
@@ -128,3 +128,33 @@ If this passes, next implementation is final visual grammar:
 - needs map;
 - dotted route;
 - fixed non-diagnostic transition video last.
+
+
+## Hardening after Claude review
+
+Independent review surfaced several useful frontend risks. After checking them against the actual runtime code:
+
+Accepted and fixed:
+- result DOM lookup now throws a descriptive missing-element error instead of failing later on a null dereference;
+- the whole result renderer is wrapped in a visible error boundary, so a render failure does not leave a silently half-rendered result;
+- owner-preview HTML/MJS/JSON now send `Cache-Control: no-cache, max-age=0, must-revalidate`;
+- deployment explicitly gates the renderer Cache-Control header;
+- need-location labels now reuse the existing Channel-B item labels rather than maintaining a second duplicate label taxonomy;
+- ship/map receive explicit accessible labels.
+
+Review points rejected after code verification:
+- ship/map keyboard access was not missing: both surfaces are native `<button>` elements with `aria-controls`, `aria-expanded` and focus styling;
+- result CSS is not a separately cached asset; it is currently inlined into generated `index.html`.
+
+Latest deployed smoke `33863361300` verifies:
+- 6 need continents;
+- 12 need locations;
+- no visible render-error boundary;
+- keyboard opening of ship detail with Enter;
+- keyboard opening of map detail with Space;
+- isolated v0.4 API save;
+- cache-control deployment gate.
+
+Remaining engineering debt before final artwork:
+- `build_from_v031.mjs` still constructs v0.4 by string-patching v0.3 HTML and contains the result shell/CSS inline.
+- Before adding final SVG ship/map visuals, extract the v0.4 result shell/styles into dedicated source files rather than increasing the patch surface further.
