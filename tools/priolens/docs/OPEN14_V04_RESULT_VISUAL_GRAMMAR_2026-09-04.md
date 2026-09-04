@@ -264,3 +264,25 @@ Technical evidence:
 - deployed preview + API + real 390×844 owner-flow smoke `33887982768` SUCCESS.
 
 IA remains frozen. The remaining gate is owner visual judgement of the deployed page.
+
+
+## Stronger geographic silhouette correction — 2026-09-04
+
+Owner feedback: the first live adaptation of the approved target was only minimally different and still read too much like a cloud/blob.
+
+Correction:
+- single-land width reduced to about 74vw / max 270px;
+- more sea exposed around the land;
+- coastline rebuilt with explicit angular segments, bays, peninsulas and concavities;
+- repeated rounded scallop rhythm removed;
+- small side islands changed from circular satellites to irregular islets;
+- map land receives a slight natural rotation while annotations remain upright;
+- route shortened and shifted to a calmer lower-left entry;
+- no new psychological semantics added.
+
+Technical evidence:
+- logic smoke `33889606429` SUCCESS;
+- local 390×844 UI smoke `33889606362` SUCCESS;
+- deployed preview + API + real 390×844 smoke `33889606233` SUCCESS.
+
+Remaining owner gate: the land must now read as stylized geography, not a cloud.
