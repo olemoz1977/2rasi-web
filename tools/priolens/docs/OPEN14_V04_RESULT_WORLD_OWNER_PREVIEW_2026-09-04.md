@@ -9,8 +9,8 @@ Runtime:
 - LT: `https://omesg360.eu/priolens-open14-v04/?lang=lt&from=lt`
 - EN: `https://omesg360.eu/priolens-open14-v04/?lang=en&from=com`
 - API: `/priolens-open14-v04-api/`
-- latest owner-feedback deploy + real 390×844 smoke: `33868510484` SUCCESS
-- local 390×844 A+/result UX smoke: `33868490503` SUCCESS
+- latest owner-feedback + completed-result persistence deploy: `33870308413` SUCCESS
+- latest local 390×844 A+/result/reload smoke: `33870308506` SUCCESS
 
 Live v0.2 remains untouched. v0.3.1 owner preview remains untouched. External recruitment remains CLOSED.
 
@@ -30,6 +30,7 @@ Implemented:
 7. Isolated v0.4 API validates adaptive semantics server-side.
 8. A+/B+ unresolved states survive reload/resume.
 9. Low-fi result-world architecture is deployed.
+10. A completed result is stored separately in browser local storage and is automatically restored after reload; an unfinished draft still takes precedence.
 
 ## Result-world architecture
 
@@ -190,4 +191,22 @@ Deliberate exception to the visual “one or two lands” preference:
 - the renderer must not discard valid data merely to force a two-land cap.
 
 This refinement is deployed, but it still needs a new real-phone owner pass before the information architecture is frozen for final artwork.
+
+## Completed-result reload persistence — 2026-09-04
+
+Owner testing exposed a separate state-management defect: after a successful final API save, the unfinished draft was correctly cleared, but no completed-result browser snapshot existed. Reloading the page therefore returned to the intro even though the research session had already been saved.
+
+Fix:
+- completed result snapshot key base: `priolens.open14.v04.last-result`;
+- snapshot is language-scoped and retained locally for up to 90 days;
+- a reload restores the same completed result automatically when no unfinished draft exists;
+- restore does not submit the final API payload again;
+- `Atlikti dar kartą` deliberately clears both the draft and the completed-result snapshot;
+- self-explanation updates are also reflected in the local completed snapshot.
+
+Verification:
+- local 390×844 smoke `33870308506` SUCCESS: result survives reload, focus and route remain unchanged, no duplicate final POST occurs, restart clears the saved result;
+- deployed owner-preview smoke `33870308413` SUCCESS: live final save + reload restoration PASS.
+
+The session visible in the owner's pre-fix screenshot had already reported `Anoniminė tyrimo sesija išsaugota.`, so the server-side research save and the lost browser result view are separate issues.
 
