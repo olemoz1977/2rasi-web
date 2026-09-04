@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 A+/B+ + UNIFIED SHIP-WATER-MAP RESULT SCENE DEPLOYED TECHNICAL PASS / OWNER REAL-PHONE RESULT-UX REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 OWNER-FEEDBACK LIGHTWEIGHT RESULT UX DEPLOYED TECHNICAL PASS / REVISED REAL-PHONE REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-04
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -52,7 +52,7 @@ Active v0.3.1 protocol records two distinct observations when MOST is clear:
 
 Channel B = current perceived sufficiency collected only after Channel A.
 
-Planned v0.4 adds two analytically separate adaptive clarifiers:
+v0.4 implements two analytically separate adaptive clarifiers:
 - A+ = focus clarification among already repeated Channel-A candidates; it never changes raw MOST counts;
 - B+ = clarification among exact tied lowest eligible Channel-B sufficiency items; it never changes raw Channel-B ratings.
 
@@ -109,7 +109,7 @@ Current implementation source-of-truth:
 - `config/open14-v0.4-active-runtime-protocol.json`;
 - `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md`.
 
-Planned flow:
+v0.4 protocol flow:
 1. current Channel A MOST + LEAST;
 2. A+ only when the raw Channel-A result does not leave one direct repeated focus;
 3. current 12-item Channel B;
@@ -150,8 +150,14 @@ Result-world semantics:
 - needs map = Channel-B/B+ only;
 - no automatic ship-to-map causal line;
 - hero ship shows only the focus name, not raw counts;
-- detailed view must disclose raw count and whether A+ was used;
-- needs map contains need locations, not Channel-A family labels.
+- attention detail discloses the raw first-choice repetition count and direct-vs-additional-comparison provenance in participant language;
+- participant-facing LEAST/background detail shows only exact 3/3 repeated directions; 2/3 remains stored raw research data;
+- needs map contains Channel-B need locations, not Channel-A family labels;
+- main needs-map hero renders only route-relevant land(s), not the full six-group taxonomy;
+- one endpoint normally yields one land; multiple valid endpoints yield only their relevant lands;
+- B+ `similar` may legitimately preserve more than two endpoints, and the renderer must not silently truncate them;
+- sufficiency detail opens as a compact bottom sheet over the result rather than replacing it with a mostly empty page;
+- after the attention self-explanation is answered, the option list collapses to the selected answer.
 
 A new v0.4 session schema and draft namespace are required before runtime implementation. Do not silently extend `rank-session-v0.3` with A+/B+ semantics.
 
@@ -240,14 +246,29 @@ v0.4 unified scene follow-up:
 - no-route state marks 0 route targets;
 - ship and map detail opening PASS.
 
+Owner-feedback result-UX refinement:
+- local UI smoke `33868490503` SUCCESS;
+- A+ 390px candidate card width gate PASS (>=300px, one group per row);
+- one-endpoint route-only map PASS;
+- participant attention detail technical-term leak gate PASS;
+- sufficiency bottom-sheet behavior PASS;
+- final deployment `33868510484` SUCCESS;
+- source build + semantic validation PASS;
+- isolated v0.4 API/config boundary PASS;
+- live bytes + ES-module MIME PASS;
+- deployed 390×844 full owner flow + final API save PASS;
+- no-route inactive-continent removal PASS;
+- Browser Back / keyboard / modal behavior PASS.
+
 ## Result-image rule
 
-Current participant result rendering remains:
-- 2/3 -> show 2 distinct exemplar images;
-- 3/3 -> show 3 distinct exemplar images;
-- applies to MOST cards, LEAST cards and reflection hero.
+Current participant result rendering:
+- Channel-A focus 2/3 -> show its 2 distinct selected exemplars in detail/reflection;
+- Channel-A focus 3/3 -> show its 3 distinct selected exemplars;
+- participant-facing LEAST/background detail is now restricted to exact 3/3 repeats and shows the 3 corresponding exemplars;
+- 2/3 LEAST is preserved in raw data but intentionally not surfaced in participant detail.
 
-Do not reintroduce a `slice(0,2)` cap.
+Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set.
 
 ## Current gate state
 
@@ -256,8 +277,11 @@ Do not reintroduce a `slice(0,2)` cap.
 - v0.4 A+/B+ protocol: IMPLEMENTED + DEPLOYED OWNER PREVIEW.
 - v0.4 server semantic validation: PASS.
 - v0.4 unified ship-water-needs-map result scene: DEPLOYED + TECHNICAL PASS.
+- v0.4 owner-feedback lightweight result UX: DEPLOYED + TECHNICAL PASS (`33868510484`).
+- A+ phone runoff: one wide candidate group per row at <=620px.
+- participant needs-map hero: route-relevant land(s) only; inactive full-taxonomy map removed from normal result.
 - v0.4 final ship graphic: NOT IMPLEMENTED.
-- v0.4 needs map: six continent groups + twelve need locations implemented as functional geometry; final artwork + dotted route geometry NOT IMPLEMENTED.
+- v0.4 needs-map model: six groups + twelve Channel-B locations remain available as vocabulary, but participant hero now renders only route-relevant land(s); final artwork + dotted route geometry NOT IMPLEMENTED.
 - v0.4 transition video: NOT IMPLEMENTED.
 - Owner real-phone v0.4 result-UX review: PENDING.
 - Live v0.2: UNCHANGED.
@@ -265,29 +289,32 @@ Do not reintroduce a `slice(0,2)` cap.
 
 ## Immediate next execution queue
 
-### v0.4 owner real-phone result-UX gate
+### v0.4 revised owner real-phone result-UX gate
 
 Use:
 `https://omesg360.eu/priolens-open14-v04/?lang=lt&from=lt`
 
-The current result is intentionally low-fi. Review information architecture, not artwork.
+The 2026-09-04 owner screenshots produced a concrete UX remediation pass. The revised preview is now deployed. Review the revised information architecture, not final artwork.
 
 Check:
-1. upper card is immediately understood as the first-glance / Channel-A result;
-2. one focus name on the future ship surface is enough;
-3. tapping the ship exposes raw MOST count and A+ provenance clearly;
-4. LEAST remains clearly separate;
-5. lower card is understood as the current-sufficiency / Channel-B result;
-6. one-route, multi-route and no-route states are understandable;
-7. the explicit statement that ship and map are separate perspectives is clear but not over-defensive;
-8. the result feels materially lighter than the old long black comparison block.
+1. A+ “Dar vienas žvilgsnis” now shows one wide candidate image-group per row and the individual exemplars are large enough to judge on the phone;
+2. the upper ship still works with one Channel-A focus name;
+3. attention detail is materially lighter, 2/3 LEAST is gone from participant view, and exact 3/3 background evidence remains understandable without MOST/LEAST/A+ jargon;
+4. after answering “Kas, tavo manymu, galėjo traukti šiuose vaizduose?”, the six options collapse cleanly to the selected answer;
+5. the lower needs-map hero shows only route-relevant land(s), not all six groups / twelve locations;
+6. one-route, multi-route and no-route states remain understandable;
+7. the sufficiency “Detalės” bottom sheet contains enough meaning + provenance without looking like an empty report page;
+8. ship and map remain clearly separate perspectives without automatic causal interpretation;
+9. the whole result feels lighter than the previous version.
 
-If this information architecture passes:
-1. define final minimalist ship visual grammar;
-2. define six-continent / twelve-location needs-map grammar;
-3. implement dotted route only from `sufficiencyRoute`;
-4. real-phone visual test;
-5. add the fixed 4–6 second non-diagnostic transition video last.
+If this revised information architecture passes:
+1. freeze the information architecture;
+2. refactor result shell/styles out of `build_from_v031.mjs` before adding final artwork;
+3. define final minimalist ship visual grammar;
+4. define route-only needs-map visual grammar over the frozen six-group/twelve-location vocabulary;
+5. implement dotted route only from `sufficiencyRoute`;
+6. real-phone visual test;
+7. add the fixed 4–6 second non-diagnostic transition video last.
 
 Do not add automatic A↔B causal interpretation while polishing visuals.
 Do not touch live v0.2 or open external recruitment without a separate explicit decision.
