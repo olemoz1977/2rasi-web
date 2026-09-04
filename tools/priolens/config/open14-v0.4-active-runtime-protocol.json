@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T08:20:00Z",
-  "status": "V04_A_PLUS_B_PLUS_DEPLOYED_LOW_FI_RESULT_WORLD_TECHNICAL_PASS_OWNER_REAL_PHONE_REVIEW_PENDING",
+  "updatedAtUtc": "2026-09-04T08:35:00Z",
+  "status": "V04_A_PLUS_B_PLUS_DEPLOYED_UNIFIED_RESULT_SCENE_TECHNICAL_PASS_OWNER_REAL_PHONE_REVIEW_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -43,7 +43,7 @@
     "rejectsForgedAdaptiveState": true
   },
   "resultWorld": {
-    "phase": "LOW_FI_FUNCTIONAL_ARCHITECTURE",
+    "phase": "UNIFIED_VERTICAL_SCENE_FUNCTIONAL_PREVIEW",
     "shipRepresents": "Channel-A focus only",
     "shipHeroShowsOnlyFocusName": true,
     "shipHeroShowsRawCount": false,
@@ -56,16 +56,20 @@
     "attentionReflectionQuestionLt": "Kas, tavo manymu, galėjo traukti šiuose vaizduose?",
     "finalShipGraphicImplemented": false,
     "finalNeedsMapGraphicImplemented": false,
-    "transitionVideoImplemented": false
+    "transitionVideoImplemented": false,
+    "layout": "ship above waterline, needs map below, one continuous mobile scene",
+    "needsMapGrouping": "six continents / twelve Channel-B need locations",
+    "routeTargetsHighlighted": true
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33852386491,
+    "ownerPreviewAndApiDeployRun": 33853607761,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
     "deployed390x844OwnerFlowPassed": true,
     "shipMapDetailArchitectureSmokePassed": true,
-    "realPhoneOwnerReviewPassed": false
+    "realPhoneOwnerReviewPassed": false,
+    "unifiedSceneSmokePassed": true
   },
-  "nextAction": "Owner reviews the low-fi v0.4 result architecture on a real phone. If the information flow passes, replace placeholders with the final minimalist ship and needs-map graphics. Add the fixed 4–6 second transition video only after the static result world is approved."
+  "nextAction": "Owner reviews the unified ship-water-needs-map scene on a real phone. If the information hierarchy passes, replace the CSS ghost ship and continent placeholders with final minimalist artwork, then implement the dotted route geometry. Add the fixed transition video last."
 }
