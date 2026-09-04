@@ -52,11 +52,11 @@ The map renders only route-relevant geography.
 ### One endpoint
 
 Render:
-- one organic land shape;
+- one irregular cartographic land silhouette with a readable coastline;
 - one group label;
-- one need-area target;
-- one neutral route origin inside the lower map;
-- one dotted route from that neutral map origin to the target.
+- one need-area target styled as a map location;
+- one dotted route entering from the lower edge of the lower map;
+- no visible start-circle or score-like origin marker.
 
 Do not repeat the endpoint as a second large heading above the land.
 
@@ -88,7 +88,8 @@ The dotted line is a **locator**, not a score.
 
 Rules:
 - exists only in the lower Channel-B map;
-- starts from a neutral lower-map origin, never from the ship;
+- enters from the lower map edge, never from the ship;
+- has no visible origin-circle marker;
 - fixed stroke weight and dot rhythm;
 - same visual weight for all endpoints;
 - no animated “journey from A to B” semantics;
@@ -140,7 +141,7 @@ At 390x844:
 
 1. Replace dashed ship ghost with final minimalist vector/CSS/SVG ship.
 2. Replace oval land prototype with final organic route-only land grammar.
-3. Add lower-map dotted route from neutral map origin.
+3. Add lower-map dotted route entering from the lower map edge, without a visible origin marker.
 4. Validate one endpoint, two endpoints, 3+ endpoints and no-route.
 5. Real-phone visual pass.
 6. Only then add the fixed 4–6 second non-diagnostic transition video.
@@ -185,3 +186,25 @@ Remaining gate:
 - owner real-phone visual judgement of actual proportions, focus-label fit and overall visual tone.
 
 No transition video should be added before that visual pass.
+
+
+## Cartographic map correction — 2026-09-04
+
+Owner real-phone review rejected the first “organic land” implementation because it still read as a large oval/blob rather than a map. This was treated as a visual-grammar defect, not an IA change.
+
+Revised implementation:
+- CSS border-radius blob removed;
+- each route-relevant land now uses an irregular inline-SVG coastline;
+- three deterministic coastline variants provide geographic irregularity without referencing real-world countries or continents;
+- subtle internal coast-detail strokes reinforce the map reading;
+- need-area target is styled as a map location rather than an underlined result chip;
+- dotted route is a curved cubic path entering from the lower map edge;
+- the prior visible origin circle is removed because it looked like a scale/measurement marker;
+- route remains entirely inside the Channel-B map and does not cross the waterline;
+- no-route remains empty of both land and route geometry.
+
+Technical evidence:
+- local 390×844 cartographic/multi-state smoke `33884239941` SUCCESS;
+- deployed owner-preview + API + real 390×844 smoke `33884243972` SUCCESS.
+
+The next gate is again owner visual judgement on a real phone. No transition video yet.
