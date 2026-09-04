@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 OWNER-FEEDBACK LIGHTWEIGHT RESULT UX DEPLOYED TECHNICAL PASS / REVISED REAL-PHONE REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 INFORMATION ARCHITECTURE FROZEN / VISUAL IMPLEMENTATION READY / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-04
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -12,10 +12,12 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. this file;
 2. `config/open14-v0.4-active-runtime-protocol.json` for the current owner-preview runtime;
-3. `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` for the current result architecture and owner-review gate;
-4. `config/open14-v0.4-adaptive-clarifiers-protocol.json` and `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md` for the frozen A+/B+ rationale and rules;
-5. `config/open14-v0.3-active-runtime-protocol.json` and `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md` for the preserved v0.3.1 baseline;
-6. older v0.3 / bank docs as historical evidence.
+3. `docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md` for the frozen result information architecture;
+4. `docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md` for the visual implementation rules;
+5. `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` for the pre-freeze owner-review history;
+6. `config/open14-v0.4-adaptive-clarifiers-protocol.json` and `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md` for the frozen A+/B+ rationale and rules;
+7. `config/open14-v0.3-active-runtime-protocol.json` and `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md` for the preserved v0.3.1 baseline;
+8. older v0.3 / bank docs as historical evidence.
 
 Later checkpoints supersede older same-day notes when they conflict.
 The v0.4 owner preview is now implemented and deployed. It does **not** replace live v0.2 or open external recruitment.
@@ -107,7 +109,9 @@ Frozen design source:
 
 Current implementation source-of-truth:
 - `config/open14-v0.4-active-runtime-protocol.json`;
-- `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md`.
+- `docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md`;
+- `docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md`;
+- `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` as pre-freeze review history.
 
 v0.4 protocol flow:
 1. current Channel A MOST + LEAST;
@@ -295,52 +299,43 @@ Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set
 - v0.4 A+/B+ protocol: IMPLEMENTED + DEPLOYED OWNER PREVIEW.
 - v0.4 server semantic validation: PASS.
 - v0.4 unified ship-water-needs-map result scene: DEPLOYED + TECHNICAL PASS.
-- v0.4 owner-feedback lightweight result UX: DEPLOYED + TECHNICAL PASS (`33880355169`).
+- v0.4 owner-feedback lightweight result UX: DEPLOYED + TECHNICAL PASS.
+- v0.4 information architecture: FROZEN for visual implementation.
+- result shell/styles extracted from `build_from_v031.mjs` into `result_shell_v04.mjs`; semantics remain in `result_renderer_v04.mjs`.
+- post-refactor deployed 390×844 owner flow + API: `33881903219` SUCCESS.
 - completed-result reload persistence: DEPLOYED + TECHNICAL PASS; successful reload now restores the same result instead of returning to intro.
 - A+ phone runoff: one wide candidate group per row at <=620px.
 - participant needs-map hero: route-relevant land(s) only; inactive full-taxonomy map removed from normal result.
 - v0.4 final ship graphic: NOT IMPLEMENTED.
 - v0.4 needs-map model: six groups + twelve Channel-B locations remain available as vocabulary, but participant hero now renders only route-relevant land(s); final artwork + dotted route geometry NOT IMPLEMENTED.
 - v0.4 transition video: NOT IMPLEMENTED.
-- Owner real-phone v0.4 result-UX review: PENDING.
+- Owner real-phone v0.4 result-UX review: PASS for IA freeze.
 - Live v0.2: UNCHANGED.
 - External recruitment: CLOSED.
 
 ## Immediate next execution queue
 
-### v0.4 revised owner real-phone result-UX gate
+### v0.4 visual implementation after IA freeze
 
-Use:
-`https://omesg360.eu/priolens-open14-v04/?lang=lt&from=lt`
+Frozen references:
+- `docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md`
+- `docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md`
 
-The 2026-09-04 owner screenshots produced a concrete UX remediation pass. The revised preview is now deployed. Review the revised information architecture, not final artwork.
+Execution order:
+1. replace the dashed ship ghost with a final minimalist vector/CSS/SVG ship while preserving one-focus-name semantics;
+2. replace the oval land prototype with final organic route-only land grammar;
+3. add dotted route only inside the lower Channel-B map, starting from a neutral lower-map origin, never from the ship;
+4. validate one endpoint, multiple endpoints, 3+ tied endpoints and no-route;
+5. run 390×844 automated + owner real-phone visual smoke;
+6. add the fixed 4–6 second non-diagnostic transition video last.
 
-Check:
-1. complete one fresh session, reload the finished result once, and confirm the same focus/route result is restored rather than returning to the intro;
-2. open the first-glance detail, choose one self-explanation answer, and confirm the selected answer remains visibly readable after the options collapse;
-3. confirm the reflection question appears only once and the 3/3 background evidence now comes after the reflection rather than before it;
-4. confirm a single-route needs map shows the endpoint only on the land, without repeating the same large title above it;
-5. A+ “Dar vienas žvilgsnis” now shows one wide candidate image-group per row and the individual exemplars are large enough to judge on the phone;
-6. the upper ship still works with one Channel-A focus name;
-7. attention detail is materially lighter, 2/3 LEAST is gone from participant view, and exact 3/3 background evidence remains understandable without MOST/LEAST/A+ jargon;
-8. after answering “Kas, tavo manymu, galėjo traukti šiuose vaizduose?”, the six options collapse cleanly to the selected answer;
-9. the lower needs-map hero shows only route-relevant land(s), not all six groups / twelve locations;
-10. one-route, multi-route and no-route states remain understandable;
-11. the sufficiency “Detalės” bottom sheet contains enough meaning + provenance without looking like an empty report page;
-12. ship and map remain clearly separate perspectives without automatic causal interpretation;
-13. the whole result feels lighter than the previous version.
-
-If this revised information architecture passes:
-1. freeze the information architecture;
-2. refactor result shell/styles out of `build_from_v031.mjs` before adding final artwork;
-3. define final minimalist ship visual grammar;
-4. define route-only needs-map visual grammar over the frozen six-group/twelve-location vocabulary;
-5. implement dotted route only from `sufficiencyRoute`;
-6. real-phone visual test;
-7. add the fixed 4–6 second non-diagnostic transition video last.
-
-Do not add automatic A↔B causal interpretation while polishing visuals.
-Do not touch live v0.2 or open external recruitment without a separate explicit decision.
+Freeze guard:
+- do not alter A/A+ logic;
+- do not alter B/B+ logic;
+- do not reintroduce 2/3 LEAST into participant detail;
+- do not add automatic A↔B causal interpretation;
+- do not change route endpoint sets for visual convenience;
+- do not touch live v0.2 or open external recruitment without a separate explicit decision.
 
 ### Independent stimulus-human gate
 
