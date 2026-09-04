@@ -241,3 +241,26 @@ Technical evidence:
 - deployed owner-preview + API + real 390×844 smoke `33886186077` SUCCESS.
 
 Remaining gate: owner real-phone visual judgement. IA remains frozen.
+
+
+## Approved-target page adaptation — 2026-09-04
+
+After the generated neutral target received an explicit positive owner reaction, the target was translated into the live v0.4 page instead of being treated as a standalone image.
+
+Changes:
+- one-land result reduced to roughly 82% mobile width to restore visible sea around the island;
+- coastline geometry sharpened and made more asymmetric;
+- SVG island aspect ratio is preserved instead of stretched to the layout box;
+- terrain is reduced to a restrained atlas vocabulary: one mountain ridge, river, lake, small groves and islets;
+- need label is now a direct map annotation with only a subtle text halo, not a white UI chip;
+- location marker uses a neutral map pin;
+- dotted route is shorter/calmer and enters from the lower-left map edge;
+- lower “Detalės” control moved to the right, matching the approved composition;
+- upper scene gained only subtle distant-land/water cues; no new meaning was introduced.
+
+Technical evidence:
+- logic smoke `33887982736` SUCCESS;
+- local 390×844 UI smoke `33887982777` SUCCESS;
+- deployed preview + API + real 390×844 owner-flow smoke `33887982768` SUCCESS.
+
+IA remains frozen. The remaining gate is owner visual judgement of the deployed page.
