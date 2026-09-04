@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / MINIMALIST SHIP + ROUTE-ONLY MAP DEPLOYED TECHNICAL PASS / OWNER VISUAL REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / MINIMALIST SHIP + CARTOGRAPHIC ROUTE-ONLY MAP DEPLOYED TECHNICAL PASS / OWNER VISUAL REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-04
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -309,11 +309,15 @@ Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set
 - dynamic dotted routes remain inside the lower Channel-B map;
 - same-group two-endpoint and cross-group three-endpoint states preserve all valid targets;
 - no-route renders no dotted route geometry.
+- owner rejected the first oval/blob land visual as insufficiently map-like; IA stayed frozen;
+- revised cartographic coastline local smoke `33884239941` SUCCESS;
+- revised cartographic deployed/API/390×844 smoke `33884243972` SUCCESS;
+- visible route-origin circle removed; curved dotted route now enters from the lower map edge.
 - completed-result reload persistence: DEPLOYED + TECHNICAL PASS; successful reload now restores the same result instead of returning to intro.
 - A+ phone runoff: one wide candidate group per row at <=620px.
 - participant needs-map hero: route-relevant land(s) only; inactive full-taxonomy map removed from normal result.
 - v0.4 minimalist ship graphic: IMPLEMENTED + DEPLOYED TECHNICAL PASS; owner visual approval pending.
-- v0.4 needs-map model: six groups + twelve Channel-B locations remain vocabulary; organic route-only land grammar + lower-map-only dotted route are IMPLEMENTED + DEPLOYED TECHNICAL PASS; owner visual approval pending.
+- v0.4 needs-map model: six groups + twelve Channel-B locations remain vocabulary; revised cartographic route-only SVG coastlines + curved lower-edge dotted route are IMPLEMENTED + DEPLOYED TECHNICAL PASS; owner visual approval pending.
 - v0.4 transition video: NOT IMPLEMENTED.
 - Owner real-phone v0.4 result-UX review: PASS for IA freeze.
 - Live v0.2: UNCHANGED.
@@ -326,30 +330,34 @@ Do not reintroduce a `slice(0,2)` cap on a valid 3/3 focus or 3/3 background set
 Use:
 `https://omesg360.eu/priolens-open14-v04/?lang=lt&from=lt`
 
-The IA is frozen. The next review is visual only.
+The IA is frozen. The previous oval/blob needs-map visual was rejected by the owner and has been replaced.
 
-Check:
-1. does the new minimalist ship read immediately as a ship without looking illustrative or childish;
-2. does the focus label fit naturally in/over the sail area, including longer Lithuanian labels;
-3. does the one-land Channel-B result look like intentional map geography rather than a large empty blob;
-4. is the dotted route visible enough to explain location but weak enough not to imply score or causality;
-5. does the dotted route clearly begin in the lower map rather than at the ship;
-6. do the waterline and two scene halves still read as separate perspectives;
-7. do “Detalės” controls avoid collision with labels and route geometry;
-8. overall, does the scene feel quieter and more coherent than the dashed prototype.
+Check the revised lower scene:
+1. does the land now read immediately as **map geography**, not an oval, card or diagram node;
+2. is the irregular coastline cartographic enough without looking like a specific real country/continent;
+3. does the need-area marker read like a location on that land;
+4. does the curved dotted route entering from the lower edge feel like a map locator rather than a scale/score;
+5. is the removed origin circle an improvement;
+6. does the map remain visibly independent from the ship and waterline;
+7. are the land, label and route proportions balanced on 390px mobile width;
+8. does “Detalės” avoid collisions.
 
-Automated state coverage already passes for:
+Automated state coverage already passes:
 - one endpoint;
 - two endpoints in one need group;
 - three endpoints across groups;
 - no-route.
 
-If the real-phone visual pass is accepted:
-1. make spacing/geometry polish only, without changing frozen IA;
-2. rerun 390×844 smoke;
-3. add the fixed 4–6 second non-diagnostic transition video last.
+Latest technical evidence:
+- local cartographic/multi-state smoke `33884239941` SUCCESS;
+- deployed owner-preview + API + real 390×844 smoke `33884243972` SUCCESS.
 
-Do not reopen IA merely for decorative preferences unless the visual reveals a genuine comprehension problem.
+If the revised map passes owner visual review:
+1. spacing/geometry polish only;
+2. rerun smoke;
+3. transition video last.
+
+Do not reopen IA merely for decorative preferences unless the visual reveals a comprehension problem.
 
 ### Independent stimulus-human gate
 
