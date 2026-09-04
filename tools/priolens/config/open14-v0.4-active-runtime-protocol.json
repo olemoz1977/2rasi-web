@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T11:02:00Z",
-  "status": "V04_A_PLUS_B_PLUS_DEPLOYED_COMPACT_RESULT_SCENE_WITH_ROUTED_DETAIL_VIEWS_TECHNICAL_PASS_OWNER_REVIEW_PENDING",
+  "updatedAtUtc": "2026-09-04T11:36:00Z",
+  "status": "V04_OWNER_FEEDBACK_UX_REFINEMENT_DEPLOYED_TECHNICAL_PASS_REVISED_REAL_PHONE_REVIEW_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -26,7 +26,14 @@
       "placement": "after Channel A, before Channel B",
       "changesRawMostCounts": false,
       "labelsHiddenInRunoff": true,
-      "resumeCheckpointed": true
+      "resumeCheckpointed": true,
+      "mobilePresentation": {
+        "candidateLayout": "one candidate image-group per row at <=620px",
+        "fullWidthCandidateCards": true,
+        "labelsRemainHidden": true,
+        "noneClearOptionRetained": true,
+        "rationale": "A+ is a visual runoff; candidate exemplars must remain legible on a phone."
+      }
     },
     "channelBPlus": {
       "implemented": true,
@@ -43,7 +50,7 @@
     "rejectsForgedAdaptiveState": true
   },
   "resultWorld": {
-    "phase": "UNIFIED_VERTICAL_SCENE_FUNCTIONAL_PREVIEW",
+    "phase": "OWNER_FEEDBACK_LIGHTWEIGHT_ROUTE_ONLY_FUNCTIONAL_PREVIEW",
     "shipRepresents": "Channel-A focus only",
     "shipHeroShowsOnlyFocusName": true,
     "shipHeroShowsRawCount": false,
@@ -58,7 +65,7 @@
     "finalNeedsMapGraphicImplemented": false,
     "transitionVideoImplemented": false,
     "layout": "ship above waterline, needs map below, one continuous mobile scene",
-    "needsMapGrouping": "six continents / twelve Channel-B need locations",
+    "needsMapGrouping": "render only route-relevant Channel-B need land(s); no-route renders compact empty state",
     "routeTargetsHighlighted": true,
     "renderDomGuard": true,
     "visibleRenderErrorBoundary": true,
@@ -67,16 +74,30 @@
     "keyboardActivationSmokePassed": true,
     "needsMapLabelsUseSharedItemLabels": true,
     "detailNavigation": {
-      "mode": "dedicated routed views within the result document",
+      "mode": "mixed: dedicated attention route + sufficiency bottom sheet using routed state",
       "attentionDetailRoute": "?detail=attention",
       "sufficiencyDetailRoute": "?detail=sufficiency",
       "inlineExpansionRemoved": true,
       "browserBackSupported": true,
-      "mainSceneHiddenInDetailMode": true
+      "mainSceneHiddenForAttentionDetail": true,
+      "mainSceneRemainsVisibleBehindSufficiencySheet": true,
+      "sufficiencySheetEscapeAndBackdropClose": true
+    },
+    "participantDetailPresentation": {
+      "attentionDetail": "dedicated routed view",
+      "leastDisplay": "only exact 3/3 repeated LEAST directions are surfaced; 2/3 remains in raw research data but is not participant-facing",
+      "technicalTermsHidden": "MOST/LEAST/A+/B+ labels removed from participant-facing detail copy where provenance can be stated plainly",
+      "selfExplanationAfterAnswer": "option list collapses to the selected answer plus the separation note",
+      "sufficiencyDetail": "compact bottom sheet over the main result scene"
+    },
+    "routeEndpointRendering": {
+      "oneEndpoint": "one route-relevant land",
+      "multipleEndpoints": "all valid route-relevant lands/endpoints are rendered; do not silently truncate protocol-valid B+ similar results",
+      "noRoute": "no inactive lands; compact no-route state"
     }
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33865375345,
+    "ownerPreviewAndApiDeployRun": 33868510484,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
@@ -87,7 +108,11 @@
     "cacheControlGatePassed": true,
     "keyboardActivationSmokePassed": true,
     "renderErrorBoundarySmokePassed": true,
-    "routedDetailSmokePassed": true
+    "local390x844UxSmokeRun": 33868490503,
+    "local390x844UxSmokePassed": true,
+    "routeOnlyNeedsMapSmokePassed": true,
+    "sufficiencyBottomSheetSmokePassed": true,
+    "participantTechnicalTermLeakSmokePassed": true
   },
-  "nextAction": "Owner checks the compact main result plus dedicated attention/sufficiency detail views on a real phone. Do not evaluate placeholder artwork as final. If navigation feels right, refactor result shell/styles out of build_from_v031.mjs, then design final ship and needs-map visuals."
+  "nextAction": "Owner re-runs the revised v0.4 preview on a real phone and checks A+ image-group legibility, the route-only needs map, the simplified attention detail, and the sufficiency bottom sheet. If this passes, freeze the information architecture before final ship/map artwork. Do not touch live v0.2 or open external recruitment."
 }
