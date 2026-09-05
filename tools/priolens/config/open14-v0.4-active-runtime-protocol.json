@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T11:55:00Z",
-  "status": "V04_MATRIX_PRIMARY_HUMAN_INTERPRETATION_DEPLOYED_TECHNICAL_PASS_PROMOTION_PENDING",
+  "updatedAtUtc": "2026-09-05T12:36:57Z",
+  "status": "V04_PROMOTION_READY_AWAITING_EXPLICIT_OWNER_SWITCH_APPROVAL",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -258,25 +258,30 @@
       "inputs": [
         "B/B+ insufficiency route as narrative anchor",
         "all raw MOST 3/3 and 2/3 repeated A directions",
+        "A+ noClear provenance when the clarifier did not single out one direction",
         "exact 3/3 LEAST only as cautious secondary contrast"
       ],
       "rules": [
         "never claim A caused B",
         "never infer subconscious, true need or personality",
-        "use specific semantic bridges only when construct map supports a plausible relation",
+        "specific bridge text may mention only A motifs actually present in the session",
+        "A+ noClear suppresses a specific combined A/B story while preserving raw repeated motifs",
+        "CARE imagery never assigns giver/receiver role",
+        "DIRECT and RELATED bridges use different wording strength",
+        "LT and EN use the same semantic bridge rule set",
         "if no defensible bridge exists, state that the perspectives need not be forced into one story"
       ],
       "pdfIncluded": true
     }
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33954090061,
+    "ownerPreviewAndApiDeployRun": 33966471878,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
     "deployed390x844OwnerFlowPassed": true,
     "shipMapDetailArchitectureSmokePassed": true,
-    "realPhoneOwnerReviewPassed": false,
+    "realPhoneOwnerReviewPassed": true,
     "unifiedSceneSmokePassed": true,
     "cacheControlGatePassed": true,
     "keyboardActivationSmokePassed": true,
@@ -335,7 +340,7 @@
     "lazyBootDeployRun": 33955382325,
     "lazyBootDeployAttempt": 2,
     "lazyBootDeployed390x844SmokePassed": true,
-    "realAndroidBootRecheckPassed": false,
+    "realAndroidBootRecheckPassed": true,
     "coreModuleCacheBustApplied": true,
     "coreModuleCacheBustReason": "Strongest current hypothesis: real Android loaded new HTML but a stale unversioned core .mjs module graph prevented the new named export / bootstrap from resolving before init(). Exact device-side JS exception was not captured.",
     "coreModuleVersionToken": "boot20260905b",
@@ -372,7 +377,7 @@
     "allMostRepeatsLocalUiPdfPassed": true,
     "allMostRepeatsDeployRun": 33960497398,
     "allMostRepeatsDeployPassed": true,
-    "realAndroidPdfRecheckPassed": false,
+    "realAndroidPdfRecheckPassed": true,
     "detailNoClearMostLocalRun": 33962272420,
     "detailNoClearMostLocalPassed": true,
     "matrixBackedBDetailDeployRun": 33962277430,
@@ -387,9 +392,20 @@
     "humanInterpretationLocalUiRun": 33963316027,
     "humanInterpretationLocalUiPassed": true,
     "humanInterpretationDeployRecheckRun": 33964509120,
-    "humanInterpretationDeployRecheckPassed": true
+    "humanInterpretationDeployRecheckPassed": true,
+    "realAndroidPdfEvidence": "Owner Android system print preview: ISO A4, page counter 1 / 1, matrix + interpretation + 12-statement appendix visible on the single page.",
+    "humanInterpretationHardeningCommit": "3a70db37130ea5b1f76d30237fe4026a22749fa9",
+    "humanInterpretationSyntheticScenarioAuditPassed": true,
+    "humanInterpretationSyntheticScenarioCount": 10,
+    "humanInterpretationAPlusNoClearGuardPassed": true,
+    "humanInterpretationCareRoleBoundaryPassed": true,
+    "humanInterpretationAbsentThemeInjectionGuardPassed": true,
+    "humanInterpretationLtEnBridgeParityPassed": true,
+    "humanInterpretationHardeningDeployRun": 33966471878,
+    "humanInterpretationHardeningDeployPassed": true,
+    "matrixSignalGrammarDocSyncedToSinglePagePortrait": true
   },
-  "nextAction": "Owner reviews the human interpretation and real Android PDF. If accepted, prepare the guarded v0.2 -> v0.4 promotion with rollback, then switch only on explicit owner approval.",
+  "nextAction": "Wait for explicit owner approval to switch the 2rasi.lt/.com PrioLens entry targets from v0.2 to v0.4. After approval, patch only the PrioLens landing links + cache token, publish through the confirmed production path, run LT/EN post-switch smoke, and keep v0.2 intact for immediate rollback.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
@@ -433,8 +449,19 @@
   },
   "promotion": {
     "liveV02Status": "UNCHANGED",
-    "v04PromotionStatus": "PENDING_EXPLICIT_OWNER_APPROVAL",
+    "v04PromotionStatus": "READY_AWAITING_EXPLICIT_OWNER_APPROVAL",
     "requireRollback": true,
-    "targetAfterApproval": "replace 2rasi.lt/.com PrioLens entry target from v0.2 to v0.4 only after final real-device + PDF + interpretation review"
+    "targetAfterApproval": "replace 2rasi.lt/.com PrioLens entry target from v0.2 to v0.4 only after final real-device + PDF + interpretation review",
+    "candidateRuntimeCommit": "3a70db37130ea5b1f76d30237fe4026a22749fa9",
+    "candidateDeployRun": 33966471878,
+    "realAndroidPdfGate": "PASS",
+    "interpretationAuditGate": "PASS",
+    "productionPointerChangeScope": [
+      "tools/priolens/landing-i18n.js: v02 -> v04",
+      "tools/priolens/index.html: two fallback hrefs v02 -> v04",
+      "tools/priolens/index.html: bump landing-i18n.js cache token"
+    ],
+    "rollback": "Restore the three PrioLens landing pointer edits from v0.4 back to v0.2, bump the JS cache token again, republish, smoke LT/EN. Do not remove the v0.4 preview/API.",
+    "productionPublishMechanismStatus": "VERIFY_BEFORE_SWITCH: repository docs conflict between 'Hostinger Git auto-deployment stays OFF' and WorkStyle README saying hero-webgl autodeploys. Do not assume either without confirmation."
   }
 }
