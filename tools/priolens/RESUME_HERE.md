@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 ALL MOST 3/3+2/3 SOLID GREEN + ANDROID PDF BLANK-PAGE FIX DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX-PRIMARY + ALL MOST REPEATS + MATRIX-BACKED B DETAIL + RESEARCH PARALLELS DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -672,3 +672,32 @@ Technical gates:
 - deployed/API/full 390x844 `33960497398`: SUCCESS.
 
 Real Android PDF save remains the acceptance gate.
+
+
+## 2026-09-05 detail behavior + research parallels checkpoint
+
+Owner review exposed two detail-layer problems:
+1. B detail opened over a neutral grey background after switching away from the matrix.
+2. When A+ returned no clear single focus, the A detail collapsed to “Viena kryptis aiškiai neišsiskyrė” and lost the underlying raw MOST repetitions.
+
+Current behavior:
+- B detail is mounted over the **still-visible 12×12 matrix**;
+- closing B detail returns to the same matrix context;
+- A detail still focuses on one A/A+ selected direction when there is one;
+- if A+ returns **noClear**, A detail now preserves and shows **all raw MOST 3/3 and 2/3 repeated directions**, including their selected exemplar images;
+- the self-explanation prompt remains hidden when no single A direction was singled out;
+- LEAST remains a separate detail-layer observation.
+
+Optional **Tyrimų paralelės** accordions added to both detail layers:
+- A detail: attention may be shaped by visual salience, current goals and learned value/history; this is explicitly not treated as proof of an unmet need;
+- B detail: scarcity can alter attention/valuation/control in specific domains, while SDT has stronger evidence for autonomy, competence and relatedness; findings are explicitly not generalized to all 12 PrioLens areas.
+
+References embedded participant-side:
+- Anderson 2013 (PMID 23589803)
+- Seeley et al. 2007 (PMID 17329432)
+- Huijsmans et al. 2019 (PMID 31123150)
+- Vansteenkiste, Ryan & Soenens 2020 (DOI 10.1007/s11031-019-09818-1)
+
+Technical evidence:
+- local full flow + synthetic A+ noClear detail guard `33962272420`: SUCCESS;
+- deployed/API/full-390×844 guard `33962277430`: SUCCESS.
