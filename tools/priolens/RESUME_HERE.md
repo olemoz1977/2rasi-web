@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX-PRIMARY + DETERMINISTIC HUMAN INTERPRETATION LOCAL PASS / CLEAN DEPLOY RECHECK IN PROGRESS / PROMOTION TO LIVE PENDING EXPLICIT OWNER APPROVAL
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX-PRIMARY + DETERMINISTIC HUMAN INTERPRETATION DEPLOYED TECHNICAL PASS / OWNER INTERPRETATION+PDF REVIEW NEXT / PROMOTION TO LIVE PENDING EXPLICIT OWNER APPROVAL
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -769,7 +769,7 @@ Technical evidence:
 - local full-flow/UI/PDF smoke `33963316027`: SUCCESS;
 - initial deploy run `33963323069` failed only because the new interpretation module was not present on remote during byte verification;
 - workflow source now includes the module in deploy + byte/MIME verification;
-- clean redeploy run `33964509120`: in progress at checkpoint time.
+- clean redeploy run `33964509120`: SUCCESS; live bytes/MIME + deployed 390×844 owner flow/API save PASS.
 
 Promotion:
 - live v0.2 remains unchanged;
