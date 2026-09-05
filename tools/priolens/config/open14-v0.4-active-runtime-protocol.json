@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T07:16:00Z",
-  "status": "V04_CONSTRUCT_AUDIT_SEMANTIC_REVISION_SOURCE_READY_DEPLOYMENT_SMOKE_PENDING",
+  "updatedAtUtc": "2026-09-05T07:19:18Z",
+  "status": "V04_CONSTRUCT_AUDIT_SEMANTIC_REVISION_DEPLOYED_TECHNICAL_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -137,7 +137,7 @@
     "mapCoastGrammar": "mixed straight/angled segments plus limited curves; explicit bays, peninsulas and concavities; avoid repeated rounded scallops"
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33889606233,
+    "ownerPreviewAndApiDeployRun": 33952035914,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
@@ -182,10 +182,10 @@
     "constructAuditLocalUiSmokeRun": 33951806366,
     "constructAuditLocalUiSmokePassed": true,
     "constructAuditDeploymentRun": 33952035914,
-    "constructAuditDeploymentSmokePassed": false,
-    "constructAuditDeploymentSmokePending": true
+    "constructAuditDeploymentSmokePassed": true,
+    "constructAuditDeploymentSmokePending": false
   },
-  "nextAction": "Finish the construct-audit semantic-revision live deployment smoke. Then use the canonical construct map to design the 12x12 conceptual/result matrix. Do not add or remove A/B constructs before pilot evidence.",
+  "nextAction": "Use the canonical construct map to design the 12x12 conceptual/result matrix. Keep the 14 Channel-A visual families and 12 Channel-B sufficiency areas unchanged until pilot evidence justifies merging, removing or adding constructs.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
@@ -199,7 +199,7 @@
     "schemaIsolationReason": "Channel-B CARE wording changed meaning to explicitly received support; old completed results and drafts must not be silently reinterpreted."
   },
   "constructAudit": {
-    "status": "APPLIED_SOURCE_DEPLOYMENT_SMOKE_PENDING",
+    "status": "APPLIED_DEPLOYED_TECHNICAL_PASS",
     "auditDoc": "tools/priolens/docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md",
     "mappingConfig": "tools/priolens/config/open14-v0.4-construct-map-2026-09-05.json",
     "channelAStatus": "14 formative visual attention directions/mechanisms; not 14 validated human needs",
