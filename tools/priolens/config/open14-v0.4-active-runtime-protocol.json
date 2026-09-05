@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-04T15:34:00Z",
-  "status": "V04_STRONGER_GEOGRAPHIC_MAP_REVISION_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
+  "updatedAtUtc": "2026-09-05T07:16:00Z",
+  "status": "V04_CONSTRUCT_AUDIT_SEMANTIC_REVISION_SOURCE_READY_DEPLOYMENT_SMOKE_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -15,12 +15,15 @@
     "schema": "2rasi.priolens.open14.bank-v0.3.1",
     "familyCount": 14,
     "exemplarCount": 42,
-    "pixelsChangedForV04": false
+    "pixelsChangedForV04": false,
+    "constructDefinitionVersion": "open14-construct-audit-2026-09-05",
+    "constructAuditStatus": "FORMATIVE_VISUAL_DIRECTIONS_NOT_VALIDATED_NEEDS",
+    "pixelsChangedForConstructAudit": false
   },
   "interaction": {
     "protocol": "most+least+a-plus+b-plus-v0.4",
     "sessionSchema": "2rasi.priolens.open14.rank-session-v0.4",
-    "draftKeyBase": "priolens.open14.v04.rank.draft",
+    "draftKeyBase": "priolens.open14.v041.rank.draft",
     "channelAPlus": {
       "implemented": true,
       "placement": "after Channel A, before Channel B",
@@ -41,13 +44,17 @@
       "onlyExactEligibleMinima": true,
       "changesRawChannelBRatings": false,
       "resumeCheckpointed": true
-    }
+    },
+    "sufficiencySchema": "2rasi.priolens.sufficiency-v0.3",
+    "mostLeastAnalyticallySeparate": true
   },
   "serverValidation": {
     "semanticValidationImplemented": true,
     "recomputesAPlusCandidatesFromRawChoices": true,
     "recomputesBPlusCandidatesFromChannelB": true,
-    "rejectsForgedAdaptiveState": true
+    "rejectsForgedAdaptiveState": true,
+    "requiredSufficiencySchema": "2rasi.priolens.sufficiency-v0.3",
+    "receivedSupportWordingEnforced": true
   },
   "resultWorld": {
     "phase": "STRONGER_GEOGRAPHIC_MAP_REVISION_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
@@ -105,7 +112,7 @@
     "buildOrchestrator": "priolens/open14-v04/build_from_v031.mjs",
     "shipFocusImagesInSummary": false,
     "shipFocusImagesInReflectionOnly": true,
-    "sufficiencyTerminology": "poreikio sritis / need area",
+    "sufficiencyTerminology": "pakankamumo sritis / sufficiency area",
     "sufficiencyProvenanceHeadingLt": "Kaip ši poreikio sritis buvo išskirta?",
     "finalShipGraphicForm": "minimalist inline SVG sailboat; solid neutral line grammar; no dashed prototype geometry",
     "finalNeedsMapGraphicForm": "smaller single-land map with pronounced asymmetric bays/peninsulas, irregular islets, more sea, restrained atlas terrain, direct annotation, neutral pin, shorter route",
@@ -169,18 +176,54 @@
     "approvedTargetPageAdaptationSmokePassed": true,
     "islandAspectRatioPreserved": true,
     "logicSmokeRun": 33889606429,
-    "strongerGeographicRevisionSmokePassed": true
+    "strongerGeographicRevisionSmokePassed": true,
+    "constructAuditServerSemanticSmokeRun": 33951719302,
+    "constructAuditServerSemanticSmokePassed": true,
+    "constructAuditLocalUiSmokeRun": 33951806366,
+    "constructAuditLocalUiSmokePassed": true,
+    "constructAuditDeploymentRun": 33952035914,
+    "constructAuditDeploymentSmokePassed": false,
+    "constructAuditDeploymentSmokePending": true
   },
-  "nextAction": "Owner reviews the stronger live map revision. Primary check: does the lower land now stop reading as a cloud/blob and start reading as actual stylized geography? Secondary: sea balance, label/pin placement, route length, and overall visual coherence. If still too cloud-like, do not add detail; replace the coastline silhouette again.",
+  "nextAction": "Finish the construct-audit semantic-revision live deployment smoke. Then use the canonical construct map to design the 12x12 conceptual/result matrix. Do not add or remove A/B constructs before pilot evidence.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
-    "keyBase": "priolens.open14.v04.last-result",
+    "keyBase": "priolens.open14.v041.last-result",
     "languageScoped": true,
     "autoRestoreAfterReload": true,
     "unfinishedDraftTakesPrecedence": true,
     "localMaxAgeDays": 90,
     "restoreTriggersFinalApiPost": false,
     "restartClearsSnapshot": true,
-    "rationale": "Final API save clears the unfinished draft, so a separate completed-result snapshot is required to keep the participant on the result after reload."
+    "rationale": "Final API save clears the unfinished draft, so a separate completed-result snapshot is required to keep the participant on the result after reload.",
+    "schemaIsolationReason": "Channel-B CARE wording changed meaning to explicitly received support; old completed results and drafts must not be silently reinterpreted."
+  },
+  "constructAudit": {
+    "status": "APPLIED_SOURCE_DEPLOYMENT_SMOKE_PENDING",
+    "auditDoc": "tools/priolens/docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md",
+    "mappingConfig": "tools/priolens/config/open14-v0.4-construct-map-2026-09-05.json",
+    "channelAStatus": "14 formative visual attention directions/mechanisms; not 14 validated human needs",
+    "channelBStatus": "12 current sufficiency areas/statements; not a validated 12-need taxonomy",
+    "productGroupingStatus": "6x2 grouping retained as PrioLens navigation/product taxonomy, not neuroscience-derived hierarchy",
+    "countsChanged": false,
+    "pixelsChanged": false,
+    "careSupportPresentLt": "Jaučiu, kad iš kitų sulaukiu pakankamai rūpesčio, paramos ir žmogiško dėmesio.",
+    "mappingChanges": {
+      "RESOURCE": "resource access / availability; reward removed from construct definition",
+      "ORDER": "RELATED to CLARITY_PREDICTABILITY, not DIRECT",
+      "CARE": "care/help interaction; participant role not inferred; NO_DIRECT_MATCH",
+      "CONTROL": "direct control / action-effect agency; distinct from autonomy; NO_DIRECT_MATCH",
+      "OPPORTUNITY": "environmental affordance / available possibility; NO_DIRECT_MATCH",
+      "CONNECTION_BELONGING": "kept as two A visual subfamilies of broader relatedness pending pilot evidence",
+      "EXPLORATION_KNOWLEDGE": "kept as two A visual subfamilies of broader curiosity/information-seeking pending pilot evidence",
+      "AUTONOMY_AGENCY": "technical ID retained; semantic alias AUTONOMY_VOLITION"
+    },
+    "mostLeastRule": "analyze MOST and LEAST separately first; no combined psychological score",
+    "pilotChallengePriority": [
+      "OPPORTUNITY",
+      "RESOURCE",
+      "CONNECTION_vs_BELONGING",
+      "EXPLORATION_vs_KNOWLEDGE"
+    ]
   }
 }
