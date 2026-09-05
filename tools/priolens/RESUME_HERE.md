@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / STRONGER GEOGRAPHIC MAP REVISION DEPLOYED TECHNICAL PASS / OWNER VISUAL REVIEW PENDING / EXTERNAL RECRUITMENT CLOSED
-Updated: 2026-09-04
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / REPEATED CONSTRUCT AUDIT COMPLETE / TAXONOMY STILL FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -11,13 +11,14 @@ Branch: `feature/priolens-architecture`
 
 Recovery order:
 1. this file;
-2. `config/open14-v0.4-active-runtime-protocol.json` for the current owner-preview runtime;
-3. `docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md` for the frozen result information architecture;
-4. `docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md` for the visual implementation rules;
-5. `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` for the pre-freeze owner-review history;
-6. `config/open14-v0.4-adaptive-clarifiers-protocol.json` and `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md` for the frozen A+/B+ rationale and rules;
-7. `config/open14-v0.3-active-runtime-protocol.json` and `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md` for the preserved v0.3.1 baseline;
-8. older v0.3 / bank docs as historical evidence.
+2. `docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md` for the latest construct-level research audit;
+3. `config/open14-v0.4-active-runtime-protocol.json` for the current owner-preview runtime;
+4. `docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md` for the frozen result information architecture;
+5. `docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md` for the visual implementation rules;
+6. `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` for the pre-freeze owner-review history;
+7. `config/open14-v0.4-adaptive-clarifiers-protocol.json` and `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md` for the frozen A+/B+ rationale and rules;
+8. `config/open14-v0.3-active-runtime-protocol.json` and `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md` for the preserved v0.3.1 baseline;
+9. older v0.3 / bank docs as historical evidence.
 
 Later checkpoints supersede older same-day notes when they conflict.
 The v0.4 owner preview is now implemented and deployed. It does **not** replace live v0.2 or open external recruitment.
@@ -379,3 +380,26 @@ The earlier v0.3.1 stimulus concerns remain useful as bank-quality checks, espec
 
 Main stimulus rule:
 > **What does a reasonable viewer see happening within about one second?**
+
+
+## 2026-09-05 construct-audit checkpoint
+
+Canonical research note:
+`docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md`
+
+Key conclusions:
+- current 14 Channel-A families are **formative visual directions/mechanisms**, not 14 validated human needs;
+- current 12 Channel-B items are **current sufficiency areas/statements**, not a validated 12-need taxonomy;
+- the 6×2 Channel-B grouping may remain a product/navigation taxonomy, but it is not neuroscience-derived;
+- strongest cross-theory anchors are restoration, safety/defense, relatedness, autonomy, competence/mastery and curiosity/information seeking;
+- `ORDER -> CLARITY_PREDICTABILITY` is RELATED, not DIRECT;
+- `CARE` is caregiving/prosocial action and must not be equated with received support;
+- `CONTROL` is sense-of-agency/action-effect control and is distinct from autonomy;
+- `OPPORTUNITY` is best treated as an affordance/environmental possibility, not an internal need;
+- `RESOURCE` currently mixes resource availability and reward and should be narrowed conceptually;
+- CONNECTION/BELONGING and EXPLORATION/KNOWLEDGE are plausible visual subfamilies of broader systems, not yet proven independent latent constructs;
+- B item `CARE_SUPPORT_PRESENT` should be rewritten to explicitly mean support received from others;
+- MOST and LEAST remain separate. Before any combined BWS/MaxDiff-style model, empirically test whether family-level MOST and LEAST effects are inverse after exemplar/slot/nuisance controls.
+
+No runtime or bank mutation was authorized by this audit.
+Next methodological task: define the pre-pilot choice-model and construct-validation plan before using the 12×12 matrix as anything stronger than a conceptual relationship map.
