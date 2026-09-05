@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T08:02:00Z",
-  "status": "V04_PRE_RESULT_RELATIONSHIP_MATRIX_AND_PRINT_PDF_DEPLOYED_TECHNICAL_PASS",
+  "updatedAtUtc": "2026-09-05T08:32:00Z",
+  "status": "V04_PRE_RESULT_MATRIX_DEPLOYED_TECHNICAL_PASS_REAL_ANDROID_BOOT_RECHECK_REQUIRED",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -246,9 +246,21 @@
     "preResultMatrixDeployRun": 33954090061,
     "preResultMatrixDeployed390x844SmokePassed": true,
     "preResultMatrixRemoteBytesAndMimePassed": true,
-    "preResultMatrixPdfActionPresent": true
+    "preResultMatrixPdfActionPresent": true,
+    "realAndroidBootRegressionObserved": true,
+    "realAndroidBootRegressionSymptom": "intro remained on static 'Tikrinamas vaizdų rinkinys…' state with disabled Start, indicating module bootstrap did not reach init()",
+    "realAndroidBootRegressionCauseStatus": "LIKELY_EAGER_RESULT_MODULE_COUPLING_OR_MODULE_LOAD_FAILURE; exact device-side exception not captured",
+    "resultModulesLazyLoadedAfterQuestionnaire": true,
+    "bootWatchdogImplemented": true,
+    "literalMatrixNewlineLeakFixed": true,
+    "lazyBootLocal390x844SmokeRun": 33955382425,
+    "lazyBootLocal390x844SmokePassed": true,
+    "lazyBootDeployRun": 33955382325,
+    "lazyBootDeployAttempt": 2,
+    "lazyBootDeployed390x844SmokePassed": true,
+    "realAndroidBootRecheckPassed": false
   },
-  "nextAction": "Owner reviews the new pre-result 12x12 matrix on a real phone: summary hierarchy, horizontal navigation, marker readability, bridge/no-direct grammar, transition via 'Toliau į rezultatą', and browser Save-as-PDF output. Do not change construct counts or interpret marker distance as psychological magnitude.",
+  "nextAction": "Owner rechecks the v0.4 URL on the same Android phone. If Start still remains disabled, use the new boot watchdog message as evidence and do not add more result features; isolate the remaining core bootstrap dependency. Treat real-device confirmation as the acceptance gate.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
