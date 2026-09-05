@@ -25,11 +25,11 @@
 <header class="tool-header"><a class="brand" href="../../">2rasi</a><nav><a href="../../#experiments">Experiments</a><a href="../../#about">About</a></nav></header>
 <main class="tool-main">
   <section class="tool-hero">
-    <p class="kicker">Leadership reflection · LT</p>
+    <p class="kicker">Leadership reflection · EN/LT</p>
     <h1>Situational Leadership</h1>
     <p class="lead">Leadership is not one fixed style. This experiment asks how your response shifts when the person, task and level of uncertainty change.</p>
-    <div class="tool-meta"><span>20 core situations</span><span>3 boundary situations</span><span>4 leadership directions</span><span>Lithuanian</span></div>
-    <div class="tool-actions"><a class="button primary" href="/tools/situational-leadership/run/">Start reflection ↗</a><a class="button" href="#model">Understand the model</a></div>
+    <div class="tool-meta"><span>20 core situations</span><span>3 boundary situations</span><span>4 leadership directions</span><span>EN/LT</span></div>
+    <div class="tool-actions"><a class="button primary" data-legacy-start href="/tools/situational-leadership/run/en/">Start reflection ↗</a><a class="button" href="#model">Understand the model</a></div>
   </section>
   <div class="tool-grid">
     <div>
@@ -43,11 +43,25 @@
       <section class="tool-section"><h2>Why the boundary situations?</h2><p>Three additional scenarios — crisis, expert autonomy and safety — are there to test whether your usual tendency changes when the context becomes more extreme.</p><p>They are not a diagnostic “flexibility score”. They are prompts to notice whether you can move away from your default response when the situation clearly changes.</p></section>
       <section class="tool-section"><h2>How to read the result</h2><p>Do not search for the “best style”. Look at the distribution of your choices. A mixed profile can be more informative than a single dominant label.</p><p class="note">This is an independent situational leadership reflection tool, not a validated diagnostic instrument or an official assessment from a commercial leadership programme.</p></section>
     </div>
-    <aside class="side-card"><h3>Which response do you reach for first?</h3><p>Choose what you would actually do in each situation, especially when the most polished answer feels obvious.</p><a class="button primary" href="/tools/situational-leadership/run/">Start reflection ↗</a></aside>
+    <aside class="side-card"><h3>Which response do you reach for first?</h3><p>Choose what you would actually do in each situation, especially when the most polished answer feels obvious.</p><a class="button primary" data-legacy-start href="/tools/situational-leadership/run/en/">Start reflection ↗</a></aside>
   </div>
 </main>
 <footer class="tool-footer"><span>2rasi · Look again.</span><a href="../../#experiments">← Back to experiments</a></footer>
 <script src="../tool-landing-i18n.js?v=20260825-trust"></script>
+<script>
+(() => {
+  const host = location.hostname.toLowerCase();
+  const lt = host === '2rasi.lt' || host.endsWith('.2rasi.lt');
+  const url = lt
+    ? '/tools/situational-leadership/run/'
+    : '/tools/situational-leadership/run/en/';
+  document.querySelectorAll('[data-legacy-start]').forEach(link => {
+    link.href = url;
+    link.target = '_self';
+    link.removeAttribute('rel');
+  });
+})();
+</script>
 <script src="/tools/site-owner-mode.js?v=20260831-1"></script>
 <script src="/tools/site-insights.js?v=20260828-1"></script>
 </body>
