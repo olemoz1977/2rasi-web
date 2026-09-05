@@ -1,6 +1,6 @@
 # PrioLens — NEW CHAT HANDOFF — 2026-09-05
 
-Status: v0.4 owner preview nearly complete; deterministic human interpretation layer implemented; live v0.2 remains unchanged.
+Status: v0.4 PROMOTION-READY; hardened deterministic interpretation deployed; real Android one-A4 PDF PASS; live v0.2 remains unchanged; switch awaits explicit owner approval.
 
 ## Source of truth
 
@@ -22,6 +22,31 @@ Read in this order before changing anything:
 5. `tools/priolens/docs/OPEN14_V04_MATRIX_SIGNAL_GRAMMAR_PDF_REVISION_2026-09-05.md`
 
 Do not reconstruct old ship/map assumptions from chat memory. The matrix is now the primary result.
+
+## Final readiness checkpoint
+
+Implementation candidate:
+- runtime commit: `3a70db37130ea5b1f76d30237fe4026a22749fa9`;
+- owner-preview deploy/API/full 390x844 smoke: `33966471878` SUCCESS;
+- remote bytes + module MIME + isolated v0.4 API: PASS.
+
+Interpretation hardening:
+- synthetic semantic audit: **10/10 PASS**;
+- strong parallel, weak parallel, no parallel, A+ noClear, multiple B endpoints and no-low-route covered;
+- CARE role ambiguity guard: PASS;
+- absent-theme injection guard: PASS;
+- DIRECT vs RELATED wording strength: PASS;
+- LT/EN direct-bridge semantic parity: PASS;
+- A+ noClear provenance now reaches the matrix model and suppresses a specific A/B bridge while preserving raw repetitions.
+
+Real Android:
+- app reached the result/PDF path on the owner's phone;
+- system print preview: **ISO A4**;
+- page counter: **1 / 1**;
+- matrix + interpretation + statement appendix visible on the single page;
+- real-Android PDF acceptance gate: **PASS**.
+
+The same-day two-page landscape/full-row-column orange note was stale and has been synchronized to the current one-page portrait + own-area orange rule.
 
 ## Current participant result
 
@@ -94,23 +119,21 @@ Current construct audit remains binding:
 
 ## Immediate queue
 
-1. Confirm the latest clean owner-preview deployment after the interpretation module was added.
-2. Owner visually reviews the new **Viena galima interpretacija** block on phone and desktop.
-3. Test interpretation quality on deliberately different synthetic combinations:
-   - strong semantic bridge;
-   - weak/no bridge;
-   - A+ noClear;
-   - multiple B endpoints;
-   - no B low route.
-4. Tighten text only where it overclaims or sounds templated. Do not add more “psychological poetry”.
-5. Recheck one-page PDF on real Android after interpretation was inserted; interpretation may increase print height.
-6. Only after owner approval prepare the **v0.2 -> v0.4 live switch**.
-   - Do not switch automatically.
-   - Preserve rollback.
-   - Verify 2rasi.lt and 2rasi.com entry links.
-   - Verify LT/EN query routing.
-   - Verify API path remains v0.4.
-   - Keep current v0.2 available as rollback until post-switch smoke passes.
+1. Freeze the v0.4 promotion candidate at runtime SHA `3a70db37130ea5b1f76d30237fe4026a22749fa9` / deploy run `33966471878`.
+2. Do not add interpretation or PDF features before promotion.
+3. Resolve the production publishing-path documentation conflict before the switch:
+   - `PORTFOLIO_ROADMAP.md` says Hostinger Git auto-deployment stays OFF;
+   - `workers/workstyle-pilot/README.md` says `hero-webgl` autodeploys to Hostinger.
+   Do not assume either statement is current without confirmation.
+4. Wait for the owner's explicit live-switch approval.
+5. After approval only:
+   - change PrioLens landing target v0.2 -> v0.4 in `tools/priolens/landing-i18n.js`;
+   - change the two fallback v0.2 hrefs -> v0.4 in `tools/priolens/index.html`;
+   - bump the `landing-i18n.js` cache token;
+   - publish through the confirmed production path;
+   - smoke LT + EN entry routing, full v0.4 save/API/result flow, reload restore, one-page PDF and cache/MIME;
+   - verify the old direct v0.2 URL still works.
+6. Rollback if needed by reverting only those landing pointer/cache-token edits to v0.2. Keep v0.4 deployed for diagnosis.
 
 ## Deployment boundary
 
