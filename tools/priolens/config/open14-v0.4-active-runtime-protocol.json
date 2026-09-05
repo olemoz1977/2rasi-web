@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T12:36:57Z",
-  "status": "V04_PROMOTION_READY_AWAITING_EXPLICIT_OWNER_SWITCH_APPROVAL",
+  "updatedAtUtc": "2026-09-05T12:45:00Z",
+  "status": "V04_PRODUCTION_POINTER_SWITCHED_LIVE_SMOKE_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -405,7 +405,7 @@
     "humanInterpretationHardeningDeployPassed": true,
     "matrixSignalGrammarDocSyncedToSinglePagePortrait": true
   },
-  "nextAction": "Wait for explicit owner approval to switch the 2rasi.lt/.com PrioLens entry targets from v0.2 to v0.4. After approval, patch only the PrioLens landing links + cache token, publish through the confirmed production path, run LT/EN post-switch smoke, and keep v0.2 intact for immediate rollback.",
+  "nextAction": "Verify live 2rasi.lt and 2rasi.com PrioLens landings after Hostinger auto-deploy: LT start -> v0.4 from=lt&lang=lt; EN start -> v0.4 from=com&lang=en; verify direct v0.2 still loads. If any fail, rollback hero-webgl to 806a1282a06b20596ac7d9466d968b841c15eb23 or revert the two promotion commits.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
@@ -449,7 +449,7 @@
   },
   "promotion": {
     "liveV02Status": "UNCHANGED",
-    "v04PromotionStatus": "READY_AWAITING_EXPLICIT_OWNER_APPROVAL",
+    "v04PromotionStatus": "PRODUCTION_POINTER_SWITCHED",
     "requireRollback": true,
     "targetAfterApproval": "replace 2rasi.lt/.com PrioLens entry target from v0.2 to v0.4 only after final real-device + PDF + interpretation review",
     "candidateRuntimeCommit": "3a70db37130ea5b1f76d30237fe4026a22749fa9",
@@ -469,6 +469,13 @@
     "preparedPointerHead": "9c9c1073bc3d6f46e09e648320152d9d7a076bcc",
     "preparedPointerDiff": "2 files only: tools/priolens/landing-i18n.js and tools/priolens/index.html; 4 effective pointer/cache edits",
     "preparedPointerStaticSmokePassed": true,
-    "productionPublishEvidence": "hero-webgl is the documented primary 2rasi branch and its 2026-09-02 PrioLens landing copy is visible on the current live 2rasi landing; this supports hero-webgl as the production source, but does not by itself resolve whether Hostinger publishing is automatic or manual."
+    "productionPublishEvidence": "hero-webgl is the documented primary 2rasi branch and its 2026-09-02 PrioLens landing copy is visible on the current live 2rasi landing; this supports hero-webgl as the production source, but does not by itself resolve whether Hostinger publishing is automatic or manual.",
+    "productionBranch": "hero-webgl",
+    "productionPointerHead": "9c9c1073bc3d6f46e09e648320152d9d7a076bcc",
+    "productionPointerSwitched": true,
+    "productionPointerSwitchMethod": "fast-forward hero-webgl to prepared promotion branch HEAD",
+    "productionPointerVerification": "PASS: hero-webgl contains v0.4 JS target, both v0.4 fallback hrefs, no v0.2 fallback/JS target, and cache token landing-i18n.js?v=20260905-1",
+    "liveSmokeStatus": "PENDING_EXTERNAL_FETCH_VERIFICATION",
+    "liveSmokeNote": "Assistant runtime web/container fetch could not resolve/fetch 2rasi/omesg360 during this turn, so do not mark live routing smoke PASS from inference alone."
   }
 }
