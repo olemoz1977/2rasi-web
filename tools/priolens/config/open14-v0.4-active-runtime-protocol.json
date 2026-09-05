@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T08:32:00Z",
-  "status": "V04_PRE_RESULT_MATRIX_DEPLOYED_TECHNICAL_PASS_REAL_ANDROID_BOOT_RECHECK_REQUIRED",
+  "updatedAtUtc": "2026-09-05T08:39:00Z",
+  "status": "V04_ANDROID_BOOT_CACHE_BUST_REMEDIATION_DEPLOYED_RECHECK_REQUIRED",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -258,9 +258,21 @@
     "lazyBootDeployRun": 33955382325,
     "lazyBootDeployAttempt": 2,
     "lazyBootDeployed390x844SmokePassed": true,
-    "realAndroidBootRecheckPassed": false
+    "realAndroidBootRecheckPassed": false,
+    "coreModuleCacheBustApplied": true,
+    "coreModuleCacheBustReason": "Strongest current hypothesis: real Android loaded new HTML but a stale unversioned core .mjs module graph prevented the new named export / bootstrap from resolving before init(). Exact device-side JS exception was not captured.",
+    "coreModuleVersionToken": "boot20260905b",
+    "coreModuleCacheBustTargets": [
+      "p3_open14_planner_v02.mjs",
+      "open14_no_repeat_assigner_v03.mjs",
+      "adaptive_clarifiers_v04.mjs"
+    ],
+    "coreModuleCacheBustLogicRun": 33955752595,
+    "coreModuleCacheBustLocal390x844Run": 33955752717,
+    "coreModuleCacheBustDeployRun": 33955752653,
+    "coreModuleCacheBustDeployPassed": true
   },
-  "nextAction": "Owner rechecks the v0.4 URL on the same Android phone. If Start still remains disabled, use the new boot watchdog message as evidence and do not add more result features; isolate the remaining core bootstrap dependency. Treat real-device confirmation as the acceptance gate.",
+  "nextAction": "Owner rechecks the same Android phone using the v0.4 URL after core module cache bust. If boot still fails, capture the watchdog state and move to a classic-script/minimal-bootstrap isolation path rather than adding features.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
