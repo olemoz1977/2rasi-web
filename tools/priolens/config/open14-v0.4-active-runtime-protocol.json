@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T11:28:00Z",
-  "status": "V04_MATRIX_PRIMARY_HUMAN_INTERPRETATION_LOCAL_PASS_DEPLOY_RECHECK_IN_PROGRESS",
+  "updatedAtUtc": "2026-09-05T11:55:00Z",
+  "status": "V04_MATRIX_PRIMARY_HUMAN_INTERPRETATION_DEPLOYED_TECHNICAL_PASS_PROMOTION_PENDING",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -387,9 +387,9 @@
     "humanInterpretationLocalUiRun": 33963316027,
     "humanInterpretationLocalUiPassed": true,
     "humanInterpretationDeployRecheckRun": 33964509120,
-    "humanInterpretationDeployRecheckPassed": false
+    "humanInterpretationDeployRecheckPassed": true
   },
-  "nextAction": "Confirm clean deploy run 33964509120, visually review the deterministic human interpretation, recheck Android one-page PDF height, then prepare but do not execute v0.2 -> v0.4 promotion without explicit owner approval.",
+  "nextAction": "Owner reviews the human interpretation and real Android PDF. If accepted, prepare the guarded v0.2 -> v0.4 promotion with rollback, then switch only on explicit owner approval.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
