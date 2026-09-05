@@ -941,3 +941,21 @@ Technical evidence:
 - immediate-state fix commit `660ec63f19cc0288b4ebc7bd1f0a2e426900b246` removes the unnecessary transition delay;
 - final deploy run `33986214567` (run 176), job `101360063259`: SUCCESS;
 - live API/route checks, preview bytes/MIME, full deployed 390x844 owner flow and DB save: PASS.
+
+
+## 2026-09-05 public landing expectation fix
+
+Owner review of `https://2rasi.lt/tools/priolens/` found that the landing card still described only the first visual choice and omitted the LEAST step, creating a wrong expectation before the participant entered the pilot.
+
+Current landing rule:
+- hero copy explicitly describes the two-step visual task: first select the image that pulls attention first, then from the two remaining select the one that pulls least;
+- metadata now says **14 vaizdų trijulių / 14 image triads**, not “14 visual choices”, because each triad can contain MOST + LEAST actions;
+- “Kaip tai vyksta / What happens” explicitly documents both MOST and LEAST, plus the `Nė vienas aiškiai / None clearly` and `Abu panašiai / Both feel similar` fallbacks;
+- public start links target v0.4.
+
+Production source commit on `hero-webgl`:
+- `92d4ed05c302bea48801342e474c7e3f7056a68c`.
+
+Architecture branch commits:
+- landing copy: `0b4c9c03bdf64a3f8aa4a7fdd556324622c884ad`;
+- v0.4 landing runtime pointer: `e5750cd20865f98bfbd8792956f43f5fdf142b69`.
