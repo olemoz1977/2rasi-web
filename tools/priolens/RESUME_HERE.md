@@ -58,6 +58,34 @@ Recovery order:
 Later checkpoints supersede older same-day notes when they conflict.
 The v0.4 owner preview is now implemented and deployed. It does **not** replace live v0.2 or open external recruitment.
 
+## PrioLens v0.4 research admin — DEPLOYED / 2026-09-05
+
+Hostinger runtime:
+- admin: `https://omesg360.eu/priolens-open14-v04-api/admin.php`;
+- DB config remains protected and outside repo;
+- admin credential is stored separately in protected `admin-secret.php`;
+- both `config.php` and `admin-secret.php` return HTTP 403;
+- admin login shell returns HTTP 200.
+
+Research dashboard:
+- reads `priolens_open14_sessions` read-only;
+- defaults to v0.4 and excludes `systemSmoke:true` technical sessions;
+- shows session completion, LT/EN, NCC, MOST/LEAST separately, RT medians, A/A+ focus/source, Channel-B distributions and B/B+ routes;
+- includes CSV session-summary export and raw JSONL export;
+- does not create a MOST-minus-LEAST participant score.
+
+Security note:
+- an earlier temporary diagnostic run exposed the legacy Wave1 admin credential in GitHub Actions output;
+- that legacy credential must be treated as compromised and was rotated;
+- Wave1 and PrioLens now use the rotated protected credential path;
+- do not restore the old Wave1 `ADMIN_PASSWORD` as an active credential.
+
+Final technical evidence:
+- protected credential final rotation: workflow `One-time PrioLens admin rotation`, run `33978810812`, attempt 2 SUCCESS;
+- v0.4 deployment/admin/API regression: run `33978843663`, attempt 2 SUCCESS;
+- remote-byte/API route/admin HTTP checks PASS;
+- full deployed 390×844 owner flow + final API DB save PASS.
+
 ## Current deployment boundary
 
 Current runtime repo: `olemoz1977/omesg360`.  
