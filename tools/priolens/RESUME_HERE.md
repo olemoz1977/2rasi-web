@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 MATRIX + PDF TECHNICAL PASS / REAL-ANDROID BOOT RECHECK REQUIRED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX-PRIMARY RESULT DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -557,3 +557,28 @@ Technical evidence:
 - deployed owner-preview/API/390×844 run `33955752653`: SUCCESS.
 
 Real Android confirmation remains the acceptance gate.
+
+
+## 2026-09-05 matrix-primary result checkpoint
+
+Current freeze:
+`docs/OPEN14_V04_MATRIX_PRIMARY_RESULT_FREEZE_2026-09-05.md`
+
+Owner decision:
+- the 12×12 matrix is now the final primary participant result;
+- ship and map cards are deactivated from the normal participant flow;
+- their detail information is preserved;
+- detail buttons moved below the matrix:
+  - `Pirmo žvilgsnio detalės`
+  - `Antro atsakymo detalės`;
+- `Toliau į rezultatą` removed;
+- matrix also carries PDF / restart / back-to-2rasi actions;
+- completed-result restore opens the matrix directly;
+- details run in `detailOnlyHost`, so ship/map is hidden while detail information is shown;
+- closing either detail returns to the matrix.
+
+Final technical gate:
+- deploy run `33957908985`: **SUCCESS**.
+
+The earlier `matrix → ship/map result` flow is superseded.
+Do not reintroduce ship/map into the participant flow without an explicit new owner decision.
