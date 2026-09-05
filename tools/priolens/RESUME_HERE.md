@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX-PRIMARY RESULT DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX GREEN+ORANGE SIGNAL GRAMMAR + 2-PAGE PDF DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -582,3 +582,36 @@ Final technical gate:
 
 The earlier `matrix → ship/map result` flow is superseded.
 Do not reintroduce ship/map into the participant flow without an explicit new owner decision.
+
+
+## 2026-09-05 matrix green/orange signal grammar + PDF revision
+
+Canonical note:
+`docs/OPEN14_V04_MATRIX_SIGNAL_GRAMMAR_PDF_REVISION_2026-09-05.md`
+
+Current participant result:
+- **no MOST point**;
+- resolved first-glance direction itself is highlighted:
+  - raw MOST 3/3 = darker green border + pale green fill;
+  - raw MOST 2/3 = lighter green;
+- **LEAST is absent from the primary matrix and summary**;
+- exact 3/3 LEAST/background stays only in first-glance detail (and may appear as secondary PDF appendix detail);
+- **no aqua B point**;
+- every numeric B rating <=3 paints the full corresponding row + column pale orange;
+- final B/B+ route endpoint(s) get stronger orange axis + diagonal-cell outline;
+- main B result card says **Šiuo metu nepakanka** and uses deficit-form wording;
+- exact questionnaire statements on screen axes remain unchanged;
+- title is now **Du žvilgsniai vienoje matricoje.**
+
+PDF:
+- current owner-supplied PDF review exposed microscopic repeated axis text + an unintended blank page 2;
+- print is now intentionally exactly 2 A4-landscape pages;
+- page 1 = summary + compact numbered matrix;
+- page 2 = readable 1-12 exact statement list + secondary exact-3/3 LEAST note;
+- local Playwright print smoke generated exactly 2 pages.
+
+Technical evidence:
+- local full-flow + PDF print smoke `33959134826`: SUCCESS;
+- deployed/API/full-390×844 `33959134861`, attempt 2: SUCCESS.
+
+Real Android visual/PDF review is the remaining acceptance gate.
