@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T10:09:00Z",
-  "status": "V04_MATRIX_OWN-AREA_ORANGE_SINGLE-PAGE-PDF_DEPLOYED_TECHNICAL_PASS",
+  "updatedAtUtc": "2026-09-05T10:27:00Z",
+  "status": "V04_ALL_MOST_REPEATS_SOLID_GREEN_ANDROID_PDF_FIX_DEPLOYED_TECHNICAL_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -134,7 +134,7 @@
       "implemented": true,
       "placement": "primary participant result after final Channel-B/B+ resolution",
       "module": "priolens/open14-v04/result_matrix_v04.mjs",
-      "schema": "2rasi.priolens.open14.result-matrix-v0.5",
+      "schema": "2rasi.priolens.open14.result-matrix-v0.6",
       "matrixShape": "12x12",
       "axes": "same 12 exact Channel-B statements on both axes",
       "groupOrder": [
@@ -183,7 +183,13 @@
       "resultBoundaryLt": "Matrica rodo santykį, ne priežastį ir ne srities svarbumą.",
       "lowSufficiencyVisual": "ratings <=3 color only the exact B axis cells and the same-area diagonal cell; no row/column spill into other need areas",
       "sufficiencyRouteVisual": "stronger orange outline on the exact B axis cells and same-area diagonal cell only",
-      "crossNeedOrangeFill": false
+      "crossNeedOrangeFill": false,
+      "overviewAttentionRule": "show every raw Channel-A family chosen 3/3 or 2/3",
+      "detailAttentionRule": "detail remains the single resolved attentionFocus; when A+ was required, this is the participant-selected A+ family",
+      "most3Visual": "solid dark green family chip / summary badge with white text",
+      "most2Visual": "solid light green family chip / summary badge with dark text",
+      "leastInPrimaryMatrix": false,
+      "leastInGeneralPdf": false
     },
     "pdfExport": {
       "implemented": true,
@@ -194,7 +200,14 @@
       "reason": "owner PDF from Android Chrome was physically A4 portrait despite earlier landscape CSS, and the prior explicit appendix page break forced a second page with large unused space",
       "printColorAdjustExact": true,
       "serverPdfGeneration": false,
-      "externalPdfDependency": false
+      "externalPdfDependency": false,
+      "androidBlankSecondPageRemediation": [
+        "reset html/body/wrap height and min-height before print",
+        "reset html/body background to white",
+        "force overflow visible",
+        "force matrix result static auto-height with no page-break-after",
+        "restore inline layout after print"
+      ]
     },
     "primaryParticipantResult": "12x12 relationship matrix",
     "shipMapParticipantFlow": "DEACTIVATED",
@@ -314,9 +327,16 @@
     "singlePagePdfSmokePassed": true,
     "singlePagePdfPageCount": 1,
     "ownAreaOrangeDeployRun": 33959809300,
-    "ownAreaOrangeDeployPassed": true
+    "ownAreaOrangeDeployPassed": true,
+    "allMostRepeatsLogicRun": 33960497419,
+    "allMostRepeatsLogicPassed": true,
+    "allMostRepeatsLocalUiPdfRun": 33960497418,
+    "allMostRepeatsLocalUiPdfPassed": true,
+    "allMostRepeatsDeployRun": 33960497398,
+    "allMostRepeatsDeployPassed": true,
+    "realAndroidPdfRecheckPassed": false
   },
-  "nextAction": "Owner reviews on the real Android phone: orange must stay inside the exact B area (axes + own diagonal only), and Save-as-PDF should fit the report onto one A4 portrait page.",
+  "nextAction": "Owner reviews the real Android matrix and Save-as-PDF: all raw MOST 3/3 and 2/3 must be visible as solid green chips, detail must still focus on one resolved A/A+ direction, and PDF should no longer generate a blank second page.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
