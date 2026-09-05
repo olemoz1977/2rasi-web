@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T12:45:00Z",
-  "status": "V04_PRODUCTION_POINTER_SWITCHED_LIVE_SMOKE_PENDING",
+  "updatedAtUtc": "2026-09-05T13:03:00Z",
+  "status": "V04_LIVE_PROMOTED_OWNER_VISIBILITY_CONFIRMED_POST_SWITCH_SMOKE_PARTIAL",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -405,7 +405,7 @@
     "humanInterpretationHardeningDeployPassed": true,
     "matrixSignalGrammarDocSyncedToSinglePagePortrait": true
   },
-  "nextAction": "Verify live 2rasi.lt and 2rasi.com PrioLens landings after Hostinger auto-deploy: LT start -> v0.4 from=lt&lang=lt; EN start -> v0.4 from=com&lang=en; verify direct v0.2 still loads. If any fail, rollback hero-webgl to 806a1282a06b20596ac7d9466d968b841c15eb23 or revert the two promotion commits.",
+  "nextAction": "Complete the remaining post-switch smoke opportunistically: verify LT start resolves to v0.4 with from=lt&lang=lt, EN start resolves to v0.4 with from=com&lang=en, and direct v0.2 still loads. Do not change production unless a smoke failure is found.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
@@ -449,7 +449,7 @@
   },
   "promotion": {
     "liveV02Status": "UNCHANGED",
-    "v04PromotionStatus": "PRODUCTION_POINTER_SWITCHED",
+    "v04PromotionStatus": "LIVE_PROMOTED",
     "requireRollback": true,
     "targetAfterApproval": "replace 2rasi.lt/.com PrioLens entry target from v0.2 to v0.4 only after final real-device + PDF + interpretation review",
     "candidateRuntimeCommit": "3a70db37130ea5b1f76d30237fe4026a22749fa9",
@@ -475,7 +475,9 @@
     "productionPointerSwitched": true,
     "productionPointerSwitchMethod": "fast-forward hero-webgl to prepared promotion branch HEAD",
     "productionPointerVerification": "PASS: hero-webgl contains v0.4 JS target, both v0.4 fallback hrefs, no v0.2 fallback/JS target, and cache token landing-i18n.js?v=20260905-1",
-    "liveSmokeStatus": "PENDING_EXTERNAL_FETCH_VERIFICATION",
-    "liveSmokeNote": "Assistant runtime web/container fetch could not resolve/fetch 2rasi/omesg360 during this turn, so do not mark live routing smoke PASS from inference alone."
+    "liveSmokeStatus": "OWNER_VISIBILITY_CONFIRMED_EXTERNAL_ASSISTANT_FETCH_UNAVAILABLE",
+    "liveSmokeNote": "Assistant web fetch still failed in this turn, so live routing is confirmed by owner observation rather than assistant HTTP fetch.",
+    "liveV04OwnerVisibilityConfirmed": true,
+    "liveV04OwnerVisibilityEvidence": "Owner reported that v0.4 became visible after the hero-webgl switch; immediately before that both LT and COM still showed v0.2, indicating a short publish/cache propagation delay."
   }
 }
