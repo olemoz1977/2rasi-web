@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX-PRIMARY + DETERMINISTIC HUMAN INTERPRETATION DEPLOYED TECHNICAL PASS / OWNER INTERPRETATION+PDF REVIEW NEXT / PROMOTION TO LIVE PENDING EXPLICIT OWNER APPROVAL
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 PROMOTION-READY / HARDENED DETERMINISTIC INTERPRETATION DEPLOYED / REAL ANDROID A4 1/1 PASS / LIVE SWITCH PENDING EXPLICIT OWNER APPROVAL
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -8,6 +8,37 @@ Branch: `feature/priolens-architecture`
 ## Rule
 
 **Repo is source of truth. Do not reconstruct PrioLens from chat memory.**
+
+## Final v0.4 promotion-readiness checkpoint
+
+Current runtime candidate:
+- repo: `olemoz1977/omesg360`;
+- branch: `feature/priolens-open14-v04`;
+- commit: `3a70db37130ea5b1f76d30237fe4026a22749fa9`;
+- deploy/API/remote-byte/MIME/full-390x844 run: `33966471878` SUCCESS.
+
+Interpretation:
+- deterministic composer retained;
+- synthetic methodology audit: **10/10 PASS**;
+- A+ noClear provenance reaches the matrix model and blocks a specific A/B bridge;
+- bridge copy may mention only A motifs actually present;
+- CARE never infers giver/receiver role;
+- DIRECT vs RELATED wording strength separated;
+- LT/EN share the same semantic bridge rule set;
+- weak/no semantic relation falls back to explicit non-forcing language.
+
+PDF:
+- current target is exactly one A4 portrait page;
+- owner Android system print preview showed `ISO A4` and `1 / 1`;
+- matrix, interpretation and 12-statement appendix were visible;
+- real-Android PDF gate: **PASS**.
+
+Promotion state:
+- v0.4 is ready for a guarded pointer switch;
+- v0.2 remains live and untouched;
+- do not switch until the owner explicitly approves the live change;
+- before switching, confirm the actual 2rasi production publishing path because repo documentation currently conflicts on whether `hero-webgl` Hostinger auto-deploy is ON or OFF.
+
 
 Recovery order:
 0. `NEW_CHAT_HANDOFF_2026-09-05_RESULT_INTERPRETATION.md` for the latest handoff and immediate queue;
