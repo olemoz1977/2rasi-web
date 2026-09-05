@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T13:03:00Z",
-  "status": "V04_LIVE_PROMOTED_OWNER_VISIBILITY_CONFIRMED_POST_SWITCH_SMOKE_PARTIAL",
+  "updatedAtUtc": "2026-09-05T14:00:30Z",
+  "status": "V04_LIVE_PROMOTED_BOTTOM_SHEET_VIEWPORT_GUARD_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -403,9 +403,20 @@
     "humanInterpretationLtEnBridgeParityPassed": true,
     "humanInterpretationHardeningDeployRun": 33966471878,
     "humanInterpretationHardeningDeployPassed": true,
-    "matrixSignalGrammarDocSyncedToSinglePagePortrait": true
+    "matrixSignalGrammarDocSyncedToSinglePagePortrait": true,
+    "bottomSheetViewportGuardPassed": true,
+    "bottomSheetViewportGuardCommit": "e0e4c5faee9ae7be1a8a601a814552318f567b45",
+    "bottomSheetLocalUiSmokeRun": 33970433735,
+    "bottomSheetDeploySmokeRun": 33970433641,
+    "bottomSheetChecks": [
+      "uses dynamic viewport height (dvh), not legacy vh",
+      "internal vertical scrolling enabled",
+      "safe-area bottom padding added",
+      "expanded research content remains reachable",
+      "sheet bottom stays within visible viewport at 390x844"
+    ]
   },
-  "nextAction": "Complete the remaining post-switch smoke opportunistically: verify LT start resolves to v0.4 with from=lt&lang=lt, EN start resolves to v0.4 with from=com&lang=en, and direct v0.2 still loads. Do not change production unless a smoke failure is found.",
+  "nextAction": "Continue owner review of the live v0.4 result UX. No further bottom-sheet layout change is required unless a real-device issue is observed.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
