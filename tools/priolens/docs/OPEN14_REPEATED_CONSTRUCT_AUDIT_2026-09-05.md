@@ -449,6 +449,7 @@ Implemented decisions:
 - CONNECTION/BELONGING remain separate visual families but are explicitly treated as relatedness/affiliation subfamilies pending data;
 - EXPLORATION/KNOWLEDGE remain separate visual families but are explicitly treated as curiosity/information-seeking subfamilies pending data;
 - the technical B ID `AUTONOMY_AGENCY` is retained for compatibility, but its semantic alias is **AUTONOMY_VOLITION**;
+- participant-facing Channel-B result terminology is **pakankamumo sritis / sufficiency area**, not “poreikio sritis / need area”;
 - `CARE_SUPPORT_PRESENT` now explicitly measures support received from others:
   **„Jaučiu, kad iš kitų sulaukiu pakankamai rūpesčio, paramos ir žmogiško dėmesio.“**
 
