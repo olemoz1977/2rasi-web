@@ -49,6 +49,34 @@ Current repo documentation conflicts:
 
 Do not infer the current mechanism from either stale statement. Promotion is not allowed until the publish path is known.
 
+## Prepared pointer branch
+
+A non-production promotion branch has already been prepared from the current `hero-webgl` base.
+
+Branch:
+`prepare/priolens-v04-promotion`
+
+Base:
+`806a1282a06b20596ac7d9466d968b841c15eb23`
+
+Head:
+`9c9c1073bc3d6f46e09e648320152d9d7a076bcc`
+
+Diff:
+- only `tools/priolens/landing-i18n.js`;
+- only `tools/priolens/index.html`;
+- no other production files changed.
+
+Static gate:
+- dynamic target uses v0.4;
+- no v0.2 remains in landing JS;
+- both fallback hrefs use v0.4;
+- cache token bumped to `20260905-1`;
+- expected LT URL = `https://omesg360.eu/priolens-open14-v04/?from=lt&lang=lt`;
+- expected EN URL = `https://omesg360.eu/priolens-open14-v04/?from=com&lang=en`.
+
+This branch is preparation only. It must not be merged/moved onto `hero-webgl` until explicit owner approval.
+
 ## Live pointer patch
 
 Do not copy v0.4 over the v0.2 runtime.
