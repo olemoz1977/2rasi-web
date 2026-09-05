@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX OWN-AREA ORANGE + SINGLE-PAGE A4 PDF DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 ALL MOST 3/3+2/3 SOLID GREEN + ANDROID PDF BLANK-PAGE FIX DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -645,3 +645,30 @@ Technical evidence:
 - deployed/API/full-390×844 `33959809300`: SUCCESS.
 
 Real Android PDF save remains the visual acceptance check.
+
+
+## 2026-09-05 all MOST repetitions + Android PDF blank-page fix
+
+Current note:
+`docs/OPEN14_V04_ALL_MOST_REPEATS_ANDROID_PDF_FIX_2026-09-05.md`
+
+Current overview/detail split:
+- primary matrix shows **all raw MOST 3/3 and 2/3 families**;
+- 3/3 family chips/badges are fully filled dark green;
+- 2/3 family chips/badges are fully filled light green;
+- summary label is **Pirmo žvilgsnio pasikartojimai**;
+- detail remains one resolved `attentionFocus`; if A+ was needed, it remains the participant's A+ choice;
+- LEAST stays out of the matrix and general PDF.
+
+Android PDF:
+- owner PDF showed page 1 content + page 2 background only;
+- current strongest diagnosis is inherited `100dvh` min-height / root background in Android print pagination, not report overflow;
+- print now resets html/body/wrap heights/min-heights, background and overflow before `window.print()`;
+- target remains one A4 portrait page.
+
+Technical gates:
+- logic `33960497419`: SUCCESS;
+- local UI + one-page PDF `33960497418`: SUCCESS;
+- deployed/API/full 390x844 `33960497398`: SUCCESS.
+
+Real Android PDF save remains the acceptance gate.
