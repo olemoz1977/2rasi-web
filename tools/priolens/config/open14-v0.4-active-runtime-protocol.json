@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T09:55:00Z",
-  "status": "V04_MATRIX_GREEN_ORANGE_SIGNAL_GRAMMAR_PDF2_DEPLOYED_TECHNICAL_PASS",
+  "updatedAtUtc": "2026-09-05T10:09:00Z",
+  "status": "V04_MATRIX_OWN-AREA_ORANGE_SINGLE-PAGE-PDF_DEPLOYED_TECHNICAL_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -180,22 +180,21 @@
       ],
       "leastPrimaryCardRemoved": true,
       "resultTitleLt": "Du žvilgsniai vienoje matricoje.",
-      "resultBoundaryLt": "Matrica rodo santykį, ne priežastį ir ne srities svarbumą."
+      "resultBoundaryLt": "Matrica rodo santykį, ne priežastį ir ne srities svarbumą.",
+      "lowSufficiencyVisual": "ratings <=3 color only the exact B axis cells and the same-area diagonal cell; no row/column spill into other need areas",
+      "sufficiencyRouteVisual": "stronger orange outline on the exact B axis cells and same-area diagonal cell only",
+      "crossNeedOrangeFill": false
     },
     "pdfExport": {
       "implemented": true,
-      "method": "browser/system print dialog with print CSS; user chooses Save as PDF",
-      "availableFrom": [
-        "matrix primary result"
-      ],
-      "reportContent": "page 1: result summary + compact numbered 12x12 matrix; page 2: readable list of all 12 exact Channel-B statements + secondary 3/3 LEAST detail when present",
-      "pageTarget": "A4 landscape",
-      "intendedPageCount": 2,
-      "longStatementsRepeatedInsidePrintMatrix": false,
+      "method": "browser/system Print -> Save as PDF with print CSS",
+      "pageTarget": "single A4 portrait page for Android robustness",
+      "intendedPageCount": 1,
+      "reportContent": "summary + compact numbered 12x12 matrix + 12 exact Channel-B statements in a compact 3-column appendix + secondary 3/3 LEAST detail when present",
+      "reason": "owner PDF from Android Chrome was physically A4 portrait despite earlier landscape CSS, and the prior explicit appendix page break forced a second page with large unused space",
       "printColorAdjustExact": true,
       "serverPdfGeneration": false,
-      "externalPdfDependency": false,
-      "caveat": "browser/in-app print support varies; this remains a browser Save-as-PDF flow, not a server-generated download"
+      "externalPdfDependency": false
     },
     "primaryParticipantResult": "12x12 relationship matrix",
     "shipMapParticipantFlow": "DEACTIVATED",
@@ -309,9 +308,15 @@
     "matrixPdfPageCount": 2,
     "matrixSignalGrammarDeployRun": 33959134861,
     "matrixSignalGrammarDeployAttempt": 2,
-    "matrixSignalGrammarDeployPassed": true
+    "matrixSignalGrammarDeployPassed": true,
+    "ownAreaOrangeLocalRun": 33959809259,
+    "ownAreaOrangeLocalPassed": true,
+    "singlePagePdfSmokePassed": true,
+    "singlePagePdfPageCount": 1,
+    "ownAreaOrangeDeployRun": 33959809300,
+    "ownAreaOrangeDeployPassed": true
   },
-  "nextAction": "Owner reviews the new green/orange matrix signal grammar and two-page PDF on the real Android phone. LEAST must stay out of the primary matrix.",
+  "nextAction": "Owner reviews on the real Android phone: orange must stay inside the exact B area (axes + own diagonal only), and Save-as-PDF should fit the report onto one A4 portrait page.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
