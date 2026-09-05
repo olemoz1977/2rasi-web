@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX-PRIMARY + ALL MOST REPEATS + MATRIX-BACKED B DETAIL + RESEARCH PARALLELS DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX-PRIMARY + DETERMINISTIC HUMAN INTERPRETATION DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -701,3 +701,42 @@ References embedded participant-side:
 Technical evidence:
 - local full flow + synthetic A+ noClear detail guard `33962272420`: SUCCESS;
 - deployed/API/full-390×844 guard `33962277430`: SUCCESS.
+
+
+## 2026-09-05 deterministic human interpretation checkpoint
+
+Canonical note:
+`docs/OPEN14_V04_DETERMINISTIC_HUMAN_INTERPRETATION_2026-09-05.md`
+
+A new participant-facing block now sits below the matrix:
+**Viena galima interpretacija**
+
+Boundary:
+**Tai bendrinė refleksija pagal šios sesijos pasirinkimus. Ne diagnozė ir ne išvada apie tavo asmenybę.**
+
+Rules:
+- deterministic composer, no LLM/API;
+- uses all raw MOST 3/3 and 2/3 repetitions for the general picture;
+- A+ remains a one-direction detail clarifier and does not erase other repeats;
+- final B/B+ route is the current-situation anchor;
+- exact 3/3 LEAST/background may be used only as weak contrast;
+- never interpret LEAST as dislike/unimportance;
+- if no defensible semantic bridge exists, do not manufacture one;
+- ends with one result-specific reflection question;
+- literature remains in optional `Tyrimų paralelės` detail accordions, not in the main interpretation.
+
+The owner-observed combination is a locked test case:
+- CONTRIBUTION insufficient;
+- RECOGNITION 3/3;
+- BELONGING 3/3;
+- KNOWLEDGE 2/3;
+- ORDER + REST exact-3/3 background.
+
+Expected core hypothesis:
+the participant may care less about recognition/belonging as isolated themes than about having a meaningful contribution that is visible and has a place among others; learning may function as a way to increase capacity to contribute.
+
+Technical evidence:
+- local full-flow + PDF `33963316027`: SUCCESS;
+- deployed owner-preview/API/real-390×844 `33963394155`: SUCCESS.
+
+Next gate: owner language/fit review on real results. Do not introduce LLM-generated interpretation yet.
