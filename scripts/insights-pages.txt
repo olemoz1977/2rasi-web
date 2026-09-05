@@ -1,0 +1,27 @@
+# 2rasi public gallery
+index.html
+
+# Tool landing pages
+tools/leadership-360/index.html
+tools/mirror/index.html
+tools/multipliers/index.html
+tools/divergent/index.html
+tools/situational-leadership/index.html
+tools/drama-triangle/index.html
+tools/strategic-thinking/index.html
+tools/2pair/index.html
+tools/workstyle15/index.html
+
+# Local run / pilot pages
+tools/mirror/run/index.html
+tools/multipliers/run/index.html
+tools/multipliers/run/en/index.html
+tools/divergent/run/index.html
+tools/divergent/run/en/index.html
+tools/situational-leadership/run/index.html
+tools/drama-triangle/run/index.html
+tools/drama-triangle/run/en/index.html
+tools/drama-triangle/pilot/action-loop-v01/index.html
+tools/drama-triangle/pilot/action-loop-v01/en/index.html
+tools/strategic-thinking/run/index.html
+tools/workstyle15/v07-cognitive.html

@@ -1,0 +1,27 @@
+/* 10 PrioLens */
+.priolens{position:relative;width:min(400px,82vw);height:310px}
+.priolens svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.prio-path{fill:none;stroke-linecap:round;stroke-width:4.6;opacity:.78}
+.prio-path.p1{stroke:rgba(105,210,231,.88)}
+.prio-path.p2{stroke:rgba(75,172,199,.72)}
+.prio-path.p3{stroke:rgba(37,119,151,.72)}
+.prio-node{position:absolute;left:5%;width:26px;aspect-ratio:1;border-radius:50%;background:rgba(244,253,255,.94);border:2px solid rgba(64,145,170,.7);box-shadow:0 8px 22px rgba(5,50,72,.12);z-index:4}
+.prio-node.n1{top:24%}.prio-node.n2{top:46%}.prio-node.n3{top:68%}
+.prio-lens{position:absolute;top:50%;width:48%;height:69%;transform:translateY(-50%);border-radius:50%;border:1px solid rgba(255,255,255,.72);box-shadow:inset 0 0 34px rgba(255,255,255,.18),0 18px 38px rgba(4,40,58,.12);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.prio-lens.la{left:37%;background:linear-gradient(140deg,rgba(223,249,253,.46),rgba(91,202,224,.24));border-color:rgba(104,211,231,.62)}
+.prio-lens.lb{left:53%;background:linear-gradient(140deg,rgba(205,239,247,.18),rgba(29,112,151,.38));border-color:rgba(52,151,190,.62)}
+.prio-overlap{position:absolute;z-index:5;left:58%;top:50%;width:32%;height:54%;transform:translate(-50%,-50%);border-radius:50%;background:linear-gradient(160deg,rgba(255,255,255,.22),rgba(116,205,220,.12));box-shadow:inset 0 0 26px rgba(255,255,255,.28)}
+.prio-orb{position:absolute;z-index:6;left:59%;top:50%;width:48px;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 34% 28%,rgba(255,255,255,.92),rgba(143,179,190,.64));box-shadow:0 12px 24px rgba(5,47,68,.14)}
+@media(max-width:720px){.priolens{height:285px;width:min(390px,86vw)}}
+@media(max-height:700px) and (max-width:720px){.priolens{height:220px}}
+@media(prefers-reduced-motion:no-preference){
+  .portal-card.in-view .priolens .la{animation:prioA 6.4s ease-in-out infinite}
+  .portal-card.in-view .priolens .lb{animation:prioB 6.4s ease-in-out infinite}
+  .portal-card.in-view .priolens .prio-orb{animation:prioOrb 6.4s ease-in-out infinite}
+  .portal-card.in-view .priolens .prio-node{animation:prioNode 6.4s ease-in-out infinite}
+  .portal-card.in-view .priolens .n2{animation-delay:.22s}.portal-card.in-view .priolens .n3{animation-delay:.44s}
+}
+@keyframes prioA{0%,100%{transform:translateY(-50%) translateX(0)}48%,66%{transform:translateY(-50%) translateX(7px)}}
+@keyframes prioB{0%,100%{transform:translateY(-50%) translateX(0)}48%,66%{transform:translateY(-50%) translateX(-7px)}}
+@keyframes prioOrb{0%,100%{transform:translate(-50%,-50%) scale(.92);opacity:.74}48%,66%{transform:translate(-50%,-50%) scale(1.06);opacity:1}}
+@keyframes prioNode{0%,18%,100%{transform:scale(.88);opacity:.7}34%,58%{transform:scale(1.05);opacity:1}}

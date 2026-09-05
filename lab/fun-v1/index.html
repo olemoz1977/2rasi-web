@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#dbeaf0" />
+  <title>2rasi · FUN v1 lab</title>
+  <link rel="icon" href="../../assets/logo-2.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../styles.css?v=20260825-trust" />
+  <link rel="stylesheet" href="../../hero.css?v=20260825-pazvelk" />
+  <style>
+.fun-lab { background: var(--mist); }
+.fun-lab .site-header { z-index: 80; }
+.lab-mark {
+  font-size: .62rem;
+  letter-spacing: .15em;
+  font-weight: 760;
+  opacity: .45;
+  white-space: nowrap;
+}
+.fun-journey { height: 190svh; position: relative; }
+.fun-hero {
+  position: sticky; top: 0; height: 100svh; min-height: 100svh;
+  --journey: 0; --impact: 0; --arrival: 0;
+}
+.fun-hero .hero-copy {
+  opacity: calc(1 - var(--journey) * 1.45);
+  transform: translateY(calc(var(--journey) * -20px));
+  transition: opacity .08s linear;
+}
+.fun-stage.perception-stage {
+  --word-x: 72%; --word-y: 66%; inset: 0; left: 0; right: auto; top: 0; bottom: auto;
+  width: 100%; height: 100%; transform: none; display: block; pointer-events: none;
+}
+.fun-stage .base-word,.fun-stage .notice-word {
+  left: var(--word-x); top: var(--word-y); font-size: clamp(2.4rem,3.7vw,4.35rem);
+  font-weight: 700; letter-spacing: .11em;
+  opacity: calc((1 - var(--journey) * 1.35) * (1 - var(--morph)));
+}
+.fun-stage .notice-word { opacity: calc((1 - var(--journey) * 1.35) * var(--morph)); }
+.fun-stage.webgl-active .base-word,.fun-stage.webgl-active .notice-word { display: block; }
+.fun-stage.webgl-active .base-word::before,.fun-stage.webgl-active .notice-word::before {
+  position: absolute; left: var(--word-x); top: var(--word-y); transform: translate(-50%,-50%);
+  font-size: clamp(2.4rem,3.7vw,4.35rem); font-weight: 700; letter-spacing: .11em;
+}
+.fun-stage.webgl-active .base-word { opacity: calc(1 - var(--journey) * 1.35); }
+.fun-stage.webgl-active .notice-word { opacity: calc((1 - var(--journey) * 1.35) * var(--morph)); }
+.word-probe {
+  position: absolute; left: var(--word-x); top: var(--word-y); transform: translate(-50%,-50%);
+  font-size: clamp(2.4rem,3.7vw,4.35rem); font-weight: 700; line-height: 1; letter-spacing: .11em;
+  text-transform: uppercase; white-space: nowrap; opacity: 0; pointer-events: none;
+}
+.fun-stage .lens { pointer-events: auto; z-index: 8; }
+.fun-stage .hint {
+  position: absolute; left: var(--word-x); top: calc(var(--word-y) + 92px); bottom: auto;
+  transform: translateX(-50%); z-index: 9; opacity: calc(1 - var(--journey) * 2.2); white-space: nowrap;
+}
+.impact-ripples { position: absolute; left: 50%; top: 89%; width: 1px; height: 1px; pointer-events: none; z-index: 12; }
+.impact-ripple {
+  position: absolute; left: 0; top: 0; width: 36px; height: 12px; border: 1px solid rgba(38,109,129,.42);
+  border-radius: 50%; transform: translate(-50%,-50%) scale(calc(.5 + var(--impact) * 27),calc(.5 + var(--impact) * 10));
+  opacity: calc(var(--impact) * (1 - var(--impact)) * 3.6);
+}
+.impact-ripple.r2 { transform: translate(-50%,-50%) scale(calc(.5 + var(--impact) * 19),calc(.5 + var(--impact) * 7)); opacity: calc(var(--impact) * (1 - var(--impact)) * 2.8); }
+.impact-ripple.r3 { transform: translate(-50%,-50%) scale(calc(.5 + var(--impact) * 11),calc(.5 + var(--impact) * 4)); opacity: calc(var(--impact) * (1 - var(--impact)) * 2.2); }
+.arrival-copy {
+  position: absolute; left: 50%; top: 68%; transform: translate(-50%,calc(24px - var(--arrival) * 24px));
+  width: min(820px,calc(100% - 40px)); text-align: center; opacity: var(--arrival); z-index: 13; pointer-events: none;
+}
+.arrival-kicker { margin: 0 0 12px; font-size: .72rem; letter-spacing: .24em; font-weight: 760; }
+.arrival-line { margin: 0; font-size: clamp(2.2rem,5.2vw,5.3rem); line-height: .96; letter-spacing: -.055em; font-weight: 480; }
+.fun-hero .scroll-cue { opacity: calc(1 - var(--journey) * 3); }
+.fun-experiments { position: relative; z-index: 20; background: var(--mist); padding-top: clamp(86px,11vw,145px); }
+.fun-experiments .experiment-card { transition: padding .3s ease,background .3s ease,transform .3s ease; }
+.fun-experiments #mirror:hover { transform: translateX(4px); }
+.fun-experiments #karpman:hover { transform: translateX(-3px); }
+.fun-experiments #multipliers:hover { transform: translateX(5px); }
+.fun-experiments #divergent:hover { transform: translateX(-2px); }
+.lab-note { margin: 42px 0 0; color: rgba(7,27,46,.48); font-size: .78rem; line-height: 1.55; }
+@media (max-width:760px) {
+  .lab-mark { display: none; }
+  .fun-journey { height: 175svh; }
+  .fun-stage.perception-stage { --word-x: 50%; --word-y: 70%; }
+  .fun-stage .base-word,.fun-stage .notice-word,.fun-stage.webgl-active .base-word::before,.fun-stage.webgl-active .notice-word::before,.word-probe { font-size: clamp(2rem,10vw,3.3rem); letter-spacing: .09em; }
+  .fun-stage .hint { top: calc(var(--word-y) + 76px); }
+  .arrival-copy { top: 63%; }
+  .arrival-line { font-size: clamp(2.25rem,11vw,4.1rem); }
+  .impact-ripples { top: 88%; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .fun-journey { height: 100svh; }
+  .fun-hero { position: relative; }
+  .fun-hero .hero-copy,.arrival-copy,.fun-stage .hint,.fun-hero .scroll-cue { opacity: 1; transform: none; }
+  .impact-ripples { display: none; }
+}
+  </style>
+</head>
+<body class="fun-lab">
+  <header class="site-header" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="2rasi home">2rasi</a>
+    <nav><span class="lab-mark">FUN v1 LAB</span><a class="language-switch" id="languageSwitch" href="https://2rasi.lt/lab/fun-v1/">LT</a></nav>
+  </header>
+  <main>
+    <div class="fun-journey" id="top">
+      <section class="hero fun-hero" aria-labelledby="hero-title">
+        <div class="hero-image" aria-hidden="true"></div><div class="veil" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow" data-en="A small shift can change the view" data-lt="Mažas poslinkis gali pakeisti vaizdą">A small shift can change the view</p>
+          <h1 id="hero-title" data-en="Look again." data-lt="Pažvelk dar kartą.">Look again.</h1>
+          <p class="hero-sub" data-en="Move the drop. Then scroll." data-lt="Pajudink lašą. Tada slink žemyn.">Move the drop. Then scroll.</p>
+        </div>
+        <div class="perception-stage fun-stage" aria-label="Interactive perception experiment">
+          <span class="base-word" aria-hidden="true">OBSERVE</span><span class="notice-word" aria-hidden="true">NOTICE</span>
+          <button class="lens" type="button" aria-label="Move the drop to reveal another view"></button>
+          <p class="hint" data-en="MOVE · LOOK · NOTICE" data-lt="JUDINK · ŽIŪRĖK · PASTEBĖK">MOVE · LOOK · NOTICE</p>
+        </div>
+        <div class="impact-ripples" aria-hidden="true"><span class="impact-ripple r1"></span><span class="impact-ripple r2"></span><span class="impact-ripple r3"></span></div>
+        <div class="arrival-copy" aria-hidden="true"><p class="arrival-kicker" data-en="EXPERIMENTS" data-lt="EKSPERIMENTAI">EXPERIMENTS</p><p class="arrival-line" data-en="One small shift. A different view." data-lt="Vienas mažas poslinkis. Kitas vaizdas.">One small shift. A different view.</p></div>
+        <button class="scroll-cue" id="scrollCue" type="button" aria-label="Continue"><span></span></button>
+      </section>
+    </div>
+    <section id="experiments" class="experiments section-shell fun-experiments" aria-labelledby="experiments-title">
+      <div class="section-intro visible"><p class="kicker" data-en="EXPERIMENTS" data-lt="EKSPERIMENTAI">EXPERIMENTS</p><h2 id="experiments-title" data-en="Try a different view." data-lt="Išbandyk kitą žvilgsnį.">Try a different view.</h2></div>
+      <div class="experiment-grid">
+        <article class="experiment-card visible" id="mirror"><span class="index">01</span><div class="experiment-copy"><div class="experiment-heading"><h3>Mirror / Veidrodis</h3><span class="experiment-state live">Live · EN/LT</span></div><p class="experiment-summary" data-en="Notice what may be getting in your way." data-lt="Pastebėk, kas gali tau trukdyti.">Notice what may be getting in your way.</p></div><div class="experiment-actions"><a href="../../tools/mirror/" data-en="About" data-lt="Apie">About <span>→</span></a><a href="../../tools/mirror/run/" data-en="Start" data-lt="Pradėti">Start <span>→</span></a></div></article>
+        <article class="experiment-card visible" id="karpman"><span class="index">02</span><div class="experiment-copy"><div class="experiment-heading"><h3>Drama Triangle</h3><span class="experiment-state live">Live · EN/LT</span></div><p class="experiment-summary" data-en="Notice a conflict pattern, choose one small experiment, then come back to it." data-lt="Pastebėk konflikto modelį, pasirink vieną mažą eksperimentą ir vėliau prie jo grįžk.">Notice a conflict pattern, choose one small experiment, then come back to it.</p></div><div class="experiment-actions"><a href="../../tools/drama-triangle/" data-en="About" data-lt="Apie">About <span>→</span></a><a id="dramaStart" href="../../tools/drama-triangle/run/en/" data-en="Start" data-lt="Pradėti">Start <span>→</span></a></div></article>
+        <article class="experiment-card visible" id="multipliers"><span class="index">03</span><div class="experiment-copy"><div class="experiment-heading"><h3>Multipliers</h3><span class="experiment-state live">Live · EN/LT</span></div><p class="experiment-summary" data-en="A leadership reflection experiment inspired by the Multipliers framework." data-lt="Vadovavimo refleksijos eksperimentas, įkvėptas „Multipliers“ modelio.">A leadership reflection experiment inspired by the Multipliers framework.</p></div><div class="experiment-actions"><a href="../../tools/multipliers/" data-en="About" data-lt="Apie">About <span>→</span></a><a id="multipliersStart" href="../../tools/multipliers/run/en/" data-en="Start" data-lt="Pradėti">Start <span>→</span></a></div></article>
+        <article class="experiment-card visible" id="divergent"><span class="index">04</span><div class="experiment-copy"><div class="experiment-heading"><h3>Divergent</h3><span class="experiment-state live">Live · EN/LT</span></div><p class="experiment-summary" data-en="A self-reflection experiment combining a Big Five profile with exploratory archetypes." data-lt="Savirefleksijos eksperimentas, jungiantis Big Five profilį su tyrinėjamais archetipais.">A self-reflection experiment combining a Big Five profile with exploratory archetypes.</p></div><div class="experiment-actions"><a href="../../tools/divergent/" data-en="About" data-lt="Apie">About <span>→</span></a><a id="divergentStart" href="../../tools/divergent/run/en/" data-en="Start" data-lt="Pradėti">Start <span>→</span></a></div></article>
+      </div>
+      <p class="lab-note" data-en="FUN v1 isolates only the hero → experiments transition. The live homepage is unchanged." data-lt="FUN v1 izoliuoja tik hero → eksperimentų perėjimą. Gyvas pagrindinis puslapis nepakeistas.">FUN v1 isolates only the hero → experiments transition. The live homepage is unchanged.</p>
+    </section>
+  </main>
+  <script src="../../drop-webgl.js?v=20260816-1145"></script>
+  <script>
+(() => {
+  'use strict';
+  const host=window.location.hostname.toLowerCase(); const forced=new URLSearchParams(window.location.search).get('lang');
+  const lang=(forced==='lt'||forced==='en')?forced:((host==='2rasi.lt'||host.endsWith('.2rasi.lt'))?'lt':'en'); const lt=lang==='lt'; document.documentElement.lang=lang;
+  document.querySelectorAll('[data-en][data-lt]').forEach(el=>{const label=lt?el.dataset.lt:el.dataset.en;if(el.matches('a')&&el.querySelector('span')){const arrow=el.querySelector('span');el.firstChild.nodeValue=`${label} `;arrow.textContent='→';}else el.textContent=label;});
+  const switcher=document.getElementById('languageSwitch'); if(switcher){switcher.textContent=lt?'EN':'LT';switcher.href=`https://${lt?'2rasi.com':'2rasi.lt'}/lab/fun-v1/`;}
+  const dramaStart=document.getElementById('dramaStart'),multipliersStart=document.getElementById('multipliersStart'),divergentStart=document.getElementById('divergentStart');
+  if(dramaStart)dramaStart.href=lt?'../../tools/drama-triangle/run/':'../../tools/drama-triangle/run/en/'; if(multipliersStart)multipliersStart.href=lt?'../../tools/multipliers/run/':'../../tools/multipliers/run/en/'; if(divergentStart)divergentStart.href=lt?'../../tools/divergent/run/':'../../tools/divergent/run/en/';
+  const journey=document.querySelector('.fun-journey'),hero=document.querySelector('.fun-hero'),stage=document.querySelector('.fun-stage'),lens=document.querySelector('.lens'),baseWord=document.querySelector('.base-word'),noticeWord=document.querySelector('.notice-word');
+  baseWord.textContent=lt?'PAŽVELK':'OBSERVE'; noticeWord.textContent=lt?'PASTEBĖK':'NOTICE';
+  const cue=document.getElementById('scrollCue'),experiments=document.getElementById('experiments'),header=document.querySelector('.site-header'),reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wordProbe=document.createElement('span');wordProbe.className='word-probe';wordProbe.setAttribute('aria-hidden','true');wordProbe.textContent=lt?'PAŽVELK':'OBSERVE';stage.appendChild(wordProbe);
+  const renderer=window.createWaterDropRenderer?.({stage,lens,hero})||null; const clamp=(v,min,max)=>Math.max(min,Math.min(max,v)); const smooth=v=>{const t=clamp(v,0,1);return t*t*(3-2*t);}; const mix=(a,b,t)=>a+(b-a)*t;
+  let dragging=false,landed=false,scrollProgress=0;
+  const wordRect=()=>wordProbe.getBoundingClientRect();
+  function wordCenter(){const sr=stage.getBoundingClientRect(),wr=wordRect();return{x:wr.left-sr.left+wr.width/2,y:wr.top-sr.top+wr.height/2};}
+  function updateSemanticReveal(px,py){const sr=stage.getBoundingClientRect(),wr=wordRect(),left=wr.left-sr.left,top=wr.top-sr.top,halfW=wr.width/2,halfH=wr.height/2,centerX=left+halfW,centerY=top+halfH,qx=Math.abs(px-centerX)-halfW,qy=Math.abs(py-centerY)-halfH,outside=Math.hypot(Math.max(qx,0),Math.max(qy,0)),inside=Math.min(Math.max(qx,qy),0),signedDistance=outside+inside,radius=lens.offsetWidth/2,overlap=clamp((radius-signedDistance)/Math.max(radius,1),0,1);stage.style.setProperty('--morph',smooth(overlap).toFixed(3));}
+  function setDrop(x,y,reveal=true){const radius=lens.offsetWidth/2,px=clamp(x,radius*.58,stage.clientWidth-radius*.58),py=clamp(y,radius*.58,stage.clientHeight-radius*.58);lens.style.setProperty('--x',`${px}px`);lens.style.setProperty('--y',`${py}px`);stage.style.setProperty('--drop-x',`${px}px`);stage.style.setProperty('--drop-y',`${py}px`);stage.style.setProperty('--drop-r',`${Math.max(0,radius-1)}px`);if(reveal)updateSemanticReveal(px,py);else stage.style.setProperty('--morph','0');}
+  function landOnWord(){if(landed)return;landed=true;const w=wordCenter();setDrop(w.x,w.y,true);} const initialWord=wordCenter();setDrop(initialWord.x,initialWord.y,false); lens.addEventListener('animationend',landOnWord,{once:true});setTimeout(landOnWord,reducedMotion?0:1750);
+  stage.addEventListener('pointerdown',e=>{if(!landed||scrollProgress>.08)return;dragging=true;lens.setPointerCapture?.(e.pointerId);const r=stage.getBoundingClientRect();setDrop(e.clientX-r.left,e.clientY-r.top,true);});
+  stage.addEventListener('pointermove',e=>{if(!landed||scrollProgress>.08)return;if(!dragging&&e.pointerType!=='mouse')return;const r=stage.getBoundingClientRect();setDrop(e.clientX-r.left,e.clientY-r.top,true);}); stage.addEventListener('pointerup',()=>dragging=false);stage.addEventListener('pointercancel',()=>dragging=false);
+  function updateJourney(){if(reducedMotion||!journey||!hero)return;const rect=journey.getBoundingClientRect(),travel=Math.max(1,journey.offsetHeight-window.innerHeight),p=clamp(-rect.top/travel,0,1);scrollProgress=p;const fall=smooth((p-.16)/.56),impact=smooth((p-.68)/.25),arrival=smooth((p-.76)/.20);hero.style.setProperty('--journey',p.toFixed(4));hero.style.setProperty('--impact',impact.toFixed(4));hero.style.setProperty('--arrival',arrival.toFixed(4));if(landed&&!dragging&&p>.08){const start=wordCenter(),end={x:stage.clientWidth*.5,y:stage.clientHeight*.89},arc=Math.sin(fall*Math.PI)*stage.clientWidth*.035;setDrop(mix(start.x,end.x,fall)-arc,mix(start.y,end.y,fall),p<.34);}header?.classList.toggle('scrolled',p>.12||window.scrollY>40);}
+  let ticking=false;function onScroll(){if(ticking)return;ticking=true;requestAnimationFrame(()=>{updateJourney();ticking=false;});}window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',()=>{renderer?.resize();if(landed&&scrollProgress<=.08){const w=wordCenter();setDrop(w.x,w.y,true);}updateJourney();});
+  cue?.addEventListener('click',()=>{if(reducedMotion){experiments?.scrollIntoView({behavior:'smooth'});return;}const target=journey.offsetTop+Math.max(1,journey.offsetHeight-window.innerHeight)*.78;window.scrollTo({top:target,behavior:'smooth'});});
+  if(reducedMotion){hero.style.setProperty('--journey','0');hero.style.setProperty('--impact','0');hero.style.setProperty('--arrival','0');}else updateJourney();
+})();
+  </script>
+</body>
+</html>

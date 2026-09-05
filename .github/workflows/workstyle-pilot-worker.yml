@@ -1,0 +1,299 @@
+name: Deploy WorkStyle pilot Worker
+
+on:
+  workflow_dispatch:
+    inputs:
+      activate_frontend:
+        description: Activate the verified Worker endpoint in the LT cognitive pilot
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workers/workstyle-pilot
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      SCRIPT_NAME: workstyle-pilot-intake
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify deployment context
+        env:
+          RAW_CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = "hero-webgl" || { echo "Run this workflow from hero-webgl."; exit 1; }
+          test -n "$RAW_CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN repository secret."; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID repository variable."; exit 1; }
+          [[ "$CLOUDFLARE_ACCOUNT_ID" =~ ^[A-Fa-f0-9]{32}$ ]] || { echo "CLOUDFLARE_ACCOUNT_ID must be the 32-character Cloudflare account id."; exit 1; }
+
+      - name: Normalize Cloudflare account token
+        env:
+          RAW_CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TOKEN="$(python - <<'PY'
+          import os
+          import re
+
+          token = os.environ.get('RAW_CLOUDFLARE_API_TOKEN', '').strip()
+          if token.lower().startswith('bearer '):
+              token = token[7:].strip()
+          if len(token) >= 2 and token[0] == token[-1] and token[0] in {'"', "'"}:
+              token = token[1:-1].strip()
+          if not token:
+              raise SystemExit('Cloudflare token is empty after normalization.')
+          if any(ch.isspace() for ch in token):
+              raise SystemExit('Cloudflare token still contains whitespace. Store only the token value.')
+          if not token.startswith('cfat_'):
+              raise SystemExit('CLOUDFLARE_API_TOKEN is not the new account-owned token created for this workflow. It must start with cfat_. Replace the GitHub secret with the token value shown after creating 2rasi-workstyle-pilot.')
+          if not re.fullmatch(r'cfat_[A-Za-z0-9_-]{20,}', token):
+              raise SystemExit('Cloudflare account token format looks invalid. Store only the full cfat_ token value, without Bearer, quotes or labels.')
+          print(token, end='')
+          PY
+          )"
+          echo "::add-mask::$TOKEN"
+          echo "CLOUDFLARE_API_TOKEN=$TOKEN" >> "$GITHUB_ENV"
+          echo "Cloudflare account token format verified."
+
+      - name: Verify Cloudflare API access
+        shell: bash
+        run: |
+          set -euo pipefail
+          RESPONSE="$(curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --header 'Content-Type: application/json' \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database?per_page=1")"
+          printf '%s' "$RESPONSE" | jq -e '.success == true' >/dev/null
+          echo "Cloudflare API authentication and D1 access: verified."
+
+      - name: Find or create D1 database
+        id: d1
+        shell: bash
+        run: |
+          set -euo pipefail
+          API="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database"
+          DB_LIST="$(curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --header 'Content-Type: application/json' \
+            "$API?per_page=100")"
+          DB_ID="$(printf '%s' "$DB_LIST" | jq -r '.result[]? | select(.name == "workstyle-pilot") | (.uuid // .id // empty)' | head -n 1)"
+
+          if [ -z "$DB_ID" ]; then
+            echo "Creating D1 database workstyle-pilot..."
+            CREATED="$(curl --fail-with-body --silent --show-error \
+              --request POST \
+              --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+              --header 'Content-Type: application/json' \
+              --data '{"name":"workstyle-pilot"}' \
+              "$API")"
+            printf '%s' "$CREATED" | jq -e '.success == true' >/dev/null
+            DB_ID="$(printf '%s' "$CREATED" | jq -r '.result.uuid // .result.id // empty')"
+          fi
+
+          test -n "$DB_ID" || { echo "Could not resolve workstyle-pilot D1 database ID."; exit 1; }
+          echo "WORKSTYLE_D1_DATABASE_ID=$DB_ID" >> "$GITHUB_ENV"
+          echo "database_id=$DB_ID" >> "$GITHUB_OUTPUT"
+          echo "Using D1 database: $DB_ID"
+
+      - name: Apply D1 schema through API
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY' > schema-statements.jsonl
+          import json
+          from pathlib import Path
+
+          sql = Path('schema.sql').read_text(encoding='utf-8')
+          statements = [part.strip() for part in sql.split(';') if part.strip()]
+          for statement in statements:
+              print(json.dumps({'sql': statement}))
+          PY
+
+          QUERY_URL="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database/$WORKSTYLE_D1_DATABASE_ID/query"
+          while IFS= read -r payload; do
+            RESULT="$(curl --fail-with-body --silent --show-error \
+              --request POST \
+              --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+              --header 'Content-Type: application/json' \
+              --data "$payload" \
+              "$QUERY_URL")"
+            printf '%s' "$RESULT" | jq -e '.success == true and ([.result[]?.success // true] | all)' >/dev/null
+          done < schema-statements.jsonl
+          echo "D1 schema applied."
+
+      - name: Upload Worker through API
+        shell: bash
+        run: |
+          set -euo pipefail
+          METADATA="$(jq -nc \
+            --arg db "$WORKSTYLE_D1_DATABASE_ID" \
+            '{main_module:"index.js",compatibility_date:"2026-08-23",bindings:[{type:"d1",name:"DB",id:$db}]}')"
+
+          UPLOAD="$(curl --fail-with-body --silent --show-error \
+            --request PUT \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --form-string "metadata=$METADATA" \
+            --form 'index.js=@src/index.js;type=application/javascript+module' \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME")"
+          printf '%s' "$UPLOAD" | jq -e '.success == true' >/dev/null
+
+          ENABLE="$(curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --header 'Content-Type: application/json' \
+            --data '{"enabled":true,"previews_enabled":false}' \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME/subdomain")"
+          printf '%s' "$ENABLE" | jq -e '.success == true and .result.enabled == true' >/dev/null
+
+          SUBDOMAIN_RESPONSE="$(curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain")"
+          ACCOUNT_SUBDOMAIN="$(printf '%s' "$SUBDOMAIN_RESPONSE" | jq -r '.result.subdomain // empty')"
+          test -n "$ACCOUNT_SUBDOMAIN" || { echo "Could not resolve workers.dev account subdomain."; exit 1; }
+
+          WORKER_URL="https://$SCRIPT_NAME.$ACCOUNT_SUBDOMAIN.workers.dev"
+          echo "WORKER_URL=$WORKER_URL" >> "$GITHUB_ENV"
+          echo "Worker URL: $WORKER_URL"
+
+      - name: Verify health and browser CORS
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5; do
+            if HEALTH="$(curl --fail --silent --show-error "$WORKER_URL/health" 2>/dev/null)" \
+              && printf '%s' "$HEALTH" | jq -e '.ok == true and .service == "workstyle-pilot-intake"' >/dev/null; then
+              break
+            fi
+            test "$attempt" -lt 5 || { echo "Worker health check did not become ready."; exit 1; }
+            sleep 3
+          done
+
+          for ORIGIN in https://2rasi.lt https://2rasi.com; do
+            HEADERS="$(curl --silent --show-error --dump-header - --output /dev/null \
+              --request OPTIONS \
+              --header "Origin: $ORIGIN" \
+              --header 'Access-Control-Request-Method: POST' \
+              "$WORKER_URL/v1/session")"
+            printf '%s' "$HEADERS" | grep -qi "^access-control-allow-origin: $ORIGIN"
+          done
+          echo "Health and CORS verified."
+
+      - name: Verify synthetic POST and D1 insert
+        shell: bash
+        run: |
+          set -euo pipefail
+          RESPONSE="$(curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header 'Origin: https://2rasi.lt' \
+            --header 'Content-Type: application/json' \
+            --data-binary @test-session-v3.json \
+            "$WORKER_URL/v1/session")"
+          printf '%s' "$RESPONSE" | jq -e '.ok == true and .sessionId == "synthetic-workstyle-v07-test"' >/dev/null
+
+          QUERY_URL="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database/$WORKSTYLE_D1_DATABASE_ID/query"
+          CHECK_PAYLOAD='{"sql":"SELECT session_id FROM workstyle_sessions WHERE session_id = ?","params":["synthetic-workstyle-v07-test"]}'
+          CHECK="$(curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --header 'Content-Type: application/json' \
+            --data "$CHECK_PAYLOAD" \
+            "$QUERY_URL")"
+          printf '%s' "$CHECK" | jq -e '.success == true and ([.result[]?.results[]?.session_id] | index("synthetic-workstyle-v07-test") != null)' >/dev/null
+
+          DELETE_PAYLOAD='{"sql":"DELETE FROM workstyle_sessions WHERE session_id = ?","params":["synthetic-workstyle-v07-test"]}'
+          DELETE_RESULT="$(curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --header 'Content-Type: application/json' \
+            --data "$DELETE_PAYLOAD" \
+            "$QUERY_URL")"
+          printf '%s' "$DELETE_RESULT" | jq -e '.success == true' >/dev/null
+          echo "Synthetic POST -> D1 verified and test row removed."
+
+      - name: Activate verified frontend endpoint
+        if: ${{ inputs.activate_frontend }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          CONFIG="$GITHUB_WORKSPACE/tools/workstyle15/v07-intake-config.js"
+          PILOT_HTML="$GITHUB_WORKSPACE/tools/workstyle15/v07-cognitive.html"
+          CACHE_KEY="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+
+          cat > "$CONFIG" <<EOF
+          window.WORKSTYLE_V07_INTAKE = Object.freeze({
+            enabled: true,
+            sessionUrl: '$WORKER_URL/v1/session',
+            storageKey: 'workstyle-v07-cognitive-session-e',
+            expectedResponses: 34,
+            requestTimeoutMs: 15000,
+            privacyText: 'Jei pasirinksi pateikti piloto duomenis, atsakymai, pažymėti neaiškumai ir aktyvus atsakymo laikas bus perduoti tyrimo analizei. Vardo, el. pašto ar darbdavio neprašome.'
+          });
+          EOF
+
+          CACHE_KEY="$CACHE_KEY" PILOT_HTML="$PILOT_HTML" python - <<'PY'
+          import os
+          import re
+          from pathlib import Path
+
+          path = Path(os.environ['PILOT_HTML'])
+          text = path.read_text(encoding='utf-8')
+          cache_key = os.environ['CACHE_KEY']
+          patterns = [
+              r'v07-intake-config\.js\?v=[^"\']+',
+              r'v07-intake-client\.js\?v=[^"\']+',
+          ]
+          replacements = [
+              f'v07-intake-config.js?v={cache_key}',
+              f'v07-intake-client.js?v={cache_key}',
+          ]
+          for pattern, replacement in zip(patterns, replacements):
+              text, count = re.subn(pattern, replacement, text, count=1)
+              if count != 1:
+                  raise SystemExit(f'Could not update intake asset cache-buster: {pattern}')
+          path.write_text(text, encoding='utf-8')
+          PY
+
+          git -C "$GITHUB_WORKSPACE" config user.name "github-actions[bot]"
+          git -C "$GITHUB_WORKSPACE" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C "$GITHUB_WORKSPACE" add tools/workstyle15/v07-intake-config.js tools/workstyle15/v07-cognitive.html
+
+          if git -C "$GITHUB_WORKSPACE" diff --cached --quiet; then
+            echo "Frontend intake config already points to this endpoint."
+          else
+            git -C "$GITHUB_WORKSPACE" commit -m "chore(workstyle): activate verified pilot intake"
+            git -C "$GITHUB_WORKSPACE" push origin "HEAD:hero-webgl"
+          fi
+
+      - name: Deployment summary
+        shell: bash
+        run: |
+          {
+            echo "## WorkStyle pilot intake"
+            echo
+            echo "- Worker: $WORKER_URL"
+            echo "- D1: workstyle-pilot"
+            echo "- Health: verified"
+            echo "- CORS from 2rasi.lt and 2rasi.com: verified"
+            echo "- Synthetic POST -> D1: verified"
+            echo "- Synthetic row cleanup: done"
+            echo "- Frontend activation requested: ${{ inputs.activate_frontend }}"
+          } >> "$GITHUB_STEP_SUMMARY"

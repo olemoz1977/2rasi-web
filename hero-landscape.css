@@ -1,0 +1,78 @@
+/* Touch-device landscape layout.
+   Phones in landscape are wider than the portrait breakpoint, but they still
+   need a compact mobile composition rather than the desktop hero. */
+@media (orientation: landscape) and (pointer: coarse),
+       (orientation: landscape) and (hover: none) and (max-height: 620px) {
+  .site-header {
+    padding: 14px 20px;
+  }
+
+  .brand {
+    font-size: 1.25rem;
+  }
+
+  nav {
+    gap: 18px;
+    font-size: .74rem;
+  }
+
+  .hero-copy {
+    left: 6vw;
+    top: 20vh;
+    right: auto;
+    width: 48vw;
+    max-width: none;
+  }
+
+  .eyebrow {
+    margin-bottom: 10px;
+    font-size: .62rem;
+    letter-spacing: .20em;
+    white-space: nowrap;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 6.6vw, 4.8rem);
+    line-height: .88;
+  }
+
+  .hero-sub {
+    margin-top: 14px;
+    max-width: 42vw;
+    font-size: .86rem;
+    line-height: 1.4;
+  }
+
+  .perception-stage {
+    left: auto;
+    right: 3vw;
+    bottom: 8vh;
+    width: 42vw;
+    height: 56vh;
+  }
+
+  .base-word,
+  .notice-word,
+  .perception-stage.webgl-active .base-word::before,
+  .perception-stage.webgl-active .notice-word::before {
+    font-size: clamp(1.05rem, 2.8vw, 1.55rem);
+    font-weight: 720;
+    letter-spacing: .12em;
+  }
+
+  .lens {
+    width: clamp(112px, 28vh, 142px);
+    animation-duration: 1.72s;
+  }
+
+  .hint {
+    bottom: 0;
+    font-size: .56rem;
+    letter-spacing: .14em;
+    white-space: nowrap;
+  }
+
+  .scroll-cue {
+    bottom: 14px;
+  }
+}

@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,follow" />
+  <title>Multipliers Archetipų Testas v10.9 — 15 klausimų (maišomi)</title>
+  <style>
+    :root{--bg:#0e0f13;--panel:#171922;--text:#e8ecf1;--muted:#aab4c0;--accent:#59c173;--accent2:#66a6ff;--grid:#2a2e39;--border:#222636;--chip:#2a2e39}
+    [data-theme="light"]{--bg:#f7f9fc;--panel:#ffffff;--text:#11161c;--muted:#576270;--accent:#167e56;--accent2:#2b6fff;--grid:#dfe5ef;--border:#d6dde8;--chip:#eef2f9}
+    html,body{height:100%}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;background:linear-gradient(135deg,var(--bg),#141823 70%);color:var(--text);margin:0}
+    header{padding:12px 16px;background:var(--panel);position:sticky;top:0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;z-index:10}
+    h1{margin:0;font-size:18px;flex:1}
+    .btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;padding:10px 12px;border-radius:10px;font-weight:600;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid var(--border)}
+    .btn.flat{background:var(--chip);color:var(--text);border:1px solid var(--border)}
+    .btn:active{transform:scale(0.98)}
+    main{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;padding:16px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+    .card h2{margin:0;padding:10px 12px;border-bottom:1px solid var(--border);font-size:16px}
+    .content{padding:10px 12px}
+    .legend{color:var(--muted);font-size:12px}
+    .q{padding:8px;border-bottom:1px dashed var(--grid)}
+    .q:last-child{border-bottom:none}
+    .opts{display:grid;grid-template-columns:1fr;gap:6px;margin-top:8px}
+    .opt{display:flex;gap:8px;align-items:flex-start;background:var(--chip);border:1px solid var(--border);padding:8px;border-radius:8px}
+    .opt input{margin-top:2px;accent-color:var(--accent)}
+    .bad{color:#ff6b6b}
+    #radarSvg{width:100%;height:360px;display:block}
+    .summary{background:var(--chip);border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:8px}
+    .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+    .chip{background:var(--chip);border:1px solid var(--border);color:var(--text);font-size:12px;padding:4px 8px;border-radius:999px}
+    .insights h3{margin:12px 0 6px;font-size:14px}
+    .insights .block{margin:8px 0 12px;border:1px solid var(--border);border-radius:10px;padding:10px;background:var(--chip)}
+    .insights .block h4{margin:0 0 6px;font-size:14px}
+    .insights ul{margin:6px 0 10px 18px}
+    footer{padding:12px 16px;color:var(--muted)}
+    @media (max-width: 920px){ main{grid-template-columns:1fr} header{flex-wrap:wrap} h1{flex-basis:100%;margin-bottom:6px} #radarSvg{height:300px} }
+    @media print{ header,.actions{display:none!important} main{grid-template-columns:1fr} .card{page-break-inside:avoid} #radarSvg{height:480px} }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Multipliers Archetipų Testas v10.9.1</h1>
+    <button id="theme" class="btn flat">Tema: Tamsi/Šviesi</button>
+    <button id="shuffle" class="btn flat">Permaišyti</button>
+    <button id="labels" class="btn flat">Rodyti archetipų etiketes: Išjungta</button>
+    <button id="calc" class="btn">Apskaičiuoti</button>
+    <button id="reset" class="btn secondary">Išvalyti</button>
+    <button id="pdf" class="btn secondary">PDF (naršyklė)</button>
+    <span class="legend" id="libStatus">15 klausimų · 5 atsakymai (maišomi TM/LB/CH/DM/IN)</span>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Klausimynas</h2>
+      <div class="content legend">Pasirink vieną elgesį. Atsakymų eilės tvarka <strong>atsitiktinai sumaišoma</strong> kiekvieną kartą, kad nesijaustų tendencijos. Taškų taisyklė: „target“ archetipui → 3 taškai, kitiems → 1.</div>
+      <div class="content" id="questions"></div>
+      <div class="actions content"><span id="status" class="legend"></span></div>
+    </section>
+
+    <section class="card">
+      <h2>Rezultatai</h2>
+      <div class="content">
+        <div id="summary" class="summary legend">Kol kas neapskaičiuota.</div>
+        <div class="chips" id="chips"></div>
+        <svg id="radarSvg" viewBox="-250 -250 500 500" aria-label="Radar chart"></svg>
+        <div class="insights" id="insights"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    v10.9.1 Sukurta Oleg Mozochin * AI 2025.11
+  </footer>
+
+<script>
+const ARCH = [
+  {key:'TM', name:'Talent Magnet'},
+  {key:'LB', name:'Liberator'},
+  {key:'CH', name:'Challenger'},
+  {key:'DM', name:'Debate Maker'},
+  {key:'IN', name:'Investor'}
+];
+
+// 15 situacijų: po 3 kiekvienam archetipui
+const SCENARIOS = [
+  // TM
+  {target:'TM', t:'Komandoje atsiranda naujas žmogus su stipria analitika. Kaip elgiesi pirmą savaitę?', opts:[
+    {a:'TM', d:'Pastebiu stiprybes, parenku realią užduotį ir paskiriu mentorystę.'},
+    {a:'LB', d:'Aiškiai paaiškinu taisykles ir saugias bandymų ribas.'},
+    {a:'CH', d:'Iškeliu ambicingą tikslą ir „kodėl“ – tegu prisijungia.'},
+    {a:'DM', d:'Surenku 2–3 perspektyvas, kur analitika duotų didžiausią vertę.'},
+    {a:'IN', d:'Deleguoju rezultatą, duodu priėjimą prie duomenų ir patikros taškus.'}
+  ]},
+  {target:'TM', t:'Patyręs operatorius neatsiskleidžia. Ką darai?', opts:[
+    {a:'TM', d:'Atpažįstu stiprybę, suteikiu erdvę ir konkrečią atsakomybę ją panaudoti.'},
+    {a:'LB', d:'Sudarau aiškius standartus, kad būtų saugu bandyti.'},
+    {a:'CH', d:'Formuluoju kryptį: ką pasieksime, jei jis įsitrauks.'},
+    {a:'DM', d:'Prašau komandos nuomonių, kur jo stiprybės labiausiai pravers.'},
+    {a:'IN', d:'Deleguoju dalį proceso jam su resursais ir patikra.'}
+  ]},
+  {target:'TM', t:'Reikia specifinės kompetencijos trumpam projektui.', opts:[
+    {a:'TM', d:'Greitai surandu žmogų su tinkama kompetencija ir kviečiu prisidėti.'},
+    {a:'LB', d:'Apibrėžiu saugius standartus ir ribas naujam žmogui.'},
+    {a:'CH', d:'Iškeliu ambiciją, kad pritrauktų norinčius prisidėti.'},
+    {a:'DM', d:'Diskutuojame, ar samdyti išorėje ar auginti viduje.'},
+    {a:'IN', d:'Deleguoju rezultatą esamam žmogui, pridedu resursų.'}
+  ]},
+  // LB
+  {target:'LB', t:'Komanda dažnai klysta naujoje procedūroje.', opts:[
+    {a:'TM', d:'Ieškau, kas turi natūralias stiprybes ir kviečiu vesti.'},
+    {a:'LB', d:'Aiškiai sutariam standartus ir „saugų bandymų lauką“ be kaltinimų.'},
+    {a:'CH', d:'Suformuluoju tikslą „už 2 savaičių be klaidų“.'},
+    {a:'DM', d:'Surengiu diskusiją: ką keisti, kokie faktai, kas neveikia.'},
+    {a:'IN', d:'Deleguoju proceso savininką su patikros ritmu.'}
+  ]},
+  {target:'LB', t:'Reikia įvesti griežtesnę drausmę pamainoje.', opts:[
+    {a:'TM', d:'Randu autoritetingą meistrą ir suteikiu jam sceną.'},
+    {a:'LB', d:'Įvedu aiškias taisykles ir „reagavimo be kaltinimų“ protokolą.'},
+    {a:'CH', d:'Paaiškinu „kodėl“ drausmė – būtina kokybei.'},
+    {a:'DM', d:'Išklausau skirtingų padalinių argumentus prieš įvedant.'},
+    {a:'IN', d:'Deleguoju atskaitomybę su resursais ir periodine patikra.'}
+  ]},
+  {target:'LB', t:'Po klaidos reikia greitai sureaguoti.', opts:[
+    {a:'TM', d:'Paskiriu žmogų, kurio stiprybė – gedimų diagnostika.'},
+    {a:'LB', d:'Reaguoju teisingai ir pagarbiai, sutariam „kaip taisom“.'},
+    {a:'CH', d:'Iššūkį paverčiu pamoka visai komandai.'},
+    {a:'DM', d:'Trumpa diskusija: priežastys ir faktai prieš taisymą.'},
+    {a:'IN', d:'Skiriu resursus taisymui ir patikros taškus.'}
+  ]},
+  // CH
+  {target:'CH', t:'Gamyba vėluoja. Kaip mobilizuoji komandą?', opts:[
+    {a:'TM', d:'Sujungiu talentus, kad greičiau išspręstų siaurą vietą.'},
+    {a:'LB', d:'Nustatau tvarką ir ritmą, kad būtų saugu dirbti greičiau.'},
+    {a:'CH', d:'Suformuoju ambicingą tikslą ir aiškų „kodėl“ dabar.'},
+    {a:'DM', d:'Surengiu greitą idėjų „už/prieš“ sesiją.'},
+    {a:'IN', d:'Deleguoju rezultatą su terminu ir resursais.'}
+  ]},
+  {target:'CH', t:'Vadovas prašo „ar tai įmanoma?“. Ką atsakai?', opts:[
+    {a:'TM', d:'Pasiūlau žmogų, kuris geriausiai gali tai padaryti.'},
+    {a:'LB', d:'Nustatau standartus ir ribas, kad būtų saugu bandyti.'},
+    {a:'CH', d:'Atsakau „kaip padarysime“ ir kokios prielaidos.'},
+    {a:'DM', d:'Prieš pažadą paprašau faktų ir alternatyvų.'},
+    {a:'IN', d:'Pasiūlau deleguoti rezultatą su KPI ir patikra.'}
+  ]},
+  {target:'CH', t:'Prireikia pakeisti kryptį vidury projekto.', opts:[
+    {a:'TM', d:'Greitai pergrupuoju talentus naujai krypčiai.'},
+    {a:'LB', d:'Atsinaujinu standartus ir komunikaciją be kaltinimų.'},
+    {a:'CH', d:'Paaiškinu „kodėl“ ir suformuoju naują ambiciją.'},
+    {a:'DM', d:'Prašau „už/prieš“ faktų prieš keitimą.'},
+    {a:'IN', d:'Perdeleguoju rezultatą su naujais resursais.'}
+  ]},
+  // DM
+  {target:'DM', t:'Prieš svarbų sprendimą gauni dvi priešingas nuomones.', opts:[
+    {a:'TM', d:'Įtraukiu žmogų, kurio stiprybė – analitika.'},
+    {a:'LB', d:'Sukuriu saugią erdvę argumentams be asmeniškumų.'},
+    {a:'CH', d:'Tikslas: išsirinkti kryptį su aiškiu „kodėl“.'},
+    {a:'DM', d:'Vedu struktūruotą debatą: faktai, rizikos, rekomendacija.'},
+    {a:'IN', d:'Deleguoju išvadų parengimą ir patikros taškus.'}
+  ]},
+  {target:'DM', t:'Komanda linkusi pritarti „stipresnei“ nuomonei.', opts:[
+    {a:'TM', d:'Paprašau tyliai mąstančių pateikti savo perspektyvą.'},
+    {a:'LB', d:'Primenu taisyklę: argumentai > autoritetas.'},
+    {a:'CH', d:'Grąžinu diskusiją į ambiciją ir kriterijus.'},
+    {a:'DM', d:'Klausiu „už/prieš“ kiekvieno pasiūlymo, fiksuoju faktus.'},
+    {a:'IN', d:'Skiriu atsakomybes įgyvendinti pasirinktą variantą.'}
+  ]},
+  {target:'DM', t:'Sprendimą spaudžia laikas, rizika neaiški.', opts:[
+    {a:'TM', d:'Įtraukiu žmogų, kuris greitai pastebi esmines detales.'},
+    {a:'LB', d:'Sutariu, kad klaidas fiksuosim be kaltinimų.'},
+    {a:'CH', d:'Laikau kryptį, bet ieškau „kaip“ sutrumpinti kelią.'},
+    {a:'DM', d:'Trumpa „rizikų lenta“ su faktų patikra prieš sprendimą.'},
+    {a:'IN', d:'Deleguoju sprendimą su minimaliais resursais ir patikra.'}
+  ]},
+  // IN
+  {target:'IN', t:'Turi įgyvendinti rezultatą per 2 savaites.', opts:[
+    {a:'TM', d:'Parenku geriausiai tinkantį žmogų ir motyvuoju dalyvauti.'},
+    {a:'LB', d:'Nubrėžiu standartus ir saugą, kad komanda nebijotų rizikos.'},
+    {a:'CH', d:'Suformuoju komandai ambiciją ir „kodėl“ šis rezultatas svarbus.'},
+    {a:'DM', d:'Surenku „už/prieš“ faktus prieš paskirstydamas darbus.'},
+    {a:'IN', d:'Deleguoju  komandai rezultatą, skiriu resursus ir patikros taškus.'}
+  ]},
+  {target:'IN', t:'Naujas žmogus perima atsakomybę už procesą.', opts:[
+    {a:'TM', d:'Pabrėžiu jo stiprybes ir skiriu mentorystę.'},
+    {a:'LB', d:'Sudarau taisykles ir reagavimo protokolą.'},
+    {a:'CH', d:'Paaiškinu, kokią ambiciją procesas turi pasiekti.'},
+    {a:'DM', d:'Paprašau faktais pagrįstos proceso analizės.'},
+    {a:'IN', d:'Suteikiu resursus, terminus ir „checkpoints“.'}
+  ]},
+  {target:'IN', t:'Projektas stringa dėl kliūčių „už padalinio ribų“.', opts:[
+    {a:'TM', d:'Ieškau, kas turi ryšius/kompetencijas padėti ir kviečiu prisidėti.'},
+    {a:'LB', d:'Sudarau tvarką, kad žmonės saugiai eskaluotų problemas.'},
+    {a:'CH', d:'Paaiškinu „kodėl“ būtina pašalinti kliūtį dabar.'},
+    {a:'DM', d:'Fiksuoju faktus, scenarijus ir susitarimus tarp padalinių.'},
+    {a:'IN', d:'Pašalinu kliūtį, skiriu papildomus resursus ir atsakomybę.'}
+  ]}
+];
+
+let SHOW_LABELS = false;  // archetipų etikečių rodymas ant pasirinkimų
+let CURRENT_ORDER = [];    // paskutinė sumaišyta tvarka
+
+function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+function buildOrder(){
+  const qs = shuffle([...SCENARIOS]);                      // klausimai
+  const withOpts = qs.map(q=>({ ...q, opts: shuffle([...q.opts]) })); // atsakymai
+  return withOpts;
+}
+function render(){
+  CURRENT_ORDER = buildOrder();
+  const box = document.getElementById('questions'); box.innerHTML='';
+  CURRENT_ORDER.forEach((q, i)=>{
+    const div = document.createElement('div'); div.className='q';
+    const title = document.createElement('div'); title.innerHTML = `<strong>${(i+1).toString().padStart(2,'0')}.</strong> ${q.t}`;
+    const opts = document.createElement('div'); opts.className='opts';
+    q.opts.forEach((op)=>{
+      const row = document.createElement('label'); row.className='opt';
+      const input = document.createElement('input'); input.type='radio'; input.name='q_'+i; input.value=op.a; input.required=true;
+      const text = document.createElement('div');
+      const arche = ARCH.find(a=>a.key===op.a).name;
+      text.innerHTML = SHOW_LABELS ? `<strong>${arche}</strong>: ${op.d}` : `${op.d}`;
+      row.appendChild(input); row.appendChild(text); opts.appendChild(row);
+    });
+    div.appendChild(title); div.appendChild(opts); div.dataset.target = q.target; box.appendChild(div);
+  });
+}
+
+function collect(){
+  const rows = [...document.querySelectorAll('.q')];
+  const points = {TM:0,LB:0,CH:0,DM:0,IN:0};
+  const countsAll = {TM:0,LB:0,CH:0,DM:0,IN:0};
+  let missing = 0;
+  for(const r of rows){
+    const chosen = r.querySelector('input[type=radio]:checked');
+    if(!chosen){ missing++; continue; }
+    const arch = chosen.value; countsAll[arch] += 1;
+    const target = r.dataset.target;
+    points[arch] += (arch===target? 3 : 1);
+  }
+  return {points, countsAll, missing};
+}
+function normalizeForRadar(points){
+  const norm = {TM:0,LB:0,CH:0,DM:0,IN:0};
+  for(const k of Object.keys(points)){
+    const p = points[k];
+    const clamped = Math.max(3, Math.min(9, p)); // per 3 target klausimus
+    norm[k] = 1 + (clamped-3)/6*4;               // 3..9 → 1..5
+  }
+  return norm;
+}
+
+function drawRadar(vals){
+  const svg=document.getElementById('radarSvg'); svg.innerHTML=''; const R=200, levels=5;
+  const gridColor=getComputedStyle(document.body).getPropertyValue('--grid').trim();
+  const labelColor=getComputedStyle(document.body).getPropertyValue('--muted').trim();
+  for(let lvl=1; lvl<=levels; lvl++){
+    const r=(lvl/levels)*R; const pts=[];
+    for(let i=0;i<ARCH.length;i++){ const ang=(-90+i*360/ARCH.length)*Math.PI/180; pts.push(`${(r*Math.cos(ang)).toFixed(1)},${(r*Math.sin(ang)).toFixed(1)}`); }
+    const poly=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    poly.setAttribute('points', pts.join(' ')); poly.setAttribute('fill','none'); poly.setAttribute('stroke',gridColor); svg.appendChild(poly);
+  }
+  for(let i=0;i<ARCH.length;i++){
+    const ang=(-90+i*360/ARCH.length)*Math.PI/180; const x=(220*Math.cos(ang)).toFixed(1); const y=(220*Math.sin(ang)).toFixed(1);
+    const text=document.createElementNS('http://www.w3.org/2000/svg','text');
+    text.setAttribute('x',x); text.setAttribute('y',y); text.setAttribute('text-anchor','middle'); text.setAttribute('dominant-baseline','middle'); text.setAttribute('fill',labelColor); text.textContent=ARCH[i].name; svg.appendChild(text);
+  }
+  const arr = ARCH.map(a=>vals[a.key]);
+  const pts = ARCH.map((a,i)=>{ const ang=(-90+i*360/ARCH.length)*Math.PI/180; const r=(arr[i]/5)*R; return `${(r*Math.cos(ang)).toFixed(1)},${(r*Math.sin(ang)).toFixed(1)}`; });
+  const poly=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+  poly.setAttribute('points', pts.join(' ')); poly.setAttribute('fill','rgba(102,166,255,0.25)'); poly.setAttribute('stroke','#66a6ff'); poly.setAttribute('stroke-width','2'); svg.appendChild(poly);
+}
+
+function buildDescriptions(norm){
+  const insights = document.getElementById('insights'); insights.innerHTML='';
+  const chips = document.getElementById('chips'); chips.innerHTML='';
+  const chip=(txt)=>{ const c=document.createElement('span'); c.className='chip'; c.textContent=txt; return c; };
+
+  // Pasirinkimų pasikartojimas (monotonijos indikatorius)
+  const {countsAll} = collect(); // neskaičiuojam taškų iš naujo, tik karo kartų
+  const sortedCounts = Object.entries(countsAll).sort((a,b)=>b[1]-a[1]);
+  const topPick = sortedCounts[0];
+  chips.appendChild(chip(`Dažniausiai rinktasi: ${ARCH.find(x=>x.key===topPick[0]).name} × ${topPick[1]} / 15`));
+  for(const [k,v] of sortedCounts.slice(1)) chips.appendChild(chip(`${ARCH.find(x=>x.key===k).name}: ${v}`));
+  if(topPick[1] >= 9) chips.appendChild(chip('⚠ Elgesys monotonus (≥9 iš 15)'));
+
+  // Bendras įvertinimas (be rekomendacijų)
+  const multAvg = (norm.TM + norm.LB + norm.CH + norm.DM + norm.IN) / 5; // 1..5
+  const cls = (multAvg>=3.8? 'Multiplier' : multAvg<2.2? 'Diminisher' : 'Accidental Diminisher');
+  document.getElementById('summary').innerHTML =
+    `Bendra: <strong>${cls}</strong>. ` +
+    ARCH.map(a=>`${a.name}: ${norm[a.key].toFixed(2)}`).join(' | ');
+
+  // Detalūs aprašymai (stiprybės / silpnybės)
+  const DETAIL = {
+    TM: {
+      title: 'Talent Magnet',
+      strengths: [
+        'Greitai pastebi žmonių stiprybes ir sukuria sąlygas joms atsiskleisti.',
+        'Tikslingai kviečia prisidėti prie svarbių temų, kur talentas kuria vertę.',
+        'Skatina mentorystę ir „augimą per įgalinimą“.'
+      ],
+      risks: [
+        'Perdėtas tikėjimas „talentu be struktūros“ — rizika ignoruoti standartus.',
+        'Gali pervertinti naujų žmonių indėlį be realios atskaitomybės.',
+        'Sunkiau dirbti su „tyliais“ ar skeptiškais komandos nariais.'
+      ]
+    },
+    LB: {
+      title: 'Liberator',
+      strengths: [
+        'Kuria saugią, bet reikalaujančią erdvę: aiškūs standartai ir pagarbus reagavimas.',
+        'Leidžia klysti mokantis, fokusas į sprendimą, ne kaltinimą.',
+        'Stiprina drausmę be mikro‑valdymo.'
+      ],
+      risks: [
+        'Gali uždelsti griežtesnį veiksmą, kai reikalinga disciplina „čia ir dabar“.',
+        'Per daug „saugos“ — rizika mažesnei iniciatyvai ir tempui.',
+        'Kartais painiojamas su „komforto zona“.'
+      ]
+    },
+    CH: {
+      title: 'Challenger',
+      strengths: [
+        'Formuluoja ambiciją ir aiškų „kodėl“, mobilizuoja komandą.',
+        'Paverčia iššūkius mokymosi galimybėmis, orientacija į „kaip padarysime“.',
+        'Padeda matyti didesnį paveikslą ir kryptį.'
+      ],
+      risks: [
+        'Gali „užkalbėti tikslu“ be detalios realybės patikros.',
+        'Per didelė ambicija — rizika perdegimui ar klaidoms.',
+        'Nepakankamai įtraukia alternatyvias perspektyvas.'
+      ]
+    },
+    DM: {
+      title: 'Debate Maker',
+      strengths: [
+        'Surenka faktus ir skirtingas perspektyvas prieš sprendimą.',
+        'Veda konstruktyvią diskusiją be asmeniškumų.',
+        'Padeda pasirinkti kokybiškesnę kryptį.'
+      ],
+      risks: [
+        'Gali „užstrigti analizėje“ — sprendimas vėluoja.',
+        'Per daug „už/prieš“ — rizika prarasti tempą.',
+        'Kartais komanda pavargsta nuo ilgų debatų.'
+      ]
+    },
+    IN: {
+      title: 'Investor',
+      strengths: [
+        'Deleguoja rezultatą (ne tik užduotis), suteikia resursus.',
+        'Sutaria dėl patikros taškų ir atsakomybės — aiškus „kas/kada/kaip“.',
+        'Pašalina kliūtis ir padeda augti savininkams.'
+      ],
+      risks: [
+        'Gali per daug pasitikėti be „early warning“ mechanizmo.',
+        '„Deleguoju ir dingstu“ — rizika prarastam „grįžtamo ryšio“ ritmui.',
+        'Kartais resursai skiriami be pakankamos debatų fazės.'
+      ]
+    }
+  };
+
+  ARCH.forEach(a=>{
+    const b = document.createElement('div'); b.className='block';
+    const h = document.createElement('h4'); h.textContent = `${DETAIL[a.key].title} — detalus aprašymas`; b.appendChild(h);
+    const sH = document.createElement('div'); sH.innerHTML = '<strong>Stiprybės</strong>'; b.appendChild(sH);
+    const sUL = document.createElement('ul');
+    DETAIL[a.key].strengths.forEach(t=>{ const li=document.createElement('li'); li.textContent=t; sUL.appendChild(li); });
+    b.appendChild(sUL);
+    const rH = document.createElement('div'); rH.innerHTML = '<strong>Silpnybės / rizikos</strong>'; b.appendChild(rH);
+    const rUL = document.createElement('ul');
+    DETAIL[a.key].risks.forEach(t=>{ const li=document.createElement('li'); li.textContent=t; rUL.appendChild(li); });
+    b.appendChild(rUL);
+    insights.appendChild(b);
+  });
+}
+
+function calc(){
+  const {points, countsAll, missing} = collect();
+  if(missing>0){ document.getElementById('status').innerHTML=`Liko neatsakytų: <span class=bad>${missing}</span>`; return; }
+  const norm = normalizeForRadar(points);
+  drawRadar(norm);
+  // Užuot teikę rekomendacijas — rodome detalius archetipų aprašymus
+  buildDescriptions(norm);
+  document.getElementById('status').textContent='✅ Apskaičiuota.';
+}
+function reset(){
+  document.querySelectorAll('.q input[type=radio]:checked').forEach(i=>i.checked=false);
+  document.getElementById('summary').textContent='Kol kas neapskaičiuota.';
+  document.getElementById('chips').innerHTML='';
+  document.getElementById('insights').innerHTML='';
+  document.getElementById('status').textContent='';
+  drawRadar({TM:1,LB:1,CH:1,DM:1,IN:1});
+}
+function toggleTheme(){
+  const html=document.documentElement; const isLight=html.getAttribute('data-theme')==='light';
+  html.setAttribute('data-theme', isLight? '' : 'light');
+  drawRadar({TM:1,LB:1,CH:1,DM:1,IN:1});
+}
+function toggleLabels(){
+  SHOW_LABELS = !SHOW_LABELS;
+  document.getElementById('labels').textContent = 'Rodyti archetipų etiketes: ' + (SHOW_LABELS? 'Įjungta' : 'Išjungta');
+  const pos = window.scrollY; render(); window.scrollTo(0,pos);
+}
+function reshuffle(){
+  const pos = window.scrollY; render(); reset(); window.scrollTo(0,pos);
+}
+function init(){
+  render(); reset();
+  document.getElementById('calc').addEventListener('click', calc);
+  document.getElementById('reset').addEventListener('click', ()=>{ render(); reset(); });
+  document.getElementById('pdf').addEventListener('click', ()=>window.print());
+  document.getElementById('theme').addEventListener('click', toggleTheme);
+  document.getElementById('shuffle').addEventListener('click', reshuffle);
+  document.getElementById('labels').addEventListener('click', toggleLabels);
+}
+window.addEventListener('DOMContentLoaded', init);
+</script>
+<script src="/tools/site-owner-mode.js?v=20260831-1"></script>
+<script src="/tools/site-insights.js?v=20260828-1"></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#dbeaf0" />
+  <title>2rasi · FUN v2 lab</title>
+  <link rel="icon" href="/assets/logo-2.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css?v=20260821-1910" />
+  <link rel="stylesheet" href="/hero.css?v=20260825-pazvelk" />
+  <link rel="stylesheet" href="/hero-landscape.css?v=20260816-1145" />
+  <link rel="stylesheet" href="/semantic-reveal.css?v=20260816-1145" />
+  <link rel="stylesheet" href="/experiment-actions.css?v=20260816-1145" />
+  <style>
+    body.fun-v2 { background:#eef6f8; }
+
+    /* The production hero above this section intentionally uses shared production CSS/JS unchanged. */
+    .bridge-journey { position:relative; height:150svh; }
+    .bridge-scene {
+      --p:0; --impact:0; --reveal:0;
+      position:sticky; top:0; height:100svh; overflow:hidden; isolation:isolate;
+      display:grid; place-items:center;
+      background:
+        radial-gradient(ellipse at 50% 37%, rgba(255,255,255,.96) 0%, rgba(241,249,251,.78) 24%, rgba(216,234,239,.18) 47%, rgba(216,234,239,0) 69%),
+        linear-gradient(180deg,#deedf2 0%,#d9e9ee 45%,#afc8d0 51%,#92aeb9 68%,#7899a6 100%);
+    }
+    .bridge-scene::before {
+      content:""; position:absolute; inset:0; z-index:-1;
+      background:linear-gradient(180deg,rgba(247,251,252,.04) 0 48%,rgba(20,65,82,.08) 100%);
+    }
+    .bridge-horizon {
+      position:absolute; left:0; right:0; top:49.4%; height:2px;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.74) 24%,rgba(47,99,116,.22) 52%,rgba(255,255,255,.54) 76%,transparent);
+      box-shadow:0 1px 12px rgba(255,255,255,.22);
+    }
+    .bridge-drop {
+      position:absolute; left:50%; top:0;
+      width:clamp(82px,16vw,142px); aspect-ratio:1;
+      border-radius:54% 46% 51% 49% / 58% 48% 52% 42%;
+      border:1px solid rgba(255,255,255,.7);
+      background:
+        radial-gradient(ellipse at 30% 22%,rgba(255,255,255,.94) 0 4%,rgba(255,255,255,.5) 5%,rgba(255,255,255,.08) 16%,transparent 25%),
+        radial-gradient(ellipse at 70% 77%,rgba(34,102,126,.15),rgba(34,102,126,.05) 30%,transparent 58%),
+        radial-gradient(circle at 48% 43%,rgba(255,255,255,.10),rgba(118,181,198,.08) 62%,rgba(255,255,255,.24));
+      box-shadow:inset 8px 9px 18px rgba(255,255,255,.42),inset -13px -15px 25px rgba(25,82,103,.14),0 22px 46px rgba(20,67,86,.12);
+      backdrop-filter:blur(.7px) saturate(1.18) brightness(1.03);
+      -webkit-backdrop-filter:blur(.7px) saturate(1.18) brightness(1.03);
+      transform:translate(-50%,calc(10svh + min(var(--p),.46) / .46 * 35svh)) scale(calc(1 - var(--impact) * .16),calc(1 + var(--impact) * .09));
+      opacity:calc(1 - max(0,(var(--p) - .49) * 9));
+      will-change:transform,opacity;
+    }
+    .bridge-drop::after {
+      content:""; position:absolute; left:22%; right:17%; bottom:8%; height:14%; border-radius:50%;
+      background:radial-gradient(ellipse,rgba(29,97,121,.24) 0%,rgba(255,255,255,.18) 36%,transparent 72%);
+      filter:blur(3px); opacity:.7;
+    }
+    .impact-point { position:absolute; left:50%; top:49.5%; width:1px; height:1px; pointer-events:none; }
+    .bridge-ripple {
+      position:absolute; left:50%; top:50%; width:34px; height:11px;
+      border:1.5px solid rgba(31,104,128,.52); border-radius:50%;
+      transform:translate(-50%,-50%) scale(calc(.3 + var(--impact) * 16),calc(.3 + var(--impact) * 5.2));
+      opacity:calc(var(--impact) * (1 - var(--reveal) * .55));
+      filter:blur(.1px);
+    }
+    .bridge-ripple.second {
+      border-color:rgba(255,255,255,.46);
+      transform:translate(-50%,-50%) scale(calc(.3 + var(--impact) * 11),calc(.3 + var(--impact) * 3.7));
+      opacity:calc(var(--impact) * .58 * (1 - var(--reveal) * .4));
+    }
+    .bridge-copy {
+      position:absolute; left:50%; top:27%; width:min(92vw,1080px); transform:translateX(-50%);
+      text-align:center; color:#071b2e; pointer-events:none;
+      opacity:var(--reveal);
+      filter:blur(calc((1 - var(--reveal)) * 7px));
+    }
+    .bridge-word {
+      margin:0; font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(3.7rem,14vw,9rem); font-weight:400; line-height:.86; letter-spacing:-.055em;
+      transform:translateY(calc((1 - var(--reveal)) * 24px));
+    }
+    .bridge-reflection {
+      position:absolute; left:50%; top:53%; width:min(92vw,1080px); transform:translateX(-50%) scaleY(-1);
+      text-align:center; font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(3.7rem,14vw,9rem); line-height:.86; letter-spacing:-.055em;
+      color:rgba(7,27,46,.11); opacity:calc(var(--reveal) * .8); filter:blur(1.1px);
+      -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 72%);
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.9),transparent 72%);
+      pointer-events:none;
+    }
+    .bridge-line {
+      margin:26px 0 0; font-size:.72rem; font-weight:720; letter-spacing:.22em; text-transform:uppercase;
+      color:rgba(7,27,46,.56); opacity:max(0,calc((var(--reveal) - .35) * 1.55));
+    }
+    .bridge-cue {
+      position:absolute; left:50%; bottom:34px; transform:translateX(-50%);
+      font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(7,27,46,.48);
+      opacity:max(0,calc((var(--reveal) - .58) * 2.2));
+    }
+    .bridge-cue::after {
+      content:""; display:block; width:11px; height:11px; margin:12px auto 0;
+      border-right:1px solid currentColor; border-bottom:1px solid currentColor; transform:rotate(45deg);
+    }
+
+    .fun-experiments { padding-top:clamp(70px,10vw,120px); }
+    .fun-experiments .section-intro { margin-bottom:34px; }
+    .fun-experiments .section-intro .kicker { margin-bottom:0; }
+
+    @media (max-width:760px) {
+      .bridge-journey { height:142svh; }
+      .bridge-copy { top:25%; }
+      .bridge-word,.bridge-reflection { font-size:clamp(3.6rem,14vw,6.2rem); }
+      .bridge-line { margin-top:20px; font-size:.64rem; }
+      .fun-experiments { padding-top:70px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .bridge-journey { height:auto; }
+      .bridge-scene { position:relative; height:92svh; --p:1 !important; --impact:1 !important; --reveal:1 !important; }
+      .bridge-drop { display:none; }
+    }
+  </style>
+</head>
+<body class="fun-v2">
+  <header class="site-header" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="2rasi home">2rasi</a>
+    <nav>
+      <a href="#experiments">Experiments</a>
+      <a href="/#about">About</a>
+      <a class="language-switch" href="https://2rasi.lt/lab/fun-v2/" aria-label="Perjungti į lietuvių kalbą">LT</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Production hero: markup and shared behaviour intentionally kept unchanged. -->
+    <section id="top" class="hero" aria-labelledby="hero-title">
+      <div class="hero-image" aria-hidden="true"></div>
+      <div class="veil" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">A small shift can change the view</p>
+        <h1 id="hero-title">Look again.</h1>
+        <p class="hero-sub">Tools and experiments for seeing things differently.</p>
+      </div>
+      <div class="perception-stage" aria-label="Interactive perception experiment">
+        <span class="base-word" aria-hidden="true">OBSERVE</span>
+        <span class="notice-word" aria-hidden="true">NOTICE</span>
+        <button class="lens" type="button" aria-label="Move the lens to reveal another view"></button>
+        <p class="hint">Move · look · notice</p>
+      </div>
+      <button class="scroll-cue" type="button" aria-label="Continue the story"><span></span></button>
+      <div class="ripple ripple-a" aria-hidden="true"></div>
+      <div class="ripple ripple-b" aria-hidden="true"></div>
+    </section>
+
+    <section id="fun-bridge" class="bridge-journey" aria-label="From noticing to trying">
+      <div class="bridge-scene">
+        <div class="bridge-horizon" aria-hidden="true"></div>
+        <div class="bridge-drop" aria-hidden="true"></div>
+        <div class="impact-point" aria-hidden="true">
+          <div class="bridge-ripple"></div>
+          <div class="bridge-ripple second"></div>
+        </div>
+        <div class="bridge-copy">
+          <p class="bridge-word">TRY.</p>
+          <p class="bridge-line">Pick one experiment.</p>
+        </div>
+        <div class="bridge-reflection" aria-hidden="true">TRY.</div>
+        <div class="bridge-cue">Keep going</div>
+      </div>
+    </section>
+
+    <section id="experiments" class="experiments fun-experiments section-shell" aria-label="Experiments">
+      <div class="section-intro reveal"><p class="kicker">EXPERIMENTS</p></div>
+      <div class="experiment-grid">
+        <article class="experiment-card reveal" id="mirror">
+          <span class="index">01</span>
+          <div class="experiment-copy">
+            <div class="experiment-heading"><h3>Mirror / Veidrodis</h3><span class="experiment-state live">Live · EN/LT</span></div>
+            <p class="experiment-summary">Notice what may be getting in your way.</p>
+            <div class="experiment-meta"><span>Reflection experiment</span><span>English &amp; Lithuanian</span></div>
+          </div>
+          <div class="experiment-actions"><a href="/tools/mirror/">About <span>→</span></a><a href="/tools/mirror/run/">Start <span>→</span></a></div>
+        </article>
+
+        <article class="experiment-card reveal" id="karpman">
+          <span class="index">02</span>
+          <div class="experiment-copy">
+            <div class="experiment-heading"><h3>Drama Triangle</h3><span class="experiment-state live">Live · EN/LT</span></div>
+            <p class="experiment-summary">A reflection on the roles we may slip into when tension rises.</p>
+            <div class="experiment-meta"><span>Conflict patterns</span><span>18 statements</span></div>
+          </div>
+          <div class="experiment-actions"><a href="/tools/drama-triangle/">About <span>→</span></a><a href="/tools/drama-triangle/run/en/">Start <span>→</span></a></div>
+        </article>
+
+        <article class="experiment-card reveal" id="multipliers">
+          <span class="index">03</span>
+          <div class="experiment-copy">
+            <div class="experiment-heading"><h3>Multipliers</h3><span class="experiment-state live">Live · EN/LT</span></div>
+            <p class="experiment-summary">A leadership reflection experiment inspired by the Multipliers framework.</p>
+            <div class="experiment-meta"><span>Leadership reflection</span><span>15 situations</span></div>
+          </div>
+          <div class="experiment-actions"><a href="/tools/multipliers/">About <span>→</span></a><a href="/tools/multipliers/run/en/">Start <span>→</span></a></div>
+        </article>
+
+        <article class="experiment-card reveal" id="2pair">
+          <span class="index">04</span>
+          <div class="experiment-copy">
+            <div class="experiment-heading"><h3>2Pair</h3><span class="experiment-state live">Research active</span></div>
+            <p class="experiment-summary">A reflection framework being developed through temporary calibration and validation studies.</p>
+            <div class="experiment-meta"><span>Product in development</span><span>Wave 1 + Calibration v0.1 live</span></div>
+          </div>
+          <div class="experiment-actions"><a href="/tools/2pair/">About <span>→</span></a><a href="https://omesg360.eu/wave1/" target="_blank" rel="noopener">Wave 1 <span>↗</span></a><a href="https://omesg360.eu/conflictlab/releases/calibration-v0.1/" target="_blank" rel="noopener">Calibration <span>↗</span></a></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>2rasi</strong><span>FUN v2 lab · noindex</span></div>
+    <div class="footer-links"><a href="/">Back to live 2rasi</a><a href="https://2rasi.lt/lab/fun-v2/">LT ↗</a></div>
+  </footer>
+
+  <script src="/i18n.js?v=20260825-pazvelk"></script>
+  <script src="/drop-webgl.js?v=20260816-1145"></script>
+  <script src="/script.js?v=20260816-1145"></script>
+  <script>
+    (() => {
+      const clamp = (v,a=0,b=1) => Math.max(a,Math.min(b,v));
+      const smooth = v => { const t=clamp(v); return t*t*(3-2*t); };
+      const journey = document.querySelector('.bridge-journey');
+      const scene = document.querySelector('.bridge-scene');
+      const cue = document.querySelector('.scroll-cue');
+      const lens = document.querySelector('.lens');
+      const lt = document.documentElement.lang === 'lt';
+
+      document.querySelector('.bridge-word').textContent = lt ? 'IŠBANDYK.' : 'TRY.';
+      document.querySelector('.bridge-reflection').textContent = lt ? 'IŠBANDYK.' : 'TRY.';
+      document.querySelector('.bridge-line').textContent = lt ? 'Pasirink vieną eksperimentą.' : 'Pick one experiment.';
+      document.querySelector('.bridge-cue').textContent = lt ? 'Toliau' : 'Keep going';
+
+      const switcher = document.querySelector('.language-switch');
+      if (switcher) switcher.href = lt ? 'https://2rasi.com/lab/fun-v2/' : 'https://2rasi.lt/lab/fun-v2/';
+      const footerLang = document.querySelector('.footer-links a:last-child');
+      if (footerLang) { footerLang.href = switcher?.href || '/'; footerLang.textContent = lt ? 'EN ↗' : 'LT ↗'; }
+
+      const routes = {
+        karpman: lt ? '/tools/drama-triangle/run/' : '/tools/drama-triangle/run/en/',
+        multipliers: lt ? '/tools/multipliers/run/' : '/tools/multipliers/run/en/'
+      };
+      Object.entries(routes).forEach(([id,href]) => {
+        const a = document.querySelector(`#${id} .experiment-actions a:nth-child(2)`);
+        if (a) a.href = href;
+      });
+
+      const goBridge = e => {
+        e.preventDefault(); e.stopImmediatePropagation();
+        journey.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+      };
+      cue?.addEventListener('click',goBridge,{capture:true});
+      lens?.addEventListener('dblclick',goBridge,{capture:true});
+
+      function paint() {
+        const r = journey.getBoundingClientRect();
+        const travel = Math.max(1,r.height-innerHeight);
+        const p = clamp(-r.top/travel);
+        const impact = smooth((p-.36)/.16);
+        const reveal = smooth((p-.50)/.30);
+        scene.style.setProperty('--p',p.toFixed(4));
+        scene.style.setProperty('--impact',impact.toFixed(4));
+        scene.style.setProperty('--reveal',reveal.toFixed(4));
+      }
+      addEventListener('scroll',paint,{passive:true});
+      addEventListener('resize',paint,{passive:true});
+      paint();
+    })();
+  </script>
+</body>
+</html>

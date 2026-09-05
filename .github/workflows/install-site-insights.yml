@@ -1,0 +1,58 @@
+name: Install 2rasi insights client
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - hero-webgl
+    paths:
+      - scripts/install-site-insights.py
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: hero-webgl
+          fetch-depth: 0
+
+      - name: Inject insights client into production pages
+        run: python scripts/install-site-insights.py
+
+      - name: Verify injection
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import sys
+          paths = [line.strip() for line in Path('scripts/insights-pages.txt').read_text().splitlines() if line.strip() and not line.startswith('#')]
+          missing = []
+          for path in paths:
+              text = Path(path).read_text(encoding='utf-8')
+              if '/tools/site-insights.js?v=20260828-1' not in text:
+                  missing.append(path)
+          if missing:
+              print('Missing insights script:', *missing, sep='\n- ')
+              sys.exit(1)
+          print(f'Insights client present on {len(paths)} production pages.')
+          PY
+
+      - name: Commit patched pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "No page changes required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html tools
+          git commit -m "feat(insights): instrument production pages"
+          git push origin HEAD:hero-webgl

@@ -1,0 +1,45 @@
+name: WorkStyle v0.7 checks
+
+on:
+  push:
+    branches:
+      - hero-webgl
+    paths:
+      - 'tools/workstyle15/v07-*'
+      - 'workers/workstyle-pilot/**'
+      - '.github/workflows/workstyle-v07-check.yml'
+      - '.github/workflows/workstyle-pilot-worker.yml'
+  pull_request:
+    paths:
+      - 'tools/workstyle15/v07-*'
+      - 'workers/workstyle-pilot/**'
+      - '.github/workflows/workstyle-v07-check.yml'
+      - '.github/workflows/workstyle-pilot-worker.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate LT-E form and balanced ordering
+        run: node tools/workstyle15/validate-v07.mjs
+
+      - name: Check intake client syntax
+        run: node --check tools/workstyle15/v07-intake-client.js
+
+      - name: Check intake config syntax
+        run: node --check tools/workstyle15/v07-intake-config.js
+
+      - name: Check Worker syntax
+        run: node --check workers/workstyle-pilot/src/index.js
