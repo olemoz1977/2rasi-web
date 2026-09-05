@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T11:31:00Z",
-  "status": "V04_DETERMINISTIC_HUMAN_INTERPRETATION_DEPLOYED_TECHNICAL_PASS",
+  "updatedAtUtc": "2026-09-05T11:28:00Z",
+  "status": "V04_MATRIX_PRIMARY_HUMAN_INTERPRETATION_LOCAL_PASS_DEPLOY_RECHECK_IN_PROGRESS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -251,24 +251,22 @@
     "humanInterpretation": {
       "implemented": true,
       "schema": "2rasi.priolens.open14.result-interpretation-v0.1",
-      "module": "priolens/open14-v04/result_interpretation_v04.mjs",
-      "placement": "below matrix relationship note and before detail actions",
-      "titleLt": "Viena galima interpretacija",
+      "implementation": "priolens/open14-v04/result_interpretation_v04.mjs",
+      "mode": "deterministic auditable composer; no LLM at runtime",
+      "participantHeadingLt": "Viena galima interpretacija",
       "boundaryLt": "Tai bendrinė refleksija pagal šios sesijos pasirinkimus. Ne diagnozė ir ne išvada apie tavo asmenybę.",
-      "engine": "deterministic rule-based composer; no LLM/network call",
       "inputs": [
-        "all raw MOST 3/3 repeats",
-        "all raw MOST 2/3 repeats",
-        "final Channel-B/B+ insufficiency route endpoint(s)",
-        "exact 3/3 LEAST/background only as weak contrast",
-        "formative A↔B construct relation constraints"
+        "B/B+ insufficiency route as narrative anchor",
+        "all raw MOST 3/3 and 2/3 repeated A directions",
+        "exact 3/3 LEAST only as cautious secondary contrast"
       ],
-      "aPlusRole": "A+ may choose one direction for detail, but must not erase other raw 3/3 or 2/3 repeats from the general interpretation",
-      "leastBoundary": "never infer dislike, low importance or absence of need",
-      "noStoryRule": "when no defensible bridge exists, do not manufacture an aha; keep A and B as separate perspectives",
-      "pdfIncluded": true,
-      "referencesStayInDetails": true,
-      "designDoc": "tools/priolens/docs/OPEN14_V04_DETERMINISTIC_HUMAN_INTERPRETATION_2026-09-05.md"
+      "rules": [
+        "never claim A caused B",
+        "never infer subconscious, true need or personality",
+        "use specific semantic bridges only when construct map supports a plausible relation",
+        "if no defensible bridge exists, state that the perspectives need not be forced into one story"
+      ],
+      "pdfIncluded": true
     }
   },
   "deploymentGates": {
@@ -383,9 +381,15 @@
     "humanInterpretationLocalPassed": true,
     "humanInterpretationDeployRun": 33963394155,
     "humanInterpretationDeployPassed": true,
-    "humanInterpretationModuleMimePassed": true
+    "humanInterpretationModuleMimePassed": true,
+    "humanInterpretationLogicRun": 33963282744,
+    "humanInterpretationLogicPassed": true,
+    "humanInterpretationLocalUiRun": 33963316027,
+    "humanInterpretationLocalUiPassed": true,
+    "humanInterpretationDeployRecheckRun": 33964509120,
+    "humanInterpretationDeployRecheckPassed": false
   },
-  "nextAction": "Owner reviews the human interpretation wording on real results, especially whether the generated hypothesis feels useful without sounding diagnostic or overconfident. Do not replace the deterministic composer with an LLM before this language/fit review.",
+  "nextAction": "Confirm clean deploy run 33964509120, visually review the deterministic human interpretation, recheck Android one-page PDF height, then prepare but do not execute v0.2 -> v0.4 promotion without explicit owner approval.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
@@ -426,5 +430,11 @@
       "CONNECTION_vs_BELONGING",
       "EXPLORATION_vs_KNOWLEDGE"
     ]
+  },
+  "promotion": {
+    "liveV02Status": "UNCHANGED",
+    "v04PromotionStatus": "PENDING_EXPLICIT_OWNER_APPROVAL",
+    "requireRollback": true,
+    "targetAfterApproval": "replace 2rasi.lt/.com PrioLens entry target from v0.2 to v0.4 only after final real-device + PDF + interpretation review"
   }
 }
