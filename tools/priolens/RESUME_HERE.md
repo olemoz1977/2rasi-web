@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 PROMOTION-READY / HARDENED DETERMINISTIC INTERPRETATION DEPLOYED / REAL ANDROID A4 1/1 PASS / LIVE SWITCH PENDING EXPLICIT OWNER APPROVAL
-Updated: 2026-09-05
+Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / DATA COLLECTION + RESEARCH ADMIN ACTIVE / ACCEPTED MOBILE MOST-LEAST UX / DETERMINISTIC INTERPRETATION DEPLOYED
+Updated: 2026-09-05 22:11 EEST
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -9,7 +9,41 @@ Branch: `feature/priolens-architecture`
 
 **Repo is source of truth. Do not reconstruct PrioLens from chat memory.**
 
-## Final v0.4 promotion-readiness checkpoint
+## CURRENT CHECKPOINT — PUBLIC PILOT LIVE
+
+Canonical handoff:
+`NEW_CHAT_HANDOFF_2026-09-05_PUBLIC_PILOT_CHECKPOINT.md`
+
+This checkpoint **supersedes all earlier statements that v0.4 promotion/live switch is still pending or that v0.2 remains the current public participant boundary.**
+
+Current participant runtime:
+`https://omesg360.eu/priolens-open14-v04/`
+
+Current research API/admin:
+- `https://omesg360.eu/priolens-open14-v04-api/`;
+- `https://omesg360.eu/priolens-open14-v04-api/admin.php`.
+
+Public-pilot analytical cutoff:
+- approximately **2026-09-05 18:08 EEST**, based on owner publication timing;
+- earlier DB records remain retained but are not automatically public-pilot N;
+- `systemSmoke:true` is excluded from research N; older manual/dev sessions may still require time/provenance filtering.
+
+Accepted owner-reviewed Android MOST/LEAST state:
+- before MOST, rollback/similar controls hidden;
+- after MOST, selected first image stays visible but is immediately de-emphasized with `PIRMAS` marker retained;
+- two remaining images are full-weight LEAST targets;
+- LEAST hint explicitly explains the direct image choice and `Abu panašiai` fallback;
+- `Keisti pirmą` remains visually secondary;
+- owner acceptance at 22:11 EEST: **VEIKIA**.
+
+Latest accepted technical gate:
+- runtime commit `660ec63f19cc0288b4ebc7bd1f0a2e426900b246`;
+- deploy run `33986214567` (run 176), job `101360063259`: **SUCCESS**;
+- API/route checks, remote bytes/MIME, full deployed 390x844 flow and DB save: PASS.
+
+Primary next mode: **observe the public pilot; do not continue speculative UI redesign without repeated real-user evidence or a clear functional failure.**
+
+## Historical v0.4 promotion-readiness checkpoint — SUPERSEDED
 
 Current runtime candidate:
 - repo: `olemoz1977/omesg360`;
@@ -41,8 +75,9 @@ Promotion state:
 
 
 Recovery order:
-0. `NEW_CHAT_HANDOFF_2026-09-05_RESULT_INTERPRETATION.md` for the latest handoff and immediate queue;
+0. `NEW_CHAT_HANDOFF_2026-09-05_PUBLIC_PILOT_CHECKPOINT.md` for the current live/public-pilot state;
 1. this file;
+2. `NEW_CHAT_HANDOFF_2026-09-05_RESULT_INTERPRETATION.md` for the earlier interpretation-specific checkpoint;
 2. `docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md` for the latest construct-level research audit;
 3. `config/open14-v0.4-construct-map-2026-09-05.json` for the canonical A↔B construct relation map;
 4. `docs/OPEN14_V04_POST_AUDIT_IMPLEMENTATION_REVIEW_ANDROID_BOOT_2026-09-05.md` for the latest real-device regression review;
