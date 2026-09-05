@@ -426,3 +426,36 @@ It must not be described as a neuroscience-derived six-level or twelve-need arch
 6. Meaning, contribution and received support are evidence in the opposite direction: Channel B contains important self-report domains without direct A equivalents.
 7. This asymmetry supports the frozen principle that Channel A and Channel B are **independent perspectives**, not one latent scale.
 8. MOST–LEAST is methodologically promising as relative choice data, but it does not validate the constructs. The critical next evidence must come from pilot choice modeling, exemplar controls and participant self-explanations.
+
+
+## Implemented semantic revision checkpoint
+
+Owner approved applying the audit without changing the current counts:
+- Channel A remains 14 visual families;
+- Channel B remains 12 sufficiency items;
+- no family/item added or removed;
+- no visual pixels changed.
+
+Canonical mapping:
+`tools/priolens/config/open14-v0.4-construct-map-2026-09-05.json`
+
+Implemented decisions:
+- RESOURCE construct narrowed from `Resource / reward` toward **resource access / availability**;
+- ORDER is **RELATED**, not DIRECT, to `CLARITY_PREDICTABILITY`;
+- CARE participant-facing label is neutralized to **Rūpestis / pagalba** so the result does not infer giver identity from the visual choice;
+- CARE has no direct Channel-B match;
+- CONTROL is treated as **direct control / action-effect agency**, distinct from autonomy and with no direct B match;
+- OPPORTUNITY is treated as **environmental affordance / available possibility**, not an internal need and with no direct B match;
+- CONNECTION/BELONGING remain separate visual families but are explicitly treated as relatedness/affiliation subfamilies pending data;
+- EXPLORATION/KNOWLEDGE remain separate visual families but are explicitly treated as curiosity/information-seeking subfamilies pending data;
+- the technical B ID `AUTONOMY_AGENCY` is retained for compatibility, but its semantic alias is **AUTONOMY_VOLITION**;
+- `CARE_SUPPORT_PRESENT` now explicitly measures support received from others:
+  **„Jaučiu, kad iš kitų sulaukiu pakankamai rūpesčio, paramos ir žmogiško dėmesio.“**
+
+Because the CARE wording changes the meaning of stored Channel-B responses:
+- sufficiency schema is bumped to `2rasi.priolens.sufficiency-v0.3`;
+- v0.4 draft/result local-storage namespaces are isolated to `v041`;
+- server validation rejects payloads without the revised sufficiency schema;
+- old completed results are not silently reinterpreted under the new received-support wording.
+
+MOST and LEAST remain unchanged and analytically separate.
