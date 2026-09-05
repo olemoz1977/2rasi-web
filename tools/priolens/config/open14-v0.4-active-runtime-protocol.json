@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T14:38:30Z",
-  "status": "V04_LIVE_PROMOTED_SAME_TRIAL_UNDO_BEFORE_LEAST_PASS",
+  "updatedAtUtc": "2026-09-05T16:12:00Z",
+  "status": "V04_LIVE_PROMOTED_B_DETAIL_VIEWPORT_PRINT_BACK_REGRESSION_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -414,9 +414,16 @@
       "safe-area bottom padding added",
       "expanded research content remains reachable",
       "sheet bottom stays within visible viewport at 390x844"
-    ]
+    ],
+    "bDetailViewportPortalPassed": true,
+    "bDetailPrintLeakGuardPassed": true,
+    "bDetailBrowserBackUnlockPassed": true,
+    "bDetailFreezeRegressionCommit": "c76e678844374e798e09b22697a9ed596c3bec2a",
+    "bDetailFreezeRegressionLocalSmokeRun": 33976817896,
+    "bDetailFreezeRegressionDeployRun": 33977013636,
+    "bDetailFreezeRootCause": "suffDetail was appended under transformed #matrixResult, making fixed positioning relative to the transformed ancestor; stale detail/body scroll-lock then leaked into print/back flow."
   },
-  "nextAction": "Owner can verify the live same-trial 'Atšaukti pirmą' action on mobile. Continue normal v0.4 owner review; do not add backward navigation across completed Channel-A trials.",
+  "nextAction": "Owner recheck on Android: Antro atsakymo detalės should appear as a bottom sheet above the visible matrix; Close and browser Back must unlock; PDF must contain only the matrix report, never the detail sheet.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
