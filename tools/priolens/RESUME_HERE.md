@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / CONSTRUCT-AUDIT SEMANTIC REVISION DEPLOYED TECHNICAL PASS / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 PRE-RESULT 12×12 MATRIX + PDF DEPLOYED TECHNICAL PASS / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -13,13 +13,14 @@ Recovery order:
 1. this file;
 2. `docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md` for the latest construct-level research audit;
 3. `config/open14-v0.4-construct-map-2026-09-05.json` for the canonical A↔B construct relation map;
-4. `config/open14-v0.4-active-runtime-protocol.json` for the current owner-preview runtime;
-5. `docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md` for the frozen result information architecture;
-6. `docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md` for the visual implementation rules;
-7. `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` for the pre-freeze owner-review history;
-8. `config/open14-v0.4-adaptive-clarifiers-protocol.json` and `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md` for the frozen A+/B+ rationale and rules;
-9. `config/open14-v0.3-active-runtime-protocol.json` and `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md` for the preserved v0.3.1 baseline;
-10. older v0.3 / bank docs as historical evidence.
+4. `docs/OPEN14_V04_PRE_RESULT_MATRIX_PDF_DEPLOYED_2026-09-05.md` for the deployed matrix/PDF checkpoint;
+5. `config/open14-v0.4-active-runtime-protocol.json` for the current owner-preview runtime;
+6. `docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md` for the frozen result information architecture;
+7. `docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md` for the visual implementation rules;
+8. `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` for the pre-freeze owner-review history;
+9. `config/open14-v0.4-adaptive-clarifiers-protocol.json` and `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md` for the frozen A+/B+ rationale and rules;
+10. `config/open14-v0.3-active-runtime-protocol.json` and `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md` for the preserved v0.3.1 baseline;
+11. older v0.3 / bank docs as historical evidence.
 
 Later checkpoints supersede older same-day notes when they conflict.
 The v0.4 owner preview is now implemented and deployed. It does **not** replace live v0.2 or open external recruitment.
@@ -463,3 +464,41 @@ Rules:
 - no cell size, color intensity, distance or route may imply need strength;
 - no matrix geometry may imply that Channel A causes Channel B;
 - MOST and LEAST remain separate observations.
+
+
+## 2026-09-05 pre-result relationship matrix + PDF checkpoint
+
+Canonical implementation note:
+`docs/OPEN14_V04_PRE_RESULT_MATRIX_PDF_DEPLOYED_2026-09-05.md`
+
+Deployed owner-preview flow now adds:
+1. final Channel-B/B+ resolution;
+2. **12×12 relationship matrix**;
+3. `Toliau į rezultatą`;
+4. preserved ship/map result world.
+
+Matrix rules:
+- both axes use the same 12 exact Channel-B statements;
+- six 2-item groups are visual/product grouping only;
+- first-glance focus = filled navy dot;
+- only exact 3/3 LEAST/background = hollow navy dot;
+- Channel-B route endpoint(s) = aqua dot;
+- no marker distance, size or intensity encodes need strength;
+- DIRECT / RELATED / BRIDGE are relationship-display grammar, not validated latent coordinates;
+- CARE / CONTROL / OPPORTUNITY use primary representational bridge intersections plus explicit related-area notes;
+- no A focus or no B route => do not manufacture a marker;
+- mobile matrix scrolls horizontally with sticky left axis and auto-centers around visible result markers;
+- palette follows 2rasi site variables: navy ink + mist/aqua system.
+
+PDF:
+- `Išsaugoti PDF` available on matrix and existing result;
+- implemented through browser/system Print → Save as PDF with A4-landscape print CSS;
+- report = participant summary + matrix;
+- no server-side PDF generation and no external PDF dependency.
+
+Technical evidence:
+- local 390×844 matrix smoke `33953958723`: SUCCESS;
+- deployed 390×844 final gate `33954090061`: SUCCESS;
+- matrix module byte/MIME, API, matrix→result transition and final save: PASS.
+
+Owner real-phone review is now the next gate.
