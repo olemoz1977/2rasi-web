@@ -1,150 +1,127 @@
 # PrioLens v0.4 — matrix signal grammar + PDF revision
 
-Status: DEPLOYED TECHNICAL PASS / OWNER REAL-PHONE VISUAL REVIEW PENDING
+Status: CURRENT / OWNER REAL-ANDROID PDF PASS / PROMOTION PENDING
 Date: 2026-09-05
 
-## Trigger
+This document is the current source of truth for the v0.4 matrix signal grammar and PDF layout. It supersedes the earlier same-day two-page landscape and full orange row/column variants.
 
-Owner approved a simpler result grammar:
-- no navy MOST point;
-- no hollow LEAST point in the primary matrix;
-- no aqua B point;
-- MOST repetition shown through green styling on the selected A-direction chip;
-- Channel-B ratings of 3 or lower shown as orange row/column bands;
-- final B/B+ route shown with stronger orange outline;
-- LEAST remains available only in first-glance detail;
-- result summary uses insufficiency wording rather than repeating an affirmative “pakankamai” statement.
+## Primary participant result
 
-The owner-supplied browser PDF was also reviewed. Its main weaknesses were:
-- matrix text too small to read comfortably;
-- full Channel-B statements repeated on both axes in the print matrix;
-- LEAST still occupied a primary summary card;
-- old point-marker grammar remained;
-- “Du žvilgsniai viename žemėlapyje” was stale after matrix became the primary result;
-- an unintended blank second page appeared.
+The 12×12 relationship matrix is the primary final result.
 
-## Current participant-facing result grammar
+- Ship/map is deactivated from the normal participant flow.
+- Both matrix axes use the same 12 exact Channel-B statements.
+- Six 2-item groups are product/navigation grouping only.
+- Matrix geometry does not encode causality, psychological distance, need strength or importance.
 
-### Channel A
+## Channel A signal grammar
 
-Primary matrix:
-- only the resolved first-glance direction is highlighted;
-- raw MOST 3/3 -> darker green border + pale green fill;
-- raw MOST 2/3 -> lighter green border + paler green fill;
-- there is no separate MOST point marker.
+The primary matrix shows every raw first-choice family that repeated:
 
-Green intensity encodes **repetition count only**, not need strength, importance or positive value.
+- raw MOST 3/3 = fully filled dark-green family chip / summary badge;
+- raw MOST 2/3 = fully filled light-green family chip / summary badge;
+- no separate MOST point marker.
 
-### LEAST
+Green intensity encodes repetition count only.
 
-Primary matrix:
-- not shown;
-- no LEAST summary card;
-- no LEAST point/legend.
+A+ remains a clarifier:
+- when it resolves one family, that focus is used in detail;
+- when A+ returns no clear family, all raw 3/3 and 2/3 repetitions stay visible and no artificial single focus is created.
 
-Detail:
-- exact 3/3 repeated LEAST/background directions remain in `Pirmo žvilgsnio detalės`;
-- 2/3 LEAST remains raw research data only.
+LEAST:
+- is not shown in the primary matrix;
+- is not part of the general PDF matrix signal;
+- only exact 3/3 LEAST/background may appear cautiously in first-glance detail and human interpretation.
 
-PDF appendix:
-- exact 3/3 LEAST/background names may appear as secondary detail, not as a primary matrix signal.
-
-### Channel B
+## Channel B signal grammar
 
 For every numeric Channel-B rating <= 3:
-- corresponding top-axis item is pale orange;
-- corresponding left-axis item is pale orange;
-- the full matching matrix row and column are pale orange.
 
-Overlapping low-sufficiency rows/columns do not become progressively darker.
+- only that exact top-axis item is pale orange;
+- only that exact left-axis item is pale orange;
+- only that same item's diagonal matrix cell is pale orange.
+
+Orange must not spill through unrelated rows, columns or other need areas.
 
 Final B/B+ route:
-- no aqua point;
-- route item(s) receive a stronger orange outline on axis cells and the diagonal matrix cell;
-- all valid tied endpoints remain visible.
+- has no aqua point;
+- exact endpoint axis cells and same-area diagonal cell receive the stronger orange outline;
+- all protocol-valid tied endpoints remain visible.
 
-The main B result card uses:
+The main B summary uses insufficiency wording:
 **Šiuo metu nepakanka**
 
-and a deficit-form phrase, e.g.:
-**Galimybių prisidėti prie kažko svarbaus ne tik sau.**
+The exact affirmative questionnaire statements remain unchanged on the axes and in the statement appendix.
 
-The exact affirmative questionnaire statements remain unchanged on the matrix axes.
+## Relationship grammar
 
-## Result copy
+- DIRECT = solid family chip on the corresponding diagonal.
+- RELATED = outlined family chip.
+- BRIDGE = restrained dashed/soft placement at a primary representational intersection plus related-area note.
+- NO_DIRECT = subtle note where no defensible direct A counterpart exists.
 
-Current title:
-**Du žvilgsniai vienoje matricoje.**
+Construct boundaries remain in force:
+- CARE does not infer giver/receiver role;
+- CONTROL is direct action-effect agency, not autonomy;
+- OPPORTUNITY is formative environmental affordance;
+- Channel A does not cause Channel B.
 
-Current boundary language:
-- matrix shows a relationship, not causality;
-- matrix does not show area importance;
-- orange = participant rating <= 3;
-- green = first-glance repetition count;
-- the two perspectives remain separate.
+## Human interpretation
 
-## PDF revision
+Participant-facing block:
+**Viena galima interpretacija**
 
-Method remains browser/system Print -> Save as PDF.
+Boundary:
+**Tai bendrinė refleksija pagal šios sesijos pasirinkimus. Ne diagnozė ir ne išvada apie tavo asmenybę.**
 
-Print layout is now intentionally **two pages**:
+Current inference rules:
+- B/B+ insufficiency is the current-situation anchor;
+- all raw MOST 3/3 and 2/3 repetitions may be named;
+- exact 3/3 LEAST may be used only as cautious secondary contrast;
+- specific bridges may mention only A motifs actually present;
+- A+ noClear suppresses a specific combined A/B story;
+- CARE imagery never assigns the participant a giver or receiver role;
+- DIRECT and RELATED bridges use different wording strength;
+- if there is no defensible semantic bridge, the interpretation explicitly refuses to force one;
+- LT and EN use the same semantic bridge rule set.
 
-### Page 1
-- result title and two primary summary cards;
-- compact relationship matrix;
-- matrix axes use numbers 1-12 rather than repeating full long statements;
-- group headers remain;
-- green/orange result grammar remains;
-- legend and methodological boundary remain.
+## PDF
 
-### Page 2
-- `Tavo vertinti teiginiai`;
-- all 12 exact Channel-B statements in a readable two-column list;
-- secondary exact-3/3 LEAST/background note when present.
+Method:
+browser/system Print -> Save as PDF.
 
-This replaces the previous accidental second blank page.
+Current target:
+- exactly **one A4 portrait page**;
+- no forced appendix page break;
+- print CSS resets inherited mobile root/wrapper height, min-height, overflow and background before print;
+- interactive buttons/details are excluded.
 
-Print CSS:
-- A4 landscape;
-- print colors requested via `print-color-adjust: exact`;
-- interactive buttons/details are omitted;
-- PDF smoke requires exactly two PDF pages.
+One-page report contains:
+1. result title and two summary cards;
+2. compact numbered 12×12 matrix;
+3. legend and methodological boundary;
+4. human interpretation;
+5. all 12 exact Channel-B statements in a compact 3-column appendix.
 
-## Runtime
+Print axes use numbers 1-12 instead of repeating the long statements inside the matrix.
 
-Implementation repo:
-`olemoz1977/omesg360`
-branch:
-`feature/priolens-open14-v04`
+## Evidence
 
-Matrix model schema:
-`2rasi.priolens.open14.result-matrix-v0.5`
+Technical:
+- own-area orange + one-page PDF local smoke: `33959809259` SUCCESS;
+- own-area orange deployed smoke: `33959809300` SUCCESS;
+- all MOST repetitions local UI/PDF: `33960497418` SUCCESS;
+- all MOST repetitions deployment: `33960497398` SUCCESS;
+- deterministic interpretation local full-flow/PDF: `33963316027` SUCCESS;
+- clean interpretation deploy recheck: `33964509120` SUCCESS.
 
-Key file:
-`priolens/open14-v04/result_matrix_v04.mjs`
+Owner real Android:
+- Android system print preview showed `ISO A4`;
+- page counter showed `1 / 1`;
+- the matrix, interpretation and statement appendix were visible on the single page;
+- therefore the real-Android one-page PDF acceptance gate is PASS.
 
-## Technical evidence
-
-- logic/build/unit gate on the revised matrix: PASS;
-- local 390x844 A+/B+ full-flow + print-media smoke: run `33959134826` SUCCESS;
-- local PDF smoke:
-  - print appendix visible;
-  - long statements removed from matrix axes in print mode;
-  - interactive actions hidden;
-  - generated PDF = exactly 2 pages;
-- deployed owner preview/API/full 390x844 smoke:
-  - run `33959134861`, attempt 2: SUCCESS;
-- first deploy attempt failed at the known remote API byte-verification step before preview deployment; clean rerun passed.
+Latest interpretation-hardening deployment is tracked separately in the active runtime protocol.
 
 Live v0.2 remains unchanged.
-Ship/map participant flow remains deactivated.
-
-## Acceptance gate
-
-Owner reviews on the real Android phone:
-1. green 3/3 vs light-green 2/3 distinction;
-2. absence of LEAST from the primary matrix;
-3. readability of orange <=3 row/column bands;
-4. stronger orange final B/B+ route outline;
-5. “Šiuo metu nepakanka” wording;
-6. two-page Save-as-PDF result.
+Promotion remains blocked until explicit owner approval to switch the 2rasi entry links.
