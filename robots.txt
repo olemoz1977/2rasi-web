@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://2rasi.com/sitemap.xml
-Sitemap: https://2rasi.lt/sitemap.xml
+Sitemap: https://2rasi.com/sitemap-com.xml
+Sitemap: https://2rasi.lt/sitemap-lt.xml

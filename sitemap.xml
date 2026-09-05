@@ -1,41 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://2rasi.com/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/" />
-    <xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://2rasi.com/" />
-    <lastmod>2026-08-24</lastmod><changefreq>weekly</changefreq><priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://2rasi.lt/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/" />
-    <xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://2rasi.com/" />
-    <lastmod>2026-08-24</lastmod><changefreq>weekly</changefreq><priority>1.0</priority>
-  </url>
-
-  <url><loc>https://2rasi.com/tools/2pair/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/2pair/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/2pair/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://2rasi.lt/tools/2pair/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/2pair/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/2pair/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
-  <url><loc>https://2rasi.com/tools/mirror/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/mirror/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/mirror/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.lt/tools/mirror/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/mirror/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/mirror/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <url><loc>https://2rasi.com/tools/multipliers/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/multipliers/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/multipliers/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.lt/tools/multipliers/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/multipliers/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/multipliers/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <url><loc>https://2rasi.com/tools/divergent/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/divergent/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/divergent/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.lt/tools/divergent/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/divergent/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/divergent/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <url><loc>https://2rasi.com/tools/situational-leadership/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/situational-leadership/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/situational-leadership/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.lt/tools/situational-leadership/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/situational-leadership/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/situational-leadership/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <url><loc>https://2rasi.com/tools/drama-triangle/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/drama-triangle/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/drama-triangle/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.lt/tools/drama-triangle/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/drama-triangle/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/drama-triangle/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <url><loc>https://2rasi.com/tools/strategic-thinking/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/strategic-thinking/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/strategic-thinking/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.lt/tools/strategic-thinking/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/strategic-thinking/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/strategic-thinking/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-
-  <url><loc>https://2rasi.com/tools/leadership-360/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/leadership-360/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/leadership-360/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://2rasi.lt/tools/leadership-360/</loc><xhtml:link rel="alternate" hreflang="en" href="https://2rasi.com/tools/leadership-360/" /><xhtml:link rel="alternate" hreflang="lt" href="https://2rasi.lt/tools/leadership-360/" /><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://2rasi.com/sitemap-com.xml</loc>
+    <lastmod>2026-09-05</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://2rasi.lt/sitemap-lt.xml</loc>
+    <lastmod>2026-09-05</lastmod>
+  </sitemap>
+</sitemapindex>
