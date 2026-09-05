@@ -463,6 +463,12 @@
     ],
     "rollback": "Restore the three PrioLens landing pointer edits from v0.4 back to v0.2, bump the JS cache token again, republish, smoke LT/EN. Do not remove the v0.4 preview/API.",
     "productionPublishMechanismStatus": "VERIFY_BEFORE_SWITCH: repository docs conflict between 'Hostinger Git auto-deployment stays OFF' and WorkStyle README saying hero-webgl autodeploys. Do not assume either without confirmation.",
-    "runbook": "tools/priolens/docs/OPEN14_V04_PROMOTION_RUNBOOK_2026-09-05.md"
+    "runbook": "tools/priolens/docs/OPEN14_V04_PROMOTION_RUNBOOK_2026-09-05.md",
+    "preparedPointerBranch": "prepare/priolens-v04-promotion",
+    "preparedPointerBase": "806a1282a06b20596ac7d9466d968b841c15eb23",
+    "preparedPointerHead": "9c9c1073bc3d6f46e09e648320152d9d7a076bcc",
+    "preparedPointerDiff": "2 files only: tools/priolens/landing-i18n.js and tools/priolens/index.html; 4 effective pointer/cache edits",
+    "preparedPointerStaticSmokePassed": true,
+    "productionPublishEvidence": "hero-webgl is the documented primary 2rasi branch and its 2026-09-02 PrioLens landing copy is visible on the current live 2rasi landing; this supports hero-webgl as the production source, but does not by itself resolve whether Hostinger publishing is automatic or manual."
   }
 }
