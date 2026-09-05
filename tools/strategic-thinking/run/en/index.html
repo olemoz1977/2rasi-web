@@ -1,0 +1,519 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,follow" />
+  <meta name="color-scheme" content="dark light">
+  <title>Strategic Thinking Test (STQ)</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#121821; --text:#e6edf3; --muted:#9aa7b5;
+      --brand:#2f81f7; --ok:#3fb950; --warn:#f85149; --border:#1f2a37;
+    }
+    body.light { --bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --brand:#0a66c2; --ok:#157347; --warn:#b02a37; --border:#e5e7eb; }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+    header{padding:18px 20px;border-bottom:1px solid var(--border);background:var(--panel);position:sticky;top:0;z-index:10}
+    h1{margin:0;font-size:24px}
+    h2{margin:6px 0 0;font-size:15px;color:var(--muted)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    button{appearance:none;border:1px solid var(--border);background:var(--panel);color:var(--text);padding:8px 12px;border-radius:8px;cursor:pointer;transition:.15s ease;font-weight:600}
+    button:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.25)}
+    .primary{background:var(--brand);border-color:var(--brand);color:#fff}
+    .success{background:var(--ok);border-color:var(--ok);color:#fff}
+    .danger{background:var(--warn);border-color:var(--warn);color:#fff}
+    .ghost{background:transparent}
+    .meta{display:flex;gap:16px;align-items:center;color:var(--muted);font-weight:600;margin-top:8px}
+
+    main{max-width:980px;margin:0 auto;padding:20px}
+    .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+    @media(min-width:900px){ .grid{grid-template-columns:1fr 1fr} }
+    section.block{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px}
+    section.block h3{margin:0 0 8px}
+    .q{margin:10px 0 14px}
+    .q-title{font-weight:700}
+    .options{margin-top:8px;display:grid;gap:6px}
+    .radio{display:flex;gap:10px;align-items:flex-start;background:transparent;border:1px solid var(--border);border-radius:10px;padding:8px}
+    .radio input{margin-top:3px}
+
+    .scorecard{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+    .card .num{font-size:22px;font-weight:800}
+
+    .footnote{margin-top:18px;color:var(--muted);font-size:13px}
+    .copyright{margin-top:8px;color:var(--muted)}
+    .error{color:var(--warn);font-weight:700;margin-top:8px}
+    .hidden{display:none}
+
+    /* Interpretacijų blokas */
+    .insight-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px}
+    @media(min-width:900px){ .insight-grid{grid-template-columns:1fr 1fr} }
+    .insight-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px}
+    .insight-card h4{margin:0 0 6px}
+    .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;margin-left:8px}
+    .badge.low{background:#2d1f1f;color:#fda4a4;border:1px solid #7f1d1d}
+    .badge.mid{background:#1f2d25;color:#a7f3d0;border:1px solid #14532d}
+    .badge.high{background:#1f2633;color:#93c5fd;border:1px solid #1d4ed8}
+    .insight-list{margin:8px 0 0;padding-left:18px}
+    .insight-list li{margin:4px 0}
+
+    @media print{
+      body{background:#fff;color:#000}
+      header{position:static;border:none;background:#fff;color:#000}
+      .toolbar{display:none}
+      section.block{background:#fff;border:1px solid #ccc}
+      .radio{border-color:#ccc}
+      .scorecard .card,.insight-card{background:#fff;border:1px solid #ccc}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Strategic Thinking Test (STQ)</h1>
+  <h2>Instruction: Choose the one answer that best reflects what you would usually do in this situation.</h2>
+  <div class="toolbar">
+    <button id="submitBtn" class="primary">Submit answers</button>
+    <button id="saveBtn">Save in browser</button>
+    <button id="restoreBtn">Restore from browser</button>
+    <button id="printBtn">Print / PDF</button>
+    <button id="clearBtn" class="danger">Clear</button>
+    <button id="themeBtn" class="ghost">Theme: Dark/Light</button>
+  </div>
+  <div class="meta">
+    <div id="progress">Answered: 0/15</div>
+    <div id="errorBox" class="error hidden"></div>
+  </div>
+</header>
+
+<main>
+  <!-- Klausimai bus sugeneruoti čia (turi būti matomi, NE paslėpti) -->
+  <div class="grid" id="blocksContainer"></div>
+
+  <!-- REZULTATAI: paslėpta iki „Submit answers“ -->
+  <div id="results" class="hidden">
+    <h3>Results</h3>
+    <div class="scorecard">
+      <div class="card"><div>Systems thinking</div><div class="num" id="scoreSystemic">0/25</div></div>
+      <div class="card"><div>Reframing</div><div class="num" id="scoreReframing">0/25</div></div>
+      <div class="card"><div>Reflection</div><div class="num" id="scoreReflection">0/25</div></div>
+      <div class="card"><div>Total score</div><div class="num" id="scoreTotal">0/75</div></div>
+    </div>
+
+    <section id="insights" style="margin-top:22px;">
+      <h3>Narrative assessment</h3>
+      <div id="verbalSummary" class="insight-grid"></div>
+
+      <h3 style="margin-top:18px;">Practical recommendations (30 days)</h3>
+      <div id="actionPlan" class="insight-grid"></div>
+    </section>
+  </div>
+
+  <p class="footnote">
+    Scoring: choices are rated from 1 to 5 using the <em>score</em> assigned to each option.
+    Each subscale has 5 questions → max. 25; total max. 75.
+  </p>
+  <p class="copyright">© 2025 STQ. Created by Oleg Mozochin (GitHub Pages). Runs without a server; data is stored only in your browser. · <a href="https://2rasi.com/#experiments" style="color:inherit">← Back to 2rasi</a></p>
+</main>
+
+<!-- TURINYS iš .docx (1:1 tekstai ir balai) -->
+<script id="STQ_DATA" type="application/json">
+{
+  "blocks": [
+    {
+      "blockId": "systemic",
+      "title": "I. Systems thinking",
+      "questions": [
+        { "id":"q1", "text":"When dealing with a departmental budget cut, I...",
+          "options":[
+            {"text":"Use a formal matrix to assess the direct impact on all related departments and on team motivation.","score":4},
+            {"text":"Focus entirely on reducing costs in my own department, ignoring possible consequences elsewhere.","score":1},
+            {"text":"Analyze how the budget cut affects the organization’s entire value chain to ensure the change does not damage the company’s overall competitive advantage.","score":5},
+            {"text":"Ask several other department heads about possible negative effects on their work.","score":3},
+            {"text":"Take objections from adjacent departments into account, but still do what is best for my own department.","score":2}
+          ]
+        },
+        { "id":"q2", "text":"When facing customer loss, I...",
+          "options":[
+            {"text":"Analyze not only internal processes but also external market changes and competitor actions to identify long-term trends that may have changed customer needs.","score":5},
+            {"text":"Review sales reports from the last few weeks to see where we lost the most.","score":2},
+            {"text":"Immediately blame the sales department and demand an increase in sales this month.","score":1},
+            {"text":"Trace which internal failures, such as slow IT systems or bureaucratic processes, caused the customer experience to deteriorate.","score":4},
+            {"text":"Review both sales and product-quality data, looking for obvious mismatches.","score":3}
+          ]
+        },
+        { "id":"q3", "text":"My approach to long-term macroeconomic and technological trends, such as AI or regulation, is...",
+          "options":[
+            {"text":"I read the main news, but it does not affect my weekly decisions.","score":2},
+            {"text":"I regularly initiate scenario-planning meetings to assess how these trends could force our company to fundamentally change its business model over the next 3–5 years.","score":5},
+            {"text":"I see this as senior management’s responsibility, while I should focus on today’s results.","score":1},
+            {"text":"I sometimes discuss these trends with the team to generate ideas, but I do not have an ongoing process.","score":3},
+            {"text":"I continuously monitor these trends and review my department’s priorities every quarter.","score":4}
+          ]
+        },
+        { "id":"q4", "text":"When problems arise that go beyond my department’s competence, I...",
+          "options":[
+            {"text":"Try to solve the problem using only my department’s resources to demonstrate efficiency.","score":2},
+            {"text":"Systematically look for a recurring organizational cause, such as unclear responsibilities or weak IT interfaces, that makes the problem recur across several departments.","score":5},
+            {"text":"Hand all responsibility to senior management or another department and stop following the issue.","score":1},
+            {"text":"Work with one or two related departments to find a compromise.","score":3},
+            {"text":"Initiate a cross-functional meeting to analyze how solving the problem requires a shared system across several departments.","score":4}
+          ]
+        },
+        { "id":"q5", "text":"When planning long-term strategy, I focus most on...",
+          "options":[
+            {"text":"Identifying critical assumptions about the future, such as market growth or technological change, and planning what we will do if those assumptions prove wrong.","score":5},
+            {"text":"Allocating resources according to current project priorities.","score":2},
+            {"text":"Setting targets based on last year’s results.","score":1},
+            {"text":"Considering a range of risks and opportunities, including both internal and external factors.","score":4},
+            {"text":"Analyzing in detail how to achieve competitive advantage in the near term, up to one year.","score":3}
+          ]
+        }
+      ]
+    },
+    {
+      "blockId": "reframing",
+      "title": "II. Reframing",
+      "questions": [
+        { "id":"q6", "text":"When the team cannot overcome a difficult obstacle, such as missed sales targets, I...",
+          "options":[
+            {"text":"Ask the team to stop and generate five different ways to redefine the problem, for example not “a sales shortfall” but “a mismatch in the value proposition.”","score":4},
+            {"text":"Run a workshop that examines the problem from another role’s perspective, for example “What would our competitor or customer do in this situation?”, to generate a fundamentally different view.","score":5},
+            {"text":"Ask for three or four new but similar action plans.","score":2},
+            {"text":"Remind the team to try harder and use tactics that are already proven.","score":1},
+            {"text":"Initiate a discussion in which radically different ideas are also proposed.","score":3}
+          ]
+        },
+        { "id":"q7", "text":"When preparing for an important decision, I always...",
+          "options":[
+            {"text":"Initiate a process that deliberately creates several incompatible scenarios, such as best case, worst case and an unlikely case, to avoid tunnel vision and prepare for sudden change.","score":5},
+            {"text":"Look for objective data that will help me choose between two obvious options.","score":2},
+            {"text":"Ask the team to gather data that both supports and challenges my initial idea.","score":3},
+            {"text":"Look for evidence that confirms my initial idea and point of view.","score":1},
+            {"text":"Seek out active opponents, people with an opposing view, and ask them to prepare a counterproposal so I can test my assumptions.","score":4}
+          ]
+        },
+        { "id":"q8", "text":"When facing a difficult goal, I...",
+          "options":[
+            {"text":"Use only methods and tools I have tried before and know will work.","score":1},
+            {"text":"Use the most common industry-standard tools, such as SWOT, to perform the analysis.","score":2},
+            {"text":"Look for unconventional and creative solutions that may seem risky but could generate a large return.","score":4},
+            {"text":"Consider whether the goal itself may be defined incorrectly, so before acting I try to understand the real business need behind it and possibly change direction.","score":5},
+            {"text":"Consider adapting methods from other industries, for example applying logistics methods to an IT project.","score":3}
+          ]
+        },
+        { "id":"q9", "text":"An unexpected new problem appears. I...",
+          "options":[
+            {"text":"Try to apply the organization’s standard procedures to the new problem.","score":2},
+            {"text":"Spend time looking in my own experience for solutions to similar problems.","score":1},
+            {"text":"Systematically look for solutions that have worked in completely different industries or situations to open up a different perspective.","score":4},
+            {"text":"Quickly bring in external experts to obtain a proven solution.","score":3},
+            {"text":"Systematically deconstruct the problem, identify all assumptions, and then try to dismantle or invert them, for example: “What if we never solve this problem and simply work around it?”","score":5}
+          ]
+        },
+        { "id":"q10", "text":"When the team generates ideas, my role is to...",
+          "options":[
+            {"text":"Immediately reject any ideas that seem too risky.","score":2},
+            {"text":"Ensure that ideas are realistic and fit the current budget.","score":1},
+            {"text":"Assign one person to act as the devil’s advocate, consistently challenging assumptions, methods and goals so that ideas are continually reviewed.","score":5},
+            {"text":"Allow free ideation but ultimately choose the best of the obvious options.","score":3},
+            {"text":"Actively encourage the team to generate ideas that contradict the current strategy and seem impossible to implement within the next year.","score":4}
+          ]
+        }
+      ]
+    },
+    {
+      "blockId": "reflection",
+      "title": "III. Reflection",
+      "questions": [
+        { "id":"q11", "text":"After a major success or failure, I...",
+          "options":[
+            {"text":"Use the results as material for a personal strategic journal to formulate new rules or principles that could be applied in future situations.","score":5},
+            {"text":"Hold a short meeting to discuss the results and thank the team.","score":2},
+            {"text":"Move quickly to the next task because the past does not affect the future.","score":1},
+            {"text":"Run a structured review that documents not only the results but also the conditions and assumptions under which we made the decisions.","score":4},
+            {"text":"Write a short note on the main lessons learned for the team.","score":3}
+          ]
+        },
+        { "id":"q12", "text":"I actively seek critical feedback on my decision-making process...",
+          "options":[
+            {"text":"From independent advisers or leaders in other industries so I can test my beliefs and uncover blind spots.","score":5},
+            {"text":"Only from people I trust and who clearly support my decisions.","score":2},
+            {"text":"From a wider group of stakeholders, including people who have challenged me or disagreed with me.","score":4},
+            {"text":"Only when I need it.","score":1},
+            {"text":"From my direct reports and managers.","score":3}
+          ]
+        },
+        { "id":"q13", "text":"When I analyze past mistakes, I primarily look for...",
+          "options":[
+            {"text":"Lessons that will help avoid the same mistakes in the future.","score":3},
+            {"text":"The people who made the mistakes so I can ensure accountability.","score":1},
+            {"text":"The assumptions behind the decisions, so I can learn to recognize faulty assumptions earlier.","score":4},
+            {"text":"How the mistakes reflect broader organizational patterns or cultural gaps, and I try to build a long-term learning system in the organization.","score":5},
+            {"text":"Obvious system weaknesses that can be fixed quickly.","score":2}
+          ]
+        },
+        { "id":"q14", "text":"My view on changing or replanning strategy is...",
+          "options":[
+            {"text":"Strategy should be reviewed continuously, but changes should be made only after thorough analysis.","score":4},
+            {"text":"It shows weakness and poor initial planning, so I try to stick to the original plan.","score":1},
+            {"text":"The plan can be changed, but only at year-end to avoid chaos.","score":3},
+            {"text":"Changes are needed only when results are poor.","score":2},
+            {"text":"Strategic planning is a continuous learning function, so when new data or a new perspective emerges, a change should be initiated immediately even if it creates short-term discomfort.","score":5}
+          ]
+        },
+        { "id":"q15", "text":"After making an important decision that proves successful, I...",
+          "options":[
+            {"text":"Document the success story and identify which internal and external conditions should be replicated in other projects.","score":4},
+            {"text":"Simply enjoy the success and move on to the next project.","score":1},
+            {"text":"Derive a general principle from the success and try applying it in very different situations, not only similar projects, to test how universal it is.","score":5},
+            {"text":"Analyze which actions led to the success.","score":3},
+            {"text":"Quickly share the lesson from the success with colleagues.","score":2}
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded', init);
+  function init(){
+    const errorBox = document.getElementById('errorBox');
+    const blocksContainer = document.getElementById('blocksContainer');
+    const progressEl = document.getElementById('progress');
+    const resultsContainer = document.getElementById('results');
+    const STORAGE_KEY = 'STQ_answers_v5_en';
+    let submitted = false;
+
+    function showError(msg){ errorBox.textContent = msg; errorBox.classList.remove('hidden'); }
+    function clearError(){ errorBox.classList.add('hidden'); errorBox.textContent = ''; }
+
+    // Įkeliame turinį
+    const DATA = JSON.parse(document.getElementById('STQ_DATA').textContent);
+    const STQ = DATA.blocks;
+
+    // Render klausimų
+    function render(){
+      blocksContainer.innerHTML = '';
+      STQ.forEach(block => {
+        const sec = document.createElement('section');
+        sec.className = 'block'; sec.id = `block-${block.blockId}`;
+        const h3 = document.createElement('h3'); h3.textContent = block.title;
+        sec.appendChild(h3);
+
+        block.questions.forEach((q, qi) => {
+          const qDiv = document.createElement('div'); qDiv.className = 'q';
+          const qTitle = document.createElement('div'); qTitle.className='q-title';
+          qTitle.textContent = `${qi+1}. ${q.text}`;
+          qDiv.appendChild(qTitle);
+
+          const opts = document.createElement('div'); opts.className='options';
+          q.options.forEach((opt, oi) => {
+            const id = `${q.id}_${oi}`;
+            const row = document.createElement('label'); row.className='radio';
+            const input = document.createElement('input'); input.type='radio'; input.id=id; input.name=q.id; input.value=oi;
+            const span = document.createElement('span'); span.textContent = opt.text;
+            row.appendChild(input); row.appendChild(span); opts.appendChild(row);
+          });
+
+          qDiv.appendChild(opts);
+          sec.appendChild(qDiv);
+        });
+
+        blocksContainer.appendChild(sec);
+      });
+    }
+
+    // Deleguotas change: tik progresas; rezultatus rodome tik jei jau submitted
+    blocksContainer.addEventListener('change', (ev) => {
+      if(ev.target && ev.target.type === 'radio'){
+        clearError();
+        updateProgress();
+        if(submitted) showScores();
+      }
+    });
+
+    // Helpers
+    function getAnswers(){
+      const answers = {};
+      STQ.forEach(block => block.questions.forEach(q => {
+        const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+        answers[q.id] = selected ? Number(selected.value) : null;
+      }));
+      return answers;
+    }
+    function updateProgress(){
+      const answered = Object.values(getAnswers()).filter(v => v !== null).length;
+      progressEl.textContent = `Answered: ${answered}/15`;
+    }
+    function scoreOf(q, idx){
+      if(idx === null || idx === undefined) return 0;
+      const opt = q.options[idx];
+      return opt && typeof opt.score === 'number' ? opt.score : 0;
+    }
+    function computeScores(){
+      const a = getAnswers();
+      let sys=0, refra=0, refl=0;
+      STQ[0].questions.forEach(q => { sys   += scoreOf(q, a[q.id]); });
+      STQ[1].questions.forEach(q => { refra += scoreOf(q, a[q.id]); });
+      STQ[2].questions.forEach(q => { refl  += scoreOf(q, a[q.id]); });
+      return {sys, refra, refl, total: sys+refra+refl};
+    }
+
+    // Interpretacijos ir planas
+    function describeScale(label, score){
+      let level, text;
+      if(score <= 10){ level='low'; text=`${label}: low level. Systematically strengthen the foundational habits and processes.`; }
+      else if(score <= 18){ level='mid'; text=`${label}: medium level. The foundations work, but blind spots and inconsistency remain.`; }
+      else { level='high'; text=`${label}: high level. Consider institutionalizing this strength by sharing practices, creating standards and mentoring others.`; }
+      return { level, text };
+    }
+    function buildActions(s){
+      const actions=[];
+      if(s.sys<=10){ actions.push({title:'Systems thinking (0–10)', items:[
+        'Create a one-page “Value Chain Map” (A3).',
+        'Run a weekly assumption check: 3 assumptions + what you will do if they are wrong.',
+        'Hold 2 cross-department meetings: 1 problem owner, 1 KPI.'
+      ]}); }else if(s.sys<=18){ actions.push({title:'Systems thinking (11–18)', items:[
+        'Use a “Pareto + cause” template: top defects → systemic causes.',
+        'Run quarterly scenarios (best/worst/wild) + a priority review.',
+        'Use a Kanban risk lane: top 5 risks, triggers and owners.'
+      ]}); }else{ actions.push({title:'Systems thinking (19–25)', items:[
+        'Create a cross-functional playbook (PDF/Confluence).',
+        'Mentor 2 supervisors using systems matrices.',
+        'Run a quarterly systems review with management.'
+      ]}); }
+      if(s.refra<=10){ actions.push({title:'Reframing (0–10)', items:[
+        'Use a rotating devil’s advocate role in ideation sessions.',
+        'Run a 30-minute role flip: what would the customer or competitor do?',
+        'Create 3 alternative problem definitions for each goal.'
+      ]}); }else if(s.refra<=18){ actions.push({title:'Reframing (11–18)', items:[
+        'Build 3 scenarios before approving a plan + define signals.',
+        'Transfer 1 method from another industry.',
+        'Keep a reframe log: wording change → KPI effect.'
+      ]}); }else{ actions.push({title:'Reframing (19–25)', items:[
+        'Run a 1-hour team workshop using real examples.',
+        'Set an idea standard: 30% anti-strategy ideas per session.',
+        'Build a reframe casebook: 6 best cases per quarter.'
+      ]}); }
+      if(s.refl<=10){ actions.push({title:'Reflection (0–10)', items:[
+        'Run an AAR (After Action Review) after significant events.',
+        'For every failure, identify 3 assumptions and validate them.',
+        'Seek critical feedback from an external adviser.'
+      ]}); }else if(s.refl<=18){ actions.push({title:'Reflection (11–18)', items:[
+        'Run a weekly learning stand-up: 10 minutes of lessons learned.',
+        'Maintain and test a list of principles or meta-rules.',
+        'Seek broader feedback, including dissenting views, every month.'
+      ]}); }else{ actions.push({title:'Reflection (19–25)', items:[
+        'Standardize the AAR template and use it with more than 3 teams.',
+        'Mentor 2 managers using assumption audits.',
+        'Use a Learning KPI: percentage of corrections implemented each month.'
+      ]}); }
+      return actions;
+    }
+    function renderInsights(scores){
+      const verbal = document.getElementById('verbalSummary');
+      const plan   = document.getElementById('actionPlan');
+      const dSys  = describeScale('Systems thinking', scores.sys);
+      const dRefa = describeScale('Reframing', scores.refra);
+      const dRefl = describeScale('Reflection', scores.refl);
+      const cards = [
+        {title:'Systems thinking', desc:dSys},
+        {title:'Reframing', desc:dRefa},
+        {title:'Reflection', desc:dRefl}
+      ];
+      verbal.innerHTML = cards.map(c => `
+        <div class="insight-card">
+          <h4>${c.title}
+            <span class="badge ${c.desc.level}">${c.desc.level==='low'?'Low':c.desc.level==='mid'?'Medium':'High'}</span>
+          </h4>
+          <p>${c.desc.text}</p>
+        </div>`).join('');
+      const actions = buildActions(scores);
+      plan.innerHTML = actions.map(a => `
+        <div class="insight-card">
+          <h4>${a.title}</h4>
+          <ul class="insight-list">${a.items.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>`).join('');
+    }
+
+    // Rodome rezultatus tik po "Pateikti"
+    function showScores(){
+      const {sys, refra, refl, total} = computeScores();
+      document.getElementById('scoreSystemic').textContent   = `${sys}/25`;
+      document.getElementById('scoreReframing').textContent  = `${refra}/25`;
+      document.getElementById('scoreReflection').textContent = `${refl}/25`;
+      document.getElementById('scoreTotal').textContent      = `${total}/75`;
+      renderInsights({sys, refra, refl, total});
+    }
+
+    // Saugojimas/atkūrimas/išvalymas
+    function saveToStorage(){
+      try{
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(getAnswers()));
+        alert('Answers saved in your browser.');
+      }catch(e){ showError('Could not save: ' + e.message); }
+    }
+    function restoreFromStorage(showAlert=true){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw){ if(showAlert) alert('No saved answers were found in this browser.'); return; }
+        const answers = JSON.parse(raw);
+        STQ.forEach(block => block.questions.forEach(q => {
+          const v = answers[q.id];
+          if(v !== null && v !== undefined){
+            const input = document.getElementById(`${q.id}_${v}`);
+            if(input) input.checked = true;
+          }
+        }));
+        if(showAlert) alert('Answers restored from your browser.');
+        updateProgress();
+        // Atkūrus nesiunčiame rezultatų, kol nepaspaustas „Pateikti“
+      }catch(e){ showError('Restore error: ' + e.message); }
+    }
+    function clearAll(){
+      document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+      updateProgress();
+      submitted = false;
+      resultsContainer.classList.add('hidden');
+    }
+
+    // Mygtukai
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      const answered = Object.values(getAnswers()).filter(v => v !== null).length;
+      if(answered < 15){ alert(`${15-answered} question(s) are unanswered. Please complete all 15.`); return; }
+      submitted = true;
+      resultsContainer.classList.remove('hidden');
+      showScores();
+      const card = document.getElementById('scoreTotal').parentElement;
+      card.style.outline = '2px solid var(--ok)'; setTimeout(() => card.style.outline='none', 1200);
+    });
+    document.getElementById('saveBtn').addEventListener('click', saveToStorage);
+    document.getElementById('restoreBtn').addEventListener('click', () => restoreFromStorage(true));
+    document.getElementById('printBtn').addEventListener('click', () => {
+      if(!submitted){ alert('Please submit your answers first.'); return; }
+      requestAnimationFrame(() => window.print());
+    });
+    document.getElementById('clearBtn').addEventListener('click', () => { if(confirm('Clear all answers?')) clearAll(); });
+    document.getElementById('themeBtn').addEventListener('click', () => document.body.classList.toggle('light'));
+
+    // Tema pagal sistemą
+    try{
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      if(prefersLight){ document.body.classList.add('light'); }
+    }catch{}
+
+    // Start
+    render();              // ← Sugeneruoja klausimus
+    restoreFromStorage(false);
+    updateProgress();      // ← Tik progresas; be rezultatų
+  }
+})();
+</script>
+<script src="/tools/site-owner-mode.js?v=20260831-1"></script>
+<script src="/tools/site-insights.js?v=20260828-1"></script>
+</body>
+</html>
