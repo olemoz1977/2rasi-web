@@ -47,7 +47,7 @@
   }
 
   const from = lt ? 'lt' : 'com';
-  const pilotUrl = `https://omesg360.eu/priolens-open14-v02/?from=${from}&lang=${lang}`;
+  const pilotUrl = `https://omesg360.eu/priolens-open14-v04/?from=${from}&lang=${lang}`;
   document.querySelectorAll('#start-pilot,#start-pilot-side').forEach((a) => {
     a.href = pilotUrl;
   });
