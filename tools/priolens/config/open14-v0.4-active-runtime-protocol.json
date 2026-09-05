@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T07:19:18Z",
-  "status": "V04_CONSTRUCT_AUDIT_SEMANTIC_REVISION_DEPLOYED_TECHNICAL_PASS",
+  "updatedAtUtc": "2026-09-05T08:02:00Z",
+  "status": "V04_PRE_RESULT_RELATIONSHIP_MATRIX_AND_PRINT_PDF_DEPLOYED_TECHNICAL_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -113,7 +113,7 @@
     "shipFocusImagesInSummary": false,
     "shipFocusImagesInReflectionOnly": true,
     "sufficiencyTerminology": "pakankamumo sritis / sufficiency area",
-    "sufficiencyProvenanceHeadingLt": "Kaip ši poreikio sritis buvo išskirta?",
+    "sufficiencyProvenanceHeadingLt": "Kaip ši pakankamumo sritis buvo išskirta?",
     "finalShipGraphicForm": "minimalist inline SVG sailboat; solid neutral line grammar; no dashed prototype geometry",
     "finalNeedsMapGraphicForm": "smaller single-land map with pronounced asymmetric bays/peninsulas, irregular islets, more sea, restrained atlas terrain, direct annotation, neutral pin, shorter route",
     "dottedRouteImplemented": true,
@@ -134,10 +134,66 @@
     "mapLabelPresentation": "need label is direct map annotation with subtle text halo; no white result-chip block",
     "mapDetailButtonPlacement": "right side of lower scene",
     "shipBackdrop": "subtle distant-land horizon + pale water cues; no semantic encoding",
-    "mapCoastGrammar": "mixed straight/angled segments plus limited curves; explicit bays, peninsulas and concavities; avoid repeated rounded scallops"
+    "mapCoastGrammar": "mixed straight/angled segments plus limited curves; explicit bays, peninsulas and concavities; avoid repeated rounded scallops",
+    "preResultMatrix": {
+      "implemented": true,
+      "placement": "after Channel B/B+ resolution and before existing ship/map result world",
+      "module": "priolens/open14-v04/result_matrix_v04.mjs",
+      "schema": "2rasi.priolens.open14.result-matrix-v0.4",
+      "matrixShape": "12x12",
+      "axes": "same 12 exact Channel-B statements on both axes",
+      "groupOrder": [
+        "Prasmė ir indėlis",
+        "Augimas ir gebėjimai",
+        "Autonomija ir pripažinimas",
+        "Ryšys, priklausymas ir parama",
+        "Saugumas ir stabilumas",
+        "Poilsis ir resursai"
+      ],
+      "palette": "2rasi palette: #071b2e / #315166 / #eef6f8 / #dfeef2 / #7bb8c8 / #fbfdfe",
+      "participantOverlays": {
+        "attentionFocus": "filled navy marker; only resolved Channel-A focus",
+        "leastBackground": "hollow navy marker; only exact 3/3 repeated LEAST family",
+        "sufficiencyRoute": "aqua marker; all valid Channel-B route endpoints"
+      },
+      "relationGrammar": {
+        "direct": "solid family chip on diagonal",
+        "related": "outlined family chip",
+        "bridge": "dashed/soft bridge family chip at a primary representational intersection plus related-area note",
+        "noDirect": "subtle dashed note on B diagonal where no direct A counterpart exists"
+      },
+      "bridgePrimaryRepresentations": {
+        "CARE": "2x8; related B areas 2,7,8; does not infer giver/receiver role",
+        "CONTROL": "5x10; related B areas 5,9,10; action-effect agency, not autonomy",
+        "OPPORTUNITY": "3x5; related B areas 3,4,5,12; formative affordance"
+      },
+      "mobile": {
+        "horizontalScroll": true,
+        "stickyLeftAxis": true,
+        "summaryCardsBeforeMatrix": true,
+        "autoCentersHorizontallyOnVisibleResultMarkers": true
+      },
+      "continueAction": "Toliau į rezultatą opens the preserved ship/map result world",
+      "causalEncoding": false,
+      "magnitudeEncoding": false,
+      "distanceIsPsychologicalMeasure": false
+    },
+    "pdfExport": {
+      "implemented": true,
+      "method": "browser/system print dialog with print CSS; user chooses Save as PDF",
+      "availableFrom": [
+        "pre-result matrix",
+        "existing result world"
+      ],
+      "reportContent": "participant result summary + 12x12 relationship matrix",
+      "pageTarget": "A4 landscape",
+      "serverPdfGeneration": false,
+      "externalPdfDependency": false,
+      "caveat": "browser/in-app print support varies; this is not a one-click server-generated PDF"
+    }
   },
   "deploymentGates": {
-    "ownerPreviewAndApiDeployRun": 33952035914,
+    "ownerPreviewAndApiDeployRun": 33954090061,
     "buildAndSemanticTestsPassed": true,
     "remoteBytesAndModuleMimePassed": true,
     "isolatedV04ApiPassed": true,
@@ -183,9 +239,16 @@
     "constructAuditLocalUiSmokePassed": true,
     "constructAuditDeploymentRun": 33952035914,
     "constructAuditDeploymentSmokePassed": true,
-    "constructAuditDeploymentSmokePending": false
+    "constructAuditDeploymentSmokePending": false,
+    "preResultMatrixUnitTestPassed": true,
+    "preResultMatrixLocal390x844SmokeRun": 33953958723,
+    "preResultMatrixLocal390x844SmokePassed": true,
+    "preResultMatrixDeployRun": 33954090061,
+    "preResultMatrixDeployed390x844SmokePassed": true,
+    "preResultMatrixRemoteBytesAndMimePassed": true,
+    "preResultMatrixPdfActionPresent": true
   },
-  "nextAction": "Use the canonical construct map to design the 12x12 conceptual/result matrix. Keep the 14 Channel-A visual families and 12 Channel-B sufficiency areas unchanged until pilot evidence justifies merging, removing or adding constructs.",
+  "nextAction": "Owner reviews the new pre-result 12x12 matrix on a real phone: summary hierarchy, horizontal navigation, marker readability, bridge/no-direct grammar, transition via 'Toliau į rezultatą', and browser Save-as-PDF output. Do not change construct counts or interpret marker distance as psychological magnitude.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
