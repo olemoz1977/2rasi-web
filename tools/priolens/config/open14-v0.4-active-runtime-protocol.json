@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T14:00:30Z",
-  "status": "V04_LIVE_PROMOTED_BOTTOM_SHEET_VIEWPORT_GUARD_PASS",
+  "updatedAtUtc": "2026-09-05T14:38:30Z",
+  "status": "V04_LIVE_PROMOTED_SAME_TRIAL_UNDO_BEFORE_LEAST_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -416,7 +416,7 @@
       "sheet bottom stays within visible viewport at 390x844"
     ]
   },
-  "nextAction": "Continue owner review of the live v0.4 result UX. No further bottom-sheet layout change is required unless a real-device issue is observed.",
+  "nextAction": "Owner can verify the live same-trial 'Atšaukti pirmą' action on mobile. Continue normal v0.4 owner review; do not add backward navigation across completed Channel-A trials.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
@@ -490,5 +490,19 @@
     "liveSmokeNote": "Assistant web fetch still failed in this turn, so live routing is confirmed by owner observation rather than assistant HTTP fetch.",
     "liveV04OwnerVisibilityConfirmed": true,
     "liveV04OwnerVisibilityEvidence": "Owner reported that v0.4 became visible after the hero-webgl switch; immediately before that both LT and COM still showed v0.2, indicating a short publish/cache propagation delay."
+  },
+  "channelA": {
+    "sameTrialUndo": {
+      "status": "DEPLOYED_PASS",
+      "scope": "Only after a PIRMAS/MOST image choice and before the LEAST decision in the same trial.",
+      "noBackwardNavigation": "Completed trials cannot be reopened or rewritten.",
+      "resultUses": "The revised/final MOST choice.",
+      "researchPreserves": "The original first-choice family/exemplar/slot, original rtMs, pointer type, undo delay and timestamp in attentionRevisions.",
+      "latencyRule": "Trials with a revised MOST are marked mostRevised=true and excluded from the aggregate spontaneous rtMedianMs; unrevised trial-level rtMs remain comparable.",
+      "bChannel": "Unchanged; existing B back navigation remains.",
+      "runtimeCommit": "b5a4bb45d524d6b6627f6db126a866d728cc5de5",
+      "localUiSmokeRun": 33972355190,
+      "deployedOwnerFlowRun": 33972355183
+    }
   }
 }
