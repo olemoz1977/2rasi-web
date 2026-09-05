@@ -87,6 +87,14 @@ Final technical evidence:
 - remote-byte/API route/admin HTTP checks PASS;
 - full deployed 390×844 owner flow + final API DB save PASS.
 
+## Research data hygiene — OPEN / 2026-09-05
+
+- automated technical sessions with `systemSmoke:true` are excluded by the v0.4 admin by default;
+- manual owner/device tests are not necessarily marked `systemSmoke` and can therefore be mixed with public participant sessions in `priolens_open14_sessions`;
+- do not treat the current aggregate N as a clean public research sample until manual-test separation is applied;
+- preferred next admin hardening: read-only date/completion filters and an explicit technical-test marking convention for future manual QA sessions;
+- do not delete historical sessions to solve this. Preserve raw data and filter analytically.
+
 ## Current deployment boundary
 
 Current runtime repo: `olemoz1977/omesg360`.  
