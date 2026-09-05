@@ -1,0 +1,341 @@
+{
+  "schema": "2rasi.priolens.open14.construct-map-v0.1",
+  "updatedAtUtc": "2026-09-05T07:10:00Z",
+  "status": "FORMATIVE_CONSTRUCT_MAPPING_NOT_VALIDATED",
+  "sourceAudit": "tools/priolens/docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md",
+  "boundaries": {
+    "channelA": "comparative visual attention direction/mechanism; MOST and LEAST stored separately",
+    "channelB": "current perceived sufficiency statement",
+    "groupTaxonomy": "six-by-two grouping is a PrioLens product/navigation taxonomy, not a validated neuroscience-derived need taxonomy",
+    "forbiddenClaims": [
+      "14 Channel-A families are 14 validated human needs",
+      "12 Channel-B items are 12 validated human needs",
+      "Channel A and Channel B are one-to-one constructs",
+      "MOST equals need strength or unmet need",
+      "LEAST equals dislike, low importance or absence of need",
+      "MOST minus LEAST is a psychological score"
+    ]
+  },
+  "channelB": {
+    "sufficiencySchema": "2rasi.priolens.sufficiency-v0.3",
+    "items": [
+      {
+        "id": "MEANING_PURPOSE",
+        "group": "MEANING_CONTRIBUTION",
+        "statementLt": "Tai, ką šiuo metu darau, man atrodo pakankamai prasminga.",
+        "constructStatus": "STRONG_WELLBEING_DOMAIN",
+        "directA": []
+      },
+      {
+        "id": "CONTRIBUTION",
+        "group": "MEANING_CONTRIBUTION",
+        "statementLt": "Jaučiu, kad turiu pakankamai galimybių prisidėti prie kažko svarbaus ne tik sau.",
+        "constructStatus": "STRONG_WELLBEING_DOMAIN",
+        "directA": []
+      },
+      {
+        "id": "LEARNING_GROWTH",
+        "group": "GROWTH_CAPABILITY",
+        "statementLt": "Turiu pakankamai galimybių mokytis, atrasti ir augti.",
+        "constructStatus": "PLAUSIBLE_OVERLAP",
+        "directA": [
+          "KNOWLEDGE"
+        ],
+        "relatedA": [
+          "EXPLORATION"
+        ]
+      },
+      {
+        "id": "CAPABILITY_MASTERY",
+        "group": "GROWTH_CAPABILITY",
+        "statementLt": "Galiu pakankamai naudoti ir tobulinti savo gebėjimus.",
+        "constructStatus": "STRONG_BASIC_PSYCH_NEED",
+        "directA": [
+          "MASTERY"
+        ]
+      },
+      {
+        "id": "AUTONOMY_AGENCY",
+        "semanticAlias": "AUTONOMY_VOLITION",
+        "group": "AGENCY_ESTEEM",
+        "statementLt": "Man svarbiose srityse turiu pakankamai laisvės pats spręsti ir veikti.",
+        "constructStatus": "STRONG_BASIC_PSYCH_NEED",
+        "directA": [
+          "AUTONOMY"
+        ],
+        "relatedA": [
+          "CONTROL"
+        ]
+      },
+      {
+        "id": "RECOGNITION_ESTEEM",
+        "group": "AGENCY_ESTEEM",
+        "statementLt": "Jaučiu, kad mano pastangos, nuomonė ar indėlis yra pakankamai pastebimi ir vertinami.",
+        "constructStatus": "STRONG_WELLBEING_SOCIAL_REWARD_DOMAIN",
+        "directA": [
+          "RECOGNITION"
+        ]
+      },
+      {
+        "id": "CONNECTION_BELONGING",
+        "group": "CONNECTION_SUPPORT",
+        "statementLt": "Mano gyvenime pakanka artimo ryšio ir jausmo, kad priklausau kitiems.",
+        "constructStatus": "STRONG_BASIC_PSYCH_NEED",
+        "directA": [
+          "BELONGING"
+        ],
+        "relatedA": [
+          "CONNECTION"
+        ]
+      },
+      {
+        "id": "CARE_SUPPORT_PRESENT",
+        "semanticAlias": "RECEIVED_CARE_SUPPORT",
+        "group": "CONNECTION_SUPPORT",
+        "statementLt": "Jaučiu, kad iš kitų sulaukiu pakankamai rūpesčio, paramos ir žmogiško dėmesio.",
+        "constructStatus": "RECEIVED_SUPPORT_OVERLAP_RELATEDNESS_SAFETY",
+        "directA": [],
+        "relatedA": [
+          "CARE"
+        ],
+        "mappingCaveat": "A CARE scenes contain helping/care interactions; the visual choice alone does not reveal whether the participant identified with giver, receiver, relationship or scene."
+      },
+      {
+        "id": "SAFETY_STABILITY",
+        "group": "SAFETY_STABILITY",
+        "statementLt": "Šiuo metu jaučiu pakankamai saugumo ir stabilumo.",
+        "constructStatus": "STRONG_DEFICIT_DOMAIN",
+        "directA": [
+          "SAFETY"
+        ]
+      },
+      {
+        "id": "CLARITY_PREDICTABILITY",
+        "group": "SAFETY_STABILITY",
+        "statementLt": "Mano kasdienybėje pakanka aiškumo ir nuspėjamumo, kad žinočiau, ko tikėtis.",
+        "constructStatus": "PLAUSIBLE_REGULATION_DOMAIN",
+        "directA": [],
+        "relatedA": [
+          "ORDER",
+          "CONTROL"
+        ]
+      },
+      {
+        "id": "RESTORATION_ENERGY",
+        "group": "REST_RESOURCE",
+        "statementLt": "Šiuo metu turiu pakankamai poilsio ir energijos kasdienybei.",
+        "constructStatus": "STRONG_BIOLOGICAL_DOMAIN",
+        "directA": [
+          "REST"
+        ]
+      },
+      {
+        "id": "MATERIAL_RESOURCES",
+        "group": "REST_RESOURCE",
+        "statementLt": "Šiuo metu turiu pakankamai kasdienių resursų tam, ko man realiai reikia.",
+        "constructStatus": "CONTEXT_RESOURCE_SUFFICIENCY",
+        "directA": [
+          "RESOURCE"
+        ]
+      }
+    ]
+  },
+  "channelA": {
+    "families": [
+      {
+        "id": "REST",
+        "workingLabelLt": "Poilsis / atsigavimas",
+        "status": "STRONG",
+        "mapping": {
+          "type": "DIRECT",
+          "b": [
+            "RESTORATION_ENERGY"
+          ]
+        }
+      },
+      {
+        "id": "RESOURCE",
+        "workingLabelLt": "Resursų prieinamumas",
+        "status": "PLAUSIBLE_REWORK",
+        "definition": "available and usable resources; reward is excluded from the construct definition",
+        "mapping": {
+          "type": "DIRECT",
+          "b": [
+            "MATERIAL_RESOURCES"
+          ]
+        }
+      },
+      {
+        "id": "SAFETY",
+        "workingLabelLt": "Saugumas",
+        "status": "STRONG",
+        "mapping": {
+          "type": "DIRECT",
+          "b": [
+            "SAFETY_STABILITY"
+          ]
+        }
+      },
+      {
+        "id": "ORDER",
+        "workingLabelLt": "Tvarka / struktūra",
+        "status": "PLAUSIBLE_OVERLAP",
+        "mapping": {
+          "type": "RELATED",
+          "b": [
+            "CLARITY_PREDICTABILITY"
+          ]
+        },
+        "caveat": "visible order/structure is not equivalent to life clarity/predictability"
+      },
+      {
+        "id": "CONNECTION",
+        "workingLabelLt": "Ryšys",
+        "status": "STRONG_OVERLAP",
+        "higherOrder": "RELATEDNESS_AFFILIATION",
+        "mapping": {
+          "type": "RELATED",
+          "b": [
+            "CONNECTION_BELONGING"
+          ]
+        }
+      },
+      {
+        "id": "BELONGING",
+        "workingLabelLt": "Priklausymas",
+        "status": "STRONG_OVERLAP",
+        "higherOrder": "RELATEDNESS_AFFILIATION",
+        "mapping": {
+          "type": "DIRECT",
+          "b": [
+            "CONNECTION_BELONGING"
+          ]
+        }
+      },
+      {
+        "id": "CARE",
+        "workingLabelLt": "Rūpestis / pagalba",
+        "status": "STRONG_DIFFERENT_LEVEL",
+        "definition": "care/help interaction without inferring participant role",
+        "mapping": {
+          "type": "NO_DIRECT_MATCH",
+          "b": []
+        },
+        "relatedB": [
+          "CARE_SUPPORT_PRESENT",
+          "CONNECTION_BELONGING",
+          "CONTRIBUTION"
+        ]
+      },
+      {
+        "id": "AUTONOMY",
+        "workingLabelLt": "Autonomija",
+        "status": "STRONG",
+        "mapping": {
+          "type": "DIRECT",
+          "b": [
+            "AUTONOMY_AGENCY"
+          ]
+        }
+      },
+      {
+        "id": "CONTROL",
+        "workingLabelLt": "Tiesioginis valdymas",
+        "status": "STRONG_DIFFERENT_LEVEL",
+        "definition": "sense of agency / action-effect contingency",
+        "mapping": {
+          "type": "NO_DIRECT_MATCH",
+          "b": []
+        },
+        "relatedB": [
+          "AUTONOMY_AGENCY",
+          "CLARITY_PREDICTABILITY",
+          "SAFETY_STABILITY"
+        ]
+      },
+      {
+        "id": "RECOGNITION",
+        "workingLabelLt": "Pripažinimas",
+        "status": "PLAUSIBLE",
+        "mapping": {
+          "type": "DIRECT",
+          "b": [
+            "RECOGNITION_ESTEEM"
+          ]
+        }
+      },
+      {
+        "id": "MASTERY",
+        "workingLabelLt": "Meistriškumas",
+        "status": "STRONG",
+        "mapping": {
+          "type": "DIRECT",
+          "b": [
+            "CAPABILITY_MASTERY"
+          ]
+        }
+      },
+      {
+        "id": "EXPLORATION",
+        "workingLabelLt": "Tyrinėjimas",
+        "status": "STRONG_OVERLAP",
+        "higherOrder": "CURIOSITY_INFORMATION_SEEKING",
+        "mapping": {
+          "type": "RELATED",
+          "b": [
+            "LEARNING_GROWTH"
+          ]
+        }
+      },
+      {
+        "id": "KNOWLEDGE",
+        "workingLabelLt": "Mokymasis / supratimas",
+        "status": "STRONG_OVERLAP",
+        "higherOrder": "CURIOSITY_INFORMATION_SEEKING",
+        "mapping": {
+          "type": "DIRECT",
+          "b": [
+            "LEARNING_GROWTH"
+          ]
+        }
+      },
+      {
+        "id": "OPPORTUNITY",
+        "workingLabelLt": "Galimybė",
+        "status": "WEAK_DIFFERENT_LEVEL",
+        "definition": "environmental affordance / available possibility for action",
+        "mapping": {
+          "type": "NO_DIRECT_MATCH",
+          "b": []
+        },
+        "relatedB": [
+          "LEARNING_GROWTH",
+          "AUTONOMY_AGENCY",
+          "MATERIAL_RESOURCES",
+          "CAPABILITY_MASTERY"
+        ],
+        "pilotPriority": "HIGHEST_CHALLENGE"
+      }
+    ]
+  },
+  "pilotRules": {
+    "keepCurrentCounts": true,
+    "channelAFamilyCount": 14,
+    "channelBItemCount": 12,
+    "mostLeast": "ANALYZE_SEPARATELY_FIRST",
+    "mergeCandidates": [
+      [
+        "CONNECTION",
+        "BELONGING"
+      ],
+      [
+        "EXPLORATION",
+        "KNOWLEDGE"
+      ]
+    ],
+    "noPrePilotRemoval": [
+      "OPPORTUNITY"
+    ],
+    "noSymmetryDrivenAdditions": true
+  }
+}
