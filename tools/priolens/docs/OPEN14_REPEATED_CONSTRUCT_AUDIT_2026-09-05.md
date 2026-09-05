@@ -460,3 +460,18 @@ Because the CARE wording changes the meaning of stored Channel-B responses:
 - old completed results are not silently reinterpreted under the new received-support wording.
 
 MOST and LEAST remain unchanged and analytically separate.
+
+
+## Deployment evidence
+
+The authorized semantic revision was deployed to the isolated v0.4 owner preview after source, API and browser smoke gates.
+
+Final deployment:
+- runtime head: `42ed00656e7274a31a9acee9729b8fdcb01083c8`;
+- GitHub Actions run: `33952035914`;
+- result: **SUCCESS**;
+- real deployed 390×844 full owner flow and final API save: PASS;
+- live v0.2: unchanged;
+- external recruitment: closed.
+
+An earlier deployment attempt correctly exposed an inherited `sufficiency-v0.2` gate in the generated v0.4 API. The endpoint generator was then changed to patch both the session schema and the revised `2rasi.priolens.sufficiency-v0.3` schema. This prevents the UI and API from silently disagreeing about the new received-support wording.
