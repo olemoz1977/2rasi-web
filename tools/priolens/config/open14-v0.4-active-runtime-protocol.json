@@ -462,6 +462,7 @@
       "tools/priolens/index.html: bump landing-i18n.js cache token"
     ],
     "rollback": "Restore the three PrioLens landing pointer edits from v0.4 back to v0.2, bump the JS cache token again, republish, smoke LT/EN. Do not remove the v0.4 preview/API.",
-    "productionPublishMechanismStatus": "VERIFY_BEFORE_SWITCH: repository docs conflict between 'Hostinger Git auto-deployment stays OFF' and WorkStyle README saying hero-webgl autodeploys. Do not assume either without confirmation."
+    "productionPublishMechanismStatus": "VERIFY_BEFORE_SWITCH: repository docs conflict between 'Hostinger Git auto-deployment stays OFF' and WorkStyle README saying hero-webgl autodeploys. Do not assume either without confirmation.",
+    "runbook": "tools/priolens/docs/OPEN14_V04_PROMOTION_RUNBOOK_2026-09-05.md"
   }
 }
