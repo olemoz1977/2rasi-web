@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T11:05:00Z",
-  "status": "V04_MATRIX_PRIMARY_DETAILS_RESEARCH_PARALLELS_DEPLOYED_TECHNICAL_PASS",
+  "updatedAtUtc": "2026-09-05T11:31:00Z",
+  "status": "V04_DETERMINISTIC_HUMAN_INTERPRETATION_DEPLOYED_TECHNICAL_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -247,6 +247,28 @@
         "Huijsmans et al. 2019 PMID 31123150",
         "Vansteenkiste, Ryan & Soenens 2020 DOI 10.1007/s11031-019-09818-1"
       ]
+    },
+    "humanInterpretation": {
+      "implemented": true,
+      "schema": "2rasi.priolens.open14.result-interpretation-v0.1",
+      "module": "priolens/open14-v04/result_interpretation_v04.mjs",
+      "placement": "below matrix relationship note and before detail actions",
+      "titleLt": "Viena galima interpretacija",
+      "boundaryLt": "Tai bendrinė refleksija pagal šios sesijos pasirinkimus. Ne diagnozė ir ne išvada apie tavo asmenybę.",
+      "engine": "deterministic rule-based composer; no LLM/network call",
+      "inputs": [
+        "all raw MOST 3/3 repeats",
+        "all raw MOST 2/3 repeats",
+        "final Channel-B/B+ insufficiency route endpoint(s)",
+        "exact 3/3 LEAST/background only as weak contrast",
+        "formative A↔B construct relation constraints"
+      ],
+      "aPlusRole": "A+ may choose one direction for detail, but must not erase other raw 3/3 or 2/3 repeats from the general interpretation",
+      "leastBoundary": "never infer dislike, low importance or absence of need",
+      "noStoryRule": "when no defensible bridge exists, do not manufacture an aha; keep A and B as separate perspectives",
+      "pdfIncluded": true,
+      "referencesStayInDetails": true,
+      "designDoc": "tools/priolens/docs/OPEN14_V04_DETERMINISTIC_HUMAN_INTERPRETATION_2026-09-05.md"
     }
   },
   "deploymentGates": {
@@ -356,9 +378,14 @@
     "detailNoClearMostLocalRun": 33962272420,
     "detailNoClearMostLocalPassed": true,
     "matrixBackedBDetailDeployRun": 33962277430,
-    "matrixBackedBDetailDeployPassed": true
+    "matrixBackedBDetailDeployPassed": true,
+    "humanInterpretationLocalRun": 33963316027,
+    "humanInterpretationLocalPassed": true,
+    "humanInterpretationDeployRun": 33963394155,
+    "humanInterpretationDeployPassed": true,
+    "humanInterpretationModuleMimePassed": true
   },
-  "nextAction": "Owner reviews: B detail must appear over the visible matrix, A no-clear detail must still show all raw MOST 3/3 and 2/3 repetitions, and the optional research-parallels accordions must read as parallels rather than claims of construct validation.",
+  "nextAction": "Owner reviews the human interpretation wording on real results, especially whether the generated hypothesis feels useful without sounding diagnostic or overconfident. Do not replace the deterministic composer with an LLM before this language/fit review.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
