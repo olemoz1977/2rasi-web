@@ -29,9 +29,9 @@
     mirror: { en: 'EN / LT', lt: 'EN / LT' },
     multipliers: { en: 'EN / LT', lt: 'EN / LT' },
     divergent: { en: 'EN / LT', lt: 'EN / LT' },
-    'situational-leadership': { en: 'LT only', lt: 'LT' },
+    'situational-leadership': { en: 'EN / LT', lt: 'EN / LT' },
     karpman: { en: 'EN / LT', lt: 'EN / LT' },
-    'strategic-thinking': { en: 'LT only', lt: 'LT' },
+    'strategic-thinking': { en: 'EN / LT', lt: 'EN / LT' },
     '2pair': { en: 'Research · EN / LT', lt: 'Tyrimas · EN / LT' },
     workstyle: { en: 'Pilot · LT', lt: 'Pilotas · LT' }
   };
@@ -119,17 +119,6 @@
     document.addEventListener('keydown', onKey);
     document.body.appendChild(backdrop);
     closeButton.focus();
-  }
-
-  if (lang === 'en') {
-    ['situational-leadership', 'strategic-thinking'].forEach((id) => {
-      const link = document.querySelector(`#${id} .portal-enter`);
-      if (!link) return;
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-        openLanguageDialog(link.href);
-      });
-    });
   }
 
   const observer = new IntersectionObserver((entries) => {
