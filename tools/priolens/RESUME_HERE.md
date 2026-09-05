@@ -83,6 +83,7 @@ Security note:
 Final technical evidence:
 - protected credential final rotation: workflow `One-time PrioLens admin rotation`, run `33978810812`, attempt 2 SUCCESS;
 - v0.4 deployment/admin/API regression: run `33978843663`, attempt 2 SUCCESS;
+- post-rotation normal deploy persistence gate: run `33983330589` (run 169) SUCCESS; protected admin secret survived ordinary deploy, admin/API route checks PASS, full 390×844 flow + DB save PASS;
 - remote-byte/API route/admin HTTP checks PASS;
 - full deployed 390×844 owner flow + final API DB save PASS.
 
