@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 PRE-RESULT 12×12 MATRIX + PDF DEPLOYED TECHNICAL PASS / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 MATRIX + PDF TECHNICAL PASS / REAL-ANDROID BOOT RECHECK REQUIRED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -13,8 +13,9 @@ Recovery order:
 1. this file;
 2. `docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md` for the latest construct-level research audit;
 3. `config/open14-v0.4-construct-map-2026-09-05.json` for the canonical A↔B construct relation map;
-4. `docs/OPEN14_V04_PRE_RESULT_MATRIX_PDF_DEPLOYED_2026-09-05.md` for the deployed matrix/PDF checkpoint;
-5. `config/open14-v0.4-active-runtime-protocol.json` for the current owner-preview runtime;
+4. `docs/OPEN14_V04_POST_AUDIT_IMPLEMENTATION_REVIEW_ANDROID_BOOT_2026-09-05.md` for the latest real-device regression review;
+5. `docs/OPEN14_V04_PRE_RESULT_MATRIX_PDF_DEPLOYED_2026-09-05.md` for the matrix/PDF checkpoint;
+6. `config/open14-v0.4-active-runtime-protocol.json` for the current owner-preview runtime;
 6. `docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md` for the frozen result information architecture;
 7. `docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md` for the visual implementation rules;
 8. `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` for the pre-freeze owner-review history;
@@ -502,3 +503,31 @@ Technical evidence:
 - matrix module byte/MIME, API, matrix→result transition and final save: PASS.
 
 Owner real-phone review is now the next gate.
+
+
+## 2026-09-05 real Android boot regression checkpoint
+
+Owner's actual Android Chrome remained on the static intro with:
+- `Tikrinamas vaizdų rinkinys…`;
+- disabled `Pradėti`.
+
+This means the latest HTML loaded but the main module bootstrap did not reach `init()`.
+Do not treat the earlier 390×844 Playwright PASS as sufficient real-mobile acceptance.
+
+Postmortem:
+`docs/OPEN14_V04_POST_AUDIT_IMPLEMENTATION_REVIEW_ANDROID_BOOT_2026-09-05.md`
+
+Remediation now deployed:
+- result renderer + 12×12 matrix removed from eager questionnaire startup imports;
+- result modules lazy-load only when the result is needed;
+- matrix load failure falls back to the existing result world;
+- 8-second boot watchdog replaces indefinite static “checking” state with a concrete retry state;
+- literal matrix `\n` leak corrected.
+
+Evidence:
+- logic `33955382277`: SUCCESS;
+- local 390×844 `33955382425`: SUCCESS;
+- deployed/API/real-390×844 `33955382325`, attempt 2: SUCCESS.
+
+**Acceptance remains OPEN until the owner confirms startup on the same Android phone.**
+Do not add new result features before that confirmation.
