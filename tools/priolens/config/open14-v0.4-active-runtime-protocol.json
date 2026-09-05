@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T10:27:00Z",
-  "status": "V04_ALL_MOST_REPEATS_SOLID_GREEN_ANDROID_PDF_FIX_DEPLOYED_TECHNICAL_PASS",
+  "updatedAtUtc": "2026-09-05T11:05:00Z",
+  "status": "V04_MATRIX_PRIMARY_DETAILS_RESEARCH_PARALLELS_DEPLOYED_TECHNICAL_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -81,8 +81,9 @@
     "keyboardActivationSmokePassed": true,
     "needsMapLabelsUseSharedItemLabels": true,
     "detailNavigation": {
-      "attention": "matrix -> existing Channel-A detail content in detailOnlyHost -> matrix",
-      "sufficiency": "matrix -> existing Channel-B detail content in detailOnlyHost -> matrix",
+      "attention": "matrix -> dedicated A detail page -> matrix",
+      "attentionNoClear": "if A+ does not single out one focus, A detail preserves all raw MOST 3/3 and 2/3 repeated directions instead of collapsing to an empty no-focus state",
+      "sufficiency": "matrix stays visible -> B detail opens as modal overlay on top of matrix -> matrix",
       "shipMapSceneVisibleDuringDetails": false
     },
     "participantDetailPresentation": {
@@ -229,7 +230,24 @@
       "Grįžti į 2rasi"
     ],
     "removedAction": "Toliau į rezultatą",
-    "matrixSignalGrammarDoc": "tools/priolens/docs/OPEN14_V04_MATRIX_SIGNAL_GRAMMAR_PDF_REVISION_2026-09-05.md"
+    "matrixSignalGrammarDoc": "tools/priolens/docs/OPEN14_V04_MATRIX_SIGNAL_GRAMMAR_PDF_REVISION_2026-09-05.md",
+    "researchParallels": {
+      "implemented": true,
+      "placement": [
+        "Pirmo žvilgsnio detalės",
+        "Antro atsakymo detalės"
+      ],
+      "interaction": "collapsed details/accordion",
+      "purpose": "optional interpretive parallels for read-in participants, not validation of PrioLens constructs",
+      "attentionBoundary": "attention can reflect physical salience, current goals and learned value; A is not interpreted as an unmet need",
+      "sufficiencyBoundary": "scarcity/need-frustration evidence is domain-specific and is not generalized to all 12 PrioLens B areas",
+      "references": [
+        "Anderson 2013 PMID 23589803",
+        "Seeley et al. 2007 PMID 17329432",
+        "Huijsmans et al. 2019 PMID 31123150",
+        "Vansteenkiste, Ryan & Soenens 2020 DOI 10.1007/s11031-019-09818-1"
+      ]
+    }
   },
   "deploymentGates": {
     "ownerPreviewAndApiDeployRun": 33954090061,
@@ -334,9 +352,13 @@
     "allMostRepeatsLocalUiPdfPassed": true,
     "allMostRepeatsDeployRun": 33960497398,
     "allMostRepeatsDeployPassed": true,
-    "realAndroidPdfRecheckPassed": false
+    "realAndroidPdfRecheckPassed": false,
+    "detailNoClearMostLocalRun": 33962272420,
+    "detailNoClearMostLocalPassed": true,
+    "matrixBackedBDetailDeployRun": 33962277430,
+    "matrixBackedBDetailDeployPassed": true
   },
-  "nextAction": "Owner reviews the real Android matrix and Save-as-PDF: all raw MOST 3/3 and 2/3 must be visible as solid green chips, detail must still focus on one resolved A/A+ direction, and PDF should no longer generate a blank second page.",
+  "nextAction": "Owner reviews: B detail must appear over the visible matrix, A no-clear detail must still show all raw MOST 3/3 and 2/3 repetitions, and the optional research-parallels accordions must read as parallels rather than claims of construct validation.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
