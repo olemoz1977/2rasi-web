@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T09:27:00Z",
-  "status": "V04_MATRIX_PRIMARY_RESULT_DEPLOYED_TECHNICAL_PASS",
+  "updatedAtUtc": "2026-09-05T09:55:00Z",
+  "status": "V04_MATRIX_GREEN_ORANGE_SIGNAL_GRAMMAR_PDF2_DEPLOYED_TECHNICAL_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -132,9 +132,9 @@
     "mapCoastGrammar": "mixed straight/angled segments plus limited curves; explicit bays, peninsulas and concavities; avoid repeated rounded scallops",
     "preResultMatrix": {
       "implemented": true,
-      "placement": "after Channel B/B+ resolution and before existing ship/map result world",
+      "placement": "primary participant result after final Channel-B/B+ resolution",
       "module": "priolens/open14-v04/result_matrix_v04.mjs",
-      "schema": "2rasi.priolens.open14.result-matrix-v0.4",
+      "schema": "2rasi.priolens.open14.result-matrix-v0.5",
       "matrixShape": "12x12",
       "axes": "same 12 exact Channel-B statements on both axes",
       "groupOrder": [
@@ -145,11 +145,12 @@
         "Saugumas ir stabilumas",
         "Poilsis ir resursai"
       ],
-      "palette": "2rasi palette: #071b2e / #315166 / #eef6f8 / #dfeef2 / #7bb8c8 / #fbfdfe",
+      "palette": "2rasi base palette plus restrained semantic green/orange accents",
       "participantOverlays": {
-        "attentionFocus": "filled navy marker; only resolved Channel-A focus",
-        "leastBackground": "hollow navy marker; only exact 3/3 repeated LEAST family",
-        "sufficiencyRoute": "aqua marker; all valid Channel-B route endpoints"
+        "attentionFocus": "no point marker; resolved A-direction chip is green: darker green for raw MOST 3/3, lighter green for raw MOST 2/3",
+        "leastBackground": "not shown in primary matrix; exact 3/3 LEAST/background remains in first-glance detail only",
+        "lowSufficiency": "every numeric Channel-B item rated <=3 paints its full matrix row + column pale orange",
+        "sufficiencyRoute": "no point marker; final B/B+ route item(s) get stronger orange outline on both axis cells and the diagonal cell"
       },
       "relationGrammar": {
         "direct": "solid family chip on diagonal",
@@ -166,25 +167,35 @@
         "horizontalScroll": true,
         "stickyLeftAxis": true,
         "summaryCardsBeforeMatrix": true,
-        "autoCentersHorizontallyOnVisibleResultMarkers": true
+        "autoCentersHorizontallyOnVisibleResultMarkers": false,
+        "autoCentersHorizontallyOnResult": "resolved green A chip and/or strong-orange B route cell"
       },
-      "continueAction": "Toliau į rezultatą opens the preserved ship/map result world",
+      "continueAction": null,
       "causalEncoding": false,
       "magnitudeEncoding": false,
-      "distanceIsPsychologicalMeasure": false
+      "distanceIsPsychologicalMeasure": false,
+      "primarySummaryCards": [
+        "Pirmo žvilgsnio kryptis",
+        "Šiuo metu nepakanka"
+      ],
+      "leastPrimaryCardRemoved": true,
+      "resultTitleLt": "Du žvilgsniai vienoje matricoje.",
+      "resultBoundaryLt": "Matrica rodo santykį, ne priežastį ir ne srities svarbumą."
     },
     "pdfExport": {
       "implemented": true,
       "method": "browser/system print dialog with print CSS; user chooses Save as PDF",
       "availableFrom": [
-        "pre-result matrix",
-        "existing result world"
+        "matrix primary result"
       ],
-      "reportContent": "participant result summary + 12x12 relationship matrix",
+      "reportContent": "page 1: result summary + compact numbered 12x12 matrix; page 2: readable list of all 12 exact Channel-B statements + secondary 3/3 LEAST detail when present",
       "pageTarget": "A4 landscape",
+      "intendedPageCount": 2,
+      "longStatementsRepeatedInsidePrintMatrix": false,
+      "printColorAdjustExact": true,
       "serverPdfGeneration": false,
       "externalPdfDependency": false,
-      "caveat": "browser/in-app print support varies; this is not a one-click server-generated PDF"
+      "caveat": "browser/in-app print support varies; this remains a browser Save-as-PDF flow, not a server-generated download"
     },
     "primaryParticipantResult": "12x12 relationship matrix",
     "shipMapParticipantFlow": "DEACTIVATED",
@@ -205,7 +216,8 @@
       "Atlikti dar kartą",
       "Grįžti į 2rasi"
     ],
-    "removedAction": "Toliau į rezultatą"
+    "removedAction": "Toliau į rezultatą",
+    "matrixSignalGrammarDoc": "tools/priolens/docs/OPEN14_V04_MATRIX_SIGNAL_GRAMMAR_PDF_REVISION_2026-09-05.md"
   },
   "deploymentGates": {
     "ownerPreviewAndApiDeployRun": 33954090061,
@@ -214,7 +226,7 @@
     "isolatedV04ApiPassed": true,
     "deployed390x844OwnerFlowPassed": true,
     "shipMapDetailArchitectureSmokePassed": true,
-    "realPhoneOwnerReviewPassed": true,
+    "realPhoneOwnerReviewPassed": false,
     "unifiedSceneSmokePassed": true,
     "cacheControlGatePassed": true,
     "keyboardActivationSmokePassed": true,
@@ -290,9 +302,16 @@
     "matrixPrimaryDeployPassed": true,
     "shipMapHiddenDuringMatrixDetails": true,
     "matrixDetailsPreserved": true,
-    "completedResultRestoresToMatrix": true
+    "completedResultRestoresToMatrix": true,
+    "matrixSignalGrammarLocalRun": 33959134826,
+    "matrixSignalGrammarLocalPassed": true,
+    "matrixPdfTwoPageSmokePassed": true,
+    "matrixPdfPageCount": 2,
+    "matrixSignalGrammarDeployRun": 33959134861,
+    "matrixSignalGrammarDeployAttempt": 2,
+    "matrixSignalGrammarDeployPassed": true
   },
-  "nextAction": "Owner reviews the matrix-primary result on the real Android phone. Do not reactivate ship/map cards unless there is a new explicit product decision.",
+  "nextAction": "Owner reviews the new green/orange matrix signal grammar and two-page PDF on the real Android phone. LEAST must stay out of the primary matrix.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
