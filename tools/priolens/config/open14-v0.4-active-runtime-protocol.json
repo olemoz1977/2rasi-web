@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T08:39:00Z",
-  "status": "V04_ANDROID_BOOT_CACHE_BUST_REMEDIATION_DEPLOYED_RECHECK_REQUIRED",
+  "updatedAtUtc": "2026-09-05T09:27:00Z",
+  "status": "V04_MATRIX_PRIMARY_RESULT_DEPLOYED_TECHNICAL_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -81,14 +81,9 @@
     "keyboardActivationSmokePassed": true,
     "needsMapLabelsUseSharedItemLabels": true,
     "detailNavigation": {
-      "mode": "mixed: dedicated attention route + sufficiency bottom sheet using routed state",
-      "attentionDetailRoute": "?detail=attention",
-      "sufficiencyDetailRoute": "?detail=sufficiency",
-      "inlineExpansionRemoved": true,
-      "browserBackSupported": true,
-      "mainSceneHiddenForAttentionDetail": true,
-      "mainSceneRemainsVisibleBehindSufficiencySheet": true,
-      "sufficiencySheetEscapeAndBackdropClose": true
+      "attention": "matrix -> existing Channel-A detail content in detailOnlyHost -> matrix",
+      "sufficiency": "matrix -> existing Channel-B detail content in detailOnlyHost -> matrix",
+      "shipMapSceneVisibleDuringDetails": false
     },
     "participantDetailPresentation": {
       "attentionDetail": "dedicated routed view",
@@ -190,7 +185,27 @@
       "serverPdfGeneration": false,
       "externalPdfDependency": false,
       "caveat": "browser/in-app print support varies; this is not a one-click server-generated PDF"
-    }
+    },
+    "primaryParticipantResult": "12x12 relationship matrix",
+    "shipMapParticipantFlow": "DEACTIVATED",
+    "shipMapRuntimeRole": "hidden detail-content host + emergency matrix-render fallback only",
+    "matrixPrimaryFreezeDoc": "tools/priolens/docs/OPEN14_V04_MATRIX_PRIMARY_RESULT_FREEZE_2026-09-05.md",
+    "normalFlow": [
+      "Channel A MOST+LEAST",
+      "A+ if required",
+      "Channel B sufficiency",
+      "B+ if required",
+      "final save starts",
+      "12x12 relationship matrix"
+    ],
+    "matrixActions": [
+      "Pirmo žvilgsnio detalės",
+      "Antro atsakymo detalės",
+      "Išsaugoti PDF",
+      "Atlikti dar kartą",
+      "Grįžti į 2rasi"
+    ],
+    "removedAction": "Toliau į rezultatą"
   },
   "deploymentGates": {
     "ownerPreviewAndApiDeployRun": 33954090061,
@@ -270,9 +285,14 @@
     "coreModuleCacheBustLogicRun": 33955752595,
     "coreModuleCacheBustLocal390x844Run": 33955752717,
     "coreModuleCacheBustDeployRun": 33955752653,
-    "coreModuleCacheBustDeployPassed": true
+    "coreModuleCacheBustDeployPassed": true,
+    "matrixPrimaryDeployRun": 33957908985,
+    "matrixPrimaryDeployPassed": true,
+    "shipMapHiddenDuringMatrixDetails": true,
+    "matrixDetailsPreserved": true,
+    "completedResultRestoresToMatrix": true
   },
-  "nextAction": "Owner rechecks the same Android phone using the v0.4 URL after core module cache bust. If boot still fails, capture the watchdog state and move to a classic-script/minimal-bootstrap isolation path rather than adding features.",
+  "nextAction": "Owner reviews the matrix-primary result on the real Android phone. Do not reactivate ship/map cards unless there is a new explicit product decision.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
@@ -283,7 +303,8 @@
     "restoreTriggersFinalApiPost": false,
     "restartClearsSnapshot": true,
     "rationale": "Final API save clears the unfinished draft, so a separate completed-result snapshot is required to keep the participant on the result after reload.",
-    "schemaIsolationReason": "Channel-B CARE wording changed meaning to explicitly received support; old completed results and drafts must not be silently reinterpreted."
+    "schemaIsolationReason": "Channel-B CARE wording changed meaning to explicitly received support; old completed results and drafts must not be silently reinterpreted.",
+    "completedRestoreTarget": "matrixResult"
   },
   "constructAudit": {
     "status": "APPLIED_DEPLOYED_TECHNICAL_PASS",
