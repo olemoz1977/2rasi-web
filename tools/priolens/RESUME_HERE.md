@@ -531,3 +531,29 @@ Evidence:
 
 **Acceptance remains OPEN until the owner confirms startup on the same Android phone.**
 Do not add new result features before that confirmation.
+
+
+## 2026-09-05 Android boot cache-bust remediation
+
+Second real-Android failure showed the new boot watchdog, confirming that the page HTML itself was current but the main module graph still did not reach `init()`.
+
+Strongest current hypothesis:
+- the Android browser had a stale cached copy of one of the previously unversioned core `.mjs` files;
+- after the construct audit, the main page began importing the new named export `SUFFICIENCY_SCHEMA_V04`;
+- a stale older `adaptive_clarifiers_v04.mjs` without that export would fail the module graph before `init()`, exactly matching the observed watchdog state;
+- this is not proven because the real-device JS exception was not captured.
+
+Remediation:
+- cache-bust all three core startup module URLs with `?v=boot20260905b`:
+  - `p3_open14_planner_v02.mjs`
+  - `open14_no_repeat_assigner_v03.mjs`
+  - `adaptive_clarifiers_v04.mjs`
+- result modules remain lazy-loaded;
+- boot watchdog remains active.
+
+Technical evidence:
+- logic run `33955752595`: SUCCESS;
+- local 390×844 run `33955752717`: SUCCESS;
+- deployed owner-preview/API/390×844 run `33955752653`: SUCCESS.
+
+Real Android confirmation remains the acceptance gate.
