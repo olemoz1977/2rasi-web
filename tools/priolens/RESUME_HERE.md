@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX GREEN+ORANGE SIGNAL GRAMMAR + 2-PAGE PDF DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX OWN-AREA ORANGE + SINGLE-PAGE A4 PDF DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -615,3 +615,33 @@ Technical evidence:
 - deployed/API/full-390×844 `33959134861`, attempt 2: SUCCESS.
 
 Real Android visual/PDF review is the remaining acceptance gate.
+
+
+## 2026-09-05 own-area orange + single-page PDF correction
+
+Owner review exposed that full orange row/column bands visually contaminated unrelated need areas.
+
+Current rule:
+- B rating <=3 colors only:
+  - the exact top-axis item;
+  - the exact left-axis item;
+  - that same B area's diagonal matrix cell;
+- no orange row/column fill is allowed through other need cells;
+- final B/B+ endpoint(s) use a stronger orange outline on those same exact locations only.
+
+PDF diagnosis from the owner-supplied Android Chrome PDF:
+- the physical PDF pages were A4 **portrait**, despite earlier landscape print CSS;
+- the earlier print layout also explicitly forced the statement appendix onto page 2;
+- page 1 and page 2 therefore contained large unused white areas.
+
+Current PDF target:
+- one A4 portrait page;
+- compact summary + numbered matrix + compact 12-statement appendix on the same page;
+- no forced page break;
+- local PDF smoke requires exactly 1 page.
+
+Technical evidence:
+- local full-flow + PDF smoke `33959809259`: SUCCESS;
+- deployed/API/full-390×844 `33959809300`: SUCCESS.
+
+Real Android PDF save remains the visual acceptance check.
