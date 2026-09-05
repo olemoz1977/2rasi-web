@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX-PRIMARY + DETERMINISTIC HUMAN INTERPRETATION DEPLOYED TECHNICAL PASS / SHIP+MAP PARTICIPANT FLOW DEACTIVATED / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.4 MATRIX-PRIMARY + DETERMINISTIC HUMAN INTERPRETATION LOCAL PASS / CLEAN DEPLOY RECHECK IN PROGRESS / PROMOTION TO LIVE PENDING EXPLICIT OWNER APPROVAL
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -10,6 +10,7 @@ Branch: `feature/priolens-architecture`
 **Repo is source of truth. Do not reconstruct PrioLens from chat memory.**
 
 Recovery order:
+0. `NEW_CHAT_HANDOFF_2026-09-05_RESULT_INTERPRETATION.md` for the latest handoff and immediate queue;
 1. this file;
 2. `docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md` for the latest construct-level research audit;
 3. `config/open14-v0.4-construct-map-2026-09-05.json` for the canonical A↔B construct relation map;
@@ -740,3 +741,41 @@ Technical evidence:
 - deployed owner-preview/API/real-390×844 `33963394155`: SUCCESS.
 
 Next gate: owner language/fit review on real results. Do not introduce LLM-generated interpretation yet.
+
+
+## 2026-09-05 deterministic human interpretation checkpoint
+
+New module:
+`priolens/open14-v04/result_interpretation_v04.mjs`
+
+Schema:
+`2rasi.priolens.open14.result-interpretation-v0.1`
+
+Current participant block:
+- heading: **Viena galima interpretacija**;
+- explicit **Ne diagnozė** boundary;
+- B/B+ current insufficiency is the narrative anchor;
+- all raw MOST 3/3 and 2/3 A repetitions contribute to the reading;
+- exact 3/3 LEAST may appear only as cautious contrast;
+- no A->B causality;
+- no hidden/true-need/personality claims;
+- composer is deterministic and auditable, not runtime LLM;
+- if no plausible bridge exists, it must refuse to manufacture a single story.
+
+A concrete CONTRIBUTION + RECOGNITION + BELONGING/CONNECTION bridge is implemented, with KNOWLEDGE/EXPLORATION usable as a secondary modifier.
+
+Technical evidence:
+- interpretation/build logic `33963282744`: SUCCESS;
+- local full-flow/UI/PDF smoke `33963316027`: SUCCESS;
+- initial deploy run `33963323069` failed only because the new interpretation module was not present on remote during byte verification;
+- workflow source now includes the module in deploy + byte/MIME verification;
+- clean redeploy run `33964509120`: in progress at checkpoint time.
+
+Promotion:
+- live v0.2 remains unchanged;
+- v0.4 promotion is the next major operation after owner interpretation/PDF review;
+- do not promote without explicit owner approval;
+- keep rollback to v0.2 until post-promotion smoke passes.
+
+Latest handoff:
+`NEW_CHAT_HANDOFF_2026-09-05_RESULT_INTERPRETATION.md`
