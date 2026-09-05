@@ -867,3 +867,23 @@ Technical evidence:
 - local 390x844 A+/B+ UI smoke run `33985448994`: SUCCESS;
 - deploy run `33985457746`, rerun attempt/job `101358222885`: SUCCESS;
 - live API/route checks, preview bytes/MIME, full 390x844 owner flow and DB save: PASS.
+
+
+## 2026-09-05 mobile trial clipping regression fix
+
+Owner Android screenshot after the first MOST/LEAST hierarchy change exposed two visual regressions:
+- the longer trial question/hint was clipped because inherited `.trialhead` still had a fixed 40px height;
+- pre-MOST disabled assist controls were still visible and their longer labels overlapped in the two-column mobile row.
+
+Current live rule:
+- `.trialhead` uses dynamic height/min-height with explicit line-height and spacing so 2-line question + hint stays above the progress bar;
+- before MOST, `Keisti pirmą` and `Abu panašiai` are hidden and disabled;
+- after MOST, both appear and become enabled;
+- labels are shortened to `Keisti pirmą` / `Abu panašiai` (EN: `Change first` / `Both feel similar`) so they fit the mobile two-column row;
+- the two remaining images remain the primary LEAST targets.
+
+Technical evidence:
+- commit `35131645f482887c3f02395fb61c9bbe7c35a83a` fixes layout;
+- commit `5ac3f6efb5541cafe9a06d8ac8a93ee71ae4aabd` adds deployed regression guard;
+- deploy run `33985736149` / job `101358781325`: SUCCESS;
+- live API/route checks, preview byte/MIME checks, full deployed 390x844 flow and DB save: PASS.
