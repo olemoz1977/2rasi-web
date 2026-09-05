@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / CONSTRUCT-AUDIT SEMANTIC REVISION APPLIED IN SOURCE / LIVE SMOKE PENDING / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / CONSTRUCT-AUDIT SEMANTIC REVISION DEPLOYED TECHNICAL PASS / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -441,6 +441,25 @@ Technical evidence so far:
 - first live deployment smoke `33951806372`: FAILED only at final live save because generated v0.4 endpoints still inherited the old `sufficiency-v0.2` gate;
 - endpoint generator was corrected to patch both session and sufficiency schema;
 - final source head after terminology + endpoint fixes: `42ed00656e7274a31a9acee9729b8fdcb01083c8`;
-- final deployment smoke run `33952035914`: PENDING at this checkpoint.
+- final deployment smoke run `33952035914`: **SUCCESS**;
+- build/source validation, isolated API deployment, remote-byte/module-MIME checks, and real deployed 390×844 owner flow with final API save all passed.
 
-Do not call the semantic revision a deployed technical PASS until run `33952035914` succeeds.
+The construct-audit semantic revision is now **DEPLOYED TECHNICAL PASS**. Live v0.2 remains untouched and external recruitment remains closed.
+
+
+## Immediate next methodological task after construct-audit deployment
+
+Build the 12×12 conceptual/result matrix from:
+`config/open14-v0.4-construct-map-2026-09-05.json`
+
+Rules:
+- both axes use the exact Channel-B statements participants answered;
+- six product groups remain visual grouping only;
+- DIRECT, RELATED and NO_DIRECT_MATCH must be visually distinguishable;
+- CARE must not imply giver identification;
+- CONTROL must not be collapsed into autonomy;
+- OPPORTUNITY remains a formative affordance family and high-priority pilot challenge;
+- Meaning/Contribution/received-support gaps on the A side remain visible rather than being filled for symmetry;
+- no cell size, color intensity, distance or route may imply need strength;
+- no matrix geometry may imply that Channel A causes Channel B;
+- MOST and LEAST remain separate observations.
