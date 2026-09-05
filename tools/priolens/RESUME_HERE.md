@@ -887,3 +887,22 @@ Technical evidence:
 - commit `5ac3f6efb5541cafe9a06d8ac8a93ee71ae4aabd` adds deployed regression guard;
 - deploy run `33985736149` / job `101358781325`: SUCCESS;
 - live API/route checks, preview byte/MIME checks, full deployed 390x844 flow and DB save: PASS.
+
+
+## 2026-09-05 LEAST visual hierarchy after owner Android review
+
+Owner Android screenshot showed that even after clipping was fixed, the participant still had to infer that the already selected MOST image no longer participates in the LEAST decision.
+
+Current live LEAST state:
+- selected MOST image remains in place for context but is immediately visually de-emphasized (opacity 0.38, reduced saturation/grayscale, scale 0.9) while its `PIRMAS` label stays visible;
+- the two remaining images stay full visual weight and are the primary LEAST targets;
+- LEAST hint explicitly says: **Pažymėk vieną iš dviejų. Jei abu traukia panašiai, rinkis „Abu panašiai“.**;
+- `Keisti pirmą` is visually weaker than `Abu panašiai`, reinforcing that rollback is correction rather than a co-equal response;
+- de-emphasis is immediate, without animation delay.
+
+Technical evidence:
+- source commit `49cd5811e9cce479130aa7b5d23f3d383a0a699d` adds LEAST visual hierarchy and explicit fallback instruction;
+- regression guard commit `97754ed1174cf2f084dc70b419dea4ddde76a571` checks MOST de-emphasis, action hierarchy and instruction semantics;
+- immediate-state fix commit `660ec63f19cc0288b4ebc7bd1f0a2e426900b246` removes the unnecessary transition delay;
+- final deploy run `33986214567` (run 176), job `101360063259`: SUCCESS;
+- live API/route checks, preview bytes/MIME, full deployed 390x844 owner flow and DB save: PASS.
