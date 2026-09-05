@@ -847,3 +847,23 @@ Promotion:
 
 Latest handoff:
 `NEW_CHAT_HANDOFF_2026-09-05_RESULT_INTERPRETATION.md`
+
+
+## 2026-09-05 MOST/LEAST action hierarchy after first public feedback
+
+Owner feedback from the first public tester indicated two related UX risks: mobile image comparison felt difficult, and the participant noticed that “Abu likę panašiai” was not always available. Data showed the latter was protocol-consistent, but the LEAST screen had become visually overloaded by recovery/exception actions.
+
+Current live rule:
+- before MOST, `Keisti pirmą pasirinkimą` and `Abu likę panašiai` are visible but disabled/de-emphasized;
+- after MOST, both become enabled;
+- the selected MOST image remains disabled/marked while the two remaining images are the primary LEAST targets;
+- MOST instruction is explicit: **Kuri nuotrauka pirmiausia patraukia tavo dėmesį?** / **Pažymėk vieną nuotrauką. Rinkis pirmą impulsą.**;
+- LEAST instruction is explicit: **Kuri iš dviejų likusių nuotraukų traukia mažiausiai?** / **Pažymėk vieną iš dviejų likusių nuotraukų.**;
+- rollback is framed as error correction, not a co-equal ranking action;
+- `Abu likę panašiai` remains an exception path, not the primary LEAST action.
+
+Technical evidence:
+- logic smoke run `33985449020`: SUCCESS;
+- local 390x844 A+/B+ UI smoke run `33985448994`: SUCCESS;
+- deploy run `33985457746`, rerun attempt/job `101358222885`: SUCCESS;
+- live API/route checks, preview bytes/MIME, full 390x844 owner flow and DB save: PASS.
