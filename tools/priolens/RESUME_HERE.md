@@ -1,6 +1,6 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / REPEATED CONSTRUCT AUDIT COMPLETE / TAXONOMY STILL FORMATIVE / EXTERNAL RECRUITMENT CLOSED
+Status: ACTIVE / OPEN14 v0.2 LIVE UNCHANGED / v0.3.1 OWNER PREVIEW PRESERVED / v0.4 IA FROZEN / CONSTRUCT-AUDIT SEMANTIC REVISION APPLIED IN SOURCE / LIVE SMOKE PENDING / TAXONOMY FORMATIVE / EXTERNAL RECRUITMENT CLOSED
 Updated: 2026-09-05
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
@@ -12,13 +12,14 @@ Branch: `feature/priolens-architecture`
 Recovery order:
 1. this file;
 2. `docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md` for the latest construct-level research audit;
-3. `config/open14-v0.4-active-runtime-protocol.json` for the current owner-preview runtime;
-4. `docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md` for the frozen result information architecture;
-5. `docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md` for the visual implementation rules;
-6. `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` for the pre-freeze owner-review history;
-7. `config/open14-v0.4-adaptive-clarifiers-protocol.json` and `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md` for the frozen A+/B+ rationale and rules;
-8. `config/open14-v0.3-active-runtime-protocol.json` and `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md` for the preserved v0.3.1 baseline;
-9. older v0.3 / bank docs as historical evidence.
+3. `config/open14-v0.4-construct-map-2026-09-05.json` for the canonical A↔B construct relation map;
+4. `config/open14-v0.4-active-runtime-protocol.json` for the current owner-preview runtime;
+5. `docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md` for the frozen result information architecture;
+6. `docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md` for the visual implementation rules;
+7. `docs/OPEN14_V04_RESULT_WORLD_OWNER_PREVIEW_2026-09-04.md` for the pre-freeze owner-review history;
+8. `config/open14-v0.4-adaptive-clarifiers-protocol.json` and `docs/OPEN14_V04_A_PLUS_B_PLUS_PROTOCOL_FREEZE_2026-09-04.md` for the frozen A+/B+ rationale and rules;
+9. `config/open14-v0.3-active-runtime-protocol.json` and `docs/OPEN14_V031_OWNER_REMEDIATION_DEPLOYED_TECHNICAL_PASS_2026-09-03.md` for the preserved v0.3.1 baseline;
+10. older v0.3 / bank docs as historical evidence.
 
 Later checkpoints supersede older same-day notes when they conflict.
 The v0.4 owner preview is now implemented and deployed. It does **not** replace live v0.2 or open external recruitment.
@@ -72,7 +73,7 @@ Do not claim:
 - a one-to-one construct mapping between the 14 Channel-A families and the 12 Channel-B need items.
 
 MOST and LEAST stay analytically separate. No participant-facing balance score.
-CARE visual giving is not equivalent to `CARE_SUPPORT_PRESENT` received/present support.
+CARE visual choice does not reveal giver/receiver identification and is not equivalent to `CARE_SUPPORT_PRESENT`, which now explicitly means support received from others.
 
 ## Current bank identity
 
@@ -401,5 +402,45 @@ Key conclusions:
 - B item `CARE_SUPPORT_PRESENT` should be rewritten to explicitly mean support received from others;
 - MOST and LEAST remain separate. Before any combined BWS/MaxDiff-style model, empirically test whether family-level MOST and LEAST effects are inverse after exemplar/slot/nuisance controls.
 
-No runtime or bank mutation was authorized by this audit.
-Next methodological task: define the pre-pilot choice-model and construct-validation plan before using the 12×12 matrix as anything stronger than a conceptual relationship map.
+At audit completion no runtime or bank mutation had yet been authorized. The owner subsequently authorized the semantic revisions below. The 12×12 matrix must still be treated as a conceptual/result relationship map, not a validated latent-space model.
+
+
+## 2026-09-05 construct-audit semantic revision implementation checkpoint
+
+Owner authorized the audit-derived changes without changing the 14/12 counts.
+
+Canonical mapping:
+`config/open14-v0.4-construct-map-2026-09-05.json`
+
+Applied in runtime source:
+- Channel A remains 14 visual families; Channel B remains 12 sufficiency statements;
+- no visual pixel changes;
+- RESOURCE narrowed to **resource access / availability**;
+- ORDER participant label narrowed to **tvarka / struktūra** and mapping to clarity/predictability is RELATED, not DIRECT;
+- CARE participant label neutralized to **rūpestis / pagalba**; the result no longer infers that the participant identified with the helper;
+- CONTROL is framed as **direct control / action-effect agency**, distinct from autonomy;
+- OPPORTUNITY is framed as **available possibility / affordance**, not an internal need;
+- CONNECTION/BELONGING remain separate A visual subfamilies of broader relatedness pending pilot evidence;
+- EXPLORATION/KNOWLEDGE remain separate A visual subfamilies of broader curiosity/information-seeking pending pilot evidence;
+- B technical ID `AUTONOMY_AGENCY` remains for compatibility, with semantic alias **AUTONOMY_VOLITION**;
+- B `CARE_SUPPORT_PRESENT` is now:
+  **„Jaučiu, kad iš kitų sulaukiu pakankamai rūpesčio, paramos ir žmogiško dėmesio.“**
+- participant-facing B result terminology is now **pakankamumo sritis / sufficiency area**, not “poreikio sritis / need area”;
+- MOST and LEAST collection and interpretation rules are unchanged and remain analytically separate.
+
+Semantic storage isolation:
+- Channel-B schema: `2rasi.priolens.sufficiency-v0.3`;
+- v0.4 draft key base: `priolens.open14.v041.rank.draft`;
+- completed-result key base: `priolens.open14.v041.last-result`;
+- server requires the revised sufficiency schema;
+- old saved B responses are not silently reinterpreted under the new received-support wording.
+
+Technical evidence so far:
+- server semantic smoke `33951719302`: SUCCESS;
+- local UI smoke `33951806366`: SUCCESS on the first semantic-revision head;
+- first live deployment smoke `33951806372`: FAILED only at final live save because generated v0.4 endpoints still inherited the old `sufficiency-v0.2` gate;
+- endpoint generator was corrected to patch both session and sufficiency schema;
+- final source head after terminology + endpoint fixes: `42ed00656e7274a31a9acee9729b8fdcb01083c8`;
+- final deployment smoke run `33952035914`: PENDING at this checkpoint.
+
+Do not call the semantic revision a deployed technical PASS until run `33952035914` succeeds.
