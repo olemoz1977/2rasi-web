@@ -1,6 +1,6 @@
 # PrioLens v0.4 — deterministic human interpretation composer
 
-Status: IMPLEMENTED / LOCAL TECHNICAL PASS / OWNER PREVIEW DEPLOYMENT IN PROGRESS
+Status: DEPLOYED TECHNICAL PASS / OWNER REAL-PHONE LANGUAGE REVIEW PENDING
 Date: 2026-09-05
 
 ## Product decision
@@ -125,3 +125,12 @@ Local 390×844 full-flow smoke also checks:
 - “Ne diagnozė” is visible;
 - forbidden certainty such as “tikrasis poreikis” / subconscious claims is absent;
 - the existing one-page PDF print smoke still runs with the interpretation block.
+
+
+## Deployment evidence
+
+- interpretation unit test: PASS;
+- local 390×844 full-flow + one-page PDF smoke `33963316027`: SUCCESS;
+- deployed owner-preview/API/real-390×844 gate `33963394155`: SUCCESS;
+- new interpretation module remote bytes + ES-module MIME: PASS;
+- participant interpretation block, explicit `Ne diagnozė` boundary and existing result/detail flow: PASS.
