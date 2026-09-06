@@ -1,0 +1,108 @@
+name: PrioLens bank v0.4 validation staging checks
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/priolens-bank-v04-validation
+    paths:
+      - '.github/workflows/priolens-bank-v04-validation-checks.yml'
+      - 'tools/priolens/validate/**'
+      - 'workers/workstyle-pilot/src/index.js'
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/priolens-bank-v04-validation
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: JavaScript syntax
+        run: |
+          set -euo pipefail
+          node --check tools/priolens/validate/app.js
+          node --check workers/workstyle-pilot/src/index.js
+
+      - name: Pool integrity and Opportunity competitor policy
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,re
+          p='tools/priolens/validate/stimuli-v04.json'
+          x=json.load(open(p,encoding='utf-8'))
+          assert x['schema']=='2rasi.priolens.stimulus-validation-pool-v0.2'
+          assert x['poolVersion']=='open14-v04-current42'
+          assert x['sourceBank']=='2rasi.priolens.open14.bank-v0.4'
+          assert x['status']=='ASSET_QC_PENDING_PUBLIC_HOLD'
+          rows=x['stimuli']
+          assert len(rows)==42
+          assert len({r['id'] for r in rows})==42
+          assert len({r['imageUrl'] for r in rows})==42
+          fam={}
+          for r in rows:
+              fam.setdefault(r['targetFamily'],[]).append(r)
+          assert len(fam)==14
+          assert all(len(v)==3 for v in fam.values())
+          by={r['id']:r for r in rows}
+          assert by['OPPORTUNITY-01']['competitors']==['RESOURCE','AUTONOMY','ORDER']
+          assert by['OPPORTUNITY-02']['competitors']==['MASTERY','EXPLORATION','AUTONOMY']
+          assert by['OPPORTUNITY-03']['competitors']==['BELONGING','CONNECTION','RECOGNITION']
+          assert by['OPPORTUNITY-01']['mechanismRole']=='OCCUPY_OPENING'
+          assert by['OPPORTUNITY-02']['mechanismRole']=='CREATE_FROM_AVAILABLE_START'
+          assert by['OPPORTUNITY-03']['mechanismRole']=='JOIN_AVAILABLE_PLACE'
+          changed=['SAFETY-02','EXPLORATION-01','AUTONOMY-02','OPPORTUNITY-01','OPPORTUNITY-03']
+          for eid in changed:
+              assert '/Open14-v04/' in by[eid]['imageUrl']
+          assert '/Open14-v04/' not in by['OPPORTUNITY-02']['imageUrl']
+          print('PASS v0.4 pool integrity')
+          PY
+
+      - name: App/worker protocol lock
+        run: |
+          set -euo pipefail
+          grep -Fq "const PUBLIC_RESEARCH_OPEN = false" tools/priolens/validate/app.js
+          grep -Fq "const POOL_URL = './stimuli-v04.json'" tools/priolens/validate/app.js
+          grep -Fq "parsed.poolVersion !== pool?.poolVersion" tools/priolens/validate/app.js
+          grep -Fq 'const PRIOLENS_SV_POOL = "open14-v04-current42"' workers/workstyle-pilot/src/index.js
+          grep -Fq 'PRIOLENS_SV_STIMULUS_COMPETITORS' workers/workstyle-pilot/src/index.js
+          grep -Fq '"OPPORTUNITY-03":["BELONGING","CONNECTION","RECOGNITION"]' workers/workstyle-pilot/src/index.js
+          echo 'PASS validation staging protocol lock'
+
+      - name: Balanced incomplete form invariant
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          const pool=JSON.parse(fs.readFileSync('tools/priolens/validate/stimuli-v04.json','utf8'));
+          const order=pool.familyOrder;
+          const forms=[];
+          for(let formIndex=0;formIndex<7;formIndex++){
+            const out=[];
+            order.forEach((family,familyIndex)=>{
+              const miss=familyIndex%7;
+              if(formIndex===miss)return;
+              const available=[0,1,2,3,4,5,6].filter(x=>x!==miss);
+              const shift=familyIndex%6;
+              const rotated=available.slice(shift).concat(available.slice(0,shift));
+              const pos=rotated.indexOf(formIndex);
+              const exemplarIndex=Math.floor(pos/2);
+              const list=pool.stimuli.filter(s=>s.targetFamily===family).sort((a,b)=>a.id.localeCompare(b.id));
+              out.push(list[exemplarIndex].id);
+            });
+            if(out.length!==12)throw new Error('form '+formIndex+' != 12');
+            if(new Set(out.map(id=>id.split('-')[0])).size!==12)throw new Error('duplicate family in form');
+            forms.push(out);
+          }
+          const n={};
+          for(const f of forms)for(const id of f)n[id]=(n[id]||0)+1;
+          for(const s of pool.stimuli)if(n[s.id]!==2)throw new Error(s.id+' exposure '+n[s.id]);
+          console.log('PASS 7 forms, 12 stimuli/form, every exemplar exposed exactly twice');
+          NODE
