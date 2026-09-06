@@ -86,7 +86,7 @@
       loading:'Kraunama…',
       summaryFail:'Nepavyko gauti suvestinės.',
       holdTitle:'Vaizdų patikra trumpam sustabdyta',
-      holdText:'Per rankinę 42 vaizdų peržiūrą radome du matomus generavimo vandens ženklus ir dar vieną tikrintiną artefaktą. Kol paruošiame švarią, atskirai versijuojamą kandidatų rinkinio versiją, naujų tyrimo atsakymų nerenkame.',
+      holdText:'Švari, atskirai versijuota bank v0.4 kandidatų versija jau praėjo techninę patikrą. Dabar atliekame galutinę rankinę visų 42 vaizdų peržiūrą, todėl naujų tyrimo atsakymų dar nerenkame.',
       holdNote:'Pagrindinis PrioLens puslapis lieka pasiekiamas. Šis sustabdymas taikomas tik aklam vaizdų validavimo tyrimui.',
       familyNames:{
         REST:'Poilsis / atsistatymas',
@@ -180,7 +180,7 @@
       loading:'Loading…',
       summaryFail:'Could not load the summary.',
       holdTitle:'Visual check temporarily paused',
-      holdText:'A manual review of all 42 images found two visible generation watermarks and one additional artifact that still needs review. We are not collecting new validation responses until a clean, separately versioned candidate pool is ready.',
+      holdText:'A clean, separately versioned bank v0.4 candidate set has passed technical QC. We are completing the final manual review of all 42 images before collecting new validation responses.',
       holdNote:'The main PrioLens page remains available. This pause applies only to the blind visual-stimulus validation study.',
       familyNames:{
         REST:'Rest / restoration',
