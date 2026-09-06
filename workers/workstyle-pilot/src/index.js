@@ -24,6 +24,47 @@ const TOOL_IDS = new Set([
   "priolens",
 ]);
 
+const PRIOLENS_SV_SCHEMA = "2rasi.priolens.stimulus-validation-session-v0.1";
+const PRIOLENS_SV_VERSION = "priolens-stimulus-validation-v0.1";
+const PRIOLENS_SV_POOL = "open14-v031-current42";
+const PRIOLENS_SV_FAMILIES = [
+  "REST","RESOURCE","SAFETY","ORDER","CONNECTION","BELONGING","CARE",
+  "AUTONOMY","CONTROL","RECOGNITION","MASTERY","EXPLORATION","KNOWLEDGE","OPPORTUNITY",
+];
+const PRIOLENS_SV_CLASSIFICATIONS = new Set([...PRIOLENS_SV_FAMILIES, "OTHER"]);
+const PRIOLENS_SV_STIMULUS_TO_FAMILY = Object.freeze(Object.fromEntries(
+  PRIOLENS_SV_FAMILIES.flatMap((family) => [1,2,3].map((n) => [
+    `${family}-${String(n).padStart(2, "0")}`,
+    family,
+  ])),
+));
+const PRIOLENS_SV_THRESHOLDS = Object.freeze({
+  minN: 40,
+  keepFitMin: 0.60,
+  keepTopCompetitorMax: 0.20,
+  keepOtherMax: 0.20,
+  keepClarityMin: 3.5,
+  keepConfidenceMin: 3.5,
+  replaceFitBelow: 0.40,
+  replaceTopCompetitorAtLeast: 0.35,
+  replaceOtherAtLeast: 0.35,
+});
+
+function priolensValidationForm(formIndex) {
+  const out = [];
+  PRIOLENS_SV_FAMILIES.forEach((family, familyIndex) => {
+    const miss = familyIndex % 7;
+    if (formIndex === miss) return;
+    const available = [0,1,2,3,4,5,6].filter((x) => x !== miss);
+    const shift = familyIndex % 6;
+    const rotated = available.slice(shift).concat(available.slice(0, shift));
+    const position = rotated.indexOf(formIndex);
+    const exemplar = Math.floor(position / 2) + 1;
+    out.push(`${family}-${String(exemplar).padStart(2, "0")}`);
+  });
+  return out;
+}
+
 function corsHeaders(origin) {
   const headers = {
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -151,6 +192,287 @@ function validateFeedback(payload) {
   if (usefulness !== "yes" && usefulness !== "no") return "usefulness must be yes or no";
   if (typeof payload.comment === "string" && payload.comment.length > 1200) return "comment too long";
   return null;
+}
+
+
+function integerIn(value, min, max) {
+  return Number.isInteger(value) && value >= min && value <= max;
+}
+
+function validatePriolensStimulusValidation(payload) {
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) return "body must be a JSON object";
+  if (payload.schema !== PRIOLENS_SV_SCHEMA) return "unsupported schema";
+  if (payload.version !== PRIOLENS_SV_VERSION) return "unsupported version";
+  if (payload.poolVersion !== PRIOLENS_SV_POOL) return "unsupported pool";
+  if (!asText(payload.sessionId, 120)) return "missing sessionId";
+  if (payload.language !== "lt" && payload.language !== "en") return "language must be lt or en";
+  if (!integerIn(payload.formIndex, 0, 6)) return "formIndex must be 0..6";
+  if (!asText(payload.completedAt, 64)) return "missing completedAt";
+  if (!Array.isArray(payload.responses) || payload.responses.length !== 12) return "responses must contain exactly 12 items";
+
+  const expected = new Set(priolensValidationForm(payload.formIndex));
+  const seenStimuli = new Set();
+  const seenPositions = new Set();
+
+  for (const response of payload.responses) {
+    if (!response || typeof response !== "object" || Array.isArray(response)) return "invalid response object";
+    const stimulusId = asText(response.stimulusId, 40);
+    if (!stimulusId || !expected.has(stimulusId)) return "stimulus outside assigned form";
+    if (seenStimuli.has(stimulusId)) return "duplicate stimulus";
+    seenStimuli.add(stimulusId);
+
+    const targetFamily = asText(response.targetFamily, 40);
+    if (PRIOLENS_SV_STIMULUS_TO_FAMILY[stimulusId] !== targetFamily) return "target family mismatch";
+    const openText = asText(response.openText, 240);
+    if (!openText || openText.length < 2) return "openText too short";
+    if (!integerIn(response.clarity, 1, 5)) return "clarity must be 1..5";
+    if (!integerIn(response.confidence, 1, 5)) return "confidence must be 1..5";
+    if (!integerIn(response.valence, 1, 5)) return "valence must be 1..5";
+
+    const classification = asText(response.classification, 40);
+    if (!classification || !PRIOLENS_SV_CLASSIFICATIONS.has(classification)) return "invalid classification";
+
+    if (!integerIn(response.presentationIndex, 0, 11)) return "presentationIndex must be 0..11";
+    if (seenPositions.has(response.presentationIndex)) return "duplicate presentationIndex";
+    seenPositions.add(response.presentationIndex);
+
+    if (!Array.isArray(response.optionOrder) || response.optionOrder.length !== 5) return "optionOrder must contain 5 codes";
+    const optionSet = new Set(response.optionOrder);
+    if (optionSet.size !== 5 || !optionSet.has(targetFamily) || !optionSet.has("OTHER") || !optionSet.has(classification)) return "invalid optionOrder";
+    for (const code of optionSet) if (!PRIOLENS_SV_CLASSIFICATIONS.has(code)) return "unsupported option code";
+
+    for (const key of ["step1Ms","step2Ms","totalMs"]) {
+      const value = response[key];
+      if (typeof value !== "number" || !Number.isFinite(value) || value < 0 || value > 3600000) return key + " out of range";
+    }
+  }
+
+  if (seenStimuli.size !== expected.size) return "assigned form incomplete";
+  return null;
+}
+
+async function handlePriolensStimulusValidation(payload, raw, env, origin) {
+  const validationError = validatePriolensStimulusValidation(payload);
+  if (validationError) {
+    return json({ ok:false, error:"invalid_payload", detail:validationError }, 400, origin);
+  }
+
+  const sessionId = asText(payload.sessionId, 120);
+  const receivedAt = new Date().toISOString();
+  const source = asText(payload.source, 80);
+  const medium = asText(payload.medium, 80);
+  const campaign = asText(payload.campaign, 120);
+  const referrerHost = asText(payload.referrerHost, 160);
+
+  try {
+    const statements = [
+      env.DB.prepare(`
+        INSERT INTO priolens_stimulus_validation_sessions (
+          session_id, received_at, version, pool_version, language, form_index,
+          started_at, completed_at, response_count, source, medium, campaign,
+          referrer_host, payload_json
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(session_id) DO UPDATE SET
+          received_at=excluded.received_at,
+          version=excluded.version,
+          pool_version=excluded.pool_version,
+          language=excluded.language,
+          form_index=excluded.form_index,
+          started_at=excluded.started_at,
+          completed_at=excluded.completed_at,
+          response_count=excluded.response_count,
+          source=excluded.source,
+          medium=excluded.medium,
+          campaign=excluded.campaign,
+          referrer_host=excluded.referrer_host,
+          payload_json=excluded.payload_json
+      `).bind(
+        sessionId, receivedAt, payload.version, payload.poolVersion, payload.language, payload.formIndex,
+        asText(payload.startedAt, 64), payload.completedAt, payload.responses.length,
+        source, medium, campaign, referrerHost, raw,
+      ),
+      env.DB.prepare("DELETE FROM priolens_stimulus_validation_responses WHERE session_id = ?").bind(sessionId),
+    ];
+
+    for (const response of payload.responses) {
+      statements.push(env.DB.prepare(`
+        INSERT INTO priolens_stimulus_validation_responses (
+          session_id, stimulus_id, target_family, language, open_text, clarity,
+          classification, confidence, valence, presentation_index, option_order_json,
+          step1_ms, step2_ms, total_ms
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `).bind(
+        sessionId,
+        response.stimulusId,
+        response.targetFamily,
+        payload.language,
+        asText(response.openText, 240),
+        response.clarity,
+        response.classification,
+        response.confidence,
+        response.valence,
+        response.presentationIndex,
+        JSON.stringify(response.optionOrder),
+        Math.round(response.step1Ms),
+        Math.round(response.step2Ms),
+        Math.round(response.totalMs),
+      ));
+    }
+
+    await env.DB.batch(statements);
+  } catch (error) {
+    console.error("D1 PrioLens stimulus validation insert failed", error);
+    return json({ ok:false, error:"storage_failed" }, 500, origin);
+  }
+
+  return json({ ok:true, sessionId, receivedAt, responseCount:payload.responses.length }, 201, origin);
+}
+
+function priolensSvStatus(row, topCompetitorRate, otherRate) {
+  const n = Number(row.n || 0);
+  const fitRate = n ? Number(row.intended_n || 0) / n : 0;
+  const clarity = Number(row.clarity_avg || 0);
+  const confidence = Number(row.confidence_avg || 0);
+  if (n < PRIOLENS_SV_THRESHOLDS.minN) return "COLLECTING";
+  if (
+    fitRate < PRIOLENS_SV_THRESHOLDS.replaceFitBelow
+    || topCompetitorRate >= PRIOLENS_SV_THRESHOLDS.replaceTopCompetitorAtLeast
+    || otherRate >= PRIOLENS_SV_THRESHOLDS.replaceOtherAtLeast
+    || topCompetitorRate >= fitRate
+  ) return "REPLACE";
+  if (
+    fitRate >= PRIOLENS_SV_THRESHOLDS.keepFitMin
+    && topCompetitorRate <= PRIOLENS_SV_THRESHOLDS.keepTopCompetitorMax
+    && otherRate <= PRIOLENS_SV_THRESHOLDS.keepOtherMax
+    && clarity >= PRIOLENS_SV_THRESHOLDS.keepClarityMin
+    && confidence >= PRIOLENS_SV_THRESHOLDS.keepConfidenceMin
+  ) return "KEEP";
+  return "REVIEW";
+}
+
+function buildPriolensSvRows(metricRows, classRows, scope) {
+  const classMap = new Map();
+  for (const row of classRows) {
+    const key = row.stimulus_id;
+    if (!classMap.has(key)) classMap.set(key, []);
+    classMap.get(key).push(row);
+  }
+
+  return metricRows.map((row) => {
+    const n = Number(row.n || 0);
+    const fitRate = n ? Number(row.intended_n || 0) / n : 0;
+    const otherRate = n ? Number(row.other_n || 0) / n : 0;
+    const competitors = (classMap.get(row.stimulus_id) || [])
+      .filter((x) => x.classification !== row.target_family && x.classification !== "OTHER")
+      .sort((a,b) => Number(b.n || 0) - Number(a.n || 0) || String(a.classification).localeCompare(String(b.classification)));
+    const top = competitors[0] || null;
+    const topRate = top && n ? Number(top.n || 0) / n : 0;
+    return {
+      scope,
+      stimulusId:row.stimulus_id,
+      targetFamily:row.target_family,
+      n,
+      fitRate,
+      otherRate,
+      topCompetitor:top?.classification || null,
+      topCompetitorRate:topRate,
+      clarityAvg:Number(row.clarity_avg || 0),
+      confidenceAvg:Number(row.confidence_avg || 0),
+      valenceAvg:Number(row.valence_avg || 0),
+      status:priolensSvStatus(row, topRate, otherRate),
+    };
+  }).sort((a,b) => a.stimulusId.localeCompare(b.stimulusId));
+}
+
+async function handlePriolensStimulusValidationSummary(request, env, origin) {
+  if (!ALLOWED_ORIGINS.has(origin)) {
+    return json({ ok:false, error:"origin_not_allowed" }, 403, origin);
+  }
+  if (request.headers.get("X-2rasi-owner") !== "1") {
+    return json({ ok:false, error:"owner_gate_required" }, 403, origin);
+  }
+
+  try {
+    const [
+      sessionResult,
+      overallMetricsResult,
+      byLanguageMetricsResult,
+      overallClassesResult,
+      byLanguageClassesResult,
+    ] = await Promise.all([
+      env.DB.prepare(`
+        SELECT language, COUNT(*) AS n
+        FROM priolens_stimulus_validation_sessions
+        GROUP BY language
+      `).all(),
+      env.DB.prepare(`
+        SELECT stimulus_id, target_family, COUNT(*) AS n,
+          SUM(CASE WHEN classification = target_family THEN 1 ELSE 0 END) AS intended_n,
+          SUM(CASE WHEN classification = 'OTHER' THEN 1 ELSE 0 END) AS other_n,
+          AVG(clarity) AS clarity_avg,
+          AVG(confidence) AS confidence_avg,
+          AVG(valence) AS valence_avg
+        FROM priolens_stimulus_validation_responses
+        GROUP BY stimulus_id, target_family
+      `).all(),
+      env.DB.prepare(`
+        SELECT stimulus_id, target_family, language, COUNT(*) AS n,
+          SUM(CASE WHEN classification = target_family THEN 1 ELSE 0 END) AS intended_n,
+          SUM(CASE WHEN classification = 'OTHER' THEN 1 ELSE 0 END) AS other_n,
+          AVG(clarity) AS clarity_avg,
+          AVG(confidence) AS confidence_avg,
+          AVG(valence) AS valence_avg
+        FROM priolens_stimulus_validation_responses
+        GROUP BY stimulus_id, target_family, language
+      `).all(),
+      env.DB.prepare(`
+        SELECT stimulus_id, target_family, classification, COUNT(*) AS n
+        FROM priolens_stimulus_validation_responses
+        GROUP BY stimulus_id, target_family, classification
+      `).all(),
+      env.DB.prepare(`
+        SELECT stimulus_id, target_family, language, classification, COUNT(*) AS n
+        FROM priolens_stimulus_validation_responses
+        GROUP BY stimulus_id, target_family, language, classification
+      `).all(),
+    ]);
+
+    const sessions = {all:0,lt:0,en:0};
+    for (const row of resultRows(sessionResult)) {
+      const key = row.language === "lt" || row.language === "en" ? row.language : null;
+      if (key) {
+        sessions[key] = Number(row.n || 0);
+        sessions.all += Number(row.n || 0);
+      }
+    }
+
+    const overallRows = buildPriolensSvRows(
+      resultRows(overallMetricsResult),
+      resultRows(overallClassesResult),
+      "all",
+    );
+
+    const byLanguageMetrics = resultRows(byLanguageMetricsResult);
+    const byLanguageClasses = resultRows(byLanguageClassesResult);
+    const languageRows = ["lt","en"].flatMap((language) => buildPriolensSvRows(
+      byLanguageMetrics.filter((x) => x.language === language),
+      byLanguageClasses.filter((x) => x.language === language),
+      language,
+    ));
+
+    return json({
+      ok:true,
+      generatedAt:new Date().toISOString(),
+      schema:PRIOLENS_SV_SCHEMA,
+      poolVersion:PRIOLENS_SV_POOL,
+      thresholds:PRIOLENS_SV_THRESHOLDS,
+      sessionCounts:sessions,
+      rows:[...overallRows, ...languageRows],
+    }, 200, origin);
+  } catch (error) {
+    console.error("D1 PrioLens stimulus validation summary failed", error);
+    return json({ ok:false, error:"summary_failed" }, 500, origin);
+  }
 }
 
 async function readJson(request, origin) {
@@ -521,7 +843,11 @@ export default {
       return handleDashboard(request, env, origin, url);
     }
 
-    if (request.method !== "POST" || !["/v1/session", "/v1/event", "/v1/feedback"].includes(url.pathname)) {
+    if (url.pathname === "/v1/priolens-stimulus-validation-summary" && request.method === "GET") {
+      return handlePriolensStimulusValidationSummary(request, env, origin);
+    }
+
+    if (request.method !== "POST" || !["/v1/session", "/v1/event", "/v1/feedback", "/v1/priolens-stimulus-validation"].includes(url.pathname)) {
       return json({ ok: false, error: "not_found" }, 404, origin);
     }
 
@@ -534,6 +860,7 @@ export default {
 
     if (url.pathname === "/v1/session") return handleSession(parsed.payload, parsed.raw, env, origin);
     if (url.pathname === "/v1/event") return handleEvent(parsed.payload, env, origin);
+    if (url.pathname === "/v1/priolens-stimulus-validation") return handlePriolensStimulusValidation(parsed.payload, parsed.raw, env, origin);
     return handleFeedback(parsed.payload, env, origin);
   },
 };
