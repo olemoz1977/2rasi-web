@@ -35,7 +35,7 @@ jobs:
           missing = []
           for path in paths:
               text = Path(path).read_text(encoding='utf-8')
-              if '/tools/site-insights.js?v=20260906-1' not in text:
+              if '/tools/site-insights.js?v=20260906-2' not in text:
                   missing.append(path)
           if missing:
               print('Missing insights script:', *missing, sep='\n- ')
