@@ -49,25 +49,25 @@
     },
 
     multipliers: {
-      description: 'Vadovavimo refleksijos eksperimentas, įkvėptas „Multipliers“ modelio.',
-      kicker: 'Vadovavimo refleksija · LT',
-      lead: '15 situacijų refleksija apie būdus, kuriais vadovas gali stiprinti kitų žmonių gebėjimus, atsakomybę ir mąstymą.',
-      meta: ['15 situacijų', '5 vadovavimo kryptys', 'Lietuvių kalba', 'Duomenys tik naršyklėje'],
-      actions: ['Pradėti Multipliers ↗', 'Suprasti modelį'],
+      description: 'Vadovavimo refleksijos pilotas, įkvėptas „Multipliers“ modelio ir Accidental Diminisher logikos.',
+      kicker: 'Vadovavimo refleksija · Pilot v0.9 · LT',
+      lead: '15 situacijų refleksija apie tai, kaip vadovas stiprina kitų indėlį ir kada geras ketinimas gali netyčia susiaurinti jų mąstymą, iniciatyvą ar atsakomybę.',
+      meta: ['15 situacijų', '6 pasirinkimai', 'Pilot v0.9', 'Vardo ir el. pašto neprašome'],
+      actions: ['Pradėti Pilot v0.9 ↗', 'Suprasti modelį'],
       sections: [
         {
           title: 'Ką jis tyrinėja',
           paragraphs: [
-            'Eksperimentas klausia, kaip reaguotum įvairiose vadovavimo situacijose. Tavo pasirinkimai susiejami su penkiomis archetipinėmis kryptimis, naudojamomis šiame refleksijos įrankyje.',
-            'Tikslas nėra priskirti tave vienam tipui. Svarbiau pastebėti, kurie vadovavimo būdai atsiranda natūraliau, o kuriuos naudoji rečiau.'
+            'Kiekvienoje situacijoje renkiesi vieną iš šešių realistiškų veiksmų. Penkios kryptys įkvėptos „Multipliers“ modelio, o vienas specialiai suprojektuotas variantas tikrina, kada geras vadovo ketinimas gali turėti accidental-diminishing riziką.',
+            'Tikslas nėra priskirti tave vienam tipui ar skaičiuoti „Diminisher balą“. Rezultatas rodo tavo 15 pasirinkimų pėdsaką ir kelias vietas, į kurias verta pažvelgti dar kartą.'
           ]
         },
         { title: 'Penkios kryptys', paragraphs: [] },
         {
           title: 'Kaip naudoti rezultatą',
           paragraphs: [
-            'Žiūrėk į visą modelį, ne tik į aukščiausią rezultatą. Naudingas klausimas: <em>kokio vadovavimo veiksmo imuosi pirmiausia ir kurį pamirštu, kai padidėja spaudimas?</em>',
-            'Tai nepriklausomas 2rasi refleksijos eksperimentas, įkvėptas „Multipliers“ modelio. Tai nėra oficialus ar validuotas „Multipliers“ vertinimas.'
+            'Pirmas sluoksnis parodo, kurios iš penkių Multipliers įkvėptų krypčių tavo pasirinkimuose kartojosi dažniau. Antras sluoksnis išryškina situacijas, kuriose geras ketinimas galėjo susiaurinti kitų indėlį.',
+            'Tai nepriklausomas 2rasi refleksijos pilotas, įkvėptas „Multipliers“ modelio. Tai nėra oficialus ar validuotas „Multipliers“ vertinimas, diagnozė ar asmenybės klasifikacija.'
           ]
         }
       ],
@@ -78,7 +78,7 @@
         ['Debate Maker', 'Kviesti skirtingas perspektyvas ir prieš sprendimus naudoti produktyvią diskusiją.'],
         ['Investor', 'Suteikti atsakomybę, nuosavybės jausmą ir atskaitomybę, užuot pasiėmus darbą atgal.']
       ],
-      side: ['Išbandyk pilną versiją', '2rasi kataloge pagrindiniu „Multipliers“ eksperimentu naudojama 15 situacijų versija.', 'Pradėti Multipliers ↗']
+      side: ['Dabartinis pilotas', 'Pilot v0.9 naudoja 15 situacijų × 6 pasirinkimus ir anoniminį sesijos ID banko kokybei tikrinti.', 'Pradėti Pilot v0.9 ↗']
     },
 
     divergent: {
