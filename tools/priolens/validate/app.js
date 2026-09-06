@@ -7,7 +7,7 @@
   const SCHEMA = '2rasi.priolens.stimulus-validation-session-v0.2';
   const VERSION = 'priolens-stimulus-validation-v0.2';
   const POOL_URL = './stimuli-v04.json';
-  const PUBLIC_RESEARCH_OPEN = false;
+  const PUBLIC_RESEARCH_OPEN = true;
   const FAMILY_ORDER = ['REST','RESOURCE','SAFETY','ORDER','CONNECTION','BELONGING','CARE','AUTONOMY','CONTROL','RECOGNITION','MASTERY','EXPLORATION','KNOWLEDGE','OPPORTUNITY'];
   const COMPETITORS = {
     REST:['RESOURCE','SAFETY','ORDER'],
