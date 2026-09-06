@@ -86,6 +86,17 @@ jobs:
             printf '%s' "$R" | jq -e '.success == true' >/dev/null
           done < schema-statements.jsonl
 
+          # Idempotent migration for pilot-analysis eligibility metadata.
+          # Existing D1 databases predate these columns; new databases already have them.
+          COLS_PAYLOAD='{"sql":"PRAGMA table_info(pilot_sessions)"}'
+          COLS="$(curl --fail-with-body --silent --show-error --request POST --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --header 'Content-Type: application/json' --data "$COLS_PAYLOAD" "$URL")"
+          if ! printf '%s' "$COLS" | jq -e '[.result[]?.results[]?.name] | index("source_mode") != null' >/dev/null; then
+            curl --fail-with-body --silent --show-error --request POST --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --header 'Content-Type: application/json' --data '{"sql":"ALTER TABLE pilot_sessions ADD COLUMN source_mode TEXT NOT NULL DEFAULT '\''" "$URL" | jq -e '.success == true' >/dev/null
+          fi
+          if ! printf '%s' "$COLS" | jq -e '[.result[]?.results[]?.name] | index("analysis_eligible") != null' >/dev/null; then
+            curl --fail-with-body --silent --show-error --request POST --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --header 'Content-Type: application/json' --data '{"sql":"ALTER TABLE pilot_sessions ADD COLUMN analysis_eligible INTEGER NOT NULL DEFAULT 1"}' "$URL" | jq -e '.success == true' >/dev/null
+          fi
+
       - name: Upload Worker
         shell: bash
         run: |
