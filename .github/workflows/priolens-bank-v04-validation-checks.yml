@@ -43,7 +43,7 @@ jobs:
           assert x['schema']=='2rasi.priolens.stimulus-validation-pool-v0.2'
           assert x['poolVersion']=='open14-v04-current42'
           assert x['sourceBank']=='2rasi.priolens.open14.bank-v0.4'
-          assert x['status']=='TECHNICAL_QC_PASS_OWNER_VISUAL_REVIEW_PENDING_PUBLIC_HOLD'
+          assert x['status']=='READY_FOR_PUBLIC_BLIND_SCREENING'
           rows=x['stimuli']
           assert len(rows)==42
           assert len({r['id'] for r in rows})==42
@@ -70,12 +70,14 @@ jobs:
       - name: App/worker protocol lock
         run: |
           set -euo pipefail
-          grep -Fq "const PUBLIC_RESEARCH_OPEN = false" tools/priolens/validate/app.js
+          grep -Fq "const PUBLIC_RESEARCH_OPEN = true" tools/priolens/validate/app.js
           grep -Fq "const POOL_URL = './stimuli-v04.json'" tools/priolens/validate/app.js
           grep -Fq "parsed.poolVersion !== pool?.poolVersion" tools/priolens/validate/app.js
           grep -Fq 'const PRIOLENS_SV_POOL = "open14-v04-current42"' workers/workstyle-pilot/src/index.js
           grep -Fq 'PRIOLENS_SV_STIMULUS_COMPETITORS' workers/workstyle-pilot/src/index.js
           grep -Fq '"OPPORTUNITY-03":["BELONGING","CONNECTION","RECOGNITION"]' workers/workstyle-pilot/src/index.js
+          grep -Fq 'const PRIOLENS_SV_HOLDS = Object.freeze({});' workers/workstyle-pilot/src/index.js
+          grep -Fq 'publicResearchOpen:true' workers/workstyle-pilot/src/index.js
           echo 'PASS validation staging protocol lock'
 
       - name: Balanced incomplete form invariant
