@@ -22,7 +22,6 @@
       ['/tools/drama-triangle', 'drama-triangle'],
       ['/tools/strategic-thinking', 'strategic-thinking'],
       ['/tools/2pair', '2pair'],
-      ['/tools/workstyle', 'workstyle'],
       ['/tools/workstyle15', 'workstyle'],
       ['/tools/priolens', 'priolens'],
     ];
