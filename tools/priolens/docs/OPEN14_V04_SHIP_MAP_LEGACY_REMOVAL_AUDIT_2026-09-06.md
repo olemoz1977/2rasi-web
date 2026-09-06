@@ -1,6 +1,6 @@
 # PrioLens v0.4 — ship/map legacy removal audit and safe migration plan
 
-Status: PREPARED / NO RUNTIME MUTATION YET  
+Status: COMPLETED / DEPLOYED PASS  
 Date: 2026-09-06
 
 ## Baseline
@@ -25,7 +25,30 @@ Architecture repo:
 Architecture branch baseline:
 `c94b8d239733186d70118755b4ed460c2f45f572`
 
-No implementation/runtime mutation was made during this audit.
+No implementation/runtime mutation was made during the audit phase itself.
+
+## Completion checkpoint
+
+The staged migration described below was executed after owner approval.
+
+Accepted implementation:
+- runtime SHA: `e2d10c3908057a5be7c71dacc0b5936481c2643b`;
+- logic smoke: `34007584761` SUCCESS;
+- local 390×844 UI smoke: `34007584748` SUCCESS;
+- deployed owner-flow/API/source-clean smoke: `34007584760` SUCCESS.
+
+Result:
+- obsolete visual scene removed from generated participant HTML;
+- public renderer converted to detail-only behavior while retaining the same public filename;
+- A/B detail semantics preserved;
+- matrix failure uses a generic saved-result error state instead of an obsolete alternate visualization;
+- live HTML and renderer are byte-verified and forbidden-token checked;
+- PDF, browser Back, reload restore and API save remain green.
+
+Rollback remains:
+- implementation SHA `660ec63f19cc0288b4ebc7bd1f0a2e426900b246`;
+- deploy run `33986214567`.
+
 
 ## Executive finding
 
@@ -441,6 +464,4 @@ Removal is complete only when all are true:
 
 ## Decision
 
-Proceed with structural removal, not a cosmetic hide.
-
-The safest first implementation keeps the current module filenames and data contracts while deleting the obsolete visual scene and decoupling details from it.
+Structural removal is complete. The current module filenames and data contracts were retained while the obsolete visual scene and its detail/fallback coupling were removed.
