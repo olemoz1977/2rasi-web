@@ -107,7 +107,10 @@ function renderStaticText() {
 
   document.getElementById("resultsTitle").textContent = s.resultsTitle;
   document.getElementById("resultsIntro").textContent = s.resultsIntro;
+  document.getElementById("scoreNote").textContent = s.scoreNote;
   document.getElementById("topAreasHeading").textContent = s.topAreasHeading;
+  document.getElementById("topAreasIntro").textContent = s.topAreasIntro;
+  document.getElementById("selectionLimit").textContent = s.selectionLimit;
   document.getElementById("downloadPdfBtn").textContent = s.downloadPdfButton;
   document.getElementById("restartBtn").textContent = s.restartButton;
   document.getElementById("footerNote").textContent = s.footer;
@@ -216,10 +219,6 @@ function computeCategoryScores() {
   return scores;
 }
 
-function zoneFor(score) {
-  return DATA.scoring.zones.find(z => score <= z.max) || DATA.scoring.zones[DATA.scoring.zones.length - 1];
-}
-
 // ---------- results rendering ----------
 
 function renderResults() {
@@ -232,8 +231,6 @@ function renderResults() {
   DATA.categories.forEach(cat => {
     const score = scores[cat.id];
     const pct = ((score - 1) / 4) * 100;
-    const zone = zoneFor(score);
-    const isHigh = score >= 3.8;
 
     const row = document.createElement("div");
     row.className = "category-row";
@@ -242,35 +239,70 @@ function renderResults() {
         <span class="category-name">${cat.name[state.lang]}</span>
         <span class="category-score">${score.toFixed(1)} / 5.0</span>
       </div>
+      <div class="category-description">${cat.description[state.lang]}</div>
       <div class="bar-axis">
-        <div class="bar-fill ${isHigh ? "is-clay" : ""}" style="width:${pct}%"></div>
+        <div class="bar-fill" style="width:${pct}%"></div>
       </div>
-      <div class="bar-mirror bar-fill ${isHigh ? "is-clay" : ""}" style="width:${pct}%"></div>
-      <div class="category-label">${zone.label[state.lang]}</div>
+      <div class="bar-mirror bar-fill" style="width:${pct}%"></div>
     `;
     barsContainer.appendChild(row);
   });
 
-  const topAreasList = document.getElementById("topAreasList");
-  topAreasList.innerHTML = "";
-  const ranked = [...DATA.categories]
-    .sort((a, b) => scores[b.id] - scores[a.id])
-    .slice(0, DATA.scoring.topAreasCount);
+  const selected = new Set();
+  const list = document.getElementById("topAreasList");
 
-  ranked.forEach(cat => {
-    const div = document.createElement("div");
-    div.className = "top-area-item";
-    div.innerHTML = `
-      <div class="top-area-name">${cat.name[state.lang]}</div>
-      <span class="reflection-label">${s.reflectionLabel}</span>
-      <div class="reflection-question">${cat.reflection[state.lang]}</div>
-    `;
-    topAreasList.appendChild(div);
-  });
+  const repaintChoices = () => {
+    list.innerHTML = "";
+    DATA.categories.forEach(cat => {
+      const chosen = selected.has(cat.id);
+      const item = document.createElement("div");
+      item.className = "top-area-item";
 
+      const head = document.createElement("div");
+      head.className = "reflection-choice-head";
+
+      const name = document.createElement("div");
+      name.className = "top-area-name";
+      name.textContent = cat.name[state.lang];
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "reflection-choice" + (chosen ? " is-selected" : "");
+      btn.textContent = chosen ? s.chosenArea : s.chooseArea;
+      btn.setAttribute("aria-pressed", chosen ? "true" : "false");
+      btn.addEventListener("click", () => {
+        if (chosen) selected.delete(cat.id);
+        else if (selected.size < 2) selected.add(cat.id);
+        repaintChoices();
+      });
+
+      head.appendChild(name);
+      head.appendChild(btn);
+      item.appendChild(head);
+
+      if (chosen) {
+        const label = document.createElement("span");
+        label.className = "reflection-label";
+        label.textContent = s.reflectionLabel;
+
+        const q = document.createElement("div");
+        q.className = "reflection-question";
+        q.textContent = cat.reflection[state.lang];
+
+        item.appendChild(label);
+        item.appendChild(q);
+      }
+
+      list.appendChild(item);
+    });
+
+    document.getElementById("selectionLimit").textContent =
+      selected.size >= 2 ? s.selectionLimit : s.selectionLimit;
+  };
+
+  repaintChoices();
   showScreen("screen-results");
 }
-
 // ---------- resume banner ----------
 
 function checkResumableSession() {
