@@ -50,6 +50,18 @@ export default{async fetch(req,env){
     .bind(clip(p.sessionId,120),a,n,r,clip(p.comment,1200)).run();
    return json(req,env,{ok:true});
   }
+  if(req.method==="GET"&&route==="/summary"){
+   const overview=await env.DB.prepare("SELECT COUNT(*) AS sessions,SUM(CASE WHEN completed=1 THEN 1 ELSE 0 END) AS completed,ROUND(AVG(CASE WHEN completed=1 THEN ad_count END),2) AS avg_ad FROM pilot_sessions").first();
+   const completed=Number(overview?.completed||0);
+   if(completed<5)return json(req,env,{ok:true,minimumReached:false,completed,minimum:5});
+   const [adDist,dirs,questions,feedback]=await Promise.all([
+    env.DB.prepare("SELECT ad_count,COUNT(*) AS n FROM pilot_sessions WHERE completed=1 GROUP BY ad_count ORDER BY ad_count").all(),
+    env.DB.prepare("SELECT SUM(tm_count) TM,SUM(lb_count) LB,SUM(ch_count) CH,SUM(dm_count) DM,SUM(in_count) IN,SUM(ad_count) AD FROM pilot_results").first(),
+    env.DB.prepare(`SELECT question_id,COUNT(*) AS responses,SUM(CASE WHEN direction='AD' THEN 1 ELSE 0 END) AS ad_selected,ROUND(100.0*SUM(CASE WHEN direction='AD' THEN 1 ELSE 0 END)/COUNT(*),1) AS ad_rate_pct,ROUND(AVG(response_time_ms)) AS avg_ms,ROUND(AVG(CASE WHEN direction='AD' THEN response_time_ms END)) AS ad_avg_ms FROM pilot_responses GROUP BY question_id ORDER BY question_id`).all(),
+    env.DB.prepare(`SELECT COUNT(*) AS n,SUM(CASE WHEN noticed_different_options='yes' THEN 1 ELSE 0 END) AS noticed_yes,SUM(CASE WHEN noticed_different_options='no' THEN 1 ELSE 0 END) AS noticed_no,SUM(CASE WHEN noticed_different_options='unsure' THEN 1 ELSE 0 END) AS noticed_unsure,SUM(CASE WHEN answered_realistically='yes' THEN 1 ELSE 0 END) AS realistic_yes,SUM(CASE WHEN answered_realistically='mostly' THEN 1 ELSE 0 END) AS realistic_mostly,SUM(CASE WHEN answered_realistically='no' THEN 1 ELSE 0 END) AS realistic_no,SUM(CASE WHEN result_prompted_reflection='yes' THEN 1 ELSE 0 END) AS reflect_yes,SUM(CASE WHEN result_prompted_reflection='unsure' THEN 1 ELSE 0 END) AS reflect_unsure,SUM(CASE WHEN result_prompted_reflection='no' THEN 1 ELSE 0 END) AS reflect_no FROM pilot_feedback`).first()
+   ]);
+   return json(req,env,{ok:true,minimumReached:true,overview,adDistribution:adDist.results||[],directionTotals:dirs||{},questionStats:questions.results||[],feedback:feedback||{}});
+  }
   return json(req,env,{ok:false,error:"not found"},404);
  }catch(e){return json(req,env,{ok:false,error:e?.message||"server error"},500)}
 }};
