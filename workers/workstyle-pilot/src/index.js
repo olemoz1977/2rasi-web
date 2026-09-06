@@ -6,6 +6,7 @@ const ALLOWED_ORIGINS = new Set([
 ]);
 
 const MAX_BODY_BYTES = 220_000;
+const CLEAN_ANALYTICS_SINCE = "2026-09-06T04:05:00.000Z";
 const SCHEMA_PREFIX = "workstyle-v07-cognitive-session-v";
 const EVENT_TYPES = new Set(["page_view", "tool_start", "tool_complete", "feedback"]);
 const TOOL_IDS = new Set([
@@ -333,12 +334,14 @@ async function handleFeedback(payload, env, origin) {
 
 function dashboardRange(url) {
   const raw = String(url.searchParams.get("days") || "7").toLowerCase();
-  if (raw === "all") return { days: null, since: null, label: "all" };
-  const days = [1, 7, 30].includes(Number(raw)) ? Number(raw) : 7;
+  const requested = raw === "all"
+    ? null
+    : new Date(Date.now() - ([1, 7, 30].includes(Number(raw)) ? Number(raw) : 7) * 86400000).toISOString();
+  const since = !requested || requested < CLEAN_ANALYTICS_SINCE ? CLEAN_ANALYTICS_SINCE : requested;
   return {
-    days,
-    since: new Date(Date.now() - days * 86400000).toISOString(),
-    label: String(days),
+    days: raw === "all" ? null : ([1, 7, 30].includes(Number(raw)) ? Number(raw) : 7),
+    since,
+    label: raw === "all" ? "all" : String([1, 7, 30].includes(Number(raw)) ? Number(raw) : 7),
   };
 }
 
@@ -363,6 +366,7 @@ async function handleDashboard(request, env, origin, url) {
       summaryResult,
       toolsResult,
       sourcesResult,
+      campaignsResult,
       dailyResult,
       feedbackResult,
       quoteCommentsResult,
@@ -376,7 +380,7 @@ async function handleDashboard(request, env, origin, url) {
           COUNT(DISTINCT CASE WHEN event_type = 'tool_complete' THEN visit_id END) AS completed,
           COUNT(DISTINCT CASE WHEN event_type = 'feedback' THEN visit_id END) AS feedbacks
         FROM site_events
-        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner')${timeClause}
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner', 'test')${timeClause}
       `).bind(...params).all(),
 
       env.DB.prepare(`
@@ -388,7 +392,7 @@ async function handleDashboard(request, env, origin, url) {
           COUNT(DISTINCT CASE WHEN event_type = 'tool_complete' THEN visit_id END) AS completed,
           COUNT(DISTINCT CASE WHEN event_type = 'feedback' THEN visit_id END) AS feedbacks
         FROM site_events
-        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner')${timeClause}
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner', 'test')${timeClause}
         GROUP BY tool_id
         ORDER BY visitors DESC, page_views DESC, tool_id
       `).bind(...params).all(),
@@ -399,9 +403,29 @@ async function handleDashboard(request, env, origin, url) {
           COUNT(DISTINCT visit_id) AS visitors
         FROM site_events
         WHERE event_type = 'page_view'
-          AND COALESCE(source, '') NOT IN ('synthetic', 'owner')${timeClause}
+          AND COALESCE(source, '') NOT IN ('synthetic', 'owner', 'test')${timeClause}
         GROUP BY COALESCE(NULLIF(source, ''), 'direct')
         ORDER BY visitors DESC, source
+      `).bind(...params).all(),
+
+      env.DB.prepare(`
+        SELECT
+          COALESCE(NULLIF(source, ''), 'direct') AS source,
+          COALESCE(NULLIF(medium, ''), '') AS medium,
+          COALESCE(NULLIF(campaign, ''), '') AS campaign,
+          COUNT(DISTINCT CASE WHEN event_type = 'page_view' THEN visit_id END) AS visitors,
+          COUNT(DISTINCT CASE WHEN event_type = 'tool_start' THEN visit_id END) AS started,
+          COUNT(DISTINCT CASE WHEN event_type = 'tool_complete' THEN visit_id END) AS completed
+        FROM site_events
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner', 'test')${timeClause}
+          AND (
+            (campaign IS NOT NULL AND trim(campaign) <> '')
+            OR COALESCE(source, '') IN ('skool','facebook','instagram','linkedin','tiktok','youtube','reddit','substack','pinterest','threads','x','chatgpt')
+          )
+        GROUP BY COALESCE(NULLIF(source, ''), 'direct'), COALESCE(NULLIF(medium, ''), ''), COALESCE(NULLIF(campaign, ''), '')
+        HAVING visitors > 0
+        ORDER BY visitors DESC, started DESC, source
+        LIMIT 30
       `).bind(...params).all(),
 
       env.DB.prepare(`
@@ -411,7 +435,7 @@ async function handleDashboard(request, env, origin, url) {
           COUNT(DISTINCT CASE WHEN event_type = 'tool_start' THEN visit_id END) AS starts,
           COUNT(DISTINCT CASE WHEN event_type = 'tool_complete' THEN visit_id END) AS completes
         FROM site_events
-        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner')${timeClause}
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner', 'test')${timeClause}
         GROUP BY substr(received_at, 1, 10)
         ORDER BY day
       `).bind(...params).all(),
@@ -423,13 +447,13 @@ async function handleDashboard(request, env, origin, url) {
           SUM(CASE WHEN usefulness = 'no' THEN 1 ELSE 0 END) AS no_count,
           SUM(CASE WHEN quote_consent = 1 AND comment IS NOT NULL AND trim(comment) <> '' THEN 1 ELSE 0 END) AS quoteable
         FROM site_feedback
-        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner')${timeClause}
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner', 'test')${timeClause}
       `).bind(...params).all(),
 
       env.DB.prepare(`
         SELECT received_at, tool_id, usefulness, comment
         FROM site_feedback
-        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner')
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner', 'test')
           AND quote_consent = 1
           AND comment IS NOT NULL
           AND trim(comment) <> ''${timeClause}
@@ -448,7 +472,7 @@ async function handleDashboard(request, env, origin, url) {
         FROM workstyle_sessions
         WHERE session_id <> 'synthetic-workstyle-v07-test'
           AND json_extract(payload_json, '$.analyticsSource') IS NOT NULL
-          AND COALESCE(json_extract(payload_json, '$.analyticsSource'), '') <> 'owner'${timeClause}
+          AND COALESCE(json_extract(payload_json, '$.analyticsSource'), '') NOT IN ('owner', 'test')${timeClause}
       `).bind(...params).all(),
     ]);
 
@@ -456,9 +480,11 @@ async function handleDashboard(request, env, origin, url) {
       ok: true,
       generatedAt: new Date().toISOString(),
       range: { days: range.days, label: range.label, since: range.since },
+      cleanSince: CLEAN_ANALYTICS_SINCE,
       summary: resultRows(summaryResult)[0] || {},
       tools: resultRows(toolsResult),
       sources: resultRows(sourcesResult),
+      campaigns: resultRows(campaignsResult),
       daily: resultRows(dailyResult),
       workstyle: {
         linkedOnly: true,
