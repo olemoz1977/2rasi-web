@@ -202,12 +202,26 @@ jobs:
             "RESOURCE-03","SAFETY-03","ORDER-02","CONNECTION-02","BELONGING-01","CARE-01",
             "CONTROL-03","RECOGNITION-02","MASTERY-02","EXPLORATION-01","KNOWLEDGE-01","OPPORTUNITY-03"
           ]
-          families = ["REST","RESOURCE","SAFETY","ORDER","CONNECTION","BELONGING","CARE","AUTONOMY","CONTROL","RECOGNITION","MASTERY","EXPLORATION","KNOWLEDGE","OPPORTUNITY"]
+          competitors = {
+              "REST":["RESOURCE","SAFETY","ORDER"],
+              "RESOURCE":["OPPORTUNITY","SAFETY","REST"],
+              "SAFETY":["ORDER","CONTROL","RESOURCE"],
+              "ORDER":["SAFETY","CONTROL","KNOWLEDGE"],
+              "CONNECTION":["BELONGING","CARE","RECOGNITION"],
+              "BELONGING":["CONNECTION","CARE","RECOGNITION"],
+              "CARE":["CONNECTION","BELONGING","RECOGNITION"],
+              "AUTONOMY":["CONTROL","OPPORTUNITY","EXPLORATION"],
+              "CONTROL":["AUTONOMY","MASTERY","ORDER"],
+              "RECOGNITION":["BELONGING","MASTERY","CARE"],
+              "MASTERY":["KNOWLEDGE","CONTROL","RECOGNITION"],
+              "EXPLORATION":["KNOWLEDGE","OPPORTUNITY","AUTONOMY"],
+              "KNOWLEDGE":["EXPLORATION","MASTERY","ORDER"],
+              "OPPORTUNITY":["RESOURCE","AUTONOMY","EXPLORATION"],
+          }
           responses=[]
           for i, sid in enumerate(ids):
               target=sid.rsplit('-',1)[0]
-              others=[x for x in families if x != target][:3]
-              options=[target,*others,"OTHER"]
+              options=[target,*competitors[target],"OTHER"]
               responses.append({
                   "stimulusId":sid,"targetFamily":target,"openText":"synthetic",
                   "clarity":3,"classification":target,"confidence":3,"valence":3,
