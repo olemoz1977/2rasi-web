@@ -1,22 +1,33 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / DATA COLLECTION + RESEARCH ADMIN ACTIVE / ACCEPTED MOBILE MOST-LEAST UX / DETERMINISTIC INTERPRETATION DEPLOYED
-Updated: 2026-09-05 22:11 EEST
+Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / DATA COLLECTION + RESEARCH ADMIN ACTIVE / MATRIX-PRIMARY DETAIL-ONLY RESULT / LEGACY RESULT VISUALS REMOVED
+Updated: 2026-09-06 05:54 EEST
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
-## Pending structural cleanup — ship/map legacy
+## Completed structural cleanup — obsolete result visuals
 
 Audit/runbook:
 `docs/OPEN14_V04_SHIP_MAP_LEGACY_REMOVAL_AUDIT_2026-09-06.md`
 
-Finding:
-- ship/map is deactivated visually but still active as hidden compatibility architecture for details, fallback, bootstrap assumptions, tests and deploy gates;
-- do **not** delete only the hidden DOM;
-- safe removal must first decouple detail rendering and inherited v0.3 result-ID assumptions;
-- `sufficiencyRoute` and B route-source IDs are current data/protocol concepts and must not be removed merely because they contain the word `route`;
-- audited implementation baseline remains `660ec63f19cc0288b4ebc7bd1f0a2e426900b246`;
-- no runtime mutation was made during the audit.
+Current state:
+- obsolete ship/water/map participant scene removed from generated runtime DOM;
+- public `result_renderer_v04.mjs` is detail-only and no longer contains the old visual implementation;
+- matrix failure no longer falls back to the obsolete visual result;
+- A detail and B detail remain functionally preserved;
+- B detail remains a viewport-root bottom sheet;
+- live HTML and public renderer have explicit forbidden-token deployment gates;
+- `sufficiencyRoute` and B route-source IDs remain current protocol/data concepts and are **not** part of the removed visual legacy.
+
+Accepted implementation:
+- runtime commit `e2d10c3908057a5be7c71dacc0b5936481c2643b`;
+- logic smoke `34007584761`: PASS;
+- local 390×844 UI smoke `34007584748`: PASS;
+- deployed 390×844 + API + remote-byte/MIME/source-clean run `34007584760`: PASS.
+
+Rollback baseline:
+- `660ec63f19cc0288b4ebc7bd1f0a2e426900b246`;
+- deploy `33986214567`.
 
 ## Rule
 
@@ -50,9 +61,9 @@ Accepted owner-reviewed Android MOST/LEAST state:
 - owner acceptance at 22:11 EEST: **VEIKIA**.
 
 Latest accepted technical gate:
-- runtime commit `660ec63f19cc0288b4ebc7bd1f0a2e426900b246`;
-- deploy run `33986214567` (run 176), job `101360063259`: **SUCCESS**;
-- API/route checks, remote bytes/MIME, full deployed 390x844 flow and DB save: PASS.
+- runtime commit `e2d10c3908057a5be7c71dacc0b5936481c2643b`;
+- deploy run `34007584760`: **SUCCESS**;
+- logic, local UI, live remote bytes/MIME, crawler-facing source-clean gates, full deployed 390×844 flow and API save: PASS.
 
 Primary next mode: **observe the public pilot; do not continue speculative UI redesign without repeated real-user evidence or a clear functional failure.**
 
