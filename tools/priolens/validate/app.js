@@ -7,6 +7,7 @@
   const SCHEMA = '2rasi.priolens.stimulus-validation-session-v0.1';
   const VERSION = 'priolens-stimulus-validation-v0.1';
   const POOL_URL = './stimuli-v031.json';
+  const PUBLIC_RESEARCH_OPEN = false;
   const FAMILY_ORDER = ['REST','RESOURCE','SAFETY','ORDER','CONNECTION','BELONGING','CARE','AUTONOMY','CONTROL','RECOGNITION','MASTERY','EXPLORATION','KNOWLEDGE','OPPORTUNITY'];
   const COMPETITORS = {
     REST:['RESOURCE','SAFETY','ORDER'],
@@ -84,6 +85,9 @@
       status:'Būsena',
       loading:'Kraunama…',
       summaryFail:'Nepavyko gauti suvestinės.',
+      holdTitle:'Vaizdų patikra trumpam sustabdyta',
+      holdText:'Per rankinę 42 vaizdų peržiūrą radome du matomus generavimo vandens ženklus ir dar vieną tikrintiną artefaktą. Kol paruošiame švarią, atskirai versijuojamą kandidatų rinkinio versiją, naujų tyrimo atsakymų nerenkame.',
+      holdNote:'Pagrindinis PrioLens puslapis lieka pasiekiamas. Šis sustabdymas taikomas tik aklam vaizdų validavimo tyrimui.',
       familyNames:{
         REST:'Poilsis / atsistatymas',
         RESOURCE:'Resursų prieinamumas',
@@ -175,6 +179,9 @@
       status:'Status',
       loading:'Loading…',
       summaryFail:'Could not load the summary.',
+      holdTitle:'Visual check temporarily paused',
+      holdText:'A manual review of all 42 images found two visible generation watermarks and one additional artifact that still needs review. We are not collecting new validation responses until a clean, separately versioned candidate pool is ready.',
+      holdNote:'The main PrioLens page remains available. This pause applies only to the blind visual-stimulus validation study.',
       familyNames:{
         REST:'Rest / restoration',
         RESOURCE:'Resource availability',
@@ -370,10 +377,11 @@
     const q = new URLSearchParams(location.search);
     let referrerHost = '';
     try { referrerHost = document.referrer ? new URL(document.referrer).hostname.slice(0,160) : ''; } catch {}
+    const internalSource = window.RASI_OWNER_MODE ? 'owner' : (window.RASI_TEST_MODE ? 'test' : '');
     return {
-      source:(q.get('utm_source') || '').slice(0,80),
-      medium:(q.get('utm_medium') || '').slice(0,80),
-      campaign:(q.get('utm_campaign') || '').slice(0,120),
+      source:(internalSource || q.get('utm_source') || '').slice(0,80),
+      medium:(internalSource ? 'internal' : (q.get('utm_medium') || '')).slice(0,80),
+      campaign:(internalSource ? (internalSource === 'owner' ? 'owner-test' : 'smoke-test') : (q.get('utm_campaign') || '')).slice(0,120),
       referrerHost
     };
   }
@@ -400,6 +408,18 @@
 
   function renderIntro() {
     const C = t();
+    const internalAccess = Boolean(window.RASI_OWNER_MODE || window.RASI_TEST_MODE);
+    if (!PUBLIC_RESEARCH_OPEN && !internalAccess) {
+      app.innerHTML = `
+        <section class="panel">
+          <p class="kicker">${escapeHtml(C.kicker)}</p>
+          <h1>${escapeHtml(C.holdTitle)}</h1>
+          <p class="lead">${escapeHtml(C.holdText)}</p>
+          <p class="note">${escapeHtml(C.holdNote)}</p>
+          <div class="actions"><a class="btn primary" href="../">${escapeHtml(C.back)}</a></div>
+        </section>`;
+      return;
+    }
     app.innerHTML = `
       <section class="panel">
         <p class="kicker">${escapeHtml(C.kicker)}</p>
