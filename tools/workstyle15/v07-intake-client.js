@@ -68,6 +68,23 @@
     });
   }
 
+  function analyticsContext() {
+    let analyticsVisitId = null;
+    let analyticsSource = null;
+    try {
+      analyticsVisitId = sessionStorage.getItem('2rasi:visit:v1') || null;
+      const raw = sessionStorage.getItem('2rasi:source:v1');
+      const parsed = raw ? JSON.parse(raw) : null;
+      analyticsSource = parsed?.source || null;
+    } catch {}
+    try {
+      if (window.RASI_OWNER_MODE === true || localStorage.getItem('2rasi:owner:v1') === '1') {
+        analyticsSource = 'owner';
+      }
+    } catch {}
+    return { analyticsVisitId, analyticsSource };
+  }
+
   function makePayload(session) {
     const answered = responseCount(session);
     const completedAt = session.completedAt || (answered >= expectedResponses ? new Date().toISOString() : null);
@@ -80,6 +97,7 @@
       captureMode: 'incremental-autosave',
       autosaveSeq: Date.now(),
       autosavedAt: new Date().toISOString(),
+      ...analyticsContext(),
     };
   }
 
