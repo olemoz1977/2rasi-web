@@ -91,6 +91,7 @@ p{margin:0 0 13px}.lead{font-size:clamp(18px,2.8vw,21px);color:#3e3e3e}.small{fo
 </section>
 </main>
 
+<script src="/tools/site-owner-mode.js?v=20260906-2"></script>
 <script src="./pilot-config.js?v=34041451712-1"></script>
 <script>
 const BANK_VERSION="0.9",ENGINE_VERSION="0.4-db",UI_VERSION="0.9-db2";
@@ -155,13 +156,14 @@ let state=null,shownAt=0,selected=null;
 function createState(){
   const order=shuffle(BANK.map(q=>q.id)),optionOrder={};
   BANK.forEach(q=>optionOrder[q.id]=shuffle(q.options.map(o=>o.id)));
-  return{sessionId:uid(),bankVersion:BANK_VERSION,engineVersion:ENGINE_VERSION,uiVersion:UI_VERSION,startedAt:now(),completedAt:null,index:0,order,optionOrder,responses:[]};
+  const sourceMode=window.RASI_OWNER_MODE?"owner":window.RASI_TEST_MODE?"test":"";
+  return{sessionId:uid(),bankVersion:BANK_VERSION,engineVersion:ENGINE_VERSION,uiVersion:UI_VERSION,startedAt:now(),completedAt:null,index:0,order,optionOrder,responses:[],sourceMode,analysisEligible:!sourceMode};
 }
 function show(id){["intro","quiz","results"].forEach(x=>$(x).classList.toggle("hidden",x!==id));scrollTo(0,0)}
 function updateIntro(){const s=load();$("resume").classList.toggle("hidden",!(s&&!s.completedAt&&s.index<15))}
 function startNew(){
   state=createState();save(state);
-  queue("session",{sessionId:state.sessionId,bankVersion:BANK_VERSION,engineVersion:ENGINE_VERSION,uiVersion:UI_VERSION,startedAt:state.startedAt,deviceType:innerWidth<700?"mobile":innerWidth<1100?"tablet":"desktop",locale:navigator.language||"lt"});
+  queue("session",{sessionId:state.sessionId,bankVersion:BANK_VERSION,engineVersion:ENGINE_VERSION,uiVersion:UI_VERSION,startedAt:state.startedAt,deviceType:innerWidth<700?"mobile":innerWidth<1100?"tablet":"desktop",locale:navigator.language||"lt",sourceMode:state.sourceMode||"",analysisEligible:state.analysisEligible!==false});
   show("quiz");renderQuestion();
 }
 function resume(){state=load();if(!state||state.completedAt)return startNew();show("quiz");renderQuestion()}
@@ -199,7 +201,7 @@ function pickRefs(s){
 }
 function reconcileCompletedSession(s){
   if(!s||!s.completedAt||!Array.isArray(s.responses)||s.responses.length!==15)return;
-  queue("session",{sessionId:s.sessionId,bankVersion:s.bankVersion||BANK_VERSION,engineVersion:s.engineVersion||ENGINE_VERSION,uiVersion:s.uiVersion||UI_VERSION,startedAt:s.startedAt,deviceType:innerWidth<700?"mobile":innerWidth<1100?"tablet":"desktop",locale:navigator.language||"lt"});
+  queue("session",{sessionId:s.sessionId,bankVersion:s.bankVersion||BANK_VERSION,engineVersion:s.engineVersion||ENGINE_VERSION,uiVersion:s.uiVersion||UI_VERSION,startedAt:s.startedAt,deviceType:innerWidth<700?"mobile":innerWidth<1100?"tablet":"desktop",locale:navigator.language||"lt",sourceMode:s.sourceMode||"",analysisEligible:s.analysisEligible!==false});
   s.responses.forEach(r=>queue("response",{sessionId:s.sessionId,...r}));
   const current=compute();
   queue("complete",{sessionId:s.sessionId,completedAt:s.completedAt,multiplierDirectionCounts:current.counts,multiplierCount:current.multi,accidentalCount:current.ad.length,contributionAtRiskCounts:current.riskCounts,pattern:current.pattern,reflectionQuestionIds:pickRefs(current).map(x=>x.q.id)});
