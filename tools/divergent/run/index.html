@@ -492,11 +492,26 @@
     const self={}; order.forEach(d=>self[d]=model.scores[d].norm??0);
     const typed=TYPES.map(t=>{
       const distance=Math.sqrt(order.reduce((sum,d)=>sum+Math.pow(self[d]-t.v[d],2),0));
-      return{name:t.name,distance};
+      return{...t,distance};
     }).sort((a,b)=>a.distance-b.distance).slice(0,3);
 
     const tBox=by("#typesTop"); tBox.innerHTML="";
-    typed.forEach((t,i)=>tBox.appendChild(el("div",{},el("span",{class:"pill"},`${i+1}. ${t.name}`))));
+    typed.forEach((t,i)=>{
+      tBox.appendChild(el("div",{class:"item",style:"margin-top:10px"},
+        el("div",{},el("span",{class:"pill"},`${i+1}. ${t.name}`)),
+        el("p",{style:"margin:10px 0 6px"},t.desc),
+        el("p",{class:"muted",style:"margin:0"},el("strong",{},"Kodėl jis čia?")," ",prototypeWhy(self,t))
+      ));
+    });
+
+    const glossary=by("#typesGlossary"); glossary.innerHTML="";
+    TYPES.forEach(t=>{
+      glossary.appendChild(el("div",{class:"item",style:"margin-top:10px"},
+        el("div",{},el("strong",{},t.name)),
+        el("p",{class:"muted",style:"margin:6px 0 0"},t.desc)
+      ));
+    });
+    const layer=by("#archetypeLayer"); if(layer) layer.open=true;
   }
 
   /* ====== 5) UX: progresas, validacija, naršymas ====== */
