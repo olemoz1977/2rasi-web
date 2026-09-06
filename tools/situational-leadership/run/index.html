@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,follow" />
-    <title>Situacinio Vadovavimo Ekspertinė Sistema</title>
+    <title>Situacinio vadovavimo refleksija</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -96,25 +96,25 @@
 <div class="container">
     <div id="main-test-section">
         <div class="header">
-            <h1>Situacinio Vadovavimo Diagnostika</h1>
-            <p>I pakopa: 20 bazinių situacijų jūsų stiliui nustatyti</p>
+            <h1>Situacinio vadovavimo refleksija</h1>
+            <p>I pakopa: 20 situacijų — pasirink reakciją, kuri tau būtų artimiausia</p>
         </div>
         <div id="main-questions"></div>
-        <button class="btn btn-primary" onclick="processMainTest()">Tęsti į II pakopą (Streso testas)</button>
+        <button class="btn btn-primary" onclick="processMainTest()">Tęsti į II pakopą (ribinės situacijos)</button>
     </div>
 
     <div id="appendix-section">
         <div class="header">
-            <h1>Appendix: Lankstumo Patikra</h1>
-            <p>II pakopa: Patikriname, ar jūsų tendencija yra lanksti, ar klaidinga.</p>
+            <h1>Ribinių situacijų patikra</h1>
+            <p>II pakopa: pažiūrėk, ar tavo pasirinkimo kryptis keičiasi krizės, eksperto ir saugumo kontekste.</p>
         </div>
         <div id="appendix-questions"></div>
-        <button class="btn btn-primary" onclick="processFinalResults()">Gauti galutinę analizę</button>
+        <button class="btn btn-primary" onclick="processFinalResults()">Rodyti pasirinkimų žemėlapį</button>
     </div>
 
     <div id="results-section">
         <div class="header">
-            <h1>Galutinė Vadovavimo Ataskaita</h1>
+            <h1>Tavo situacinių pasirinkimų žemėlapis</h1>
         </div>
         <div id="final-content"></div>
         <button class="btn btn-pdf" id="pdf-btn" onclick="window.print()">Išsaugoti PDF / Spausdinti</button>
@@ -265,7 +265,8 @@
     ];
 
     let mainResults = { S1:0, S2:0, S3:0, S4:0 };
-    let totalScore = 0;
+    let mainTrace = [];
+    const STYLE_LABEL = { S1:'Nukreipimas', S2:'Aiškinimas ir įtraukimas', S3:'Dalyvavimas ir palaikymas', S4:'Delegavimas' };
 
     function renderQuestions(data, containerId, prefix) {
         const container = document.getElementById(containerId);
@@ -281,89 +282,183 @@
         `).join('');
     }
 
+    function firstMissingQuestion(data, prefix) {
+        for (const q of data) {
+            if (!document.querySelector(`input[name="${prefix}${q.id}"]:checked`)) return q;
+        }
+        return null;
+    }
+
+    function revealMissingQuestion(q, prefix) {
+        const input = document.querySelector(`input[name="${prefix}${q.id}"]`);
+        const card = input ? input.closest('.question-card') : null;
+        if (card) {
+            card.style.outline = '3px solid #e67e22';
+            card.style.outlineOffset = '3px';
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                card.style.outline = '';
+                card.style.outlineOffset = '';
+            }, 2400);
+        }
+        alert(`Neatsakyta situacija: ${q.text}`);
+    }
+
+    function keyedStyle(q) {
+        return q.options.reduce((best, opt) => opt.w > best.w ? opt : best, q.options[0]).s;
+    }
+
+    function alignmentBand(w) {
+        if (w >= 3) return 'closer';
+        if (w === 2) return 'middle';
+        return 'farther';
+    }
+
+    function bandLabel(w) {
+        const band = alignmentBand(w);
+        if (band === 'closer') return "artimiau šio eksperimento scenarijaus raktui";
+        if (band === 'middle') return "tarpinė kryptis pagal šio eksperimento raktą";
+        return "toliau nuo šio eksperimento scenarijaus rakto";
+    }
+
     function processMainTest() {
-        const inputs = document.querySelectorAll('#main-questions input:checked');
-        if (inputs.length < 20) { alert(`Atsakykite į visus 20 klausimų! (Atsakyta: ${inputs.length})`); return; }
-        
+        const missing = firstMissingQuestion(mainQuestions, 'm');
+        if (missing) {
+            revealMissingQuestion(missing, 'm');
+            return;
+        }
+
+        mainResults = { S1:0, S2:0, S3:0, S4:0 };
+        mainTrace = [];
         mainQuestions.forEach(q => {
-            const idx = document.querySelector(`input[name="m${q.id}"]:checked`).value;
+            const idx = Number(document.querySelector(`input[name="m${q.id}"]:checked`).value);
             const opt = q.options[idx];
             mainResults[opt.s]++;
-            totalScore += opt.w;
+            mainTrace.push({
+                id:q.id, question:q.text, selectedStyle:opt.s, selectedText:opt.text,
+                weight:opt.w, keyedStyle:keyedStyle(q)
+            });
         });
 
         document.getElementById('main-test-section').style.display = 'none';
         document.getElementById('appendix-section').style.display = 'block';
         renderQuestions(appendixQuestions, 'appendix-questions', 'a');
-        window.scrollTo(0,0);
+        window.scrollTo({top:0,behavior:'smooth'});
     }
 
     function processFinalResults() {
-        const inputs = document.querySelectorAll('#appendix-questions input:checked');
-        if (inputs.length < 3) { alert("Atsakykite į visus 3 streso klausimus!"); return; }
+        const missing = firstMissingQuestion(appendixQuestions, 'a');
+        if (missing) {
+            revealMissingQuestion(missing, 'a');
+            return;
+        }
 
-        let appendixPoints = 0;
-        appendixQuestions.forEach(q => {
-            const idx = document.querySelector(`input[name="a${q.id}"]:checked`).value;
-            appendixPoints += q.options[idx].w;
+        const appendixTrace = appendixQuestions.map(q => {
+            const idx = Number(document.querySelector(`input[name="a${q.id}"]:checked`).value);
+            const opt = q.options[idx];
+            return {
+                id:q.id, question:q.text, selectedStyle:opt.s, selectedText:opt.text,
+                weight:opt.w, keyedStyle:keyedStyle(q)
+            };
         });
-
-        showFinalReport(appendixPoints);
+        showFinalReport(appendixTrace);
     }
 
-    function showFinalReport(appScore) {
-        document.getElementById('appendix-section').style.display = 'none';
-        document.getElementById('results-section').style.display = 'block';
-        document.getElementById('pdf-btn').style.display = 'block';
+    function renderStyleDistribution() {
+        return `
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-top:14px;">
+                ${['S1','S2','S3','S4'].map(s => `
+                    <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;">
+                        <strong>${s} · ${STYLE_LABEL[s]}</strong>
+                        <div style="font-size:28px;font-weight:700;margin-top:6px;">${mainResults[s]} / 20</div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
 
-        const efficiency = Math.round((totalScore / 80) * 100);
-        const domStyle = Object.keys(mainResults).reduce((a, b) => mainResults[a] > mainResults[b] ? a : b);
-        const isFlexible = appScore >= 8;
+    function renderAlignmentTrace() {
+        const counts={closer:0,middle:0,farther:0};
+        mainTrace.forEach(x => counts[alignmentBand(x.weight)]++);
+        return `
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-top:14px;">
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Arčiau rakto</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.closer}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Tarpinė kryptis</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.middle}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Toliau nuo rakto</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.farther}</div></div>
+            </div>
+        `;
+    }
 
-        let analysis = `
+    function traceCard(title,item) {
+        return `
+            <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:16px;margin-top:12px;">
+                <strong>${title}</strong>
+                <p style="margin-top:8px;"><b>Situacija:</b> ${item.question}</p>
+                <p><b>Tavo pasirinkimas:</b> ${item.selectedStyle} · ${STYLE_LABEL[item.selectedStyle]} — ${item.selectedText}</p>
+                <p style="color:#666;"><b>Šio eksperimento raktas:</b> ${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]} · ${bandLabel(item.weight)}.</p>
+            </div>
+        `;
+    }
+
+    function showFinalReport(appendixTrace) {
+        document.getElementById('appendix-section').style.display='none';
+        const results=document.getElementById('results-section');
+        results.style.display='block';
+        document.getElementById('pdf-btn').style.display='block';
+
+        const sorted=[...mainTrace].sort((a,b)=>b.weight-a.weight);
+        const closerExample=sorted[0];
+        const fartherExample=sorted[sorted.length-1];
+        const mostChosen=Object.entries(mainResults).sort((a,b)=>b[1]-a[1])[0];
+        const boundaryHtml=appendixTrace.map(item => `
+            <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;margin-top:10px;">
+                <strong>${item.question.split(':')[0]}</strong>
+                <p style="margin-top:7px;">Tavo pasirinkimas: <b>${item.selectedStyle} · ${STYLE_LABEL[item.selectedStyle]}</b></p>
+                <p>Scenarijaus raktas: <b>${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]}</b></p>
+                <p style="color:#666;">${bandLabel(item.weight)}.</p>
+            </div>
+        `).join('');
+        const experimentAnchor=fartherExample||closerExample;
+
+        document.getElementById('final-content').innerHTML=`
             <div class="result-header">
-                <div class="score-circle">${efficiency}%</div>
-                <p>Bendras Efektyvumas</p>
-                <p>Dominuojantis stilius: <strong>${domStyle}</strong></p>
-                <div style="margin-top:10px;">
-                    Lankstumo patikra: 
-                    <span class="badge" style="background:${isFlexible ? '#27ae60':'#e74c3c'}">
-                        ${isFlexible ? 'PATVIRTINTA (Lankstus)' : 'RIBOTA TENDENCIJA'}
-                    </span>
-                </div>
-            </div>
-            
-            <div class="score-box" style="background:#f9f9f9; padding:20px; border-radius:10px;">
-                <h3>Analizė ir Interpretacija</h3>
-                <p>${getAnalysisText(domStyle, isFlexible)}</p>
-                
-                <h4 style="margin-top:20px;">Jūsų stilių pasiskirstymas (20-ies situacijų):</h4>
-                <ul>
-                    <li>S1 (Nukreipimas): ${mainResults.S1} k.</li>
-                    <li>S2 (Įtikinimas): ${mainResults.S2} k.</li>
-                    <li>S3 (Dalyvavimas): ${mainResults.S3} k.</li>
-                    <li>S4 (Delegavimas): ${mainResults.S4} k.</li>
-                </ul>
+                <p style="font-size:17px;line-height:1.6;max-width:720px;margin:0 auto;">Tai nėra tavo „vadovavimo tipas“, efektyvumo procentas ar lankstumo diagnozė. Žemėlapis tik parodo, kokias reakcijų kryptis pasirinkai šiose 23 situacijose ir kaip jos santykinai sutapo su šiame eksperimente iš anksto užkoduotu situacinio vadovavimo raktu.</p>
             </div>
 
-            <div style="margin-top:20px; padding:15px; border-left:5px solid var(--accent); background:#eef2f3;">
-                <strong>Strateginė rekomendacija:</strong>
-                <p>${isFlexible ? 
-                    'Jūs puikiai jaučiate ribą tarp palaikymo ir kontrolės. Tęskite darbą stebėdami komandos brandos pokyčius.' : 
-                    'Jums sunku išeiti iš savo komforto zonos ('+domStyle+'). Rekomenduojama praktikuotis kraštutinius stilius: griežtesnį S1 krizėse ir drąsesnį S4 su savo srities profesionalais.'}</p>
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;">
+                <h3>1. Kokias reakcijų kryptis rinkaisi</h3>
+                <p>Dažniausiai šiame atsakymų rinkinyje pasirinkai <strong>${mostChosen[0]} · ${STYLE_LABEL[mostChosen[0]]}</strong> (${mostChosen[1]} / 20). Tai nereiškia, kad „esi“ šio stiliaus vadovas — tik kad šiose situacijose ši kryptis pasirodė dažniausiai.</p>
+                ${renderStyleDistribution()}
+            </div>
+
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
+                <h3>2. Sutapimo su scenarijų raktu pėdsakas</h3>
+                <p>Vidiniai 0–4 svoriai čia nenaudojami kaip kompetencijos balas. Jie tik parodo, kiek tavo pasirinkimas buvo artimas tam variantui, kuriam šiame eksperimente konkrečioje situacijoje suteiktas didžiausias svoris.</p>
+                ${renderAlignmentTrace()}
+            </div>
+
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
+                <h3>3. Du konkretūs kontrastai</h3>
+                ${traceCard("Vienas pasirinkimas, artimesnis scenarijaus raktui", closerExample)}
+                ${traceCard("Vienas pasirinkimas, kurį verta patyrinėti", fartherExample)}
+            </div>
+
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
+                <h3>4. Ribinės situacijos</h3>
+                <p>Čia svarbu ne „praėjai / nepraėjai“, o ar tavo reakcijos kryptis keičiasi, kai kontekstas tampa ryškesnis.</p>
+                ${boundaryHtml}
+            </div>
+
+            <div style="margin-top:20px;padding:18px;border-left:5px solid var(--accent);background:#eef2f3;border-radius:8px;">
+                <strong>5. Vienas refleksijos eksperimentas</strong>
+                <p style="margin-top:9px;">Kai realybėje susidursi su situacija, panašia į:</p>
+                <p><em>${experimentAnchor.question}</em></p>
+                <p>Prieš rinkdamasis reakciją atskirai įvardyk du dalykus: <strong>(1) kiek žmogus ar komanda turi patirties ir gebėjimo būtent šiai užduočiai, (2) kiek turi pasitikėjimo, aiškumo ir noro ją atlikti.</strong></p>
+                <p>Tada paklausk savęs: <strong>kiek čia iš tiesų reikia krypties, o kiek palaikymo ar autonomijos?</strong> Po situacijos užrašyk vieną sakinį — ar toks sustojimas pakeitė tavo veiksmą.</p>
             </div>
         `;
 
-        document.getElementById('final-content').innerHTML = analysis;
-    }
-
-    function getAnalysisText(style, flexible) {
-        if (style === 'S3') {
-            return flexible ? 
-                "Esate 'Empatiškas Profesionalas'. Nors kasdienybėje renkatės diskusiją, prireikus gebate būti kietas lyderis arba visiškai pasitikėti kitais." : 
-                "Esate 'Demokratijos Įkaitas'. Linkstate tartis net ten, kur reikia greitų sprendimų (krizių metu) arba visiško atsitraukimo. Tai gali lėtinti procesus.";
-        }
-        return "Jūsų profilis rodo stabilią tendenciją į " + style + " stilių. Lankstumo patikra patvirtino jūsų gebėjimą prisitaikyti prie skirtingų darbuotojų brandos lygių.";
+        requestAnimationFrame(()=>results.scrollIntoView({behavior:'smooth',block:'start'}));
     }
 
     renderQuestions(mainQuestions, 'main-questions', 'm');

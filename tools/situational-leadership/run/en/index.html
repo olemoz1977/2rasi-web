@@ -106,15 +106,15 @@
     <div id="appendix-section">
         <div class="header">
             <h1>Boundary Check</h1>
-            <p>Stage II: Check whether your usual tendency changes in more extreme contexts.</p>
+            <p>Stage II: notice whether your response direction changes in crisis, expert and safety contexts.</p>
         </div>
         <div id="appendix-questions"></div>
-        <button class="btn btn-primary" onclick="processFinalResults()">Get final analysis</button>
+        <button class="btn btn-primary" onclick="processFinalResults()">Show choice map</button>
     </div>
 
     <div id="results-section">
         <div class="header">
-            <h1>Final Leadership Report</h1>
+            <h1>Your situational choice map</h1>
         </div>
         <div id="final-content"></div>
         <button class="btn btn-pdf" id="pdf-btn" onclick="window.print()">Save PDF / Print</button>
@@ -265,7 +265,8 @@
     ];
 
     let mainResults = { S1:0, S2:0, S3:0, S4:0 };
-    let totalScore = 0;
+    let mainTrace = [];
+    const STYLE_LABEL = { S1:'Directing', S2:'Explaining and involving', S3:'Participating and supporting', S4:'Delegating' };
 
     function renderQuestions(data, containerId, prefix) {
         const container = document.getElementById(containerId);
@@ -281,95 +282,189 @@
         `).join('');
     }
 
+    function firstMissingQuestion(data, prefix) {
+        for (const q of data) {
+            if (!document.querySelector(`input[name="${prefix}${q.id}"]:checked`)) return q;
+        }
+        return null;
+    }
+
+    function revealMissingQuestion(q, prefix) {
+        const input = document.querySelector(`input[name="${prefix}${q.id}"]`);
+        const card = input ? input.closest('.question-card') : null;
+        if (card) {
+            card.style.outline = '3px solid #e67e22';
+            card.style.outlineOffset = '3px';
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                card.style.outline = '';
+                card.style.outlineOffset = '';
+            }, 2400);
+        }
+        alert(`Unanswered situation: ${q.text}`);
+    }
+
+    function keyedStyle(q) {
+        return q.options.reduce((best, opt) => opt.w > best.w ? opt : best, q.options[0]).s;
+    }
+
+    function alignmentBand(w) {
+        if (w >= 3) return 'closer';
+        if (w === 2) return 'middle';
+        return 'farther';
+    }
+
+    function bandLabel(w) {
+        const band = alignmentBand(w);
+        if (band === 'closer') return "closer to this experiment's scenario key";
+        if (band === 'middle') return "a middle direction relative to this experiment's key";
+        return "farther from this experiment's scenario key";
+    }
+
     function processMainTest() {
-        const inputs = document.querySelectorAll('#main-questions input:checked');
-        if (inputs.length < 20) { alert(`Please answer all 20 questions. (Answered: ${inputs.length})`); return; }
-        
+        const missing = firstMissingQuestion(mainQuestions, 'm');
+        if (missing) {
+            revealMissingQuestion(missing, 'm');
+            return;
+        }
+
+        mainResults = { S1:0, S2:0, S3:0, S4:0 };
+        mainTrace = [];
         mainQuestions.forEach(q => {
-            const idx = document.querySelector(`input[name="m${q.id}"]:checked`).value;
+            const idx = Number(document.querySelector(`input[name="m${q.id}"]:checked`).value);
             const opt = q.options[idx];
             mainResults[opt.s]++;
-            totalScore += opt.w;
+            mainTrace.push({
+                id:q.id, question:q.text, selectedStyle:opt.s, selectedText:opt.text,
+                weight:opt.w, keyedStyle:keyedStyle(q)
+            });
         });
 
         document.getElementById('main-test-section').style.display = 'none';
         document.getElementById('appendix-section').style.display = 'block';
         renderQuestions(appendixQuestions, 'appendix-questions', 'a');
-        window.scrollTo(0,0);
+        window.scrollTo({top:0,behavior:'smooth'});
     }
 
     function processFinalResults() {
-        const inputs = document.querySelectorAll('#appendix-questions input:checked');
-        if (inputs.length < 3) { alert("Please answer all 3 boundary questions."); return; }
+        const missing = firstMissingQuestion(appendixQuestions, 'a');
+        if (missing) {
+            revealMissingQuestion(missing, 'a');
+            return;
+        }
 
-        let appendixPoints = 0;
-        appendixQuestions.forEach(q => {
-            const idx = document.querySelector(`input[name="a${q.id}"]:checked`).value;
-            appendixPoints += q.options[idx].w;
+        const appendixTrace = appendixQuestions.map(q => {
+            const idx = Number(document.querySelector(`input[name="a${q.id}"]:checked`).value);
+            const opt = q.options[idx];
+            return {
+                id:q.id, question:q.text, selectedStyle:opt.s, selectedText:opt.text,
+                weight:opt.w, keyedStyle:keyedStyle(q)
+            };
         });
-
-        showFinalReport(appendixPoints);
+        showFinalReport(appendixTrace);
     }
 
-    function showFinalReport(appScore) {
-        document.getElementById('appendix-section').style.display = 'none';
-        document.getElementById('results-section').style.display = 'block';
-        document.getElementById('pdf-btn').style.display = 'block';
+    function renderStyleDistribution() {
+        return `
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-top:14px;">
+                ${['S1','S2','S3','S4'].map(s => `
+                    <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;">
+                        <strong>${s} · ${STYLE_LABEL[s]}</strong>
+                        <div style="font-size:28px;font-weight:700;margin-top:6px;">${mainResults[s]} / 20</div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
 
-        const efficiency = Math.round((totalScore / 80) * 100);
-        const domStyle = Object.keys(mainResults).reduce((a, b) => mainResults[a] > mainResults[b] ? a : b);
-        const isFlexible = appScore >= 8;
+    function renderAlignmentTrace() {
+        const counts={closer:0,middle:0,farther:0};
+        mainTrace.forEach(x => counts[alignmentBand(x.weight)]++);
+        return `
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-top:14px;">
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Closer to key</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.closer}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Middle direction</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.middle}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Farther from key</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.farther}</div></div>
+            </div>
+        `;
+    }
 
-        let analysis = `
+    function traceCard(title,item) {
+        return `
+            <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:16px;margin-top:12px;">
+                <strong>${title}</strong>
+                <p style="margin-top:8px;"><b>Situation:</b> ${item.question}</p>
+                <p><b>Your choice:</b> ${item.selectedStyle} · ${STYLE_LABEL[item.selectedStyle]} — ${item.selectedText}</p>
+                <p style="color:#666;"><b>This experiment's key:</b> ${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]} · ${bandLabel(item.weight)}.</p>
+            </div>
+        `;
+    }
+
+    function showFinalReport(appendixTrace) {
+        document.getElementById('appendix-section').style.display='none';
+        const results=document.getElementById('results-section');
+        results.style.display='block';
+        document.getElementById('pdf-btn').style.display='block';
+
+        const sorted=[...mainTrace].sort((a,b)=>b.weight-a.weight);
+        const closerExample=sorted[0];
+        const fartherExample=sorted[sorted.length-1];
+        const mostChosen=Object.entries(mainResults).sort((a,b)=>b[1]-a[1])[0];
+        const boundaryHtml=appendixTrace.map(item => `
+            <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;margin-top:10px;">
+                <strong>${item.question.split(':')[0]}</strong>
+                <p style="margin-top:7px;">Your choice: <b>${item.selectedStyle} · ${STYLE_LABEL[item.selectedStyle]}</b></p>
+                <p>Scenario key: <b>${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]}</b></p>
+                <p style="color:#666;">${bandLabel(item.weight)}.</p>
+            </div>
+        `).join('');
+        const experimentAnchor=fartherExample||closerExample;
+
+        document.getElementById('final-content').innerHTML=`
             <div class="result-header">
-                <div class="score-circle">${efficiency}%</div>
-                <p>Overall Effectiveness</p>
-                <p>Dominant style: <strong>${domStyle}</strong></p>
-                <div style="margin-top:10px;">
-                    Flexibility check: 
-                    <span class="badge" style="background:${isFlexible ? '#27ae60':'#e74c3c'}">
-                        ${isFlexible ? 'CONFIRMED (Flexible)' : 'LIMITED FLEXIBILITY'}
-                    </span>
-                </div>
-            </div>
-            
-            <div class="score-box" style="background:#f9f9f9; padding:20px; border-radius:10px;">
-                <h3>Analysis and Interpretation</h3>
-                <p>${getAnalysisText(domStyle, isFlexible)}</p>
-                
-                <h4 style="margin-top:20px;">Your style distribution across 20 situations:</h4>
-                <ul>
-                    <li>S1 (Directing): ${mainResults.S1} k.</li>
-                    <li>S2 (Persuading): ${mainResults.S2} k.</li>
-                    <li>S3 (Participating): ${mainResults.S3} k.</li>
-                    <li>S4 (Delegating): ${mainResults.S4} k.</li>
-                </ul>
+                <p style="font-size:17px;line-height:1.6;max-width:720px;margin:0 auto;">This is not your “leadership type”, an effectiveness percentage or a flexibility diagnosis. The map only shows which response directions you chose across these 23 situations and how they relatively aligned with the situational-leadership key coded into this experiment.</p>
             </div>
 
-            <div style="margin-top:20px; padding:15px; border-left:5px solid var(--accent); background:#eef2f3;">
-                <strong>Strategic recommendation:</strong>
-                <p>${isFlexible ? 
-                    'You read the boundary between support and control well. Keep watching how the team’s readiness changes over time.' : 
-                    'It is harder for you to move beyond your default style ('+domStyle+'). Practise the extremes deliberately: firmer S1 in crises and bolder S4 with experienced professionals.'}</p>
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;">
+                <h3>1. Which response directions you chose</h3>
+                <p>Most often in this response set you chose <strong>${mostChosen[0]} · ${STYLE_LABEL[mostChosen[0]]}</strong> (${mostChosen[1]} / 20). That does not mean you “are” this leadership style — only that this direction appeared most often in these situations.</p>
+                ${renderStyleDistribution()}
+            </div>
+
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
+                <h3>2. Trace of alignment with the scenario key</h3>
+                <p>The internal 0–4 weights are not used here as a competence score. They only indicate how close your choice was to the option given the highest weight in this experiment for that situation.</p>
+                ${renderAlignmentTrace()}
+            </div>
+
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
+                <h3>3. Two concrete contrasts</h3>
+                ${traceCard("One choice closer to the scenario key", closerExample)}
+                ${traceCard("One choice worth examining", fartherExample)}
+            </div>
+
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
+                <h3>4. Boundary situations</h3>
+                <p>The point here is not pass/fail, but whether your response direction changes when the context becomes more pronounced.</p>
+                ${boundaryHtml}
+            </div>
+
+            <div style="margin-top:20px;padding:18px;border-left:5px solid var(--accent);background:#eef2f3;border-radius:8px;">
+                <strong>5. One reflection experiment</strong>
+                <p style="margin-top:9px;">When you meet a real situation similar to:</p>
+                <p><em>${experimentAnchor.question}</em></p>
+                <p>Before choosing a response, name two things separately: <strong>(1) how much experience and capability the person or team has for this specific task, and (2) how much confidence, clarity and willingness they have to do it.</strong></p>
+                <p>Then ask yourself: <strong>how much direction is actually needed here, and how much support or autonomy?</strong> Afterwards, write one sentence on whether that pause changed what you did.</p>
             </div>
         `;
 
-        document.getElementById('final-content').innerHTML = analysis;
-    }
-
-    function getAnalysisText(style, flexible) {
-        if (style === 'S3') {
-            return flexible ? 
-                "You are an 'Empathetic Professional'. Although you usually choose discussion, when needed you can become more directive or place full trust in others." : 
-                "You are a 'Hostage to Consensus'. You tend to seek agreement even when a fast decision is needed, or when stepping back completely would be more appropriate. This can slow the process.";
-        }
-        return "Your profile shows a stable tendency toward " + style + " style. The flexibility check confirmed your ability to adapt to different levels of employee readiness.";
+        requestAnimationFrame(()=>results.scrollIntoView({behavior:'smooth',block:'start'}));
     }
 
     renderQuestions(mainQuestions, 'main-questions', 'm');
 </script>
 
-<script src="/tools/site-owner-mode.js?v=20260831-1"></script>
-<script src="/tools/site-insights.js?v=20260828-1"></script>
+<script src="/tools/site-owner-mode.js?v=20260906-2"></script>
+<script src="/tools/site-insights.js?v=20260906-2"></script>
 </body>
 </html>
