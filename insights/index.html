@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <title>2rasi Insights</title>
+  <meta name="theme-color" content="#f4f7f6">
+  <style>
+    :root{
+      --bg:#f4f7f6;--card:#fff;--ink:#17231f;--muted:#718079;--line:#dbe4e0;
+      --accent:#356b61;--accent2:#8bb0a7;--soft:#e8f0ed;--shadow:0 12px 34px rgba(22,45,38,.07)
+    }
+    *{box-sizing:border-box}
+    html{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    body{margin:0}
+    button,a{font:inherit}
+    .top{height:62px;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid var(--line);
+      background:rgba(244,247,246,.92);backdrop-filter:blur(12px);position:sticky;top:0;z-index:4}
+    .brand{font:700 23px Georgia,serif;color:var(--ink);text-decoration:none}
+    .tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .wrap{width:min(1080px,calc(100% - 20px));margin:0 auto;padding:26px 0 54px}
+    .hero{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}
+    .eyebrow{margin:0 0 7px;font-size:11px;letter-spacing:.14em;font-weight:800;color:var(--accent)}
+    h1{font:600 clamp(31px,6vw,52px)/1.02 Georgia,serif;margin:0 0 6px}
+    h2{font:600 21px/1.15 Georgia,serif;margin:0}
+    .muted{color:var(--muted);font-size:12px}
+    .filters{display:flex;gap:6px;flex-wrap:wrap}
+    .filters button,.gate a{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 12px;font-weight:750;cursor:pointer;text-decoration:none}
+    .filters button.active,.gate a{background:var(--accent);border-color:var(--accent);color:#fff}
+    .filters button.refresh{font-size:18px;padding:5px 11px}
+    .cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:10px}
+    .card,.panel{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .card{border-radius:18px;padding:17px}
+    .card strong{display:block;font:600 33px/1 Georgia,serif;margin-bottom:7px}
+    .card span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+    .panel{border-radius:20px;padding:17px;margin-bottom:10px}
+    .grid .panel{margin-bottom:0}
+    .panelhead{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:14px}
+    .bars{display:grid;gap:11px}
+    .barrow{display:grid;grid-template-columns:95px 1fr 34px;gap:8px;align-items:center;font-size:13px}
+    .track{height:9px;background:#edf2f0;border-radius:999px;overflow:hidden}
+    .fill{height:100%;background:var(--accent);border-radius:inherit}
+    .num{text-align:right;font-weight:800}
+    .trend{height:180px;display:flex;align-items:end;gap:5px;padding-top:14px}
+    .daycol{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:5px}
+    .daybar{width:100%;max-width:28px;min-height:2px;background:var(--accent);border-radius:7px 7px 2px 2px}
+    .daylabel{font-size:9px;color:var(--muted);white-space:nowrap}
+    .tablewrap{overflow:auto}
+    table{width:100%;border-collapse:collapse;min-width:620px}
+    th,td{padding:11px 9px;border-bottom:1px solid var(--line);font-size:13px;text-align:right}
+    th:first-child,td:first-child{text-align:left}
+    th{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    tbody tr:last-child td{border-bottom:0}
+    .funnel{display:grid;gap:8px}
+    .step{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:11px 13px;background:var(--soft);border-radius:13px}
+    .step strong{font-size:19px}
+    .feedbackTop{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .pill{padding:8px 11px;border-radius:999px;background:var(--soft);font-size:12px;font-weight:800}
+    .comments{display:grid;gap:9px}
+    .comment{border-left:3px solid var(--accent);padding:5px 0 5px 11px}
+    .comment p{margin:0 0 4px;line-height:1.45;font-size:13px}
+    .comment span{font-size:10px;color:var(--muted)}
+    .empty{padding:18px 0;color:var(--muted);font-size:13px}
+    .note{font-size:10px;line-height:1.45;color:var(--muted);margin:10px 0 0}
+    .gate{max-width:620px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+    .gate h1{font-size:36px}
+    .gate p:not(.eyebrow){color:var(--muted);line-height:1.55}
+    .footer{font-size:10px;color:var(--muted);text-align:center;margin-top:20px}
+    @media(max-width:760px){
+      .wrap{padding-top:20px}.hero{display:block}.filters{margin-top:14px}
+      .cards{grid-template-columns:repeat(2,1fr)}.card:last-child{grid-column:span 2}
+      .grid{grid-template-columns:1fr}.panel{padding:14px}.barrow{grid-template-columns:80px 1fr 30px}
+      .trend{height:155px}.daylabel{font-size:8px}
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/">2rasi</a>
+    <span class="tag">Insights</span>
+  </header>
+
+  <main class="wrap">
+    <section id="gate" class="gate" hidden>
+      <p class="eyebrow">VIDINIS VAIZDAS</p>
+      <h1>Įjunk owner režimą</h1>
+      <p>Šis dashboardas skirtas tavo 2rasi srautui. Owner režimas taip pat leidžia tavo paties vizitus atmesti iš statistikos.</p>
+      <a href="/insights/?rasi_owner=1">Įjungti šiame įrenginyje</a>
+    </section>
+
+    <div id="app" hidden>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">2RASI · LIVE SIGNAL</p>
+          <h1>Kas vyksta?</h1>
+          <div id="updated" class="muted">Kraunama…</div>
+        </div>
+        <div class="filters" aria-label="Laikotarpis">
+          <button data-days="1">24 h</button>
+          <button data-days="7" class="active">7 d.</button>
+          <button data-days="30">30 d.</button>
+          <button data-days="all">Visas</button>
+          <button id="refresh" class="refresh" aria-label="Atnaujinti">↻</button>
+        </div>
+      </section>
+
+      <section id="cards" class="cards"></section>
+
+      <section class="grid">
+        <article class="panel">
+          <div class="panelhead"><h2>Srautas</h2><span class="muted">unikalūs lankytojai / dieną</span></div>
+          <div id="trend" class="trend"></div>
+        </article>
+        <article class="panel">
+          <div class="panelhead"><h2>Iš kur ateina</h2><span class="muted">page_view</span></div>
+          <div id="sources" class="bars"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panelhead"><h2>Įrankiai</h2><span class="muted">be owner ir synthetic</span></div>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr><th>Įrankis</th><th>Lankytojai</th><th>Peržiūros</th><th>Startai</th><th>Baigė</th><th>Feedback</th></tr>
+            </thead>
+            <tbody id="tools"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <div class="panelhead"><h2>WorkStyle funnel</h2><span class="muted">susietos sesijos</span></div>
+          <div id="workstyle" class="funnel"></div>
+          <p class="note">Rodomos tik naujos WorkStyle sesijos, kurias galima patikimai susieti su analytics šaltiniu. Senų techninių testų čia sąmoningai nerodome.</p>
+        </article>
+        <article class="panel">
+          <div class="panelhead"><h2>Feedback</h2><span class="muted">mikro reakcijos</span></div>
+          <div id="feedback" class="feedbackTop"></div>
+          <div id="comments" class="comments"></div>
+          <p class="note">Tekste rodomi tik komentarai, kuriuos žmogus leido anonimiškai cituoti.</p>
+        </article>
+      </section>
+
+      <div class="footer">Duomenys skaitomi iš Cloudflare D1 · automatiškai atsinaujina kas 60 s.</div>
+    </div>
+  </main>
+
+  <script src="/tools/site-owner-mode.js?v=20260831-1"></script>
+  <script>
+    (() => {
+      'use strict';
+
+      const ENDPOINT = 'https://workstyle-pilot-intake.olemoz1977.workers.dev';
+      const gate = document.getElementById('gate');
+      const app = document.getElementById('app');
+      const dayButtons = Array.from(document.querySelectorAll('[data-days]'));
+      const refreshButton = document.getElementById('refresh');
+      let days = '7';
+
+      const num = value => Number(value || 0);
+      const escapeHtml = value => String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+      })[ch]);
+
+      const toolNames = {
+        gallery:'Gallery',site:'Site','leadership-360':'Leadership 360°',mirror:'Mirror',
+        multipliers:'Multipliers',divergent:'Divergent','situational-leadership':'Situational Leadership',
+        'drama-triangle':'Drama Triangle','strategic-thinking':'Strategic Thinking',
+        '2pair':'2Pair',workstyle:'WorkStyle',priolens:'PrioLens'
+      };
+
+      if (window.RASI_OWNER_MODE !== true) {
+        gate.hidden = false;
+        return;
+      }
+      app.hidden = false;
+
+      function metric(value, label) {
+        return '<div class="card"><strong>' + num(value).toLocaleString('lt-LT') + '</strong><span>' + escapeHtml(label) + '</span></div>';
+      }
+
+      function renderSources(items) {
+        const box = document.getElementById('sources');
+        if (!items.length) {
+          box.innerHTML = '<div class="empty">Šiuo laikotarpiu duomenų nėra.</div>';
+          return;
+        }
+        const max = Math.max(1, ...items.map(item => num(item.visitors)));
+        box.innerHTML = items.map(item => {
+          const width = Math.max(4, num(item.visitors) / max * 100);
+          return '<div class="barrow"><span>' + escapeHtml(item.source || 'direct') + '</span>' +
+            '<div class="track"><div class="fill" style="width:' + width + '%"></div></div>' +
+            '<span class="num">' + num(item.visitors) + '</span></div>';
+        }).join('');
+      }
+
+      function renderTrend(items) {
+        const box = document.getElementById('trend');
+        if (!items.length) {
+          box.innerHTML = '<div class="empty">Šiuo laikotarpiu srauto nėra.</div>';
+          return;
+        }
+        const max = Math.max(1, ...items.map(item => num(item.visitors)));
+        box.innerHTML = items.map(item => {
+          const height = Math.max(2, num(item.visitors) / max * 130);
+          const label = String(item.day || '').slice(5);
+          return '<div class="daycol" title="' + escapeHtml(item.day) + ': ' + num(item.visitors) + '">' +
+            '<div class="num">' + num(item.visitors) + '</div>' +
+            '<div class="daybar" style="height:' + height + 'px"></div>' +
+            '<div class="daylabel">' + escapeHtml(label) + '</div></div>';
+        }).join('');
+      }
+
+      function renderTools(items) {
+        const body = document.getElementById('tools');
+        if (!items.length) {
+          body.innerHTML = '<tr><td colspan="6" class="empty">Nėra duomenų.</td></tr>';
+          return;
+        }
+        body.innerHTML = items.map(item => '<tr><td>' + escapeHtml(toolNames[item.tool_id] || item.tool_id) + '</td>' +
+          '<td>' + num(item.visitors) + '</td><td>' + num(item.page_views) + '</td><td>' + num(item.started) +
+          '</td><td>' + num(item.completed) + '</td><td>' + num(item.feedbacks) + '</td></tr>').join('');
+      }
+
+      function renderWorkstyle(item) {
+        const steps = [
+          ['Atsakė bent 1', item.responded_1_plus],
+          ['Pasiekė 12', item.reached_12],
+          ['Pasiekė 23', item.reached_23],
+          ['Baigė 34', item.completed_34]
+        ];
+        document.getElementById('workstyle').innerHTML = steps.map(step =>
+          '<div class="step"><span>' + escapeHtml(step[0]) + '</span><strong>' + num(step[1]) + '</strong></div>'
+        ).join('');
+      }
+
+      function renderFeedback(item) {
+        document.getElementById('feedback').innerHTML =
+          '<span class="pill">Taip ' + num(item.yes_count) + '</span>' +
+          '<span class="pill">Nelabai ' + num(item.no_count) + '</span>' +
+          '<span class="pill">Viso ' + num(item.total) + '</span>';
+
+        const comments = Array.isArray(item.quoteComments) ? item.quoteComments : [];
+        document.getElementById('comments').innerHTML = comments.length ? comments.map(row =>
+          '<div class="comment"><p>“' + escapeHtml(row.comment) + '”</p><span>' +
+          escapeHtml(toolNames[row.tool_id] || row.tool_id) + ' · ' +
+          new Date(row.received_at).toLocaleDateString('lt-LT') + '</span></div>'
+        ).join('') : '<div class="empty">Kol kas nėra komentarų su leidimu cituoti.</div>';
+      }
+
+      async function load() {
+        refreshButton.disabled = true;
+        document.getElementById('updated').textContent = 'Kraunama…';
+        try {
+          const response = await fetch(ENDPOINT + '/v1/dashboard?days=' + encodeURIComponent(days), {
+            headers: {'X-2rasi-owner':'1'},
+            credentials: 'omit',
+            cache: 'no-store'
+          });
+          const data = await response.json();
+          if (!response.ok || !data.ok) throw new Error(data.error || ('HTTP ' + response.status));
+
+          const summary = data.summary || {};
+          document.getElementById('cards').innerHTML =
+            metric(summary.visitors, 'Lankytojai') +
+            metric(summary.page_views, 'Peržiūros') +
+            metric(summary.started, 'Startai') +
+            metric(summary.completed, 'Baigė') +
+            metric(summary.feedbacks, 'Feedback');
+
+          renderTrend(data.daily || []);
+          renderSources(data.sources || []);
+          renderTools(data.tools || []);
+          renderWorkstyle(data.workstyle || {});
+          renderFeedback(data.feedback || {});
+          document.getElementById('updated').textContent = 'Atnaujinta ' + new Date(data.generatedAt).toLocaleString('lt-LT');
+        } catch (error) {
+          document.getElementById('updated').textContent = 'Duomenų gauti nepavyko: ' + error.message;
+        } finally {
+          refreshButton.disabled = false;
+        }
+      }
+
+      dayButtons.forEach(button => button.addEventListener('click', () => {
+        dayButtons.forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        days = button.dataset.days;
+        load();
+      }));
+
+      refreshButton.addEventListener('click', load);
+      load();
+      setInterval(load, 60000);
+    })();
+  </script>
+</body>
+</html>
