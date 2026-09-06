@@ -1,0 +1,254 @@
+{
+  "schema": "2rasi.priolens.stimulus-validation-pool-v0.2",
+  "poolVersion": "open14-v04-current42",
+  "sourceBank": "2rasi.priolens.open14.bank-v0.4",
+  "frozenFor": "blind-semantic-screening",
+  "familyOrder": [
+    "REST",
+    "RESOURCE",
+    "SAFETY",
+    "ORDER",
+    "CONNECTION",
+    "BELONGING",
+    "CARE",
+    "AUTONOMY",
+    "CONTROL",
+    "RECOGNITION",
+    "MASTERY",
+    "EXPLORATION",
+    "KNOWLEDGE",
+    "OPPORTUNITY"
+  ],
+  "stimuli": [
+    {
+      "id": "REST-01",
+      "targetFamily": "REST",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03-owner-remediation-v01/rest_01_slippers_640.webp"
+    },
+    {
+      "id": "REST-02",
+      "targetFamily": "REST",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-remediation-v02/rest-b_owner-b_sq_center_v01.webp"
+    },
+    {
+      "id": "REST-03",
+      "targetFamily": "REST",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/rest_03_640.webp"
+    },
+    {
+      "id": "RESOURCE-01",
+      "targetFamily": "RESOURCE",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Gallery/file_00000000673881f4bc390c5618110a68.png"
+    },
+    {
+      "id": "RESOURCE-02",
+      "targetFamily": "RESOURCE",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-geometry-v01/resource-b_sq_center_v01.webp"
+    },
+    {
+      "id": "RESOURCE-03",
+      "targetFamily": "RESOURCE",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03-owner-remediation-v01/resource_03_food_640.webp"
+    },
+    {
+      "id": "SAFETY-01",
+      "targetFamily": "SAFETY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Gallery/S08.webp"
+    },
+    {
+      "id": "SAFETY-02",
+      "targetFamily": "SAFETY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v04/safety_02_protective_case_640.webp"
+    },
+    {
+      "id": "SAFETY-03",
+      "targetFamily": "SAFETY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/safety_03_640.webp"
+    },
+    {
+      "id": "ORDER-01",
+      "targetFamily": "ORDER",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-remediation-v02/order-a_owner-b_v01.webp"
+    },
+    {
+      "id": "ORDER-02",
+      "targetFamily": "ORDER",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-remediation-v02/order-b_owner-c_v01.webp"
+    },
+    {
+      "id": "ORDER-03",
+      "targetFamily": "ORDER",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/order_03_640.webp"
+    },
+    {
+      "id": "CONNECTION-01",
+      "targetFamily": "CONNECTION",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-remediation-v01/connection-a_clean_small_v01.webp"
+    },
+    {
+      "id": "CONNECTION-02",
+      "targetFamily": "CONNECTION",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-remediation-v01/connection-b_clean_small_v01.webp"
+    },
+    {
+      "id": "CONNECTION-03",
+      "targetFamily": "CONNECTION",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/connection_03_640.webp"
+    },
+    {
+      "id": "BELONGING-01",
+      "targetFamily": "BELONGING",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Gallery/S14.webp"
+    },
+    {
+      "id": "BELONGING-02",
+      "targetFamily": "BELONGING",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-final-v01/belonging-b_coffee-ritual_v01.webp"
+    },
+    {
+      "id": "BELONGING-03",
+      "targetFamily": "BELONGING",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/belonging_03_640.webp"
+    },
+    {
+      "id": "CARE-01",
+      "targetFamily": "CARE",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v02/priolens_care-a_v01.webp"
+    },
+    {
+      "id": "CARE-02",
+      "targetFamily": "CARE",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v02/priolens_care-b_v01.webp"
+    },
+    {
+      "id": "CARE-03",
+      "targetFamily": "CARE",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/care_03_640.webp"
+    },
+    {
+      "id": "AUTONOMY-01",
+      "targetFamily": "AUTONOMY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Gallery/file_00000000cc8c81f4a927534c8316290c.png"
+    },
+    {
+      "id": "AUTONOMY-02",
+      "targetFamily": "AUTONOMY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v04/autonomy_02_backpack_clean_640.webp"
+    },
+    {
+      "id": "AUTONOMY-03",
+      "targetFamily": "AUTONOMY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/autonomy_03_640.webp"
+    },
+    {
+      "id": "CONTROL-01",
+      "targetFamily": "CONTROL",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-final-v01/control-a_joystick_v01.webp"
+    },
+    {
+      "id": "CONTROL-02",
+      "targetFamily": "CONTROL",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Gallery/file_000000006b148210abe3c22f8ce50764.png"
+    },
+    {
+      "id": "CONTROL-03",
+      "targetFamily": "CONTROL",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/control_03_640.webp"
+    },
+    {
+      "id": "RECOGNITION-01",
+      "targetFamily": "RECOGNITION",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v02/priolens_recognition-a_v01.webp"
+    },
+    {
+      "id": "RECOGNITION-02",
+      "targetFamily": "RECOGNITION",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03-owner-remediation-v01/recognition_02_recrop_640.webp"
+    },
+    {
+      "id": "RECOGNITION-03",
+      "targetFamily": "RECOGNITION",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/recognition_03_640.webp"
+    },
+    {
+      "id": "MASTERY-01",
+      "targetFamily": "MASTERY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Gallery/S12.webp"
+    },
+    {
+      "id": "MASTERY-02",
+      "targetFamily": "MASTERY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Gallery/S16.webp"
+    },
+    {
+      "id": "MASTERY-03",
+      "targetFamily": "MASTERY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/mastery_03_640.webp"
+    },
+    {
+      "id": "EXPLORATION-01",
+      "targetFamily": "EXPLORATION",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v04/exploration_01_drawer_search_640.webp"
+    },
+    {
+      "id": "EXPLORATION-02",
+      "targetFamily": "EXPLORATION",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-final-v01/exploration-b_magnifier-forest_v01.webp"
+    },
+    {
+      "id": "EXPLORATION-03",
+      "targetFamily": "EXPLORATION",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/exploration_03_640.webp"
+    },
+    {
+      "id": "KNOWLEDGE-01",
+      "targetFamily": "KNOWLEDGE",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-remediation-v01/knowledge-a_sq_top_v01.webp"
+    },
+    {
+      "id": "KNOWLEDGE-02",
+      "targetFamily": "KNOWLEDGE",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03-owner-remediation-v01/knowledge_02_online_learning_640.webp"
+    },
+    {
+      "id": "KNOWLEDGE-03",
+      "targetFamily": "KNOWLEDGE",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v03/knowledge_03_640.webp"
+    },
+    {
+      "id": "OPPORTUNITY-01",
+      "targetFamily": "OPPORTUNITY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v04/opportunity_01_parking_640.webp",
+      "mechanismRole": "OCCUPY_OPENING",
+      "competitors": [
+        "RESOURCE",
+        "AUTONOMY",
+        "ORDER"
+      ]
+    },
+    {
+      "id": "OPPORTUNITY-02",
+      "targetFamily": "OPPORTUNITY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Gallery/file_00000000c7f0821081be7676884bb00f.png",
+      "mechanismRole": "CREATE_FROM_AVAILABLE_START",
+      "competitors": [
+        "MASTERY",
+        "EXPLORATION",
+        "AUTONOMY"
+      ]
+    },
+    {
+      "id": "OPPORTUNITY-03",
+      "targetFamily": "OPPORTUNITY",
+      "imageUrl": "https://omesg360.eu/priolens-research-assets/Open14-v04/opportunity_03_meeting_seat_640.webp",
+      "mechanismRole": "JOIN_AVAILABLE_PLACE",
+      "competitors": [
+        "BELONGING",
+        "CONNECTION",
+        "RECOGNITION"
+      ]
+    }
+  ],
+  "status": "READY_FOR_PUBLIC_BLIND_SCREENING",
+  "competitorPolicyVersion": "stimulus-aware-v0.2"
+}
