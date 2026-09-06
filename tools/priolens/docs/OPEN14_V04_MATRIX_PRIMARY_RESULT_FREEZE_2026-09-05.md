@@ -1,19 +1,18 @@
 # PrioLens v0.4 — matrix-primary result freeze
 
-Status: DEPLOYED TECHNICAL PASS / OWNER REAL-PHONE VISUAL REVIEW
+Status: DEPLOYED / LEGACY RESULT VISUALS REMOVED / DETAIL-ONLY RUNTIME
 Date: 2026-09-05
 
 ## Decision
 
 The 12×12 relationship matrix is now the **primary participant-facing result**.
 
-The ship and map cards are **deactivated from the normal participant flow**.
+The earlier ship/map result scene has now been **removed from the runtime DOM and public renderer**.
 
-They remain in the runtime DOM only as:
-- an internal host for the already-built detail content;
-- an emergency fallback if the matrix result module itself cannot render.
-
-They are not a normal result step and must not be shown before/after the matrix.
+A/B detail content remains, but it is hosted directly as detail-only UI:
+- first-glance detail = dedicated routed detail view;
+- second-answer detail = viewport-root bottom sheet over the matrix;
+- matrix-render failure = generic saved-result error state, not an alternate visual result.
 
 ## Result flow
 
@@ -48,8 +47,8 @@ Uses the existing Channel-A detail content:
 - exact 3/3 LEAST/background evidence.
 
 When opened from the matrix:
-- the result screen runs in `detailOnlyHost`;
-- the ship/map scene is CSS-hidden;
+- the detail-only result host opens directly;
+- no obsolete result scene exists behind it;
 - closing returns to the matrix.
 
 ### Antro atsakymo detalės
@@ -61,8 +60,8 @@ Uses the existing Channel-B detail content:
 - no-route explanation when applicable.
 
 When opened from the matrix:
-- the result screen runs in `detailOnlyHost`;
-- the ship/map scene is CSS-hidden behind the detail sheet;
+- the detail content is rendered into a viewport-root bottom sheet;
+- the matrix remains visible behind it;
 - closing returns to the matrix.
 
 ## Matrix actions
@@ -104,6 +103,17 @@ Key files:
 - `priolens/open14-v04/build_from_v031.mjs`
 
 ## Technical evidence
+
+Latest structural-cleanup deployment:
+- runtime SHA: `e2d10c3908057a5be7c71dacc0b5936481c2643b`;
+- logic smoke: `34007584761` SUCCESS;
+- local 390×844 UI smoke: `34007584748` SUCCESS;
+- deployed 390×844 owner-flow/API/source-clean smoke: `34007584760` SUCCESS;
+- live HTML/public renderer obsolete-visual token checks: PASS;
+- A detail, B detail, PDF, browser Back and completed-result restore: PASS.
+
+Historical matrix-primary deployment evidence follows.
+
 
 Final deployment:
 - GitHub Actions run: `33957908985`
