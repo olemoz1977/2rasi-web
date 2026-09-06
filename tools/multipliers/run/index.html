@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="robots" content="noindex,follow" />
-  <title>Multipliers Archetipų Testas v10.9 — 15 klausimų (maišomi)</title>
+  <meta name="robots" content="noindex,follow" />
+<title>Multipliers refleksijos eksperimentas</title>
   <style>
     :root{--bg:#0e0f13;--panel:#171922;--text:#e8ecf1;--muted:#aab4c0;--accent:#59c173;--accent2:#66a6ff;--grid:#2a2e39;--border:#222636;--chip:#2a2e39}
     [data-theme="light"]{--bg:#f7f9fc;--panel:#ffffff;--text:#11161c;--muted:#576270;--accent:#167e56;--accent2:#2b6fff;--grid:#dfe5ef;--border:#d6dde8;--chip:#eef2f9}
@@ -28,7 +28,7 @@
     .opt{display:flex;gap:8px;align-items:flex-start;background:var(--chip);border:1px solid var(--border);padding:8px;border-radius:8px}
     .opt input{margin-top:2px;accent-color:var(--accent)}
     .bad{color:#ff6b6b}
-    #radarSvg{width:100%;height:360px;display:block}
+    
     .summary{background:var(--chip);border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:8px}
     .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
     .chip{background:var(--chip);border:1px solid var(--border);color:var(--text);font-size:12px;padding:4px 8px;border-radius:999px}
@@ -37,47 +37,44 @@
     .insights .block h4{margin:0 0 6px;font-size:14px}
     .insights ul{margin:6px 0 10px 18px}
     footer{padding:12px 16px;color:var(--muted)}
-    @media (max-width: 920px){ main{grid-template-columns:1fr} header{flex-wrap:wrap} h1{flex-basis:100%;margin-bottom:6px} #radarSvg{height:300px} }
-    @media print{ header,.actions{display:none!important} main{grid-template-columns:1fr} .card{page-break-inside:avoid} #radarSvg{height:480px} }
+    @media (max-width: 920px){ main{grid-template-columns:1fr} header{flex-wrap:wrap} h1{flex-basis:100%;margin-bottom:6px}  }
+    @media print{ header,.actions{display:none!important} main{grid-template-columns:1fr} .card{page-break-inside:avoid}  }
   </style>
 </head>
 <body>
   <header>
-    <h1>Multipliers Archetipų Testas v10.9.1</h1>
+    <h1>Multipliers refleksijos eksperimentas</h1>
     <button id="theme" class="btn flat">Tema: Tamsi/Šviesi</button>
     <button id="shuffle" class="btn flat">Permaišyti</button>
-    <button id="labels" class="btn flat">Rodyti archetipų etiketes: Išjungta</button>
+    <button id="labels" class="btn flat">Rodyti elgesio krypčių pavadinimus: Išjungta</button>
     <button id="calc" class="btn">Apskaičiuoti</button>
     <button id="reset" class="btn secondary">Išvalyti</button>
     <button id="pdf" class="btn secondary">PDF (naršyklė)</button>
-    <span class="legend" id="libStatus">15 klausimų · 5 atsakymai (maišomi TM/LB/CH/DM/IN)</span>
+    <span class="legend" id="libStatus">15 situacijų · 5 elgesio kryptys</span>
   </header>
 
   <main>
     <section class="card">
       <h2>Klausimynas</h2>
-      <div class="content legend">Pasirink vieną elgesį. Atsakymų eilės tvarka <strong>atsitiktinai sumaišoma</strong> kiekvieną kartą, kad nesijaustų tendencijos. Taškų taisyklė: „target“ archetipui → 3 taškai, kitiems → 1.</div>
-      <div class="content" id="questions"></div>
+      <div class="content legend">Pasirink elgesį, artimiausią tam, ką realiai darytum. Klausimų ir atsakymų tvarka maišoma. Penki pavadinimai yra Multipliers modelio įkvėptos elgesio kryptys, ne asmenybės tipai ir ne validuotos skalės.</div><div class="content" id="questions"></div>
       <div class="actions content"><span id="status" class="legend"></span></div>
     </section>
 
     <section class="card">
-      <h2>Rezultatai</h2>
+      <h2>Pasirinkimų žemėlapis</h2>
       <div class="content">
         <div id="summary" class="summary legend">Kol kas neapskaičiuota.</div>
         <div class="chips" id="chips"></div>
-        <svg id="radarSvg" viewBox="-250 -250 500 500" aria-label="Radar chart"></svg>
+        
         <div class="insights" id="insights"></div>
       </div>
     </section>
   </main>
 
-  <footer>
-    v10.9.1 Sukurta Oleg Mozochin * AI 2025.11
-  </footer>
+  <footer><span>Nepriklausomas 2rasi refleksijos eksperimentas · 2026</span> <a class="btn secondary" href="https://2rasi.lt/#experiments">← 2rasi</a></footer>
 
 <script>
-const ARCH = [
+const DIRECTIONS = [
   {key:'TM', name:'Talent Magnet'},
   {key:'LB', name:'Liberator'},
   {key:'CH', name:'Challenger'},
@@ -85,7 +82,7 @@ const ARCH = [
   {key:'IN', name:'Investor'}
 ];
 
-// 15 situacijų: po 3 kiekvienam archetipui
+// 15 situacijų: po 3 kiekvienai scenarijaus dizaino krypčiai
 const SCENARIOS = [
   // TM
   {target:'TM', t:'Komandoje atsiranda naujas žmogus su stipria analitika. Kaip elgiesi pirmą savaitę?', opts:[
@@ -219,7 +216,7 @@ function render(){
       const row = document.createElement('label'); row.className='opt';
       const input = document.createElement('input'); input.type='radio'; input.name='q_'+i; input.value=op.a; input.required=true;
       const text = document.createElement('div');
-      const arche = ARCH.find(a=>a.key===op.a).name;
+      const arche = DIRECTIONS.find(a=>a.key===op.a).name;
       text.innerHTML = SHOW_LABELS ? `<strong>${arche}</strong>: ${op.d}` : `${op.d}`;
       row.appendChild(input); row.appendChild(text); opts.appendChild(row);
     });
@@ -228,179 +225,113 @@ function render(){
 }
 
 function collect(){
-  const rows = [...document.querySelectorAll('.q')];
-  const points = {TM:0,LB:0,CH:0,DM:0,IN:0};
-  const countsAll = {TM:0,LB:0,CH:0,DM:0,IN:0};
-  let missing = 0;
-  for(const r of rows){
-    const chosen = r.querySelector('input[type=radio]:checked');
-    if(!chosen){ missing++; continue; }
-    const arch = chosen.value; countsAll[arch] += 1;
-    const target = r.dataset.target;
-    points[arch] += (arch===target? 3 : 1);
-  }
-  return {points, countsAll, missing};
-}
-function normalizeForRadar(points){
-  const norm = {TM:0,LB:0,CH:0,DM:0,IN:0};
-  for(const k of Object.keys(points)){
-    const p = points[k];
-    const clamped = Math.max(3, Math.min(9, p)); // per 3 target klausimus
-    norm[k] = 1 + (clamped-3)/6*4;               // 3..9 → 1..5
-  }
-  return norm;
-}
-
-function drawRadar(vals){
-  const svg=document.getElementById('radarSvg'); svg.innerHTML=''; const R=200, levels=5;
-  const gridColor=getComputedStyle(document.body).getPropertyValue('--grid').trim();
-  const labelColor=getComputedStyle(document.body).getPropertyValue('--muted').trim();
-  for(let lvl=1; lvl<=levels; lvl++){
-    const r=(lvl/levels)*R; const pts=[];
-    for(let i=0;i<ARCH.length;i++){ const ang=(-90+i*360/ARCH.length)*Math.PI/180; pts.push(`${(r*Math.cos(ang)).toFixed(1)},${(r*Math.sin(ang)).toFixed(1)}`); }
-    const poly=document.createElementNS('http://www.w3.org/2000/svg','polygon');
-    poly.setAttribute('points', pts.join(' ')); poly.setAttribute('fill','none'); poly.setAttribute('stroke',gridColor); svg.appendChild(poly);
-  }
-  for(let i=0;i<ARCH.length;i++){
-    const ang=(-90+i*360/ARCH.length)*Math.PI/180; const x=(220*Math.cos(ang)).toFixed(1); const y=(220*Math.sin(ang)).toFixed(1);
-    const text=document.createElementNS('http://www.w3.org/2000/svg','text');
-    text.setAttribute('x',x); text.setAttribute('y',y); text.setAttribute('text-anchor','middle'); text.setAttribute('dominant-baseline','middle'); text.setAttribute('fill',labelColor); text.textContent=ARCH[i].name; svg.appendChild(text);
-  }
-  const arr = ARCH.map(a=>vals[a.key]);
-  const pts = ARCH.map((a,i)=>{ const ang=(-90+i*360/ARCH.length)*Math.PI/180; const r=(arr[i]/5)*R; return `${(r*Math.cos(ang)).toFixed(1)},${(r*Math.sin(ang)).toFixed(1)}`; });
-  const poly=document.createElementNS('http://www.w3.org/2000/svg','polygon');
-  poly.setAttribute('points', pts.join(' ')); poly.setAttribute('fill','rgba(102,166,255,0.25)'); poly.setAttribute('stroke','#66a6ff'); poly.setAttribute('stroke-width','2'); svg.appendChild(poly);
-}
-
-function buildDescriptions(norm){
-  const insights = document.getElementById('insights'); insights.innerHTML='';
-  const chips = document.getElementById('chips'); chips.innerHTML='';
-  const chip=(txt)=>{ const c=document.createElement('span'); c.className='chip'; c.textContent=txt; return c; };
-
-  // Pasirinkimų pasikartojimas (monotonijos indikatorius)
-  const {countsAll} = collect(); // neskaičiuojam taškų iš naujo, tik karo kartų
-  const sortedCounts = Object.entries(countsAll).sort((a,b)=>b[1]-a[1]);
-  const topPick = sortedCounts[0];
-  chips.appendChild(chip(`Dažniausiai rinktasi: ${ARCH.find(x=>x.key===topPick[0]).name} × ${topPick[1]} / 15`));
-  for(const [k,v] of sortedCounts.slice(1)) chips.appendChild(chip(`${ARCH.find(x=>x.key===k).name}: ${v}`));
-  if(topPick[1] >= 9) chips.appendChild(chip('⚠ Elgesys monotonus (≥9 iš 15)'));
-
-  // Bendras įvertinimas (be rekomendacijų)
-  const multAvg = (norm.TM + norm.LB + norm.CH + norm.DM + norm.IN) / 5; // 1..5
-  const cls = (multAvg>=3.8? 'Multiplier' : multAvg<2.2? 'Diminisher' : 'Accidental Diminisher');
-  document.getElementById('summary').innerHTML =
-    `Bendra: <strong>${cls}</strong>. ` +
-    ARCH.map(a=>`${a.name}: ${norm[a.key].toFixed(2)}`).join(' | ');
-
-  // Detalūs aprašymai (stiprybės / silpnybės)
-  const DETAIL = {
-    TM: {
-      title: 'Talent Magnet',
-      strengths: [
-        'Greitai pastebi žmonių stiprybes ir sukuria sąlygas joms atsiskleisti.',
-        'Tikslingai kviečia prisidėti prie svarbių temų, kur talentas kuria vertę.',
-        'Skatina mentorystę ir „augimą per įgalinimą“.'
-      ],
-      risks: [
-        'Perdėtas tikėjimas „talentu be struktūros“ — rizika ignoruoti standartus.',
-        'Gali pervertinti naujų žmonių indėlį be realios atskaitomybės.',
-        'Sunkiau dirbti su „tyliais“ ar skeptiškais komandos nariais.'
-      ]
-    },
-    LB: {
-      title: 'Liberator',
-      strengths: [
-        'Kuria saugią, bet reikalaujančią erdvę: aiškūs standartai ir pagarbus reagavimas.',
-        'Leidžia klysti mokantis, fokusas į sprendimą, ne kaltinimą.',
-        'Stiprina drausmę be mikro‑valdymo.'
-      ],
-      risks: [
-        'Gali uždelsti griežtesnį veiksmą, kai reikalinga disciplina „čia ir dabar“.',
-        'Per daug „saugos“ — rizika mažesnei iniciatyvai ir tempui.',
-        'Kartais painiojamas su „komforto zona“.'
-      ]
-    },
-    CH: {
-      title: 'Challenger',
-      strengths: [
-        'Formuluoja ambiciją ir aiškų „kodėl“, mobilizuoja komandą.',
-        'Paverčia iššūkius mokymosi galimybėmis, orientacija į „kaip padarysime“.',
-        'Padeda matyti didesnį paveikslą ir kryptį.'
-      ],
-      risks: [
-        'Gali „užkalbėti tikslu“ be detalios realybės patikros.',
-        'Per didelė ambicija — rizika perdegimui ar klaidoms.',
-        'Nepakankamai įtraukia alternatyvias perspektyvas.'
-      ]
-    },
-    DM: {
-      title: 'Debate Maker',
-      strengths: [
-        'Surenka faktus ir skirtingas perspektyvas prieš sprendimą.',
-        'Veda konstruktyvią diskusiją be asmeniškumų.',
-        'Padeda pasirinkti kokybiškesnę kryptį.'
-      ],
-      risks: [
-        'Gali „užstrigti analizėje“ — sprendimas vėluoja.',
-        'Per daug „už/prieš“ — rizika prarasti tempą.',
-        'Kartais komanda pavargsta nuo ilgų debatų.'
-      ]
-    },
-    IN: {
-      title: 'Investor',
-      strengths: [
-        'Deleguoja rezultatą (ne tik užduotis), suteikia resursus.',
-        'Sutaria dėl patikros taškų ir atsakomybės — aiškus „kas/kada/kaip“.',
-        'Pašalina kliūtis ir padeda augti savininkams.'
-      ],
-      risks: [
-        'Gali per daug pasitikėti be „early warning“ mechanizmo.',
-        '„Deleguoju ir dingstu“ — rizika prarastam „grįžtamo ryšio“ ritmui.',
-        'Kartais resursai skiriami be pakankamos debatų fazės.'
-      ]
-    }
-  };
-
-  ARCH.forEach(a=>{
-    const b = document.createElement('div'); b.className='block';
-    const h = document.createElement('h4'); h.textContent = `${DETAIL[a.key].title} — detalus aprašymas`; b.appendChild(h);
-    const sH = document.createElement('div'); sH.innerHTML = '<strong>Stiprybės</strong>'; b.appendChild(sH);
-    const sUL = document.createElement('ul');
-    DETAIL[a.key].strengths.forEach(t=>{ const li=document.createElement('li'); li.textContent=t; sUL.appendChild(li); });
-    b.appendChild(sUL);
-    const rH = document.createElement('div'); rH.innerHTML = '<strong>Silpnybės / rizikos</strong>'; b.appendChild(rH);
-    const rUL = document.createElement('ul');
-    DETAIL[a.key].risks.forEach(t=>{ const li=document.createElement('li'); li.textContent=t; rUL.appendChild(li); });
-    b.appendChild(rUL);
-    insights.appendChild(b);
+  const rows=[...document.querySelectorAll('.q')];
+  const countsAll={TM:0,LB:0,CH:0,DM:0,IN:0};
+  const trace=[];
+  const missingRows=[];
+  rows.forEach((r,i)=>{
+    const chosen=r.querySelector('input[type=radio]:checked');
+    if(!chosen){missingRows.push(r);return;}
+    const key=chosen.value;
+    countsAll[key]+=1;
+    const q=CURRENT_ORDER[i];
+    const opt=q.opts.find(o=>o.a===key);
+    trace.push({question:q.t,chosenKey:key,chosenText:opt?opt.d:'',designKey:q.target});
   });
+  return {countsAll,trace,missing:missingRows.length,missingRows};
 }
+
+function directionName(key){
+  const d=DIRECTIONS.find(x=>x.key===key);
+  return d?d.name:key;
+}
+
+function resultBlock(title,html){
+  const b=document.createElement('div');
+  b.className='block';
+  const h=document.createElement('h4');
+  h.textContent=title;
+  b.appendChild(h);
+  const body=document.createElement('div');
+  body.innerHTML=html;
+  b.appendChild(body);
+  return b;
+}
+
+function renderChoiceMap(data){
+  const insights=document.getElementById('insights');
+  const chips=document.getElementById('chips');
+  const summary=document.getElementById('summary');
+  insights.innerHTML='';
+  chips.innerHTML='';
+
+  const sorted=Object.entries(data.countsAll).sort((a,b)=>b[1]-a[1]);
+  const top=sorted[0];
+
+  summary.innerHTML=`Tai 15 pasirinkimų pėdsakas, ne asmenybės tipas, ne „Multiplier“ klasifikacija ir ne validuotas lyderystės balas.<br><br>Dažniausiai šiame atsakymų rinkinyje pasirodė <strong>${directionName(top[0])}</strong> — ${top[1]} / 15. Tai nereiškia, kad „esi“ ši kryptis — tik kad šiose situacijose ją rinkaisi dažniausiai.`;
+
+  const chip=txt=>{const c=document.createElement('span');c.className='chip';c.textContent=txt;return c;};
+  sorted.forEach(([k,v])=>chips.appendChild(chip(`${directionName(k)}: ${v} / 15`)));
+
+  const rows=DIRECTIONS.map(d=>{
+    const count=data.countsAll[d.key];
+    return `<div style="padding:10px 0;border-bottom:1px dashed var(--grid)">
+      <strong>${d.name}</strong> · ${count} / 15<br>
+      <span class="legend"><strong>Klausimas sau:</strong> ${REFLECTION_QUESTIONS[d.key]}</span>
+    </div>`;
+  }).join('');
+  insights.appendChild(resultBlock("Penkių elgesio krypčių pasiskirstymas",rows));
+
+  const same=data.trace.find(x=>x.chosenKey===x.designKey);
+  const diff=data.trace.find(x=>x.chosenKey!==x.designKey);
+  const cards=[];
+  if(same){
+    cards.push(`<div style="margin:8px 0 14px"><strong>Situacija, kur pasirinkai tą pačią kryptį kaip scenarijaus dizainas</strong><br>${same.question}<br><span class="legend">Tavo pasirinkimas: ${directionName(same.chosenKey)} — ${same.chosenText}</span></div>`);
+  }
+  if(diff){
+    cards.push(`<div style="margin:8px 0 14px"><strong>Situacija, kur pasirinkai kitą kryptį nei scenarijaus dizainas</strong><br>${diff.question}<br><span class="legend">Tavo pasirinkimas: ${directionName(diff.chosenKey)} — ${diff.chosenText}<br>Scenarijaus dizaino kryptis: ${directionName(diff.designKey)}</span></div>`);
+  }
+  cards.push(`<p class="legend">Čia nėra „teisinga / klaidinga“. Skirtumas tik padeda pamatyti, kokį veikimo būdą pasirinkai tame kontekste.</p>`);
+  insights.appendChild(resultBlock("Du konkretūs pasirinkimų kontrastai",cards.join('')));
+
+  insights.appendChild(resultBlock("Vienas refleksijos eksperimentas",`<p>Per artimiausią realią komandos situaciją prieš veikdamas įvardyk, kuri iš penkių krypčių tau kyla pirmiausia. Tada sąmoningai suformuluok vieną alternatyvą iš kitos krypties ir paklausk: ką ji pakeistų? Po sprendimo vienu sakiniu užrašyk, ar alternatyvos apsvarstymas pakeitė tavo veiksmą.</p>`));
+}
+
+const REFLECTION_QUESTIONS={"TM":"Kada stiprybės pastebėjimas ir tinkamo žmogaus įtraukimas kuria daugiau vertės, o kada pirmiau reikia aiškesnės struktūros?","LB":"Kada aiškūs standartai ir saugi erdvė padeda komandai veikti geriau, o kada reikia griežtesnės intervencijos?","CH":"Kada ambicinga kryptis mobilizuoja, o kada rizikuoja aplenkti realybės patikrą?","DM":"Kada skirtingos perspektyvos pagerina sprendimą, o kada diskusija jau pradeda lėtinti veiksmą?","IN":"Kada aiški atsakomybė, resursai ir patikros taškai augina savarankiškumą, o kada žmogui dar reikia daugiau artimo palaikymo?"};
 
 function calc(){
-  const {points, countsAll, missing} = collect();
-  if(missing>0){ document.getElementById('status').innerHTML=`Liko neatsakytų: <span class=bad>${missing}</span>`; return; }
-  const norm = normalizeForRadar(points);
-  drawRadar(norm);
-  // Užuot teikę rekomendacijas — rodome detalius archetipų aprašymus
-  buildDescriptions(norm);
-  document.getElementById('status').textContent='✅ Apskaičiuota.';
+  const data=collect();
+  if(data.missing>0){
+    const first=data.missingRows[0];
+    document.getElementById('status').innerHTML=`Neatsakyta situacija: <span class="bad">${data.missing}</span>`;
+    first.style.outline='2px solid #ff6b6b';
+    first.style.outlineOffset='3px';
+    first.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>{first.style.outline='';first.style.outlineOffset='';},2200);
+    return;
+  }
+  renderChoiceMap(data);
+  document.getElementById('status').textContent="✓ Žemėlapis paruoštas.";
+  const card=document.getElementById('summary').closest('.card');
+  requestAnimationFrame(()=>card.scrollIntoView({behavior:'smooth',block:'start'}));
 }
+
 function reset(){
   document.querySelectorAll('.q input[type=radio]:checked').forEach(i=>i.checked=false);
-  document.getElementById('summary').textContent='Kol kas neapskaičiuota.';
+  document.getElementById('summary').textContent="Kol kas neapskaičiuota.";
   document.getElementById('chips').innerHTML='';
   document.getElementById('insights').innerHTML='';
   document.getElementById('status').textContent='';
-  drawRadar({TM:1,LB:1,CH:1,DM:1,IN:1});
 }
+
 function toggleTheme(){
-  const html=document.documentElement; const isLight=html.getAttribute('data-theme')==='light';
-  html.setAttribute('data-theme', isLight? '' : 'light');
-  drawRadar({TM:1,LB:1,CH:1,DM:1,IN:1});
+  const html=document.documentElement;
+  const isLight=html.getAttribute('data-theme')==='light';
+  html.setAttribute('data-theme',isLight?'':'light');
 }
 function toggleLabels(){
   SHOW_LABELS = !SHOW_LABELS;
-  document.getElementById('labels').textContent = 'Rodyti archetipų etiketes: ' + (SHOW_LABELS? 'Įjungta' : 'Išjungta');
+  document.getElementById('labels').textContent = 'Rodyti elgesio krypčių pavadinimus: ' + (SHOW_LABELS? 'Įjungta' : 'Išjungta');
   const pos = window.scrollY; render(); window.scrollTo(0,pos);
 }
 function reshuffle(){
