@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-05T16:12:00Z",
-  "status": "V04_LIVE_PROMOTED_B_DETAIL_VIEWPORT_PRINT_BACK_REGRESSION_PASS",
+  "updatedAtUtc": "2026-09-06T02:54:01Z",
+  "status": "V04_PUBLIC_PILOT_LIVE_LEGACY_RESULT_VISUALS_REMOVED_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -57,80 +57,38 @@
     "receivedSupportWordingEnforced": true
   },
   "resultWorld": {
-    "phase": "STRONGER_GEOGRAPHIC_MAP_REVISION_DEPLOYED_TECHNICAL_PASS_OWNER_VISUAL_REVIEW_PENDING",
-    "shipRepresents": "Channel-A focus only",
-    "shipHeroShowsOnlyFocusName": true,
-    "shipHeroShowsRawCount": false,
-    "shipDetailDisclosesRawCount": true,
-    "shipDetailDisclosesAPlusProvenance": true,
-    "needsMapRepresents": "Channel-B sufficiency route only",
-    "needsMapUsesChannelAFamilyNames": false,
+    "phase": "MATRIX_PRIMARY_DETAIL_ONLY_RUNTIME_DEPLOYED_PASS",
     "automaticABComparisonRemovedFromMainResult": true,
-    "automaticShipToMapLine": false,
     "attentionReflectionQuestionLt": "Kas, tavo manymu, galėjo traukti šiuose vaizduose?",
-    "finalShipGraphicImplemented": true,
-    "finalNeedsMapGraphicImplemented": true,
     "transitionVideoImplemented": false,
-    "layout": "ship above waterline, needs map below, one continuous mobile scene",
-    "needsMapGrouping": "render only route-relevant Channel-B need land(s); no-route renders compact empty state",
-    "routeTargetsHighlighted": true,
     "renderDomGuard": true,
     "visibleRenderErrorBoundary": true,
     "previewCachePolicy": "no-cache,max-age=0,must-revalidate for html/mjs/json",
-    "shipAndMapNativeButtons": true,
     "keyboardActivationSmokePassed": true,
-    "needsMapLabelsUseSharedItemLabels": true,
     "detailNavigation": {
-      "attention": "matrix -> dedicated A detail page -> matrix",
+      "attention": "matrix -> dedicated first-glance detail host -> matrix",
       "attentionNoClear": "if A+ does not single out one focus, A detail preserves all raw MOST 3/3 and 2/3 repeated directions instead of collapsing to an empty no-focus state",
-      "sufficiency": "matrix stays visible -> B detail opens as modal overlay on top of matrix -> matrix",
-      "shipMapSceneVisibleDuringDetails": false
+      "sufficiency": "matrix remains visible -> second-answer detail opens as viewport-root bottom sheet -> matrix",
+      "browserBackUnlocks": true,
+      "printSanitizesOpenDetail": true
     },
     "participantDetailPresentation": {
-      "attentionDetail": "dedicated routed view",
+      "attentionDetail": "dedicated routed detail-only view",
       "leastDisplay": "only exact 3/3 repeated LEAST directions are surfaced; 2/3 remains in raw research data but is not participant-facing",
       "technicalTermsHidden": "MOST/LEAST/A+/B+ labels removed from participant-facing detail copy where provenance can be stated plainly",
       "selfExplanationAfterAnswer": "option list collapses to the selected answer plus the separation note; selected answer uses explicit dark text on white",
-      "sufficiencyDetail": "compact bottom sheet over the main result scene",
+      "sufficiencyDetail": "compact viewport-root bottom sheet over the primary matrix",
       "attentionDetailHierarchy": "primary focus -> self-explanation -> secondary 3/3 background evidence",
       "reflectionQuestionRenderedOnce": true
-    },
-    "routeEndpointRendering": {
-      "oneEndpoint": "one route-relevant land; duplicate large endpoint summary above the land is hidden",
-      "multipleEndpoints": "all valid route-relevant lands/endpoints are rendered; do not silently truncate protocol-valid B+ similar results",
-      "noRoute": "no inactive lands; compact no-route state"
     },
     "informationArchitectureFrozen": true,
     "informationArchitectureFreezeDoc": "tools/priolens/docs/OPEN14_V04_INFORMATION_ARCHITECTURE_FREEZE_2026-09-04.md",
     "visualGrammarDoc": "tools/priolens/docs/OPEN14_V04_RESULT_VISUAL_GRAMMAR_2026-09-04.md",
-    "presentationModule": "priolens/open14-v04/result_shell_v04.mjs",
-    "semanticRendererModule": "priolens/open14-v04/result_renderer_v04.mjs",
+    "presentationModule": "priolens/open14-v04/result_shell_v04.mjs (detail-only host)",
+    "semanticRendererModule": "priolens/open14-v04/result_renderer_v04.mjs (detail-only)",
     "buildOrchestrator": "priolens/open14-v04/build_from_v031.mjs",
-    "shipFocusImagesInSummary": false,
-    "shipFocusImagesInReflectionOnly": true,
     "sufficiencyTerminology": "pakankamumo sritis / sufficiency area",
     "sufficiencyProvenanceHeadingLt": "Kaip ši pakankamumo sritis buvo išskirta?",
-    "finalShipGraphicForm": "minimalist inline SVG sailboat; solid neutral line grammar; no dashed prototype geometry",
-    "finalNeedsMapGraphicForm": "smaller single-land map with pronounced asymmetric bays/peninsulas, irregular islets, more sea, restrained atlas terrain, direct annotation, neutral pin, shorter route",
-    "dottedRouteImplemented": true,
-    "dottedRouteOrigin": "enters from lower edge of the Channel-B map; no visible origin-circle marker",
-    "dottedRouteCrossesWaterline": false,
-    "dottedRouteEncodesMagnitude": false,
-    "visualStateCoverage": {
-      "singleEndpoint": true,
-      "twoEndpointsSameNeedGroup": true,
-      "threeEndpointsAcrossNeedGroups": true,
-      "noRoute": true
-    },
-    "dottedRouteVisibleOriginMarker": false,
-    "mapRevisionReason": "Owner judged the prior live adaptation only minimally different from the cloud/blob version. Revision therefore changed coastline geometry substantially rather than making incremental styling tweaks.",
-    "mapTargetReference": "owner-approved generated target derived from the supplied fantasy-map reference, adapted as neutral PrioLens page graphics rather than used as a static image",
-    "mapTerrainCues": "generic and decorative only: subtle mountains, river, lake, grove, islets; no semantic mapping to need types",
-    "mapLocationMarker": "neutral ring-and-dot pin; no deficit/red encoding",
-    "mapLabelPresentation": "need label is direct map annotation with subtle text halo; no white result-chip block",
-    "mapDetailButtonPlacement": "right side of lower scene",
-    "shipBackdrop": "subtle distant-land horizon + pale water cues; no semantic encoding",
-    "mapCoastGrammar": "mixed straight/angled segments plus limited curves; explicit bays, peninsulas and concavities; avoid repeated rounded scallops",
     "preResultMatrix": {
       "implemented": true,
       "placement": "primary participant result after final Channel-B/B+ resolution",
@@ -211,8 +169,6 @@
       ]
     },
     "primaryParticipantResult": "12x12 relationship matrix",
-    "shipMapParticipantFlow": "DEACTIVATED",
-    "shipMapRuntimeRole": "hidden detail-content host + emergency matrix-render fallback only",
     "matrixPrimaryFreezeDoc": "tools/priolens/docs/OPEN14_V04_MATRIX_PRIMARY_RESULT_FREEZE_2026-09-05.md",
     "normalFlow": [
       "Channel A MOST+LEAST",
@@ -272,7 +228,22 @@
         "if no defensible bridge exists, state that the perspectives need not be forced into one story"
       ],
       "pdfIncluded": true
-    }
+    },
+    "legacyResultVisuals": {
+      "status": "REMOVED",
+      "removedFromParticipantDom": true,
+      "removedFromPublicRenderer": true,
+      "removedFromMatrixFallback": true,
+      "removedFromDetailRoutingDependencies": true,
+      "crawlerFacingSourceClean": true,
+      "implementationCommit": "e2d10c3908057a5be7c71dacc0b5936481c2643b",
+      "logicSmokeRun": 34007584761,
+      "localUiSmokeRun": 34007584748,
+      "deployedOwnerFlowRun": 34007584760,
+      "rollbackCommit": "660ec63f19cc0288b4ebc7bd1f0a2e426900b246",
+      "rollbackDeployRun": 33986214567
+    },
+    "matrixFailureFallback": "generic saved-result error state; no alternate legacy result visualization"
   },
   "deploymentGates": {
     "ownerPreviewAndApiDeployRun": 33966471878,
@@ -421,9 +392,25 @@
     "bDetailFreezeRegressionCommit": "c76e678844374e798e09b22697a9ed596c3bec2a",
     "bDetailFreezeRegressionLocalSmokeRun": 33976817896,
     "bDetailFreezeRegressionDeployRun": 33977013636,
-    "bDetailFreezeRootCause": "suffDetail was appended under transformed #matrixResult, making fixed positioning relative to the transformed ancestor; stale detail/body scroll-lock then leaked into print/back flow."
+    "bDetailFreezeRootCause": "suffDetail was appended under transformed #matrixResult, making fixed positioning relative to the transformed ancestor; stale detail/body scroll-lock then leaked into print/back flow.",
+    "legacyResultVisualRemoval": {
+      "passed": true,
+      "implementationCommit": "e2d10c3908057a5be7c71dacc0b5936481c2643b",
+      "logicSmokeRun": 34007584761,
+      "local390x844Run": 34007584748,
+      "deployed390x844ApiRun": 34007584760,
+      "liveHtmlForbiddenTokenGatePassed": true,
+      "liveRendererForbiddenTokenGatePassed": true,
+      "remoteBytesPassed": true,
+      "moduleMimePassed": true,
+      "detailsPreserved": true,
+      "pdfPreserved": true,
+      "browserBackPreserved": true,
+      "completedResultRestorePreserved": true,
+      "apiSchemaUnchanged": true
+    }
   },
-  "nextAction": "Owner recheck on Android: Antro atsakymo detalės should appear as a bottom sheet above the visible matrix; Close and browser Back must unlock; PDF must contain only the matrix report, never the detail sheet.",
+  "nextAction": "Observe the public pilot. Do not redesign the result architecture speculatively. Re-run external crawler/LLM description checks opportunistically; obsolete result visuals are now removed from live HTML and public renderer.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
