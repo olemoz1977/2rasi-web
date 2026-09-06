@@ -1,5 +1,7 @@
 name: PrioLens bank v0.4 validation staging checks
 
+# staging-check revision 1
+
 on:
   workflow_dispatch:
   push:
