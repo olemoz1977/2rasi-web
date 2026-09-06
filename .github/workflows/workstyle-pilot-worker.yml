@@ -8,6 +8,13 @@ on:
         required: false
         default: true
         type: boolean
+  push:
+    branches:
+      - hero-webgl
+    paths:
+      - workers/workstyle-pilot/src/index.js
+      - workers/workstyle-pilot/schema.sql
+      - .github/workflows/workstyle-pilot-worker.yml
 
 permissions:
   contents: write
@@ -197,6 +204,27 @@ jobs:
           done
           echo "Health and CORS verified."
 
+      - name: Verify dashboard endpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          for ORIGIN in https://2rasi.lt https://2rasi.com; do
+            HEADERS="$(curl --silent --show-error --dump-header - --output /dev/null \
+              --request OPTIONS \
+              --header "Origin: $ORIGIN" \
+              --header 'Access-Control-Request-Method: GET' \
+              --header 'Access-Control-Request-Headers: X-2rasi-owner' \
+              "$WORKER_URL/v1/dashboard")"
+            printf '%s' "$HEADERS" | grep -qi "^access-control-allow-origin: $ORIGIN"
+          done
+
+          DASHBOARD="$(curl --fail-with-body --silent --show-error \
+            --header 'Origin: https://2rasi.lt' \
+            --header 'X-2rasi-owner: 1' \
+            "$WORKER_URL/v1/dashboard?days=7")"
+          printf '%s' "$DASHBOARD" | jq -e '.ok == true and (.summary | type == "object")' >/dev/null
+          echo "Dashboard endpoint verified."
+
       - name: Verify synthetic POST and D1 insert
         shell: bash
         run: |
@@ -245,7 +273,7 @@ jobs:
             storageKey: 'workstyle-v07-cognitive-session-e',
             expectedResponses: 34,
             requestTimeoutMs: 15000,
-            privacyText: 'Jei pasirinksi pateikti piloto duomenis, atsakymai, pažymėti neaiškumai ir aktyvus atsakymo laikas bus perduoti tyrimo analizei. Vardo, el. pašto ar darbdavio neprašome.'
+            privacyText: 'Pradėjus pilotą, atsakymai, pažymėti neaiškumai ir aktyvus atsakymo laikas automatiškai perduodami tyrimo analizei. Saugomos ir nebaigtos sesijos. Vardo, el. pašto ar darbdavio neprašome.'
           });
           EOF
 
