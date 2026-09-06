@@ -25,8 +25,8 @@ const TOOL_IDS = new Set([
 
 function corsHeaders(origin) {
   const headers = {
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, X-2rasi-owner",
     "Access-Control-Max-Age": "86400",
     "Vary": "Origin",
   };
@@ -330,6 +330,151 @@ async function handleFeedback(payload, env, origin) {
   return json({ ok: true, feedbackId, receivedAt }, 201, origin);
 }
 
+
+function dashboardRange(url) {
+  const raw = String(url.searchParams.get("days") || "7").toLowerCase();
+  if (raw === "all") return { days: null, since: null, label: "all" };
+  const days = [1, 7, 30].includes(Number(raw)) ? Number(raw) : 7;
+  return {
+    days,
+    since: new Date(Date.now() - days * 86400000).toISOString(),
+    label: String(days),
+  };
+}
+
+function resultRows(result) {
+  return Array.isArray(result?.results) ? result.results : [];
+}
+
+async function handleDashboard(request, env, origin, url) {
+  if (!ALLOWED_ORIGINS.has(origin)) {
+    return json({ ok: false, error: "origin_not_allowed" }, 403, origin);
+  }
+  if (request.headers.get("X-2rasi-owner") !== "1") {
+    return json({ ok: false, error: "owner_gate_required" }, 403, origin);
+  }
+
+  const range = dashboardRange(url);
+  const timeClause = range.since ? " AND received_at >= ?" : "";
+  const params = range.since ? [range.since] : [];
+
+  try {
+    const [
+      summaryResult,
+      toolsResult,
+      sourcesResult,
+      dailyResult,
+      feedbackResult,
+      quoteCommentsResult,
+      workstyleResult,
+    ] = await Promise.all([
+      env.DB.prepare(`
+        SELECT
+          COUNT(DISTINCT CASE WHEN event_type = 'page_view' THEN visit_id END) AS visitors,
+          SUM(CASE WHEN event_type = 'page_view' THEN 1 ELSE 0 END) AS page_views,
+          COUNT(DISTINCT CASE WHEN event_type = 'tool_start' THEN visit_id END) AS started,
+          COUNT(DISTINCT CASE WHEN event_type = 'tool_complete' THEN visit_id END) AS completed,
+          COUNT(DISTINCT CASE WHEN event_type = 'feedback' THEN visit_id END) AS feedbacks
+        FROM site_events
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner')${timeClause}
+      `).bind(...params).all(),
+
+      env.DB.prepare(`
+        SELECT
+          tool_id,
+          COUNT(DISTINCT CASE WHEN event_type = 'page_view' THEN visit_id END) AS visitors,
+          SUM(CASE WHEN event_type = 'page_view' THEN 1 ELSE 0 END) AS page_views,
+          COUNT(DISTINCT CASE WHEN event_type = 'tool_start' THEN visit_id END) AS started,
+          COUNT(DISTINCT CASE WHEN event_type = 'tool_complete' THEN visit_id END) AS completed,
+          COUNT(DISTINCT CASE WHEN event_type = 'feedback' THEN visit_id END) AS feedbacks
+        FROM site_events
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner')${timeClause}
+        GROUP BY tool_id
+        ORDER BY visitors DESC, page_views DESC, tool_id
+      `).bind(...params).all(),
+
+      env.DB.prepare(`
+        SELECT
+          COALESCE(NULLIF(source, ''), 'direct') AS source,
+          COUNT(DISTINCT visit_id) AS visitors
+        FROM site_events
+        WHERE event_type = 'page_view'
+          AND COALESCE(source, '') NOT IN ('synthetic', 'owner')${timeClause}
+        GROUP BY COALESCE(NULLIF(source, ''), 'direct')
+        ORDER BY visitors DESC, source
+      `).bind(...params).all(),
+
+      env.DB.prepare(`
+        SELECT
+          substr(received_at, 1, 10) AS day,
+          COUNT(DISTINCT CASE WHEN event_type = 'page_view' THEN visit_id END) AS visitors,
+          COUNT(DISTINCT CASE WHEN event_type = 'tool_start' THEN visit_id END) AS starts,
+          COUNT(DISTINCT CASE WHEN event_type = 'tool_complete' THEN visit_id END) AS completes
+        FROM site_events
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner')${timeClause}
+        GROUP BY substr(received_at, 1, 10)
+        ORDER BY day
+      `).bind(...params).all(),
+
+      env.DB.prepare(`
+        SELECT
+          COUNT(*) AS total,
+          SUM(CASE WHEN usefulness = 'yes' THEN 1 ELSE 0 END) AS yes_count,
+          SUM(CASE WHEN usefulness = 'no' THEN 1 ELSE 0 END) AS no_count,
+          SUM(CASE WHEN quote_consent = 1 AND comment IS NOT NULL AND trim(comment) <> '' THEN 1 ELSE 0 END) AS quoteable
+        FROM site_feedback
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner')${timeClause}
+      `).bind(...params).all(),
+
+      env.DB.prepare(`
+        SELECT received_at, tool_id, usefulness, comment
+        FROM site_feedback
+        WHERE COALESCE(source, '') NOT IN ('synthetic', 'owner')
+          AND quote_consent = 1
+          AND comment IS NOT NULL
+          AND trim(comment) <> ''${timeClause}
+        ORDER BY received_at DESC
+        LIMIT 8
+      `).bind(...params).all(),
+
+      env.DB.prepare(`
+        SELECT
+          COUNT(*) AS responded_1_plus,
+          SUM(CASE WHEN answered >= 12 THEN 1 ELSE 0 END) AS reached_12,
+          SUM(CASE WHEN answered >= 23 THEN 1 ELSE 0 END) AS reached_23,
+          SUM(CASE WHEN answered >= 34 OR completed_at IS NOT NULL THEN 1 ELSE 0 END) AS completed_34,
+          ROUND(AVG(answered), 1) AS avg_answered,
+          MAX(received_at) AS last_response
+        FROM workstyle_sessions
+        WHERE session_id <> 'synthetic-workstyle-v07-test'
+          AND json_extract(payload_json, '$.analyticsSource') IS NOT NULL
+          AND COALESCE(json_extract(payload_json, '$.analyticsSource'), '') <> 'owner'${timeClause}
+      `).bind(...params).all(),
+    ]);
+
+    return json({
+      ok: true,
+      generatedAt: new Date().toISOString(),
+      range: { days: range.days, label: range.label, since: range.since },
+      summary: resultRows(summaryResult)[0] || {},
+      tools: resultRows(toolsResult),
+      sources: resultRows(sourcesResult),
+      daily: resultRows(dailyResult),
+      workstyle: {
+        linkedOnly: true,
+        ...(resultRows(workstyleResult)[0] || {}),
+      },
+      feedback: {
+        ...(resultRows(feedbackResult)[0] || {}),
+        quoteComments: resultRows(quoteCommentsResult),
+      },
+    }, 200, origin);
+  } catch (error) {
+    console.error("D1 dashboard query failed", error);
+    return json({ ok: false, error: "dashboard_query_failed" }, 500, origin);
+  }
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -344,6 +489,10 @@ export default {
 
     if (url.pathname === "/health" && request.method === "GET") {
       return json({ ok: true, service: "workstyle-pilot-intake", insights: true }, 200, origin);
+    }
+
+    if (url.pathname === "/v1/dashboard" && request.method === "GET") {
+      return handleDashboard(request, env, origin, url);
     }
 
     if (request.method !== "POST" || !["/v1/session", "/v1/event", "/v1/feedback"].includes(url.pathname)) {
