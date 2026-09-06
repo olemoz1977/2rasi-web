@@ -84,10 +84,11 @@
         }
 
         @media print {
-            .btn, .header p, #appendix-section, #main-test-section { display: none !important; }
+            .btn, .header p, #appendix-section, #main-test-section, .rasi-feedback { display: none !important; }
             body { background: white; padding: 0; }
             .container { box-shadow: none; border: none; width: 100%; max-width: 100%; }
             #results-section { display: block !important; }
+            .reflection-experiment { break-inside: avoid; page-break-inside: avoid; }
         }
     </style>
 </head>
@@ -316,9 +317,9 @@
 
     function bandLabel(w) {
         const band = alignmentBand(w);
-        if (band === 'closer') return "closer to this experiment's scenario key";
-        if (band === 'middle') return "a middle direction relative to this experiment's key";
-        return "farther from this experiment's scenario key";
+        if (band === 'closer') return "matched the intended direction";
+        if (band === 'middle') return "partially matched the intended direction";
+        return "another direction was chosen";
     }
 
     function processMainTest() {
@@ -382,9 +383,9 @@
         mainTrace.forEach(x => counts[alignmentBand(x.weight)]++);
         return `
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-top:14px;">
-                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Closer to key</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.closer}</div></div>
-                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Middle direction</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.middle}</div></div>
-                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Farther from key</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.farther}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Matched intended direction</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.closer}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Partial match</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.middle}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Another direction chosen</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.farther}</div></div>
             </div>
         `;
     }
@@ -395,7 +396,7 @@
                 <strong>${title}</strong>
                 <p style="margin-top:8px;"><b>Situation:</b> ${item.question}</p>
                 <p><b>Your choice:</b> ${item.selectedStyle} · ${STYLE_LABEL[item.selectedStyle]} — ${item.selectedText}</p>
-                <p style="color:#666;"><b>This experiment's key:</b> ${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]} · ${bandLabel(item.weight)}.</p>
+                <p style="color:#666;"><b>Scenario design direction:</b> ${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]} · ${bandLabel(item.weight)}.</p>
             </div>
         `;
     }
@@ -414,7 +415,7 @@
             <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;margin-top:10px;">
                 <strong>${item.question.split(':')[0]}</strong>
                 <p style="margin-top:7px;">Your choice: <b>${item.selectedStyle} · ${STYLE_LABEL[item.selectedStyle]}</b></p>
-                <p>Scenario key: <b>${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]}</b></p>
+                <p>Scenario design direction: <b>${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]}</b></p>
                 <p style="color:#666;">${bandLabel(item.weight)}.</p>
             </div>
         `).join('');
@@ -422,7 +423,7 @@
 
         document.getElementById('final-content').innerHTML=`
             <div class="result-header">
-                <p style="font-size:17px;line-height:1.6;max-width:720px;margin:0 auto;">This is not your “leadership type”, an effectiveness percentage or a flexibility diagnosis. The map only shows which response directions you chose across these 23 situations and how they relatively aligned with the situational-leadership key coded into this experiment.</p>
+                <p style="font-size:17px;line-height:1.6;max-width:720px;margin:0 auto;">This is not your “leadership type”, an effectiveness percentage or a flexibility diagnosis. The map only shows which response directions you chose across these 23 situations and how they relatively related to the situational-leadership scenario design used in this experiment.</p>
             </div>
 
             <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;">
@@ -432,14 +433,14 @@
             </div>
 
             <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
-                <h3>2. Trace of alignment with the scenario key</h3>
-                <p>The internal 0–4 weights are not used here as a competence score. They only indicate how close your choice was to the option given the highest weight in this experiment for that situation.</p>
+                <h3>2. How your choices related to the scenario design</h3>
+                <p>The internal 0–4 weights are not used here as a competence score. They only connect your chosen response with the scenario design direction defined in advance for that situation.</p>
                 ${renderAlignmentTrace()}
             </div>
 
             <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
                 <h3>3. Two concrete contrasts</h3>
-                ${traceCard("One choice closer to the scenario key", closerExample)}
+                ${traceCard("One choice that matched the intended direction", closerExample)}
                 ${traceCard("One choice worth examining", fartherExample)}
             </div>
 
@@ -449,7 +450,7 @@
                 ${boundaryHtml}
             </div>
 
-            <div style="margin-top:20px;padding:18px;border-left:5px solid var(--accent);background:#eef2f3;border-radius:8px;">
+            <div class="reflection-experiment" style="margin-top:20px;padding:18px;border-left:5px solid var(--accent);background:#eef2f3;border-radius:8px;">
                 <strong>5. One reflection experiment</strong>
                 <p style="margin-top:9px;">When you meet a real situation similar to:</p>
                 <p><em>${experimentAnchor.question}</em></p>

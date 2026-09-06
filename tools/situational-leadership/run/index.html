@@ -84,10 +84,11 @@
         }
 
         @media print {
-            .btn, .header p, #appendix-section, #main-test-section { display: none !important; }
+            .btn, .header p, #appendix-section, #main-test-section, .rasi-feedback { display: none !important; }
             body { background: white; padding: 0; }
             .container { box-shadow: none; border: none; width: 100%; max-width: 100%; }
             #results-section { display: block !important; }
+            .reflection-experiment { break-inside: avoid; page-break-inside: avoid; }
         }
     </style>
 </head>
@@ -316,9 +317,9 @@
 
     function bandLabel(w) {
         const band = alignmentBand(w);
-        if (band === 'closer') return "artimiau šio eksperimento scenarijaus raktui";
-        if (band === 'middle') return "tarpinė kryptis pagal šio eksperimento raktą";
-        return "toliau nuo šio eksperimento scenarijaus rakto";
+        if (band === 'closer') return "sutapo su numatyta kryptimi";
+        if (band === 'middle') return "iš dalies sutapo su numatyta kryptimi";
+        return "pasirinkta kita kryptis";
     }
 
     function processMainTest() {
@@ -382,9 +383,9 @@
         mainTrace.forEach(x => counts[alignmentBand(x.weight)]++);
         return `
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-top:14px;">
-                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Arčiau rakto</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.closer}</div></div>
-                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Tarpinė kryptis</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.middle}</div></div>
-                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Toliau nuo rakto</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.farther}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Sutapo su numatyta kryptimi</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.closer}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Iš dalies sutapo</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.middle}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Pasirinkta kita kryptis</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.farther}</div></div>
             </div>
         `;
     }
@@ -395,7 +396,7 @@
                 <strong>${title}</strong>
                 <p style="margin-top:8px;"><b>Situacija:</b> ${item.question}</p>
                 <p><b>Tavo pasirinkimas:</b> ${item.selectedStyle} · ${STYLE_LABEL[item.selectedStyle]} — ${item.selectedText}</p>
-                <p style="color:#666;"><b>Šio eksperimento raktas:</b> ${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]} · ${bandLabel(item.weight)}.</p>
+                <p style="color:#666;"><b>Scenarijaus dizaino kryptis:</b> ${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]} · ${bandLabel(item.weight)}.</p>
             </div>
         `;
     }
@@ -414,7 +415,7 @@
             <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;margin-top:10px;">
                 <strong>${item.question.split(':')[0]}</strong>
                 <p style="margin-top:7px;">Tavo pasirinkimas: <b>${item.selectedStyle} · ${STYLE_LABEL[item.selectedStyle]}</b></p>
-                <p>Scenarijaus raktas: <b>${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]}</b></p>
+                <p>Scenarijaus dizaino kryptis: <b>${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]}</b></p>
                 <p style="color:#666;">${bandLabel(item.weight)}.</p>
             </div>
         `).join('');
@@ -422,7 +423,7 @@
 
         document.getElementById('final-content').innerHTML=`
             <div class="result-header">
-                <p style="font-size:17px;line-height:1.6;max-width:720px;margin:0 auto;">Tai nėra tavo „vadovavimo tipas“, efektyvumo procentas ar lankstumo diagnozė. Žemėlapis tik parodo, kokias reakcijų kryptis pasirinkai šiose 23 situacijose ir kaip jos santykinai sutapo su šiame eksperimente iš anksto užkoduotu situacinio vadovavimo raktu.</p>
+                <p style="font-size:17px;line-height:1.6;max-width:720px;margin:0 auto;">Tai nėra tavo „vadovavimo tipas“, efektyvumo procentas ar lankstumo diagnozė. Žemėlapis tik parodo, kokias reakcijų kryptis pasirinkai šiose 23 situacijose ir kaip jos santykinai sutapo su šiame eksperimente iš anksto užkoduotu situacinio vadovavimo scenarijų dizainu.</p>
             </div>
 
             <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;">
@@ -432,14 +433,14 @@
             </div>
 
             <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
-                <h3>2. Sutapimo su scenarijų raktu pėdsakas</h3>
-                <p>Vidiniai 0–4 svoriai čia nenaudojami kaip kompetencijos balas. Jie tik parodo, kiek tavo pasirinkimas buvo artimas tam variantui, kuriam šiame eksperimente konkrečioje situacijoje suteiktas didžiausias svoris.</p>
+                <h3>2. Kaip tavo pasirinkimai santykiavo su scenarijų dizainu</h3>
+                <p>Vidiniai 0–4 svoriai čia nenaudojami kaip kompetencijos balas. Jie tik susieja tavo pasirinktą reakciją su iš anksto numatyta scenarijaus dizaino kryptimi.</p>
                 ${renderAlignmentTrace()}
             </div>
 
             <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
                 <h3>3. Du konkretūs kontrastai</h3>
-                ${traceCard("Vienas pasirinkimas, artimesnis scenarijaus raktui", closerExample)}
+                ${traceCard("Vienas pasirinkimas, sutapęs su numatyta kryptimi", closerExample)}
                 ${traceCard("Vienas pasirinkimas, kurį verta patyrinėti", fartherExample)}
             </div>
 
@@ -449,7 +450,7 @@
                 ${boundaryHtml}
             </div>
 
-            <div style="margin-top:20px;padding:18px;border-left:5px solid var(--accent);background:#eef2f3;border-radius:8px;">
+            <div class="reflection-experiment" style="margin-top:20px;padding:18px;border-left:5px solid var(--accent);background:#eef2f3;border-radius:8px;">
                 <strong>5. Vienas refleksijos eksperimentas</strong>
                 <p style="margin-top:9px;">Kai realybėje susidursi su situacija, panašia į:</p>
                 <p><em>${experimentAnchor.question}</em></p>
