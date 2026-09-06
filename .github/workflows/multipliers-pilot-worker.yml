@@ -1,0 +1,168 @@
+name: Deploy Multipliers pilot Worker
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - hero-webgl
+    paths:
+      - workers/multipliers-pilot/src/index.js
+      - workers/multipliers-pilot/schema.sql
+      - .github/workflows/multipliers-pilot-worker.yml
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workers/multipliers-pilot
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      RAW_CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      SCRIPT_NAME: multipliers-pilot-api
+      DB_NAME: multipliers-pilot
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: hero-webgl
+
+      - name: Verify context
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$RAW_CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN"; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID"; exit 1; }
+          TOKEN="$(python - <<'PY'
+          import os
+          token=os.environ.get('RAW_CLOUDFLARE_API_TOKEN','').strip()
+          if token.lower().startswith('bearer '):
+              token=token[7:].strip()
+          if len(token)>=2 and token[0]==token[-1] and token[0] in {'"', "'"}:
+              token=token[1:-1].strip()
+          if not token or any(ch.isspace() for ch in token):
+              raise SystemExit('Invalid Cloudflare token')
+          print(token,end='')
+          PY
+          )"
+          echo "::add-mask::$TOKEN"
+          echo "CLOUDFLARE_API_TOKEN=$TOKEN" >> "$GITHUB_ENV"
+
+      - name: Find or create D1 database
+        shell: bash
+        run: |
+          set -euo pipefail
+          API="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database"
+          LIST="$(curl --fail-with-body --silent --show-error --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" "$API?per_page=100")"
+          DB_ID="$(printf '%s' "$LIST" | jq -r --arg name "$DB_NAME" '.result[]? | select(.name==$name) | (.uuid // .id // empty)' | head -n1)"
+          if [ -z "$DB_ID" ]; then
+            CREATED="$(curl --fail-with-body --silent --show-error --request POST --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --header 'Content-Type: application/json' --data "{\"name\":\"$DB_NAME\"}" "$API")"
+            printf '%s' "$CREATED" | jq -e '.success == true' >/dev/null
+            DB_ID="$(printf '%s' "$CREATED" | jq -r '.result.uuid // .result.id // empty')"
+          fi
+          test -n "$DB_ID"
+          echo "D1_DATABASE_ID=$DB_ID" >> "$GITHUB_ENV"
+
+      - name: Apply schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY' > schema-statements.jsonl
+          import json
+          from pathlib import Path
+          sql=Path('schema.sql').read_text(encoding='utf-8')
+          for part in sql.split(';'):
+              q=part.strip()
+              if q:
+                  print(json.dumps({'sql':q}))
+          PY
+          URL="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database/$D1_DATABASE_ID/query"
+          while IFS= read -r payload; do
+            R="$(curl --fail-with-body --silent --show-error --request POST --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --header 'Content-Type: application/json' --data "$payload" "$URL")"
+            printf '%s' "$R" | jq -e '.success == true' >/dev/null
+          done < schema-statements.jsonl
+
+      - name: Upload Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          METADATA="$(jq -nc --arg db "$D1_DATABASE_ID" '{main_module:"index.js",compatibility_date:"2026-09-01",bindings:[{type:"d1",name:"DB",id:$db},{type:"plain_text",name:"ALLOWED_ORIGINS",text:"https://2rasi.lt,https://www.2rasi.lt,https://2rasi.com,https://www.2rasi.com"}]}')"
+          R="$(curl --fail-with-body --silent --show-error --request PUT --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --form-string "metadata=$METADATA" --form 'index.js=@src/index.js;type=application/javascript+module' "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME")"
+          printf '%s' "$R" | jq -e '.success == true' >/dev/null
+          E="$(curl --fail-with-body --silent --show-error --request POST --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --header 'Content-Type: application/json' --data '{"enabled":true,"previews_enabled":false}' "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME/subdomain")"
+          printf '%s' "$E" | jq -e '.success == true' >/dev/null
+          S="$(curl --fail-with-body --silent --show-error --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain")"
+          SUB="$(printf '%s' "$S" | jq -r '.result.subdomain // empty')"
+          test -n "$SUB"
+          echo "WORKER_URL=https://$SCRIPT_NAME.$SUB.workers.dev" >> "$GITHUB_ENV"
+
+      - name: Verify health and CORS
+        shell: bash
+        run: |
+          set -euo pipefail
+          for n in 1 2 3 4 5; do
+            if H="$(curl --fail --silent --show-error "$WORKER_URL/health" 2>/dev/null)" && printf '%s' "$H" | jq -e '.ok == true and .service == "multipliers-pilot-api"' >/dev/null; then
+              break
+            fi
+            test "$n" -lt 5 || { echo "Worker health check failed"; exit 1; }
+            sleep 3
+          done
+          for ORIGIN in https://2rasi.lt https://2rasi.com; do
+            HEADERS="$(curl --silent --show-error --dump-header - --output /dev/null --request OPTIONS --header "Origin: $ORIGIN" --header 'Access-Control-Request-Method: POST' "$WORKER_URL/api/multipliers-pilot/session")"
+            printf '%s' "$HEADERS" | grep -qi "^access-control-allow-origin: $ORIGIN"
+          done
+
+      - name: Verify synthetic session in D1
+        shell: bash
+        run: |
+          set -euo pipefail
+          SID="synthetic-multipliers-pilot"
+          curl --fail-with-body --silent --show-error --request POST --header 'Origin: https://2rasi.lt' --header 'Content-Type: application/json' --data "{\"sessionId\":\"$SID\",\"bankVersion\":\"0.9\",\"engineVersion\":\"0.4-db\",\"uiVersion\":\"0.9-db2\",\"startedAt\":\"2026-09-06T00:00:00Z\",\"deviceType\":\"desktop\",\"locale\":\"lt\"}" "$WORKER_URL/api/multipliers-pilot/session" | jq -e '.ok == true' >/dev/null
+          URL="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database/$D1_DATABASE_ID/query"
+          CHECK="$(curl --fail-with-body --silent --show-error --request POST --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --header 'Content-Type: application/json' --data '{"sql":"SELECT session_id FROM pilot_sessions WHERE session_id = ?","params":["synthetic-multipliers-pilot"]}' "$URL")"
+          printf '%s' "$CHECK" | jq -e '.success == true and ([.result[]?.results[]?.session_id] | index("synthetic-multipliers-pilot") != null)' >/dev/null
+          curl --fail-with-body --silent --show-error --request POST --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --header 'Content-Type: application/json' --data '{"sql":"DELETE FROM pilot_sessions WHERE session_id = ?","params":["synthetic-multipliers-pilot"]}' "$URL" | jq -e '.success == true' >/dev/null
+
+      - name: Activate verified frontend endpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$GITHUB_WORKSPACE"
+          CFG="$ROOT/tools/multipliers-pilot/pilot-config.js"
+          HTML="$ROOT/tools/multipliers-pilot/index.html"
+          CACHE_KEY="${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          printf "window.MULTIPLIERS_PILOT_API_BASE = '%s/api/multipliers-pilot';\n" "$WORKER_URL" > "$CFG"
+          CACHE_KEY="$CACHE_KEY" HTML="$HTML" python - <<'PY'
+          import os,re
+          from pathlib import Path
+          p=Path(os.environ['HTML'])
+          s=p.read_text(encoding='utf-8')
+          s,n=re.subn(r'pilot-config\.js\?v=[^"\']+',f"pilot-config.js?v={os.environ['CACHE_KEY']}",s,count=1)
+          if n != 1:
+              raise SystemExit('pilot-config cache key not found')
+          p.write_text(s,encoding='utf-8')
+          PY
+          git -C "$ROOT" config user.name "github-actions[bot]"
+          git -C "$ROOT" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C "$ROOT" add tools/multipliers-pilot/pilot-config.js tools/multipliers-pilot/index.html
+          if ! git -C "$ROOT" diff --cached --quiet; then
+            git -C "$ROOT" commit -m "chore(multipliers): activate verified pilot intake"
+            git -C "$ROOT" push origin "HEAD:hero-webgl"
+          fi
+
+      - name: Summary
+        shell: bash
+        run: |
+          {
+            echo "## Multipliers pilot"
+            echo
+            echo "- Worker: $WORKER_URL"
+            echo "- D1: $DB_NAME"
+            echo "- Health/CORS: verified"
+            echo "- Synthetic D1 insert: verified and removed"
+            echo "- Frontend config: activated"
+          } >> "$GITHUB_STEP_SUMMARY"
