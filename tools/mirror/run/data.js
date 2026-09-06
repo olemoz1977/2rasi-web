@@ -105,15 +105,6 @@ const DATA = {
     { id: 20, categoryId: "flexibility", inverted: true,  text: { lt: "Net kai senas būdas man visiškai tinka, vis tiek noriu išbandyti naują, jei toks atsiranda.", en: "Even when the old way still works fine for me, I want to try a new one if it comes up." } }
   ],
 
-  scoring: {
-    zones: [
-      { max: 2.4, label: { lt: "Retai kliudo", en: "Rarely gets in your way" } },
-      { max: 3.7, label: { lt: "Kartais gali reikalauti daugiau sąmoningumo", en: "Can sometimes call for more awareness" } },
-      { max: 5.0, label: { lt: "Stiprybė, kuriai gali reikėti daugiau sąmoningumo", en: "A strength that may call for more awareness" } }
-    ],
-    topAreasCount: 3
-  },
-
   ui: {
     lt: {
       brand: "Veidrodis",
@@ -131,11 +122,16 @@ const DATA = {
       finishButton: "Žiūrėti rezultatą",
       progressLabel: (n, total) => `${n} / ${total}`,
       transitionTitle: "Akimirka prieš rezultatą",
-      transitionText: "Tai, ką pamatysi kitame puslapyje, yra pastebėjimas, ne diagnozė. Kiekviena stiprybė kažkur turi ir šešėlinę pusę.",
+      transitionText: "Tai, ką pamatysi kitame puslapyje, yra tavo atsakymų pėdsakas, ne diagnozė. Toliau pats pasirinksi, į kurias sritis nori pažvelgti giliau.",
       transitionButton: "Rodyti rezultatą",
       resultsTitle: "Tavo refleksijos žemėlapis",
-      resultsIntro: "Šešios elgesio sritys, matuotos pagal tavo atsakymus. Juostos ilgis rodo tendenciją, ne nuosprendį.",
-      topAreasHeading: "Sritys, kuriose tavo stiprybė gali reikalauti daugiau sąmoningumo",
+      resultsIntro: "Šešios elgesio sritys pagal tavo 20 atsakymų. Skaičius ir juosta rodo tik šio rinkinio atsakymų pėdsaką — tai nėra norma, stiprybė ar trūkumas.",
+      scoreNote: "Aukštesnė juosta reiškia tik tai, kad šios srities teiginiuose dažniau rinkaisi atsakymus, kurie šiame banke koduoti kaip didesnis galimo trukdymo signalas. Ji nelygina tavęs su kitais žmonėmis.",
+      topAreasHeading: "Kur nori pažvelgti dar kartą?",
+      topAreasIntro: "Pasirink 1–2 sritis. Algoritmas jų neparenka už tave.",
+      chooseArea: "Pasirinkti",
+      chosenArea: "Pasirinkta",
+      selectionLimit: "Pasirink iki 2 sričių.",
       reflectionLabel: "Klausimas apmąstymui:",
       restartButton: "Pradėti iš naujo",
       downloadPdfButton: "Atsisiųsti kaip PDF",
@@ -162,11 +158,16 @@ const DATA = {
       finishButton: "See result",
       progressLabel: (n, total) => `${n} / ${total}`,
       transitionTitle: "A moment before your result",
-      transitionText: "What you'll see next is an observation, not a diagnosis. Every strength has a shadow side somewhere.",
+      transitionText: "What you'll see next is a trace of your answers, not a diagnosis. You will choose which areas you want to look at more closely.",
       transitionButton: "Show result",
       resultsTitle: "Your reflection map",
-      resultsIntro: "Six behavior areas, measured from your answers. Bar length shows a tendency, not a verdict.",
-      topAreasHeading: "Areas where your strength may call for more awareness",
+      resultsIntro: "Six behavior areas based on your 20 answers. The number and bar show only the response trace in this set — not a norm, strength, or deficit.",
+      scoreNote: "A higher bar only means that, in this area, you more often chose responses coded in this item bank as a stronger possible interference signal. It does not compare you with other people.",
+      topAreasHeading: "Where do you want to look again?",
+      topAreasIntro: "Choose 1–2 areas. The algorithm does not choose them for you.",
+      chooseArea: "Choose",
+      chosenArea: "Selected",
+      selectionLimit: "Choose up to 2 areas.",
       reflectionLabel: "A question to sit with:",
       restartButton: "Start over",
       downloadPdfButton: "Download as PDF",
