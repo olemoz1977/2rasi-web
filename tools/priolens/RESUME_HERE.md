@@ -35,6 +35,12 @@ Rollback baseline:
 
 ## CURRENT CHECKPOINT — OPPORTUNITY FAMILY REBUILD FLAG
 
+Owner decision — 2026-09-06:
+- `OPPORTUNITY-02` is **frozen / KEEP FOR NOW**. Do not replace or redesign it during this remediation pass.
+- The active decision scope is limited to `OPPORTUNITY-01` and `OPPORTUNITY-03` only.
+- Any new search/rebuild work must preserve `OPPORTUNITY-02` as the current reference exemplar and evaluate whether candidate 01/03 align with its underlying Opportunity mechanism without collapsing into RESOURCE/AUTONOMY/MASTERY.
+
+
 Owner visual review after the watermark pass identified a separate structural issue: the current `OPPORTUNITY-01/02/03` exemplars do not read as a coherent visual family.
 
 This matches the existing construct audit:
