@@ -467,14 +467,53 @@
       resultsContainer.classList.add('hidden');
     }
 
+    function scrollToNode(node){
+      if(!node) return;
+      const y = node.getBoundingClientRect().top + window.scrollY - 110;
+      window.scrollTo({top:Math.max(0,y), behavior:'smooth'});
+    }
+
+    function firstUnanswered(){
+      const answers = getAnswers();
+      for(const block of STQ){
+        for(const q of block.questions){
+          if(answers[q.id] === null) return q;
+        }
+      }
+      return null;
+    }
+
+    function revealQuestion(q){
+      const input = document.querySelector(`input[name="${q.id}"]`);
+      const node = input ? input.closest('.q') : null;
+      showError(`Neatsakytas klausimas: ${q.text}`);
+      if(node){
+        node.style.outline = '2px solid var(--warn)';
+        node.style.outlineOffset = '4px';
+        scrollToNode(node);
+        setTimeout(() => {
+          node.style.outline = '';
+          node.style.outlineOffset = '';
+        }, 2200);
+      }
+    }
+
     // Mygtukai
     document.getElementById('submitBtn').addEventListener('click', () => {
-      const answered = Object.values(getAnswers()).filter(v => v !== null).length;
-      if(answered < 15){ alert(`Neatsakyta į ${15-answered} klausimą(-us). Užpildykite visus 15.`); return; }
+      const missing = firstUnanswered();
+      if(missing){
+        submitted = false;
+        resultsContainer.classList.add('hidden');
+        revealQuestion(missing);
+        return;
+      }
+      clearError();
       submitted = true;
       resultsContainer.classList.remove('hidden');
       showScores();
-      resultsContainer.style.outline = '2px solid var(--ok)'; setTimeout(() => resultsContainer.style.outline='none', 1200);
+      resultsContainer.style.outline = '2px solid var(--ok)';
+      requestAnimationFrame(() => scrollToNode(resultsContainer));
+      setTimeout(() => resultsContainer.style.outline='none', 1200);
     });
     document.getElementById('saveBtn').addEventListener('click', saveToStorage);
     document.getElementById('restoreBtn').addEventListener('click', () => restoreFromStorage(true));
