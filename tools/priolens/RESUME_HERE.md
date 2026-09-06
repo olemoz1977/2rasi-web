@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
 Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BANK v0.4 LIVE IN PARTICIPANT RUNTIME / BLIND VALIDATION v0.4 PUBLIC LIVE / ANALYTICAL BANK BOUNDARY ACTIVE / DATA COLLECTION + RESEARCH ADMIN ACTIVE
-Updated: 2026-09-06 14:44 EEST
+Updated: 2026-09-06 15:37 EEST
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -38,9 +38,10 @@ Rollback baseline:
 Owner naming rule — 2026-09-06:
 - PrioLens public pilot `v0.4` must use a correspondingly named **bank v0.4** for the next remediated stimulus set.
 - Do **not** introduce `bank-v0.3.2` for the v0.4 pilot.
-- The currently deployed v0.4 runtime still references historical `bank-v0.3.1`; preserve that identity for already-collected sessions.
-- The remediation/promotion step must create a distinct `2rasi.priolens.open14.bank-v0.4` identity, separate asset paths, and an analytical cutoff so pre-switch v0.3.1-bank sessions remain distinguishable from post-switch v0.4-bank sessions.
-- Validation pool/version naming must align to the new v0.4 bank as well.
+- Historical v0.4 pilot sessions collected before promotion retain `bank-v0.3.1` identity.
+- The live v0.4 runtime now loads distinct `2rasi.priolens.open14.bank-v0.4` assets; new sessions store `bankSchema=bank-v0.4`.
+- Analytical separation uses stored `bank_schema` as source of truth. The API still accepts `bank-v0.3.1` only so already-open pre-switch sessions can finish without relabelling.
+- Blind validation uses aligned pool `open14-v04-current42`.
 
 ## CURRENT CHECKPOINT — BANK v0.4 REMEDIATION IMPLEMENTATION
 
@@ -78,12 +79,14 @@ Blind validation v0.4 preparation:
   - O3 meeting seat -> BELONGING / CONNECTION / RECOGNITION.
 - Old validation drafts are not resumed into the v0.4 pool.
 
-Current staging state:
-- five replacement assets are now present in the isolated `/priolens-research-assets/Open14-v04/` namespace;
-- automated 640×640 image decode, approved-source pixel identity for OPPORTUNITY-01 / OPPORTUNITY-03 / AUTONOMY-02, remote byte-for-byte verification for all five changed assets, 42-image owner-review build, review upload and review-route verification all pass;
-- owner manual 42/42 visual/watermark review is still required before runtimeReady/public reopening.
+Final remediation state:
+- five replacement assets are present in the versioned `/priolens-research-assets/Open14-v04/` namespace;
+- automated 640×640 decode, source pixel identity, raw/remote byte verification and 42-image owner-review build all passed;
+- owner manual 42/42 visual review passed;
+- blind validation v0.4 is reopened and live;
+- participant runtime now uses bank-v0.4.
 
-## CURRENT CHECKPOINT — BANK v0.4 TECHNICAL QC PASS / OWNER REVIEW PENDING
+## CURRENT CHECKPOINT — BANK v0.4 LIVE / VERIFIED
 
 Runtime staging branch:
 `olemoz1977/omesg360@feature/priolens-v04-bank-v04`
@@ -96,7 +99,7 @@ Technical gate:
 - all five changed assets pass 640×640 decode and remote byte-for-byte verification after isolated upload.
 - all five changed exemplars now carry exact `runtimeSha256Expected` and `runtimePixelSha256Expected` values that match the hardened changed-asset manifest;
 - a stale inherited raw-hash inconsistency on OPPORTUNITY-01 / OPPORTUNITY-03 was detected after the first pass and corrected before this hardened run;
-- generated candidate status is `V04_BANK_CANDIDATE_TECHNICAL_QC_PASS_OWNER_REVIEW_PENDING`; `runtimeReady=false` remains locked.
+- pre-promotion candidate status passed the technical QC gate; after owner 42/42 PASS the promoted bank is `V04_BANK_READY_FOR_PROMOTION` with `runtimeReady=true` in the live build.
 
 Accepted QC evidence:
 - runtime workflow: `.github/workflows/priolens-v04-bank-v04-qc.yml`;
@@ -112,20 +115,21 @@ Owner review:
 - owner decision on 2026-09-06: **PASS 42/42**, including all five changed assets.
 
 Post-owner state:
-- bank-v0.4 is now live in the participant runtime;
-- runtime promotion/deploy run `34030815518`: SUCCESS;
-- runtime promotion head: `8a02d8b0315aff6fe32ea6570e0b867e71200e0f`;
-- build/API/remote-byte/live-module checks and real deployed 390×844 participant-flow + API-save smoke all passed;
-- v0.4 API accepts both `bank-v0.3.1` and `bank-v0.4` so an already-open legacy session can finish, while every newly started session records the currently loaded `bankSchema`;
-- new participant sessions load `2rasi.priolens.open14.bank-v0.4`;
-- public blind validation remains live on `open14-v04-current42` with no temporary asset holds;
+- bank-v0.4 is live in the participant runtime;
+- final hardened runtime deployment commit `a6ad9c9da9240705d561cac5cc3912d739f5dbd4`;
+- final hardened runtime deployment run `34033543477`: SUCCESS;
+- live 390×844 browser smoke explicitly verified `bank.json.schema=2rasi.priolens.open14.bank-v0.4`, `previousBankSchema=bank-v0.3.1`, `runtimeReady=true`, and a successfully saved smoke session tagged `bankSchema=bank-v0.4`;
+- smoke confirmation time: `2026-09-06T12:36:45Z` (audit metadata only);
+- v0.4 API accepts both `bank-v0.3.1` and `bank-v0.4` so an already-open legacy session can finish without being relabelled;
+- public blind validation is live on `open14-v04-current42` with no temporary asset holds;
 - validation staging checks run `34030263907`: SUCCESS;
 - production Worker deploy run `34030356385`: SUCCESS;
 - public validation live check run `34030457235`: SUCCESS;
-- analytical separation must use the stored `bank_schema`, not only the session schema or a timestamp;
-- admin v0.4 statistics now default to Bank v0.4 and expose explicit Bank v0.3.1 / all-bank filters; CSV/JSONL include `bank_schema`.
+- analytical separation uses stored `bank_schema` as the source of truth, not an inferred timestamp;
+- admin v0.4 statistics default to Bank v0.4 and expose explicit Bank v0.3.1 / all-bank filters; CSV/JSONL include `bank_schema`;
+- canonical promotion checkpoint: `docs/BANK_V04_RUNTIME_PROMOTION_2026-09-06.md`.
 
-## CURRENT CHECKPOINT — OPPORTUNITY FAMILY REBUILD FLAG
+## HISTORICAL CHECKPOINT — OPPORTUNITY FAMILY REBUILD FLAG (RESOLVED IN BANK v0.4)
 
 OPPORTUNITY stop rule — 2026-09-06:
 - `OPPORTUNITY-02` is the frozen reference exemplar and already occupies the blank-canvas / ready-to-create affordance pattern.
@@ -142,7 +146,7 @@ Owner decision — 2026-09-06:
 - Any new search/rebuild work must preserve `OPPORTUNITY-02` as the current reference exemplar and evaluate whether candidate 01/03 align with its underlying Opportunity mechanism without collapsing into RESOURCE/AUTONOMY/MASTERY.
 
 
-Owner visual review after the watermark pass identified a separate structural issue: the current `OPPORTUNITY-01/02/03` exemplars do not read as a coherent visual family.
+Historical pre-remediation finding: the earlier `OPPORTUNITY-01/02/03` set did not read as a coherent visual family. This was resolved for bank-v0.4 by replacing O1 and O3 while keeping O2 frozen; final owner 42/42 review passed.
 
 This matches the existing construct audit:
 - OPPORTUNITY is already classified as **WEAK / DIFFERENT LEVEL**;
@@ -158,7 +162,7 @@ Decision:
 - avoid path/door/choice metaphors, reward/success spectacle, skill demonstration, status cues and strong brightness/valence contrast;
 - do not reopen public stimulus validation until the replacement/challenger pool has a coherent OPPORTUNITY set.
 
-## CURRENT CHECKPOINT — WATERMARK REMEDIATION REVIEW ACTIVE
+## HISTORICAL CHECKPOINT — WATERMARK REMEDIATION REVIEW (CLOSED)
 
 Isolated remediation branch:
 `olemoz1977/omesg360@fix/priolens-v04-watermark-remediation`
@@ -178,7 +182,7 @@ Review content:
 - current EXPLORATION family context + 3 clean Pexels challengers;
 - AUTONOMY-02 full-resolution comparison with AUTONOMY-01/03.
 
-Public blind stimulus validation is now **temporarily paused** while contaminated pixels are remediated:
+Historical hold state during remediation (now closed):
 - production 2rasi commit: `e53bfb81a1228d88540fdf1eadebad3a6ba4b7cd`;
 - insights Worker deploy run: `34015833476` SUCCESS;
 - public users cannot start the validation study;
@@ -186,7 +190,7 @@ Public blind stimulus validation is now **temporarily paused** while contaminate
 - owner/test/synthetic sessions are tagged as internal going forward;
 - validation summary excludes pre-remediation/technical data and flags `SAFETY-02`, `EXPLORATION-01`, `AUTONOMY-02` as HOLD items.
 
-Do not reopen external stimulus validation until a clean separately versioned pool is ready.
+Resolution: clean separately versioned bank-v0.4 passed owner review; external stimulus validation has been reopened on `open14-v04-current42`.
 
 ## CURRENT CHECKPOINT — MANUAL WATERMARK AUDIT COMPLETE
 
