@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BLIND STIMULUS VALIDATION LT+EN LIVE / DATA COLLECTION + RESEARCH ADMIN ACTIVE / MATRIX-PRIMARY DETAIL-ONLY RESULT
-Updated: 2026-09-06 08:00 EEST
+Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BLIND STIMULUS VALIDATION PUBLIC HOLD / WATERMARK REMEDIATION REVIEW ACTIVE / DATA COLLECTION + RESEARCH ADMIN ACTIVE
+Updated: 2026-09-06 09:10 EEST
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -32,6 +32,36 @@ Rollback baseline:
 ## Rule
 
 **Repo is source of truth. Do not reconstruct PrioLens from chat memory.**
+
+## CURRENT CHECKPOINT — WATERMARK REMEDIATION REVIEW ACTIVE
+
+Isolated remediation branch:
+`olemoz1977/omesg360@fix/priolens-v04-watermark-remediation`
+
+Review workflow:
+`.github/workflows/priolens-v04-watermark-remediation-review.yml`
+
+First review build:
+- commit: `4fb4febea45bcfb7990dad33a2558b7adab25f0c`;
+- run: `34015763708`;
+- status: SUCCESS;
+- isolated owner-review directory: `/priolens-research-assets/Open14-v04-watermark-remediation-review-v01/`;
+- active Open14 runtime assets were not modified.
+
+Review content:
+- current SAFETY family context + 3 clean Pexels challengers;
+- current EXPLORATION family context + 3 clean Pexels challengers;
+- AUTONOMY-02 full-resolution comparison with AUTONOMY-01/03.
+
+Public blind stimulus validation is now **temporarily paused** while contaminated pixels are remediated:
+- production 2rasi commit: `e53bfb81a1228d88540fdf1eadebad3a6ba4b7cd`;
+- insights Worker deploy run: `34015833476` SUCCESS;
+- public users cannot start the validation study;
+- owner/test mode remains available for QA;
+- owner/test/synthetic sessions are tagged as internal going forward;
+- validation summary excludes pre-remediation/technical data and flags `SAFETY-02`, `EXPLORATION-01`, `AUTONOMY-02` as HOLD items.
+
+Do not reopen external stimulus validation until a clean separately versioned pool is ready.
 
 ## CURRENT CHECKPOINT — MANUAL WATERMARK AUDIT COMPLETE
 
