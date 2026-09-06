@@ -183,10 +183,14 @@
           <p class="muted">Žiūrėk į kryptis ir jų derinius. Aukštesnis balas nėra automatiškai stiprybė, o žemesnis – trūkumas. Reikšmė priklauso nuo situacijos ir konteksto.</p>
           <div id="dimensionNotes"></div>
 
-          <details class="item" style="margin-top:14px">
+          <details class="item" style="margin-top:14px" id="archetypeLayer">
             <summary><strong>Pasirenkamas žaismingas archetipų sluoksnis</strong></summary>
-            <p class="muted">Žemiau rodomi trys santykinai artimiausi 2rasi interpretaciniai prototipai. Tai nėra asmenybės tipai, tikimybės ar validuoti panašumo balai.</p>
+            <p class="muted">Žemiau rodomi trys santykinai artimiausi 2rasi interpretaciniai prototipai. Jie sudaryti iš fiksuotų OCEAN koordinačių ir lyginami su tavo penkių dimensijų profiliu. Tai nėra asmenybės tipai, tikimybės ar validuoti panašumo balai.</p>
             <div id="typesTop"></div>
+            <details style="margin-top:12px">
+              <summary><strong>Visų 8 prototipų žodynas</strong></summary>
+              <div id="typesGlossary"></div>
+            </details>
           </details>
 
           <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
@@ -280,14 +284,46 @@
   ];
 
    const TYPES = [
-  { name:"Dirigentė/-as",     v:{O: 0.2, C: 0.8, E: 0.7, A: 0.3, N:-0.4} },
-  { name:"Analitikas/-ė",    v:{O: 0.5, C: 0.9, E:-0.5, A: 0.1, N:-0.2} },
-  { name:"Diplomatė/-as",     v:{O: 0.3, C: 0.4, E: 0.6, A: 0.9, N:-0.1} },
-  { name:"Inovatorė/-ius",     v:{O: 1.0, C: 0.1, E: 0.4, A: 0.0, N: 0.1} },
-  { name:"Stabilizuotoja/-as",v:{O:-0.2, C: 0.8, E:-0.2, A: 0.5, N:-0.8} },
-  { name:"Mentorius/-ė",     v:{O: 0.6, C: 0.3, E: 0.4, A: 0.8, N:-0.3} },
-  { name:"Variklis",      v:{O: 0.4, C: 0.3, E: 0.9, A:-0.2, N: 0.4} },
-  { name:"Architektė/-as",    v:{O: 0.8, C: 0.8, E:-0.1, A: 0.1, N:-0.4} }
+  {
+    name:"Dirigentė/-as",
+    v:{O:0.2,C:0.8,E:0.7,A:0.3,N:-0.4},
+    desc:"Prototipas, jungiantis struktūrą, matomą iniciatyvą ir polinkį sutelkti žmones į kryptį. Daugiau energijos skiriama koordinavimui ir įgyvendinimui nei ilgai atvirai paieškai."
+  },
+  {
+    name:"Analitikas/-ė",
+    v:{O:0.5,C:0.9,E:-0.5,A:0.1,N:-0.2},
+    desc:"Prototipas, kuriame ryškėja struktūra, nuoseklumas ir poreikis suprasti problemą prieš veikiant. Socialinė raiška čia mažiau svarbi nei argumentų, duomenų ir logikos kokybė."
+  },
+  {
+    name:"Diplomatė/-as",
+    v:{O:0.3,C:0.4,E:0.6,A:0.9,N:-0.1},
+    desc:"Prototipas, jungiantis bendradarbiavimą, socialinį įsitraukimą ir dėmesį santykių kokybei. Sprendimuose svarbi ne tik kryptis, bet ir tai, kaip žmonės joje išgirstami bei išlaikomas ryšys."
+  },
+  {
+    name:"Inovatorė/-ius",
+    v:{O:1.0,C:0.1,E:0.4,A:0.0,N:0.1},
+    desc:"Prototipas, kuriame stipriausiai akcentuojamas atvirumas naujoms idėjoms, eksperimentams ir kitokiems problemos rėmams. Struktūra nėra pagrindinis atramos taškas, todėl pirmiau gali atsirasti galimybė nei detalus planas."
+  },
+  {
+    name:"Stabilizuotoja/-as",
+    v:{O:-0.2,C:0.8,E:-0.2,A:0.5,N:-0.8},
+    desc:"Prototipas, kuriame svarbūs patikimumas, nuoseklumas ir emocinis stabilumas. Jis labiau remiasi veikiančia struktūra ir ramia eiga nei nuolatiniu naujumo ar išorinės energijos poreikiu."
+  },
+  {
+    name:"Mentorius/-ė",
+    v:{O:0.6,C:0.3,E:0.4,A:0.8,N:-0.3},
+    desc:"Prototipas, jungiantis smalsumą su stipresne orientacija į kitus žmones. Jam artimas augimo, paaiškinimo, klausymosi ir kitų potencialo atvėrimo motyvas."
+  },
+  {
+    name:"Variklis",
+    v:{O:0.4,C:0.3,E:0.9,A:-0.2,N:0.4},
+    desc:"Prototipas su stipria išorine energija, iniciatyva ir tempu. Jame daugiau polinkio judinti veiksmą pirmyn ir tiesiai spausti rezultatą, mažiau orientacijos į harmoniją ar lėtą konsensuso paiešką."
+  },
+  {
+    name:"Architektė/-as",
+    v:{O:0.8,C:0.8,E:-0.1,A:0.1,N:-0.4},
+    desc:"Prototipas, jungiantis platų konceptualų mąstymą su stipria struktūra. Jam artima kurti sistemą, modelį ar sprendimo karkasą ir tada nuosekliai jį išvystyti."
+  }
 ];
 
   const RECS = {
@@ -339,6 +375,15 @@
     const ks=["O","C","E","A","N"]; let dot=0, na=0, nb=0;
     for (const k of ks){ dot+=a[k]*b[k]; na+=a[k]*a[k]; nb+=b[k]*b[k]; }
     return (na===0||nb===0)?0: dot / Math.sqrt(na*nb);
+  };
+  const SHORT_DOMAIN={O:"Atvirumas",C:"Pareigingumas",E:"Ekstravertiškumas",A:"Sutariamumas",N:"Neurotiškumas"};
+  const prototypeWhy=(self,type)=>{
+    const dims=["O","C","E","A","N"]
+      .map(d=>({d,diff:Math.abs(self[d]-type.v[d])}))
+      .sort((a,b)=>a.diff-b.diff)
+      .slice(0,2)
+      .map(x=>SHORT_DOMAIN[x.d]);
+    return "Šio prototipo fiksuotos OCEAN koordinatės tavo profiliui santykinai artimiausios pagal "+dims.join(" ir ")+".";
   };
 
   /* ====== 3) UI generavimas ====== */
