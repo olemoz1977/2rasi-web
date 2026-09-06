@@ -112,9 +112,15 @@ const load=()=>{try{return JSON.parse(localStorage.getItem(STORAGE)||"null")}cat
 const save=s=>localStorage.setItem(STORAGE,JSON.stringify(s));
 const qmap=Object.fromEntries(BANK.map(q=>[q.id,q]));
 const omap=(q,id)=>q.options.find(o=>o.id===id);
-const readQueue=()=>{try{return JSON.parse(localStorage.getItem(QUEUE)||"[]")}catch{return []}};
-const writeQueue=a=>localStorage.setItem(QUEUE,JSON.stringify(a));
 const eventKey=(type,p)=>type+":"+(p.sessionId||"")+":"+(p.questionId||"");
+const readQueue=()=>{
+  try{
+    const raw=JSON.parse(localStorage.getItem(QUEUE)||"[]"),normalized=raw.map(x=>x.key?x:{...x,key:eventKey(x.type,x.payload||{})});
+    if(normalized.some((x,i)=>x!==raw[i]))localStorage.setItem(QUEUE,JSON.stringify(normalized));
+    return normalized;
+  }catch{return []}
+};
+const writeQueue=a=>localStorage.setItem(QUEUE,JSON.stringify(a));
 function queue(type,payload){
   const key=eventKey(type,payload),a=readQueue(),i=a.findIndex(x=>x.key===key);
   const item={key,type,payload,queuedAt:now()};
