@@ -35,6 +35,15 @@ Rollback baseline:
 
 ## CURRENT CHECKPOINT — OPPORTUNITY FAMILY REBUILD FLAG
 
+OPPORTUNITY stop rule — 2026-09-06:
+- `OPPORTUNITY-02` is the frozen reference exemplar and already occupies the blank-canvas / ready-to-create affordance pattern.
+- Do not accept near-duplicates of that pattern as 01/03 replacements.
+- Previously rejected market-stall direction remains rejected; do not recycle it.
+- Continue only with candidates that express the same underlying Opportunity affordance through genuinely different surface contexts.
+- If two additional semantically coherent, non-duplicate exemplars cannot be found/generated without collapsing into RESOURCE, AUTONOMY, MASTERY or generic positive valence, stop stimulus tinkering and trigger a **family-architecture review**.
+- Architecture review options are intentionally left open: drop OPPORTUNITY as a peer A-family, merge/re-scope it, or move it to a contextual affordance/modifier layer. Do not force preservation of 14 families for symmetry.
+
+
 Owner decision — 2026-09-06:
 - `OPPORTUNITY-02` is **frozen / KEEP FOR NOW**. Do not replace or redesign it during this remediation pass.
 - The active decision scope is limited to `OPPORTUNITY-01` and `OPPORTUNITY-03` only.
