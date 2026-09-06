@@ -4,10 +4,10 @@
   const API = 'https://workstyle-pilot-intake.olemoz1977.workers.dev';
   const SUBMIT_URL = API + '/v1/priolens-stimulus-validation';
   const SUMMARY_URL = API + '/v1/priolens-stimulus-validation-summary';
-  const SCHEMA = '2rasi.priolens.stimulus-validation-session-v0.1';
-  const VERSION = 'priolens-stimulus-validation-v0.1';
-  const POOL_URL = './stimuli-v031.json';
-  const PUBLIC_RESEARCH_OPEN = false;
+  const SCHEMA = '2rasi.priolens.stimulus-validation-session-v0.2';
+  const VERSION = 'priolens-stimulus-validation-v0.2';
+  const POOL_URL = './stimuli-v04.json';
+  const PUBLIC_RESEARCH_OPEN = true;
   const FAMILY_ORDER = ['REST','RESOURCE','SAFETY','ORDER','CONNECTION','BELONGING','CARE','AUTONOMY','CONTROL','RECOGNITION','MASTERY','EXPLORATION','KNOWLEDGE','OPPORTUNITY'];
   const COMPETITORS = {
     REST:['RESOURCE','SAFETY','ORDER'],
@@ -86,7 +86,7 @@
       loading:'Kraunama…',
       summaryFail:'Nepavyko gauti suvestinės.',
       holdTitle:'Vaizdų patikra trumpam sustabdyta',
-      holdText:'Per rankinę 42 vaizdų peržiūrą radome du matomus generavimo vandens ženklus ir dar vieną tikrintiną artefaktą. Kol paruošiame švarią, atskirai versijuojamą kandidatų rinkinio versiją, naujų tyrimo atsakymų nerenkame.',
+      holdText:'Švari, atskirai versijuota bank v0.4 kandidatų versija jau praėjo techninę patikrą. Dabar atliekame galutinę rankinę visų 42 vaizdų peržiūrą, todėl naujų tyrimo atsakymų dar nerenkame.',
       holdNote:'Pagrindinis PrioLens puslapis lieka pasiekiamas. Šis sustabdymas taikomas tik aklam vaizdų validavimo tyrimui.',
       familyNames:{
         REST:'Poilsis / atsistatymas',
@@ -118,7 +118,7 @@
         MASTERY:'Įgudęs atlikimas, gebėjimų naudojimas ar tobulinimas',
         EXPLORATION:'Naujumo tyrinėjimas, paieška ar atradimas',
         KNOWLEDGE:'Mokymasis, supratimo gilinimas ar informacijos įsisavinimas',
-        OPPORTUNITY:'Reali prieinama galimybė kažką pradėti ar panaudoti'
+        OPPORTUNITY:'Reali, dabar prieinama galimybė veikti, kurti, prisijungti ar pasinaudoti atsivėrusia vieta'
       }
     },
     en: {
@@ -180,7 +180,7 @@
       loading:'Loading…',
       summaryFail:'Could not load the summary.',
       holdTitle:'Visual check temporarily paused',
-      holdText:'A manual review of all 42 images found two visible generation watermarks and one additional artifact that still needs review. We are not collecting new validation responses until a clean, separately versioned candidate pool is ready.',
+      holdText:'A clean, separately versioned bank v0.4 candidate set has passed technical QC. We are completing the final manual review of all 42 images before collecting new validation responses.',
       holdNote:'The main PrioLens page remains available. This pause applies only to the blind visual-stimulus validation study.',
       familyNames:{
         REST:'Rest / restoration',
@@ -212,7 +212,7 @@
         MASTERY:'Skilled performance, using or improving abilities',
         EXPLORATION:'Exploring novelty, searching, or discovering',
         KNOWLEDGE:'Learning, deepening understanding, or taking in information',
-        OPPORTUNITY:'A real accessible possibility to start or use something'
+        OPPORTUNITY:'A real, currently accessible possibility to act, create, join, or use an opening'
       }
     }
   };
@@ -311,7 +311,7 @@
   }
 
   function storageKey() {
-    return 'priolens:stimulus-validation:v01:' + lang;
+    return 'priolens:stimulus-validation:v04:' + lang;
   }
 
   function saveDraft() {
@@ -324,7 +324,7 @@
       const raw = localStorage.getItem(storageKey());
       if (!raw) return null;
       const parsed = JSON.parse(raw);
-      if (!parsed || parsed.schema !== SCHEMA || !Array.isArray(parsed.order) || parsed.order.length !== 12) return null;
+      if (!parsed || parsed.schema !== SCHEMA || parsed.poolVersion !== pool?.poolVersion || !Array.isArray(parsed.order) || parsed.order.length !== 12) return null;
       return parsed;
     } catch { return null; }
   }
@@ -363,7 +363,7 @@
   }
 
   function optionCodes(stimulus) {
-    const codes = [stimulus.targetFamily, ...(COMPETITORS[stimulus.targetFamily] || [])];
+    const codes = [stimulus.targetFamily, ...((Array.isArray(stimulus.competitors) && stimulus.competitors.length) ? stimulus.competitors : (COMPETITORS[stimulus.targetFamily] || []))];
     return shuffled([...new Set(codes)].slice(0,4).concat('OTHER'), state.sessionId + ':' + stimulus.id + ':options');
   }
 
