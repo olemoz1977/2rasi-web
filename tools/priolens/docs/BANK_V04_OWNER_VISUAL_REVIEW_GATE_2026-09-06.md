@@ -1,7 +1,7 @@
 # PrioLens bank v0.4 — owner visual review gate
 
 Date: 2026-09-06  
-Status: OWNER REVIEW PENDING  
+Status: OWNER REVIEW PASS  
 Bank: `2rasi.priolens.open14.bank-v0.4`
 
 ## Technical evidence
@@ -63,15 +63,17 @@ O1 and O3 use different contexts but share a strong “one empty slot among occu
 
 Do not set these values until the owner has inspected the final bank.
 
-- `owner42VisualReviewPassed`: PENDING
-- `ownerChanged5ReviewPassed`: PENDING
-- `SAFETY-02`: PENDING
-- `EXPLORATION-01`: PENDING
-- `AUTONOMY-02`: PENDING
-- `OPPORTUNITY-01`: PENDING
-- `OPPORTUNITY-03`: PENDING
+- `owner42VisualReviewPassed`: PASS
+- `ownerChanged5ReviewPassed`: PASS
+- `SAFETY-02`: PASS
+- `EXPLORATION-01`: PASS
+- `AUTONOMY-02`: PASS
+- `OPPORTUNITY-01`: PASS
+- `OPPORTUNITY-03`: PASS
 
-Until the owner records acceptance:
-- keep `runtimeReady=false`;
-- do not switch the live participant runtime to bank-v0.4;
-- keep public blind stimulus validation HOLD.
+Owner acceptance recorded from the final 42-image review on 2026-09-06.
+
+After this acceptance:
+- bank-v0.4 may be marked promotion-ready (`runtimeReady=true`) without switching the live participant runtime;
+- public blind stimulus validation may reopen on the separately versioned v0.4 pool;
+- participant runtime promotion remains a separate deployment decision and must preserve the analytical cutoff from historical bank-v0.3.1 sessions.
