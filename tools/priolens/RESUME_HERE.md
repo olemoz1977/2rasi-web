@@ -136,7 +136,8 @@ Promotion state:
 
 Recovery order:
 0. `NEW_CHAT_HANDOFF_2026-09-05_PUBLIC_PILOT_CHECKPOINT.md` for the current live/public-pilot state;
-0a. `docs/PRIOLENS_VISUAL_STIMULUS_VALIDATION_PROTOCOL_v0.1.md` for the separate blind stimulus-screening study;
+0a. `docs/PRIOLENS_VISUAL_STIMULUS_VALIDATION_DEPLOYED_2026-09-06.md` for deployed validation-tool state;
+0b. `docs/PRIOLENS_VISUAL_STIMULUS_VALIDATION_PROTOCOL_v0.1.md` for the frozen screening protocol;
 1. this file;
 2. `NEW_CHAT_HANDOFF_2026-09-05_RESULT_INTERPRETATION.md` for the earlier interpretation-specific checkpoint;
 2. `docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md` for the latest construct-level research audit;
