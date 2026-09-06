@@ -58,6 +58,7 @@
       neutral:'Neutralus',
       pleasant:'Malonus',
       nextImage:'Kitas vaizdas →',
+      finish:'Baigti ir išsaugoti →',
       sending:'Saugoma…',
       sendFail:'Nepavyko išsaugoti. Patikrink ryšį ir bandyk dar kartą.',
       retry:'Bandyti dar kartą',
@@ -148,6 +149,7 @@
       neutral:'Neutral',
       pleasant:'Pleasant',
       nextImage:'Next image →',
+      finish:'Finish and save →',
       sending:'Saving…',
       sendFail:'Could not save. Check your connection and try again.',
       retry:'Try again',
@@ -324,11 +326,13 @@
     try { localStorage.removeItem(storageKey()); } catch {}
   }
 
-  function newState() {
+  function newState(avoidForm = null) {
     const sessionId = uuid();
     let formIndex = parseInt(sessionId.replace(/[^0-9a-f]/gi,'').slice(-4) || '0', 16) % 7;
     const qForm = Number(new URLSearchParams(location.search).get('form'));
-    if ((window.RASI_OWNER_MODE || window.RASI_TEST_MODE) && Number.isInteger(qForm) && qForm >= 0 && qForm <= 6) formIndex = qForm;
+    const forcedForm = (window.RASI_OWNER_MODE || window.RASI_TEST_MODE) && Number.isInteger(qForm) && qForm >= 0 && qForm <= 6;
+    if (forcedForm) formIndex = qForm;
+    else if (Number.isInteger(avoidForm) && formIndex === avoidForm) formIndex = (formIndex + 1) % 7;
     const order = shuffled(formStimuli(formIndex), sessionId + ':presentation');
     return {
       schema:SCHEMA,
@@ -482,7 +486,7 @@
               <div class="field"><span class="fieldLabel">${escapeHtml(C.valence)}</span>
                 ${scaleHtml('valence', partial.valence, C.unpleasant, C.pleasant)}
               </div>
-              <div class="actions"><button type="button" class="btn primary" id="step2Next" disabled>${escapeHtml(state.index === 11 ? C.sending : C.nextImage)}</button></div>
+              <div class="actions"><button type="button" class="btn primary" id="step2Next" disabled>${escapeHtml(state.index === 11 ? C.finish : C.nextImage)}</button></div>
               <div class="saveState" id="saveState"></div>
             </div>
           </div>
@@ -517,15 +521,17 @@
         };
         state.responses = state.responses.filter(r => r.stimulusId !== stimulus.id);
         state.responses.push(response);
-        state.partial = null;
-        state.stage = 1;
         if (state.index < 11) {
+          state.partial = null;
+          state.stage = 1;
           state.index += 1;
           stageStartedAt = performance.now();
           saveDraft();
           render();
           preloadNext();
         } else {
+          state.partial = partial;
+          state.stage = 2;
           saveDraft();
           await submitSession(next);
         }
@@ -589,7 +595,7 @@
         </div>
         ${window.RASI_OWNER_MODE ? '<div class="ownerBar"><button type="button" class="btn secondary" id="ownerSummary">' + escapeHtml(C.ownerSummary) + '</button></div>' : ''}
       </section>`;
-    document.getElementById('anotherSet').onclick = () => { state = newState(); saveDraft(); stageStartedAt = performance.now(); render(); };
+    document.getElementById('anotherSet').onclick = () => { const previousForm = state?.formIndex; state = newState(previousForm); saveDraft(); stageStartedAt = performance.now(); render(); };
     const owner = document.getElementById('ownerSummary');
     if (owner) owner.onclick = renderSummary;
   }
