@@ -77,6 +77,52 @@
 </main>
 <footer class="tool-footer"><span>2rasi · Look again.</span><a href="../../#experiments">← Back to experiments</a></footer>
 
+<script>
+(() => {
+  const host = location.hostname.toLowerCase();
+  const isLt = host === '2rasi.lt' || host.endsWith('.2rasi.lt');
+  if (isLt) return;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .ws-lang-backdrop{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;background:rgba(4,20,31,.46);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    .ws-lang-dialog{width:min(100%,520px);padding:28px;border:1px solid rgba(255,255,255,.58);border-radius:24px;background:rgba(239,248,250,.96);box-shadow:0 30px 90px rgba(4,24,36,.28);color:#071b2e}
+    .ws-lang-dialog h3{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(1.7rem,5vw,2.5rem);line-height:1.03}
+    .ws-lang-dialog p{margin:0;color:rgba(7,27,46,.68);line-height:1.55}
+    .ws-lang-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+    .ws-lang-actions a,.ws-lang-actions button{appearance:none;border:1px solid rgba(7,27,46,.2);border-radius:999px;padding:11px 15px;background:rgba(255,255,255,.58);color:inherit;font:inherit;font-size:.78rem;font-weight:650;text-decoration:none;cursor:pointer}
+    .ws-lang-actions a{background:#0d4054;color:#fff;border-color:#0d4054}
+  `;
+  document.head.appendChild(style);
+
+  function openDialog() {
+    document.querySelector('.ws-lang-backdrop')?.remove();
+    const backdrop = document.createElement('div');
+    backdrop.className = 'ws-lang-backdrop';
+    backdrop.innerHTML = `
+      <div class="ws-lang-dialog" role="dialog" aria-modal="true" aria-labelledby="ws-lang-title">
+        <h3 id="ws-lang-title">This pilot is currently in Lithuanian.</h3>
+        <p>WorkStyle v0.7 is still a research pilot. A reliable English version would require more than a direct translation, so the pilot remains Lithuanian-only for now.</p>
+        <div class="ws-lang-actions">
+          <a href="https://2rasi.lt/tools/workstyle15/v07-cognitive.html">Continue in Lithuanian</a>
+          <button type="button">Stay on this page</button>
+        </div>
+      </div>`;
+    const close = () => backdrop.remove();
+    backdrop.querySelector('button').addEventListener('click', close);
+    backdrop.addEventListener('click', (event) => { if (event.target === backdrop) close(); });
+    document.body.appendChild(backdrop);
+    backdrop.querySelector('button').focus();
+  }
+
+  document.querySelectorAll('[data-workstyle-start]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      openDialog();
+    });
+  });
+})();
+</script>
 <script src="./landing-i18n.js?v=20260823b"></script>
 <script src="./landing-status.js?v=20260824-0142"></script>
 <script src="/tools/site-owner-mode.js?v=20260906-2"></script>
