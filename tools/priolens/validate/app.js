@@ -36,7 +36,7 @@
       anonymous:'Be vardo ir el. pašto',
       twelve:'12 iš 42 vaizdų',
       blind:'Kategorijos rodomos tik po tavo pirmo aprašymo',
-      data:'Išsaugome atsakymus, kalbą, anoniminį sesijos ID ir atsakymo laikus. Laikai naudojami tik kaip proceso telemetrija.',
+      data:'Išsaugome atsakymus, kalbą, anoniminį sesijos ID ir atsakymo laikus. Laikai naudojami tik kaip proceso telemetrija. Nerašyk vardų ar kitos asmenį identifikuojančios informacijos.',
       start:'Pradėti vaizdų patikrą →',
       back:'← Grįžti į PrioLens',
       progress:'Vaizdas',
@@ -126,7 +126,7 @@
       anonymous:'No name or email',
       twelve:'12 of 42 images',
       blind:'Categories appear only after your first description',
-      data:'We store your responses, language, an anonymous session ID, and response times. Timing is used only as process telemetry.',
+      data:'We store your responses, language, an anonymous session ID, and response times. Timing is used only as process telemetry. Please do not include names or other identifying personal information.',
       start:'Start visual check →',
       back:'← Back to PrioLens',
       progress:'Image',
@@ -223,7 +223,13 @@
   }
 
   function setLanguage(next) {
+    const previousLang = lang;
     lang = next;
+    if (state) {
+      state.language = lang;
+      try { localStorage.removeItem('priolens:stimulus-validation:v01:' + previousLang); } catch {}
+      saveDraft();
+    }
     document.documentElement.lang = lang;
     document.title = (lang === 'lt' ? 'PrioLens vaizdų patikra' : 'PrioLens visual check') + ' · 2rasi';
     langButtons.forEach(b => b.classList.toggle('on', b.dataset.lang === lang));
