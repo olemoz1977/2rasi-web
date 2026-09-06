@@ -42,6 +42,46 @@ Owner naming rule — 2026-09-06:
 - The remediation/promotion step must create a distinct `2rasi.priolens.open14.bank-v0.4` identity, separate asset paths, and an analytical cutoff so pre-switch v0.3.1-bank sessions remain distinguishable from post-switch v0.4-bank sessions.
 - Validation pool/version naming must align to the new v0.4 bank as well.
 
+## CURRENT CHECKPOINT — BANK v0.4 REMEDIATION IMPLEMENTATION
+
+Owner-approved implementation direction — 2026-09-06:
+- Pilot naming rule: PrioLens pilot `v0.4` -> bank `2rasi.priolens.open14.bank-v0.4`.
+- Runtime implementation branch: `olemoz1977/omesg360@feature/priolens-v04-bank-v04`, based on latest accepted live-source cleanup commit `e2d10c3908057a5be7c71dacc0b5936481c2643b`.
+- Validation implementation branch: `olemoz1977/2rasi-web@feature/priolens-bank-v04-validation`.
+- Active public runtime is not mutated during staging. Pre-switch sessions retain historical bank-v0.3.1 identity; post-promotion sessions must record bank-v0.4 and have an analytical cutoff.
+
+Approved bank-v0.4 change set:
+- `SAFETY-02` -> protective camera/lens case candidate (Pexels 14526291).
+- `EXPLORATION-01` -> active drawer-search candidate (Pexels 12912014).
+- `AUTONOMY-02` -> clean backpack-adjustment asset without sparkle artifact.
+- `OPPORTUNITY-01` -> one available parking place among occupied places.
+- `OPPORTUNITY-02` -> KEEP existing blank-canvas/easel exemplar.
+- `OPPORTUNITY-03` -> one available chair/place at an otherwise occupied meeting table.
+
+Opportunity working definition:
+> A real, currently accessible but not yet realized possibility to act, use an opening, create, or join.
+
+The three exemplars intentionally cover different surface realizations of the same narrow mechanism:
+- `OPPORTUNITY-01`: **OCCUPY_OPENING**;
+- `OPPORTUNITY-02`: **CREATE_FROM_AVAILABLE_START**;
+- `OPPORTUNITY-03`: **JOIN_AVAILABLE_PLACE**.
+
+Do not collapse all three into the same “one free slot” visual template. The design aim is a narrow mechanism with broad surface representation.
+
+Blind validation v0.4 preparation:
+- new pool: `open14-v04-current42`;
+- session/version staged as `2rasi.priolens.stimulus-validation-session-v0.2` / `priolens-stimulus-validation-v0.2`;
+- public validation remains HOLD during asset QC;
+- Opportunity uses stimulus-specific nearest competitors:
+  - O1 parking -> RESOURCE / AUTONOMY / ORDER;
+  - O2 canvas -> MASTERY / EXPLORATION / AUTONOMY;
+  - O3 meeting seat -> BELONGING / CONNECTION / RECOGNITION.
+- Old validation drafts are not resumed into the v0.4 pool.
+
+Current staging limitation:
+- repo logic/manifests are being prepared before promotion;
+- five replacement assets must be present in the new `/priolens-research-assets/Open14-v04/` namespace and pass reachability/hash/mobile/manual-watermark QC before runtimeReady/public reopening.
+
 ## CURRENT CHECKPOINT — OPPORTUNITY FAMILY REBUILD FLAG
 
 OPPORTUNITY stop rule — 2026-09-06:
