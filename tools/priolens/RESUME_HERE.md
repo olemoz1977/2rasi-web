@@ -33,6 +33,24 @@ Rollback baseline:
 
 **Repo is source of truth. Do not reconstruct PrioLens from chat memory.**
 
+## CURRENT CHECKPOINT — OPPORTUNITY FAMILY REBUILD FLAG
+
+Owner visual review after the watermark pass identified a separate structural issue: the current `OPPORTUNITY-01/02/03` exemplars do not read as a coherent visual family.
+
+This matches the existing construct audit:
+- OPPORTUNITY is already classified as **WEAK / DIFFERENT LEVEL**;
+- it is an environmental affordance/action-possibility direction rather than an equivalent internal need;
+- it has strong cross-load risk with RESOURCE, AUTONOMY and GROWTH;
+- it was already the highest-priority family for empirical challenge.
+
+Decision:
+- do not try to preserve the current three exemplars by cosmetic editing;
+- treat OPPORTUNITY as a **family-level rebuild**, separate from the watermark cleanup;
+- freeze the intended visual mechanism before generating/selecting challengers;
+- preferred mechanism target: **a real, immediately usable possibility is visibly available, with the value/accessibility legible from the scene itself**;
+- avoid path/door/choice metaphors, reward/success spectacle, skill demonstration, status cues and strong brightness/valence contrast;
+- do not reopen public stimulus validation until the replacement/challenger pool has a coherent OPPORTUNITY set.
+
 ## CURRENT CHECKPOINT — WATERMARK REMEDIATION REVIEW ACTIVE
 
 Isolated remediation branch:
