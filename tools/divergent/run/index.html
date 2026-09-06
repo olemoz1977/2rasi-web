@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="robots" content="noindex,follow" />
-  <title>Divirgent Test V2.2 – OCEAN + tipai (LT)</title>
-  <meta name="description" content="Divirgent Test – Big Five (OCEAN) + tipai vieno failo testas: 60 teiginių, rezultatų skaičiavimas naršyklėje, TOP‑3 stiprybės ir augimo sritys su rekomendacijomis, tipų artimumas." />
+  <meta name="robots" content="noindex,follow" />
+<title>Divergent V2.3 – OCEAN refleksijos žemėlapis (LT)</title>
+  <meta name="description" content="Divergent – Big Five / OCEAN refleksijos žemėlapis: 60 teiginių, penkios tęstinės dimensijos ir pasirenkamas žaismingas 2rasi archetipų sluoksnis." />
   <meta name="color-scheme" content="dark light" />
   <style>
     /* ===========================
@@ -115,7 +115,7 @@
   <header class="topbar">
     <div class="wrap">
       <div class="row">
-        <div><strong>Divirgent Test V2.2 – OCEAN + tipai (LT)</strong></div>
+        <div><strong>Divergent V2.3 – OCEAN refleksijos žemėlapis (LT)</strong></div>
         <span class="muted"> ~8–10 min · 60 teiginių · skaičiuojama naršyklėje</span>
         <span class="right muted" id="saveNote">Atsakymai saugomi šiame įrenginyje</span>
       </div>
@@ -128,8 +128,9 @@
   <main class="wrap">
     <!-- Įžanga -->
     <section id="intro" class="card">
-      <h1>Divirgent Test – Big Five (OCEAN) + tipai</h1>
+      <h1>Divergent – Big Five / OCEAN refleksijos žemėlapis</h1>
       <p class="muted">Likertas: 1 – Visiškai nesutinku · 5 – Visiškai sutinku. Invertuoti teiginiai skaičiuojami priešingai.</p>
+      <p class="muted">Nei aukštesnis, nei žemesnis OCEAN balas savaime nereiškia „geriau“ ar „blogiau“. Tai refleksijos žemėlapis, ne diagnozė ar validuotas asmenybės vertinimas.</p>
       <noscript><p style="color:#ef4444"><strong>Šiam testui reikia JavaScript.</strong> Įjunkite JavaScript naršyklėje.</p></noscript>
     </section>
 
@@ -163,40 +164,39 @@
       <h2>Rezultatai</h2>
       <div class="grid">
         <div>
-          <h3>Lentelė</h3>
+          <h3>Penkių dimensijų profilis</h3>
           <table id="resTable" aria-describedby="resHelp">
             <thead>
               <tr>
                 <th>Domenas</th>
                 <th>Vidurkis (1–5)</th>
-                <th>Normalizuota (–1…+1)</th>
-                <th>%</th>
+                <th>Skalės pozicija (0–100)</th>
               </tr>
             </thead>
             <tbody></tbody>
           </table>
-          <p id="resHelp" class="sr-only">Lentelėje rodomi penkių domenų rezultatai.</p>
+          <p id="resHelp" class="muted">0–100 pozicija yra tik tiesinė 1–5 atsakymų skalės transformacija. Tai nėra procentilis ir nelygina tavęs su populiacija.</p>
         </div>
 
         <div>
-          <h3>TOP‑3 stiprybės</h3>
-          <div id="strengths"></div>
+          <h3>Kaip skaityti profilį</h3>
+          <p class="muted">Žiūrėk į kryptis ir jų derinius. Aukštesnis balas nėra automatiškai stiprybė, o žemesnis – trūkumas. Reikšmė priklauso nuo situacijos ir konteksto.</p>
+          <div id="dimensionNotes"></div>
 
-          <h3 style="margin-top:12px">TOP‑3 augimo sritys</h3>
-          <div id="growth"></div>
-
-          <h3 style="margin-top:12px">Tipų artimumas (TOP‑3)</h3>
-          <div id="typesTop"></div>
+          <details class="item" style="margin-top:14px">
+            <summary><strong>Pasirenkamas žaismingas archetipų sluoksnis</strong></summary>
+            <p class="muted">Žemiau rodomi trys santykinai artimiausi 2rasi interpretaciniai prototipai. Tai nėra asmenybės tipai, tikimybės ar validuoti panašumo balai.</p>
+            <div id="typesTop"></div>
+          </details>
 
           <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
             <button type="button" id="printBtn" class="btn">Spausdinti PDF</button>
-            
-<a href="#formCard" class="btn secondary">Grįžti prie teiginių</a>
+            <a href="#formCard" class="btn secondary">Grįžti prie teiginių</a>
           </div>
         </div>
       </div>
 
-      <p class="kudos">© 2025 Divirgent Test · </p>
+      <p class="kudos">© 2026 Divergent · 2rasi refleksijos eksperimentas</p>
     </section>
   </main>
 
@@ -416,53 +416,42 @@
 
   function renderResults(model){
     const order=["O","C","E","A","N"];
-    // Lentelė
-    const tbody = by("#resTable tbody"); tbody.innerHTML="";
-    for (const d of order){
-      const s = model.scores[d];
-      const tr = el("tr",{},
-        el("td",{}, el("span",{class:`domain-tag ${d}`}, d), " ", DOMAINS[d].name),
-        el("td",{class:"mono"}, s.avg==null?"–":fmt(s.avg,2)),
-        el("td",{class:"mono"}, s.norm==null?"–":(s.norm>=0?"+":"")+fmt(s.norm,2)),
-        el("td",{class:"mono"}, s.pct==null?"–":fmt(s.pct,0)+"%")
-      );
-      tbody.appendChild(tr);
+    const poles={
+      O:{low:"pažįstamumas, konkretumas, pastovumas",high:"smalsumas, naujumas, abstrakčios idėjos"},
+      C:{low:"spontaniškumas, lankstesnė struktūra",high:"planavimas, nuoseklumas, užbaigimas"},
+      E:{low:"santūrumas, selektyvus socialinis įsitraukimas",high:"socialinė energija, raiškumas, iniciatyva"},
+      A:{low:"tiesmukumas, skepticizmas, konkurencingesnė laikysena",high:"bendradarbiavimas, empatija, harmonija"},
+      N:{low:"emocinis stabilumas, mažesnis reaktyvumas stresui",high:"didesnis jautrumas stresui ir neigiamam emociniam aktyvumui"}
+    };
+
+    const tbody=by("#resTable tbody"); tbody.innerHTML="";
+    for(const d of order){
+      const s=model.scores[d];
+      tbody.appendChild(el("tr",{},
+        el("td",{},el("span",{class:`domain-tag ${d}`},d)," ",DOMAINS[d].name),
+        el("td",{class:"mono"},s.avg==null?"–":fmt(s.avg,2)),
+        el("td",{class:"mono"},s.pct==null?"–":fmt(s.pct,0))
+      ));
     }
 
-    // TOP‑3 stiprybės / augimo
-    const arr = order.map(d=>({d, ...model.scores[d]})).filter(x=>x.pct!=null).sort((a,b)=>b.pct-a.pct);
-    const strengths = arr.slice(0,3);
-    const growth = arr.slice(-3).reverse();
-
-    const sBox = by("#strengths"); sBox.innerHTML="";
-    strengths.forEach(x=>{
-      sBox.appendChild(el("div",{},
-        el("span",{class:`domain-tag ${x.d}`}, x.d), " ",
-        DOMAINS[x.d].name, " · ",
-        el("strong",{}, fmt(x.pct,0)+"%")
+    const notes=by("#dimensionNotes"); notes.innerHTML="";
+    for(const d of order){
+      const s=model.scores[d];
+      const where=s.avg>3?"virš atsakymų skalės vidurio":(s.avg<3?"žemiau atsakymų skalės vidurio":"ties atsakymų skalės viduriu");
+      notes.appendChild(el("div",{class:"item"},
+        el("div",{},el("span",{class:`domain-tag ${d}`},d)," ",DOMAINS[d].name," · ",el("strong",{},fmt(s.avg,2)+"/5")),
+        el("p",{class:"muted"},"Tavo atsakymų vidurkis yra ",where,". Žemesnė kryptis: ",poles[d].low,". Aukštesnė kryptis: ",poles[d].high,".")
       ));
-    });
+    }
 
-    const gBox = by("#growth"); gBox.innerHTML="";
-    growth.forEach(x=>{
-      gBox.appendChild(
-        el("div",{class:`item ${x.pct<40?'danger': (x.pct<60?'': 'ok')}`},
-          el("div",{}, el("span",{class:`domain-tag ${x.d}`}, x.d), " ",
-            DOMAINS[x.d].name, " · ", el("strong",{}, fmt(x.pct,0)+"%")),
-          el("ul",{}, ...RECS[x.d].map(r=>el("li",{}, r)))
-        )
-      );
-    });
+    const self={}; order.forEach(d=>self[d]=model.scores[d].norm??0);
+    const typed=TYPES.map(t=>{
+      const distance=Math.sqrt(order.reduce((sum,d)=>sum+Math.pow(self[d]-t.v[d],2),0));
+      return{name:t.name,distance};
+    }).sort((a,b)=>a.distance-b.distance).slice(0,3);
 
-    // Tipų artimumas
-    const self={}; order.forEach(d=>self[d]=model.scores[d].norm ?? 0);
-    const typed = TYPES.map(t=>{
-      const sim = cosineSim(self, t.v);
-      return {name:t.name, pct: Math.round(((sim+1)/2)*100)};
-    }).sort((a,b)=>b.pct-a.pct).slice(0,3);
-
-    const tBox = by("#typesTop"); tBox.innerHTML="";
-    typed.forEach(t=> tBox.appendChild(el("div",{}, el("span",{class:"pill"}, t.name), " · artimumas ", el("strong",{}, t.pct+"%"))));
+    const tBox=by("#typesTop"); tBox.innerHTML="";
+    typed.forEach((t,i)=>tBox.appendChild(el("div",{},el("span",{class:"pill"},`${i+1}. ${t.name}`))));
   }
 
   /* ====== 5) UX: progresas, validacija, naršymas ====== */
@@ -562,6 +551,7 @@
   }
   document.addEventListener("DOMContentLoaded", boot);
   </script>
+
 <script src="/tools/site-owner-mode.js?v=20260906-2"></script>
 <script src="/tools/site-insights.js?v=20260906-2"></script>
 </body>
