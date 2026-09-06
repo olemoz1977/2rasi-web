@@ -120,7 +120,7 @@
       </section>
 
       <section class="panel">
-        <div class="panelhead"><h2>Įrankiai</h2><span class="muted">be owner ir synthetic</span></div>
+        <div class="panelhead"><h2>Įrankiai</h2><span class="muted">be owner, test ir synthetic</span></div>
         <div class="tablewrap">
           <table>
             <thead>
@@ -129,6 +129,19 @@
             <tbody id="tools"></tbody>
           </table>
         </div>
+      </section>
+
+      <section class="panel">
+        <div class="panelhead"><h2>Kvietimai ir kampanijos</h2><span class="muted">UTM / socialiniai kanalai</span></div>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr><th>Šaltinis</th><th>Kampanija</th><th>Lankytojai</th><th>Startai</th><th>Baigė</th></tr>
+            </thead>
+            <tbody id="campaigns"></tbody>
+          </table>
+        </div>
+        <p class="note">Tiksliausiai skaičiuojama, kai kvietimo nuorodoje yra utm_source ir utm_campaign. Jei platforma perduoda referrer, kanalą dažnai atpažinsime ir be UTM.</p>
       </section>
 
       <section class="grid">
@@ -145,11 +158,11 @@
         </article>
       </section>
 
-      <div class="footer">Duomenys skaitomi iš Cloudflare D1 · automatiškai atsinaujina kas 60 s.</div>
+      <div class="footer">Duomenys skaitomi iš Cloudflare D1 · automatiškai atsinaujina kas 60 s. · rodomi tik švarūs duomenys nuo naujo žymėjimo pradžios.</div>
     </div>
   </main>
 
-  <script src="/tools/site-owner-mode.js?v=20260831-1"></script>
+  <script src="/tools/site-owner-mode.js?v=20260906-2"></script>
   <script>
     (() => {
       'use strict';
@@ -173,6 +186,12 @@
         '2pair':'2Pair',workstyle:'WorkStyle',priolens:'PrioLens'
       };
 
+      const sourceNames = {
+        direct:'Direct',referral:'Referral',search:'Search',facebook:'Facebook',instagram:'Instagram',
+        linkedin:'LinkedIn',tiktok:'TikTok',youtube:'YouTube',skool:'Skool',reddit:'Reddit',
+        substack:'Substack',pinterest:'Pinterest',threads:'Threads',x:'X',chatgpt:'ChatGPT'
+      };
+
       if (window.RASI_OWNER_MODE !== true) {
         gate.hidden = false;
         return;
@@ -192,7 +211,8 @@
         const max = Math.max(1, ...items.map(item => num(item.visitors)));
         box.innerHTML = items.map(item => {
           const width = Math.max(4, num(item.visitors) / max * 100);
-          return '<div class="barrow"><span>' + escapeHtml(item.source || 'direct') + '</span>' +
+          const label = sourceNames[item.source] || item.source || 'Direct';
+          return '<div class="barrow"><span>' + escapeHtml(label) + '</span>' +
             '<div class="track"><div class="fill" style="width:' + width + '%"></div></div>' +
             '<span class="num">' + num(item.visitors) + '</span></div>';
         }).join('');
@@ -224,6 +244,20 @@
         body.innerHTML = items.map(item => '<tr><td>' + escapeHtml(toolNames[item.tool_id] || item.tool_id) + '</td>' +
           '<td>' + num(item.visitors) + '</td><td>' + num(item.page_views) + '</td><td>' + num(item.started) +
           '</td><td>' + num(item.completed) + '</td><td>' + num(item.feedbacks) + '</td></tr>').join('');
+      }
+
+      function renderCampaigns(items) {
+        const body = document.getElementById('campaigns');
+        if (!items.length) {
+          body.innerHTML = '<tr><td colspan="5" class="empty">Kol kas nėra atskirai pažymėtų kampanijų.</td></tr>';
+          return;
+        }
+        body.innerHTML = items.map(item => {
+          const source = sourceNames[item.source] || item.source || 'Direct';
+          const campaign = item.campaign || (item.medium ? item.medium : 'be kampanijos žymos');
+          return '<tr><td>' + escapeHtml(source) + '</td><td>' + escapeHtml(campaign) + '</td>' +
+            '<td>' + num(item.visitors) + '</td><td>' + num(item.started) + '</td><td>' + num(item.completed) + '</td></tr>';
+        }).join('');
       }
 
       function renderWorkstyle(item) {
@@ -275,9 +309,11 @@
           renderTrend(data.daily || []);
           renderSources(data.sources || []);
           renderTools(data.tools || []);
+          renderCampaigns(data.campaigns || []);
           renderWorkstyle(data.workstyle || {});
           renderFeedback(data.feedback || {});
-          document.getElementById('updated').textContent = 'Atnaujinta ' + new Date(data.generatedAt).toLocaleString('lt-LT');
+          const clean = data.cleanSince ? ' · švarūs nuo ' + new Date(data.cleanSince).toLocaleString('lt-LT') : '';
+          document.getElementById('updated').textContent = 'Atnaujinta ' + new Date(data.generatedAt).toLocaleString('lt-LT') + clean;
         } catch (error) {
           document.getElementById('updated').textContent = 'Duomenų gauti nepavyko: ' + error.message;
         } finally {
