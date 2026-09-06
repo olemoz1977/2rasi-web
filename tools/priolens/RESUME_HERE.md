@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BLIND STIMULUS VALIDATION PUBLIC HOLD / BANK v0.4 TECHNICAL QC PASS / OWNER 42/42 VISUAL REVIEW PENDING / DATA COLLECTION + RESEARCH ADMIN ACTIVE
-Updated: 2026-09-06 14:20 EEST
+Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BANK v0.4 OWNER REVIEW PASS / VALIDATION v0.4 REOPEN STAGING PASS / RUNTIME PROMOTION NOT YET EXECUTED / DATA COLLECTION + RESEARCH ADMIN ACTIVE
+Updated: 2026-09-06 14:30 EEST
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -108,13 +108,15 @@ Accepted QC evidence:
 Owner review:
 - isolated 42/42 review: `https://omesg360.eu/priolens-research-assets/Open14-v04-bank-review-v01/`;
 - contact sheet: `contact-sheet-42.jpg`;
-- candidate manifest: `BANK_V04_CANDIDATE.json`.
+- candidate manifest: `BANK_V04_CANDIDATE.json`;
+- owner decision on 2026-09-06: **PASS 42/42**, including all five changed assets.
 
-Boundary:
-- this is a **technical QC pass**, not owner semantic/visual acceptance and not stimulus validation;
-- active participant runtime remains untouched;
-- public blind stimulus validation remains HOLD;
-- do not set `runtimeReady=true`, promote bank-v0.4 into the live participant runtime, or reopen external stimulus validation until the owner manually reviews the 42-image bank and confirms no visible watermark/artifact or unacceptable semantic regression.
+Post-owner state:
+- bank-v0.4 candidate may be marked `runtimeReady=true` / `V04_BANK_READY_FOR_PROMOTION`;
+- this means technically ready to promote, **not already promoted**;
+- v0.4 blind validation staging is reopened on `open14-v04-current42` with no temporary asset holds;
+- validation staging checks run `34030263907`: SUCCESS;
+- participant runtime promotion remains separate and must preserve the bank-v0.3.1 -> bank-v0.4 analytical cutoff.
 
 ## CURRENT CHECKPOINT — OPPORTUNITY FAMILY REBUILD FLAG
 
