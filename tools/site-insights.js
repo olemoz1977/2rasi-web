@@ -23,6 +23,7 @@
       ['/tools/strategic-thinking', 'strategic-thinking'],
       ['/tools/2pair', '2pair'],
       ['/tools/workstyle15', 'workstyle'],
+      ['/tools/priolens', 'priolens'],
     ];
     for (const [prefix, id] of map) if (path.startsWith(prefix)) return id;
     return path === '/' || path.endsWith('/index.html') ? 'gallery' : 'site';
@@ -171,6 +172,7 @@
     if (/\/run\//.test(p) || /v07-cognitive\.html$/.test(p)) return true;
     if (tool === 'leadership-360' && u.hostname.endsWith('omesg360.eu')) return true;
     if (tool === '2pair' && u.hostname.endsWith('omesg360.eu')) return true;
+    if (tool === 'priolens' && u.hostname.endsWith('omesg360.eu')) return true;
     return false;
   }
 

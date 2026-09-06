@@ -4,7 +4,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 LIST = ROOT / 'scripts' / 'insights-pages.txt'
 OWNER_TAG = '<script src="/tools/site-owner-mode.js?v=20260831-1"></script>'
-INSIGHTS_TAG = '<script src="/tools/site-insights.js?v=20260828-1"></script>'
+INSIGHTS_TAG = '<script src="/tools/site-insights.js?v=20260906-1"></script>'
 OWNER_PATTERN = re.compile(r'<script\s+src=["\']/tools/site-owner-mode\.js(?:\?[^"\']*)?["\']\s*></script>\s*', re.I)
 INSIGHTS_PATTERN = re.compile(r'<script\s+src=["\']/tools/site-insights\.js(?:\?[^"\']*)?["\']\s*></script>', re.I)
 

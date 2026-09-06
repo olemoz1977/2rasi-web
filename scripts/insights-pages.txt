@@ -11,6 +11,7 @@ tools/drama-triangle/index.html
 tools/strategic-thinking/index.html
 tools/2pair/index.html
 tools/workstyle15/index.html
+tools/priolens/index.html
 
 # Local run / pilot pages
 tools/mirror/run/index.html

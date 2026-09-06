@@ -20,6 +20,7 @@ const TOOL_IDS = new Set([
   "strategic-thinking",
   "2pair",
   "workstyle",
+  "priolens",
 ]);
 
 function corsHeaders(origin) {
