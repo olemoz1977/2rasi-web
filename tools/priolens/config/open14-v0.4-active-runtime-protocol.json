@@ -1,7 +1,7 @@
 {
   "schema": "2rasi.priolens.open14.active-runtime-protocol-v0.4",
-  "updatedAtUtc": "2026-09-06T02:54:01Z",
-  "status": "V04_PUBLIC_PILOT_LIVE_LEGACY_RESULT_VISUALS_REMOVED_PASS",
+  "updatedAtUtc": "2026-09-06T03:42:57Z",
+  "status": "V04_PUBLIC_PILOT_LIVE_CRAWLER_HYGIENE_PASS",
   "runtimeRepo": "olemoz1977/omesg360",
   "runtimeBranch": "feature/priolens-open14-v04",
   "previewPath": "/priolens-open14-v04/",
@@ -243,7 +243,18 @@
       "rollbackCommit": "660ec63f19cc0288b4ebc7bd1f0a2e426900b246",
       "rollbackDeployRun": 33986214567
     },
-    "matrixFailureFallback": "generic saved-result error state; no alternate legacy result visualization"
+    "matrixFailureFallback": "generic saved-result error state; no alternate legacy result visualization",
+    "crawlerHygiene": {
+      "obsoleteVisualsRemoved": true,
+      "normalSessionHiddenTechnicalLabelsEmpty": true,
+      "debugModeRetained": true,
+      "staticResultHostTechnicalLabelsRemoved": true,
+      "runtimeCommit": "861161e8c4f9c6f1ea624230c72bdd029d812baa",
+      "localUiSmokeRun": 34009567015,
+      "deployedOwnerFlowRun": 34009578860,
+      "deployedRunAttempt": 2,
+      "note": "First deploy attempt failed on an unchanged API route-boundary check before preview upload; rerun passed all API, remote-byte/MIME and deployed 390x844 gates without code changes."
+    }
   },
   "deploymentGates": {
     "ownerPreviewAndApiDeployRun": 33966471878,
@@ -410,7 +421,7 @@
       "apiSchemaUnchanged": true
     }
   },
-  "nextAction": "Observe the public pilot. Do not redesign the result architecture speculatively. Re-run external crawler/LLM description checks opportunistically; obsolete result visuals are now removed from live HTML and public renderer.",
+  "nextAction": "Observe the public pilot. Re-run external crawler/LLM descriptions opportunistically; current live normal-session DOM no longer exposes obsolete result visuals or hidden technical Export JSON / research diagnostics labels.",
   "resultPersistence": {
     "completedResultLocalSnapshot": true,
     "keyBase": "priolens.open14.v041.last-result",
