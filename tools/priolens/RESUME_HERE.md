@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / DATA COLLECTION + RESEARCH ADMIN ACTIVE / MATRIX-PRIMARY DETAIL-ONLY RESULT / LEGACY RESULT VISUALS REMOVED
-Updated: 2026-09-06 05:54 EEST
+Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BLIND STIMULUS VALIDATION LT+EN LIVE / DATA COLLECTION + RESEARCH ADMIN ACTIVE / MATRIX-PRIMARY DETAIL-ONLY RESULT
+Updated: 2026-09-06 08:00 EEST
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -32,6 +32,42 @@ Rollback baseline:
 ## Rule
 
 **Repo is source of truth. Do not reconstruct PrioLens from chat memory.**
+
+## CURRENT CHECKPOINT — BLIND VISUAL STIMULUS VALIDATION LIVE
+
+Canonical protocol:
+`docs/PRIOLENS_VISUAL_STIMULUS_VALIDATION_PROTOCOL_v0.1.md`
+
+Public routes:
+- LT: `https://2rasi.lt/tools/priolens/validate/?lang=lt`;
+- EN: `https://2rasi.com/tools/priolens/validate/?lang=en`.
+
+Official PrioLens landing `/tools/priolens/` now exposes this as a secondary research action. The main Open14 v0.4 pilot remains the primary action.
+
+Boundary:
+- this validates/selects **images**, not people and not the PrioLens construct model;
+- current 42-image v0.3.1/v0.4 bank remains frozen for the public pilot;
+- do not mutate the active pilot bank from validation results mid-cohort;
+- participant sees 12/42 images in a balanced 7-form incomplete-block design;
+- open semantic description is collected before any mechanism labels;
+- closed classification uses intended mechanism + 3 frozen nearest competitors + OTHER;
+- clarity, confidence and valence are collected; RT remains process telemetry only;
+- KEEP / REVIEW / REPLACE is a pre-set screening rule, not psychometric validation.
+
+Infrastructure:
+- production source branch: `hero-webgl`;
+- final production commit: `795f6d3ffe08ce2c32a0284f42092e23a67cd310`;
+- Cloudflare Worker/D1 deploy + schema + synthetic 12-response storage + owner-summary smoke: workflow `34012182305` = SUCCESS;
+- dedicated D1 tables: `priolens_stimulus_validation_sessions`, `priolens_stimulus_validation_responses`;
+- aggregate owner summary is available from the validation page in 2rasi owner mode;
+- summary exposes ALL / LT / EN separately and does not expose open-text responses.
+
+Primary stimulus screening gate:
+- no selection status before n >= 40 ratings per stimulus;
+- current pool version: `open14-v031-current42`;
+- 42 stimuli / 14 families / 3 exemplars each;
+- seven forms × 12 images; every stimulus appears in exactly two forms.
+
 
 ## CURRENT CHECKPOINT — PUBLIC PILOT LIVE
 
@@ -100,6 +136,7 @@ Promotion state:
 
 Recovery order:
 0. `NEW_CHAT_HANDOFF_2026-09-05_PUBLIC_PILOT_CHECKPOINT.md` for the current live/public-pilot state;
+0a. `docs/PRIOLENS_VISUAL_STIMULUS_VALIDATION_PROTOCOL_v0.1.md` for the separate blind stimulus-screening study;
 1. this file;
 2. `NEW_CHAT_HANDOFF_2026-09-05_RESULT_INTERPRETATION.md` for the earlier interpretation-specific checkpoint;
 2. `docs/OPEN14_REPEATED_CONSTRUCT_AUDIT_2026-09-05.md` for the latest construct-level research audit;
