@@ -5,6 +5,19 @@ Updated: 2026-09-05 22:11 EEST
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
+## Pending structural cleanup — ship/map legacy
+
+Audit/runbook:
+`docs/OPEN14_V04_SHIP_MAP_LEGACY_REMOVAL_AUDIT_2026-09-06.md`
+
+Finding:
+- ship/map is deactivated visually but still active as hidden compatibility architecture for details, fallback, bootstrap assumptions, tests and deploy gates;
+- do **not** delete only the hidden DOM;
+- safe removal must first decouple detail rendering and inherited v0.3 result-ID assumptions;
+- `sufficiencyRoute` and B route-source IDs are current data/protocol concepts and must not be removed merely because they contain the word `route`;
+- audited implementation baseline remains `660ec63f19cc0288b4ebc7bd1f0a2e426900b246`;
+- no runtime mutation was made during the audit.
+
 ## Rule
 
 **Repo is source of truth. Do not reconstruct PrioLens from chat memory.**
