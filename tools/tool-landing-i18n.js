@@ -28,7 +28,7 @@
         {
           title: 'Skaityk rezultatą kaip veidrodį',
           paragraphs: [
-            'Šeši rezultatai nėra nuosprendžiai. Įrankis išryškina 2–3 sritis, kurioms gali būti verta skirti daugiau dėmesio, ir prie kiekvienos pateikia refleksijos klausimą.',
+            'Šeši rezultatai nėra nuosprendžiai. Įrankis parodo visų šešių sričių atsakymų pėdsaką, o tu pats pasirenki 1–2 sritis, į kurias nori pažvelgti giliau; joms pateikiamas refleksijos klausimas.',
             'Tai savirefleksijos įrankis, o ne psichologinis testas, diagnozė, 360° vertinimas ar kompetencijų vertinimo sistema.'
           ]
         },
