@@ -52,6 +52,11 @@
     a.href = pilotUrl;
   });
 
+  const validationUrl = `./validate/?lang=${lang}`;
+  document.querySelectorAll('#start-validation').forEach((a) => {
+    a.href = validationUrl;
+  });
+
   const footerSpan = document.querySelector('.tool-footer span');
   if (footerSpan) footerSpan.textContent = lt ? '2rasi · Pažvelk dar kartą.' : '2rasi · Look again.';
   const footerLink = document.querySelector('.tool-footer a');
