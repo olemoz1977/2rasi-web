@@ -28,13 +28,7 @@ const PRIOLENS_SV_SCHEMA = "2rasi.priolens.stimulus-validation-session-v0.2";
 const PRIOLENS_SV_VERSION = "priolens-stimulus-validation-v0.2";
 const PRIOLENS_SV_POOL = "open14-v04-current42";
 const PRIOLENS_SV_RESEARCH_SINCE = "2026-09-06T06:00:00.000Z";
-const PRIOLENS_SV_HOLDS = Object.freeze({
-  "SAFETY-02":"v04_asset_qc_pending",
-  "EXPLORATION-01":"v04_asset_qc_pending",
-  "AUTONOMY-02":"v04_asset_qc_pending",
-  "OPPORTUNITY-01":"v04_asset_qc_pending",
-  "OPPORTUNITY-03":"v04_asset_qc_pending",
-});
+const PRIOLENS_SV_HOLDS = Object.freeze({});
 const PRIOLENS_SV_FAMILIES = [
   "REST","RESOURCE","SAFETY","ORDER","CONNECTION","BELONGING","CARE",
   "AUTONOMY","CONTROL","RECOGNITION","MASTERY","EXPLORATION","KNOWLEDGE","OPPORTUNITY",
@@ -524,7 +518,7 @@ async function handlePriolensStimulusValidationSummary(request, env, origin) {
       schema:PRIOLENS_SV_SCHEMA,
       poolVersion:PRIOLENS_SV_POOL,
       researchSince:PRIOLENS_SV_RESEARCH_SINCE,
-      publicResearchOpen:false,
+      publicResearchOpen:true,
       holds:PRIOLENS_SV_HOLDS,
       thresholds:PRIOLENS_SV_THRESHOLDS,
       sessionCounts:sessions,
