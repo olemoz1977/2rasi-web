@@ -24,14 +24,16 @@ const TOOL_IDS = new Set([
   "priolens",
 ]);
 
-const PRIOLENS_SV_SCHEMA = "2rasi.priolens.stimulus-validation-session-v0.1";
-const PRIOLENS_SV_VERSION = "priolens-stimulus-validation-v0.1";
-const PRIOLENS_SV_POOL = "open14-v031-current42";
+const PRIOLENS_SV_SCHEMA = "2rasi.priolens.stimulus-validation-session-v0.2";
+const PRIOLENS_SV_VERSION = "priolens-stimulus-validation-v0.2";
+const PRIOLENS_SV_POOL = "open14-v04-current42";
 const PRIOLENS_SV_RESEARCH_SINCE = "2026-09-06T06:00:00.000Z";
 const PRIOLENS_SV_HOLDS = Object.freeze({
-  "SAFETY-02":"visible_watermark",
-  "EXPLORATION-01":"visible_watermark",
-  "AUTONOMY-02":"suspected_generator_artifact",
+  "SAFETY-02":"v04_asset_qc_pending",
+  "EXPLORATION-01":"v04_asset_qc_pending",
+  "AUTONOMY-02":"v04_asset_qc_pending",
+  "OPPORTUNITY-01":"v04_asset_qc_pending",
+  "OPPORTUNITY-03":"v04_asset_qc_pending",
 });
 const PRIOLENS_SV_FAMILIES = [
   "REST","RESOURCE","SAFETY","ORDER","CONNECTION","BELONGING","CARE",
@@ -53,6 +55,11 @@ const PRIOLENS_SV_COMPETITORS = Object.freeze({
   EXPLORATION:["KNOWLEDGE","OPPORTUNITY","AUTONOMY"],
   KNOWLEDGE:["EXPLORATION","MASTERY","ORDER"],
   OPPORTUNITY:["RESOURCE","AUTONOMY","EXPLORATION"],
+});
+const PRIOLENS_SV_STIMULUS_COMPETITORS = Object.freeze({
+  "OPPORTUNITY-01":["RESOURCE","AUTONOMY","ORDER"],
+  "OPPORTUNITY-02":["MASTERY","EXPLORATION","AUTONOMY"],
+  "OPPORTUNITY-03":["BELONGING","CONNECTION","RECOGNITION"],
 });
 const PRIOLENS_SV_STIMULUS_TO_FAMILY = Object.freeze(Object.fromEntries(
   PRIOLENS_SV_FAMILIES.flatMap((family) => [1,2,3].map((n) => [
@@ -262,7 +269,8 @@ function validatePriolensStimulusValidation(payload) {
     const optionSet = new Set(response.optionOrder);
     if (optionSet.size !== 5 || !optionSet.has(targetFamily) || !optionSet.has("OTHER") || !optionSet.has(classification)) return "invalid optionOrder";
     for (const code of optionSet) if (!PRIOLENS_SV_CLASSIFICATIONS.has(code)) return "unsupported option code";
-    const expectedOptions = new Set([targetFamily, ...(PRIOLENS_SV_COMPETITORS[targetFamily] || []), "OTHER"]);
+    const expectedCompetitors = PRIOLENS_SV_STIMULUS_COMPETITORS[stimulusId] || PRIOLENS_SV_COMPETITORS[targetFamily] || [];
+    const expectedOptions = new Set([targetFamily, ...expectedCompetitors, "OTHER"]);
     if (expectedOptions.size !== optionSet.size || [...expectedOptions].some((code) => !optionSet.has(code))) return "optionOrder does not match protocol";
 
     for (const key of ["step1Ms","step2Ms","totalMs"]) {
