@@ -7,14 +7,26 @@
 <title>Multipliers Reflection Experiment</title>
 <meta name="description" content="A 15-situation leadership reflection inspired by the Multipliers framework. Explore five leadership directions in your browser." />
 <style>
-:root{--bg:#0e0f13;--panel:#171922;--text:#e8ecf1;--muted:#aab4c0;--accent:#59c173;--accent2:#66a6ff;--grid:#2a2e39;--border:#222636;--chip:#2a2e39}[data-theme="light"]{--bg:#f7f9fc;--panel:#fff;--text:#11161c;--muted:#576270;--accent:#167e56;--accent2:#2b6fff;--grid:#dfe5ef;--border:#d6dde8;--chip:#eef2f9}html,body{height:100%}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;background:linear-gradient(135deg,var(--bg),#141823 70%);color:var(--text);margin:0}header{padding:12px 16px;background:var(--panel);position:sticky;top:0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;z-index:10}h1{margin:0;font-size:18px;flex:1}.btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;padding:10px 12px;border-radius:10px;font-weight:600;cursor:pointer;text-decoration:none}.btn.secondary{background:transparent;color:var(--text);border:1px solid var(--border)}.btn.flat{background:var(--chip);color:var(--text);border:1px solid var(--border)}.btn:active{transform:scale(.98)}main{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;padding:16px}.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.18)}.card h2{margin:0;padding:10px 12px;border-bottom:1px solid var(--border);font-size:16px}.content{padding:10px 12px}.legend{color:var(--muted);font-size:12px}.q{padding:8px;border-bottom:1px dashed var(--grid)}.q:last-child{border-bottom:none}.opts{display:grid;grid-template-columns:1fr;gap:6px;margin-top:8px}.opt{display:flex;gap:8px;align-items:flex-start;background:var(--chip);border:1px solid var(--border);padding:8px;border-radius:8px}.opt input{margin-top:2px;accent-color:var(--accent)}.bad{color:#ff6b6b}.summary{background:var(--chip);border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:8px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.chip{background:var(--chip);border:1px solid var(--border);color:var(--text);font-size:12px;padding:4px 8px;border-radius:999px}.insights .block{margin:8px 0 12px;border:1px solid var(--border);border-radius:10px;padding:10px;background:var(--chip)}.insights .block h4{margin:0 0 6px;font-size:14px}.insights ul{margin:6px 0 10px 18px}footer{padding:12px 16px;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}@media(max-width:920px){main{grid-template-columns:1fr}header{flex-wrap:wrap}h1{flex-basis:100%;margin-bottom:6px}}@media print{header,.actions,footer{display:none!important}main{grid-template-columns:1fr}.card{page-break-inside:avoid}}
-</style>
+:root{--bg:#0e0f13;--panel:#171922;--text:#e8ecf1;--muted:#aab4c0;--accent:#59c173;--accent2:#66a6ff;--grid:#2a2e39;--border:#222636;--chip:#2a2e39}[data-theme="light"]{--bg:#f7f9fc;--panel:#fff;--text:#11161c;--muted:#576270;--accent:#167e56;--accent2:#2b6fff;--grid:#dfe5ef;--border:#d6dde8;--chip:#eef2f9}html,body{min-height:100%}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;background:linear-gradient(135deg,var(--bg),#141823 70%);color:var(--text);margin:0}header{padding:12px 16px;background:var(--panel);position:sticky;top:0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;z-index:1000}h1{margin:0;font-size:18px;flex:1}.btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;padding:10px 12px;border-radius:10px;font-weight:600;cursor:pointer;text-decoration:none}.btn.secondary{background:transparent;color:var(--text);border:1px solid var(--border)}.btn.flat{background:var(--chip);color:var(--text);border:1px solid var(--border)}.btn:active{transform:scale(.98)}main{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;padding:16px}.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.18)}.card h2{margin:0;padding:10px 12px;border-bottom:1px solid var(--border);font-size:16px}.content{padding:10px 12px}.legend{color:var(--muted);font-size:12px}.q{padding:8px;border-bottom:1px dashed var(--grid)}.q:last-child{border-bottom:none}.opts{display:grid;grid-template-columns:1fr;gap:6px;margin-top:8px}.opt{display:flex;gap:8px;align-items:flex-start;background:var(--chip);border:1px solid var(--border);padding:8px;border-radius:8px}.opt input{margin-top:2px;accent-color:var(--accent)}.bad{color:#ff6b6b}.summary{background:var(--chip);border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:8px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.chip{background:var(--chip);border:1px solid var(--border);color:var(--text);font-size:12px;padding:4px 8px;border-radius:999px}.insights .block{margin:8px 0 12px;border:1px solid var(--border);border-radius:10px;padding:10px;background:var(--chip)}.insights .block h4{margin:0 0 6px;font-size:14px}.insights ul{margin:6px 0 10px 18px}footer{padding:12px 16px;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}@media(max-width:920px){body{padding-top:58px}header{position:fixed;top:0;left:0;right:0;height:58px;padding:8px 10px;box-sizing:border-box;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:7px;-webkit-overflow-scrolling:touch;scrollbar-width:none}header::-webkit-scrollbar{display:none}header h1,header .legend{display:none}header .btn{flex:0 0 auto;padding:9px 11px;font-size:14px;white-space:nowrap}#calc{order:-10}main{grid-template-columns:1fr}}
+    @media print{
+      @page{margin:14mm}
+      header,#questionnaireCard,footer,.actions,.rasi-feedback{display:none!important}
+      html,body{min-height:0!important;height:auto!important;background:#fff!important;color:#111!important}
+      body{margin:0!important;padding:0!important}
+      main{display:block!important;padding:0!important}
+      #resultCard{display:block!important;background:#fff!important;color:#111!important;border:none!important;box-shadow:none!important}
+      #resultCard .content{padding:0!important}
+      .summary,.chip,.insights .block{background:#fff!important;color:#111!important;border-color:#bbb!important}
+      .legend{color:#444!important}
+      .chips,.summary,.insights .block{break-inside:avoid;page-break-inside:avoid}
+    }
+  </style>
 </head>
 <body>
-<header><h1>Multipliers Reflection Experiment</h1><button id="theme" class="btn flat">Dark / Light</button><button id="shuffle" class="btn flat">Shuffle</button><button id="labels" class="btn flat">Show response-direction names: Off</button><button id="calc" class="btn">Calculate</button><button id="reset" class="btn secondary">Clear</button><button id="pdf" class="btn secondary">Print / PDF</button><span class="legend">15 situations · 5 response directions</span></header>
+<header><h1>Multipliers Reflection Experiment</h1><button id="calc" class="btn">Show result</button><button id="shuffle" class="btn flat">Shuffle</button><button id="reset" class="btn secondary">Clear</button><button id="pdf" class="btn secondary" disabled>PDF</button><button id="theme" class="btn flat">Theme</button><span class="legend">15 situations · 5 behaviour directions</span></header>
 <main>
-<section class="card"><h2>Situations</h2><div class="content legend">Choose the response closest to what you would actually do. Question and answer order are shuffled. The five names are behaviour directions inspired by the Multipliers framework, not personality types or validated scales.</div><div class="content" id="questions"></div><div class="actions content"><span id="status" class="legend"></span></div></section>
-<section class="card"><h2>Choice map</h2><div class="content"><div id="summary" class="summary legend">Not calculated yet.</div><div class="chips" id="chips"></div><div class="insights" id="insights"></div></div></section>
+<section class="card" id="questionnaireCard"><h2>Situations</h2><div class="content legend">Choose the response closest to what you would actually do. Question and answer order are shuffled. The five names are behaviour directions inspired by the Multipliers framework, not personality types or validated scales.</div><div class="content" id="questions"></div><div class="actions content"><span id="status" class="legend"></span></div></section>
+<section class="card" id="resultCard"><h2>Choice map</h2><div class="content"><div id="summary" class="summary legend">Not calculated yet.</div><div class="chips" id="chips"></div><div class="insights" id="insights"></div></div></section>
 </main>
 <footer><span>Independent 2rasi reflection experiment · 2026</span><a class="btn secondary" href="https://2rasi.com/#experiments">← 2rasi</a></footer>
 <script>
@@ -36,8 +48,8 @@ const SCENARIOS=[
 {target:'IN',t:'A new person is taking ownership of a process.',opts:[{a:'TM',d:'I highlight their strengths and arrange mentoring.'},{a:'LB',d:'I define rules and a clear response protocol.'},{a:'CH',d:'I explain the ambition the process needs to achieve.'},{a:'DM',d:'I ask for a fact-based analysis of the process.'},{a:'IN',d:'I provide resources, deadlines and checkpoints.'}]},
 {target:'IN',t:'A project is stuck because of obstacles outside your team’s area.',opts:[{a:'TM',d:'I find people with the relationships or expertise to help and invite them in.'},{a:'LB',d:'I create a clear way for people to escalate obstacles safely.'},{a:'CH',d:'I explain why removing the obstacle now matters to the wider goal.'},{a:'DM',d:'I capture facts, scenarios and agreements across functions.'},{a:'IN',d:'I remove the obstacle, add resources and clarify ownership.'}]}
 ];
-let SHOW_LABELS=false,CURRENT_ORDER=[];
-function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}function buildOrder(){const qs=shuffle([...SCENARIOS]);return qs.map(q=>({...q,opts:shuffle([...q.opts])}))}function render(){CURRENT_ORDER=buildOrder();const box=document.getElementById('questions');box.innerHTML='';CURRENT_ORDER.forEach((q,i)=>{const div=document.createElement('div');div.className='q';const title=document.createElement('div');title.innerHTML=`<strong>${(i+1).toString().padStart(2,'0')}.</strong> ${q.t}`;const opts=document.createElement('div');opts.className='opts';q.opts.forEach(op=>{const row=document.createElement('label');row.className='opt';const input=document.createElement('input');input.type='radio';input.name='q_'+i;input.value=op.a;input.required=true;const text=document.createElement('div');const arche=DIRECTIONS.find(a=>a.key===op.a).name;text.innerHTML=SHOW_LABELS?`<strong>${arche}</strong>: ${op.d}`:op.d;row.appendChild(input);row.appendChild(text);opts.appendChild(row)});div.appendChild(title);div.appendChild(opts);div.dataset.target=q.target;box.appendChild(div)})}
+let CURRENT_ORDER=[];
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}function buildOrder(){const qs=shuffle([...SCENARIOS]);return qs.map(q=>({...q,opts:shuffle([...q.opts])}))}function render(){CURRENT_ORDER=buildOrder();const box=document.getElementById('questions');box.innerHTML='';CURRENT_ORDER.forEach((q,i)=>{const div=document.createElement('div');div.className='q';const title=document.createElement('div');title.innerHTML=`<strong>${(i+1).toString().padStart(2,'0')}.</strong> ${q.t}`;const opts=document.createElement('div');opts.className='opts';q.opts.forEach(op=>{const row=document.createElement('label');row.className='opt';const input=document.createElement('input');input.type='radio';input.name='q_'+i;input.value=op.a;input.required=true;const text=document.createElement('div');text.textContent=op.d;row.appendChild(input);row.appendChild(text);opts.appendChild(row)});div.appendChild(title);div.appendChild(opts);div.dataset.target=q.target;box.appendChild(div)})}
 function collect(){
   const rows=[...document.querySelectorAll('.q')];
   const countsAll={TM:0,LB:0,CH:0,DM:0,IN:0};
@@ -50,15 +62,20 @@ function collect(){
     countsAll[key]+=1;
     const q=CURRENT_ORDER[i];
     const opt=q.opts.find(o=>o.a===key);
-    trace.push({question:q.t,chosenKey:key,chosenText:opt?opt.d:'',designKey:q.target});
+    trace.push({
+      question:q.t,
+      chosenKey:key,
+      chosenText:opt?opt.d:'',
+      options:q.opts.map(o=>({key:o.a,text:o.d}))
+    });
   });
   return {countsAll,trace,missing:missingRows.length,missingRows};
 }
 
-function directionName(key){
-  const d=DIRECTIONS.find(x=>x.key===key);
-  return d?d.name:key;
-}
+const DIRECTION_META={"TM":{"short":"Noticing strengths and bringing the right people in","name":"Talent Magnet"},"LB":{"short":"Clear standards and a safer space to act","name":"Liberator"},"CH":{"short":"Framing direction, ambition and the “why”","name":"Challenger"},"DM":{"short":"Using facts, alternatives and debate","name":"Debate Maker"},"IN":{"short":"Giving ownership, resources and checkpoints","name":"Investor"}};
+
+function directionName(key){return DIRECTION_META[key]?DIRECTION_META[key].name:key;}
+function directionShort(key){return DIRECTION_META[key]?DIRECTION_META[key].short:key;}
 
 function resultBlock(title,html){
   const b=document.createElement('div');
@@ -79,39 +96,54 @@ function renderChoiceMap(data){
   insights.innerHTML='';
   chips.innerHTML='';
 
-  const sorted=Object.entries(data.countsAll).sort((a,b)=>b[1]-a[1]);
-  const top=sorted[0];
+  const orderIndex=Object.fromEntries(DIRECTIONS.map((d,i)=>[d.key,i]));
+  const sorted=Object.entries(data.countsAll).sort((a,b)=>b[1]-a[1] || orderIndex[a[0]]-orderIndex[b[0]]);
+  const maxCount=sorted[0][1];
+  const topKeys=sorted.filter(([,v])=>v===maxCount).map(([k])=>k);
+  const topKey=topKeys[0];
+  const contrastKey=[...sorted].sort((a,b)=>a[1]-b[1] || orderIndex[a[0]]-orderIndex[b[0]]).find(([k])=>k!==topKey)[0];
 
-  summary.innerHTML=`This is a trace of 15 choices, not a personality type, a “Multiplier” classification or a validated leadership score.<br><br>Most often in this response set you chose <strong>${directionName(top[0])}</strong> — ${top[1]} / 15. That does not mean you “are” this direction — only that it appeared most often in these situations.`;
+  const topText=topKeys.map(k=>`<strong>${directionShort(k)}</strong> <span class="legend">(${directionName(k)})</span>`).join(' · ');
+  summary.innerHTML=`This is a trace of choices across 15 situations. It is not a personality type, a “Multiplier” classification or a validated leadership score.<br><br>${topKeys.length>1?"Several directions appeared equally often at the top:":"Most often in this response set you returned to:"} ${topText} — <strong>${maxCount} of 15 choices</strong>.<br><span class="legend">The Multipliers direction name is kept in parentheses only as a reference to the model, not as a label for you.</span>`;
 
-  const chip=txt=>{const c=document.createElement('span');c.className='chip';c.textContent=txt;return c;};
-  sorted.forEach(([k,v])=>chips.appendChild(chip(`${directionName(k)}: ${v} / 15`)));
+  const chip=txt=>{const el=document.createElement('span');el.className='chip';el.textContent=txt;return el;};
+  sorted.forEach(([k,v])=>chips.appendChild(chip(`${directionShort(k)} · ${v}/15`)));
 
-  const rows=DIRECTIONS.map(d=>{
-    const count=data.countsAll[d.key];
-    return `<div style="padding:10px 0;border-bottom:1px dashed var(--grid)">
-      <strong>${d.name}</strong> · ${count} / 15<br>
-      <span class="legend"><strong>Question for yourself:</strong> ${REFLECTION_QUESTIONS[d.key]}</span>
-    </div>`;
-  }).join('');
-  insights.appendChild(resultBlock("Distribution across five behaviour directions",rows));
+  const distribution=sorted.map(([k,v])=>`
+    <div style="padding:9px 0;border-bottom:1px dashed var(--grid)">
+      <strong>${directionShort(k)}</strong> · ${v}/15
+      <div class="legend">${directionName(k)}</div>
+    </div>`).join('');
+  insights.appendChild(resultBlock("What repeated in your choices",distribution));
 
-  const same=data.trace.find(x=>x.chosenKey===x.designKey);
-  const diff=data.trace.find(x=>x.chosenKey!==x.designKey);
-  const cards=[];
-  if(same){
-    cards.push(`<div style="margin:8px 0 14px"><strong>A situation where your choice matched the scenario design direction</strong><br>${same.question}<br><span class="legend">Your choice: ${directionName(same.chosenKey)} — ${same.chosenText}</span></div>`);
+  const topExamples=data.trace.filter(x=>x.chosenKey===topKey).slice(0,2);
+  if(topExamples.length){
+    const examples=topExamples.map(x=>`
+      <div style="margin:8px 0 14px">
+        <div>${x.question}</div>
+        <div class="legend"><strong>Your choice:</strong> ${x.chosenText}</div>
+      </div>`).join('');
+    insights.appendChild(resultBlock("Where this way of acting appeared",examples));
   }
-  if(diff){
-    cards.push(`<div style="margin:8px 0 14px"><strong>A situation where your choice differed from the scenario design direction</strong><br>${diff.question}<br><span class="legend">Your choice: ${directionName(diff.chosenKey)} — ${diff.chosenText}<br>Scenario design direction: ${directionName(diff.designKey)}</span></div>`);
-  }
-  cards.push(`<p class="legend">This is not right/wrong. The contrast only helps you notice which way of acting you chose in that context.</p>`);
-  insights.appendChild(resultBlock("Two concrete choice contrasts",cards.join('')));
 
-  insights.appendChild(resultBlock("One reflection experiment",`<p>In your next real team situation, name which of the five directions comes to mind first before acting. Then deliberately formulate one alternative from another direction and ask: what would it change? Afterwards, write one sentence on whether considering the alternative changed what you did.</p>`));
+  const anchor=data.trace.find(x=>x.chosenKey===topKey) || data.trace[0];
+  const alternative=anchor.options.find(o=>o.key===contrastKey) || anchor.options.find(o=>o.key!==anchor.chosenKey);
+
+  const contrastHtml=`
+    <p><strong>Situation:</strong> ${anchor.question}</p>
+    <p><strong>A · The action you chose:</strong><br>${anchor.chosenText}</p>
+    <p><strong>B · Another available action whose pattern you chose less often in this experiment:</strong><br>${alternative.text}</p>
+    <p class="legend">The second option is not “better”. It is included only to place another perspective next to your actual choice.</p>`;
+  insights.appendChild(resultBlock("One concrete contrast",contrastHtml));
+
+  const experimentHtml=`
+    <p>Next time a situation resembles this one, spend about 30 seconds comparing two options before acting:</p>
+    <p><strong>A</strong> · ${anchor.chosenText}</p>
+    <p><strong>B</strong> · ${alternative.text}</p>
+    <p>Ask yourself: <strong>what does B let me notice that A might not?</strong> Then choose the real action — you do not have to choose B.</p>
+    <p>Afterwards, write one sentence: <strong>did the comparison change my decision or what I noticed?</strong></p>`;
+  insights.appendChild(resultBlock("One concrete reflection experiment",experimentHtml));
 }
-
-const REFLECTION_QUESTIONS={"TM":"When does noticing strengths and bringing in the right person create more value, and when is clearer structure needed first?","LB":"When do clear standards and a safe learning space help the team perform, and when is a firmer intervention needed?","CH":"When does an ambitious direction mobilize people, and when might it outrun reality checking?","DM":"When do multiple perspectives improve a decision, and when does discussion start slowing action?","IN":"When do clear ownership, resources and checkpoints grow autonomy, and when does the person still need closer support?"};
 
 function calc(){
   const data=collect();
@@ -125,8 +157,9 @@ function calc(){
     return;
   }
   renderChoiceMap(data);
-  document.getElementById('status').textContent="✓ Choice map ready.";
-  const card=document.getElementById('summary').closest('.card');
+  document.getElementById('status').textContent="✓ Result ready.";
+  document.getElementById('pdf').disabled=false;
+  const card=document.getElementById('resultCard');
   requestAnimationFrame(()=>card.scrollIntoView({behavior:'smooth',block:'start'}));
 }
 
@@ -136,6 +169,7 @@ function reset(){
   document.getElementById('chips').innerHTML='';
   document.getElementById('insights').innerHTML='';
   document.getElementById('status').textContent='';
+  document.getElementById('pdf').disabled=true;
 }
 
 function toggleTheme(){
@@ -143,7 +177,7 @@ function toggleTheme(){
   const isLight=html.getAttribute('data-theme')==='light';
   html.setAttribute('data-theme',isLight?'':'light');
 }
-function toggleLabels(){SHOW_LABELS=!SHOW_LABELS;document.getElementById('labels').textContent='Show response-direction names: '+(SHOW_LABELS?'On':'Off');const pos=window.scrollY;render();window.scrollTo(0,pos)}function reshuffle(){const pos=window.scrollY;render();reset();window.scrollTo(0,pos)}function init(){render();reset();document.getElementById('calc').addEventListener('click',calc);document.getElementById('reset').addEventListener('click',()=>{render();reset()});document.getElementById('pdf').addEventListener('click',()=>window.print());document.getElementById('theme').addEventListener('click',toggleTheme);document.getElementById('shuffle').addEventListener('click',reshuffle);document.getElementById('labels').addEventListener('click',toggleLabels)}window.addEventListener('DOMContentLoaded',init);
+function reshuffle(){const pos=window.scrollY;render();reset();window.scrollTo(0,pos)}function init(){render();reset();document.getElementById('calc').addEventListener('click',calc);document.getElementById('reset').addEventListener('click',()=>{render();reset()});document.getElementById('pdf').addEventListener('click',()=>window.print());document.getElementById('theme').addEventListener('click',toggleTheme);document.getElementById('shuffle').addEventListener('click',reshuffle);}window.addEventListener('DOMContentLoaded',init);
 </script>
 <script src="/tools/site-owner-mode.js?v=20260906-2"></script>
 <script src="/tools/site-insights.js?v=20260906-2"></script>
