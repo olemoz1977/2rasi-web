@@ -5,7 +5,7 @@ function allowed(env){return String(env.ALLOWED_ORIGINS||"https://2rasi.lt,https
 function cors(req,env){const o=req.headers.get("origin")||"",a=allowed(env),v=a.includes(o)?o:a[0]||"null";return{"access-control-allow-origin":v,"access-control-allow-methods":"GET,POST,OPTIONS","access-control-allow-headers":"content-type","access-control-max-age":"86400","vary":"Origin"}}
 function json(req,env,x,status=200){return new Response(JSON.stringify(x),{status,headers:{...J,...cors(req,env)}})}
 async function body(req){if(!(req.headers.get("content-type")||"").includes("application/json"))throw new Error("JSON body required");return req.json()}
-async function ensure(db,p){await db.prepare(`INSERT OR IGNORE INTO pilot_sessions(session_id,bank_version,engine_version,ui_version,started_at,device_type,locale) VALUES(?,?,?,?,?,?,?)`).bind(clip(p.sessionId,120),clip(p.bankVersion||"unknown",40),clip(p.engineVersion||"unknown",40),clip(p.uiVersion||"unknown",40),clip(p.startedAt||new Date().toISOString(),60),clip(p.deviceType||"unknown",20),clip(p.locale||"",30)).run()}
+async function ensure(db,p){await db.prepare(`INSERT OR IGNORE INTO pilot_sessions(session_id,bank_version,engine_version,ui_version,started_at,device_type,locale,source_mode,analysis_eligible) VALUES(?,?,?,?,?,?,?,?,?)`).bind(clip(p.sessionId,120),clip(p.bankVersion||"unknown",40),clip(p.engineVersion||"unknown",40),clip(p.uiVersion||"unknown",40),clip(p.startedAt||new Date().toISOString(),60),clip(p.deviceType||"unknown",20),clip(p.locale||"",30),clip(p.sourceMode||"",20),p.analysisEligible===false?0:1).run()}
 export default{async fetch(req,env){
  if(req.method==="OPTIONS")return new Response(null,{status:204,headers:cors(req,env)});
  const u=new URL(req.url);
@@ -15,9 +15,9 @@ export default{async fetch(req,env){
  try{
   if(req.method==="POST"&&route==="/session"){
    const p=await body(req);if(!p.sessionId)return json(req,env,{ok:false,error:"sessionId required"},400);
-   await env.DB.prepare(`INSERT INTO pilot_sessions(session_id,bank_version,engine_version,ui_version,started_at,device_type,locale,updated_at) VALUES(?,?,?,?,?,?,?,CURRENT_TIMESTAMP)
-    ON CONFLICT(session_id) DO UPDATE SET bank_version=excluded.bank_version,engine_version=excluded.engine_version,ui_version=excluded.ui_version,device_type=excluded.device_type,locale=excluded.locale,updated_at=CURRENT_TIMESTAMP`)
-    .bind(clip(p.sessionId,120),clip(p.bankVersion,40),clip(p.engineVersion,40),clip(p.uiVersion,40),clip(p.startedAt,60),clip(p.deviceType,20),clip(p.locale,30)).run();
+   await env.DB.prepare(`INSERT INTO pilot_sessions(session_id,bank_version,engine_version,ui_version,started_at,device_type,locale,source_mode,analysis_eligible,updated_at) VALUES(?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)
+    ON CONFLICT(session_id) DO UPDATE SET bank_version=excluded.bank_version,engine_version=excluded.engine_version,ui_version=excluded.ui_version,device_type=excluded.device_type,locale=excluded.locale,source_mode=excluded.source_mode,analysis_eligible=excluded.analysis_eligible,updated_at=CURRENT_TIMESTAMP`)
+    .bind(clip(p.sessionId,120),clip(p.bankVersion,40),clip(p.engineVersion,40),clip(p.uiVersion,40),clip(p.startedAt,60),clip(p.deviceType,20),clip(p.locale,30),clip(p.sourceMode||"",20),p.analysisEligible===false?0:1).run();
    return json(req,env,{ok:true});
   }
   if(req.method==="POST"&&route==="/response"){
@@ -51,13 +51,13 @@ export default{async fetch(req,env){
    return json(req,env,{ok:true});
   }
   if(req.method==="GET"&&route==="/summary"){
-   const overview=await env.DB.prepare("SELECT COUNT(*) AS sessions,SUM(CASE WHEN completed=1 THEN 1 ELSE 0 END) AS completed,ROUND(AVG(CASE WHEN completed=1 THEN ad_count END),2) AS avg_ad FROM pilot_sessions").first();
-   const completed=Number(overview?.completed||0);
-   if(completed<5)return json(req,env,{ok:true,minimumReached:false,completed,minimum:5});
+   const overview=await env.DB.prepare("SELECT COUNT(*) AS sessions,SUM(CASE WHEN completed=1 THEN 1 ELSE 0 END) AS completed,SUM(CASE WHEN completed=1 AND analysis_eligible=1 THEN 1 ELSE 0 END) AS eligible_completed,ROUND(AVG(CASE WHEN completed=1 AND analysis_eligible=1 THEN ad_count END),2) AS avg_ad FROM pilot_sessions").first();
+   const completed=Number(overview?.eligible_completed||0);
+   if(completed<5)return json(req,env,{ok:true,minimumReached:false,completed,minimum:5,totalCompleted:Number(overview?.completed||0)});
    const [adDist,dirs,questions,feedback]=await Promise.all([
-    env.DB.prepare("SELECT ad_count,COUNT(*) AS n FROM pilot_sessions WHERE completed=1 GROUP BY ad_count ORDER BY ad_count").all(),
-    env.DB.prepare("SELECT SUM(tm_count) TM,SUM(lb_count) LB,SUM(ch_count) CH,SUM(dm_count) DM,SUM(in_count) IN,SUM(ad_count) AD FROM pilot_results").first(),
-    env.DB.prepare(`SELECT question_id,COUNT(*) AS responses,SUM(CASE WHEN direction='AD' THEN 1 ELSE 0 END) AS ad_selected,ROUND(100.0*SUM(CASE WHEN direction='AD' THEN 1 ELSE 0 END)/COUNT(*),1) AS ad_rate_pct,ROUND(AVG(response_time_ms)) AS avg_ms,ROUND(AVG(CASE WHEN direction='AD' THEN response_time_ms END)) AS ad_avg_ms FROM pilot_responses GROUP BY question_id ORDER BY question_id`).all(),
+    env.DB.prepare("SELECT ad_count,COUNT(*) AS n FROM pilot_sessions WHERE completed=1 AND analysis_eligible=1 GROUP BY ad_count ORDER BY ad_count").all(),
+    env.DB.prepare("SELECT SUM(r.tm_count) TM,SUM(r.lb_count) LB,SUM(r.ch_count) CH,SUM(r.dm_count) DM,SUM(r.in_count) IN,SUM(r.ad_count) AD FROM pilot_results r JOIN pilot_sessions s ON s.session_id=r.session_id WHERE s.analysis_eligible=1").first(),
+    env.DB.prepare(`SELECT question_id,COUNT(*) AS responses,SUM(CASE WHEN direction='AD' THEN 1 ELSE 0 END) AS ad_selected,ROUND(100.0*SUM(CASE WHEN direction='AD' THEN 1 ELSE 0 END)/COUNT(*),1) AS ad_rate_pct,ROUND(AVG(response_time_ms)) AS avg_ms,ROUND(AVG(CASE WHEN direction='AD' THEN response_time_ms END)) AS ad_avg_ms FROM pilot_responses pr JOIN pilot_sessions ps ON ps.session_id=pr.session_id WHERE ps.analysis_eligible=1 GROUP BY question_id ORDER BY question_id`).all(),
     env.DB.prepare(`SELECT COUNT(*) AS n,SUM(CASE WHEN noticed_different_options='yes' THEN 1 ELSE 0 END) AS noticed_yes,SUM(CASE WHEN noticed_different_options='no' THEN 1 ELSE 0 END) AS noticed_no,SUM(CASE WHEN noticed_different_options='unsure' THEN 1 ELSE 0 END) AS noticed_unsure,SUM(CASE WHEN answered_realistically='yes' THEN 1 ELSE 0 END) AS realistic_yes,SUM(CASE WHEN answered_realistically='mostly' THEN 1 ELSE 0 END) AS realistic_mostly,SUM(CASE WHEN answered_realistically='no' THEN 1 ELSE 0 END) AS realistic_no,SUM(CASE WHEN result_prompted_reflection='yes' THEN 1 ELSE 0 END) AS reflect_yes,SUM(CASE WHEN result_prompted_reflection='unsure' THEN 1 ELSE 0 END) AS reflect_unsure,SUM(CASE WHEN result_prompted_reflection='no' THEN 1 ELSE 0 END) AS reflect_no FROM pilot_feedback`).first()
    ]);
    return json(req,env,{ok:true,minimumReached:true,overview,adDistribution:adDist.results||[],directionTotals:dirs||{},questionStats:questions.results||[],feedback:feedback||{}});
