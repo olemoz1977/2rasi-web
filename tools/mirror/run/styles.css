@@ -322,6 +322,47 @@ main {
   color: var(--ink-soft);
 }
 
+.category-description {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.results-note,
+.top-areas-intro,
+.selection-limit {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.results-note { margin: -4px 0 28px; }
+.top-areas-intro { margin: -8px 0 18px; }
+.selection-limit { margin: 10px 0 14px; }
+
+.reflection-choice-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.reflection-choice {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 7px 11px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.reflection-choice.is-selected {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
 /* the "reflecting line" — signature element:
    a bar grows from a fixed axis, with a fainter mirrored
    bar beneath it, echoing the idea of a mirror, not a verdict. */
@@ -339,7 +380,6 @@ main {
   border-radius: var(--radius);
   transition: width 700ms cubic-bezier(.2,.8,.2,1);
 }
-.bar-fill.is-clay { background: var(--clay); }
 
 .bar-mirror {
   height: 5px;
@@ -347,12 +387,6 @@ main {
   border-radius: var(--radius);
   opacity: 0.28;
   transition: width 700ms cubic-bezier(.2,.8,.2,1);
-}
-
-.category-label {
-  font-size: 13px;
-  color: var(--ink-soft);
-  margin-top: 6px;
 }
 
 .top-areas {
