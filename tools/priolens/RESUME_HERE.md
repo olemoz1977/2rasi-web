@@ -33,6 +33,28 @@ Rollback baseline:
 
 **Repo is source of truth. Do not reconstruct PrioLens from chat memory.**
 
+## CURRENT CHECKPOINT — MANUAL WATERMARK AUDIT COMPLETE
+
+Canonical audit:
+`docs/OPEN14_MANUAL_WATERMARK_AUDIT_2026-09-06.md`
+
+Owner manually reviewed all 42 current stimuli in `stimulus-bank.html`.
+
+Confirmed visible contamination:
+- `SAFETY-02` — visible `KlingAI 3.0`;
+- `EXPLORATION-01` — visible `KlingAI 3.0`.
+
+Suspected nuisance artifact:
+- `AUTONOMY-02` — small bright four-point sparkle; not yet confirmed as a watermark.
+
+No additional visible watermarks were found in the remaining 39 stimuli.
+
+Rule:
+- previous OCR/watermark automation PASS is insufficient by itself;
+- do not silently overwrite active-bank pixels under the same bank/pool ID;
+- remediation must create a new bank/pool version and analytical cutoff;
+- the owner validation session completed during this audit is technical/manual smoke, not independent research N.
+
 ## CURRENT CHECKPOINT — BLIND VISUAL STIMULUS VALIDATION LIVE
 
 Canonical protocol:
