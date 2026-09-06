@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BLIND STIMULUS VALIDATION PUBLIC HOLD / WATERMARK REMEDIATION REVIEW ACTIVE / DATA COLLECTION + RESEARCH ADMIN ACTIVE
-Updated: 2026-09-06 09:10 EEST
+Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BLIND STIMULUS VALIDATION PUBLIC HOLD / BANK v0.4 TECHNICAL QC PASS / OWNER 42/42 VISUAL REVIEW PENDING / DATA COLLECTION + RESEARCH ADMIN ACTIVE
+Updated: 2026-09-06 14:05 EEST
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -78,9 +78,40 @@ Blind validation v0.4 preparation:
   - O3 meeting seat -> BELONGING / CONNECTION / RECOGNITION.
 - Old validation drafts are not resumed into the v0.4 pool.
 
-Current staging limitation:
-- repo logic/manifests are being prepared before promotion;
-- five replacement assets must be present in the new `/priolens-research-assets/Open14-v04/` namespace and pass reachability/hash/mobile/manual-watermark QC before runtimeReady/public reopening.
+Current staging state:
+- five replacement assets are now present in the isolated `/priolens-research-assets/Open14-v04/` namespace;
+- automated 640×640 image decode, approved-source pixel identity for OPPORTUNITY-01 / OPPORTUNITY-03 / AUTONOMY-02, remote byte-for-byte verification for all five changed assets, 42-image owner-review build, review upload and review-route verification all pass;
+- owner manual 42/42 visual/watermark review is still required before runtimeReady/public reopening.
+
+## CURRENT CHECKPOINT — BANK v0.4 TECHNICAL QC PASS / OWNER REVIEW PENDING
+
+Runtime staging branch:
+`olemoz1977/omesg360@feature/priolens-v04-bank-v04`
+
+Technical gate:
+- exact OPPORTUNITY-03 source transfer was corrected; its three base64 chunks now reconstruct the approved `op3_q45.webp` pixels;
+- AUTONOMY-02 staged chunks already matched the approved `aut2_q45.webp` source exactly;
+- OPPORTUNITY-01 staged source reconstructs the approved `op1_q45.webp` pixels;
+- the QC workflow verifies decoded RGB pixel identity for the three local approved assets, not only file-container validity;
+- all five changed assets pass 640×640 decode and remote byte-for-byte verification after isolated upload.
+
+Accepted QC evidence:
+- runtime workflow: `.github/workflows/priolens-v04-bank-v04-qc.yml`;
+- successful run: `34029097158`;
+- successful run head: `2dea4829ee8e39a3a84049b48a8ea83329c4d555`;
+- every workflow step passed, including five-asset preparation, isolated upload, remote byte check, exact 42-image review build, review upload and review verification;
+- retained artifact: `priolens-bank-v04-qc-review`, artifact id `9988023491`.
+
+Owner review:
+- isolated 42/42 review: `https://omesg360.eu/priolens-research-assets/Open14-v04-bank-review-v01/`;
+- contact sheet: `contact-sheet-42.jpg`;
+- candidate manifest: `BANK_V04_CANDIDATE.json`.
+
+Boundary:
+- this is a **technical QC pass**, not owner semantic/visual acceptance and not stimulus validation;
+- active participant runtime remains untouched;
+- public blind stimulus validation remains HOLD;
+- do not set `runtimeReady=true`, promote bank-v0.4 into the live participant runtime, or reopen external stimulus validation until the owner manually reviews the 42-image bank and confirms no visible watermark/artifact or unacceptable semantic regression.
 
 ## CURRENT CHECKPOINT — OPPORTUNITY FAMILY REBUILD FLAG
 
