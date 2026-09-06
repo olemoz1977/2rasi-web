@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
-Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BANK v0.4 OWNER REVIEW PASS / BLIND VALIDATION v0.4 PUBLIC LIVE / BANK v0.4 RUNTIME PROMOTION NOT YET EXECUTED / DATA COLLECTION + RESEARCH ADMIN ACTIVE
-Updated: 2026-09-06 14:32 EEST
+Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BANK v0.4 LIVE IN PARTICIPANT RUNTIME / BLIND VALIDATION v0.4 PUBLIC LIVE / ANALYTICAL BANK BOUNDARY ACTIVE / DATA COLLECTION + RESEARCH ADMIN ACTIVE
+Updated: 2026-09-06 14:44 EEST
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -112,15 +112,18 @@ Owner review:
 - owner decision on 2026-09-06: **PASS 42/42**, including all five changed assets.
 
 Post-owner state:
-- bank-v0.4 candidate is marked `runtimeReady=true` / `V04_BANK_READY_FOR_PROMOTION`;
-- this means technically ready to promote, **not already promoted**;
-- promotion-ready runtime QC run `34030238596`: SUCCESS;
-- public blind validation is reopened on `open14-v04-current42` with no temporary asset holds;
+- bank-v0.4 is now live in the participant runtime;
+- runtime promotion/deploy run `34030815518`: SUCCESS;
+- runtime promotion head: `8a02d8b0315aff6fe32ea6570e0b867e71200e0f`;
+- build/API/remote-byte/live-module checks and real deployed 390×844 participant-flow + API-save smoke all passed;
+- v0.4 API accepts both `bank-v0.3.1` and `bank-v0.4` so an already-open legacy session can finish, while every newly started session records the currently loaded `bankSchema`;
+- new participant sessions load `2rasi.priolens.open14.bank-v0.4`;
+- public blind validation remains live on `open14-v04-current42` with no temporary asset holds;
 - validation staging checks run `34030263907`: SUCCESS;
 - production Worker deploy run `34030356385`: SUCCESS;
-- public validation live check run `34030457235`: SUCCESS; verified live `app.js`, 42-image v0.4 pool, and Worker summary contract `publicResearchOpen=true` / zero holds;
-- production validation source head includes commit `68d43fd241f2fce9a35dce0ada1e74d55731fb21`; live-check workflow commit `6c00afb83b0749e7d4612113375f66dede523fc7`;
-- participant runtime promotion remains separate and must preserve the bank-v0.3.1 -> bank-v0.4 analytical cutoff.
+- public validation live check run `34030457235`: SUCCESS;
+- analytical separation must use the stored `bank_schema`, not only the session schema or a timestamp;
+- admin v0.4 statistics now default to Bank v0.4 and expose explicit Bank v0.3.1 / all-bank filters; CSV/JSONL include `bank_schema`.
 
 ## CURRENT CHECKPOINT — OPPORTUNITY FAMILY REBUILD FLAG
 
