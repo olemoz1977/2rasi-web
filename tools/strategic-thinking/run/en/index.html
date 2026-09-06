@@ -37,7 +37,7 @@
     .radio{display:flex;gap:10px;align-items:flex-start;background:transparent;border:1px solid var(--border);border-radius:10px;padding:8px}
     .radio input{margin-top:3px}
 
-    .scorecard{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+    .scorecard{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
     .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
     .card .num{font-size:22px;font-weight:800}
 
@@ -92,28 +92,23 @@
 
   <!-- REZULTATAI: paslėpta iki „Submit answers“ -->
   <div id="results" class="hidden">
-    <h3>Results</h3>
+    <h3>Wider · Differently · Again</h3>
+    <p class="result-note">The three numbers below only summarize how your choices matched the systems-thinking, reframing and reflection directions coded into this experiment. They are not competence levels or normative scores.</p>
     <div class="scorecard">
-      <div class="card"><div>Systems thinking</div><div class="num" id="scoreSystemic">0/25</div></div>
-      <div class="card"><div>Reframing</div><div class="num" id="scoreReframing">0/25</div></div>
-      <div class="card"><div>Reflection</div><div class="num" id="scoreReflection">0/25</div></div>
-      <div class="card"><div>Total score</div><div class="num" id="scoreTotal">0/75</div></div>
+      <div class="card"><div><strong>WIDER</strong><br>Systems thinking</div><div class="num" id="scoreSystemic">0/25</div></div>
+      <div class="card"><div><strong>DIFFERENTLY</strong><br>Reframing</div><div class="num" id="scoreReframing">0/25</div></div>
+      <div class="card"><div><strong>AGAIN</strong><br>Reflection</div><div class="num" id="scoreReflection">0/25</div></div>
     </div>
-
     <section id="insights" style="margin-top:22px;">
-      <h3>Narrative assessment</h3>
+      <h3>What your choice pattern suggests</h3>
       <div id="verbalSummary" class="insight-grid"></div>
-
-      <h3 style="margin-top:18px;">Practical recommendations (30 days)</h3>
+      <h3 style="margin-top:18px;">One 30-day experiment</h3>
       <div id="actionPlan" class="insight-grid"></div>
     </section>
   </div>
 
-  <p class="footnote">
-    Scoring: choices are rated from 1 to 5 using the <em>score</em> assigned to each option.
-    Each subscale has 5 questions → max. 25; total max. 75.
-  </p>
-  <p class="copyright">© 2025 STQ. Created by Oleg Mozochin (GitHub Pages). Runs without a server; data is stored only in your browser. · <a href="https://2rasi.com/#experiments" style="color:inherit">← Back to 2rasi</a></p>
+  <p class="footnote">Scoring: each option in this experiment has an orienting 1–5 code. Five choices produce a 5–25 direction sum. This is not a validated measure of strategic-thinking ability and should not be interpreted as a competence level.</p>
+  <p class="copyright">© 2026 Strategic Thinking · 2rasi reflection experiment. Questionnaire answers are stored only in your browser. Optional site feedback and basic usage events may be sent to 2rasi. · <a href="https://2rasi.com/#experiments" style="color:inherit">← Back to 2rasi</a></p>
 </main>
 
 <!-- TURINYS iš .docx (1:1 tekstai ir balai) -->
@@ -360,94 +355,85 @@
       STQ[0].questions.forEach(q => { sys   += scoreOf(q, a[q.id]); });
       STQ[1].questions.forEach(q => { refra += scoreOf(q, a[q.id]); });
       STQ[2].questions.forEach(q => { refl  += scoreOf(q, a[q.id]); });
-      return {sys, refra, refl, total: sys+refra+refl};
+      return {sys, refra, refl};
     }
 
-    // Interpretacijos ir planas
-    function describeScale(label, score){
-      let level, text;
-      if(score <= 10){ level='low'; text=`${label}: low level. Systematically strengthen the foundational habits and processes.`; }
-      else if(score <= 18){ level='mid'; text=`${label}: medium level. The foundations work, but blind spots and inconsistency remain.`; }
-      else { level='high'; text=`${label}: high level. Consider institutionalizing this strength by sharing practices, creating standards and mentoring others.`; }
-      return { level, text };
+    // Interpretation: profile, not competence level
+    const DIRECTION_META = {
+      sys:{title:'Wider · Systems thinking',block:0,prompt:'What would change in this decision if you widened the system boundary to include other functions, the customer, a longer time horizon or second-order effects?',practice:'Before finalizing an important decision, map 3 consequence links: what else changes, for whom, and over what time horizon.'},
+      refra:{title:'Differently · Reframing',block:1,prompt:'Which assumption or part of the problem definition could be changed, inverted or viewed through someone else’s perspective?',practice:'Before choosing a solution, formulate the problem in at least 3 different ways; make one of them from a customer, competitor or another function’s perspective.'},
+      refl:{title:'Again · Reflection',block:2,prompt:'Which assumption, feedback signal or earlier outcome is worth revisiting before moving on?',practice:'After an important decision, briefly write down: what I expected, what happened, which assumption held or failed, and what I will test earlier next time.'}
+    };
+    const LANG_EQUAL='All three directions appeared with similar frequency in this response set.';
+    const LANG_MOST='Of the three directions, this appeared most often in your choices.';
+    const LANG_LEAST='Of the three directions, this appeared least often in your choices.';
+    const LANG_MIDDLE='This direction sat between the other two in your choices.';
+    const LABEL_ALIGNED='One choice that matched this direction more closely:';
+    const LABEL_TENSION='One choice worth examining:';
+    const LABEL_QUESTION='Question for yourself:';
+    const PLAN_INTRO='Start not from a “weakest score”, but from the direction that appeared least often across these 15 situations.';
+    const LABEL_TRIGGER='Trigger:';
+    const PLAN_TRIGGER_PREFIX='during the next 30 days, when you encounter a situation similar to';
+    const LABEL_EXPERIMENT='Experiment:';
+    const LABEL_AFTER='Afterwards:';
+    const PLAN_AFTER='write one sentence on whether the extra step changed the decision, its quality, or what you noticed.';
+    function directionChoices(key){
+      const meta=DIRECTION_META[key];
+      const answers=getAnswers();
+      return STQ[meta.block].questions.map(q=>{
+        const idx=answers[q.id];
+        const opt=(idx===null||idx===undefined)?null:q.options[idx];
+        return {q,opt,score:opt&&typeof opt.score==='number'?opt.score:0};
+      }).filter(x=>x.opt);
     }
-    function buildActions(s){
-      const actions=[];
-      if(s.sys<=10){ actions.push({title:'Systems thinking (0–10)', items:[
-        'Create a one-page “Value Chain Map” (A3).',
-        'Run a weekly assumption check: 3 assumptions + what you will do if they are wrong.',
-        'Hold 2 cross-department meetings: 1 problem owner, 1 KPI.'
-      ]}); }else if(s.sys<=18){ actions.push({title:'Systems thinking (11–18)', items:[
-        'Use a “Pareto + cause” template: top defects → systemic causes.',
-        'Run quarterly scenarios (best/worst/wild) + a priority review.',
-        'Use a Kanban risk lane: top 5 risks, triggers and owners.'
-      ]}); }else{ actions.push({title:'Systems thinking (19–25)', items:[
-        'Create a cross-functional playbook (PDF/Confluence).',
-        'Mentor 2 supervisors using systems matrices.',
-        'Run a quarterly systems review with management.'
-      ]}); }
-      if(s.refra<=10){ actions.push({title:'Reframing (0–10)', items:[
-        'Use a rotating devil’s advocate role in ideation sessions.',
-        'Run a 30-minute role flip: what would the customer or competitor do?',
-        'Create 3 alternative problem definitions for each goal.'
-      ]}); }else if(s.refra<=18){ actions.push({title:'Reframing (11–18)', items:[
-        'Build 3 scenarios before approving a plan + define signals.',
-        'Transfer 1 method from another industry.',
-        'Keep a reframe log: wording change → KPI effect.'
-      ]}); }else{ actions.push({title:'Reframing (19–25)', items:[
-        'Run a 1-hour team workshop using real examples.',
-        'Set an idea standard: 30% anti-strategy ideas per session.',
-        'Build a reframe casebook: 6 best cases per quarter.'
-      ]}); }
-      if(s.refl<=10){ actions.push({title:'Reflection (0–10)', items:[
-        'Run an AAR (After Action Review) after significant events.',
-        'For every failure, identify 3 assumptions and validate them.',
-        'Seek critical feedback from an external adviser.'
-      ]}); }else if(s.refl<=18){ actions.push({title:'Reflection (11–18)', items:[
-        'Run a weekly learning stand-up: 10 minutes of lessons learned.',
-        'Maintain and test a list of principles or meta-rules.',
-        'Seek broader feedback, including dissenting views, every month.'
-      ]}); }else{ actions.push({title:'Reflection (19–25)', items:[
-        'Standardize the AAR template and use it with more than 3 teams.',
-        'Mentor 2 managers using assumption audits.',
-        'Use a Learning KPI: percentage of corrections implemented each month.'
-      ]}); }
-      return actions;
+
+    function relativePosition(key,scores){
+      const vals=[scores.sys,scores.refra,scores.refl];
+      const own=scores[key], min=Math.min(...vals), max=Math.max(...vals);
+      if(min===max) return LANG_EQUAL;
+      if(own===max) return LANG_MOST;
+      if(own===min) return LANG_LEAST;
+      return LANG_MIDDLE;
     }
+
     function renderInsights(scores){
-      const verbal = document.getElementById('verbalSummary');
-      const plan   = document.getElementById('actionPlan');
-      const dSys  = describeScale('Systems thinking', scores.sys);
-      const dRefa = describeScale('Reframing', scores.refra);
-      const dRefl = describeScale('Reflection', scores.refl);
-      const cards = [
-        {title:'Systems thinking', desc:dSys},
-        {title:'Reframing', desc:dRefa},
-        {title:'Reflection', desc:dRefl}
-      ];
-      verbal.innerHTML = cards.map(c => `
+      const verbal=document.getElementById('verbalSummary');
+      const plan=document.getElementById('actionPlan');
+      const keys=['sys','refra','refl'];
+      verbal.innerHTML=keys.map(key=>{
+        const meta=DIRECTION_META[key];
+        const choices=directionChoices(key).sort((a,b)=>b.score-a.score);
+        const aligned=choices[0], tension=choices[choices.length-1];
+        return `
+          <div class="insight-card">
+            <h4>${meta.title}</h4>
+            <p>${relativePosition(key,scores)} <strong>${scores[key]}/25</strong></p>
+            <p><strong>${LABEL_ALIGNED}</strong><br>${aligned.q.text}<br><em>${aligned.opt.text}</em></p>
+            <p><strong>${LABEL_TENSION}</strong><br>${tension.q.text}<br><em>${tension.opt.text}</em></p>
+            <p><strong>${LABEL_QUESTION}</strong> ${meta.prompt}</p>
+          </div>`;
+      }).join('');
+
+      const focusKey=keys.slice().sort((a,b)=>scores[a]-scores[b])[0];
+      const meta=DIRECTION_META[focusKey];
+      const focusChoices=directionChoices(focusKey).sort((a,b)=>a.score-b.score);
+      const trigger=focusChoices[0];
+      plan.innerHTML=`
         <div class="insight-card">
-          <h4>${c.title}
-            <span class="badge ${c.desc.level}">${c.desc.level==='low'?'Low':c.desc.level==='mid'?'Medium':'High'}</span>
-          </h4>
-          <p>${c.desc.text}</p>
-        </div>`).join('');
-      const actions = buildActions(scores);
-      plan.innerHTML = actions.map(a => `
-        <div class="insight-card">
-          <h4>${a.title}</h4>
-          <ul class="insight-list">${a.items.map(i => `<li>${i}</li>`).join('')}</ul>
-        </div>`).join('');
+          <h4>${meta.title}</h4>
+          <p>${PLAN_INTRO}</p>
+          <p><strong>${LABEL_TRIGGER}</strong> ${PLAN_TRIGGER_PREFIX} “${trigger.q.text}”.</p>
+          <p><strong>${LABEL_EXPERIMENT}</strong> ${meta.practice}</p>
+          <p><strong>${LABEL_AFTER}</strong> ${PLAN_AFTER}</p>
+        </div>`;
     }
 
-    // Rodome rezultatus tik po "Pateikti"
     function showScores(){
-      const {sys, refra, refl, total} = computeScores();
-      document.getElementById('scoreSystemic').textContent   = `${sys}/25`;
-      document.getElementById('scoreReframing').textContent  = `${refra}/25`;
-      document.getElementById('scoreReflection').textContent = `${refl}/25`;
-      document.getElementById('scoreTotal').textContent      = `${total}/75`;
-      renderInsights({sys, refra, refl, total});
+      const {sys,refra,refl}=computeScores();
+      document.getElementById('scoreSystemic').textContent=`${sys}/25`;
+      document.getElementById('scoreReframing').textContent=`${refra}/25`;
+      document.getElementById('scoreReflection').textContent=`${refl}/25`;
+      renderInsights({sys,refra,refl});
     }
 
     // Saugojimas/atkūrimas/išvalymas
@@ -488,8 +474,7 @@
       submitted = true;
       resultsContainer.classList.remove('hidden');
       showScores();
-      const card = document.getElementById('scoreTotal').parentElement;
-      card.style.outline = '2px solid var(--ok)'; setTimeout(() => card.style.outline='none', 1200);
+      resultsContainer.style.outline = '2px solid var(--ok)'; setTimeout(() => resultsContainer.style.outline='none', 1200);
     });
     document.getElementById('saveBtn').addEventListener('click', saveToStorage);
     document.getElementById('restoreBtn').addEventListener('click', () => restoreFromStorage(true));
@@ -513,7 +498,7 @@
   }
 })();
 </script>
-<script src="/tools/site-owner-mode.js?v=20260831-1"></script>
-<script src="/tools/site-insights.js?v=20260828-1"></script>
+<script src="/tools/site-owner-mode.js?v=20260906-2"></script>
+<script src="/tools/site-insights.js?v=20260906-2"></script>
 </body>
 </html>

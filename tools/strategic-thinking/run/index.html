@@ -37,7 +37,7 @@
     .radio{display:flex;gap:10px;align-items:flex-start;background:transparent;border:1px solid var(--border);border-radius:10px;padding:8px}
     .radio input{margin-top:3px}
 
-    .scorecard{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+    .scorecard{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
     .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
     .card .num{font-size:22px;font-weight:800}
 
@@ -92,28 +92,23 @@
 
   <!-- REZULTATAI: paslėpta iki „Pateikti atsakymus“ -->
   <div id="results" class="hidden">
-    <h3>Rezultatai</h3>
+    <h3>Plačiau · Kitaip · Dar kartą</h3>
+    <p class="result-note">Trys skaičiai žemiau tik susumuoja, kaip tavo pasirinkimai sutapo su šiame eksperimente užkoduotomis sisteminio mąstymo, perframinimo ir refleksijos kryptimis. Jie nėra kompetencijos lygiai ir nėra normatyviniai balai.</p>
     <div class="scorecard">
-      <div class="card"><div>Sisteminis mąstymas</div><div class="num" id="scoreSystemic">0/25</div></div>
-      <div class="card"><div>Perframinimas</div><div class="num" id="scoreReframing">0/25</div></div>
-      <div class="card"><div>Refleksija</div><div class="num" id="scoreReflection">0/25</div></div>
-      <div class="card"><div>Bendras rezultatas</div><div class="num" id="scoreTotal">0/75</div></div>
+      <div class="card"><div><strong>PLAČIAU</strong><br>Sisteminis mąstymas</div><div class="num" id="scoreSystemic">0/25</div></div>
+      <div class="card"><div><strong>KITAIP</strong><br>Perframinimas</div><div class="num" id="scoreReframing">0/25</div></div>
+      <div class="card"><div><strong>DAR KARTĄ</strong><br>Refleksija</div><div class="num" id="scoreReflection">0/25</div></div>
     </div>
-
     <section id="insights" style="margin-top:22px;">
-      <h3>Žodinis vertinimas</h3>
+      <h3>Ką rodo tavo pasirinkimų raštas</h3>
       <div id="verbalSummary" class="insight-grid"></div>
-
-      <h3 style="margin-top:18px;">Praktinės rekomendacijos (30 dienų)</h3>
+      <h3 style="margin-top:18px;">Vienas 30 dienų eksperimentas</h3>
       <div id="actionPlan" class="insight-grid"></div>
     </section>
   </div>
 
-  <p class="footnote">
-    Skaičiavimas: pasirinkimai vertinami 1–5 balais pagal kiekvieno varianto priskirtą <em>score</em>.
-    Kiekviena subskalė turi 5 klausimus → maks. 25; bendras maks. 75.
-  </p>
-  <p class="copyright">© 2025 STQ. Sukurta Oleg Mozochin („GitHub Pages“). Veikia be serverio, duomenys saugomi tik naršyklėje.</p>
+  <p class="footnote">Skaičiavimas: kiekvienam pasirinkimui šiame eksperimente priskirtas 1–5 orientacinis kodas. Penki pasirinkimai sudaro 5–25 krypties sumą. Ši suma nėra validuotas strateginio mąstymo matas ir neturėtų būti interpretuojama kaip kompetencijos lygis.</p>
+  <p class="copyright">© 2026 Strategic Thinking · 2rasi refleksijos eksperimentas. Klausimyno atsakymai saugomi tik tavo naršyklėje. Pasirenkamas svetainės feedbackas ir baziniai naudojimo įvykiai gali būti siunčiami 2rasi.</p>
 </main>
 
 <!-- TURINYS iš .docx (1:1 tekstai ir balai) -->
@@ -360,94 +355,85 @@
       STQ[0].questions.forEach(q => { sys   += scoreOf(q, a[q.id]); });
       STQ[1].questions.forEach(q => { refra += scoreOf(q, a[q.id]); });
       STQ[2].questions.forEach(q => { refl  += scoreOf(q, a[q.id]); });
-      return {sys, refra, refl, total: sys+refra+refl};
+      return {sys, refra, refl};
     }
 
-    // Interpretacijos ir planas
-    function describeScale(label, score){
-      let level, text;
-      if(score <= 10){ level='low'; text=`${label}: žemas lygis. Rekomenduojama sistemingai stiprinti pagrindinius įpročius ir procesus.`; }
-      else if(score <= 18){ level='mid'; text=`${label}: vidutinis lygis. Pagrindai veikia, bet yra „aklųjų zonų“ ir nenuoseklumo.`; }
-      else { level='high'; text=`${label}: aukštas lygis. Stiprybę verta institucionalizuoti – dalintis praktika, kurti standartus ir mentoruoti.`; }
-      return { level, text };
+    // Interpretacija: profilis, o ne kompetencijos lygis
+    const DIRECTION_META = {
+      sys:{title:'Plačiau · Sisteminis mąstymas',block:0,prompt:'Ką šiame sprendime pakeistų platesnė sistemos riba: kiti padaliniai, klientas, ilgesnis laikas ar antrinis poveikis?',practice:'Prieš užbaigdamas svarbesnį sprendimą nubrėžk 3 poveikio grandis: kas dar pasikeis, kam ir po kiek laiko.'},
+      refra:{title:'Kitaip · Perframinimas',block:1,prompt:'Kokią prielaidą arba patį problemos apibrėžimą čia būtų verta pakeisti, apversti ar pamatyti kito žmogaus akimis?',practice:'Prieš rinkdamasis sprendimą suformuluok problemą bent 3 skirtingais būdais; vieną – iš kliento, konkurento ar kitos funkcijos perspektyvos.'},
+      refl:{title:'Dar kartą · Refleksija',block:2,prompt:'Prie kokios prielaidos, grįžtamojo ryšio ar ankstesnio rezultato čia verta sugrįžti prieš judant toliau?',practice:'Po svarbesnio sprendimo trumpai užrašyk: ką maniau, kas įvyko, kuri prielaida pasitvirtino arba ne, ir ką kitą kartą tikrinsiu anksčiau.'}
+    };
+    const LANG_EQUAL='Šiame atsakymų rinkinyje visos trys kryptys pasirodė panašiu dažniu.';
+    const LANG_MOST='Iš trijų krypčių ši tavo pasirinkimuose pasirodė dažniausiai.';
+    const LANG_LEAST='Iš trijų krypčių ši tavo pasirinkimuose pasirodė rečiausiai.';
+    const LANG_MIDDLE='Ši kryptis tavo pasirinkimuose liko tarp kitų dviejų.';
+    const LABEL_ALIGNED='Vienas pasirinkimas, kuris labiau atitiko šią kryptį:';
+    const LABEL_TENSION='Vienas pasirinkimas, kurį verta patyrinėti:';
+    const LABEL_QUESTION='Klausimas sau:';
+    const PLAN_INTRO='Pradėk ne nuo „silpniausio balo“, o nuo krypties, kuri šiose 15 situacijų pasirodė rečiausiai.';
+    const LABEL_TRIGGER='Trigeris:';
+    const PLAN_TRIGGER_PREFIX='kai per artimiausias 30 dienų susidursi su situacija, panašia į';
+    const LABEL_EXPERIMENT='Bandymas:';
+    const LABEL_AFTER='Po to:';
+    const PLAN_AFTER='vienu sakiniu užrašyk, ar papildomas žingsnis pakeitė sprendimą, jo kokybę arba tai, ką pastebėjai.';
+    function directionChoices(key){
+      const meta=DIRECTION_META[key];
+      const answers=getAnswers();
+      return STQ[meta.block].questions.map(q=>{
+        const idx=answers[q.id];
+        const opt=(idx===null||idx===undefined)?null:q.options[idx];
+        return {q,opt,score:opt&&typeof opt.score==='number'?opt.score:0};
+      }).filter(x=>x.opt);
     }
-    function buildActions(s){
-      const actions=[];
-      if(s.sys<=10){ actions.push({title:'Sisteminis mąstymas (0–10)', items:[
-        'Sukurk 1 puslapio „Vertės grandinės žemėlapį“ (A3).',
-        'Kassavaitinis „assumption check“: 3 prielaidos + ką darysi, jei klaidingos.',
-        '2 kryžminių skyrių susitikimai: 1 problemos savininkas, 1 KPI.'
-      ]}); }else if(s.sys<=18){ actions.push({title:'Sisteminis mąstymas (11–18)', items:[
-        '„Pareto + priežasties“ šablonas: top defektai → sisteminės priežastys.',
-        'Ketvirtiniai scenarijai (best/worst/wild) + prioritetų peržiūra.',
-        'Kanban „risk lane“: top-5 rizikos, trigeriai, atsakomybės.'
-      ]}); }else{ actions.push({title:'Sisteminis mąstymas (19–25)', items:[
-        '„Cross-functional playbook“ (PDF/Confluence).',
-        'Mentorystė 2 meistrams (sisteminės matricos).',
-        'Trimestrinis „systems review“ su vadovybe.'
-      ]}); }
-      if(s.refra<=10){ actions.push({title:'Perframinimas (0–10)', items:[
-        '„Velnio advokato“ rolė idėjų sesijose (rotacija).',
-        '30 min. „role-flip“: ką darytų klientas/konkurentas?',
-        '3 alternatyvūs problemos apibrėžimai kiekvienam tikslui.'
-      ]}); }else if(s.refra<=18){ actions.push({title:'Perframinimas (11–18)', items:[
-        '3 scenarijai prieš tvirtinant planą + signalai.',
-        'Perkelk 1 metodą iš kitos industrijos.',
-        '„Reframe log“: formuluotės pakeitimas → KPI efektas.'
-      ]}); }else{ actions.push({title:'Perframinimas (19–25)', items:[
-        '1 val. dirbtuvės komandai su realiais pavyzdžiais.',
-        'Idėjų standartas: 30% „anti-strategy“ idėjų per sesiją.',
-        '„Reframe casebook“: 6 geriausi atvejai per ketvirtį.'
-      ]}); }
-      if(s.refl<=10){ actions.push({title:'Refleksija (0–10)', items:[
-        'AAR (After Action Review) po svarbių įvykių.',
-        'Kiekvienai nesėkmei – 3 prielaidos ir jų validacija.',
-        'Kritinis grįžtamasis ryšys iš išorinio patarėjo.'
-      ]}); }else if(s.refl<=18){ actions.push({title:'Refleksija (11–18)', items:[
-        'Savaitinis „learning stand-up“: 10 min. pamokos.',
-        'Principų sąrašas (metareguliavimas) ir testavimas.',
-        'Platesnis grįžtamasis ryšys (įsk. nesutinkančius) kas mėn.'
-      ]}); }else{ actions.push({title:'Refleksija (19–25)', items:[
-        'Standartizuok AAR šabloną ir taikyk N>3 komandoms.',
-        'Mentorystė 2 vadovams (prielaidų auditas).',
-        '„Learning KPI“: įgyvendintų korekcijų % per mėn.'
-      ]}); }
-      return actions;
+
+    function relativePosition(key,scores){
+      const vals=[scores.sys,scores.refra,scores.refl];
+      const own=scores[key], min=Math.min(...vals), max=Math.max(...vals);
+      if(min===max) return LANG_EQUAL;
+      if(own===max) return LANG_MOST;
+      if(own===min) return LANG_LEAST;
+      return LANG_MIDDLE;
     }
+
     function renderInsights(scores){
-      const verbal = document.getElementById('verbalSummary');
-      const plan   = document.getElementById('actionPlan');
-      const dSys  = describeScale('Sisteminis mąstymas', scores.sys);
-      const dRefa = describeScale('Perframinimas', scores.refra);
-      const dRefl = describeScale('Refleksija', scores.refl);
-      const cards = [
-        {title:'Sisteminis mąstymas', desc:dSys},
-        {title:'Perframinimas', desc:dRefa},
-        {title:'Refleksija', desc:dRefl}
-      ];
-      verbal.innerHTML = cards.map(c => `
+      const verbal=document.getElementById('verbalSummary');
+      const plan=document.getElementById('actionPlan');
+      const keys=['sys','refra','refl'];
+      verbal.innerHTML=keys.map(key=>{
+        const meta=DIRECTION_META[key];
+        const choices=directionChoices(key).sort((a,b)=>b.score-a.score);
+        const aligned=choices[0], tension=choices[choices.length-1];
+        return `
+          <div class="insight-card">
+            <h4>${meta.title}</h4>
+            <p>${relativePosition(key,scores)} <strong>${scores[key]}/25</strong></p>
+            <p><strong>${LABEL_ALIGNED}</strong><br>${aligned.q.text}<br><em>${aligned.opt.text}</em></p>
+            <p><strong>${LABEL_TENSION}</strong><br>${tension.q.text}<br><em>${tension.opt.text}</em></p>
+            <p><strong>${LABEL_QUESTION}</strong> ${meta.prompt}</p>
+          </div>`;
+      }).join('');
+
+      const focusKey=keys.slice().sort((a,b)=>scores[a]-scores[b])[0];
+      const meta=DIRECTION_META[focusKey];
+      const focusChoices=directionChoices(focusKey).sort((a,b)=>a.score-b.score);
+      const trigger=focusChoices[0];
+      plan.innerHTML=`
         <div class="insight-card">
-          <h4>${c.title}
-            <span class="badge ${c.desc.level}">${c.desc.level==='low'?'Žemas':c.desc.level==='mid'?'Vidutinis':'Aukštas'}</span>
-          </h4>
-          <p>${c.desc.text}</p>
-        </div>`).join('');
-      const actions = buildActions(scores);
-      plan.innerHTML = actions.map(a => `
-        <div class="insight-card">
-          <h4>${a.title}</h4>
-          <ul class="insight-list">${a.items.map(i => `<li>${i}</li>`).join('')}</ul>
-        </div>`).join('');
+          <h4>${meta.title}</h4>
+          <p>${PLAN_INTRO}</p>
+          <p><strong>${LABEL_TRIGGER}</strong> ${PLAN_TRIGGER_PREFIX} “${trigger.q.text}”.</p>
+          <p><strong>${LABEL_EXPERIMENT}</strong> ${meta.practice}</p>
+          <p><strong>${LABEL_AFTER}</strong> ${PLAN_AFTER}</p>
+        </div>`;
     }
 
-    // Rodome rezultatus tik po "Pateikti"
     function showScores(){
-      const {sys, refra, refl, total} = computeScores();
-      document.getElementById('scoreSystemic').textContent   = `${sys}/25`;
-      document.getElementById('scoreReframing').textContent  = `${refra}/25`;
-      document.getElementById('scoreReflection').textContent = `${refl}/25`;
-      document.getElementById('scoreTotal').textContent      = `${total}/75`;
-      renderInsights({sys, refra, refl, total});
+      const {sys,refra,refl}=computeScores();
+      document.getElementById('scoreSystemic').textContent=`${sys}/25`;
+      document.getElementById('scoreReframing').textContent=`${refra}/25`;
+      document.getElementById('scoreReflection').textContent=`${refl}/25`;
+      renderInsights({sys,refra,refl});
     }
 
     // Saugojimas/atkūrimas/išvalymas
@@ -488,8 +474,7 @@
       submitted = true;
       resultsContainer.classList.remove('hidden');
       showScores();
-      const card = document.getElementById('scoreTotal').parentElement;
-      card.style.outline = '2px solid var(--ok)'; setTimeout(() => card.style.outline='none', 1200);
+      resultsContainer.style.outline = '2px solid var(--ok)'; setTimeout(() => resultsContainer.style.outline='none', 1200);
     });
     document.getElementById('saveBtn').addEventListener('click', saveToStorage);
     document.getElementById('restoreBtn').addEventListener('click', () => restoreFromStorage(true));
