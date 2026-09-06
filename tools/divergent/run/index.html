@@ -185,10 +185,10 @@
 
           <details class="item" style="margin-top:14px" id="archetypeLayer">
             <summary><strong>Pasirenkamas žaismingas archetipų sluoksnis</strong></summary>
-            <p class="muted">Žemiau rodomi trys santykinai artimiausi 2rasi interpretaciniai prototipai. Jie sudaryti iš fiksuotų OCEAN koordinačių ir lyginami su tavo penkių dimensijų profiliu. Tai nėra asmenybės tipai, tikimybės ar validuoti panašumo balai.</p>
+            <p class="muted">Žemiau rodomi trys santykinai artimiausi 2rasi archetipai. Šis interpretacinis sluoksnis sudarytas iš fiksuotų OCEAN profilių, kurie lyginami su tavo penkių dimensijų atsakymų deriniu. Tai nėra asmenybės tipai, tikimybės ar validuoti panašumo balai.</p>
             <div id="typesTop"></div>
             <details style="margin-top:12px">
-              <summary><strong>Visų 8 prototipų žodynas</strong></summary>
+              <summary><strong>Visų 8 archetipų žodynas</strong></summary>
               <div id="typesGlossary"></div>
             </details>
           </details>
@@ -196,6 +196,7 @@
           <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
             <button type="button" id="printBtn" class="btn">Spausdinti PDF</button>
             <a href="#formCard" class="btn secondary">Grįžti prie teiginių</a>
+            <a href="https://2rasi.lt/#experiments" class="btn secondary">← 2rasi</a>
           </div>
         </div>
       </div>
@@ -383,7 +384,7 @@
       .sort((a,b)=>a.diff-b.diff)
       .slice(0,2)
       .map(x=>SHORT_DOMAIN[x.d]);
-    return "Šio prototipo fiksuotos OCEAN koordinatės tavo profiliui santykinai artimiausios pagal "+dims.join(" ir ")+".";
+    return "Šio archetipinio OCEAN profilio derinys tavo atsakymams santykinai artimiausias pagal "+dims.join(" ir ")+".";
   };
 
   /* ====== 3) UI generavimas ====== */
