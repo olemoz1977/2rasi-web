@@ -43,7 +43,7 @@ jobs:
           assert x['schema']=='2rasi.priolens.stimulus-validation-pool-v0.2'
           assert x['poolVersion']=='open14-v04-current42'
           assert x['sourceBank']=='2rasi.priolens.open14.bank-v0.4'
-          assert x['status']=='ASSET_QC_PENDING_PUBLIC_HOLD'
+          assert x['status']=='TECHNICAL_QC_PASS_OWNER_VISUAL_REVIEW_PENDING_PUBLIC_HOLD'
           rows=x['stimuli']
           assert len(rows)==42
           assert len({r['id'] for r in rows})==42
