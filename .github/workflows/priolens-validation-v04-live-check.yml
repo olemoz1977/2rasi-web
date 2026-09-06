@@ -1,0 +1,61 @@
+name: PrioLens validation v0.4 live check
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - hero-webgl
+    paths:
+      - '.github/workflows/priolens-validation-v04-live-check.yml'
+      - 'tools/priolens/validate/app.js'
+      - 'tools/priolens/validate/stimuli-v04.json'
+      - 'workers/workstyle-pilot/src/index.js'
+
+permissions:
+  contents: read
+
+jobs:
+  live-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Verify public validation assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          APP='https://2rasi.lt/tools/priolens/validate/app.js'
+          POOL='https://2rasi.lt/tools/priolens/validate/stimuli-v04.json'
+          PAGE='https://2rasi.lt/tools/priolens/validate/?lang=lt'
+          for attempt in $(seq 1 18); do
+            key="${GITHUB_SHA}-${attempt}"
+            if curl -fsSL --retry 2 "$APP?v=$key" -o /tmp/app.js \
+              && grep -Fq "const PUBLIC_RESEARCH_OPEN = true" /tmp/app.js \
+              && grep -Fq "const POOL_URL = './stimuli-v04.json'" /tmp/app.js \
+              && curl -fsSL --retry 2 "$POOL?v=$key" -o /tmp/pool.json \
+              && jq -e '.poolVersion=="open14-v04-current42" and .sourceBank=="2rasi.priolens.open14.bank-v0.4" and .status=="READY_FOR_PUBLIC_BLIND_SCREENING" and (.stimuli|length)==42' /tmp/pool.json >/dev/null \
+              && curl -fsSL --retry 2 "$PAGE&v=$key" -o /tmp/page.html \
+              && grep -Fq 'app.js' /tmp/page.html; then
+                echo "Public validation assets are live."
+                break
+            fi
+            test "$attempt" -lt 18 || { echo "Public validation assets did not converge to v0.4."; exit 1; }
+            sleep 10
+          done
+
+      - name: Verify live Worker v0.4 summary contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://workstyle-pilot-intake.olemoz1977.workers.dev/v1/priolens-stimulus-validation-summary'
+          for attempt in $(seq 1 12); do
+            if curl -fsSL --retry 2 \
+              -H 'Origin: https://2rasi.lt' \
+              -H 'X-2rasi-owner: 1' \
+              "$URL" -o /tmp/summary.json \
+              && jq -e '.ok==true and .poolVersion=="open14-v04-current42" and .publicResearchOpen==true and (.holds|length)==0' /tmp/summary.json >/dev/null; then
+                echo "Worker v0.4 validation contract is live."
+                exit 0
+            fi
+            test "$attempt" -lt 12 || { cat /tmp/summary.json 2>/dev/null || true; exit 1; }
+            sleep 5
+          done
