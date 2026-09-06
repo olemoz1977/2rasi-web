@@ -31,7 +31,7 @@
 
   const tool = toolFromPath();
   const isToolPage = tool !== 'gallery' && tool !== 'site';
-  const isRunPage = /\/run\/|v07-cognitive\.html|\/pilot\//.test(path);
+  const isRunPage = /\/run\/|v07-cognitive\.html|\/pilot\/|\/tools\/priolens\/validate\//.test(path);
 
   function uuid() {
     if (crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
