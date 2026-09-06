@@ -4,9 +4,9 @@
   const API = 'https://workstyle-pilot-intake.olemoz1977.workers.dev';
   const SUBMIT_URL = API + '/v1/priolens-stimulus-validation';
   const SUMMARY_URL = API + '/v1/priolens-stimulus-validation-summary';
-  const SCHEMA = '2rasi.priolens.stimulus-validation-session-v0.1';
-  const VERSION = 'priolens-stimulus-validation-v0.1';
-  const POOL_URL = './stimuli-v031.json';
+  const SCHEMA = '2rasi.priolens.stimulus-validation-session-v0.2';
+  const VERSION = 'priolens-stimulus-validation-v0.2';
+  const POOL_URL = './stimuli-v04.json';
   const PUBLIC_RESEARCH_OPEN = false;
   const FAMILY_ORDER = ['REST','RESOURCE','SAFETY','ORDER','CONNECTION','BELONGING','CARE','AUTONOMY','CONTROL','RECOGNITION','MASTERY','EXPLORATION','KNOWLEDGE','OPPORTUNITY'];
   const COMPETITORS = {
@@ -118,7 +118,7 @@
         MASTERY:'Įgudęs atlikimas, gebėjimų naudojimas ar tobulinimas',
         EXPLORATION:'Naujumo tyrinėjimas, paieška ar atradimas',
         KNOWLEDGE:'Mokymasis, supratimo gilinimas ar informacijos įsisavinimas',
-        OPPORTUNITY:'Reali prieinama galimybė kažką pradėti ar panaudoti'
+        OPPORTUNITY:'Reali, dabar prieinama galimybė veikti, kurti, prisijungti ar pasinaudoti atsivėrusia vieta'
       }
     },
     en: {
@@ -212,7 +212,7 @@
         MASTERY:'Skilled performance, using or improving abilities',
         EXPLORATION:'Exploring novelty, searching, or discovering',
         KNOWLEDGE:'Learning, deepening understanding, or taking in information',
-        OPPORTUNITY:'A real accessible possibility to start or use something'
+        OPPORTUNITY:'A real, currently accessible possibility to act, create, join, or use an opening'
       }
     }
   };
@@ -311,7 +311,7 @@
   }
 
   function storageKey() {
-    return 'priolens:stimulus-validation:v01:' + lang;
+    return 'priolens:stimulus-validation:v04:' + lang;
   }
 
   function saveDraft() {
@@ -324,7 +324,7 @@
       const raw = localStorage.getItem(storageKey());
       if (!raw) return null;
       const parsed = JSON.parse(raw);
-      if (!parsed || parsed.schema !== SCHEMA || !Array.isArray(parsed.order) || parsed.order.length !== 12) return null;
+      if (!parsed || parsed.schema !== SCHEMA || parsed.poolVersion !== pool?.poolVersion || !Array.isArray(parsed.order) || parsed.order.length !== 12) return null;
       return parsed;
     } catch { return null; }
   }
@@ -363,7 +363,7 @@
   }
 
   function optionCodes(stimulus) {
-    const codes = [stimulus.targetFamily, ...(COMPETITORS[stimulus.targetFamily] || [])];
+    const codes = [stimulus.targetFamily, ...((Array.isArray(stimulus.competitors) && stimulus.competitors.length) ? stimulus.competitors : (COMPETITORS[stimulus.targetFamily] || []))];
     return shuffled([...new Set(codes)].slice(0,4).concat('OTHER'), state.sessionId + ':' + stimulus.id + ':options');
   }
 
