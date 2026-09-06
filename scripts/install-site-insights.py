@@ -45,3 +45,5 @@ def install(path: Path):
 if __name__ == '__main__':
     for page in pages():
         install(page)
+
+# trigger: traffic-tagging refresh 2026-09-06
