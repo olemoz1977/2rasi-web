@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#f7f7f5">
+<title>Multipliers refleksijos eksperimentas — Pilot v0.9</title>
+<style>
+:root{--bg:#f7f7f5;--card:#fff;--ink:#171717;--muted:#6b6b6b;--line:#e4e4df;--soft:#f0f0eb;--r:18px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{width:min(860px,calc(100% - 24px));margin:auto;padding:18px 0 54px}.brand{font-weight:800;margin:4px 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,4vw,32px);margin:0 0 16px}
+h1,h2{letter-spacing:-.025em;line-height:1.12;margin:0 0 14px}h1{font-size:clamp(30px,6vw,48px)}h2{font-size:clamp(24px,4vw,34px)}
+p{margin:0 0 13px}.lead{font-size:clamp(18px,2.8vw,21px);color:#3e3e3e}.small{font-size:13px;color:var(--muted)}
+.btn{border:1px solid var(--ink);border-radius:999px;padding:12px 18px;background:var(--ink);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.btn.secondary{background:#fff;color:var(--ink);border-color:var(--line)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.hidden{display:none!important}
+.progress-head{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:7px}.progress{height:8px;background:#e8e8e3;border-radius:999px;overflow:hidden}.progress div{height:100%;background:var(--ink);transition:.2s}
+.question{font-size:clamp(23px,4vw,33px);margin:20px 0}.options{display:grid;gap:10px}
+.option{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:15px;padding:15px 16px;font:inherit;cursor:pointer}.option.selected{border:2px solid var(--ink);padding:14px 15px;background:#fafaf7}
+.footer{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.note{background:var(--soft);border-radius:14px;padding:13px 15px}
+.rows{margin-top:12px}.row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:10px 0;border-top:1px solid var(--line)}.row:first-child{border-top:0}.pill{background:var(--soft);border-radius:999px;padding:5px 9px;font-weight:700;font-size:13px}
+.kpi{font-size:34px;font-weight:800;letter-spacing:-.04em}.reflection{border-top:1px solid var(--line);padding-top:16px;margin-top:16px}.chosen{background:var(--soft);border-radius:13px;padding:11px 13px;margin:8px 0}.alt{border-left:3px solid var(--ink);padding-left:12px}
+.feedback{display:grid;gap:12px}.feedback label{font-weight:700}.feedback select,.feedback textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}.feedback textarea{min-height:90px}
+@media(max-width:600px){.footer{flex-direction:column-reverse}.footer .btn{width:100%}}
+@media print{body{background:#fff}.brand,.no-print{display:none!important}.card{border:0;padding:0}.pagebreak{break-before:page}}
+</style>
+</head>
+<body>
+<main>
+<div class="brand">2rasi · Multipliers pilot</div>
+
+<section id="intro" class="card">
+<div class="small">PILOT BANK v0.9 · 15 situacijų × 6 pasirinkimai</div>
+<h1>Pasirink, ką realiai darytum.</h1>
+<p class="lead">Kiekvienoje situacijoje pažymėk vieną veiksmą, artimiausią tavo pirmajam realiam atsakui. Klausimų ir pasirinkimų tvarka maišoma.</p>
+<div class="note">Tai refleksijos eksperimentas, ne asmenybės testas ar validuotas lyderystės balas. Piloto metu saugomas anoniminis pasirinkimų pėdsakas ir reakcijos laikas, kad būtų galima tikrinti banko kokybę. Vardo, el. pašto ar darbdavio neprašome.</div>
+<div class="actions"><button id="start" class="btn">Pradėti</button><button id="resume" class="btn secondary hidden">Tęsti sesiją</button></div>
+</section>
+
+<section id="quiz" class="card hidden">
+<div class="progress-head"><span id="counter"></span><span>Rinkis pirmą realų veiksmą</span></div>
+<div class="progress"><div id="bar"></div></div>
+<h2 id="stem" class="question"></h2>
+<div id="options" class="options"></div>
+<div class="footer"><button id="quit" class="btn secondary">Į pradžią</button><button id="next" class="btn" disabled>Toliau</button></div>
+</section>
+
+<section id="results" class="hidden">
+<div class="card">
+<div class="small">PASIRINKIMŲ PĖDSAKAS</div>
+<h1>Pažiūrėk dar kartą.</h1>
+<p class="lead">Rezultatas aprašo tik šiuos 15 pasirinkimų. Jis neapibrėžia tavęs kaip vadovo tipo.</p>
+</div>
+
+<div class="card">
+<h2>Kaip dažniausiai bandei įtraukti kitų indėlį</h2>
+<div id="multiSummary"></div><div id="dirRows" class="rows"></div>
+</div>
+
+<div class="card">
+<h2>Kur geras ketinimas galėjo susiaurinti kitų indėlį</h2>
+<div id="adSummary"></div><div id="pattern"></div>
+<div class="note">„Accidental-diminishing“ čia reiškia tik specialiai šioms situacijoms suprojektuotų pasirinkimų riziką. Tai nėra teiginys apie tavo elgesį apskritai.</div>
+</div>
+
+<div id="reflectionCard" class="card hidden">
+<h2>Pažiūrėk dar kartą</h2>
+<p class="small">Ne „teisingas atsakymas“, o keli pasirinkimai refleksijai.</p>
+<div id="reflections"></div>
+</div>
+
+<div class="card no-print">
+<h2>Padėk patikrinti eksperimentą</h2>
+<div class="feedback">
+<label>Ar atsakinėjai taip, kaip greičiausiai elgtumeisi realybėje?
+<select id="fb1"><option value="">Pasirink</option><option value="yes">Taip</option><option value="mostly">Daugiausia taip</option><option value="no">Ne</option></select></label>
+<label>Ar tarp atsakymų pastebėjai „kitokio tipo“ variantus?
+<select id="fb2"><option value="">Pasirink</option><option value="no">Ne</option><option value="unsure">Nesu tikras</option><option value="yes">Taip</option></select></label>
+<label>Ar rezultatas privertė bent vieną pasirinkimą pamatyti kitaip?
+<select id="fb3"><option value="">Pasirink</option><option value="yes">Taip</option><option value="unsure">Nesu tikras</option><option value="no">Ne</option></select></label>
+<label>Komentaras (nebūtina)<textarea id="fb4"></textarea></label>
+<button id="sendFeedback" class="btn">Išsaugoti feedback</button><div id="fbStatus" class="small"></div>
+</div>
+</div>
+
+<div class="card no-print">
+<div class="actions"><button id="export" class="btn secondary">Eksportuoti JSON</button><button id="print" class="btn secondary">Išsaugoti / spausdinti PDF</button><button id="again" class="btn">Nauja sesija</button></div>
+</div>
+</section>
+</main>
+
+<script src="./pilot-config.js?v=bootstrap"></script>
+<script>
+const BANK_VERSION="0.9",ENGINE_VERSION="0.4-db",UI_VERSION="0.9-db2";
+const API_BASE=String(window.MULTIPLIERS_PILOT_API_BASE||"").replace(/\/$/,"");
+const BANK=[{"id":"Q01","stem":"Prieš svarbų sprendimą gauni dvi pagrįstas, bet priešingas nuomones.","context":"conflict_decision","options":[{"id":"Q01_TM","direction":"TM","text":"Įtraukiu žmogų, kuris stiprus analitikoje, ir prašau nepriklausomos išvados."},{"id":"Q01_LB","direction":"LB","text":"Sutariu diskusijos taisykles, kad abi pusės galėtų atvirai ginčyti argumentus."},{"id":"Q01_CH","direction":"CH","text":"Įvardiju, kokį rezultatą turime pasiekti ir kokie kriterijai sprendimą lems."},{"id":"Q01_DM","direction":"DM","text":"Paprašau abiejų pusių pateikti faktus, rizikas ir stipriausią kontrargumentą."},{"id":"Q01_IN","direction":"IN","text":"Paskiriu žmogų, kuris surinks įrodymus ir pateiks rekomendaciją iki sutarto laiko."},{"id":"Q01_AD","direction":"AD","text":"Sujungiu stipriausius argumentus ir pats nustatau kryptį, kad judėtume pirmyn.","good":"Greitai sukurti aiškumą ir neužvilkinti sprendimo.","mechanism":"Rapid Responder","risk":"thinking","alt":"O ką pakeistų, jei prieš nuspręsdamas paprašytum abiejų pusių įvardyti stipriausią kitos pusės argumentą?"}]},{"id":"Q02","stem":"Patyręs operatorius neatsiskleidžia. Ką darai?","context":"talent_use","options":[{"id":"Q02_TM","direction":"TM","text":"Įvardiju jo stiprybę ir duodu realią atsakomybę, kur ji būtų matoma."},{"id":"Q02_LB","direction":"LB","text":"Sutariu aiškias ribas, kuriose jis gali bandyti savo darbo būdą."},{"id":"Q02_CH","direction":"CH","text":"Parodau, kokį didesnį rezultatą jo patirtis galėtų padėti komandai pasiekti."},{"id":"Q02_DM","direction":"DM","text":"Paklausiu komandos, kur jo patirtis galėtų duoti daugiausia vertės."},{"id":"Q02_IN","direction":"IN","text":"Perduodu jam proceso dalį su rezultatu, resursais ir sutartais patikros taškais."},{"id":"Q02_AD","direction":"AD","text":"Parodau savo veikimo būdą ir pradžioje dažnai patikrinu jo eigą.","good":"Padėti žmogui greičiau atsiskleisti ir sumažinti nesėkmės riziką.","mechanism":"Rescuer","risk":"initiative","alt":"O jei sutartum rezultatą ir ribas, bet pirmą veikimo būdą leistum pasirinkti jam pačiam?"}]},{"id":"Q03","stem":"Pamainoje vis dažniau nesilaikoma sutartų darbo taisyklių. Tiesioginės saugos ar kokybės krizės nėra.","context":"discipline","options":[{"id":"Q03_TM","direction":"TM","text":"Įtraukiu gerbiamą komandos narį padėti atkurti sutartų taisyklių laikymąsi."},{"id":"Q03_LB","direction":"LB","text":"Aiškiai atnaujinu taisykles, ribas ir vienodą reakciją į nukrypimus."},{"id":"Q03_CH","direction":"CH","text":"Susieju taisykles su konkrečiu pamainos rezultatu ir įvardiju, ką turime pakeisti."},{"id":"Q03_DM","direction":"DM","text":"Su komanda išsiaiškinu, kodėl taisyklės slysta, ir patikrinu kelias priežastis."},{"id":"Q03_IN","direction":"IN","text":"Paskiriu aiškų taisyklių laikymosi savininką ir sutariu peržiūros ritmą."},{"id":"Q03_AD","direction":"AD","text":"Laikinai sutankinu patikrinimus ir prašau nukrypimus iš anksto derinti su manimi.","good":"Greitai atkurti drausmę ir stabilumą.","mechanism":"Perfectionist","risk":"ownership","alt":"O jei komanda pati įvardytų, kodėl taisyklės slysta, ir prisiimtų konkrečius susitarimus jų laikymuisi?"}]},{"id":"Q04","stem":"Po proceso klaidos reikia atkurti stabilų darbą. Situacija valdoma, bet tikroji priežastis dar neaiški.","context":"error_recovery","options":[{"id":"Q04_TM","direction":"TM","text":"Įtraukiu žmogų, stiprų gedimų diagnostikoje, ir duodu jam vesti priežasties paiešką."},{"id":"Q04_LB","direction":"LB","text":"Sutariu, kaip taisome dabar, ir aiškiai atskiriu klaidos analizę nuo kaltinimų."},{"id":"Q04_CH","direction":"CH","text":"Paverčiu klaidą konkrečiu iššūkiu: ką pakeisime, kad ji nepasikartotų?"},{"id":"Q04_DM","direction":"DM","text":"Prieš parinkdami korekciją surenkame kelias priežasties hipotezes ir faktus."},{"id":"Q04_IN","direction":"IN","text":"Paskiriu taisymo savininką, resursus ir trumpą rezultatų patikros tašką."},{"id":"Q04_AD","direction":"AD","text":"Nustatau tikėtiną priežastį, paskiriu korekciją ir gilinuosi jau stabilizavęs darbą.","good":"Greitai stabilizuoti procesą ir apsaugoti rezultatą.","mechanism":"Rapid Responder","risk":"thinking","alt":"O jei stabilizavęs procesą paprašytum komandos pateikti kelias priežasties hipotezes prieš pasirenkant korekciją?"}]},{"id":"Q05","stem":"Per dvi savaites turite pasiekti aiškų rezultatą. Komanda kompetentinga, pagrindiniai resursai prieinami.","context":"deadline","options":[{"id":"Q05_TM","direction":"TM","text":"Suderinu žmones su užduotimis pagal jų stiprybes ir trūkstamas kompetencijas."},{"id":"Q05_LB","direction":"LB","text":"Sutariu darbo ribas ir sprendimus, kuriuos komanda gali priimti savarankiškai."},{"id":"Q05_CH","direction":"CH","text":"Suformuluoju ambicingą dviejų savaičių rezultatą ir paaiškinu, kodėl jis svarbus."},{"id":"Q05_DM","direction":"DM","text":"Prieš startą trumpai patikriname plano prielaidas, rizikas ir alternatyvas."},{"id":"Q05_IN","direction":"IN","text":"Perduodu komandai rezultatą, resursus ir sutartus progreso patikros taškus."},{"id":"Q05_AD","direction":"AD","text":"Paskirstau konkrečias užduotis ir dažnai tikrinu progresą, kad išlaikytume tempą.","good":"Užtikrinti terminą ir išlaikyti vykdymo tempą.","mechanism":"Pacesetter / Strategist","risk":"initiative","alt":"O jei aiškiai apibrėžtum rezultatą ir terminą, o darbų planą bei atsakomybes pirmiausia pasiūlytų komanda?"}]},{"id":"Q06","stem":"Trumpam projektui reikia specifinės kompetencijos. Rizika valdoma, sprendimus galima koreguoti eigoje.","context":"expertise","options":[{"id":"Q06_TM","direction":"TM","text":"Surandu žmogų su reikiama kompetencija ir suteikiu jam aiškią rolę projekte."},{"id":"Q06_LB","direction":"LB","text":"Apibrėžiu ribas, kuriose naujas specialistas gali veikti savarankiškai."},{"id":"Q06_CH","direction":"CH","text":"Parodau, kokį sudėtingą rezultatą jo kompetencija padėtų pasiekti per trumpą laiką."},{"id":"Q06_DM","direction":"DM","text":"Trumpai palyginu kelis būdus gauti kompetenciją ir jų pasekmes projektui."},{"id":"Q06_IN","direction":"IN","text":"Perduodu specialistui aiškų rezultatą, resursus ir sprendimo ribas."},{"id":"Q06_AD","direction":"AD","text":"Svarbiausius sprendimus pasilieku sau, specialistą įtraukiu pagal poreikį.","good":"Valdyti riziką ir išlaikyti kontrolę trumpame projekte.","mechanism":"Rescuer","risk":"ownership","alt":"O jei specialistui perduotum aiškiai apibrėžtą sprendimo sritį ir sutartum tik ribas, kada reikia tavo įsitraukimo?"}]},{"id":"Q07","stem":"Komanda daro pasikartojančias klaidas mokydamasi naujos procedūros. Klaidos pataisomos ir nėra saugos kritinės.","context":"learning","options":[{"id":"Q07_TM","direction":"TM","text":"Paskiriu žmogų, kuriam procedūra sekasi geriausiai, padėti kitiems ją įvaldyti."},{"id":"Q07_LB","direction":"LB","text":"Aiškiai sutariu standartą ir ribas, kuriose galima mokytis iš klaidų."},{"id":"Q07_CH","direction":"CH","text":"Sutariu konkretų stabilumo tikslą ir terminą, iki kada jį pasieksime."},{"id":"Q07_DM","direction":"DM","text":"Su komanda palyginame, kur tiksliai kyla klaidos ir kas jas labiausiai lemia."},{"id":"Q07_IN","direction":"IN","text":"Paskiriu procedūros savininką ir sutariu trumpus mokymosi peržiūros taškus."},{"id":"Q07_AD","direction":"AD","text":"Svarbesnius žingsnius prašau iš anksto derinti su manimi, kol procedūra stabilizuosis.","good":"Apsaugoti kokybę ir padėti komandai greičiau įvaldyti procedūrą.","mechanism":"Perfectionist","risk":"learning","alt":"O jei apibrėžtum klaidos ribas, bet leistum komandai atlikti žingsnį savarankiškai ir aptartum rezultatą po jo?"}]},{"id":"Q08","stem":"Vidury projekto paaiškėja, kad ankstesnė kryptis nebetinka.","context":"change","options":[{"id":"Q08_TM","direction":"TM","text":"Pergrupuoju žmones pagal stiprybes, kurių labiausiai reikia naujai krypčiai."},{"id":"Q08_LB","direction":"LB","text":"Atnaujinu ribas ir sprendimus, kuriuos komanda gali priimti savarankiškai."},{"id":"Q08_CH","direction":"CH","text":"Įvardiju naują kryptį, jos priežastį ir rezultatą, kurio dabar siekiame."},{"id":"Q08_DM","direction":"DM","text":"Prieš pakeitimą trumpai palyginame faktus už ir prieš kelias kryptis."},{"id":"Q08_IN","direction":"IN","text":"Perduodu atnaujintą rezultatą su naujais resursais ir patikros taškais."},{"id":"Q08_AD","direction":"AD","text":"Sudarau naują planą, perskirstau darbus ir iškart paleidžiu vykdymą.","good":"Greitai persiorientuoti ir sumažinti prarastą laiką.","mechanism":"Strategist","risk":"thinking","alt":"O jei pirmiausia komandai parodytum, kas pasikeitė, ir paprašytum jos pačios perdėlioti planą?"}]},{"id":"Q09","stem":"Sprendimą spaudžia laikas, informacijos trūksta, bet pasirinktą kryptį prireikus galima koreguoti.","context":"uncertainty","options":[{"id":"Q09_TM","direction":"TM","text":"Įtraukiu žmogų, kuris greitai pastebi esmines rizikas ir spragas."},{"id":"Q09_LB","direction":"LB","text":"Sutariu sprendimo ribas ir ką komanda gali koreguoti veikdama."},{"id":"Q09_CH","direction":"CH","text":"Įvardiju, kokį rezultatą turime apsaugoti, net jei informacijos trūksta."},{"id":"Q09_DM","direction":"DM","text":"Per trumpą laiką palyginame dvi realias kryptis, faktus ir pagrindines rizikas."},{"id":"Q09_IN","direction":"IN","text":"Paskiriu sprendimo savininką ir sutariu, kada kryptį peržiūrėsime."},{"id":"Q09_AD","direction":"AD","text":"Pasirenku kryptį, o komandai palieku ją tikrinti ir koreguoti eigoje.","good":"Neužstrigti neapibrėžtume ir išlaikyti judėjimą.","mechanism":"Rapid Responder","risk":"voice","alt":"O jei prieš pasirenkant kryptį komanda trumpai įvardytų bent dvi alternatyvas ir jų rizikas?"}]},{"id":"Q10","stem":"Projektas stringa dėl kliūties už jūsų padalinio ribų.","context":"cross_functional","options":[{"id":"Q10_TM","direction":"TM","text":"Įtraukiu žmogų, turintį reikiamus ryšius ar kompetenciją tarp padalinių."},{"id":"Q10_LB","direction":"LB","text":"Sutariu aiškią eskalavimo tvarką, kad komanda galėtų kelti kliūtis savarankiškai."},{"id":"Q10_CH","direction":"CH","text":"Įvardiju, kodėl šią kliūtį būtina pašalinti ir kokį rezultatą ji stabdo."},{"id":"Q10_DM","direction":"DM","text":"Su kitu padaliniu susideriname faktus, ribojimus ir kelis sprendimo scenarijus."},{"id":"Q10_IN","direction":"IN","text":"Palieku problemos savininką komandoje ir suteikiu jam mandatą bei resursus derinimui."},{"id":"Q10_AD","direction":"AD","text":"Perimu derinimą su kitu padaliniu ir grįžtu komandai su sutartu sprendimu.","good":"Greitai pašalinti kliūtį ir apsaugoti komandos laiką.","mechanism":"Rescuer","risk":"learning","alt":"O jei problemos savininkas pats vestų pokalbį su kitu padaliniu, o tu įsitrauktum tik tada, jei kliūtis neišsisprendžia?"}]},{"id":"Q11","stem":"Komanda linkusi pritarti „stipresnei“ nuomonei.","context":"conformity","options":[{"id":"Q11_TM","direction":"TM","text":"Pirmiausia pakviečiu pasisakyti žmones, kurių perspektyva dažniausiai lieka nuošalyje."},{"id":"Q11_LB","direction":"LB","text":"Sutariu taisyklę, kad idėjas vertiname atskirai nuo siūlančio žmogaus statuso."},{"id":"Q11_CH","direction":"CH","text":"Grąžinu diskusiją į rezultatą ir kriterijus, kuriuos sprendimas turi atitikti."},{"id":"Q11_DM","direction":"DM","text":"Paprašau kiekvienam variantui pateikti stipriausią argumentą už ir prieš."},{"id":"Q11_IN","direction":"IN","text":"Paskiriu žmogų surinkti alternatyvas ir pateikti rekomendaciją komandai."},{"id":"Q11_AD","direction":"AD","text":"Pirmas pasakau, kuris argumentas man atrodo stipriausias, ir prašau jį patikrinti.","good":"Padėti komandai fokusuotis ir greičiau atsirinkti stipriausią argumentą.","mechanism":"Idea Guy / Always On","risk":"voice","alt":"O jei savo poziciją pasakytum tik po to, kai komanda pati suformuluoja argumentus ir prieštaravimus?"}]},{"id":"Q12","stem":"Vadovas klausia: „Ar tai įmanoma?“ Ką atsakai?","context":"upward_pressure","options":[{"id":"Q12_TM","direction":"TM","text":"Atsakau, kas komandoje turi stipriausią kompetenciją tai įvertinti, ir įtraukiu jį."},{"id":"Q12_LB","direction":"LB","text":"Atsakau, kokiose ribose galime pabandyti ir ko neperžengsime."},{"id":"Q12_CH","direction":"CH","text":"Atsakau, kokiomis prielaidomis tai įmanoma ir ką reikėtų pakeisti."},{"id":"Q12_DM","direction":"DM","text":"Prieš pažadėdamas paprašau kelių faktų, alternatyvų ir pagrindinių rizikų."},{"id":"Q12_IN","direction":"IN","text":"Pasiūlau atsakingą žmogų, terminą ir patikros tašką galimybei įvertinti."},{"id":"Q12_AD","direction":"AD","text":"Sakau „padarysime“, o kaip tiksliai tai įgyvendinsime, susidėliojame eigoje.","good":"Išlaikyti energiją, parodyti pasitikėjimą ir neužgesinti galimybės.","mechanism":"Optimist","risk":"voice","alt":"O jei prieš pažadėdamas rezultatą paklaustum komandos, ko reikėtų atsisakyti arba kas turi pasikeisti, kad tai būtų realu?"}]},{"id":"Q13","stem":"Naujas žmogus perima atsakomybę už stabilų procesą. Sprendimus galima koreguoti eigoje.","context":"delegation","options":[{"id":"Q13_TM","direction":"TM","text":"Įvardiju jo stiprybes ir susieju jas su konkrečiomis proceso atsakomybėmis."},{"id":"Q13_LB","direction":"LB","text":"Sutariu aiškias ribas, kuriose jis gali spręsti be išankstinio derinimo."},{"id":"Q13_CH","direction":"CH","text":"Paaiškinu, kokį aukštesnį rezultatą iš šio proceso norime pasiekti."},{"id":"Q13_DM","direction":"DM","text":"Paprašau jo pačio išanalizuoti procesą ir pagrįsti pirmus siūlomus pakeitimus."},{"id":"Q13_IN","direction":"IN","text":"Perduodu rezultatą, resursus ir kelis sutartus progreso patikros taškus."},{"id":"Q13_AD","direction":"AD","text":"Svarbesnius jo sprendimus prieš įgyvendinimą peržiūriu ir koreguoju, kol įsivažiuos.","good":"Apsaugoti naują žmogų nuo klaidų ir užtikrinti sklandžią pradžią.","mechanism":"Rescuer / Perfectionist","risk":"learning","alt":"O jei sutartum sprendimo ribas ir kontrolinius taškus, bet tarp jų žmogus galėtų veikti be išankstinio tavo patvirtinimo?"}]},{"id":"Q14","stem":"Komandoje atsiranda naujas žmogus su stipria analitika. Kaip elgiesi pirmą savaitę?","context":"new_analyst","options":[{"id":"Q14_TM","direction":"TM","text":"Pastebiu analitinę stiprybę ir duodu realią problemą, kur ji gali būti panaudota."},{"id":"Q14_LB","direction":"LB","text":"Sutariu duomenų ir sprendimų ribas, kuriose jis gali tyrinėti savarankiškai."},{"id":"Q14_CH","direction":"CH","text":"Įvardiju ambicingą problemą ir paaiškinu, kodėl jos analizė komandai svarbi."},{"id":"Q14_DM","direction":"DM","text":"Paprašau jo surinkti kelias perspektyvas ir pateikti alternatyvias hipotezes."},{"id":"Q14_IN","direction":"IN","text":"Perduodu analizės rezultatą, prieigą prie duomenų ir sutartą peržiūros tašką."},{"id":"Q14_AD","direction":"AD","text":"Pateikiu savo hipotezes ir prašau pirmiausia patikrinti būtent jas.","good":"Greitai panaudoti stiprią analitiką ir sutrumpinti kelią iki vertės.","mechanism":"Idea Guy","risk":"initiative","alt":"O jei pirmiausia paprašytum jo pačio suformuluoti hipotezes, o savąsias pridėtum tik vėliau?"}]},{"id":"Q15","stem":"Gamyba atsilieka nuo plano, tačiau tiesioginės saugos, kokybės ar įrangos krizės nėra. Kaip mobilizuoji komandą?","context":"production_delay","options":[{"id":"Q15_TM","direction":"TM","text":"Sujungiu žmones pagal stiprybes ten, kur dabar didžiausia siaura vieta."},{"id":"Q15_LB","direction":"LB","text":"Sutariu darbo ribas ir sprendimus, kuriuos komanda gali priimti nelaukdama manęs."},{"id":"Q15_CH","direction":"CH","text":"Įvardiju konkretų atsigavimo tikslą ir kodėl jį svarbu pasiekti šiandien."},{"id":"Q15_DM","direction":"DM","text":"Trumpai išsiaiškiname didžiausią tempo kliūtį ir dvi realias jos mažinimo kryptis."},{"id":"Q15_IN","direction":"IN","text":"Perduodu komandos nariams aiškius rezultatus, resursus ir trumpus patikros taškus."},{"id":"Q15_AD","direction":"AD","text":"Nustatau darbo ritmą ir pats seku, kad komanda jo laikytųsi.","good":"Greitai atkurti tempą ir parodyti komandai aiškų darbo ritmą.","mechanism":"Pacesetter","risk":"ownership","alt":"O jei komanda pati įvardytų didžiausią tempo kliūtį ir pasiūlytų, ką šiandien pakeisti, o tu pašalintum tai, ko ji negali?"}]}];
+const STORAGE="2rasi:multiplier-pilot:v09",QUEUE="2rasi:multiplier-pilot:queue:v1";
+const META={
+ TM:["Žmonių stiprybių pastebėjimas ir įtraukimas","Talent Magnet"],
+ LB:["Aiškios ribos ir veikimo erdvė","Liberator"],
+ CH:["Krypties, ambicijos ir „kodėl“ formulavimas","Challenger"],
+ DM:["Faktų, alternatyvų ir debatų naudojimas","Debate Maker"],
+ IN:["Atsakomybės, resursų ir patikros taškų perdavimas","Investor"]
+};
+const RISK={thinking:"sprendimo mąstymas",voice:"balsas diskusijoje",ownership:"atsakomybės nuosavybė",learning:"mokymosi erdvė",initiative:"iniciatyva"};
+const $=id=>document.getElementById(id),now=()=>new Date().toISOString();
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const uid=()=>crypto.randomUUID?crypto.randomUUID():"s-"+Date.now()+"-"+Math.random().toString(36).slice(2);
+const load=()=>{try{return JSON.parse(localStorage.getItem(STORAGE)||"null")}catch{return null}};
+const save=s=>localStorage.setItem(STORAGE,JSON.stringify(s));
+const qmap=Object.fromEntries(BANK.map(q=>[q.id,q]));
+const omap=(q,id)=>q.options.find(o=>o.id===id);
+function queue(type,payload){
+  const a=JSON.parse(localStorage.getItem(QUEUE)||"[]");a.push({type,payload});localStorage.setItem(QUEUE,JSON.stringify(a));flush();
+}
+let flushing=false;
+async function flush(){
+  if(flushing||!API_BASE||!navigator.onLine)return;flushing=true;
+  try{
+    let a=JSON.parse(localStorage.getItem(QUEUE)||"[]");
+    while(a.length){
+      try{const r=await fetch(API_BASE+"/"+a[0].type,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(a[0].payload),keepalive:true});if(!r.ok)throw 0;a.shift();localStorage.setItem(QUEUE,JSON.stringify(a))}
+      catch{break}
+    }
+  }finally{flushing=false}
+}
+window.addEventListener("online",flush);
+
+let state=null,shownAt=0,selected=null;
+function createState(){
+  const order=shuffle(BANK.map(q=>q.id)),optionOrder={};
+  BANK.forEach(q=>optionOrder[q.id]=shuffle(q.options.map(o=>o.id)));
+  return{sessionId:uid(),bankVersion:BANK_VERSION,engineVersion:ENGINE_VERSION,uiVersion:UI_VERSION,startedAt:now(),completedAt:null,index:0,order,optionOrder,responses:[]};
+}
+function show(id){["intro","quiz","results"].forEach(x=>$(x).classList.toggle("hidden",x!==id));scrollTo(0,0)}
+function updateIntro(){const s=load();$("resume").classList.toggle("hidden",!(s&&!s.completedAt&&s.index<15))}
+function startNew(){
+  state=createState();save(state);
+  queue("session",{sessionId:state.sessionId,bankVersion:BANK_VERSION,engineVersion:ENGINE_VERSION,uiVersion:UI_VERSION,startedAt:state.startedAt,deviceType:innerWidth<700?"mobile":innerWidth<1100?"tablet":"desktop",locale:navigator.language||"lt"});
+  show("quiz");renderQuestion();
+}
+function resume(){state=load();if(!state||state.completedAt)return startNew();show("quiz");renderQuestion()}
+function renderQuestion(){
+  selected=null;$("next").disabled=true;
+  const qid=state.order[state.index],q=qmap[qid];
+  $("counter").textContent=(state.index+1)+" / 15";$("bar").style.width=(state.index/15*100)+"%";$("stem").textContent=q.stem;
+  const wrap=$("options");wrap.innerHTML="";
+  state.optionOrder[qid].forEach(id=>{const o=omap(q,id),b=document.createElement("button");b.className="option";b.textContent=o.text;b.onclick=()=>{selected=id;[...wrap.children].forEach(x=>x.classList.remove("selected"));b.classList.add("selected");$("next").disabled=false};wrap.appendChild(b)});
+  shownAt=performance.now();
+}
+function answer(){
+  if(!selected)return;
+  const qid=state.order[state.index],q=qmap[qid],o=omap(q,selected);
+  const r={questionId:qid,shownQuestionPosition:state.index+1,shownOptionOrder:state.optionOrder[qid],selectedOptionId:o.id,direction:o.direction,responseTimeMs:Math.round(performance.now()-shownAt),answeredAt:now()};
+  state.responses.push(r);queue("response",{sessionId:state.sessionId,...r});state.index++;save(state);
+  if(state.index===15){state.completedAt=now();save(state);const s=compute();queue("complete",{sessionId:state.sessionId,completedAt:state.completedAt,multiplierDirectionCounts:s.counts,multiplierCount:s.multi,accidentalCount:s.ad.length,contributionAtRiskCounts:s.riskCounts,pattern:s.pattern,reflectionQuestionIds:pickRefs(s).map(x=>x.q.id)});renderResults()}else renderQuestion();
+}
+function compute(){
+  const counts={TM:0,LB:0,CH:0,DM:0,IN:0},ad=[];
+  state.responses.forEach(r=>{const q=qmap[r.questionId],o=omap(q,r.selectedOptionId);o.direction==="AD"?ad.push({q,o,r}):counts[o.direction]++});
+  const riskCounts={};ad.forEach(x=>riskCounts[x.o.risk]=(riskCounts[x.o.risk]||0)+1);
+  const ranked=Object.entries(riskCounts).sort((a,b)=>b[1]-a[1]);let pattern={kind:"none"};
+  if(ad.length>=2&&ranked[0]){
+    const [risk,n]=ranked[0];pattern=n>=2?(n/ad.length>=.5?{kind:"concentrated",risk,count:n}:{kind:"repeat_but_spread",risk,count:n}):{kind:"spread"};
+  }
+  return{counts,multi:Object.values(counts).reduce((a,b)=>a+b,0),ad,riskCounts,pattern};
+}
+function pickRefs(s){
+  const lim=s.ad.length===0?0:s.ad.length===1?1:s.ad.length<=3?2:3,out=[],ctx=new Set();
+  if(s.pattern.kind==="concentrated")for(const x of s.ad.filter(x=>x.o.risk===s.pattern.risk)){if(out.length>=lim)break;if(!ctx.has(x.q.context)){out.push(x);ctx.add(x.q.context)}}
+  for(const x of s.ad){if(out.length>=lim)break;if(!out.some(y=>y.q.id===x.q.id)&&!ctx.has(x.q.context)){out.push(x);ctx.add(x.q.context)}}
+  for(const x of s.ad){if(out.length>=lim)break;if(!out.some(y=>y.q.id===x.q.id))out.push(x)}
+  return out;
+}
+function renderResults(){
+  show("results");const s=compute(),ranked=Object.entries(s.counts).sort((a,b)=>b[1]-a[1]);
+  $("multiSummary").innerHTML=s.multi?'<div class="kpi">'+s.multi+' / 15</div><p>Šiose situacijose pasirinkai vieną iš penkių Multipliers įkvėptų veikimo krypčių. Dažniausiai kartojosi <strong>'+META[ranked[0][0]][0]+'</strong> ('+META[ranked[0][0]][1]+') — '+ranked[0][1]+' iš '+s.multi+' tokių pasirinkimų.</p>':'<div class="kpi">0 / 15</div><p>Nė karto nepasirinkai vienos iš penkių Multipliers įkvėptų krypčių.</p>';
+  $("dirRows").innerHTML=ranked.map(([k,v])=>'<div class="row"><div><strong>'+META[k][0]+'</strong><div class="small">'+META[k][1]+'</div></div><div class="pill">'+v+' / '+s.multi+'</div></div>').join("");
+  $("adSummary").innerHTML='<div class="kpi">'+s.ad.length+' / 15</div><p>'+(s.ad.length===0?'Šiose 15 situacijų nepasirinkai nė vieno specialiai suprojektuoto accidental-diminishing varianto. Tai nereiškia, kad tokių momentų realiame darbe nebūna — tik kad šiame rinkinyje jie nebuvo tavo pirmasis pasirinkimas.':(s.ad.length===1?'Vienoje situacijoje pasirinkai':'Keliose situacijose pasirinkai')+' veiksmą, kuriame šiame eksperimente yra accidental-diminishing rizika.')+'</p>';
+  $("pattern").innerHTML=s.ad.length<2?"":s.pattern.kind==="concentrated"?'<p><strong>Pasikartojo panašus momentas.</strong> '+s.pattern.count+' iš '+s.ad.length+' šių pasirinkimų rizika buvo susijusi su tuo, kad galėjo sumažėti '+RISK[s.pattern.risk]+'.</p>':s.pattern.kind==="repeat_but_spread"?'<p>Vienas motyvas pasikartojo '+s.pattern.count+' kartus — '+RISK[s.pattern.risk]+' — tačiau pasirinkimai buvo išsibarstę per skirtingus kontekstus.</p>':'<p>Šie pasirinkimai nesusitelkė į vieną pasikartojantį motyvą.</p>';
+  const refs=pickRefs(s),card=$("reflectionCard");$("reflections").innerHTML=refs.map((x,i)=>'<div class="reflection"><div class="small">REFLEKSIJA '+(i+1)+'</div><strong>'+x.q.stem+'</strong><div class="chosen"><strong>Tavo pasirinkimas:</strong><br>'+x.o.text+'</div><p><strong>Geras ketinimas:</strong> '+x.o.good+'</p><div class="alt"><strong>O ką pakeistų...</strong><br>'+x.o.alt+'</div></div>').join("");card.classList.toggle("hidden",!refs.length);flush();
+}
+function exportJson(){
+  const s=compute(),blob=new Blob([JSON.stringify({schema:"2rasi.multipliers-pilot.export.v1",generatedAt:now(),session:state,summary:{counts:s.counts,multiplierCount:s.multi,adCount:s.ad.length,riskCounts:s.riskCounts,pattern:s.pattern}},null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="multipliers-pilot-"+state.sessionId+".json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);
+}
+function sendFeedback(){
+  const a=$("fb1").value,b=$("fb2").value,c=$("fb3").value,d=$("fb4").value.trim();
+  if(!a||!b||!c){$("fbStatus").textContent="Pasirink atsakymus į tris klausimus.";return}
+  queue("feedback",{sessionId:state.sessionId,answeredRealistically:a,noticedDifferentOptions:b,resultPromptedReflection:c,comment:d});
+  $("fbStatus").textContent=API_BASE?"Ačiū. Feedback įtrauktas į piloto duomenis.":"Ačiū. Feedback išsaugotas naršyklėje ir bus išsiųstas, kai piloto duomenų kanalas bus aktyvus.";
+}
+$("start").onclick=startNew;$("resume").onclick=resume;$("next").onclick=answer;$("quit").onclick=()=>{save(state);show("intro");updateIntro()};
+$("again").onclick=()=>{localStorage.removeItem(STORAGE);show("intro");updateIntro()};$("export").onclick=exportJson;$("print").onclick=()=>print();$("sendFeedback").onclick=sendFeedback;
+(function init(){const s=load();if(s&&s.completedAt&&s.bankVersion===BANK_VERSION){state=s;renderResults()}else{show("intro");updateIntro()}flush()})();
+</script>
+</body></html>
