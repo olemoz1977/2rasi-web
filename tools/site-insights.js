@@ -56,9 +56,34 @@
     catch { return ''; }
   }
 
+  function normalizeSource(value) {
+    const raw = String(value || '').trim().toLowerCase().slice(0, 80);
+    const aliases = {
+      fb: 'facebook',
+      'facebook.com': 'facebook',
+      ig: 'instagram',
+      'instagram.com': 'instagram',
+      li: 'linkedin',
+      'linkedin.com': 'linkedin',
+      yt: 'youtube',
+      'youtube.com': 'youtube',
+      'youtu.be': 'youtube',
+      'skool.com': 'skool',
+      'reddit.com': 'reddit',
+      'substack.com': 'substack',
+      'pinterest.com': 'pinterest',
+      twitter: 'x',
+      'twitter.com': 'x',
+      'x.com': 'x',
+      chatgpt: 'chatgpt',
+      'chatgpt.com': 'chatgpt',
+    };
+    return aliases[raw] || raw;
+  }
+
   function classifySource(referrerHost) {
     const q = new URLSearchParams(location.search);
-    const utm = (q.get('utm_source') || '').trim().toLowerCase().slice(0, 80);
+    const utm = normalizeSource(q.get('utm_source'));
     if (utm) return utm;
     const r = referrerHost || '';
     if (/tiktok/.test(r)) return 'tiktok';
@@ -66,6 +91,13 @@
     if (/instagram/.test(r)) return 'instagram';
     if (/linkedin/.test(r)) return 'linkedin';
     if (/skool/.test(r)) return 'skool';
+    if (/youtube|youtu\.be/.test(r)) return 'youtube';
+    if (/reddit/.test(r)) return 'reddit';
+    if (/substack/.test(r)) return 'substack';
+    if (/pinterest/.test(r)) return 'pinterest';
+    if (/threads/.test(r)) return 'threads';
+    if (/(^|\.)x\.com$|twitter/.test(r)) return 'x';
+    if (/chatgpt/.test(r)) return 'chatgpt';
     if (/google|bing|duckduckgo|yahoo/.test(r)) return 'search';
     if (!r || r === host || r.endsWith(`.${host}`)) return 'direct';
     return 'referral';
