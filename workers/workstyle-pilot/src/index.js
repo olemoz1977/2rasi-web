@@ -27,6 +27,12 @@ const TOOL_IDS = new Set([
 const PRIOLENS_SV_SCHEMA = "2rasi.priolens.stimulus-validation-session-v0.1";
 const PRIOLENS_SV_VERSION = "priolens-stimulus-validation-v0.1";
 const PRIOLENS_SV_POOL = "open14-v031-current42";
+const PRIOLENS_SV_RESEARCH_SINCE = "2026-09-06T06:00:00.000Z";
+const PRIOLENS_SV_HOLDS = Object.freeze({
+  "SAFETY-02":"visible_watermark",
+  "EXPLORATION-01":"visible_watermark",
+  "AUTONOMY-02":"suspected_generator_artifact",
+});
 const PRIOLENS_SV_FAMILIES = [
   "REST","RESOURCE","SAFETY","ORDER","CONNECTION","BELONGING","CARE",
   "AUTONOMY","CONTROL","RECOGNITION","MASTERY","EXPLORATION","KNOWLEDGE","OPPORTUNITY",
@@ -397,7 +403,8 @@ function buildPriolensSvRows(metricRows, classRows, scope) {
       clarityAvg:Number(row.clarity_avg || 0),
       confidenceAvg:Number(row.confidence_avg || 0),
       valenceAvg:Number(row.valence_avg || 0),
-      status:priolensSvStatus(row, topRate, otherRate),
+      status:PRIOLENS_SV_HOLDS[row.stimulus_id] ? "HOLD" : priolensSvStatus(row, topRate, otherRate),
+      holdReason:PRIOLENS_SV_HOLDS[row.stimulus_id] || null,
     };
   }).sort((a,b) => a.stimulusId.localeCompare(b.stimulusId));
 }
@@ -410,49 +417,74 @@ async function handlePriolensStimulusValidationSummary(request, env, origin) {
     return json({ ok:false, error:"owner_gate_required" }, 403, origin);
   }
 
+  const cleanSessionWhere = `
+    s.pool_version = ?
+    AND s.received_at >= ?
+    AND COALESCE(s.source,'') NOT IN ('owner','test','synthetic')
+  `;
+  const bindClean = [PRIOLENS_SV_POOL, PRIOLENS_SV_RESEARCH_SINCE];
+
   try {
     const [
       sessionResult,
+      excludedResult,
       overallMetricsResult,
       byLanguageMetricsResult,
       overallClassesResult,
       byLanguageClassesResult,
     ] = await Promise.all([
       env.DB.prepare(`
-        SELECT language, COUNT(*) AS n
+        SELECT s.language, COUNT(*) AS n
+        FROM priolens_stimulus_validation_sessions s
+        WHERE ${cleanSessionWhere}
+        GROUP BY s.language
+      `).bind(...bindClean).all(),
+      env.DB.prepare(`
+        SELECT
+          COUNT(*) AS total,
+          SUM(CASE WHEN received_at < ? THEN 1 ELSE 0 END) AS pre_cutoff,
+          SUM(CASE WHEN COALESCE(source,'') IN ('owner','test','synthetic') THEN 1 ELSE 0 END) AS internal
         FROM priolens_stimulus_validation_sessions
-        GROUP BY language
-      `).all(),
+        WHERE pool_version = ?
+      `).bind(PRIOLENS_SV_RESEARCH_SINCE, PRIOLENS_SV_POOL).all(),
       env.DB.prepare(`
-        SELECT stimulus_id, target_family, COUNT(*) AS n,
-          SUM(CASE WHEN classification = target_family THEN 1 ELSE 0 END) AS intended_n,
-          SUM(CASE WHEN classification = 'OTHER' THEN 1 ELSE 0 END) AS other_n,
-          AVG(clarity) AS clarity_avg,
-          AVG(confidence) AS confidence_avg,
-          AVG(valence) AS valence_avg
-        FROM priolens_stimulus_validation_responses
-        GROUP BY stimulus_id, target_family
-      `).all(),
+        SELECT r.stimulus_id, r.target_family, COUNT(*) AS n,
+          SUM(CASE WHEN r.classification = r.target_family THEN 1 ELSE 0 END) AS intended_n,
+          SUM(CASE WHEN r.classification = 'OTHER' THEN 1 ELSE 0 END) AS other_n,
+          AVG(r.clarity) AS clarity_avg,
+          AVG(r.confidence) AS confidence_avg,
+          AVG(r.valence) AS valence_avg
+        FROM priolens_stimulus_validation_responses r
+        JOIN priolens_stimulus_validation_sessions s ON s.session_id = r.session_id
+        WHERE ${cleanSessionWhere}
+        GROUP BY r.stimulus_id, r.target_family
+      `).bind(...bindClean).all(),
       env.DB.prepare(`
-        SELECT stimulus_id, target_family, language, COUNT(*) AS n,
-          SUM(CASE WHEN classification = target_family THEN 1 ELSE 0 END) AS intended_n,
-          SUM(CASE WHEN classification = 'OTHER' THEN 1 ELSE 0 END) AS other_n,
-          AVG(clarity) AS clarity_avg,
-          AVG(confidence) AS confidence_avg,
-          AVG(valence) AS valence_avg
-        FROM priolens_stimulus_validation_responses
-        GROUP BY stimulus_id, target_family, language
-      `).all(),
+        SELECT r.stimulus_id, r.target_family, r.language, COUNT(*) AS n,
+          SUM(CASE WHEN r.classification = r.target_family THEN 1 ELSE 0 END) AS intended_n,
+          SUM(CASE WHEN r.classification = 'OTHER' THEN 1 ELSE 0 END) AS other_n,
+          AVG(r.clarity) AS clarity_avg,
+          AVG(r.confidence) AS confidence_avg,
+          AVG(r.valence) AS valence_avg
+        FROM priolens_stimulus_validation_responses r
+        JOIN priolens_stimulus_validation_sessions s ON s.session_id = r.session_id
+        WHERE ${cleanSessionWhere}
+        GROUP BY r.stimulus_id, r.target_family, r.language
+      `).bind(...bindClean).all(),
       env.DB.prepare(`
-        SELECT stimulus_id, target_family, classification, COUNT(*) AS n
-        FROM priolens_stimulus_validation_responses
-        GROUP BY stimulus_id, target_family, classification
-      `).all(),
+        SELECT r.stimulus_id, r.target_family, r.classification, COUNT(*) AS n
+        FROM priolens_stimulus_validation_responses r
+        JOIN priolens_stimulus_validation_sessions s ON s.session_id = r.session_id
+        WHERE ${cleanSessionWhere}
+        GROUP BY r.stimulus_id, r.target_family, r.classification
+      `).bind(...bindClean).all(),
       env.DB.prepare(`
-        SELECT stimulus_id, target_family, language, classification, COUNT(*) AS n
-        FROM priolens_stimulus_validation_responses
-        GROUP BY stimulus_id, target_family, language, classification
-      `).all(),
+        SELECT r.stimulus_id, r.target_family, r.language, r.classification, COUNT(*) AS n
+        FROM priolens_stimulus_validation_responses r
+        JOIN priolens_stimulus_validation_sessions s ON s.session_id = r.session_id
+        WHERE ${cleanSessionWhere}
+        GROUP BY r.stimulus_id, r.target_family, r.language, r.classification
+      `).bind(...bindClean).all(),
     ]);
 
     const sessions = {all:0,lt:0,en:0};
@@ -483,8 +515,12 @@ async function handlePriolensStimulusValidationSummary(request, env, origin) {
       generatedAt:new Date().toISOString(),
       schema:PRIOLENS_SV_SCHEMA,
       poolVersion:PRIOLENS_SV_POOL,
+      researchSince:PRIOLENS_SV_RESEARCH_SINCE,
+      publicResearchOpen:false,
+      holds:PRIOLENS_SV_HOLDS,
       thresholds:PRIOLENS_SV_THRESHOLDS,
       sessionCounts:sessions,
+      excluded:resultRows(excludedResult)[0] || {},
       rows:[...overallRows, ...languageRows],
     }, 200, origin);
   } catch (error) {
