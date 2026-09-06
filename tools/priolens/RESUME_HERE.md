@@ -33,6 +33,15 @@ Rollback baseline:
 
 **Repo is source of truth. Do not reconstruct PrioLens from chat memory.**
 
+## CURRENT CHECKPOINT — VERSION ALIGNMENT RULE
+
+Owner naming rule — 2026-09-06:
+- PrioLens public pilot `v0.4` must use a correspondingly named **bank v0.4** for the next remediated stimulus set.
+- Do **not** introduce `bank-v0.3.2` for the v0.4 pilot.
+- The currently deployed v0.4 runtime still references historical `bank-v0.3.1`; preserve that identity for already-collected sessions.
+- The remediation/promotion step must create a distinct `2rasi.priolens.open14.bank-v0.4` identity, separate asset paths, and an analytical cutoff so pre-switch v0.3.1-bank sessions remain distinguishable from post-switch v0.4-bank sessions.
+- Validation pool/version naming must align to the new v0.4 bank as well.
+
 ## CURRENT CHECKPOINT — OPPORTUNITY FAMILY REBUILD FLAG
 
 OPPORTUNITY stop rule — 2026-09-06:
