@@ -32,6 +32,7 @@
   const tool = toolFromPath();
   const isToolPage = tool !== 'gallery' && tool !== 'site';
   const isRunPage = /\/run\/|v07-cognitive\.html|\/pilot\/|\/tools\/priolens\/validate\//.test(path);
+  const suppressPreCompletionFeedback = tool === 'priolens' && path.startsWith('/tools/priolens/validate/');
 
   function uuid() {
     if (crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
@@ -394,7 +395,9 @@
 
   if (isToolPage) {
     if (isRunPage) {
-      setTimeout(() => { if (!completed) showFeedbackTrigger(true); }, 90_000);
+      if (!suppressPreCompletionFeedback) {
+        setTimeout(() => { if (!completed) showFeedbackTrigger(true); }, 90_000);
+      }
     } else {
       setTimeout(() => showFeedbackTrigger(true), 12_000);
     }
