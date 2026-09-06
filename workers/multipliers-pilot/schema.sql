@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS pilot_sessions (
   completed_at TEXT,
   device_type TEXT,
   locale TEXT,
+  source_mode TEXT NOT NULL DEFAULT '',
+  analysis_eligible INTEGER NOT NULL DEFAULT 1,
   completed INTEGER NOT NULL DEFAULT 0,
   ad_count INTEGER,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
