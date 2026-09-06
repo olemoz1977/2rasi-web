@@ -1,7 +1,7 @@
 # PrioLens — RESUME HERE
 
 Status: ACTIVE / OPEN14 v0.4 PUBLIC PILOT LIVE / BLIND STIMULUS VALIDATION PUBLIC HOLD / BANK v0.4 TECHNICAL QC PASS / OWNER 42/42 VISUAL REVIEW PENDING / DATA COLLECTION + RESEARCH ADMIN ACTIVE
-Updated: 2026-09-06 14:05 EEST
+Updated: 2026-09-06 14:20 EEST
 Repository: `olemoz1977/2rasi-web`
 Branch: `feature/priolens-architecture`
 
@@ -94,13 +94,16 @@ Technical gate:
 - OPPORTUNITY-01 staged source reconstructs the approved `op1_q45.webp` pixels;
 - the QC workflow verifies decoded RGB pixel identity for the three local approved assets, not only file-container validity;
 - all five changed assets pass 640×640 decode and remote byte-for-byte verification after isolated upload.
+- all five changed exemplars now carry exact `runtimeSha256Expected` and `runtimePixelSha256Expected` values that match the hardened changed-asset manifest;
+- a stale inherited raw-hash inconsistency on OPPORTUNITY-01 / OPPORTUNITY-03 was detected after the first pass and corrected before this hardened run;
+- generated candidate status is `V04_BANK_CANDIDATE_TECHNICAL_QC_PASS_OWNER_REVIEW_PENDING`; `runtimeReady=false` remains locked.
 
 Accepted QC evidence:
 - runtime workflow: `.github/workflows/priolens-v04-bank-v04-qc.yml`;
-- successful run: `34029097158`;
-- successful run head: `2dea4829ee8e39a3a84049b48a8ea83329c4d555`;
+- hardened successful run: `34029734389`;
+- hardened successful run head: `ad10d20564562cf82ef35c0a4f6a6b63e54863fd`;
 - every workflow step passed, including five-asset preparation, isolated upload, remote byte check, exact 42-image review build, review upload and review verification;
-- retained artifact: `priolens-bank-v04-qc-review`, artifact id `9988023491`.
+- retained artifact: `priolens-bank-v04-qc-review`, artifact id `9988228876`, digest `sha256:677891221176e5fb62c6b26cd4556394a0d73f0c186f2438386bc0ee20b37e0b`.
 
 Owner review:
 - isolated 42/42 review: `https://omesg360.eu/priolens-research-assets/Open14-v04-bank-review-v01/`;
