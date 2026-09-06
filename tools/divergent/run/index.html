@@ -361,7 +361,7 @@
     for (const [k,v] of Object.entries(attrs)){
       if (k==="class") n.className = v;
       else if (k==="html") n.innerHTML = v;
-      else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+      else if (k.startsWith("on")) n.addEventListener(k.slice(2).toLowerCase(), v);
       else n.setAttribute(k, v);
     }
     for (const k of kids){ n.appendChild(typeof k==="string" ? document.createTextNode(k) : k); }
@@ -546,28 +546,53 @@
   }
 
   /* ====== 6) Saugojimas ====== */
-  const STORAGE_KEY = "divirgent_ocean_answers_v22";
-  function save(){
-    const ans = collectAnswers();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(ans));
+  const STORAGE_KEY = "divergent_ocean_answers_v23_lt";
+  const RESULT_KEY = "divergent_ocean_result_v23_lt";
+  const LEGACY_KEYS = ["divirgent_ocean_answers_v22","divergent_ocean_answers_v22"];
+
+  function readSavedAnswers(){
+    const keys=[STORAGE_KEY,...LEGACY_KEYS];
+    for(const key of keys){
+      const raw=localStorage.getItem(key);
+      if(!raw) continue;
+      try{
+        const ans=JSON.parse(raw)||{};
+        if(key!==STORAGE_KEY) localStorage.setItem(STORAGE_KEY,JSON.stringify(ans));
+        return ans;
+      }catch(e){}
+    }
+    return null;
   }
+
+  function save(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(collectAnswers())); }catch(e){}
+  }
+
   function restore(){
-    const raw = localStorage.getItem(STORAGE_KEY); if (!raw) return;
+    const ans=readSavedAnswers(); if(!ans) return 0;
+    let restored=0;
+    Object.entries(ans).forEach(([id,val])=>{
+      if(val==null) return;
+      const input=document.querySelector(`input[name="${id}"][value="${val}"]`);
+      if(input){ input.checked=true; restored++; }
+    });
+    return restored;
+  }
+
+  function setResultSaved(enabled){
     try{
-      const ans = JSON.parse(raw) || {};
-      Object.entries(ans).forEach(([id,val])=>{
-        if (val==null) return;
-        const el = document.querySelector(`input[name="${id}"][value="${val}"]`);
-        if (el) el.checked = true;
-      });
+      if(enabled) localStorage.setItem(RESULT_KEY,"1");
+      else localStorage.removeItem(RESULT_KEY);
     }catch(e){}
   }
+
   function clearAll(){
-    localStorage.removeItem(STORAGE_KEY);
+    [STORAGE_KEY,RESULT_KEY,...LEGACY_KEYS].forEach(key=>{try{localStorage.removeItem(key)}catch(e){}});
     for (const it of ITEMS){
       const chk = document.querySelector(`input[name="${it.id}"]:checked`);
       if (chk) chk.checked = false;
     }
+    by("#resultsCard").hidden = true;
     updateProgressUI();
     highlightMissing();
   }
@@ -589,6 +614,8 @@
       return;
     }
     by("#fillAllNote").textContent = "Rezultatai apskaičiuoti.";
+    save();
+    setResultSaved(true);
     renderResults(model);
     by("#resultsCard").hidden = false;
     // slenkame prie rezultatų
@@ -602,7 +629,14 @@
   function boot(){
     renderForm();
     restore();
-    updateProgressUI();
+    const model=updateProgressUI();
+    let reopenResult=false;
+    try{ reopenResult=localStorage.getItem(RESULT_KEY)==="1"; }catch(e){}
+    if(reopenResult && model.answered===model.total){
+      renderResults(model);
+      by("#resultsCard").hidden=false;
+      by("#fillAllNote").textContent="Rezultatai atkurti iš šios naršyklės.";
+    }
 
     by("#testForm").addEventListener("submit", onSubmit);
     by("#clearBtn").addEventListener("click", ()=>{ clearAll(); by("#fillAllNote").textContent="Užpildykite visus teiginius ir spauskite „Gauti rezultatą“."; });
