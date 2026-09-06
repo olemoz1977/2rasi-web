@@ -121,6 +121,16 @@
     closeButton.focus();
   }
 
+  if (lang === 'en') {
+    const link = document.querySelector('#workstyle .portal-enter');
+    if (link) {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        openLanguageDialog('https://2rasi.lt/tools/workstyle15/');
+      });
+    }
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => entry.target.classList.toggle('in-view', entry.isIntersecting));
   }, { threshold: 0.42 });
