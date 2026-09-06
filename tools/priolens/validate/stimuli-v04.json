@@ -249,6 +249,6 @@
       ]
     }
   ],
-  "status": "TECHNICAL_QC_PASS_OWNER_VISUAL_REVIEW_PENDING_PUBLIC_HOLD",
+  "status": "READY_FOR_PUBLIC_BLIND_SCREENING",
   "competitorPolicyVersion": "stimulus-aware-v0.2"
 }
