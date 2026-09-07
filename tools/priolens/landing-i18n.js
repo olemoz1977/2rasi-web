@@ -57,6 +57,12 @@
     a.href = validationUrl;
   });
 
+  const validationAdmin = document.querySelector('#validation-admin-results');
+  if (validationAdmin) {
+    validationAdmin.href = `./validate/?lang=${lang}&summary=1`;
+    validationAdmin.hidden = !window.RASI_OWNER_MODE;
+  }
+
   const footerSpan = document.querySelector('.tool-footer span');
   if (footerSpan) footerSpan.textContent = lt ? '2rasi · Pažvelk dar kartą.' : '2rasi · Look again.';
   const footerLink = document.querySelector('.tool-footer a');
