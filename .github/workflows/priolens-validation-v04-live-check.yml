@@ -9,6 +9,7 @@ on:
       - '.github/workflows/priolens-validation-v04-live-check.yml'
       - 'tools/priolens/index.html'
       - 'tools/priolens/landing-i18n.js'
+      - 'tools/priolens/validate/index.html'
       - 'tools/priolens/validate/app.js'
       - 'tools/priolens/validate/stimuli-v04.json'
       - 'workers/workstyle-pilot/src/index.js'
@@ -37,7 +38,7 @@ jobs:
               && curl -fsSL --retry 2 "$POOL?v=$key" -o /tmp/pool.json \
               && jq -e '.poolVersion=="open14-v04-current42" and .sourceBank=="2rasi.priolens.open14.bank-v0.4" and .status=="READY_FOR_PUBLIC_BLIND_SCREENING" and (.stimuli|length)==42' /tmp/pool.json >/dev/null \
               && curl -fsSL --retry 2 "$PAGE&v=$key" -o /tmp/page.html \
-              && grep -Fq 'app.js' /tmp/page.html \
+              && grep -Fq 'app.js?v=20260907-1' /tmp/page.html \
               && grep -Fq "ownerSummaryRequested" /tmp/app.js \
               && curl -fsSL --retry 2 "$LANDING?v=$key" -o /tmp/landing.html \
               && grep -Fq 'id="validation-admin-results"' /tmp/landing.html \
