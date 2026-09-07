@@ -1,0 +1,34 @@
+.experiment-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.experiment-actions a {
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(7,27,46,.20);
+  font-size: .82rem;
+  letter-spacing: .04em;
+  transition: border-color .2s ease;
+}
+
+.experiment-actions a:hover {
+  border-color: rgba(7,27,46,.72);
+}
+
+.experiment-actions a span {
+  display: inline-block;
+  transition: transform .2s ease;
+}
+
+.experiment-actions a:hover span {
+  transform: translate(3px,-3px);
+}
+
+@media (max-width: 780px) {
+  .experiment-actions {
+    grid-column: 2;
+    justify-self: start;
+  }
+}

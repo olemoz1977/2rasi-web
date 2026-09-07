@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,follow" />
+    <title>Situational Leadership Reflection</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7f6;
+            color: var(--primary);
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header { text-align: center; margin-bottom: 40px; border-bottom: 3px solid var(--accent); padding-bottom: 20px; }
+        .header h1 { color: var(--primary); margin-bottom: 10px; }
+
+        .question-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .options label {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .options label:hover { background: #f0f7f9; border-color: var(--accent); }
+        input[type="radio"] { margin-right: 10px; }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-pdf { background: var(--success); color: white; display: none; }
+        
+        #appendix-section, #results-section { display: none; }
+
+        .result-header { text-align: center; margin-bottom: 30px; }
+        .score-circle {
+            width: 100px; height: 100px; border-radius: 50%;
+            background: var(--accent); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2em; font-weight: bold; margin: 0 auto 10px;
+        }
+
+        .badge {
+            padding: 8px 15px; border-radius: 20px; color: white; font-weight: bold;
+        }
+
+        @media print {
+            .btn, .header p, #appendix-section, #main-test-section, .rasi-feedback { display: none !important; }
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; width: 100%; max-width: 100%; }
+            #results-section { display: block !important; }
+            .reflection-experiment { break-inside: avoid; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="main-test-section">
+        <div class="header">
+            <h1>Situational Leadership Reflection</h1>
+            <p>Stage I: 20 core situations to map your response pattern</p>
+        </div>
+        <div id="main-questions"></div>
+        <button class="btn btn-primary" onclick="processMainTest()">Continue to Stage II (Boundary check)</button>
+    </div>
+
+    <div id="appendix-section">
+        <div class="header">
+            <h1>Boundary Check</h1>
+            <p>Stage II: notice whether your response direction changes in crisis, expert and safety contexts.</p>
+        </div>
+        <div id="appendix-questions"></div>
+        <button class="btn btn-primary" onclick="processFinalResults()">Show choice map</button>
+    </div>
+
+    <div id="results-section">
+        <div class="header">
+            <h1>Your situational choice map</h1>
+        </div>
+        <div id="final-content"></div>
+        <button class="btn btn-pdf" id="pdf-btn" onclick="window.print()">Save PDF / Print</button>
+        <button class="btn btn-primary" style="background: #95a5a6;" onclick="location.reload()">Retake reflection</button>\n        <a class="btn btn-primary" style="display:block;box-sizing:border-box;text-align:center;text-decoration:none;background:#2c3e50;" href="https://2rasi.com/#experiments">← Back to 2rasi</a>
+    </div>
+</div>
+
+<script>
+    const mainQuestions = [
+        { id: 1, text: "A new employee has joined the department. They are enthusiastic but inexperienced.", options: [
+            { text: "Give precise instructions and closely monitor progress.", s: "S1", w: 4 },
+            { text: "Encourage them and explain the purpose.", s: "S2", w: 2 },
+            { text: "Let them decide how to proceed.", s: "S4", w: 0 },
+            { text: "Ask for their view on how to do the work.", s: "S3", w: 1 }
+        ]},
+        { id: 2, text: "An experienced employee has been assigned an unfamiliar project and feels uncertain.", options: [
+            { text: "Assign it and stay out of the way.", s: "S4", w: 1 },
+            { text: "Explain, guide and motivate.", s: "S2", w: 4 },
+            { text: "Closely control each step.", s: "S1", w: 2 },
+            { text: "Listen to their concerns and support them.", s: "S3", w: 3 }
+        ]},
+        { id: 3, text: "A group of specialists performs very well, but conflicts arise over internal rules.", options: [
+            { text: "Step in and set strict new rules.", s: "S1", w: 1 },
+            { text: "Invite the group to find a solution together.", s: "S3", w: 4 },
+            { text: "Expect them to resolve the issues themselves.", s: "S4", w: 2 },
+            { text: "Emphasize the value of teamwork and offer a vision.", s: "S2", w: 3 }
+        ]},
+        { id: 4, text: "An employee who has always performed very well has recently started arriving late and seems demotivated.", options: [
+            { text: "Remind them about work discipline and deadlines.", s: "S1", w: 0 },
+            { text: "Have an open conversation, listen and look for solutions together.", s: "S3", w: 4 },
+            { text: "Give them more freedom and expect the result.", s: "S4", w: 1 },
+            { text: "Encourage them and define the goals more clearly.", s: "S2", w: 2 }
+        ]},
+        { id: 5, text: "The team has successfully completed one stage. A very similar stage comes next.", options: [
+            { text: "Let the team continue independently.", s: "S4", w: 4 },
+            { text: "Explain the instructions in detail again.", s: "S1", w: 0 },
+            { text: "Stay in touch and acknowledge the success.", s: "S3", w: 3 },
+            { text: "Motivate them to take on even bigger challenges.", s: "S2", w: 2 }
+        ]},
+        { id: 6, text: "A newly formed team does not know its goals, although the members are individually competent.", options: [
+            { text: "Let them organize the process themselves.", s: "S4", w: 1 },
+            { text: "State the goals and working arrangements precisely.", s: "S1", w: 4 },
+            { text: "Offer a vision and ask for their views.", s: "S2", w: 3 },
+            { text: "Facilitate a discussion so they define the goals themselves.", s: "S3", w: 2 }
+        ]},
+        { id: 7, text: "An assistant performs tasks well but always waits for your approval before finishing.", options: [
+            { text: "Tell them to be bolder.", s: "S1", w: 1 },
+            { text: "Discuss why they feel uncertain and encourage them.", s: "S3", w: 4 },
+            { text: "Start delegating tasks without requiring approval.", s: "S4", w: 3 },
+            { text: "Build confidence by highlighting their successes.", s: "S2", w: 2 }
+        ]},
+        { id: 8, text: "The team’s morale has dropped because of changes, although the work is still completed on time.", options: [
+            { text: "Focus on relationships and listen to their concerns.", s: "S3", w: 4 },
+            { text: "State that results are the priority.", s: "S1", w: 0 },
+            { text: "Explain the benefits of the change and inspire them.", s: "S2", w: 3 },
+            { text: "Stay out of it as long as the work gets done.", s: "S4", w: 1 }
+        ]},
+        { id: 9, text: "A team member wants to take responsibility but lacks technical knowledge.", options: [
+            { text: "Let them try and learn from mistakes.", s: "S4", w: 1 },
+            { text: "Train them and discuss progress together.", s: "S2", w: 4 },
+            { text: "Give instructions and monitor the work.", s: "S1", w: 2 },
+            { text: "Offer a mentor and provide emotional support.", s: "S3", w: 3 }
+        ]},
+        { id: 10, text: "An experienced employee made a mistake and is very upset about it.", options: [
+            { text: "Tell them how to correct it and monitor the process.", s: "S1", w: 1 },
+            { text: "Talk it through, reassure them and let them solve it.", s: "S3", w: 4 },
+            { text: "Say that it happens to everyone and leave them to it.", s: "S4", w: 2 },
+            { text: "Analyze the mistake together and explain how to prevent it.", s: "S2", w: 3 }
+        ]},
+        { id: 11, text: "You need to assign someone to an urgent task. You have a competent person who doubts themselves.", options: [
+            { text: "Tell them exactly what to do.", s: "S1", w: 2 },
+            { text: "Assign the task and say that you trust them completely.", s: "S4", w: 2 },
+            { text: "Discuss it together and encourage them throughout the process.", s: "S3", w: 4 },
+            { text: "Emphasize the importance and provide guidelines.", s: "S2", w: 3 }
+        ]},
+        { id: 12, text: "The team has achieved excellent results and become autonomous and proactive.", options: [
+            { text: "Reduce control and let them act independently.", s: "S4", w: 4 },
+            { text: "Continue monitoring progress through meetings.", s: "S3", w: 2 },
+            { text: "Set even stricter goals.", s: "S1", w: 0 },
+            { text: "Build on their success with new ideas.", s: "S2", w: 1 }
+        ]},
+        { id: 13, text: "The project is stuck because employees disagree about responsibilities.", options: [
+            { text: "Let them work out the roles themselves.", s: "S4", w: 1 },
+            { text: "Call a meeting and assign the roles.", s: "S1", w: 4 },
+            { text: "Listen to the different views and help them reach agreement.", s: "S3", w: 3 },
+            { text: "Explain the importance and propose your own plan.", s: "S2", w: 2 }
+        ]},
+        { id: 14, text: "An employee keeps asking the same simple questions again and again.", options: [
+            { text: "Explain it again and tell them to write it down.", s: "S1", w: 4 },
+            { text: "Ask what is preventing them from understanding.", s: "S3", w: 2 },
+            { text: "Send them to a colleague for training.", s: "S2", w: 3 },
+            { text: "Tell them to be more independent.", s: "S4", w: 0 }
+        ]},
+        { id: 15, text: "Your best specialist complains that you pay too much attention to their work.", options: [
+            { text: "Explain that control is necessary to achieve the goal.", s: "S2", w: 1 },
+            { text: "Step back and give them autonomy.", s: "S4", w: 4 },
+            { text: "Discuss what level of support they need.", s: "S3", w: 3 },
+            { text: "Set a strict reporting routine.", s: "S1", w: 0 }
+        ]},
+        { id: 16, text: "The team has hit an obstacle and, feeling lost, is waiting for your decision.", options: [
+            { text: "Make the decision and give instructions.", s: "S1", w: 4 },
+            { text: "Ask for their views and find a way forward together.", s: "S3", w: 3 },
+            { text: "Motivate them to find the solution themselves.", s: "S2", w: 3 },
+            { text: "Leave them to find the way forward themselves.", s: "S4", w: 1 }
+        ]},
+        { id: 17, text: "A young employee completed a task to an average standard but made a strong effort.", options: [
+            { text: "Praise the effort and show how to improve.", s: "S2", w: 4 },
+            { text: "Point out the mistakes precisely and tell them to correct them.", s: "S1", w: 2 },
+            { text: "Discuss how they assess the result themselves.", s: "S3", w: 3 },
+            { text: "Accept the work as it is.", s: "S4", w: 1 }
+        ]},
+        { id: 18, text: "An expert dislikes taking responsibility for decisions.", options: [
+            { text: "Force them to make the decisions.", s: "S1", w: 1 },
+            { text: "Encourage them, discuss their doubts and stay available.", s: "S3", w: 4 },
+            { text: "Explain how it would benefit their career.", s: "S2", w: 2 },
+            { text: "Delegate and tell them that you trust them.", s: "S4", w: 3 }
+        ]},
+        { id: 19, text: "A new way of working is being introduced and experienced employees are skeptical.", options: [
+            { text: "Require everyone to use it.", s: "S1", w: 1 },
+            { text: "Present the benefits, listen to concerns and involve them.", s: "S2", w: 4 },
+            { text: "Let them decide when to make the transition.", s: "S4", w: 1 },
+            { text: "Organize a discussion about the change.", s: "S3", w: 3 }
+        ]},
+        { id: 20, text: "The team works efficiently but lacks creativity.", options: [
+            { text: "Require everyone to submit one new idea each week.", s: "S1", w: 1 },
+            { text: "Create a safe environment for ideas and participate yourself.", s: "S3", w: 4 },
+            { text: "Encourage them to look for innovations independently.", s: "S4", w: 3 },
+            { text: "Inspire them with a vision of innovation.", s: "S2", w: 2 }
+        ]}
+    ];
+
+    const appendixQuestions = [
+        { id: 'a1', text: "CRISIS: Servers are failing and data is disappearing. A novice IT specialist is frozen and waiting.", options: [
+            { text: "Ask for their opinion on the solution.", s: "S3", w: 0 },
+            { text: "Give specific instructions for immediate action.", s: "S1", w: 4 },
+            { text: "Reassure them that they know how to handle it.", s: "S4", w: 1 }
+        ]},
+        { id: 'a2', text: "EXPERT: Your best employee has exceeded targets for two years. You assign them a new strategic project.", options: [
+            { text: "Say: 'The project is yours. Good luck, and let me know if you need anything.'", s: "S4", w: 4 },
+            { text: "Discuss every detail of the plan together.", s: "S3", w: 1 },
+            { text: "Set strict interim checkpoints.", s: "S1", w: 0 }
+        ]},
+        { id: 'a3', text: "SAFETY: The team ignores safety rules in order to work faster. This is dangerous.", options: [
+            { text: "Discuss how to make the rules easier to follow.", s: "S3", w: 1 },
+            { text: "Strictly prohibit violations and introduce consequences.", s: "S1", w: 4 },
+            { text: "Expect them to realize it themselves.", s: "S4", w: 0 }
+        ]}
+    ];
+
+    let mainResults = { S1:0, S2:0, S3:0, S4:0 };
+    let mainTrace = [];
+    const STYLE_LABEL = { S1:'Directing', S2:'Explaining and involving', S3:'Participating and supporting', S4:'Delegating' };
+
+    function renderQuestions(data, containerId, prefix) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = data.map((q) => `
+            <div class="question-card">
+                <strong>${q.text}</strong>
+                <div class="options">
+                    ${q.options.map((opt, i) => `
+                        <label><input type="radio" name="${prefix}${q.id}" value="${i}"> ${opt.text}</label>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function firstMissingQuestion(data, prefix) {
+        for (const q of data) {
+            if (!document.querySelector(`input[name="${prefix}${q.id}"]:checked`)) return q;
+        }
+        return null;
+    }
+
+    function revealMissingQuestion(q, prefix) {
+        const input = document.querySelector(`input[name="${prefix}${q.id}"]`);
+        const card = input ? input.closest('.question-card') : null;
+        if (card) {
+            card.style.outline = '3px solid #e67e22';
+            card.style.outlineOffset = '3px';
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                card.style.outline = '';
+                card.style.outlineOffset = '';
+            }, 2400);
+        }
+        alert(`Unanswered situation: ${q.text}`);
+    }
+
+    function keyedStyle(q) {
+        return q.options.reduce((best, opt) => opt.w > best.w ? opt : best, q.options[0]).s;
+    }
+
+    function alignmentBand(w) {
+        if (w >= 3) return 'closer';
+        if (w === 2) return 'middle';
+        return 'farther';
+    }
+
+    function bandLabel(w) {
+        const band = alignmentBand(w);
+        if (band === 'closer') return "matched the intended direction";
+        if (band === 'middle') return "partially matched the intended direction";
+        return "another direction was chosen";
+    }
+
+    function processMainTest() {
+        const missing = firstMissingQuestion(mainQuestions, 'm');
+        if (missing) {
+            revealMissingQuestion(missing, 'm');
+            return;
+        }
+
+        mainResults = { S1:0, S2:0, S3:0, S4:0 };
+        mainTrace = [];
+        mainQuestions.forEach(q => {
+            const idx = Number(document.querySelector(`input[name="m${q.id}"]:checked`).value);
+            const opt = q.options[idx];
+            mainResults[opt.s]++;
+            mainTrace.push({
+                id:q.id, question:q.text, selectedStyle:opt.s, selectedText:opt.text,
+                weight:opt.w, keyedStyle:keyedStyle(q)
+            });
+        });
+
+        document.getElementById('main-test-section').style.display = 'none';
+        document.getElementById('appendix-section').style.display = 'block';
+        renderQuestions(appendixQuestions, 'appendix-questions', 'a');
+        window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function processFinalResults() {
+        const missing = firstMissingQuestion(appendixQuestions, 'a');
+        if (missing) {
+            revealMissingQuestion(missing, 'a');
+            return;
+        }
+
+        const appendixTrace = appendixQuestions.map(q => {
+            const idx = Number(document.querySelector(`input[name="a${q.id}"]:checked`).value);
+            const opt = q.options[idx];
+            return {
+                id:q.id, question:q.text, selectedStyle:opt.s, selectedText:opt.text,
+                weight:opt.w, keyedStyle:keyedStyle(q)
+            };
+        });
+        showFinalReport(appendixTrace);
+    }
+
+    function renderStyleDistribution() {
+        return `
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-top:14px;">
+                ${['S1','S2','S3','S4'].map(s => `
+                    <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;">
+                        <strong>${s} · ${STYLE_LABEL[s]}</strong>
+                        <div style="font-size:28px;font-weight:700;margin-top:6px;">${mainResults[s]} / 20</div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function renderAlignmentTrace() {
+        const counts={closer:0,middle:0,farther:0};
+        mainTrace.forEach(x => counts[alignmentBand(x.weight)]++);
+        return `
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-top:14px;">
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Matched intended direction</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.closer}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Partial match</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.middle}</div></div>
+                <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;"><strong>Another direction chosen</strong><div style="font-size:28px;font-weight:700;margin-top:6px;">${counts.farther}</div></div>
+            </div>
+        `;
+    }
+
+    function traceCard(title,item) {
+        return `
+            <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:16px;margin-top:12px;">
+                <strong>${title}</strong>
+                <p style="margin-top:8px;"><b>Situation:</b> ${item.question}</p>
+                <p><b>Your choice:</b> ${item.selectedStyle} · ${STYLE_LABEL[item.selectedStyle]} — ${item.selectedText}</p>
+                <p style="color:#666;"><b>Scenario design direction:</b> ${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]} · ${bandLabel(item.weight)}.</p>
+            </div>
+        `;
+    }
+
+    function showFinalReport(appendixTrace) {
+        document.getElementById('appendix-section').style.display='none';
+        const results=document.getElementById('results-section');
+        results.style.display='block';
+        document.getElementById('pdf-btn').style.display='block';
+
+        const sorted=[...mainTrace].sort((a,b)=>b.weight-a.weight);
+        const closerExample=sorted[0];
+        const fartherExample=sorted[sorted.length-1];
+        const mostChosen=Object.entries(mainResults).sort((a,b)=>b[1]-a[1])[0];
+        const boundaryHtml=appendixTrace.map(item => `
+            <div style="background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:14px;margin-top:10px;">
+                <strong>${item.question.split(':')[0]}</strong>
+                <p style="margin-top:7px;">Your choice: <b>${item.selectedStyle} · ${STYLE_LABEL[item.selectedStyle]}</b></p>
+                <p>Scenario design direction: <b>${item.keyedStyle} · ${STYLE_LABEL[item.keyedStyle]}</b></p>
+                <p style="color:#666;">${bandLabel(item.weight)}.</p>
+            </div>
+        `).join('');
+        const experimentAnchor=fartherExample||closerExample;
+
+        document.getElementById('final-content').innerHTML=`
+            <div class="result-header">
+                <p style="font-size:17px;line-height:1.6;max-width:720px;margin:0 auto;">This is not your “leadership type”, an effectiveness percentage or a flexibility diagnosis. The map only shows which response directions you chose across these 23 situations and how they relatively related to the situational-leadership scenario design used in this experiment.</p>
+            </div>
+
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;">
+                <h3>1. Which response directions you chose</h3>
+                <p>Most often in this response set you chose <strong>${mostChosen[0]} · ${STYLE_LABEL[mostChosen[0]]}</strong> (${mostChosen[1]} / 20). That does not mean you “are” this leadership style — only that this direction appeared most often in these situations.</p>
+                ${renderStyleDistribution()}
+            </div>
+
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
+                <h3>2. How your choices related to the scenario design</h3>
+                <p>The internal 0–4 weights are not used here as a competence score. They only connect your chosen response with the scenario design direction defined in advance for that situation.</p>
+                ${renderAlignmentTrace()}
+            </div>
+
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
+                <h3>3. Two concrete contrasts</h3>
+                ${traceCard("One choice that matched the intended direction", closerExample)}
+                ${traceCard("One choice worth examining", fartherExample)}
+            </div>
+
+            <div class="score-box" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-top:16px;">
+                <h3>4. Boundary situations</h3>
+                <p>The point here is not pass/fail, but whether your response direction changes when the context becomes more pronounced.</p>
+                ${boundaryHtml}
+            </div>
+
+            <div class="reflection-experiment" style="margin-top:20px;padding:18px;border-left:5px solid var(--accent);background:#eef2f3;border-radius:8px;">
+                <strong>5. One reflection experiment</strong>
+                <p style="margin-top:9px;">When you meet a real situation similar to:</p>
+                <p><em>${experimentAnchor.question}</em></p>
+                <p>Before choosing a response, name two things separately: <strong>(1) how much experience and capability the person or team has for this specific task, and (2) how much confidence, clarity and willingness they have to do it.</strong></p>
+                <p>Then ask yourself: <strong>how much direction is actually needed here, and how much support or autonomy?</strong> Afterwards, write one sentence on whether that pause changed what you did.</p>
+            </div>
+        `;
+
+        requestAnimationFrame(()=>results.scrollIntoView({behavior:'smooth',block:'start'}));
+    }
+
+    renderQuestions(mainQuestions, 'main-questions', 'm');
+</script>
+
+<script src="/tools/site-owner-mode.js?v=20260906-2"></script>
+<script src="/tools/site-insights.js?v=20260906-2"></script>
+</body>
+</html>
