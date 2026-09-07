@@ -267,3 +267,12 @@ Only after cognitive architecture stabilises consider:
 - later professional evolution.
 
 Keep all public claims developmental/research-oriented until stronger evidence exists.
+
+
+## 15. Search indexing policy
+
+Decision updated 2026-09-07:
+- the public WorkStyle landing at `/tools/workstyle15/` is intentionally indexable and belongs in both public sitemaps;
+- the active questionnaire/runtime pages (for example `v07-cognitive.html`) remain `noindex` so search results point to the explanatory product/research landing rather than directly into an instrument;
+- do not reintroduce `noindex` on the public WorkStyle landing merely because the instrument is still a pilot;
+- keep public copy explicit that WorkStyle is a research/cognitive prototype until evidence supports stronger claims.
