@@ -1,0 +1,39 @@
+name: Generate social cards
+
+on:
+  push:
+    branches:
+      - hero-webgl
+    paths:
+      - 'scripts/generate_social_cards.py'
+      - '.github/workflows/social-cards.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: hero-webgl
+
+      - name: Install Pillow
+        run: python3 -m pip install --quiet pillow
+
+      - name: Generate 1200x627 social cards
+        run: python3 scripts/generate_social_cards.py
+
+      - name: Commit generated cards
+        run: |
+          if git diff --quiet -- assets/social; then
+            echo "Social cards are already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/social
+          git commit -m "Generate tool social cards"
+          git push origin HEAD:hero-webgl
