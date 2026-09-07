@@ -223,6 +223,7 @@
   let pool = null;
   let state = null;
   let stageStartedAt = performance.now();
+  const ownerSummaryRequested = new URLSearchParams(location.search).get('summary') === '1';
 
   function resolveLanguage() {
     const q = new URLSearchParams(location.search).get('lang');
@@ -688,6 +689,10 @@
       if (!pool || !Array.isArray(pool.stimuli) || pool.stimuli.length !== 42) throw new Error('invalid pool');
       const saved = loadDraft();
       if (saved) state = saved;
+      if (window.RASI_OWNER_MODE && ownerSummaryRequested) {
+        await renderSummary();
+        return;
+      }
       render();
       if (state) preloadNext();
     } catch (error) {
