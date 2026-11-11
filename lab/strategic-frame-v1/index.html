@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>2rasi · Strategic frame lab</title>
+<style>
+:root{--ink:#071b2e;--soft:rgba(7,27,46,.62);--glass:rgba(241,250,252,.28);--line:rgba(255,255,255,.58)}
+*{box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#b9d0d8}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(239,249,252,.1),rgba(6,42,58,.14)),url("../../assets/hero-2rasi.webp") center/cover no-repeat}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 50% 24%,rgba(255,255,255,.4),transparent 46%)}
+a{color:inherit;text-decoration:none}
+.top{height:62px;display:flex;justify-content:space-between;align-items:center;padding:0 24px}
+.brand{font-size:1.45rem;font-weight:780;letter-spacing:-.05em}.back{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;opacity:.5}
+.wrap{height:calc(100svh - 62px);min-height:0;display:grid;place-items:center;padding:10px 16px 16px}
+.card{width:min(820px,94vw);height:100%;min-height:0;max-height:100%;border:1px solid var(--line);border-radius:30px;background:linear-gradient(150deg,rgba(248,253,255,.34),rgba(202,227,234,.16));backdrop-filter:blur(18px) saturate(1.05);box-shadow:0 30px 80px rgba(4,31,48,.18);overflow:hidden;display:grid;grid-template-rows:auto minmax(0,1fr)}
+.copy{padding:24px 30px 6px}.num{font-size:.64rem;letter-spacing:.2em;opacity:.42}.copy h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(3rem,12vw,5.7rem);font-weight:500;line-height:.88;letter-spacing:-.06em;margin:12px 0 8px}.hook{font-size:clamp(.95rem,2.1vw,1.18rem);color:var(--soft);margin:0}.tap{display:block;margin-top:14px;font-size:.61rem;letter-spacing:.15em;text-transform:uppercase;opacity:.4}
+.stage{position:relative;min-height:0;height:100%;overflow:hidden;touch-action:manipulation}.horizon{position:absolute;left:7%;right:7%;top:57%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),rgba(53,122,145,.5),rgba(255,255,255,.95),transparent)}.world{position:absolute;inset:7% 7% 12%;transform-style:preserve-3d;perspective:900px}.panel{position:absolute;border:1px solid rgba(255,255,255,.64);background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(53,116,136,.08));box-shadow:0 16px 42px rgba(3,36,53,.10);backdrop-filter:blur(3px)}.p1{left:12%;top:20%;width:23%;height:52%;transform:rotateY(8deg)}.p2{left:40%;top:12%;width:18%;height:60%;transform:rotateY(-5deg)}.p3{right:11%;top:24%;width:22%;height:47%;transform:rotateY(11deg)}.trace{position:absolute;left:8%;right:8%;bottom:17%;height:2px;background:linear-gradient(90deg,rgba(57,128,150,0),rgba(57,128,150,.55),rgba(57,128,150,.22),rgba(57,128,150,.55),rgba(57,128,150,0));transform:skewX(-12deg);opacity:.45}.frame{position:absolute;left:50%;top:48%;width:34%;height:34%;transform:translate(-50%,-50%);border:2px solid rgba(255,255,255,.88);box-shadow:0 0 0 999px rgba(199,220,227,.28),0 0 28px rgba(255,255,255,.42) inset;border-radius:8px;z-index:5;overflow:hidden}.frame::before{content:"";position:absolute;inset:0;background:linear-gradient(130deg,rgba(255,255,255,.18),rgba(255,255,255,0) 42%,rgba(255,255,255,.1))}.marker{position:absolute;left:50%;bottom:5%;width:90%;transform:translateX(-50%);z-index:8;font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.45rem,6.5vw,3rem);line-height:.95;letter-spacing:-.035em;opacity:.78;text-align:center;white-space:nowrap}.m1,.m2,.m3{position:absolute;left:50%;bottom:0;transform:translateX(-50%);transition:opacity .4s ease}.m2,.m3{opacity:0}.stage.play .frame{animation:frameStory 6.6s cubic-bezier(.4,0,.2,1) both}.stage.play .world{animation:worldShift 6.6s cubic-bezier(.4,0,.2,1) both}.stage.play .m1{animation:label1 6.6s both}.stage.play .m2{animation:label2 6.6s both}.stage.play .m3{animation:label3 6.6s both}.stage.play .panel{animation:panelShift 6.6s cubic-bezier(.4,0,.2,1) both}
+@keyframes frameStory{0%,14%{width:34%;height:34%;transform:translate(-50%,-50%) rotate(0deg)}30%,38%{width:72%;height:50%;transform:translate(-50%,-50%) rotate(0deg)}55%,64%{width:58%;height:44%;transform:translate(-38%,-53%) rotate(-7deg) skewX(-3deg)}80%,100%{width:64%;height:46%;transform:translate(-46%,-50%) rotate(1deg)}}
+@keyframes worldShift{0%,38%{transform:translateX(0) scale(1)}55%,64%{transform:translateX(-5%) scale(1.04)}80%,100%{transform:translateX(2%) scale(.99)}}
+@keyframes panelShift{0%,38%{filter:none}55%,64%{filter:contrast(1.15) brightness(1.05);transform:translateX(10px) rotateY(-9deg)}80%,100%{filter:none}}
+@keyframes label1{0%,27%{opacity:.8}34%,100%{opacity:0}}@keyframes label2{0%,34%{opacity:0}42%,67%{opacity:.8}74%,100%{opacity:0}}@keyframes label3{0%,70%{opacity:0}80%,100%{opacity:.8}}
+@media(max-width:640px){.top{height:56px;padding:0 20px}.wrap{height:calc(100svh - 56px);padding:8px 14px 14px}.card{width:100%;border-radius:26px}.copy{padding:20px 24px 4px}.copy h1{font-size:clamp(2.85rem,13.5vw,4.45rem);margin:10px 0 7px}.hook{font-size:.98rem}.tap{margin-top:11px}.world{inset:5% 5% 13%}.frame{width:40%;height:31%}.marker{bottom:5%;font-size:clamp(1.35rem,6.4vw,2.35rem)}}
+@media(max-height:720px){.copy{padding-top:14px}.copy h1{font-size:clamp(2.45rem,11vw,3.7rem);margin:8px 0 5px}.hook{font-size:.9rem}.tap{display:none}.marker{font-size:clamp(1.2rem,5.8vw,2rem)}}
+@media(prefers-reduced-motion:reduce){.frame{width:68%;height:46%}.m1,.m2{display:none}.m3{opacity:.8}}
+</style>
+</head>
+<body>
+<header class="top"><a class="brand" href="/">2rasi</a><a class="back" href="../symbols-v4/">back</a></header>
+<main class="wrap"><article class="card"><div class="copy"><span class="num">06</span><h1>Strategic<br>Thinking</h1><p class="hook" data-en="Wider. Different. Again." data-lt="Plačiau. Kitaip. Dar kartą.">Wider. Different. Again.</p><span class="tap" data-en="tap the visual to replay" data-lt="paliesk vaizdą ir pakartok">tap the visual to replay</span></div><div class="stage" id="stage"><div class="horizon"></div><div class="world"><div class="panel p1"></div><div class="panel p2"></div><div class="panel p3"></div><div class="trace"></div></div><div class="frame"></div><div class="marker"><span class="m1" data-en="WIDER" data-lt="PLAČIAU">WIDER</span><span class="m2" data-en="DIFFERENT" data-lt="KITAIP">DIFFERENT</span><span class="m3" data-en="AGAIN" data-lt="DAR KARTĄ">AGAIN</span></div></div></article></main>
+<script>
+const lang=(location.hostname.endsWith('.lt')?'lt':'en');document.documentElement.lang=lang;document.querySelectorAll('[data-'+lang+']').forEach(el=>el.textContent=el.dataset[lang]);const stage=document.getElementById('stage');function play(){stage.classList.remove('play');void stage.offsetWidth;stage.classList.add('play')}stage.addEventListener('click',play);if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(play,250);
+</script>
+</body></html>

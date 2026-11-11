@@ -1,3 +1,9 @@
+if (!window.RASI_LANG) {
+  const i18n = document.createElement('script');
+  i18n.src = `i18n.js?v=20260817-0836`;
+  document.head.appendChild(i18n);
+}
+
 const lens = document.querySelector('.lens');
 const stage = document.querySelector('.perception-stage');
 const baseWord = document.querySelector('.base-word');
@@ -8,6 +14,15 @@ const header = document.querySelector('.site-header');
 
 const coarsePointer = matchMedia('(pointer: coarse)').matches;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const localizedHint = (key, fallback) => window.RASI_COPY?.hints?.[window.RASI_LANG]?.[key] || fallback;
+
+const waterRenderer = window.createWaterDropRenderer?.({
+  stage,
+  lens,
+  baseWord,
+  hero
+}) || null;
 
 let dragging = false;
 let landed = false;
@@ -35,20 +50,28 @@ function smoothstep(value) {
 function updateSemanticReveal(px, py) {
   const stageRect = stage.getBoundingClientRect();
   const wordRect = baseWord.getBoundingClientRect();
-  const wordX = wordRect.left - stageRect.left + wordRect.width / 2;
-  const wordY = wordRect.top - stageRect.top + wordRect.height / 2;
+  const left = wordRect.left - stageRect.left;
+  const top = wordRect.top - stageRect.top;
+  const halfW = wordRect.width / 2;
+  const halfH = wordRect.height / 2;
+  const centerX = left + halfW;
+  const centerY = top + halfH;
 
-  const dx = px - wordX;
-  const dy = py - wordY;
-  const distance = Math.hypot(dx, dy);
+  // Signed distance from the drop centre to the actual SEE rectangle.
+  // Morph starts only when the physical drop touches the word and reaches
+  // full strength as the drop centre moves into the word area.
+  const qx = Math.abs(px - centerX) - halfW;
+  const qy = Math.abs(py - centerY) - halfH;
+  const outside = Math.hypot(Math.max(qx, 0), Math.max(qy, 0));
+  const inside = Math.min(Math.max(qx, qy), 0);
+  const signedDistance = outside + inside;
   const lensRadius = lens.offsetWidth / 2;
-  const wordRadius = Math.hypot(wordRect.width / 2, wordRect.height / 2) * .72;
-  const contactDistance = lensRadius + wordRadius;
 
-  const overlap = clamp((contactDistance - distance) / (contactDistance * .72), 0, 1);
+  const overlap = clamp((lensRadius - signedDistance) / Math.max(lensRadius, 1), 0, 1);
   const morph = smoothstep(overlap);
 
   stage.style.setProperty('--morph', morph.toFixed(3));
+  waterRenderer?.setMorph(morph);
 }
 
 function setLensLocal(x, y, reveal = landed) {
@@ -57,14 +80,25 @@ function setLensLocal(x, y, reveal = landed) {
   const maxY = Math.max(min, stage.clientHeight - min);
   const px = clamp(x, min, maxX);
   const py = clamp(y, min, maxY);
+  const radius = lens.offsetWidth / 2;
 
   currentX = px;
   currentY = py;
   lens.style.setProperty('--x', `${px}px`);
   lens.style.setProperty('--y', `${py}px`);
 
-  if (reveal) updateSemanticReveal(px, py);
-  else stage.style.setProperty('--morph', '0');
+  // The DOM word is stationary. These variables only cut a moving optical
+  // window out of it so WebGL can paint the refracted pixels beneath the drop.
+  stage.style.setProperty('--drop-x', `${px}px`);
+  stage.style.setProperty('--drop-y', `${py}px`);
+  stage.style.setProperty('--drop-r', `${Math.max(0, radius - 1)}px`);
+
+  if (reveal) {
+    updateSemanticReveal(px, py);
+  } else {
+    stage.style.setProperty('--morph', '0');
+    waterRenderer?.setMorph(0);
+  }
 }
 
 function setLens(clientX, clientY) {
@@ -94,7 +128,7 @@ function settleLens() {
   centerLensOnWord(true);
 
   if (coarsePointer) {
-    hint.textContent = 'TILT · TOUCH · NOTICE';
+    hint.textContent = localizedHint('tiltTouch', 'TILT · TOUCH · NOTICE');
     startOrientation(false);
   }
 }
@@ -113,7 +147,7 @@ async function startOrientation(fromGesture) {
 
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     if (!fromGesture || permissionRequested) {
-      if (!permissionRequested) hint.textContent = 'TOUCH · TILT · NOTICE';
+      if (!permissionRequested) hint.textContent = localizedHint('touchTilt', 'TOUCH · TILT · NOTICE');
       return;
     }
 
@@ -123,10 +157,10 @@ async function startOrientation(fromGesture) {
       if (permission === 'granted') {
         attachOrientationListener();
       } else {
-        hint.textContent = 'DRAG · TOUCH · NOTICE';
+        hint.textContent = localizedHint('dragTouch', 'DRAG · TOUCH · NOTICE');
       }
     } catch {
-      hint.textContent = 'DRAG · TOUCH · NOTICE';
+      hint.textContent = localizedHint('dragTouch', 'DRAG · TOUCH · NOTICE');
     }
     return;
   }
@@ -145,7 +179,7 @@ function onOrientation(event) {
     targetX = tiltOriginX;
     targetY = tiltOriginY;
     orientationActive = true;
-    hint.textContent = 'TILT · TOUCH · NOTICE';
+    hint.textContent = localizedHint('tiltTouch', 'TILT · TOUCH · NOTICE');
     return;
   }
 
@@ -194,6 +228,7 @@ function recalibrateForLayoutChange() {
     baseGamma = null;
     orientationActive = false;
     centerLensOnWord(true);
+    waterRenderer?.resize();
     if (coarsePointer) startOrientation(false);
   }, 220);
 }
@@ -205,6 +240,8 @@ window.addEventListener('resize', () => {
   if (nextMode !== layoutMode) {
     layoutMode = nextMode;
     recalibrateForLayoutChange();
+  } else {
+    waterRenderer?.resize();
   }
 });
 
@@ -257,3 +294,13 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: .15 });
 
 document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+// Keep the legacy reflection tools in the same browsing context so the
+// browser Back action naturally returns to 2rasi. Research/professional
+// destinations keep their explicit new-tab behaviour.
+['mirror', 'multipliers', 'divergent', 'situational-leadership', 'karpman', 'strategic-thinking'].forEach((id) => {
+  const start = document.querySelector(`#${id} .experiment-actions a:nth-child(2)`);
+  if (!start) return;
+  start.target = '_self';
+  start.removeAttribute('rel');
+});

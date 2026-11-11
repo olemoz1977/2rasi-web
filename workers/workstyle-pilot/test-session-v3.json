@@ -1,0 +1,26 @@
+{
+  "schema": "workstyle-v07-cognitive-session-v3",
+  "version": "0.7-cognitive-8axis-lt-e",
+  "contentVersion": "v07-lt-d",
+  "language": "lt",
+  "sessionId": "synthetic-workstyle-v07-test",
+  "startedAt": "2026-08-23T18:00:00.000Z",
+  "completedAt": "2026-08-23T18:08:00.000Z",
+  "order": ["A1-01", "B1-01"],
+  "index": 1,
+  "responses": {
+    "A1-01": {"kind": "scale", "value": 2, "unclear": false, "duplicate": false},
+    "B1-01": {"kind": "context", "value": null, "unclear": false, "duplicate": false}
+  },
+  "timingMs": {
+    "A1-01": 9200,
+    "B1-01": 14700
+  },
+  "breaks": [
+    {"after": 12, "startedAt": "2026-08-23T18:03:00.000Z", "endedAt": "2026-08-23T18:03:45.000Z", "durationMs": 45000}
+  ],
+  "onBreak": null,
+  "feedback": {"general": "Synthetic test payload. No participant data."},
+  "pilotContext": {"role": "specialist", "experience": "3-5", "environment": "production"},
+  "viewport": {"width": 390, "height": 844}
+}

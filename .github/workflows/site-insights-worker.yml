@@ -1,0 +1,258 @@
+name: Deploy 2rasi insights Worker
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - hero-webgl
+    paths:
+      - workers/workstyle-pilot/src/index.js
+      - workers/workstyle-pilot/schema.sql
+      - .github/workflows/site-insights-worker.yml
+      - tools/priolens/validate/**
+      - tools/site-insights.js
+      - tools/priolens/index.html
+      - tools/priolens/landing-i18n.js
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workers/workstyle-pilot
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      SCRIPT_NAME: workstyle-pilot-intake
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: hero-webgl
+
+      - name: Validate PrioLens stimulus tool source
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check src/index.js
+          node --check ../../tools/priolens/validate/app.js
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('../../tools/priolens/validate/stimuli-v031.json').read_text(encoding='utf-8'))
+          assert p['schema'] == '2rasi.priolens.stimulus-validation-pool-v0.1'
+          assert p['poolVersion'] == 'open14-v031-current42'
+          assert len(p['stimuli']) == 42
+          ids = [x['id'] for x in p['stimuli']]
+          assert len(set(ids)) == 42
+          fam = {}
+          for x in p['stimuli']:
+              fam.setdefault(x['targetFamily'], []).append(x['id'])
+              assert x['imageUrl'].startswith('https://omesg360.eu/')
+          assert len(fam) == 14
+          assert all(len(v) == 3 for v in fam.values())
+          print('PrioLens stimulus manifest/source PASS')
+          PY
+
+      - name: Verify Cloudflare credentials
+        env:
+          RAW_CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$RAW_CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN."; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID."; exit 1; }
+          TOKEN="$(python - <<'PY'
+          import os
+          token = os.environ.get('RAW_CLOUDFLARE_API_TOKEN', '').strip()
+          if token.lower().startswith('bearer '): token = token[7:].strip()
+          if len(token) >= 2 and token[0] == token[-1] and token[0] in {'"', "'"}: token = token[1:-1].strip()
+          if not token.startswith('cfat_'): raise SystemExit('Expected cfat_ Cloudflare account token.')
+          if any(ch.isspace() for ch in token): raise SystemExit('Cloudflare token contains whitespace.')
+          print(token, end='')
+          PY
+          )"
+          echo "::add-mask::$TOKEN"
+          echo "CLOUDFLARE_API_TOKEN=$TOKEN" >> "$GITHUB_ENV"
+
+      - name: Resolve existing D1 database
+        shell: bash
+        run: |
+          set -euo pipefail
+          API="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database"
+          LIST="$(curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --header 'Content-Type: application/json' \
+            "$API?per_page=100")"
+          DB_ID="$(printf '%s' "$LIST" | jq -r '.result[]? | select(.name == "workstyle-pilot") | (.uuid // .id // empty)' | head -n 1)"
+          test -n "$DB_ID" || { echo "Existing workstyle-pilot D1 database not found."; exit 1; }
+          echo "WORKSTYLE_D1_DATABASE_ID=$DB_ID" >> "$GITHUB_ENV"
+
+      - name: Apply schema
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY' > schema-statements.jsonl
+          import json
+          from pathlib import Path
+          sql = Path('schema.sql').read_text(encoding='utf-8')
+          for part in sql.split(';'):
+              statement = part.strip()
+              if statement:
+                  print(json.dumps({'sql': statement}))
+          PY
+          URL="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database/$WORKSTYLE_D1_DATABASE_ID/query"
+          while IFS= read -r payload; do
+            RESULT="$(curl --fail-with-body --silent --show-error \
+              --request POST \
+              --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+              --header 'Content-Type: application/json' \
+              --data "$payload" "$URL")"
+            printf '%s' "$RESULT" | jq -e '.success == true and ([.result[]?.success // true] | all)' >/dev/null
+          done < schema-statements.jsonl
+
+      - name: Upload Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          METADATA="$(jq -nc --arg db "$WORKSTYLE_D1_DATABASE_ID" '{main_module:"index.js",compatibility_date:"2026-08-28",bindings:[{type:"d1",name:"DB",id:$db}]}')"
+          UPLOAD="$(curl --fail-with-body --silent --show-error \
+            --request PUT \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --form-string "metadata=$METADATA" \
+            --form 'index.js=@src/index.js;type=application/javascript+module' \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME")"
+          printf '%s' "$UPLOAD" | jq -e '.success == true' >/dev/null
+          ENABLE="$(curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            --header 'Content-Type: application/json' \
+            --data '{"enabled":true,"previews_enabled":false}' \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME/subdomain")"
+          printf '%s' "$ENABLE" | jq -e '.success == true' >/dev/null
+          SUB="$(curl --fail-with-body --silent --show-error \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain" | jq -r '.result.subdomain // empty')"
+          test -n "$SUB"
+          echo "WORKER_URL=https://$SCRIPT_NAME.$SUB.workers.dev" >> "$GITHUB_ENV"
+
+      - name: Verify health and CORS
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5; do
+            if HEALTH="$(curl --fail --silent --show-error "$WORKER_URL/health" 2>/dev/null)" \
+              && printf '%s' "$HEALTH" | jq -e '.ok == true and .insights == true' >/dev/null; then break; fi
+            test "$attempt" -lt 5 || exit 1
+            sleep 3
+          done
+          for ORIGIN in https://2rasi.lt https://2rasi.com; do
+            HEADERS="$(curl --silent --show-error --dump-header - --output /dev/null \
+              --request OPTIONS \
+              --header "Origin: $ORIGIN" \
+              --header 'Access-Control-Request-Method: POST' \
+              "$WORKER_URL/v1/event")"
+            printf '%s' "$HEADERS" | grep -qi "^access-control-allow-origin: $ORIGIN"
+          done
+
+      - name: Verify event and feedback storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          EVENT_ID="synthetic-insights-event-${GITHUB_RUN_ID}"
+          FEEDBACK_ID="synthetic-insights-feedback-${GITHUB_RUN_ID}"
+          VISIT_ID="synthetic-insights-visit-${GITHUB_RUN_ID}"
+          curl --fail-with-body --silent --show-error \
+            --request POST --header 'Origin: https://2rasi.lt' --header 'Content-Type: application/json' \
+            --data "{\"version\":\"2rasi-insights-v1\",\"eventId\":\"$EVENT_ID\",\"visitId\":\"$VISIT_ID\",\"eventType\":\"page_view\",\"toolId\":\"gallery\",\"pagePath\":\"/\",\"pageHost\":\"2rasi.lt\",\"language\":\"lt\",\"source\":\"synthetic\",\"meta\":{}}" \
+            "$WORKER_URL/v1/event" | jq -e '.ok == true' >/dev/null
+          curl --fail-with-body --silent --show-error \
+            --request POST --header 'Origin: https://2rasi.lt' --header 'Content-Type: application/json' \
+            --data "{\"version\":\"2rasi-insights-v1\",\"feedbackId\":\"$FEEDBACK_ID\",\"visitId\":\"$VISIT_ID\",\"toolId\":\"mirror\",\"usefulness\":\"yes\",\"comment\":\"synthetic\",\"quoteConsent\":false,\"pagePath\":\"/tools/mirror/\",\"pageHost\":\"2rasi.lt\",\"language\":\"lt\",\"source\":\"synthetic\"}" \
+            "$WORKER_URL/v1/feedback" | jq -e '.ok == true' >/dev/null
+          URL="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database/$WORKSTYLE_D1_DATABASE_ID/query"
+          PAYLOAD="$(jq -nc --arg e "$EVENT_ID" --arg f "$FEEDBACK_ID" '{sql:"SELECT (SELECT COUNT(*) FROM site_events WHERE event_id = ?) AS e, (SELECT COUNT(*) FROM site_feedback WHERE feedback_id = ?) AS f",params:[$e,$f]}')"
+          CHECK="$(curl --fail-with-body --silent --show-error --request POST \
+            --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --header 'Content-Type: application/json' \
+            --data "$PAYLOAD" "$URL")"
+          printf '%s' "$CHECK" | jq -e '.success == true and .result[0].results[0].e == 1 and .result[0].results[0].f == 1' >/dev/null
+          CLEAN="$(jq -nc --arg e "$EVENT_ID" --arg f "$FEEDBACK_ID" '{sql:"DELETE FROM site_events WHERE event_id = ?; DELETE FROM site_feedback WHERE feedback_id = ?",params:[$e,$f]}')"
+          # D1 query endpoint does not bind one params array across two statements, so clean separately.
+          for TABLE in site_events site_feedback; do
+            ID="$EVENT_ID"; COL="event_id"; [ "$TABLE" = "site_feedback" ] && ID="$FEEDBACK_ID" && COL="feedback_id"
+            P="$(jq -nc --arg id "$ID" --arg sql "DELETE FROM $TABLE WHERE $COL = ?" '{sql:$sql,params:[$id]}')"
+            curl --fail-with-body --silent --show-error --request POST \
+              --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" --header 'Content-Type: application/json' \
+              --data "$P" "$URL" | jq -e '.success == true' >/dev/null
+          done
+          echo "2rasi insights Worker verified."
+
+      - name: Verify PrioLens stimulus validation storage
+        shell: bash
+        run: |
+          set -euo pipefail
+          SESSION_ID="synthetic-priolens-sv-${GITHUB_RUN_ID}"
+          export SESSION_ID
+          python - <<'PY' > /tmp/priolens-sv-payload.json
+          import json, os
+          ids = [
+            "RESOURCE-03","SAFETY-03","ORDER-02","CONNECTION-02","BELONGING-01","CARE-01",
+            "CONTROL-03","RECOGNITION-02","MASTERY-02","EXPLORATION-01","KNOWLEDGE-01","OPPORTUNITY-03"
+          ]
+          competitors = {
+              "REST":["RESOURCE","SAFETY","ORDER"],
+              "RESOURCE":["OPPORTUNITY","SAFETY","REST"],
+              "SAFETY":["ORDER","CONTROL","RESOURCE"],
+              "ORDER":["SAFETY","CONTROL","KNOWLEDGE"],
+              "CONNECTION":["BELONGING","CARE","RECOGNITION"],
+              "BELONGING":["CONNECTION","CARE","RECOGNITION"],
+              "CARE":["CONNECTION","BELONGING","RECOGNITION"],
+              "AUTONOMY":["CONTROL","OPPORTUNITY","EXPLORATION"],
+              "CONTROL":["AUTONOMY","MASTERY","ORDER"],
+              "RECOGNITION":["BELONGING","MASTERY","CARE"],
+              "MASTERY":["KNOWLEDGE","CONTROL","RECOGNITION"],
+              "EXPLORATION":["KNOWLEDGE","OPPORTUNITY","AUTONOMY"],
+              "KNOWLEDGE":["EXPLORATION","MASTERY","ORDER"],
+              "OPPORTUNITY":["RESOURCE","AUTONOMY","EXPLORATION"],
+          }
+          responses=[]
+          for i, sid in enumerate(ids):
+              target=sid.rsplit('-',1)[0]
+              options=[target,*competitors[target],"OTHER"]
+              responses.append({
+                  "stimulusId":sid,"targetFamily":target,"openText":"synthetic",
+                  "clarity":3,"classification":target,"confidence":3,"valence":3,
+                  "presentationIndex":i,"optionOrder":options,
+                  "step1Ms":1000,"step2Ms":1000,"totalMs":2000
+              })
+          print(json.dumps({
+              "schema":"2rasi.priolens.stimulus-validation-session-v0.1",
+              "version":"priolens-stimulus-validation-v0.1",
+              "poolVersion":"open14-v031-current42",
+              "sessionId":os.environ["SESSION_ID"],
+              "formIndex":0,"language":"lt",
+              "startedAt":"2026-09-06T00:00:00.000Z",
+              "completedAt":"2026-09-06T00:05:00.000Z",
+              "source":"synthetic","responses":responses
+          }))
+          PY
+          curl --fail-with-body --silent --show-error             --request POST             --header 'Origin: https://2rasi.lt'             --header 'Content-Type: application/json'             --data-binary @/tmp/priolens-sv-payload.json             "$WORKER_URL/v1/priolens-stimulus-validation" | jq -e '.ok == true and .responseCount == 12' >/dev/null
+
+          SUMMARY="$(curl --fail-with-body --silent --show-error             --header 'Origin: https://2rasi.lt'             --header 'X-2rasi-owner: 1'             "$WORKER_URL/v1/priolens-stimulus-validation-summary")"
+          printf '%s' "$SUMMARY" | jq -e '.ok == true and .poolVersion == "open14-v031-current42"' >/dev/null
+
+          URL="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/d1/database/$WORKSTYLE_D1_DATABASE_ID/query"
+          CHECK_PAYLOAD="$(jq -nc --arg id "$SESSION_ID" '{sql:"SELECT (SELECT COUNT(*) FROM priolens_stimulus_validation_sessions WHERE session_id = ?) AS s, (SELECT COUNT(*) FROM priolens_stimulus_validation_responses WHERE session_id = ?) AS r",params:[$id,$id]}')"
+          CHECK="$(curl --fail-with-body --silent --show-error --request POST             --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN"             --header 'Content-Type: application/json'             --data "$CHECK_PAYLOAD" "$URL")"
+          printf '%s' "$CHECK" | jq -e '.success == true and .result[0].results[0].s == 1 and .result[0].results[0].r == 12' >/dev/null
+
+          for SPEC in             "priolens_stimulus_validation_responses:session_id"             "priolens_stimulus_validation_sessions:session_id"; do
+            TABLE="${SPEC%%:*}"
+            COL="${SPEC##*:}"
+            P="$(jq -nc --arg id "$SESSION_ID" --arg sql "DELETE FROM $TABLE WHERE $COL = ?" '{sql:$sql,params:[$id]}')"
+            curl --fail-with-body --silent --show-error --request POST               --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN"               --header 'Content-Type: application/json'               --data "$P" "$URL" | jq -e '.success == true' >/dev/null
+          done
+          echo "PrioLens stimulus validation Worker storage PASS."

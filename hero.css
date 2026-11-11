@@ -34,39 +34,129 @@
 
 .perception-stage {
   --morph: 0;
+  --drop-x: 50%;
+  --drop-y: 50%;
+  --drop-r: 0px;
   isolation: isolate;
 }
 
-/* SEE and NOTICE share one visual baseline. SEE is deliberately widened to ~3/4 of NOTICE. */
-.base-word {
+/* CSS/fallback semantic layers. */
+.base-word,
+.notice-word {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 1;
   margin: 0;
-  font-size: clamp(.96rem, 1.35vw, 1.18rem);
-  font-weight: 780;
+  font-size: clamp(1rem, 1.45vw, 1.25rem);
+  font-weight: 760;
   line-height: 1;
   letter-spacing: .16em;
   text-transform: uppercase;
   color: rgba(7, 27, 46, .76);
-  opacity: calc(1 - var(--morph));
-  transform: translate(-50%, -50%) scaleX(1.48);
+  transform: translate(-50%, -50%);
   transform-origin: center;
-  transition: opacity .12s linear;
   white-space: nowrap;
   pointer-events: none;
 }
 
-/* The old global NOTICE layer remains disabled; NOTICE belongs to the optical drop. */
-.notice-word {
-  display: none !important;
+.base-word {
+  z-index: 4;
+  opacity: calc(1 - var(--morph));
+  transition: opacity .16s linear;
 }
 
-/* Water-on-glass illusion: edge tension, specular highlight, subtle internal caustic and soft refraction. */
+.notice-word {
+  z-index: 2;
+  opacity: var(--morph);
+  transition: opacity .16s linear;
+}
+
+/*
+  WebGL metaphor: OBSERVE is the upper coating, NOTICE sits underneath the water.
+  Both semantic layers become full-stage overlays so the drop coordinates and
+  radial masks share exactly the same coordinate space.
+*/
+.perception-stage.webgl-active .base-word,
+.perception-stage.webgl-active .notice-word {
+  inset: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  transform: none;
+  font-size: 0;
+  opacity: 1;
+  transition: none;
+  white-space: normal;
+}
+
+.perception-stage.webgl-active .base-word::before,
+.perception-stage.webgl-active .notice-word::before {
+  display: inline-block;
+  font-size: clamp(1rem, 1.45vw, 1.25rem);
+  font-weight: 760;
+  line-height: 1;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(7, 27, 46, .76);
+  white-space: nowrap;
+}
+
+.perception-stage.webgl-active .base-word::before {
+  content: 'OBSERVE';
+}
+
+.perception-stage.webgl-active .notice-word::before {
+  content: 'NOTICE';
+}
+
+/* Upper OBSERVE coating: a tighter optical core follows the physical drop. */
+.perception-stage.webgl-active .base-word {
+  -webkit-mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    transparent 0,
+    transparent calc(var(--drop-r) * 0.56),
+    #000 calc(var(--drop-r) * 0.96),
+    #000 100%
+  );
+  mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    transparent 0,
+    transparent calc(var(--drop-r) * 0.56),
+    #000 calc(var(--drop-r) * 0.96),
+    #000 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* NOTICE is exposed only in the inner optical core, and its strength follows overlap. */
+.perception-stage.webgl-active .notice-word {
+  opacity: var(--morph);
+  -webkit-mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    #000 0,
+    #000 calc(var(--drop-r) * 0.56),
+    transparent calc(var(--drop-r) * 0.96),
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle at var(--drop-x) var(--drop-y),
+    #000 0,
+    #000 calc(var(--drop-r) * 0.56),
+    transparent calc(var(--drop-r) * 0.96),
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* CSS fallback: used when WebGL2 is unavailable or loses context. */
 .lens {
-  --semantic: var(--morph);
-  z-index: 4;
+  z-index: 5;
   animation: dropFall 1.62s cubic-bezier(.2, .82, .25, 1) both;
   touch-action: none;
   overflow: hidden;
@@ -117,28 +207,77 @@
   pointer-events: none;
 }
 
-.lens-word {
+/* WebGL renders only the moving water optics. */
+.drop-webgl-canvas {
   position: absolute;
   inset: 0;
   z-index: 3;
-  display: grid;
-  place-items: center;
-  color: rgba(5, 30, 47, .94);
-  font-size: clamp(.96rem, 1.35vw, 1.18rem);
-  font-weight: 780;
-  letter-spacing: .16em;
-  line-height: 1;
-  text-transform: uppercase;
-  opacity: var(--morph);
-  transform: scale(calc(.96 + var(--morph) * .04));
-  transition: opacity .12s linear, transform .14s ease-out;
-  text-shadow: 0 1px 5px rgba(255,255,255,.94);
-  white-space: nowrap;
+  display: block;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
+}
+
+/* Keep the DOM lens as motion/hit-test anchor, but let WebGL draw the water. */
+.perception-stage.webgl-active .lens {
+  opacity: 0 !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
+
+.perception-stage.webgl-active .lens::before,
+.perception-stage.webgl-active .lens::after {
+  display: none !important;
+}
+
+.perception-stage.webgl-active .hint {
+  z-index: 7;
 }
 
 .hint {
   transition: opacity .25s ease, color .25s ease;
+}
+
+/* Desktop: give the word more runway and pull the whole interaction left. */
+@media (min-width: 781px) {
+  .perception-stage {
+    right: clamp(0px, 1.4vw, 24px);
+    bottom: 9vh;
+    width: min(980px, 62vw);
+    height: clamp(255px, 30vh, 340px);
+  }
+
+  .base-word,
+  .notice-word,
+  .perception-stage.webgl-active .base-word::before,
+  .perception-stage.webgl-active .notice-word::before {
+    font-size: clamp(2.4rem, 3.7vw, 4.35rem);
+    font-weight: 700;
+    letter-spacing: .11em;
+  }
+
+  .base-word,
+  .perception-stage.webgl-active .base-word::before {
+    color: rgba(7, 27, 46, .78);
+  }
+
+  .notice-word,
+  .perception-stage.webgl-active .notice-word::before {
+    color: rgba(7, 27, 46, .72);
+  }
+
+  .lens {
+    width: clamp(166px, 12.8vw, 212px);
+  }
+
+  .hint {
+    bottom: -2px;
+    letter-spacing: .19em;
+  }
 }
 
 @media (max-width: 780px) {
@@ -148,12 +287,28 @@
   }
 
   .base-word,
-  .lens-word {
-    font-size: .96rem;
+  .notice-word {
+    font-size: .98rem;
+    letter-spacing: .15em;
+  }
+
+  .perception-stage.webgl-active .base-word::before,
+  .perception-stage.webgl-active .notice-word::before {
+    font-size: .98rem;
     letter-spacing: .15em;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .lens { animation: none; }
+}
+
+
+/* LT WebGL semantic words */
+html[lang="lt"] .perception-stage.webgl-active .base-word::before {
+  content: 'PAŽVELK';
+}
+
+html[lang="lt"] .perception-stage.webgl-active .notice-word::before {
+  content: 'PASTEBĖK';
 }
